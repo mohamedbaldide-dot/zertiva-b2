@@ -192,7 +192,10 @@ function checkExam(){
       score++;
     }else{
       text.classList.add("wrong");
-      text.innerHTML = "Text "+i+" (✔ الصحيح: "+correct[i]+")";
+
+      // 🔥 إضافة الإجابة الصحيحة داخل القائمة
+      let select = document.getElementById("ans"+i);
+      select.innerHTML += `<option value="${correct[i]}" selected>✔ الصحيح: ${correct[i]}. ${titles[correct[i]]}</option>`;
     }
   }
 
