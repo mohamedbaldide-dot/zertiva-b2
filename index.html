@@ -1,38 +1,168 @@
-<!-- PAGE 2 -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zertiva B2</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #f5f5f5;
+    }
+
+    .page {
+      display: none;
+      padding: 30px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    /* HOME */
+    .home {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    button {
+      padding: 12px 25px;
+      border: none;
+      background: black;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    /* LIST */
+    .list {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .item {
+      background: white;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .item:hover {
+      background: #eee;
+    }
+
+    /* EXAM */
+    .exam-box {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HOME -->
+<div id="home" class="page active home">
+  <div class="card">
+    <h1>مرحباً بك في Zertiva B2</h1>
+    <p>أوثق منصة للتحضير لامتحان Telc B2</p>
+
+    <button onclick="goList()">لنبدأ المغامرة 🚀</button>
+  </div>
+</div>
+
+<!-- LIST -->
 <div id="list" class="page">
 
   <h2>الامتحانات</h2>
 
-  <div class="item" onclick="openExam()">1 - sport ist gesund (الرياضة مفيدة للصحة)</div>
-  <div class="item" onclick="openExam()">2 - kellner (باحث شاب)</div>
-  <div class="item" onclick="openExam()">3 - Impfung (لقاح)</div>
-  <div class="item" onclick="openExam()">4 - tanzkurs (دورة رقص)</div>
-  <div class="item" onclick="openExam()">5 - inseln (الجزر)</div>
-  <div class="item" onclick="openExam()">6 - Bilder (صور)</div>
-  <div class="item" onclick="openExam()">7 - Grundschule (المدرسة)</div>
-  <div class="item" onclick="openExam()">8 - Österreich (النمسا)</div>
-  <div class="item" onclick="openExam()">9 - Insekten (الحشرات)</div>
-  <div class="item" onclick="openExam()">10 - Benzin (البنزين)</div>
-  <div class="item" onclick="openExam()">11 - Kaffee (القهوة)</div>
-  <div class="item" onclick="openExam()">12 - Programmierer (المبرمجين)</div>
-  <div class="item" onclick="openExam()">13 - Trampolin (الترامبولين)</div>
-  <div class="item" onclick="openExam()">14 - Schlafzug (قطار النوم)</div>
-  <div class="item" onclick="openExam()">15 - Bonbons (الحلوى)</div>
-  <div class="item" onclick="openExam()">16 - Umwelt (البيئة)</div>
-  <div class="item" onclick="openExam()">17 - Licht (الضوء)</div>
-  <div class="item" onclick="openExam()">18 - Alpen (الألب)</div>
-  <div class="item" onclick="openExam()">19 - Spiele (الألعاب)</div>
-  <div class="item" onclick="openExam()">20 - Kartoffel (البطاطا)</div>
-  <div class="item" onclick="openExam()">21 - Bienen (النحل)</div>
-  <div class="item" onclick="openExam()">22 - Geld (المال)</div>
-  <div class="item" onclick="openExam()">23 - Suchtmittel (المخدرات)</div>
-  <div class="item" onclick="openExam()">24 - Kinder und Schulen (الأطفال والمدارس)</div>
-  <div class="item" onclick="openExam()">25 - Kindertelefon (هاتف الأطفال)</div>
-  <div class="item" onclick="openExam()">26 - Wahlen (الانتخابات)</div>
-  <div class="item" onclick="openExam()">27 - Keine Zeit (لا وقت)</div>
-  <div class="item" onclick="openExam()">28 - Limonade (عصير الليمون)</div>
-  <div class="item" onclick="openExam()">29 - Auf dem Weg (في الطريق)</div>
-  <div class="item" onclick="openExam()">30 - Farben (الألوان)</div>
+  <div class="list">
+
+    <div class="item" onclick="openExam(1)">1 - الرياضة مفيدة للصحة</div>
+    <div class="item" onclick="openExam(2)">2 - باحث شاب</div>
+    <div class="item" onclick="openExam(3)">3 - اللقاح</div>
+    <div class="item" onclick="openExam(4)">4 - دورة رقص</div>
+    <div class="item" onclick="openExam(5)">5 - الجزر</div>
+    <div class="item" onclick="openExam(6)">6 - الصور</div>
+    <div class="item" onclick="openExam(7)">7 - المدرسة</div>
+    <div class="item" onclick="openExam(8)">8 - النمسا</div>
+    <div class="item" onclick="openExam(9)">9 - الحشرات</div>
+    <div class="item" onclick="openExam(10)">10 - البنزين</div>
+    <div class="item" onclick="openExam(11)">11 - القهوة</div>
+    <div class="item" onclick="openExam(12)">12 - البرمجة</div>
+    <div class="item" onclick="openExam(13)">13 - الترامبولين</div>
+    <div class="item" onclick="openExam(14)">14 - قطار النوم</div>
+    <div class="item" onclick="openExam(15)">15 - الحلوى</div>
+    <div class="item" onclick="openExam(16)">16 - البيئة</div>
+    <div class="item" onclick="openExam(17)">17 - الضوء</div>
+    <div class="item" onclick="openExam(18)">18 - الألب</div>
+    <div class="item" onclick="openExam(19)">19 - الألعاب</div>
+    <div class="item" onclick="openExam(20)">20 - البطاطا</div>
+    <div class="item" onclick="openExam(21)">21 - النحل</div>
+    <div class="item" onclick="openExam(22)">22 - المال</div>
+    <div class="item" onclick="openExam(23)">23 - المخدرات</div>
+    <div class="item" onclick="openExam(24)">24 - المدارس</div>
+    <div class="item" onclick="openExam(25)">25 - هاتف الأطفال</div>
+    <div class="item" onclick="openExam(26)">26 - الانتخابات</div>
+    <div class="item" onclick="openExam(27)">27 - لا وقت</div>
+    <div class="item" onclick="openExam(28)">28 - الليموناد</div>
+    <div class="item" onclick="openExam(29)">29 - الطريق</div>
+    <div class="item" onclick="openExam(30)">30 - الألوان</div>
+
+  </div>
 
   <button onclick="goHome()">رجوع</button>
 </div>
+
+<!-- EXAM -->
+<div id="exam" class="page">
+
+  <div class="exam-box">
+    <h2>Exam Page</h2>
+    <p>هذه صفحة الامتحان (فارغة حالياً)</p>
+
+    <button onclick="goList()">رجوع للقائمة</button>
+  </div>
+
+</div>
+
+<script>
+function goHome() {
+  hideAll();
+  document.getElementById("home").classList.add("active");
+}
+
+function goList() {
+  hideAll();
+  document.getElementById("list").classList.add("active");
+}
+
+function openExam(id) {
+  hideAll();
+  document.getElementById("exam").classList.add("active");
+}
+
+function hideAll() {
+  document.getElementById("home").classList.remove("active");
+  document.getElementById("list").classList.remove("active");
+  document.getElementById("exam").classList.remove("active");
+}
+</script>
+
+</body>
+</html>
