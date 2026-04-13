@@ -53,9 +53,7 @@ select{margin:10px 0;padding:8px;width:100%;}
 }
 
 .matched{
-  opacity:0.4;
-  filter: grayscale(50%);
-  pointer-events: none;
+  opacity:0.5;
 }
 
 .answer-box{
@@ -382,7 +380,6 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
 
 </div>
 </div>
-
 <!-- ==================== جميع الـ JavaScript في مكان واحد ==================== -->
 <script>
 
@@ -554,6 +551,9 @@ let selectedTitle = null;
 let answers = {};
 
 function selectText(num, el){
+  // منع التحديد إذا كان العنصر مقفلاً
+  if(el.classList.contains("matched")) return;
+  
   if(selectedText === num){
     selectedText = null;
     el.classList.remove("selected");
@@ -570,6 +570,9 @@ function selectText(num, el){
 }
 
 function selectTitle(letter, el){
+  // منع التحديد إذا كان العنصر مقفلاً
+  if(el.classList.contains("matched")) return;
+  
   if(selectedTitle === letter){
     selectedTitle = null;
     el.classList.remove("selected");
@@ -605,11 +608,7 @@ function assign(num, letter){
   answerBox.style.color = "white";
 
   textEl.classList.add("matched");
-if(titleEl){
-  titleEl.classList.add("matched");
-}
-textEl.onclick = null;
-if(titleEl) titleEl.onclick = null;
+  if(letter !== 0 && titleEl) titleEl.classList.add("matched");
 
   selectedText = null;
   selectedTitle = null;
