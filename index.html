@@ -601,6 +601,60 @@ function assign(num, letter){
   let textEl = document.querySelectorAll(".text")[num-1];
   let titleEl = document.querySelector(`.title[data-id="${letter}"]`);
 
+  // إذا كان هناك عنوان قديم لنفس الفقرة → رجّعه للقائمة
+  if(answers[num] !== undefined){
+    let oldTitleEl = document.querySelector(`.title[data-id="${answers[num]}"]`);
+    if(oldTitleEl){
+      oldTitleEl.style.display = "block";
+    }
+  }
+
+  answers[num] = letter;
+
+  // حذف العنوان القديم داخل الفقرة
+  let old = textEl.querySelector(".moved-title");
+  if(old) old.remove();
+
+  if(titleEl){
+    // ❌ إخفاء العنوان من القائمة
+    titleEl.style.display = "none";
+
+    // إنشاء العنوان داخل الفقرة
+    let clone = document.createElement("div");
+    clone.classList.add("moved-title");
+
+    // إضافة زر X
+    clone.innerHTML = `
+      <span style="float:right; cursor:pointer; color:red; font-weight:bold;" onclick="removeAssignment(${num}, ${letter})">✖</span>
+      ${titleEl.innerText}
+    `;
+
+    textEl.insertBefore(clone, textEl.children[1]);
+  }
+
+  selectedText = null;
+  selectedTitle = null;
+  document.querySelectorAll(".selected").forEach(e=>e.classList.remove("selected"));
+}
+function removeAssignment(num, letter){
+  let textEl = document.querySelectorAll(".text")[num-1];
+
+  // حذف العنوان من الفقرة
+  let moved = textEl.querySelector(".moved-title");
+  if(moved) moved.remove();
+
+  // إرجاع العنوان إلى القائمة
+  let titleEl = document.querySelector(`.title[data-id="${letter}"]`);
+  if(titleEl){
+    titleEl.style.display = "block";
+  }
+
+  // حذف الجواب
+  delete answers[num];
+}
+  let textEl = document.querySelectorAll(".text")[num-1];
+  let titleEl = document.querySelector(`.title[data-id="${letter}"]`);
+
   answers[num] = letter;
 
   // إزالة أي عنوان قديم داخل الفقرة
@@ -734,11 +788,12 @@ function resetTeil3(){
     if(movedTitle) movedTitle.remove();
   });
 
-  document.querySelectorAll(".title").forEach(t=>{
-    t.classList.remove("matched","selected");
-    let old = t.querySelector(".no-paragraph-msg");
-    if(old) old.remove();
-  });
+document.querySelectorAll(".title").forEach(t=>{
+  t.classList.remove("matched","selected");
+  t.style.display = "block";
+  let old = t.querySelector(".no-paragraph-msg");
+  if(old) old.remove();
+});
 
   document.getElementById("result3").innerText = "";
 }
