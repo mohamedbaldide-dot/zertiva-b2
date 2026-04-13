@@ -100,24 +100,81 @@ select{margin:10px 0;padding:8px;width:100%;}
 
 /* ===== CSS لـ Sprachbausteine ===== */
 .gap{
-  padding:4px 8px;
-  border:1px dashed #999;
+  display:inline-block;
+  padding:6px 12px;
+  border:2px solid #007bff;
+  background:#e7f1ff;
+  color:#004085;
   cursor:pointer;
   margin:0 4px;
-  border-radius:5px;
-  display:inline-block;
-  min-width:60px;
+  border-radius:8px;
+  font-weight:bold;
+  min-width:70px;
   text-align:center;
+  transition:0.2s;
+}
+
+.gap:hover{
+  background:#cfe2ff;
+  transform:scale(1.02);
+}
+
+.gap.active-gap{
+  background:#0d6efd;
+  color:white;
+  border-color:#0a58ca;
+  box-shadow:0 0 0 2px rgba(13,110,253,0.3);
 }
 
 .correct-gap{
   background:#d4edda;
   border-color:#28a745;
+  color:#155724;
 }
 
 .wrong-gap{
   background:#f8d7da;
   border-color:#dc3545;
+  color:#721c24;
+}
+
+/* خيارات الإجابة */
+.option-btn{
+  margin:5px;
+  padding:8px 14px;
+  border:1px solid #6c757d;
+  border-radius:20px;
+  background:white;
+  color:black;
+  cursor:pointer;
+  transition:0.2s;
+  font-size:14px;
+}
+
+.option-btn:hover{
+  background:#e9ecef;
+  transform:translateY(-1px);
+}
+
+.option-btn.selected-option{
+  background:#0d6efd;
+  border-color:#0d6efd;
+  color:white;
+}
+
+.option-btn.disabled-option{
+  opacity:0.5;
+  text-decoration:line-through;
+  cursor:not-allowed;
+  pointer-events:none;
+}
+
+.option-group{
+  margin-bottom:20px;
+  padding:12px;
+  background:#f8f9fa;
+  border-radius:12px;
+  border-left:4px solid #0d6efd;
 }
 </style>
 </head>
@@ -354,7 +411,7 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
   <div class="text" onclick="selectText(8, this)">
     <div class="answer-box"></div>
     <div class="solution-box"></div>
-    <strong>Anzeige h:</strong> Der Körper lügt nicht, Gesten und Gebärden decken die Ebene des Unbewusstsein auf: Wer einen erhobenen Zeigefinger oder eine gerümpfte Nase sieht, versteht sofort, was der Gesprächspartner meint, auch wenn der mit Worten etwas anderes sagt. Dieses Buch gibt einen anschaulichen Überblick über die Signale, die wir ständig mit unserem Körper senden, und hilft uns zu verstehen, was jemand in Wahrheit gerade denkt und meint.
+    <strong>Anzeige h:</strong> Der Körper lügt nicht, Gesten und Gebärden decken die Ebene des Unbewusstsein auf: Wer einen erhobenen Zeigefinger oder eine gerümpfte Nase sieht, versteht sofort, was der Gesprächspartner meint, auch wenn der mit Worten etwas anderes sagt. Dieses Buch gibt einen anschaulichen Überblick über die Signale, die wir ständig mit unserem Körper senden, und hilft uns zu verstehen, what jemand in Wahrheit gerade denkt und meint.
     <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
   </div>
 
@@ -864,7 +921,7 @@ function resetTeil3(){
   document.getElementById("result3").innerText = "";
 }
 
-// Sprachbausteine Teil 1
+// Sprachbausteine Teil 1 - IMPROVED VERSION
 const sprachAnswers = {
   1:"über den",
   2:"nichts mehr",
@@ -892,7 +949,6 @@ const sprachOptions = {
 };
 
 let currentGap = null;
-let currentOption = null;
 let sprachUser = {};
 
 function loadSprachOptions(){
@@ -901,74 +957,149 @@ function loadSprachOptions(){
   container.innerHTML = "";
 
   for(let i=1;i<=10;i++){
-    let div = document.createElement("div");
-    div.style.marginBottom="15px";
-    div.style.padding="10px";
-    div.style.background="#f9f9f9";
-    div.style.borderRadius="8px";
-
-    div.innerHTML = "<strong style='display:block; margin-bottom:8px;'>الفراغ " + i + "</strong>";
-
+    let groupDiv = document.createElement("div");
+    groupDiv.className = "option-group";
+    groupDiv.innerHTML = `<strong style="display:block; margin-bottom:8px;">الفراغ ${i}</strong>`;
+    
     sprachOptions[i].forEach(opt=>{
       let btn = document.createElement("button");
       btn.innerText = opt;
-      btn.style.margin="3px";
-      btn.style.padding="6px 12px";
-      btn.style.border="1px solid #ccc";
-      btn.style.borderRadius="5px";
-      btn.style.background="white";
-      btn.style.color="black";
-      btn.style.cursor="pointer";
-
-      btn.onclick = ()=>selectOption(i,opt);
-
-      div.appendChild(btn);
+      btn.className = "option-btn";
+      btn.setAttribute("data-gap", i);
+      btn.setAttribute("data-value", opt);
+      
+      // Method 2: Direct click on option -> fills its correct gap
+      btn.onclick = function(e){
+        e.stopPropagation();
+        let gapId = parseInt(this.getAttribute("data-gap"));
+        let optionValue = this.getAttribute("data-value");
+        
+        // Remove previous selection from this gap if exists
+        if(sprachUser[gapId] !== undefined){
+          // Re-enable previous option button
+          let prevBtn = document.querySelector(`.option-btn[data-gap="${gapId}"][data-value="${sprachUser[gapId]}"]`);
+          if(prevBtn) prevBtn.classList.remove("selected-option");
+        }
+        
+        // Apply selection
+        let gapSpan = document.getElementById("gap"+gapId);
+        gapSpan.innerText = optionValue;
+        sprachUser[gapId] = optionValue;
+        
+        // Highlight selected option
+        document.querySelectorAll(`.option-btn[data-gap="${gapId}"]`).forEach(b=>b.classList.remove("selected-option"));
+        this.classList.add("selected-option");
+        
+        // Remove active-gap highlight
+        document.querySelectorAll(".gap").forEach(g=>g.classList.remove("active-gap"));
+        currentGap = null;
+      };
+      
+      groupDiv.appendChild(btn);
     });
-
-    container.appendChild(div);
+    
+    container.appendChild(groupDiv);
   }
 }
 
-// اختيار الفراغ
-document.querySelectorAll(".gap").forEach((g,i)=>{
-  g.onclick = ()=>{
-    document.querySelectorAll(".gap").forEach(gap=>{
-      gap.style.border = "1px dashed #999";
-    });
-
-    currentGap = i+1;
-    g.style.border = "2px solid #0d6efd";
-
-    // ✅ إذا كان هناك خيار مختار مسبقًا → طبّق مباشرة
-    if(currentOption !== null){
-      applySelection(currentGap, currentOption);
+// Method 1: Click gap first, then options appear (only for that gap)
+document.querySelectorAll(".gap").forEach((gapSpan, idx)=>{
+  gapSpan.onclick = function(e){
+    e.stopPropagation();
+    let gapNum = parseInt(this.id.replace("gap",""));
+    
+    // Toggle: if same gap is clicked again, deselect
+    if(currentGap === gapNum){
+      currentGap = null;
+      this.classList.remove("active-gap");
+      
+      // Reset all option buttons visual
+      document.querySelectorAll(".option-btn").forEach(btn=>{
+        btn.style.background = "white";
+        btn.style.color = "black";
+      });
+    } else {
+      // Remove active from all gaps
+      document.querySelectorAll(".gap").forEach(g=>g.classList.remove("active-gap"));
+      this.classList.add("active-gap");
+      currentGap = gapNum;
+      
+      // Highlight only the options belonging to this gap
+      document.querySelectorAll(".option-btn").forEach(btn=>{
+        let btnGap = parseInt(btn.getAttribute("data-gap"));
+        if(btnGap === gapNum){
+          btn.style.background = "#e7f1ff";
+          btn.style.borderColor = "#0d6efd";
+        } else {
+          btn.style.background = "white";
+          btn.style.color = "black";
+        }
+      });
     }
   };
 });
 
-function selectOption(num, value){
-  currentOption = value;
+// Global function to apply selection (used by both methods)
+function applySelectionToGap(gapNum, value){
+  let gapSpan = document.getElementById("gap"+gapNum);
+  gapSpan.innerText = value;
+  sprachUser[gapNum] = value;
+  
+  // Update option button visual
+  document.querySelectorAll(`.option-btn[data-gap="${gapNum}"]`).forEach(btn=>{
+    if(btn.getAttribute("data-value") === value){
+      btn.classList.add("selected-option");
+    } else {
+      btn.classList.remove("selected-option");
+    }
+  });
+}
 
-  // ✅ إذا الفراغ مختار → طبّق مباشرة
-  if(currentGap !== null){
-    applySelection(currentGap, currentOption);
+// Option selection for method 1 (when a gap is active)
+function selectOptionForActiveGap(gapNum, value, btnElement){
+  if(currentGap === gapNum){
+    // Remove previous selection for this gap
+    if(sprachUser[gapNum] !== undefined){
+      let prevBtn = document.querySelector(`.option-btn[data-gap="${gapNum}"][data-value="${sprachUser[gapNum]}"]`);
+      if(prevBtn) prevBtn.classList.remove("selected-option");
+    }
+    
+    applySelectionToGap(gapNum, value);
+    
+    // Clear active gap
+    document.querySelectorAll(".gap").forEach(g=>g.classList.remove("active-gap"));
+    currentGap = null;
+    
+    // Reset option styles
+    document.querySelectorAll(".option-btn").forEach(btn=>{
+      btn.style.background = "white";
+      btn.style.color = "black";
+    });
   }
 }
 
-function applySelection(gapNum, value){
-  let gap = document.getElementById("gap"+gapNum);
-
-  gap.innerText = value;
-  gap.style.border = "1px dashed #999";
-
-  sprachUser[gapNum] = value;
-
-  // reset
-  currentGap = null;
-  currentOption = null;
-
-  document.querySelectorAll(".gap").forEach(g=>{
-    g.style.border = "1px dashed #999";
+// Override button onclick to support method 1 as well
+function enhanceOptionsForMethod1(){
+  document.querySelectorAll(".option-btn").forEach(btn=>{
+    let originalOnclick = btn.onclick;
+    let gapNum = parseInt(btn.getAttribute("data-gap"));
+    let value = btn.getAttribute("data-value");
+    
+    btn.onclick = function(e){
+      e.stopPropagation();
+      if(currentGap !== null){
+        // Method 1: gap selected first
+        selectOptionForActiveGap(gapNum, value, this);
+      } else {
+        // Method 2: direct click
+        if(sprachUser[gapNum] !== undefined){
+          let prevBtn = document.querySelector(`.option-btn[data-gap="${gapNum}"][data-value="${sprachUser[gapNum]}"]`);
+          if(prevBtn) prevBtn.classList.remove("selected-option");
+        }
+        applySelectionToGap(gapNum, value);
+        this.classList.add("selected-option");
+      }
+    };
   });
 }
 
@@ -984,7 +1115,10 @@ function checkSprach1(){
       score++;
     }else{
       gap.classList.add("wrong-gap");
-      gap.innerText = sprachAnswers[i];
+      // Show correct answer inside gap (but keep user answer visible as fallback)
+      if(sprachUser[i] !== sprachAnswers[i]){
+        gap.innerText = sprachAnswers[i];
+      }
     }
   }
 
@@ -995,14 +1129,18 @@ function checkSprach1(){
 function resetSprach1(){
   sprachUser = {};
   currentGap = null;
-  currentOption = null;
 
   for(let i=1;i<=10;i++){
     let gap = document.getElementById("gap"+i);
     gap.innerText = "["+i+"]";
-    gap.classList.remove("correct-gap","wrong-gap");
-    gap.style.border = "1px dashed #999";
+    gap.classList.remove("correct-gap","wrong-gap","active-gap");
   }
+  
+  document.querySelectorAll(".option-btn").forEach(btn=>{
+    btn.classList.remove("selected-option");
+    btn.style.background = "white";
+    btn.style.color = "black";
+  });
 
   document.getElementById("resultSprach1").innerText = "";
 }
@@ -1010,6 +1148,7 @@ function resetSprach1(){
 // تهيئة Teil 1 و Sprachbausteine
 loadOptions();
 loadSprachOptions();
+setTimeout(enhanceOptionsForMethod1, 100);
 
 </script>
 
