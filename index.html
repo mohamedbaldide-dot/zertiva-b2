@@ -119,6 +119,11 @@ select{margin:10px 0;padding:8px;width:100%;}
   background:#f8d7da;
   border-color:#dc3545;
 }
+
+.used-option{
+  opacity:0.4;
+  pointer-events:none;
+}
 </style>
 </head>
 
@@ -413,594 +418,619 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
 
 </div> <!-- نهاية teil3 -->
 
-以下是您要求的德语练习页面中“Sprachbausteine Teil 1”部分的修改代码。它实现了选项使用后禁用、不可重复选择的功能。
-```html
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Deutsch Übung - Sprachbausteine Teil 1</title>
-    <style>
-        /* ----- Grundlegende Styles (aus Original übernommen & erweitert) ----- */
-        * {
-            box-sizing: border-box;
-            font-family: system-ui, 'Segoe UI', 'Helvetica Neue', sans-serif;
-        }
+<!-- ==================== Sprachbausteine Teil 1 ==================== -->
+<div id="sprach1" style="display:none;">
 
-        body {
-            background: #f0f2f5;
-            margin: 0;
-            padding: 20px;
-        }
+<h2>Sprachbausteine Teil 1</h2>
 
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 28px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-            padding: 25px 30px;
-        }
+<div style="display:flex; gap:20px; flex-wrap:wrap;">
 
-        h2 {
-            color: #1e466e;
-            border-left: 6px solid #2c7da0;
-            padding-left: 18px;
-            margin-top: 0;
-            margin-bottom: 25px;
-        }
+<!-- النص -->
+<div style="flex:1.5; min-width:300px; line-height:1.8;">
 
-        /* Sprachbausteine spezifisch */
-        #sprach1 {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 20px 25px;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
-        }
+Liebe Vanessa,<br>
+danke für deinen Brief, 
+<span class="gap" id="gap1">[1]</span>
+ ich mich total gefreut habe. Du fragst dich bestimmt, warum du schon drei Wochen 
+<span class="gap" id="gap2">[2]</span>
+ von mir gehört hast, oder? Ich war mit meiner Gastfamilie in Urlaub. Vierzehn Tage im Allgäu – mit den Kindern Stefan, Anja und Karina.
 
-        .gap {
-            display: inline-block;
-            min-width: 85px;
-            background: #fef7e0;
-            border: 1px dashed #f4b942;
-            border-radius: 28px;
-            padding: 2px 12px;
-            margin: 0 4px;
-            font-weight: 600;
-            color: #b45f06;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.95rem;
-        }
+<br><br>
 
-        .gap:hover {
-            background: #fff1cf;
-            border-color: #e67e22;
-            transform: scale(1.02);
-        }
+Du weißt 
+<span class="gap" id="gap3">[3]</span>
+ selbst, wie anstrengend es ist, wenn man ständig drei kleine Kinder um sich hat, die pausenlos unterhalten werden möchten. 
+<span class="gap" id="gap4">[4]</span>
+ ist es übrigens in deiner Au-pair-Familie mit der kleinen Dorothea?
 
-        .correct-gap {
-            background: #d4edda;
-            border: 1px solid #28a745;
-            color: #155724;
-            text-decoration: none;
-            box-shadow: 0 0 0 2px #a3e4b7;
-        }
+<br><br>
 
-        .wrong-gap {
-            background: #f8d7da;
-            border: 1px solid #dc3545;
-            color: #721c24;
-            text-decoration: line-through;
-            font-style: italic;
-        }
+Das Allgäu liegt in Süddeutschland am Fuß 
+<span class="gap" id="gap5">[5]</span>
+ Alpen. Wir sind fast jeden Tag gewandert, immer bergauf und bergab. Den Kindern und mir haben ständig die Füße weh 
+<span class="gap" id="gap6">[6]</span>
+, doch meine Gasteltern, Herr und Frau Zimmer, sind einfach immer weitergelaufen. Die Deutschen lieben es nämlich, in der Natur spazieren zu gehen, bis sie vor Erschöpfung 
+<span class="gap" id="gap7">[7]</span>
+.
 
-        /* Optionen Buttons (neu mit used-option) */
-        .opt-button {
-            margin: 5px 8px 5px 0;
-            padding: 8px 16px;
-            border: 1px solid #cbd5e1;
-            border-radius: 40px;
-            background: white;
-            color: #1e293b;
-            font-weight: 500;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
+<br><br>
 
-        .opt-button:hover:not(.used-option) {
-            background: #e9ecef;
-            border-color: #8ba0b5;
-            transform: translateY(-1px);
-        }
+Unterwegs haben wir manchmal an einer sogenannten "Wassertretstelle" Rast gemacht. Das sind kleine Wasserbecken, die oft mitten im Wald liegen. Durch das Becken fließt ein Bach mit eiskaltem Wasser, das direkt von den Bergen kommt. Stell 
+<span class="gap" id="gap8">[8]</span>
+ vor, alle Wanderer ziehen ihre Schuhe und Strümpfe aus und laufen durch dieses Becken. Als ich meinen Fuß in dieses kalte Wasser getaucht hatte, dachte ich, dass ich gleich sterben muss.
 
-        /* ✅ NEU: CSS für verwendete Optionen (transparent + nicht klickbar) */
-        .used-option {
-            opacity: 0.4;
-            pointer-events: none;
-            background: #e2e8f0;
-            border-color: #94a3b8;
-            text-decoration: line-through;
-            filter: grayscale(0.1);
-        }
+<br><br>
 
-        .options-panel {
-            background: #f8fafc;
-            border-radius: 24px;
-            padding: 15px 20px;
-            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.02);
-        }
+Am Wochenende haben wir alle Minigolf gespielt. Dabei muss ein Golfball mit einem Schläger in ein etwa zehn Meter entferntes Loch geschlagen werden. Aber vor dem Loch gibt es 
+<span class="gap" id="gap9">[9]</span>
+ Menge Hindernisse: Gräben, kleine Hügel, Tunnel. Der Spieler, dessen Ball mit den wenigsten Schlägen im Loch ankommt, hat gewonnen. Die Kinder wollten gar nicht mehr 
+<span class="gap" id="gap10">[10]</span>
+ aufhören.
 
-        .option-group {
-            margin-bottom: 20px;
-            padding: 12px 15px;
-            background: #ffffff;
-            border-radius: 20px;
-            border-left: 4px solid #2c7da0;
-            transition: 0.1s;
-        }
+<br><br>
 
-        .option-group strong {
-            display: block;
-            margin-bottom: 10px;
-            color: #0b3b5f;
-            font-size: 0.9rem;
-            letter-spacing: 0.3px;
-        }
+Jetzt muss ich aber Schluss machen, die Kinder warten auf ihr Abendessen, denn die Zimmers sind heute nicht da: Sie wandern mal wieder.<br>
+Viele Grüße<br>
+deine Mercedes
 
-        button {
-            font-family: inherit;
-        }
-
-        .action-buttons {
-            margin-top: 30px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .action-buttons button {
-            background: #2c7da0;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 40px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-            font-size: 0.9rem;
-            border: 1px solid #226b8a;
-        }
-
-        .action-buttons button:hover {
-            background: #1f5e7a;
-            transform: scale(1.02);
-        }
-
-        .reset-btn {
-            background: #6c757d !important;
-            border-color: #5a6268 !important;
-        }
-
-        .reset-btn:hover {
-            background: #545b62 !important;
-        }
-
-        #resultSprach1 {
-            margin-top: 20px;
-            font-weight: bold;
-            background: #e9ecef;
-            padding: 12px 18px;
-            border-radius: 40px;
-            font-size: 1.1rem;
-            text-align: center;
-        }
-
-        .back-btn {
-            background: #4a627a;
-            margin-top: 15px;
-            display: inline-block;
-            border: none;
-            padding: 8px 24px;
-            border-radius: 32px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .flex-layout {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .text-area {
-            flex: 2;
-            min-width: 280px;
-            line-height: 1.75;
-            font-size: 1rem;
-            background: #ffffff;
-            padding: 10px;
-        }
-
-        .options-area {
-            flex: 1.2;
-            min-width: 260px;
-        }
-
-        @media (max-width: 780px) {
-            .container {
-                padding: 15px;
-            }
-            .opt-button {
-                padding: 5px 12px;
-                font-size: 0.85rem;
-            }
-        }
-
-        hr {
-            margin: 20px 0;
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <!-- Sprachbausteine Teil 1 (modifiziert) -->
-    <div id="sprach1" style="display: block;">
-        <h2>📝 Sprachbausteine Teil 1 – Lückentext</h2>
-        <div class="flex-layout">
-            <!-- Textbereich mit Lücken -->
-            <div class="text-area">
-                Liebe Vanessa,<br>
-                danke für deinen Brief, 
-                <span class="gap" id="gap1">[1]</span>
-                ich mich total gefreut habe. Du fragst dich bestimmt, warum du schon drei Wochen 
-                <span class="gap" id="gap2">[2]</span>
-                von mir gehört hast, oder? Ich war mit meiner Gastfamilie in Urlaub. Vierzehn Tage im Allgäu – mit den Kindern Stefan, Anja und Karina.
-                <br><br>
-                Du weißt 
-                <span class="gap" id="gap3">[3]</span>
-                selbst, wie anstrengend es ist, wenn man ständig drei kleine Kinder um sich hat, die pausenlos unterhalten werden möchten. 
-                <span class="gap" id="gap4">[4]</span>
-                ist es übrigens in deiner Au-pair-Familie mit der kleinen Dorothea?
-                <br><br>
-                Das Allgäu liegt in Süddeutschland am Fuß 
-                <span class="gap" id="gap5">[5]</span>
-                Alpen. Wir sind fast jeden Tag gewandert, immer bergauf und bergab. Den Kindern und mir haben ständig die Füße weh 
-                <span class="gap" id="gap6">[6]</span>
-                , doch meine Gasteltern, Herr und Frau Zimmer, sind einfach immer weitergelaufen. Die Deutschen lieben es nämlich, in der Natur spazieren zu gehen, bis sie vor Erschöpfung 
-                <span class="gap" id="gap7">[7]</span>
-                .
-                <br><br>
-                Unterwegs haben wir manchmal an einer sogenannten "Wassertretstelle" Rast gemacht. Das sind kleine Wasserbecken, die oft mitten im Wald liegen. Durch das Becken fließt ein Bach mit eiskaltem Wasser, das direkt von den Bergen kommt. Stell 
-                <span class="gap" id="gap8">[8]</span>
-                vor, alle Wanderer ziehen ihre Schuhe und Strümpfe aus und laufen durch dieses Becken. Als ich meinen Fuß in dieses kalte Wasser getaucht hatte, dachte ich, dass ich gleich sterben muss.
-                <br><br>
-                Am Wochenende haben wir alle Minigolf gespielt. Dabei muss ein Golfball mit einem Schläger in ein etwa zehn Meter entferntes Loch geschlagen werden. Aber vor dem Loch gibt es 
-                <span class="gap" id="gap9">[9]</span>
-                Menge Hindernisse: Gräben, kleine Hügel, Tunnel. Der Spieler, dessen Ball mit den wenigsten Schlägen im Loch ankommt, hat gewonnen. Die Kinder wollten gar nicht mehr 
-                <span class="gap" id="gap10">[10]</span>
-                aufhören.
-                <br><br>
-                Jetzt muss ich aber Schluss machen, die Kinder warten auf ihr Abendessen, denn die Zimmers sind heute nicht da: Sie wandern mal wieder.<br>
-                Viele Grüße<br>
-                deine Mercedes
-            </div>
-
-            <!-- Bereich mit dynamischen Options-Buttons (jede Lücke einzeln) -->
-            <div class="options-area">
-                <div class="options-panel" id="optionsContainer"></div>
-            </div>
-        </div>
-
-        <div class="action-buttons">
-            <button onclick="checkSprach1()">✅ Korrigieren</button>
-            <button onclick="resetSprach1()" class="reset-btn">🔄 Alles zurücksetzen</button>
-        </div>
-        <p id="resultSprach1"></p>
-    </div>
-    <button class="back-btn" onclick="goList()">◀ Zurück zur Übersicht</button>
 </div>
 
+<!-- الخيارات -->
+<div style="flex:1; min-width:250px;" id="optionsContainer"></div>
+
+</div>
+
+<button onclick="checkSprach1()" style="margin-top:20px;">تصحيح</button>
+<button onclick="resetSprach1()" style="margin-top:20px; margin-right:10px;">🔄 إعادة</button>
+
+<p id="resultSprach1"></p>
+
+</div>
+
+<button onclick="goList()">رجوع</button>
+
+</div>
+</div>
+
+<!-- ==================== جميع الـ JavaScript في مكان واحد ==================== -->
 <script>
-    // --------------------------------------------------------------
-    // 1. Sprachbausteine Teil 1 – Lösungen & Optionen
-    // --------------------------------------------------------------
-    const sprachAnswers = {
-        1: "über den",
-        2: "nichts mehr",
-        3: "doch",
-        4: "Wie",
-        5: "der",
-        6: "getan",
-        7: "umfallen",
-        8: "dir",
-        9: "jede",
-        10: "damit"
+
+// دوال التنقل بين الصفحات
+function goList(){
+  document.getElementById("home").classList.remove("active");
+  document.getElementById("list").classList.add("active");
+}
+
+function goHome(){
+  document.getElementById("list").classList.remove("active");
+  document.getElementById("home").classList.add("active");
+}
+
+function openExam(num){
+  document.getElementById("list").classList.remove("active");
+  document.getElementById("exam").classList.add("active");
+}
+
+function showTeil(n){
+  let teil1 = document.getElementById("teil1");
+  let teil2 = document.getElementById("teil2");
+  let teil3 = document.getElementById("teil3");
+  let sprach1 = document.getElementById("sprach1");
+  if(teil1) teil1.style.display = (n===1) ? "block" : "none";
+  if(teil2) teil2.style.display = (n===2) ? "block" : "none";
+  if(teil3) teil3.style.display = (n===3) ? "block" : "none";
+  if(sprach1) sprach1.style.display = (n===4) ? "block" : "none";
+}
+
+// Teil 1 functions
+function loadOptions(){
+  for(let i=1;i<=5;i++){
+    let s=document.getElementById("ans"+i);
+    if(s){
+      s.innerHTML="<option value=''>اختر</option>";
+      for(let key in titles){
+        s.innerHTML+=`<option value="${key}">${key}. ${titles[key]}</option>`;
+      }
+    }
+  }
+}
+
+function updateOptions(){
+  let selected=[];
+  for(let i=1;i<=5;i++){
+    let v=document.getElementById("ans"+i).value;
+    if(v) selected.push(v);
+  }
+
+  for(let i=1;i<=5;i++){
+    let s=document.getElementById("ans"+i);
+    if(s){
+      let current=s.value;
+      s.innerHTML="<option value=''>اختر</option>";
+      for(let key in titles){
+        if(!selected.includes(key) || key===current){
+          s.innerHTML+=`<option value="${key}">${key}. ${titles[key]}</option>`;
+        }
+      }
+      s.value=current;
+    }
+  }
+}
+
+function checkExam(){
+  let correct={1:"h",2:"f",3:"g",4:"a",5:"d"};
+  let score=0;
+
+  for(let i=1;i<=5;i++){
+    let val=document.getElementById("ans"+i).value;
+    let text=document.getElementById("t"+i);
+
+    text.classList.remove("correct","wrong");
+
+    if(val===correct[i]){
+      text.classList.add("correct");
+      score++;
+    }else{
+      text.classList.add("wrong");
+      
+      let select = document.getElementById("ans"+i);
+      
+      if(!select.querySelector(".correct-answer")){
+        let opt = document.createElement("option");
+        opt.value = correct[i];
+        opt.textContent = "✔ الصحيح: " + correct[i] + ". " + titles[correct[i]];
+        opt.classList.add("correct-answer");
+        select.appendChild(opt);
+      }
+      select.value = correct[i];
+    }
+  }
+
+  document.getElementById("result").innerText="النتيجة: "+score+" / 5";
+}
+
+function resetTeil1(){
+  for(let i=1;i<=5;i++){
+    let select = document.getElementById("ans"+i);
+    if(select){
+      let correctOptions = select.querySelectorAll(".correct-answer");
+      correctOptions.forEach(opt => opt.remove());
+      select.value = "";
+    }
+    let text = document.getElementById("t"+i);
+    if(text){
+      text.classList.remove("correct","wrong");
+      if(text.innerHTML.includes("(✔ الصحيح:")){
+        text.innerHTML = "Text " + i;
+      }
+    }
+  }
+  document.getElementById("result").innerText = "";
+}
+
+// Teil 2 functions
+function checkTeil2(){
+  let correct = {1:"a",2:"c",3:"a",4:"b",5:"a"};
+  let score = 0;
+
+  for(let i=1;i<=5;i++){
+    let val = document.getElementById("q"+i).value;
+    let select = document.getElementById("q"+i);
+
+    select.classList.remove("correct","wrong");
+
+    if(val === correct[i]){
+      select.classList.add("correct");
+      score++;
+    }else{
+      select.classList.add("wrong");
+      
+      let existing = false;
+      for(let j=0;j<select.options.length;j++){
+        if(select.options[j].textContent.includes("✔ الصحيح:")){
+          existing = true;
+          break;
+        }
+      }
+      if(!existing){
+        let opt = document.createElement("option");
+        opt.textContent = "✔ الصحيح: " + correct[i];
+        opt.classList.add("correct-answer");
+        select.appendChild(opt);
+      }
+    }
+  }
+
+  document.getElementById("result2").innerText = "النتيجة: " + score + " / 5";
+}
+
+function resetTeil2(){
+  for(let i=1;i<=5;i++){
+    let select = document.getElementById("q"+i);
+    if(select){
+      let correctOptions = select.querySelectorAll("option:not([value='']):not([value='a']):not([value='b']):not([value='c'])");
+      correctOptions.forEach(opt => {
+        if(opt.textContent.includes("✔ الصحيح:")) opt.remove();
+      });
+      select.value = "";
+      select.classList.remove("correct","wrong");
+    }
+  }
+  document.getElementById("result2").innerText = "";
+}
+
+// Teil 3 variables
+let selectedText = null;
+let selectedTitle = null;
+let answers = {};
+
+function selectText(num, el){
+  if(selectedText === num){
+    selectedText = null;
+    el.classList.remove("selected");
+    return;
+  }
+
+  document.querySelectorAll(".text").forEach(t=>t.classList.remove("selected"));
+  selectedText = num;
+  el.classList.add("selected");
+
+  if(selectedTitle !== null){
+    assign(num, selectedTitle);
+  }
+}
+
+function selectTitle(letter, el){
+  if(selectedTitle === letter){
+    selectedTitle = null;
+    el.classList.remove("selected");
+    return;
+  }
+
+  document.querySelectorAll(".title").forEach(t=>t.classList.remove("selected"));
+  selectedTitle = letter;
+  el.classList.add("selected");
+
+  if(selectedText !== null){
+    assign(selectedText, selectedTitle);
+  }
+}
+
+function assign(num, letter){
+  let textEl = document.querySelectorAll(".text")[num-1];
+  let titleEl = document.querySelector(`.title[data-id="${letter}"]`);
+  
+  // إذا كان هناك عنوان قديم → أرجعه
+  if(answers[num] !== undefined){
+    let oldTitle = document.querySelector(`.title[data-id="${answers[num]}"]`);
+    if(oldTitle){
+      oldTitle.style.display = "block";
+    }
+  }
+  
+  answers[num] = letter;
+
+  // إزالة أي عنوان قديم داخل الفقرة
+  let old = textEl.querySelector(".moved-title");
+  if(old) old.remove();
+
+  // إنشاء عنوان داخل الفقرة وإخفائه من القائمة
+  if(titleEl){
+    titleEl.style.display = "none";
+
+    let clone = document.createElement("div");
+    clone.classList.add("moved-title");
+
+    // إنشاء زر X
+    let closeBtn = document.createElement("span");
+    closeBtn.innerText = " ✖";
+    closeBtn.style.cursor = "pointer";
+    closeBtn.style.marginLeft = "10px";
+
+    // عند الضغط → يرجع العنوان
+    closeBtn.onclick = function(e){
+      e.stopPropagation();
+      titleEl.style.display = "block";
+      delete answers[num];
+      clone.remove();
+      textEl.style.opacity = "1";
     };
 
-    const sprachOptions = {
-        1: ["an den", "auf dem", "über den"],
-        2: ["nichts mehr", "noch nicht", "keines"],
-        3: ["doch", "eben", "überhaupt"],
-        4: ["Wann", "Was", "Wie"],
-        5: ["der", "die", "von"],
-        6: ["gelaufen", "getan", "geworden"],
-        7: ["durchfallen", "umfallen", "wegfallen"],
-        8: ["dich", "dir", "mal"],
-        9: ["alle", "ganze", "jede"],
-        10: ["dabei", "damit", "davon"]
-    };
+    clone.innerText = titleEl.innerText;
+    clone.appendChild(closeBtn);
 
-    // Zustand: aktuell ausgewählte Lücke & gemerkte Optionen, User-Zuordnung
-    let currentGap = null;          // Nummer der aktuell angeklickten Lücke (1-10)
-    let currentOption = null;       // zuletzt geklickter Optionswert (String)
-    let sprachUser = {};            // { LückeNummer: zugewiesenerWert }
+    textEl.insertBefore(clone, textEl.children[1]);
+  }
 
-    // --------------------------------------------------------------
-    // 2. Funktionen: dynamische Erstellung der Optionsbuttons (NEU mit used-option + callback)
-    // --------------------------------------------------------------
-    function loadSprachOptions() {
-        const container = document.getElementById("optionsContainer");
-        if (!container) return;
-        container.innerHTML = "";
+  // إخفاء التحديد
+  selectedText = null;
+  selectedTitle = null;
+  document.querySelectorAll(".selected").forEach(e=>e.classList.remove("selected"));
+}
 
-        for (let i = 1; i <= 10; i++) {
-            const groupDiv = document.createElement("div");
-            groupDiv.className = "option-group";
-            groupDiv.innerHTML = `<strong>🔹 Lücke ${i} – Optionen</strong>`;
-            
-            const optionsArray = sprachOptions[i];
-            optionsArray.forEach(opt => {
-                const btn = document.createElement("button");
-                btn.innerText = opt;
-                btn.classList.add("opt-button");
-                // ❗ NEU: Übergeben des Button-Elements selbst, um später used-option zu setzen
-                btn.onclick = function() {
-                    selectOption(i, opt, btn);
-                };
-                groupDiv.appendChild(btn);
-            });
-            container.appendChild(groupDiv);
-        }
+function checkTeil3(){
+  let correct = {
+    1:6,   // Anzeige a → عنوان 6
+    2:4,   // Anzeige b → عنوان 4
+    3:8,   // Anzeige c → عنوان 8
+    4:1,   // Anzeige d → عنوان 1
+    5:10,  // Anzeige e → عنوان 10
+    6:0,   // Anzeige f → kein Titel (0)
+    7:0,   // Anzeige g → kein Titel (0)
+    8:5,   // Anzeige h → عنوان 5
+    9:7,   // Anzeige i → عنوان 7
+    10:0,  // Anzeige j → kein Titel (0)
+    11:0,  // Anzeige k → kein Titel (0)
+    12:2   // Anzeige l → عنوان 2
+  };
+
+  let score = 0;
+
+  for(let i=1;i<=12;i++){
+    let el = document.querySelectorAll(".text")[i-1];
+    let val = answers[i];
+    let box = el.querySelector(".answer-box");
+    let sol = el.querySelector(".solution-box");
+
+    // إزالة أي عنوان قديم داخل الفقرة قبل التصحيح
+    let oldTitle = el.querySelector(".moved-title");
+    if(oldTitle) oldTitle.remove();
+
+    if(val === correct[i]){
+      // صحيح: إظهار العنوان الصحيح باللون الأخضر
+      let correctTitle = document.querySelector(`.title[data-id="${correct[i]}"]`);
+      if(correctTitle && correct[i] !== 0){
+        let clone = document.createElement("div");
+        clone.classList.add("moved-title");
+        clone.innerText = correctTitle.innerText;
+        clone.style.borderLeftColor = "#28a745";
+        clone.style.background = "#d4edda";
+        el.insertBefore(clone, el.children[1]);
+      } else if(correct[i] === 0){
+        let clone = document.createElement("div");
+        clone.classList.add("moved-title");
+        clone.innerText = "❌ لا يوجد عنوان مناسب";
+        clone.style.borderLeftColor = "#28a745";
+        clone.style.background = "#d4edda";
+        el.insertBefore(clone, el.children[1]);
+      }
+      box.classList.add("green");
+      score++;
+    }else{
+      // خطأ: إظهار الحل الصحيح باللون الأحمر
+      el.classList.add("red");
+      let correctTitle = document.querySelector(`.title[data-id="${correct[i]}"]`);
+      if(correctTitle && correct[i] !== 0){
+        let clone = document.createElement("div");
+        clone.classList.add("moved-title");
+        clone.innerText = correctTitle.innerText;
+        clone.style.borderLeftColor = "#dc3545";
+        clone.style.background = "#f8d7da";
+        el.insertBefore(clone, el.children[1]);
+      } else if(correct[i] === 0){
+        let clone = document.createElement("div");
+        clone.classList.add("moved-title");
+        clone.innerText = "❌ لا يوجد عنوان مناسب";
+        clone.style.borderLeftColor = "#dc3545";
+        clone.style.background = "#f8d7da";
+        el.insertBefore(clone, el.children[1]);
+      }
+      sol.innerText = "✔ الصحيح: " + correct[i];
     }
+  }
 
-    // ✅ (2) NEUE selectOption: verhindert Mehrfachnutzung + ruft applySelection auf
-    function selectOption(num, value, btnElement) {
-        // Speichere die aktuell gewählte Option
-        currentOption = value;
+  let finalScore = (score * (25/12)).toFixed(2);
+  document.getElementById("result3").innerText = "النتيجة: " + finalScore + " / 25";
 
-        // Falls eine Lücke bereits ausgewählt ist, sofort zuweisen
-        if (currentGap !== null) {
-            applySelection(currentGap, currentOption);
-        }
+  let unusedTitles = [3,9];
 
-        // 🔒 WICHTIG: Alle Buttons (im gesamten Dokument), die denselben Text haben, 
-        // werden als "used-option" markiert – dadurch kann diese Option nicht mehr 
-        // in einer anderen Lücke verwendet werden.
-        const allOptionButtons = document.querySelectorAll(".opt-button");
-        allOptionButtons.forEach(btn => {
-            if (btn.innerText === value) {
-                // Klasse hinzufügen (transparent + pointer-events: none)
-                btn.classList.add("used-option");
-            }
-        });
+  document.querySelectorAll(".title").forEach((t, idx)=>{
+    let actualNum = idx;
+
+    let old = t.querySelector(".no-paragraph-msg");
+    if(old) old.remove();
+
+    if(unusedTitles.includes(actualNum)){
+      let msg = document.createElement("div");
+      msg.innerText = "⚠️ لا توجد فقرة لهذا العنوان";
+      msg.style.color = "#dc3545";
+      msg.style.fontSize = "11px";
+      msg.style.marginTop = "5px";
+      msg.classList.add("no-paragraph-msg");
+      t.appendChild(msg);
     }
+  });
+}
 
-    // ✅ (3) applySelection: Weist der Lücke den Wert zu, setzt currentGap zurück,
-    //    aktualisiert sprachUser und entfernt visuelle Markierung.
-    function applySelection(gapNum, value) {
-        const gapElement = document.getElementById("gap" + gapNum);
-        if (!gapElement) return;
+function resetTeil3(){
+  answers = {};
+  selectedText = null;
+  selectedTitle = null;
 
-        // Wert in die Lücke eintragen
-        gapElement.innerText = value;
-        gapElement.style.border = "1px dashed #999";
+  document.querySelectorAll(".text").forEach(el=>{
+    el.classList.remove("matched","red","selected");
+    let answerBox = el.querySelector(".answer-box");
+    answerBox.innerText = "";
+    answerBox.style.background = "#dee2e6";
+    answerBox.style.color = "";
+    answerBox.classList.remove("green");
+    el.querySelector(".solution-box").innerText = "";
+    // إزالة العنوان المنقول
+    let movedTitle = el.querySelector(".moved-title");
+    if(movedTitle) movedTitle.remove();
+  });
 
-        // Benutzerzuordnung speichern
-        sprachUser[gapNum] = value;
+  document.querySelectorAll(".title").forEach(t=>{
+    t.classList.remove("matched","selected");
+    t.style.display = "block";
+    let old = t.querySelector(".no-paragraph-msg");
+    if(old) old.remove();
+  });
 
-        // Auswahlmodus zurücksetzen
-        currentGap = null;
-        currentOption = null;
+  document.getElementById("result3").innerText = "";
+}
 
-        // Alle Lückenränder zurücksetzen (nicht mehr blau hervorgehoben)
-        document.querySelectorAll(".gap").forEach(g => {
-            g.style.border = "1px dashed #999";
-        });
+// Sprachbausteine Teil 1
+const sprachAnswers = {
+  1:"über den",
+  2:"nichts mehr",
+  3:"doch",
+  4:"Wie",
+  5:"der",
+  6:"getan",
+  7:"umfallen",
+  8:"dir",
+  9:"jede",
+  10:"damit"
+};
+
+const sprachOptions = {
+  1:["an den","auf dem","über den"],
+  2:["nichts mehr","noch nicht","keines"],
+  3:["doch","eben","überhaupt"],
+  4:["Wann","Was","Wie"],
+  5:["der","die","von"],
+  6:["gelaufen","getan","geworden"],
+  7:["durchfallen","umfallen","wegfallen"],
+  8:["dich","dir","mal"],
+  9:["alle","ganze","jede"],
+  10:["dabei","damit","davon"]
+};
+
+let currentGap = null;
+let currentOption = null;
+let sprachUser = {};
+
+function loadSprachOptions(){
+  let container = document.getElementById("optionsContainer");
+  if(!container) return;
+  container.innerHTML = "";
+
+  for(let i=1;i<=10;i++){
+    let div = document.createElement("div");
+    div.style.marginBottom="15px";
+    div.style.padding="10px";
+    div.style.background="#f9f9f9";
+    div.style.borderRadius="8px";
+
+    div.innerHTML = "<strong style='display:block; margin-bottom:8px;'>الفراغ " + i + "</strong>";
+
+    sprachOptions[i].forEach(opt=>{
+      let btn = document.createElement("button");
+      btn.innerText = opt;
+      btn.style.margin="3px";
+      btn.style.padding="6px 12px";
+      btn.style.border="1px solid #ccc";
+      btn.style.borderRadius="5px";
+      btn.style.color="black";
+      btn.style.cursor="pointer";
+
+      btn.onclick = function(){
+        selectOption(i, opt, btn);
+      };
+
+      div.appendChild(btn);
+    });
+
+    container.appendChild(div);
+  }
+}
+
+// اختيار الفراغ
+document.querySelectorAll(".gap").forEach((g,i)=>{
+  g.onclick = ()=>{
+    document.querySelectorAll(".gap").forEach(gap=>{
+      gap.style.border = "1px dashed #999";
+    });
+
+    currentGap = i+1;
+    g.style.border = "2px solid #0d6efd";
+
+    // ✅ إذا كان هناك خيار مختار مسبقًا → طبّق مباشرة
+    if(currentOption !== null){
+      applySelection(currentGap, currentOption);
     }
+  };
+});
 
-    // ✅ (4) Click-Handler für die Lücken (verbessert: nur Auswahl der Lücke)
-    function attachGapClickHandlers() {
-        const gaps = document.querySelectorAll(".gap");
-        gaps.forEach((gapElement, idx) => {
-            // idx 0-basiert -> Lückennummer = idx+1
-            gapElement.onclick = (event) => {
-                event.stopPropagation();
-                // Entferne bisherige Hervorhebungen
-                document.querySelectorAll(".gap").forEach(g => {
-                    g.style.border = "1px dashed #999";
-                });
-                // Setze aktuelle Lücke
-                currentGap = idx + 1;
-                gapElement.style.border = "2px solid #0d6efd";
+function selectOption(num, value, btn){
+  currentOption = value;
 
-                // Wenn bereits eine Option angewählt wurde (z.B. vorher Button geklickt), 
-                // dann weise sie sofort zu
-                if (currentOption !== null) {
-                    applySelection(currentGap, currentOption);
-                }
-            };
-        });
+  // ✅ إذا الفراغ مختار → طبّق مباشرة
+  if(currentGap !== null){
+    applySelection(currentGap, currentOption);
+  }
+
+  // جعل الخيار المختار شفاف + تعطيله
+  document.querySelectorAll("button").forEach(b=>{
+    if(b.innerText === value){
+      b.classList.add("used-option");
     }
+  });
+}
 
-    // --------------------------------------------------------------
-    // 3. Reset-Funktion: setzt alles zurück (Lücken, Buttons, userData)
-    // --------------------------------------------------------------
-    function resetSprach1() {
-        // 1) Benutzerdaten & aktuelle Auswahl leeren
-        sprachUser = {};
-        currentGap = null;
-        currentOption = null;
+function applySelection(gapNum, value){
+  let gap = document.getElementById("gap"+gapNum);
 
-        // 2) Alle Lückentexte auf Standard "[x]" zurücksetzen + Klassen & Styles entfernen
-        for (let i = 1; i <= 10; i++) {
-            const gap = document.getElementById("gap" + i);
-            if (gap) {
-                gap.innerText = "[" + i + "]";
-                gap.classList.remove("correct-gap", "wrong-gap");
-                gap.style.border = "1px dashed #999";
-            }
-        }
+  gap.innerText = value;
+  gap.style.border = "1px dashed #999";
 
-        // 3) Alle Option-Buttons wiederherstellen: used-option Klasse entfernen, aktivieren
-        const allButtons = document.querySelectorAll(".opt-button");
-        allButtons.forEach(btn => {
-            btn.classList.remove("used-option");
-        });
+  sprachUser[gapNum] = value;
 
-        // 4) Ergebnis-Textfeld leeren
-        const resultP = document.getElementById("resultSprach1");
-        if (resultP) resultP.innerText = "";
+  // reset
+  currentGap = null;
+  currentOption = null;
 
-        // 5) Optional: Alle Lücken-Highlights entfernen
-        document.querySelectorAll(".gap").forEach(g => {
-            g.style.border = "1px dashed #999";
-        });
+  document.querySelectorAll(".gap").forEach(g=>{
+    g.style.border = "1px dashed #999";
+  });
+}
+
+function checkSprach1(){
+  let score = 0;
+
+  for(let i=1;i<=10;i++){
+    let gap = document.getElementById("gap"+i);
+    gap.classList.remove("correct-gap","wrong-gap");
+
+    if(sprachUser[i] === sprachAnswers[i]){
+      gap.classList.add("correct-gap");
+      score++;
+    }else{
+      gap.classList.add("wrong-gap");
+      gap.innerText = sprachAnswers[i];
     }
+  }
 
-    // --------------------------------------------------------------
-    // 4. Korrektur-Funktion (prüft sprachUser gegen sprachAnswers)
-    // --------------------------------------------------------------
-    function checkSprach1() {
-        let score = 0;
-        // Für jede Lücke prüfen, ob zugewiesener Wert der Lösung entspricht
-        for (let i = 1; i <= 10; i++) {
-            const gapElement = document.getElementById("gap" + i);
-            if (!gapElement) continue;
-            
-            // Vorherige Korrektur-Klassen entfernen
-            gapElement.classList.remove("correct-gap", "wrong-gap");
-            
-            const userAnswer = sprachUser[i];
-            const correctAnswer = sprachAnswers[i];
-            
-            if (userAnswer && userAnswer === correctAnswer) {
-                gapElement.classList.add("correct-gap");
-                score++;
-            } else {
-                gapElement.classList.add("wrong-gap");
-                // Zeige die korrekte Antwort in der Lücke an (bessere Nachvollziehbarkeit)
-                gapElement.innerText = correctAnswer;
-                // Aber speichere nicht dauerhaft, reset setzt später zurück. 
-                // Wichtig: Der User-Wert wird zwar überschrieben, aber bei Reset wiederhergestellt.
-                // Aber wir wollen bei reset die originalen Platzhalter. Um Konflikte zu vermeiden:
-                // Wir speichern temporär die korrekte Anzeige, ABER sprachUser bleibt unverändert,
-                // damit reset wieder die ursprünglichen Platzhalter setzen kann. Allerdings würde 
-                // beim nächsten check der falsche innere Text stehen? Wir bessern: bei wrong-gap wird 
-                // die richtige Antwort gezeigt, aber reset setzt wieder [i]. Passt.
-            }
-        }
-        
-        // Punkte auf 25er Skala (jede Lücke 2.5 Punkte)
-        const finalScore = (score * 2.5).toFixed(2);
-        const resultDiv = document.getElementById("resultSprach1");
-        resultDiv.innerHTML = `🏆 Ergebnis: ${finalScore} / 25 Punkte (${score} von 10 Lücken richtig)`;
-        if (score === 10) {
-            resultDiv.style.background = "#d1e7dd";
-            resultDiv.style.color = "#0f5132";
-        } else {
-            resultDiv.style.background = "#fff3cd";
-            resultDiv.style.color = "#856404";
-        }
-    }
-    
-    // --------------------------------------------------------------
-    // 5. Zusätzlich: Erweiterte Reset-Integration für konsistente UI
-    //    nach einem "Korrigieren" und dann Reset sollen wieder die Platzhalter da sein.
-    //    Die vorhandene resetSprach1 macht das bereits. Wir müssen aber auch die used-option
-    //    korrekt zurücksetzen (bereits implementiert).
-    //    Zusätzlich: Nach dem Korrigieren werden Lücken mit richtigen Antworten beschrieben,
-    //    reset sollte sie wiederherstellen – machen wir.
-    // --------------------------------------------------------------
+  let final = (score * 2.5).toFixed(2);
+  document.getElementById("resultSprach1").innerText = "النتيجة: " + final + " / 25";
+}
 
-    // --------------------------------------------------------------
-    // 6. Initialisierung: Lade Optionen, setze Click-Handler für Lücken
-    // --------------------------------------------------------------
-    function initSprachTeil1() {
-        loadSprachOptions();          // Erstellt Buttons (opt-button)
-        attachGapClickHandlers();     // Klick auf Lücken verbindet
-        // Stelle sicher, dass alle Lücken zunächst die Platzhalter "[1]" ... haben
-        for (let i = 1; i <= 10; i++) {
-            const gap = document.getElementById("gap" + i);
-            if (gap && !gap.innerText.match(/^\d+$/)) {
-                // Falls irgendwas anderes drinsteht, überschreiben (z.B. nach Fehlerkorrektur)
-                if (gap.innerText !== "["+i+"]") {
-                    gap.innerText = "[" + i + "]";
-                }
-            } else if (gap && gap.innerText === "") {
-                gap.innerText = "[" + i + "]";
-            }
-        }
-        // Zusätzlich sicherstellen, dass alle used-option Klassen entfernt sind
-        document.querySelectorAll(".opt-button").forEach(btn => {
-            btn.classList.remove("used-option");
-        });
-        sprachUser = {};
-        currentGap = null;
-        currentOption = null;
-    }
+function resetSprach1(){
+  sprachUser = {};
+  currentGap = null;
+  currentOption = null;
 
-    // Falls die Seite dynamisch lädt, rufen wir init auf
-    initSprachTeil1();
+  // إعادة تفعيل جميع الأزرار
+  document.querySelectorAll(".used-option").forEach(btn=>{
+    btn.classList.remove("used-option");
+  });
 
-    // Globale Funktionen für die Buttons (müssen im globalen Scope sein)
-    window.checkSprach1 = checkSprach1;
-    window.resetSprach1 = resetSprach1;
+  for(let i=1;i<=10;i++){
+    let gap = document.getElementById("gap"+i);
+    gap.innerText = "["+i+"]";
+    gap.classList.remove("correct-gap","wrong-gap");
+    gap.style.border = "1px dashed #999";
+  }
 
-    // --------------------------------------------------------------
-    // 7. (Nur zur Vollständigkeit: goList, da der ursprüngliche Code eine goList-Funktion erwartet)
-    //    Damit der "Zurück"-Button funktioniert, falls in der echten Umgebung benötigt.
-    //    Wir definieren eine minimale goList, die nichts kaputt macht, aber bei Bedarf 
-    //    kann der umgebende Code (falls vorhanden) diese überschreiben. Wir fügen sie sicher ein.
-    // --------------------------------------------------------------
-    if (typeof window.goList !== 'function') {
-        window.goList = function() {
-            alert("Navigation: Zurück zur Prüfungsübersicht (Demo). In der vollständigen App wird die Ansicht gewechselt.)");
-            // Falls existierende Umgebung mit home/list/exam, hier simpel:
-            const homeDiv = document.getElementById("home");
-            const listDiv = document.getElementById("list");
-            if(homeDiv && listDiv) {
-                // minimale Simulation: nur damit kein Fehler auftritt
-                console.log("Zurück zur Liste (Platzhalter)");
-            } else {
-                // Optional: einfach die Seite neu laden? Besser nicht, aber harmlos.
-            }
-        };
-    }
+  document.getElementById("resultSprach1").innerText = "";
+}
 
-    // Zusätzlicher Schutz: Sollte nach einem Korrektur-Durchlauf ein Reset die Lücken
-    // wirklich auf die ursprünglichen Platzhalter setzen (überschreibt die eingefügten Lösungen).
-    // Überschreiben von resetSprach1 bereits gemacht.
-    // Noch eine kleine Verbesserung: Falls nach der Korrektur die Buttons disabled sind (used-option),
-    // werden sie beim reset wieder aktiv. Das ist korrekt.
-    // Ebenso wird beim reset sprachUser zurückgesetzt, damit neue Zuordnungen möglich sind.
+// تهيئة Teil 1 و Sprachbausteine
+loadOptions();
+loadSprachOptions();
 
-    // Um sicherzustellen, dass die Lücken nach einem "Korrigieren" nicht dauerhaft die Lösungen
-    // anzeigen, sondern nur zur Fehleranzeige, bietet reset die Wiederherstellung. 
-    // Zusätzlich: Wenn der Benutzer nach der Korrektur manuell eine neue Auswahl trifft (Button + Lücke),
-    // überschreibt applySelection den Inhalt wieder mit dem gewählten Wert – das ist erwünscht.
-    // Das System ist nun rund: Jede Option kann nur einmal global verwendet werden (used-option).
-    // Beispiel: "über den" kann nur einer Lücke zugewiesen werden. Sobald es in Lücke 1 gesetzt wird,
-    // sind alle Buttons mit dem Text "über den" deaktiviert/transparent. Das verhindert Doppelverwendung.
-
-    // Edge-Case: Wenn der Benutzer zuerst Lücke anklickt und dann einen Button wählt -> applySelection.
-    // Wenn er zuerst Button wählt und dann Lücke -> applySelection ebenfalls.
-    // Perfekt.
-    console.log("✅ Sprachbausteine Teil 1 – Modul geladen (used-option + Einmalzuweisung)");
 </script>
+
 </body>
 </html>
