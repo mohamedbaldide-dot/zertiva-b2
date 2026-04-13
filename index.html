@@ -349,7 +349,7 @@ j:"Autoindustrie: In Zukunft Mobilität ohne Grenzen"
 <select id="ans4" onchange="updateOptions()"></select>
 
 <h3 id="t5">Text 5</h3>
-<p>Viele frischgebackene Eltern stehen einem riesigen Angebot an Kinderwagen gegenüber, das in Kinderläden und Großmärkten feilgeboten wird. Doch welcher ist der richtige? Experten raten, beim Kauf dieses für die ersten Jahre mit dem Kleinkind wichtigen Gefährts auf ein paar Dinge zu achten. Erstens sollte die Matratze nicht zu weich sein, damit das Kind nicht einsinkt, wodurch die Atmung behindert werden kann. Zweitens sollten die Räder gefedert sein, um Erschütterungen auf unebenen Wegen auszugleichen. Ein hoher Wagen schützt die Babys vor dem Auspuff der Autos an Straßenkreuzungen. Zusammenklappbare Wagen passen in jeden Kofferraum und lassen sich fast überallhin mitnehmen. Der Wagen sollte vor allem kippsicher sein und keine scharfen Kanten haben, an denen sich die Kinder verletzen können. Vom TÜV geprüfte Kinderwagen erhalten ein Prüfzeichen. Damit haben die Eltern eine gewisse Sicherheit, dass der Kinderwagen auch nach Dauergebrauch nicht zu einem Sicherheitsrisiko für ihr Kind werden kann.</p>
+<p>Viele frischgebackene Eltern stehen einem riesigen Angebot an Kinderwagen gegenüber, das in Kinderläden und Großmärkten feilgeboten wird. Doch welcher ist der richtige? Experten raten, beim Kauf dieses für die ersten Jahre mit dem Kleinkind wichtigen Gefährts auf ein paar Dinge zu achten. Erstens sollte die Matratze nicht zu weich sein, damit das Kind nicht einsinkt, wodurch die Atmung behindert werden kann. Zweitens sollten die Räder gefedert sein, um Erschütterungen auf unebenen Wegen auszugleichen. Ein hoher Wagen schützt die Babys vor dem Auspuff der Autos an Straßenkreuzungen. Zusammenklappbare Wagen passen في jeden Kofferraum und lassen sich fast überallhin mitnehmen. Der Wagen sollte vor allem kippsicher sein und keine scharfen Kanten haben, an denen sich die Kinder verletzen können. Vom TÜV geprüfte Kinderwagen erhalten ein Prüfzeichen. Damit haben die Eltern eine gewisse Sicherheit, dass der Kinderwagen auch nach Dauergebrauch nicht zu einem Sicherheitsrisiko für ihr Kind werden kann.</p>
 <select id="ans5" onchange="updateOptions()"></select>
 
 <button onclick="checkExam()">تصحيح</button>
@@ -766,7 +766,8 @@ function checkExam(){
     }
   }
 
-  document.getElementById("result").innerText="النتيجة: "+score+" / 5";
+  let final = (score * (25/5)).toFixed(2);
+  document.getElementById("result").innerText="النتيجة: "+final+" / 25";
 }
 
 function resetTeil1(){
@@ -821,7 +822,8 @@ function checkTeil2(){
     }
   }
 
-  document.getElementById("result2").innerText = "النتيجة: " + score + " / 5";
+  let final = (score * (25/5)).toFixed(2);
+  document.getElementById("result2").innerText = "النتيجة: " + final + " / 25";
 }
 
 function resetTeil2(){
@@ -1228,8 +1230,8 @@ function checkSprach1(){
     }
   }
 
-  let final = (score * 2.5).toFixed(2);
-  document.getElementById("resultSprach1").innerText = "النتيجة: " + final + " / 25";
+  let final = (score * (15/10)).toFixed(2);
+  document.getElementById("resultSprach1").innerText = "النتيجة: " + final + " / 15";
 }
 
 function resetSprach1(){
@@ -1272,6 +1274,7 @@ const connectorsList = [
 ];
 
 let currentGap2 = null;
+let selectedConnector = null;
 let sprach2User = {};
 
 function loadSprach2Options(){
@@ -1293,31 +1296,35 @@ function loadSprach2Options(){
       e.stopPropagation();
       let value = this.getAttribute("data-value");
       
-      // لازم المستخدم يختار الفراغ أولاً
-      if(currentGap2 === null){
-        return; // لا تفعل أي شيء
+      // إذا الأداة مستعملة مسبقاً → لا تعمل
+      if(Object.values(sprach2User).includes(value)){
+        return;
       }
       
-      // إذا كان هناك اختيار سابق في هذا الفراغ نحذفه
-      if(sprach2User[currentGap2] !== undefined){
-        let oldValue = sprach2User[currentGap2];
-        let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
-        if(oldBtn) oldBtn.classList.remove("selected-connector");
+      // إذا يوجد فراغ مختار → نملأه
+      if(currentGap2 !== null){
+        // إذا كان هناك اختيار سابق في هذا الفراغ نحذفه
+        if(sprach2User[currentGap2] !== undefined){
+          let oldValue = sprach2User[currentGap2];
+          let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
+          if(oldBtn) oldBtn.classList.remove("selected-connector");
+        }
+        
+        sprach2User[currentGap2] = value;
+        
+        let gapSpan = document.getElementById("gap2_"+currentGap2);
+        gapSpan.innerText = value;
+        
+        this.classList.add("selected-connector");
+        
+        document.querySelectorAll(".gap2").forEach(g=>g.classList.remove("active-gap"));
+        currentGap2 = null;
+      } else {
+        // إذا لا يوجد فراغ → نحفظ الأداة مؤقتاً
+        document.querySelectorAll(".connector-btn").forEach(b=>b.classList.remove("selected-connector"));
+        this.classList.add("selected-connector");
+        selectedConnector = value;
       }
-      
-      // وضع القيمة في الفراغ المختار فقط
-      sprach2User[currentGap2] = value;
-      
-      let gapSpan = document.getElementById("gap2_"+currentGap2);
-      gapSpan.innerText = value;
-      
-      // تحديث الشكل
-      document.querySelectorAll(".connector-btn").forEach(b=>b.classList.remove("selected-connector"));
-      this.classList.add("selected-connector");
-      
-      // إلغاء التحديد
-      document.querySelectorAll(".gap2").forEach(g=>g.classList.remove("active-gap"));
-      currentGap2 = null;
     };
     
     groupDiv.appendChild(btn);
@@ -1331,6 +1338,31 @@ document.querySelectorAll(".gap2").forEach((gapSpan, idx)=>{
     e.stopPropagation();
     let gapNum = parseInt(this.id.replace("gap2_",""));
     
+    // إذا كان هناك أداة مختارة مسبقاً
+    if(selectedConnector !== null){
+      // إذا الأداة مستعملة مسبقاً → لا تعمل
+      if(Object.values(sprach2User).includes(selectedConnector)){
+        selectedConnector = null;
+        document.querySelectorAll(".connector-btn").forEach(b=>b.classList.remove("selected-connector"));
+        return;
+      }
+      
+      // إذا الفراغ فيه قيمة قديمة → نرجعها
+      if(sprach2User[gapNum] !== undefined){
+        let oldValue = sprach2User[gapNum];
+        let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
+        if(oldBtn) oldBtn.classList.remove("selected-connector");
+      }
+      
+      sprach2User[gapNum] = selectedConnector;
+      this.innerText = selectedConnector;
+      
+      selectedConnector = null;
+      document.querySelectorAll(".connector-btn").forEach(b=>b.classList.remove("selected-connector"));
+      return;
+    }
+    
+    // السلوك العادي
     if(currentGap2 === gapNum){
       currentGap2 = null;
       this.classList.remove("active-gap");
@@ -1358,13 +1390,14 @@ function checkSprach2(){
     }
   }
   
-  let final = (score * 2.5).toFixed(2);
-  document.getElementById("resultSprach2").innerText = "النتيجة: " + final + " / 25";
+  let final = (score * (15/10)).toFixed(2);
+  document.getElementById("resultSprach2").innerText = "النتيجة: " + final + " / 15";
 }
 
 function resetSprach2(){
   sprach2User = {};
   currentGap2 = null;
+  selectedConnector = null;
   
   for(let i=1;i<=10;i++){
     let gap = document.getElementById("gap2_"+i);
