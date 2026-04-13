@@ -98,8 +98,8 @@ select{margin:10px 0;padding:8px;width:100%;}
   border-radius:6px;
 }
 
-/* ===== CSS لـ Sprachbausteine ===== */
-.gap{
+/* ===== CSS لـ Sprachbausteine Teil 1 & 2 ===== */
+.gap, .gap2{
   display:inline-block;
   padding:6px 12px;
   border:2px solid #007bff;
@@ -114,32 +114,32 @@ select{margin:10px 0;padding:8px;width:100%;}
   transition:0.2s;
 }
 
-.gap:hover{
+.gap:hover, .gap2:hover{
   background:#cfe2ff;
   transform:scale(1.02);
 }
 
-.gap.active-gap{
+.gap.active-gap, .gap2.active-gap{
   background:#0d6efd;
   color:white;
   border-color:#0a58ca;
   box-shadow:0 0 0 2px rgba(13,110,253,0.3);
 }
 
-.correct-gap{
+.correct-gap, .correct-gap2{
   background:#d4edda;
   border-color:#28a745;
   color:#155724;
 }
 
-.wrong-gap{
+.wrong-gap, .wrong-gap2{
   background:#f8d7da;
   border-color:#dc3545;
   color:#721c24;
 }
 
 /* خيارات الإجابة */
-.option-btn{
+.option-btn, .connector-btn{
   margin:5px;
   padding:8px 14px;
   border:1px solid #6c757d;
@@ -151,18 +151,18 @@ select{margin:10px 0;padding:8px;width:100%;}
   font-size:14px;
 }
 
-.option-btn:hover{
+.option-btn:hover, .connector-btn:hover{
   background:#e9ecef;
   transform:translateY(-1px);
 }
 
-.option-btn.selected-option{
+.option-btn.selected-option, .connector-btn.selected-connector{
   background:#0d6efd;
   border-color:#0d6efd;
   color:white;
 }
 
-.option-btn.disabled-option{
+.option-btn.disabled-option, .connector-btn.disabled-connector{
   opacity:0.5;
   text-decoration:line-through;
   cursor:not-allowed;
@@ -175,6 +175,14 @@ select{margin:10px 0;padding:8px;width:100%;}
   background:#f8f9fa;
   border-radius:12px;
   border-left:4px solid #0d6efd;
+}
+
+.connector-group{
+  margin-bottom:20px;
+  padding:12px;
+  background:#f8f9fa;
+  border-radius:12px;
+  border-left:4px solid #28a745;
 }
 </style>
 </head>
@@ -240,6 +248,7 @@ select{margin:10px 0;padding:8px;width:100%;}
   <button onclick="showTeil(2)">Lesen Teil 2</button>
   <button onclick="showTeil(3)">Lesen Teil 3</button>
   <button onclick="showTeil(4)">Sprachbausteine Teil 1</button>
+  <button onclick="showTeil(5)">Sprachbausteine Teil 2</button>
 </div>
 
 <!-- ==================== TEIL 1 ==================== -->
@@ -539,6 +548,60 @@ deine Mercedes
 
 </div>
 
+<!-- ==================== Sprachbausteine Teil 2 ==================== -->
+<div id="sprach2" style="display:none;">
+
+<h2>Sprachbausteine Teil 2</h2>
+
+<div style="display:flex; gap:20px; flex-wrap:wrap;">
+
+<!-- النص مع الفراغات -->
+<div style="flex:1.5; min-width:300px; line-height:1.8;">
+
+Selbst ist der Mann. Von der Wahrheit dieser alten deutschen Redewendung haben Frauen Generationen lang geträumt, wenn es um typische Hausarbeiten wie Waschen, Putzen oder Kochen ging. Zumindest bei Letzterem scheint sich jedoch in der letzten Jahren vieles zu ändern. 
+<span class="gap2" id="gap2_1">[1]</span>
+, immer mehr Männer in Deutschland greifen jetzt selbst zum Kochtopf. Ein Grund 
+<span class="gap2" id="gap2_2">[2]</span>
+ diese Entwicklung mag sein, dass es immer mehr Ein-Personen-Haushalte in Deutschland gibt. Es ist einfach niemand anderes da, der die Kocharbeit übernehmen könnte. Und Hunger zwingt bekanntlich zum Handeln. Andererseits ist das Kochen inzwischen ein allgemein akzeptiertes Hobby geworden, besonders unter Männern. Doch welch ein Unterschied besteht 
+<span class="gap2" id="gap2_3">[3]</span>
+ den Ansprüchen einer traditionellen Hausfrau und denen eines Hobbykochs, was die Ausstattung der Küche angeht! Nicht 
+<span class="gap2" id="gap2_4">[4]</span>
+ Topf darf es für den selbsternannten Drei-Sterne-Küchenchef sein: Gebürsteter Edelstahl mit versiegelter Antihaftbeschichtung und integrierter digitaler Temperaturanzeige ist der Mindeststandard für einen echten kochenden Mann. Alles andere gilt als stillos.
+
+<br><br>
+
+Die zweite Voraussetzung 
+<span class="gap2" id="gap2_5">[5]</span>
+, dass die Gerichte auch gelingen, ist das Wissen, wie man welche Speise am besten zubereitet. Zu diesem Zweck bieten die Buchhandlungen Berge von Kochbüchern an - mit Rezepten von Alaska bis Zimbabwe, mit oder ohne Fleisch, für zu Dicke und zu Dünne. Jetzt hängt es nur noch 
+<span class="gap2" id="gap2_6">[6]</span>
+ ab, was der Hobbykoch aus den Kochideen der Buchautoren macht. Wird es ein exzellentes Mahl oder wäre unser "Chefkoch" nicht doch lieber zum Dönerstand um die Ecke gegangen? Überraschungen gehören zum Kochen dazu. Helfen die Bücher nicht 
+<span class="gap2" id="gap2_7">[7]</span>
+, bieten zum Beispiel die Volkshochschulen zahlreiche Kochkurse an, die in der Regel - zumeist von kochwilligen Männern - gut besucht sind. Das Kursangebot umfasst neben deutscher Hausmannskost wie Schnitzel, Krautwickel oder Rinderbraten zumeist auch die mediterrane und die asiatische Küche. Das führt 
+<span class="gap2" id="gap2_8">[8]</span>
+, dass man(n) zu Hause immer öfter international kocht.
+
+<br><br>
+
+Das größte Problem der Hobbyköche ist aber, 
+<span class="gap2" id="gap2_9">[9]</span>
+ es viel zu aufwändig ist, für sich alleine zu kochen. Daher sind zurzeit Internetseiten wie www.allein-kochen-ist-doof.de beliebt, wo sich Hobbyköche und -köchinnen Kochpartner für das gemeinsame Kochen und Essen suchen können. Das Interessante 
+<span class="gap2" id="gap2_10">[10]</span>
+ ist, dass dabei unsere männlichen Chefköche feststellen müssen, dass es andere Menschen gibt, die mit vielleicht weniger Aufwand genauso gut ein Festmahl zubereiten können wie sie: nämlich die Frauen.
+
+</div>
+
+<!-- أدوات الربط -->
+<div style="flex:1; min-width:250px;" id="connectorsContainer"></div>
+
+</div>
+
+<button onclick="checkSprach2()" style="margin-top:20px;">تصحيح</button>
+<button onclick="resetSprach2()" style="margin-top:20px; margin-right:10px;">🔄 إعادة</button>
+
+<p id="resultSprach2"></p>
+
+</div>
+
 <button onclick="goList()">رجوع</button>
 
 </div>
@@ -568,10 +631,12 @@ function showTeil(n){
   let teil2 = document.getElementById("teil2");
   let teil3 = document.getElementById("teil3");
   let sprach1 = document.getElementById("sprach1");
+  let sprach2 = document.getElementById("sprach2");
   if(teil1) teil1.style.display = (n===1) ? "block" : "none";
   if(teil2) teil2.style.display = (n===2) ? "block" : "none";
   if(teil3) teil3.style.display = (n===3) ? "block" : "none";
   if(sprach1) sprach1.style.display = (n===4) ? "block" : "none";
+  if(sprach2) sprach2.style.display = (n===5) ? "block" : "none";
 }
 
 // Teil 1 functions
@@ -968,29 +1033,23 @@ function loadSprachOptions(){
       btn.setAttribute("data-gap", i);
       btn.setAttribute("data-value", opt);
       
-      // Method 2: Direct click on option -> fills its correct gap
       btn.onclick = function(e){
         e.stopPropagation();
         let gapId = parseInt(this.getAttribute("data-gap"));
         let optionValue = this.getAttribute("data-value");
         
-        // Remove previous selection from this gap if exists
         if(sprachUser[gapId] !== undefined){
-          // Re-enable previous option button
           let prevBtn = document.querySelector(`.option-btn[data-gap="${gapId}"][data-value="${sprachUser[gapId]}"]`);
           if(prevBtn) prevBtn.classList.remove("selected-option");
         }
         
-        // Apply selection
         let gapSpan = document.getElementById("gap"+gapId);
         gapSpan.innerText = optionValue;
         sprachUser[gapId] = optionValue;
         
-        // Highlight selected option
         document.querySelectorAll(`.option-btn[data-gap="${gapId}"]`).forEach(b=>b.classList.remove("selected-option"));
         this.classList.add("selected-option");
         
-        // Remove active-gap highlight
         document.querySelectorAll(".gap").forEach(g=>g.classList.remove("active-gap"));
         currentGap = null;
       };
@@ -1002,29 +1061,24 @@ function loadSprachOptions(){
   }
 }
 
-// Method 1: Click gap first, then options appear (only for that gap)
 document.querySelectorAll(".gap").forEach((gapSpan, idx)=>{
   gapSpan.onclick = function(e){
     e.stopPropagation();
     let gapNum = parseInt(this.id.replace("gap",""));
     
-    // Toggle: if same gap is clicked again, deselect
     if(currentGap === gapNum){
       currentGap = null;
       this.classList.remove("active-gap");
       
-      // Reset all option buttons visual
       document.querySelectorAll(".option-btn").forEach(btn=>{
         btn.style.background = "white";
         btn.style.color = "black";
       });
     } else {
-      // Remove active from all gaps
       document.querySelectorAll(".gap").forEach(g=>g.classList.remove("active-gap"));
       this.classList.add("active-gap");
       currentGap = gapNum;
       
-      // Highlight only the options belonging to this gap
       document.querySelectorAll(".option-btn").forEach(btn=>{
         let btnGap = parseInt(btn.getAttribute("data-gap"));
         if(btnGap === gapNum){
@@ -1039,13 +1093,11 @@ document.querySelectorAll(".gap").forEach((gapSpan, idx)=>{
   };
 });
 
-// Global function to apply selection (used by both methods)
 function applySelectionToGap(gapNum, value){
   let gapSpan = document.getElementById("gap"+gapNum);
   gapSpan.innerText = value;
   sprachUser[gapNum] = value;
   
-  // Update option button visual
   document.querySelectorAll(`.option-btn[data-gap="${gapNum}"]`).forEach(btn=>{
     if(btn.getAttribute("data-value") === value){
       btn.classList.add("selected-option");
@@ -1055,10 +1107,8 @@ function applySelectionToGap(gapNum, value){
   });
 }
 
-// Option selection for method 1 (when a gap is active)
 function selectOptionForActiveGap(gapNum, value, btnElement){
   if(currentGap === gapNum){
-    // Remove previous selection for this gap
     if(sprachUser[gapNum] !== undefined){
       let prevBtn = document.querySelector(`.option-btn[data-gap="${gapNum}"][data-value="${sprachUser[gapNum]}"]`);
       if(prevBtn) prevBtn.classList.remove("selected-option");
@@ -1066,11 +1116,9 @@ function selectOptionForActiveGap(gapNum, value, btnElement){
     
     applySelectionToGap(gapNum, value);
     
-    // Clear active gap
     document.querySelectorAll(".gap").forEach(g=>g.classList.remove("active-gap"));
     currentGap = null;
     
-    // Reset option styles
     document.querySelectorAll(".option-btn").forEach(btn=>{
       btn.style.background = "white";
       btn.style.color = "black";
@@ -1078,20 +1126,16 @@ function selectOptionForActiveGap(gapNum, value, btnElement){
   }
 }
 
-// Override button onclick to support method 1 as well
 function enhanceOptionsForMethod1(){
   document.querySelectorAll(".option-btn").forEach(btn=>{
-    let originalOnclick = btn.onclick;
     let gapNum = parseInt(btn.getAttribute("data-gap"));
     let value = btn.getAttribute("data-value");
     
     btn.onclick = function(e){
       e.stopPropagation();
       if(currentGap !== null){
-        // Method 1: gap selected first
         selectOptionForActiveGap(gapNum, value, this);
       } else {
-        // Method 2: direct click
         if(sprachUser[gapNum] !== undefined){
           let prevBtn = document.querySelector(`.option-btn[data-gap="${gapNum}"][data-value="${sprachUser[gapNum]}"]`);
           if(prevBtn) prevBtn.classList.remove("selected-option");
@@ -1115,7 +1159,6 @@ function checkSprach1(){
       score++;
     }else{
       gap.classList.add("wrong-gap");
-      // Show correct answer inside gap (but keep user answer visible as fallback)
       if(sprachUser[i] !== sprachAnswers[i]){
         gap.innerText = sprachAnswers[i];
       }
@@ -1145,9 +1188,181 @@ function resetSprach1(){
   document.getElementById("resultSprach1").innerText = "";
 }
 
-// تهيئة Teil 1 و Sprachbausteine
+// Sprachbausteine Teil 2
+const sprach2Answers = {
+  1:"denn",
+  2:"für",
+  3:"zwischen",
+  4:"irgendein",
+  5:"dafür",
+  6:"davon",
+  7:"weiter",
+  8:"dazu",
+  9:"dass",
+  10:"daran"
+};
+
+const connectorsList = [
+  {value:"denn", correct:true},
+  {value:"für", correct:true},
+  {value:"zwischen", correct:true},
+  {value:"irgendein", correct:true},
+  {value:"dafür", correct:true},
+  {value:"davon", correct:true},
+  {value:"weiter", correct:true},
+  {value:"dazu", correct:true},
+  {value:"dass", correct:true},
+  {value:"daran", correct:true},
+  {value:"daher", correct:false},
+  {value:"damit", correct:false},
+  {value:"gegen", correct:false},
+  {value:"was", correct:false},
+  {value:"zu", correct:false}
+];
+
+let currentGap2 = null;
+let sprach2User = {};
+let usedConnectors = new Set();
+
+function loadSprach2Options(){
+  let container = document.getElementById("connectorsContainer");
+  if(!container) return;
+  container.innerHTML = "";
+  
+  let groupDiv = document.createElement("div");
+  groupDiv.className = "connector-group";
+  groupDiv.innerHTML = `<strong style="display:block; margin-bottom:8px;">أدوات الربط</strong>`;
+  
+  connectorsList.forEach(connector=>{
+    let btn = document.createElement("button");
+    btn.innerText = connector.value;
+    btn.className = "connector-btn";
+    btn.setAttribute("data-value", connector.value);
+    
+    btn.onclick = function(e){
+      e.stopPropagation();
+      let value = this.getAttribute("data-value");
+      
+      if(usedConnectors.has(value)){
+        alert("هذه الأداة تم استخدامها بالفعل!");
+        return;
+      }
+      
+      if(currentGap2 !== null){
+        // Method 1: gap selected first
+        if(sprach2User[currentGap2] !== undefined){
+          let oldValue = sprach2User[currentGap2];
+          usedConnectors.delete(oldValue);
+          let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
+          if(oldBtn) oldBtn.classList.remove("selected-connector");
+        }
+        
+        sprach2User[currentGap2] = value;
+        usedConnectors.add(value);
+        
+        let gapSpan = document.getElementById("gap2_"+currentGap2);
+        gapSpan.innerText = value;
+        gapSpan.classList.remove("active-gap");
+        
+        this.classList.add("selected-connector");
+        
+        currentGap2 = null;
+        document.querySelectorAll(".gap2").forEach(g=>g.classList.remove("active-gap"));
+      } else {
+        // Method 2: direct click on connector -> assign to its correct gap
+        let targetGap = null;
+        for(let i=1;i<=10;i++){
+          if(sprach2Answers[i] === value && sprach2User[i] === undefined){
+            targetGap = i;
+            break;
+          }
+        }
+        
+        if(targetGap !== null){
+          if(sprach2User[targetGap] !== undefined){
+            let oldValue = sprach2User[targetGap];
+            usedConnectors.delete(oldValue);
+            let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
+            if(oldBtn) oldBtn.classList.remove("selected-connector");
+          }
+          
+          sprach2User[targetGap] = value;
+          usedConnectors.add(value);
+          
+          let gapSpan = document.getElementById("gap2_"+targetGap);
+          gapSpan.innerText = value;
+          
+          this.classList.add("selected-connector");
+        } else {
+          alert("هذه الأداة لا تناسب أي فراغ أو تم استخدامها بالفعل!");
+        }
+      }
+    };
+    
+    groupDiv.appendChild(btn);
+  });
+  
+  container.appendChild(groupDiv);
+}
+
+document.querySelectorAll(".gap2").forEach((gapSpan, idx)=>{
+  gapSpan.onclick = function(e){
+    e.stopPropagation();
+    let gapNum = parseInt(this.id.replace("gap2_",""));
+    
+    if(currentGap2 === gapNum){
+      currentGap2 = null;
+      this.classList.remove("active-gap");
+    } else {
+      document.querySelectorAll(".gap2").forEach(g=>g.classList.remove("active-gap"));
+      this.classList.add("active-gap");
+      currentGap2 = gapNum;
+    }
+  };
+});
+
+function checkSprach2(){
+  let score = 0;
+  
+  for(let i=1;i<=10;i++){
+    let gap = document.getElementById("gap2_"+i);
+    gap.classList.remove("correct-gap2","wrong-gap2");
+    
+    if(sprach2User[i] === sprach2Answers[i]){
+      gap.classList.add("correct-gap2");
+      score++;
+    }else{
+      gap.classList.add("wrong-gap2");
+      gap.innerText = sprach2Answers[i];
+    }
+  }
+  
+  let final = (score * 2.5).toFixed(2);
+  document.getElementById("resultSprach2").innerText = "النتيجة: " + final + " / 25";
+}
+
+function resetSprach2(){
+  sprach2User = {};
+  currentGap2 = null;
+  usedConnectors.clear();
+  
+  for(let i=1;i<=10;i++){
+    let gap = document.getElementById("gap2_"+i);
+    gap.innerText = "["+i+"]";
+    gap.classList.remove("correct-gap2","wrong-gap2","active-gap");
+  }
+  
+  document.querySelectorAll(".connector-btn").forEach(btn=>{
+    btn.classList.remove("selected-connector");
+  });
+  
+  document.getElementById("resultSprach2").innerText = "";
+}
+
+// تهيئة
 loadOptions();
 loadSprachOptions();
+loadSprach2Options();
 setTimeout(enhanceOptionsForMethod1, 100);
 
 </script>
