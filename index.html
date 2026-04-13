@@ -257,18 +257,34 @@ select{margin:10px 0;padding:8px;width:100%;}
   display:flex;
   justify-content:space-between;
   align-items:center;
+  flex-wrap:wrap;
 }
 
 .h-btn{
-  margin:0 3px;
   padding:5px 10px;
-  border-radius:6px;
+  margin:2px;
   border:1px solid #ccc;
+  background:white;
   cursor:pointer;
+  border-radius:5px;
 }
 
-.true{background:#28a745;color:white;}
-.false{background:#dc3545;color:white;}
+.h-btn.active-true{
+  background:#28a745;
+  color:white;
+}
+
+.h-btn.active-false{
+  background:#dc3545;
+  color:white;
+}
+
+.solution{
+  font-size:12px;
+  color:#000;
+  margin-top:5px;
+  width:100%;
+}
 </style>
 </head>
 
@@ -374,7 +390,7 @@ j:"Autoindustrie: In Zukunft Mobilität ohne Grenzen"
 <select id="ans4" onchange="updateOptions()"></select>
 
 <h3 id="t5">Text 5</h3>
-<p>Viele frischgebackene Eltern stehen einem riesigen Angebot an Kinderwagen gegenüber, das in Kinderläden und Großmärkten feilgeboten wird. Doch welcher ist der richtige? Experten raten, beim Kauf dieses für die ersten Jahre mit dem Kleinkind wichtigen Gefährts auf ein paar Dinge zu achten. Erstens sollte die Matratze nicht zu weich sein, damit das Kind nicht einsinkt, wodurch die Atmung behindert werden kann. Zweitens sollten die Räder gefedert sein, um Erschütterungen auf unebenen Wegen auszugleichen. Ein hoher Wagen schützt die Babys vor dem Auspuff der Autos an Straßenkreuzungen. Zusammenklappbare Wagen passen in jeden Kofferraum und lassen sich fast überallhin mitnehmen. Der Wagen sollte vor allem kippsicher sein und keine scharfen Kanten haben, an denen sich die Kinder verletzen können. Vom TÜV geprüfte Kinderwagen erhalten ein Prüfzeichen. Damit haben die Eltern eine gewisse Sicherheit, dass der Kinderwagen auch nach Dauergebrauch nicht zu einem Sicherheitsrisiko für ihr Kind werden kann.</p>
+<p>Viele frischgebackene Eltern stehen einem riesigen Angebot an Kinderwagen gegenüber, das in Kinderläden und Großmärkten feilgeboten wird. Doch welcher ist der richtige? Experten raten, beim Kauf dieses für die ersten Jahre mit dem Kleinkind wichtigen Gefährts auf ein paar Dinge zu achten. Erstens sollte die Matratze nicht zu weich sein, damit das Kind nicht einsinkt, wodurch die Atmung behindert werden kann. Zweitens sollten die Räder gefedert sein, um Erschütterungen auf unebenen Wegen auszugleichen. Ein hoher Wagen schützt die Babys vor dem Auspuff der Autos an Straßenkreuzungen. Zusammenklappbare Wagen passen في jeden Kofferraum und lassen sich fast überallhin mitnehmen. Der Wagen sollte vor allem kippsicher sein und keine scharfen Kanten haben, an denen sich die Kinder verletzen können. Vom TÜV geprüfte Kinderwagen erhalten ein Prüfzeichen. Damit haben die Eltern eine gewisse Sicherheit, dass der Kinderwagen auch nach Dauergebrauch nicht zu einem Sicherheitsrisiko für ihr Kind werden kann.</p>
 <select id="ans5" onchange="updateOptions()"></select>
 
 <button onclick="checkExam()">تصحيح</button>
@@ -1528,6 +1544,19 @@ function loadH1(){
 
 function selectH1(i,val){
   h1User[i]=val;
+
+  let parent = document.getElementById("h1_questions").children[i];
+  let buttons = parent.querySelectorAll(".h-btn");
+
+  buttons.forEach(btn=>{
+    btn.classList.remove("active-true","active-false");
+  });
+
+  if(val){
+    buttons[0].classList.add("active-true");
+  }else{
+    buttons[1].classList.add("active-false");
+  }
 }
 
 function checkH1(){
@@ -1537,7 +1566,26 @@ function checkH1(){
     let correct = h1Correct.includes(i+1);
     let user = h1User[i];
 
-    if(user===correct) score++;
+    let parent = document.getElementById("h1_questions").children[i];
+
+    parent.style.background = "";
+
+    // إزالة الحل القديم
+    let oldSol = parent.querySelector(".solution");
+    if(oldSol) oldSol.remove();
+
+    if(user===correct){
+      parent.style.background = "#d4edda";
+      score++;
+    }else{
+      parent.style.background = "#f8d7da";
+
+      let sol = document.createElement("div");
+      sol.innerText = "✔ الصحيح: " + (correct ? "✔" : "✖");
+      sol.classList.add("solution");
+
+      parent.appendChild(sol);
+    }
   }
 
   let final = (score*(25/5)).toFixed(2);
@@ -1589,6 +1637,16 @@ function loadVariants(){
     b.style.background="white";
     b.onclick=()=>{
       currentVariant=parseInt(v);
+      h2User={};
+      
+      document.querySelectorAll("#variantButtons button").forEach(btn=>{
+        btn.style.background="white";
+        btn.style.color="black";
+      });
+      
+      b.style.background="#0d6efd";
+      b.style.color="white";
+      
       loadH2();
     };
     c.appendChild(b);
@@ -1617,6 +1675,19 @@ function loadH2(){
 
 function selectH2(i,val){
   h2User[i]=val;
+
+  let parent = document.getElementById("h2_questions").children[i];
+  let buttons = parent.querySelectorAll(".h-btn");
+
+  buttons.forEach(btn=>{
+    btn.classList.remove("active-true","active-false");
+  });
+
+  if(val){
+    buttons[0].classList.add("active-true");
+  }else{
+    buttons[1].classList.add("active-false");
+  }
 }
 
 function checkH2(){
@@ -1625,7 +1696,26 @@ function checkH2(){
 
   for(let i=0;i<10;i++){
     let correct = correctList.includes(i+1);
-    if(h2User[i]===correct) score++;
+    let parent = document.getElementById("h2_questions").children[i];
+
+    parent.style.background="";
+
+    // إزالة الحل القديم
+    let oldSol = parent.querySelector(".solution");
+    if(oldSol) oldSol.remove();
+
+    if(h2User[i]===correct){
+      parent.style.background="#d4edda";
+      score++;
+    }else{
+      parent.style.background="#f8d7da";
+
+      let sol=document.createElement("div");
+      sol.innerText="✔ الصحيح: " + (correct ? "✔" : "✖");
+      sol.classList.add("solution");
+
+      parent.appendChild(sol);
+    }
   }
 
   let final = (score*(25/10)).toFixed(2);
@@ -1673,6 +1763,19 @@ function loadH3(){
 
 function selectH3(i,val){
   h3User[i]=val;
+
+  let parent = document.getElementById("h3_questions").children[i];
+  let buttons = parent.querySelectorAll(".h-btn");
+
+  buttons.forEach(btn=>{
+    btn.classList.remove("active-true","active-false");
+  });
+
+  if(val){
+    buttons[0].classList.add("active-true");
+  }else{
+    buttons[1].classList.add("active-false");
+  }
 }
 
 function checkH3(){
@@ -1680,7 +1783,26 @@ function checkH3(){
 
   for(let i=0;i<h3Data.length;i++){
     let correct = h3Correct.includes(i+1);
-    if(h3User[i]===correct) score++;
+    let parent = document.getElementById("h3_questions").children[i];
+
+    parent.style.background="";
+
+    // إزالة الحل القديم
+    let oldSol = parent.querySelector(".solution");
+    if(oldSol) oldSol.remove();
+
+    if(h3User[i]===correct){
+      parent.style.background="#d4edda";
+      score++;
+    }else{
+      parent.style.background="#f8d7da";
+
+      let sol=document.createElement("div");
+      sol.innerText="✔ الصحيح: " + (correct ? "✔" : "✖");
+      sol.classList.add("solution");
+
+      parent.appendChild(sol);
+    }
   }
 
   let final=(score*(25/5)).toFixed(2);
