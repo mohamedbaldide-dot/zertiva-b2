@@ -607,8 +607,10 @@ function assign(num, letter){
   let old = textEl.querySelector(".moved-title");
   if(old) old.remove();
 
-  // إنشاء عنوان داخل الفقرة
+  // إنشاء عنوان داخل الفقرة وإخفائه من القائمة
   if(titleEl){
+    titleEl.style.display = "none";  // ✅ إخفاء العنوان من القائمة
+
     let clone = document.createElement("div");
     clone.classList.add("moved-title");
     clone.innerText = titleEl.innerText;
@@ -736,6 +738,7 @@ function resetTeil3(){
 
   document.querySelectorAll(".title").forEach(t=>{
     t.classList.remove("matched","selected");
+    t.style.display = "block";  // ✅ إعادة إظهار جميع العناوين
     let old = t.querySelector(".no-paragraph-msg");
     if(old) old.remove();
   });
