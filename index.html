@@ -98,8 +98,8 @@ select{margin:10px 0;padding:8px;width:100%;}
   border-radius:6px;
 }
 
-/* ===== CSS لـ Sprachbausteine Teil 1 & 2 ===== */
-.gap, .gap2{
+/* ===== CSS لـ Sprachbausteine ===== */
+.gap{
   display:inline-block;
   padding:6px 12px;
   border:2px solid #007bff;
@@ -114,32 +114,32 @@ select{margin:10px 0;padding:8px;width:100%;}
   transition:0.2s;
 }
 
-.gap:hover, .gap2:hover{
+.gap:hover{
   background:#cfe2ff;
   transform:scale(1.02);
 }
 
-.gap.active-gap, .gap2.active-gap{
+.gap.active-gap{
   background:#0d6efd;
   color:white;
   border-color:#0a58ca;
   box-shadow:0 0 0 2px rgba(13,110,253,0.3);
 }
 
-.correct-gap, .correct-gap2{
+.correct-gap{
   background:#d4edda;
   border-color:#28a745;
   color:#155724;
 }
 
-.wrong-gap, .wrong-gap2{
+.wrong-gap{
   background:#f8d7da;
   border-color:#dc3545;
   color:#721c24;
 }
 
 /* خيارات الإجابة */
-.option-btn, .connector-btn{
+.option-btn{
   margin:5px;
   padding:8px 14px;
   border:1px solid #6c757d;
@@ -151,18 +151,18 @@ select{margin:10px 0;padding:8px;width:100%;}
   font-size:14px;
 }
 
-.option-btn:hover, .connector-btn:hover{
+.option-btn:hover{
   background:#e9ecef;
   transform:translateY(-1px);
 }
 
-.option-btn.selected-option, .connector-btn.selected-connector{
+.option-btn.selected-option{
   background:#0d6efd;
   border-color:#0d6efd;
   color:white;
 }
 
-.option-btn.disabled-option, .connector-btn.disabled-connector{
+.option-btn.disabled-option{
   opacity:0.5;
   text-decoration:line-through;
   cursor:not-allowed;
@@ -175,6 +175,69 @@ select{margin:10px 0;padding:8px;width:100%;}
   background:#f8f9fa;
   border-radius:12px;
   border-left:4px solid #0d6efd;
+}
+
+/* ===== CSS لـ Sprachbausteine Teil 2 ===== */
+.gap2{
+  display:inline-block;
+  padding:6px 12px;
+  border:2px solid #28a745;
+  background:#d4edda;
+  color:#155724;
+  cursor:pointer;
+  margin:0 4px;
+  border-radius:8px;
+  font-weight:bold;
+  min-width:70px;
+  text-align:center;
+  transition:0.2s;
+}
+
+.gap2:hover{
+  background:#c3e6cb;
+  transform:scale(1.02);
+}
+
+.gap2.active-gap{
+  background:#218838;
+  color:white;
+  border-color:#1e7e34;
+  box-shadow:0 0 0 2px rgba(33,136,56,0.3);
+}
+
+.correct-gap2{
+  background:#d4edda;
+  border-color:#28a745;
+  color:#155724;
+}
+
+.wrong-gap2{
+  background:#f8d7da;
+  border-color:#dc3545;
+  color:#721c24;
+}
+
+.connector-btn{
+  margin:5px;
+  padding:8px 14px;
+  border:1px solid #6c757d;
+  border-radius:20px;
+  background:white;
+  color:black;
+  cursor:pointer;
+  transition:0.2s;
+  font-size:14px;
+}
+
+.connector-btn:hover{
+  background:#e9ecef;
+  transform:translateY(-1px);
+}
+
+.connector-btn.selected-connector{
+  background:#28a745;
+  border-color:#28a745;
+  color:white;
 }
 
 .connector-group{
@@ -1203,26 +1266,13 @@ const sprach2Answers = {
 };
 
 const connectorsList = [
-  {value:"denn", correct:true},
-  {value:"für", correct:true},
-  {value:"zwischen", correct:true},
-  {value:"irgendein", correct:true},
-  {value:"dafür", correct:true},
-  {value:"davon", correct:true},
-  {value:"weiter", correct:true},
-  {value:"dazu", correct:true},
-  {value:"dass", correct:true},
-  {value:"daran", correct:true},
-  {value:"daher", correct:false},
-  {value:"damit", correct:false},
-  {value:"gegen", correct:false},
-  {value:"was", correct:false},
-  {value:"zu", correct:false}
+  "denn", "für", "zwischen", "irgendein", "dafür",
+  "davon", "weiter", "dazu", "dass", "daran",
+  "daher", "damit", "gegen", "was", "zu"
 ];
 
 let currentGap2 = null;
 let sprach2User = {};
-let usedConnectors = new Set();
 
 function loadSprach2Options(){
   let container = document.getElementById("connectorsContainer");
@@ -1235,68 +1285,39 @@ function loadSprach2Options(){
   
   connectorsList.forEach(connector=>{
     let btn = document.createElement("button");
-    btn.innerText = connector.value;
+    btn.innerText = connector;
     btn.className = "connector-btn";
-    btn.setAttribute("data-value", connector.value);
+    btn.setAttribute("data-value", connector);
     
     btn.onclick = function(e){
       e.stopPropagation();
       let value = this.getAttribute("data-value");
       
-      if(usedConnectors.has(value)){
-        alert("هذه الأداة تم استخدامها بالفعل!");
-        return;
+      // لازم المستخدم يختار الفراغ أولاً
+      if(currentGap2 === null){
+        return; // لا تفعل أي شيء
       }
       
-      if(currentGap2 !== null){
-        // Method 1: gap selected first
-        if(sprach2User[currentGap2] !== undefined){
-          let oldValue = sprach2User[currentGap2];
-          usedConnectors.delete(oldValue);
-          let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
-          if(oldBtn) oldBtn.classList.remove("selected-connector");
-        }
-        
-        sprach2User[currentGap2] = value;
-        usedConnectors.add(value);
-        
-        let gapSpan = document.getElementById("gap2_"+currentGap2);
-        gapSpan.innerText = value;
-        gapSpan.classList.remove("active-gap");
-        
-        this.classList.add("selected-connector");
-        
-        currentGap2 = null;
-        document.querySelectorAll(".gap2").forEach(g=>g.classList.remove("active-gap"));
-      } else {
-        // Method 2: direct click on connector -> assign to its correct gap
-        let targetGap = null;
-        for(let i=1;i<=10;i++){
-          if(sprach2Answers[i] === value && sprach2User[i] === undefined){
-            targetGap = i;
-            break;
-          }
-        }
-        
-        if(targetGap !== null){
-          if(sprach2User[targetGap] !== undefined){
-            let oldValue = sprach2User[targetGap];
-            usedConnectors.delete(oldValue);
-            let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
-            if(oldBtn) oldBtn.classList.remove("selected-connector");
-          }
-          
-          sprach2User[targetGap] = value;
-          usedConnectors.add(value);
-          
-          let gapSpan = document.getElementById("gap2_"+targetGap);
-          gapSpan.innerText = value;
-          
-          this.classList.add("selected-connector");
-        } else {
-          alert("هذه الأداة لا تناسب أي فراغ أو تم استخدامها بالفعل!");
-        }
+      // إذا كان هناك اختيار سابق في هذا الفراغ نحذفه
+      if(sprach2User[currentGap2] !== undefined){
+        let oldValue = sprach2User[currentGap2];
+        let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
+        if(oldBtn) oldBtn.classList.remove("selected-connector");
       }
+      
+      // وضع القيمة في الفراغ المختار فقط
+      sprach2User[currentGap2] = value;
+      
+      let gapSpan = document.getElementById("gap2_"+currentGap2);
+      gapSpan.innerText = value;
+      
+      // تحديث الشكل
+      document.querySelectorAll(".connector-btn").forEach(b=>b.classList.remove("selected-connector"));
+      this.classList.add("selected-connector");
+      
+      // إلغاء التحديد
+      document.querySelectorAll(".gap2").forEach(g=>g.classList.remove("active-gap"));
+      currentGap2 = null;
     };
     
     groupDiv.appendChild(btn);
@@ -1344,7 +1365,6 @@ function checkSprach2(){
 function resetSprach2(){
   sprach2User = {};
   currentGap2 = null;
-  usedConnectors.clear();
   
   for(let i=1;i<=10;i++){
     let gap = document.getElementById("gap2_"+i);
@@ -1359,7 +1379,7 @@ function resetSprach2(){
   document.getElementById("resultSprach2").innerText = "";
 }
 
-// تهيئة
+// تهيئة Teil 1 و Sprachbausteine
 loadOptions();
 loadSprachOptions();
 loadSprach2Options();
