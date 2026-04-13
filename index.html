@@ -653,7 +653,27 @@ function removeAssignment(num, letter){
   delete answers[num];
 }
   let textEl = document.querySelectorAll(".text")[num-1];
+  let ti  let textEl = document.querySelectorAll(".text")[num-1];
   let titleEl = document.querySelector(`.title[data-id="${letter}"]`);
+
+  answers[num] = letter;
+
+  let old = textEl.querySelector(".moved-title");
+  if(old) old.remove();
+
+  if(titleEl){
+    let clone = document.createElement("div");
+    clone.classList.add("moved-title");
+    clone.innerText = titleEl.innerText;
+
+    textEl.insertBefore(clone, textEl.children[1]);
+  }
+
+  selectedText = null;
+  selectedTitle = null;
+  document.querySelectorAll(".selected").forEach(e=>e.classList.remove("selected"));
+}
+tleEl = document.querySelector(`.title[data-id="${letter}"]`);
 
   answers[num] = letter;
 
