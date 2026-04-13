@@ -39,11 +39,11 @@ select{margin:10px 0;padding:8px;width:100%;}
     <button onclick="goList()">لنبدأ 🚀</button>
   </div>
 </div>
+
 <!-- الصفحة 2 -->
 <div id="list" class="page">
   <h2>الامتحانات</h2>
 
-  <!-- 30 امتحان -->
   <div class="item" onclick="openExam(1)">1 - sport ist gesund (الرياضة مفيدة للصحة)</div>
   <div class="item">2 - kellner (Jugend Forscherr) (باحث شاب)</div>
   <div class="item">3 - Impfung (لقاح)</div>
@@ -77,6 +77,8 @@ select{margin:10px 0;padding:8px;width:100%;}
 
   <button onclick="goHome()">رجوع</button>
 </div>
+
+<!-- الصفحة 3 - الامتحان -->
 <div id="exam" class="page">
 <div class="exam-box">
 
@@ -92,7 +94,6 @@ select{margin:10px 0;padding:8px;width:100%;}
 <!-- ==================== TEIL 1 ==================== -->
 <div id="teil1">
 
-<!-- العناوين الجديدة -->
 <script>
 let titles = {
 a:"Sport ist gesund - wenn man einige wichtige Regeln beachtet",
@@ -108,27 +109,22 @@ j:"Autoindustrie: In Zukunft Mobilität ohne Grenzen"
 };
 </script>
 
-<!-- Text 1 -->
 <h3 id="t1">Text 1</h3>
 <p>An der Ostküste Attikas in Griechenland lag in der Antike der Orte Marathon. Dort siegte der griechische König Milthiades im Jahr 490 vor Christus über das Heer der Perser. Der Sage nach soll ein Soldat die 42,2 km lange Strecke nach Athen gerannt sein, um die Nachricht dieses für Griechenland wichtigen Sieges zu überbringen. Bei seiner Ankunft in Athen brach er, noch während er die Nachricht verkündete, vor Erschöpfung tot zusammen. Auf diese Legende geht eine sportliche Disziplin zurück: der Marathonlauf. Bereits seit 1896 ist er olympische Disziplin, seit 1984 auch für Frauen. Die Streckenlänge von 42195 m. wurde 1924 festgelegt. Der Marathonlauf gilt als einziger Leistungssport, der bis ins hohe Alter ausgeübt werden kann. Wissenschaftler erklären das mit der menschlichen Evolution. Der Mensch jagte in der Frühzeit seine Beute so lange vor sich her, bis diese vor Erschöpfung nicht mehr weiter konnte. Die Fähigkeit, ausdauernd über lange Strecken zu rennen, ist also in den menschlichen Genen verankert.</p>
 <select id="ans1" onchange="updateOptions()"></select>
 
-<!-- Text 2 -->
 <h3 id="t2">Text 2</h3>
 <p>Warum soll sich der Mensch nun auf Straßen und Wegen fortbewegen? Sich in Feld und Wald, über Stock und Stein fortzubewegen, ist mindestens ebenso interessant. Daher erfand die Autoindustrie den Geländewagen und die Fahrradindustrie das Mountainbike. Da fehlte eigentlich nur noch eine Neuentwicklung eines Gefährts, dessen Mobilitätsmöglichkeiten bisher relativ begrenzt waren: der Kinderwagen. Doch das ist jetzt auch vorbei: Im Trend liegt jetzt der Jogging-Stroller, ein Kinderwagen mit nur noch drei bereiften Rädern. Diese neuen Transportmittel für Babys können sportbegeisterte und von grenzenloser Mobilität träumende Eltern jetzt samt Kind beim Joggen oder beim Inlineskaten vor sich herschieben. Die Babys sollen begeistert sein von der Geschwindigkeit, die mit solchen Geräten erreichbar ist. Doch der die Gerätesicherheit prüfende TÜV, bei Fahrzeugbesitzern in Deutschland schon seit langem als Spielverderber bekannt, warnte vor den Jogging-Strollern: Sie haben einen ungünstigen Schwerpunkt auf der Hinterachse, d.h. sie kippen leicht nach hinten um, und sie können sich leicht selbständig machen - jedenfalls solange, bis die Babys das Bremsen gelernt haben.</p>
 <select id="ans2" onchange="updateOptions()"></select>
 
-<!-- Text 3 -->
 <h3 id="t3">Text 3</h3>
 <p>Schweizer Forscher haben herausgefunden, dass nur 6 Minuten Hochleistungstraining pro Woche - also weniger als eine Minute pro Tag - ausreichen, um den Körper fit zu halten. In einem Versuch mit mehreren Probanden nahm eine Gruppe an einem traditionellen Ausdauertraining teil, mit je ein bis zwei Trainingsstunden täglich. Die zweite Gruppe führte täglich 60 Sekunden dauernde Radsprints durch, wobei die Teilnehmer quasi aus dem Stand Höchstgeschwindigkeit erzielen mussten. Das Resultat war überraschend: Beide Gruppen zeigten die gleichen gesundheitlichen Verbesserungen. Die Muskel nahmen gleich viel Sauerstoff auf, und auch die Werte des für die Sauerstoffaufnahme verantwortlichen Zitratenzyms waren gleich. Sehr kurze und hochintensive sportliche Übungen verbessern die Fitness genauso wie das zeitraubende traditionelle Ausdauertraining.</p>
 <select id="ans3" onchange="updateOptions()"></select>
 
-<!-- Text 4 -->
 <h3 id="t4">Text 4</h3>
 <p>Mehr Bewegung als Ausgleich für zu langes Sitzen im Büro und in der Freizeit ist zurzeit angesagt, um Übergewicht, Bluthochdruck und Herz-Kreislauf-Erkrankungen vorzubeugen und um fit zu bleiben. Gerade für Einsteiger gibt es jedoch bei den die Ausdauer trainierenden Sportarten wie dem Joggen einige Grundregeln, die beachtet werden müssen, will man gesundheitliche Schäden vermeiden. Die ersten Trainingseinheiten sollen nicht länger als 20 bis 30 Minuten dauern und zweimal pro Woche durchgeführt werden. Der Puls sollte nie den Wert 200 minus Lebensalter überschreiten, bei einem 20-Jährigen kann er also bei 180, bei einem 60-Jährigen hingegen nur bei 140 liegen. Außerdem gilt für alle, die beim Sport abnehmen möchten: Je höher der Pulsschlag, desto weniger Fett wird verbrannt. Hoher Pulsschlag lässt Sporttreibenden langsamer abnehmen.</p>
 <select id="ans4" onchange="updateOptions()"></select>
 
-<!-- Text 5 -->
 <h3 id="t5">Text 5</h3>
 <p>Viele frischgebackene Eltern stehen einem riesigen Angebot an Kinderwagen gegenüber, das in Kinderläden und Großmärkten feilgeboten wird. Doch welcher ist der richtige? Experten raten, beim Kauf dieses für die ersten Jahre mit dem Kleinkind wichtigen Gefährts auf ein paar Dinge zu achten. Erstens sollte die Matratze nicht zu weich sein, damit das Kind nicht einsinkt, wodurch die Atmung behindert werden kann. Zweitens sollten die Räder gefedert sein, um Erschütterungen auf unebenen Wegen auszugleichen. Ein hoher Wagen schützt die Babys vor dem Auspuff der Autos an Straßenkreuzungen. Zusammenklappbare Wagen passen in jeden Kofferraum und lassen sich fast überallhin mitnehmen. Der Wagen sollte vor allem kippsicher sein und keine scharfen Kanten haben, an denen sich die Kinder verletzen können. Vom TÜV geprüfte Kinderwagen erhalten ein Prüfzeichen. Damit haben die Eltern eine gewisse Sicherheit, dass der Kinderwagen auch nach Dauergebrauch nicht zu einem Sicherheitsrisiko für ihr Kind werden kann.</p>
 <select id="ans5" onchange="updateOptions()"></select>
@@ -146,14 +142,12 @@ j:"Autoindustrie: In Zukunft Mobilität ohne Grenzen"
 
 <div style="display:flex; gap:20px; flex-wrap:wrap;">
 
-<!-- النص -->
 <div style="flex:2; min-width:250px; background:#f9f9f9; padding:15px; border-radius:10px;">
 <p>
 Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen durch die westfälische Kleinstadt Unna zog, wurde er von den Leuten ausgelacht. Heute aber ist er eine städtische Berühmtheit und sogar weit über die Grenzen seiner Heimatstadt hinaus bekannt. Der 71-Jährige ist der einzige Teilnehmer des weltweit kleinsten Karnevalsumzugs. An Weiberfastnacht, dem letzten Donnerstag der Karnevalsperiode eines Jahres, zieht er mit seinem Handwagen los: Er selbst ist dann - dieses Jahr als blondes Schulmädchen - verkleidet und auf seinem Bollerwagen hat er aus Pappe und Gips Figuren aufgebaut, die humoristisch ein aktuelles gesellschaftliches Thema - diesmal die Schulreform - aufgreifen. So macht er sich nach alter karnevalistischer Tradition über Missstände lustig. Helmut Scherer legt natürlich Wert darauf, dass er von Karnevalsmusik begleitet wird, die jedoch nicht von einer Musikgruppe, sondern von einem Radiorekorder gespielt wird. Vor 50 Jahren kam Helmut Scherer aus dem katholisch geprägten Paderborn, wo er seine Kindheit und Jugend verbracht hatte, nach Unna, dessen überwiegend evangelische Bevölkerung sich recht kühl und nüchtern gibt und deshalb anfangs auch wenig Verständnis für den katholischen Karnevalsbrauch zeigte. "Die Leute haben mir einen Vogel gezeigt und den Kopf geschüttelt", beschreibt der "Narr aus Überzeugung" die Anfänge. Auch bei der Stadtverwaltung, wo Scherer für Weiberfastnacht seinen Umzug ordnungsgemäß anmeldete, stieß er zunächst auf Unverständnis. Aber da sein Karnevalszug niemanden behinderte und auch nicht zu befürchten war, dass Unnas öffentliche Ordnung gestört würde, bekam er die Erlaubnis, mit seinem humoristischen Handwagen loszumarschieren. Über 10 Jahre lang zog Scherer einsam, belächelt und verspottet durch Unna, weder eisige Kälte noch Schnee konnten ihn davon abhalten. Doch der Karneval blieb für lange Zeit sein Privatvergnügen. Als dann die lokale Presse anfing, ihn zu unterstützen, wandelte sich die Meinung der Öffentlichkeit. Der einst verspottete Karnevalist stieg langsam zum närrischen Wahrzeichen einer Stadt ohne Karneval auf. Für die Stadtoberen ist heute die "Ein-Mann-Show" die beste Werbung für Unna. Scherers Beharrlichkeit hat sich also ausgezahlt: Anlässlich seines fünfzigsten Karnevalsjubiläums wurde er sogar offiziell im Rathaus empfangen, um ihm - so wie es auch in den Karnevalshochburgen Köln, Düsseldorf und Mainz üblich ist - den goldenen Schlüssel des Rathauses zu übergeben. Obwohl er keinem Karnevalsverein angehört, wurde ihm die Ehre zuteil, als Karnevalsprinz in den Bund Deutscher Karneval aufgenommen zu werden; somit wurde es ihm möglich, auch bei den Rosenmontagszügen in den närrischen Hochburgen im Rheinland mitzuwirken. Weit über hundert Fans des standhaften Narren haben sich zu einem Fan-Club zusammengeschlossen, und etliche stehen beim jährlichen Umzug in Unna am Straßenrand und rufen statt "Spinner" den rheinischen Karnevalsgruß "Helau". Bei aller Fortschrittlichkeit soll aber eines so bleiben, wie es immer war - einen weiteren Teilnehmer am Zug duldet der Karnevalsprinz nicht: "Die Tradition soll aufrechterhalten bleiben", sagt er schmunzelnd. "Aber nur solange mich die Füße tragen!"
 </p>
 </div>
 
-<!-- الأسئلة -->
 <div style="flex:1; min-width:200px;">
 
 <p><strong>Frage 1<br>Helmut Scherer</strong></p>
@@ -204,6 +198,7 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
 
 </div>
 </div> <!-- نهاية teil2 -->
+
 <!-- ==================== TEIL 3 ==================== -->
 <div id="teil3" style="display:none;">
 
@@ -211,7 +206,6 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
 
 <div style="display:flex; gap:20px; flex-wrap:wrap;">
 
-<!-- الفقرات على اليسار (2 في كل سطر) -->
 <div id="texts" style="flex:1.5; min-width:300px; display:grid; grid-template-columns:1fr 1fr; gap:10px;">
 
   <div class="text" onclick="selectText(1, this)">
@@ -300,7 +294,6 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
 
 </div>
 
-<!-- العناوين على اليمين (10 عناوين فقط + خيار 0) -->
 <div id="titles" style="flex:1; min-width:250px;">
 
   <div class="title" onclick="selectTitle(0, this)">0. لا شيء مناسب لهذا الإعلان</div>
@@ -325,10 +318,242 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
 <p id="result3"></p>
 
 </div> <!-- نهاية teil3 -->
+
+<button onclick="goList()">رجوع</button>
+
+</div>
+</div>
+
+<!-- ==================== جميع الـ JavaScript في مكان واحد ==================== -->
+<script>
+
+// دوال التنقل بين الصفحات
+function goList(){
+  document.getElementById("home").classList.remove("active");
+  document.getElementById("list").classList.add("active");
+}
+
+function goHome(){
+  document.getElementById("list").classList.remove("active");
+  document.getElementById("home").classList.add("active");
+}
+
+function openExam(n){
+  document.getElementById("list").classList.remove("active");
+  document.getElementById("exam").classList.add("active");
+}
+
+function showTeil(n){
+  let teil1 = document.getElementById("teil1");
+  let teil2 = document.getElementById("teil2");
+  let teil3 = document.getElementById("teil3");
+  if(teil1) teil1.style.display = (n===1) ? "block" : "none";
+  if(teil2) teil2.style.display = (n===2) ? "block" : "none";
+  if(teil3) teil3.style.display = (n===3) ? "block" : "none";
+}
+
+// Teil 1 functions
+function loadOptions(){
+  for(let i=1;i<=5;i++){
+    let s=document.getElementById("ans"+i);
+    if(s){
+      s.innerHTML="<option value=''>اختر</option>";
+      for(let key in titles){
+        s.innerHTML+=`<option value="${key}">${key}. ${titles[key]}</option>`;
+      }
+    }
+  }
+}
+
+function updateOptions(){
+  let selected=[];
+  for(let i=1;i<=5;i++){
+    let v=document.getElementById("ans"+i).value;
+    if(v) selected.push(v);
+  }
+
+  for(let i=1;i<=5;i++){
+    let s=document.getElementById("ans"+i);
+    if(s){
+      let current=s.value;
+      s.innerHTML="<option value=''>اختر</option>";
+      for(let key in titles){
+        if(!selected.includes(key) || key===current){
+          s.innerHTML+=`<option value="${key}">${key}. ${titles[key]}</option>`;
+        }
+      }
+      s.value=current;
+    }
+  }
+}
+
+function checkExam(){
+  let correct={1:"h",2:"f",3:"g",4:"a",5:"d"};
+  let score=0;
+
+  for(let i=1;i<=5;i++){
+    let val=document.getElementById("ans"+i).value;
+    let text=document.getElementById("t"+i);
+
+    text.classList.remove("correct","wrong");
+
+    if(val===correct[i]){
+      text.classList.add("correct");
+      score++;
+    }else{
+      text.classList.add("wrong");
+      
+      let select = document.getElementById("ans"+i);
+      
+      if(!select.querySelector(".correct-answer")){
+        let opt = document.createElement("option");
+        opt.value = correct[i];
+        opt.textContent = "✔ الصحيح: " + correct[i] + ". " + titles[correct[i]];
+        opt.classList.add("correct-answer");
+        select.appendChild(opt);
+      }
+      select.value = correct[i];
+    }
+  }
+
+  document.getElementById("result").innerText="النتيجة: "+score+" / 5";
+}
+
+function resetTeil1(){
+  for(let i=1;i<=5;i++){
+    let select = document.getElementById("ans"+i);
+    if(select){
+      let correctOptions = select.querySelectorAll(".correct-answer");
+      correctOptions.forEach(opt => opt.remove());
+      select.value = "";
+    }
+    let text = document.getElementById("t"+i);
+    if(text){
+      text.classList.remove("correct","wrong");
+      if(text.innerHTML.includes("(✔ الصحيح:")){
+        text.innerHTML = "Text " + i;
+      }
+    }
+  }
+  document.getElementById("result").innerText = "";
+}
+
+// Teil 2 functions
+function checkTeil2(){
+  let correct = {1:"a",2:"c",3:"a",4:"b",5:"a"};
+  let score = 0;
+
+  for(let i=1;i<=5;i++){
+    let val = document.getElementById("q"+i).value;
+    let select = document.getElementById("q"+i);
+
+    select.classList.remove("correct","wrong");
+
+    if(val === correct[i]){
+      select.classList.add("correct");
+      score++;
+    }else{
+      select.classList.add("wrong");
+      
+      let existing = false;
+      for(let j=0;j<select.options.length;j++){
+        if(select.options[j].textContent.includes("✔ الصحيح:")){
+          existing = true;
+          break;
+        }
+      }
+      if(!existing){
+        let opt = document.createElement("option");
+        opt.textContent = "✔ الصحيح: " + correct[i];
+        opt.classList.add("correct-answer");
+        select.appendChild(opt);
+      }
+    }
+  }
+
+  document.getElementById("result2").innerText = "النتيجة: " + score + " / 5";
+}
+
+function resetTeil2(){
+  for(let i=1;i<=5;i++){
+    let select = document.getElementById("q"+i);
+    if(select){
+      let correctOptions = select.querySelectorAll("option:not([value='']):not([value='a']):not([value='b']):not([value='c'])");
+      correctOptions.forEach(opt => {
+        if(opt.textContent.includes("✔ الصحيح:")) opt.remove();
+      });
+      select.value = "";
+      select.classList.remove("correct","wrong");
+    }
+  }
+  document.getElementById("result2").innerText = "";
+}
+
+// Teil 3 variables
+let selectedText = null;
+let selectedTitle = null;
+let answers = {};
+
+function selectText(num, el){
+  if(selectedText === num){
+    selectedText = null;
+    el.classList.remove("selected");
+    return;
+  }
+
+  document.querySelectorAll(".text").forEach(t=>t.classList.remove("selected"));
+  selectedText = num;
+  el.classList.add("selected");
+
+  if(selectedTitle !== null){
+    assign(num, selectedTitle);
+  }
+}
+
+function selectTitle(letter, el){
+  if(selectedTitle === letter){
+    selectedTitle = null;
+    el.classList.remove("selected");
+    return;
+  }
+
+  document.querySelectorAll(".title").forEach(t=>t.classList.remove("selected"));
+  selectedTitle = letter;
+  el.classList.add("selected");
+
+  if(selectedText !== null){
+    assign(selectedText, selectedTitle);
+  }
+}
+
+function assign(num, letter){
+  let textEl = document.querySelectorAll(".text")[num-1];
+  let titleEl = null;
+  
+  let titles = document.querySelectorAll(".title");
+  for(let i=0;i<titles.length;i++){
+    if(titles[i].getAttribute("onclick") && titles[i].getAttribute("onclick").includes("'"+letter+"'")){
+      titleEl = titles[i];
+      break;
+    }
+  }
+
+  answers[num] = letter;
+
+  let answerBox = textEl.querySelector(".answer-box");
+  answerBox.innerText = letter;
+  answerBox.style.background = "#0d6efd";
+  answerBox.style.color = "white";
+
+  textEl.classList.add("matched");
+  if(letter !== 0 && titleEl) titleEl.classList.add("matched");
+
+  selectedText = null;
+  selectedTitle = null;
+  document.querySelectorAll(".selected").forEach(e=>e.classList.remove("selected"));
+}
+
 function checkTeil3(){
-  // mapping الجديد حسب ترتيب Anzeige a → l
-  // a=1, b=2, c=3, d=4, e=5, f=6, g=7, h=8, i=9, j=10, k=11, l=12
-  // والصحيح لكل Anzeige هو رقم العنوان المناسب
   let correct = {
     1:1,   // Anzeige a → عنوان 1 (Tennissport)
     2:2,   // Anzeige b → عنوان 2 (Zeitmanagement)
@@ -361,17 +586,14 @@ function checkTeil3(){
     }
   }
 
-  // تحويل النقطة إلى /25
   let finalScore = (score * (25/12)).toFixed(2);
   document.getElementById("result3").innerText = "النتيجة: " + finalScore + " / 25";
 
-  // فقط بعد التصحيح: إظهار العناوين بدون فقرة (العنوانين 3 و 9)
   let unusedTitles = [3,9];
 
   document.querySelectorAll(".title").forEach((t, idx)=>{
-    let num = idx === 0 ? 0 : idx; // أول عنوان هو 0
-    let actualNum = idx; // لأن أول عنوان هو 0 ثم 1,2,3...
-    
+    let actualNum = idx;
+
     let old = t.querySelector(".no-paragraph-msg");
     if(old) old.remove();
 
@@ -386,3 +608,35 @@ function checkTeil3(){
     }
   });
 }
+
+function resetTeil3(){
+  answers = {};
+  selectedText = null;
+  selectedTitle = null;
+
+  document.querySelectorAll(".text").forEach(el=>{
+    el.classList.remove("matched","red","selected");
+    let answerBox = el.querySelector(".answer-box");
+    answerBox.innerText = "";
+    answerBox.style.background = "#dee2e6";
+    answerBox.style.color = "";
+    answerBox.classList.remove("green");
+    el.querySelector(".solution-box").innerText = "";
+  });
+
+  document.querySelectorAll(".title").forEach(t=>{
+    t.classList.remove("matched","selected");
+    let old = t.querySelector(".no-paragraph-msg");
+    if(old) old.remove();
+  });
+
+  document.getElementById("result3").innerText = "";
+}
+
+// تهيئة Teil 1
+loadOptions();
+
+</script>
+
+</body>
+</html>
