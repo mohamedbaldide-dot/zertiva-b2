@@ -34,7 +34,16 @@ select{margin:10px 0;padding:8px;width:100%;}
   gap:15px;
 }
 
-.text, .title{
+.text{
+  background:#ffffff;
+  padding:12px;
+  border-radius:10px;
+  border:2px solid #dee2e6;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.title{
   background:#ffffff;
   padding:12px;
   border-radius:10px;
@@ -50,10 +59,6 @@ select{margin:10px 0;padding:8px;width:100%;}
 .selected{
   border:2px solid #0d6efd !important;
   background:#e7f1ff !important;
-}
-
-.matched{
-  opacity:0.5;
 }
 
 .answer-box{
@@ -82,6 +87,15 @@ select{margin:10px 0;padding:8px;width:100%;}
 .red{
   background:#f8d7da !important;
   border-color:#dc3545 !important;
+}
+
+.moved-title{
+  font-size:0.85em;
+  padding:6px 10px;
+  margin-bottom:8px;
+  background:#f1f3f5;
+  border-left:4px solid #0d6efd;
+  border-radius:6px;
 }
 </style>
 </head>
@@ -353,18 +367,18 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
 
 <div id="titles" style="flex:1; min-width:250px;">
 
-  <div class="title" onclick="selectTitle(0, this)">0. لا شيء مناسب لهذا الإعلان</div>
+  <div class="title" data-id="0" onclick="selectTitle(0, this)">0. لا شيء مناسب لهذا الإعلان</div>
 
-  <div class="title" onclick="selectTitle(1, this)">1. Eine Bekannte interessiert sich für Bücher über den Tennissport.</div>
-  <div class="title" onclick="selectTitle(2, this)">2. Ein befreundetes Ehepaar steht andauernd unter Stress und möchte wieder mehr Zeit für sich und andere haben.</div>
-  <div class="title" onclick="selectTitle(3, this)">3. Eine Bekannte möchte bei ihren Partys eine perfekte Gastgeberin sein.</div>
-  <div class="title" onclick="selectTitle(4, this)">4. Eine Studentin sucht Informationen, wie sie besser und systematischer lernen kann.</div>
-  <div class="title" onclick="selectTitle(5, this)">5. Ein Bekannter möchte wissen, welche Botschaften durch Gestik und Mimik transportiert werden.</div>
-  <div class="title" onclick="selectTitle(6, this)">6. Eine Bekannte möchte ihr äußeres Erscheinungsbild optimieren.</div>
-  <div class="title" onclick="selectTitle(7, this)">7. Ein Bekannter ist sich noch unsicher, wie er sich bei einem Vorstellungsgespräch am besten präsentiert.</div>
-  <div class="title" onclick="selectTitle(8, this)">8. Ein Bekannter schreibt an einer Hausarbeit über gesellschaftliche Normen und Verhaltensregeln verschiedener Jahrhunderte.</div>
-  <div class="title" onclick="selectTitle(9, this)">9. Ein Bekannter möchte Kalligraphie (Schmuckschriften) lernen.</div>
-  <div class="title" onclick="selectTitle(10, this)">10. Eine Bekannte ist sehr verunsichert, weil sie auf Konferenzen immer wieder Angst hat, frei zu sprechen.</div>
+  <div class="title" data-id="1" onclick="selectTitle(1, this)">1. Eine Bekannte interessiert sich für Bücher über den Tennissport.</div>
+  <div class="title" data-id="2" onclick="selectTitle(2, this)">2. Ein befreundetes Ehepaar steht andauernd unter Stress und möchte wieder mehr Zeit für sich und andere haben.</div>
+  <div class="title" data-id="3" onclick="selectTitle(3, this)">3. Eine Bekannte möchte bei ihren Partys eine perfekte Gastgeberin sein.</div>
+  <div class="title" data-id="4" onclick="selectTitle(4, this)">4. Eine Studentin sucht Informationen, wie sie besser und systematischer lernen kann.</div>
+  <div class="title" data-id="5" onclick="selectTitle(5, this)">5. Ein Bekannter möchte wissen, welche Botschaften durch Gestik und Mimik transportiert werden.</div>
+  <div class="title" data-id="6" onclick="selectTitle(6, this)">6. Eine Bekannte möchte ihr äußeres Erscheinungsbild optimieren.</div>
+  <div class="title" data-id="7" onclick="selectTitle(7, this)">7. Ein Bekannter ist sich noch unsicher, wie er sich bei einem Vorstellungsgespräch am besten präsentiert.</div>
+  <div class="title" data-id="8" onclick="selectTitle(8, this)">8. Ein Bekannter schreibt an einer Hausarbeit über gesellschaftliche Normen und Verhaltensregeln verschiedener Jahrhunderte.</div>
+  <div class="title" data-id="9" onclick="selectTitle(9, this)">9. Ein Bekannter möchte Kalligraphie (Schmuckschriften) lernen.</div>
+  <div class="title" data-id="10" onclick="selectTitle(10, this)">10. Eine Bekannte ist sehr verunsichert, weil sie auf Konferenzen immer wieder Angst hat, frei zu sprechen.</div>
 
 </div>
 
@@ -380,6 +394,7 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
 
 </div>
 </div>
+
 <!-- ==================== جميع الـ JavaScript في مكان واحد ==================== -->
 <script>
 
@@ -551,9 +566,6 @@ let selectedTitle = null;
 let answers = {};
 
 function selectText(num, el){
-  // منع التحديد إذا كان العنصر مقفلاً
-  if(el.classList.contains("matched")) return;
-  
   if(selectedText === num){
     selectedText = null;
     el.classList.remove("selected");
@@ -570,9 +582,6 @@ function selectText(num, el){
 }
 
 function selectTitle(letter, el){
-  // منع التحديد إذا كان العنصر مقفلاً
-  if(el.classList.contains("matched")) return;
-  
   if(selectedTitle === letter){
     selectedTitle = null;
     el.classList.remove("selected");
@@ -590,26 +599,24 @@ function selectTitle(letter, el){
 
 function assign(num, letter){
   let textEl = document.querySelectorAll(".text")[num-1];
-  let titleEl = null;
-  
-  let titles = document.querySelectorAll(".title");
-  for(let i=0;i<titles.length;i++){
-    if(titles[i].getAttribute("onclick") && titles[i].getAttribute("onclick").includes("'"+letter+"'")){
-      titleEl = titles[i];
-      break;
-    }
-  }
+  let titleEl = document.querySelector(`.title[data-id="${letter}"]`);
 
   answers[num] = letter;
 
-  let answerBox = textEl.querySelector(".answer-box");
-  answerBox.innerText = letter;
-  answerBox.style.background = "#0d6efd";
-  answerBox.style.color = "white";
+  // إزالة أي عنوان قديم داخل الفقرة
+  let old = textEl.querySelector(".moved-title");
+  if(old) old.remove();
 
-  textEl.classList.add("matched");
-  if(letter !== 0 && titleEl) titleEl.classList.add("matched");
+  // إنشاء عنوان داخل الفقرة
+  if(titleEl){
+    let clone = document.createElement("div");
+    clone.classList.add("moved-title");
+    clone.innerText = titleEl.innerText;
 
+    textEl.insertBefore(clone, textEl.children[1]);
+  }
+
+  // إخفاء التحديد
   selectedText = null;
   selectedTitle = null;
   document.querySelectorAll(".selected").forEach(e=>e.classList.remove("selected"));
@@ -639,11 +646,49 @@ function checkTeil3(){
     let box = el.querySelector(".answer-box");
     let sol = el.querySelector(".solution-box");
 
+    // إزالة أي عنوان قديم داخل الفقرة قبل التصحيح
+    let oldTitle = el.querySelector(".moved-title");
+    if(oldTitle) oldTitle.remove();
+
     if(val === correct[i]){
+      // صحيح: إظهار العنوان الصحيح باللون الأخضر
+      let correctTitle = document.querySelector(`.title[data-id="${correct[i]}"]`);
+      if(correctTitle && correct[i] !== 0){
+        let clone = document.createElement("div");
+        clone.classList.add("moved-title");
+        clone.innerText = correctTitle.innerText;
+        clone.style.borderLeftColor = "#28a745";
+        clone.style.background = "#d4edda";
+        el.insertBefore(clone, el.children[1]);
+      } else if(correct[i] === 0){
+        let clone = document.createElement("div");
+        clone.classList.add("moved-title");
+        clone.innerText = "❌ لا يوجد عنوان مناسب";
+        clone.style.borderLeftColor = "#28a745";
+        clone.style.background = "#d4edda";
+        el.insertBefore(clone, el.children[1]);
+      }
       box.classList.add("green");
       score++;
     }else{
+      // خطأ: إظهار الحل الصحيح باللون الأحمر
       el.classList.add("red");
+      let correctTitle = document.querySelector(`.title[data-id="${correct[i]}"]`);
+      if(correctTitle && correct[i] !== 0){
+        let clone = document.createElement("div");
+        clone.classList.add("moved-title");
+        clone.innerText = correctTitle.innerText;
+        clone.style.borderLeftColor = "#dc3545";
+        clone.style.background = "#f8d7da";
+        el.insertBefore(clone, el.children[1]);
+      } else if(correct[i] === 0){
+        let clone = document.createElement("div");
+        clone.classList.add("moved-title");
+        clone.innerText = "❌ لا يوجد عنوان مناسب";
+        clone.style.borderLeftColor = "#dc3545";
+        clone.style.background = "#f8d7da";
+        el.insertBefore(clone, el.children[1]);
+      }
       sol.innerText = "✔ الصحيح: " + correct[i];
     }
   }
@@ -684,6 +729,9 @@ function resetTeil3(){
     answerBox.style.color = "";
     answerBox.classList.remove("green");
     el.querySelector(".solution-box").innerText = "";
+    // إزالة العنوان المنقول
+    let movedTitle = el.querySelector(".moved-title");
+    if(movedTitle) movedTitle.remove();
   });
 
   document.querySelectorAll(".title").forEach(t=>{
@@ -701,4 +749,4 @@ loadOptions();
 </script>
 
 </body>
-</html>
+</html>ٍ
