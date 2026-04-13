@@ -52,10 +52,10 @@ select{margin:10px 0;padding:8px;width:100%;}
   background:#e7f1ff !important;
 }
 
-.text.matched,
-.title.matched{
+.matched{
   opacity:0.4;
-  filter: grayscale(40%);
+  filter: grayscale(50%);
+  pointer-events: none;
 }
 
 .answer-box{
@@ -589,7 +589,13 @@ function assign(num, letter){
   let textEl = document.querySelectorAll(".text")[num-1];
   let titleEl = null;
   
-let titleEl = document.querySelectorAll(".title")[letter];
+  let titles = document.querySelectorAll(".title");
+  for(let i=0;i<titles.length;i++){
+    if(titles[i].getAttribute("onclick") && titles[i].getAttribute("onclick").includes("'"+letter+"'")){
+      titleEl = titles[i];
+      break;
+    }
+  }
 
   answers[num] = letter;
 
@@ -599,7 +605,11 @@ let titleEl = document.querySelectorAll(".title")[letter];
   answerBox.style.color = "white";
 
   textEl.classList.add("matched");
-  if(letter !== 0 && titleEl) titleEl.classList.add("matched");
+if(titleEl){
+  titleEl.classList.add("matched");
+}
+textEl.onclick = null;
+if(titleEl) titleEl.onclick = null;
 
   selectedText = null;
   selectedTitle = null;
