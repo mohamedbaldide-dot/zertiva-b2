@@ -893,6 +893,7 @@ const sprachOptions = {
 };
 
 let currentGap = null;
+let currentOption = null;
 let sprachUser = {};
 
 function loadSprachOptions(){
@@ -916,10 +917,10 @@ function loadSprachOptions(){
       btn.style.padding="6px 12px";
       btn.style.border="1px solid #ccc";
       btn.style.borderRadius="5px";
-      btn.style.background="white";
+      btn.style.color="black";
       btn.style.cursor="pointer";
 
-      btn.onclick = ()=>selectOption(i,opt);
+     btn.onclick = ()=>selectOption(i,opt);
 
       div.appendChild(btn);
     });
@@ -931,26 +932,43 @@ function loadSprachOptions(){
 // اختيار الفراغ
 document.querySelectorAll(".gap").forEach((g,i)=>{
   g.onclick = ()=>{
-    document.querySelectorAll(".gap").forEach(gap=>{
-      gap.style.border = "1px dashed #999";
-    });
-    currentGap = i+1;
-    g.style.border = "2px solid #0d6efd";
-  };
-});
+  document.querySelectorAll(".gap").forEach(gap=>{
+    gap.style.border = "1px dashed #999";
+  });
+
+  currentGap = i+1;
+  g.style.border = "2px solid #0d6efd";
+
+  // ✅ إذا كان هناك خيار مختار مسبقًا → طبّق مباشرة
+  if(currentOption !== null){
+    applySelection(currentGap, currentOption);
+  }
+};
 
 function selectOption(num, value){
-  if(currentGap !== num){
-    alert("الرجاء اختيار الفراغ أولاً (اضغط على [رقم])");
-    return;
-  }
 
-  let gap = document.getElementById("gap"+num);
+  currentOption = value;
+
+  // ✅ إذا الفراغ مختار → طبّق مباشرة
+  if(currentGap !== null){
+    applySelection(currentGap, currentOption);
+  }
+}
+function applySelection(gapNum, value){
+  let gap = document.getElementById("gap"+gapNum);
+
   gap.innerText = value;
   gap.style.border = "1px dashed #999";
 
-  sprachUser[num] = value;
+  sprachUser[gapNum] = value;
+
+  // reset
   currentGap = null;
+  currentOption = null;
+
+  document.querySelectorAll(".gap").forEach(g=>{
+    g.style.border = "1px dashed #999";
+  });
 }
 
 function checkSprach1(){
