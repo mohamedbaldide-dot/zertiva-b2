@@ -566,12 +566,29 @@ let selectedTitle = null;
 let answers = {};
 
 function selectText(num, el){
+
+  // ✅ إذا ضغطت على نفس الفقرة مرة ثانية → إلغاء الاختيار
   if(selectedText === num){
+
+    // 🔁 إذا كان هناك عنوان مرتبط بهذه الفقرة → رجّعه للقائمة
+    if(answers[num] !== undefined){
+      let titleEl = document.querySelector(`.title[data-id="${answers[num]}"]`);
+      if(titleEl){
+        titleEl.style.display = "block"; // إظهار العنوان مرة أخرى
+      }
+      delete answers[num]; // حذف الإجابة
+    }
+
+    // حذف العنوان من داخل الفقرة
+    let old = el.querySelector(".moved-title");
+    if(old) old.remove();
+
     selectedText = null;
     el.classList.remove("selected");
     return;
   }
 
+  // السلوك العادي
   document.querySelectorAll(".text").forEach(t=>t.classList.remove("selected"));
   selectedText = num;
   el.classList.add("selected");
