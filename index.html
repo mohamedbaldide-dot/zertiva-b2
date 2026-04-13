@@ -97,6 +97,28 @@ select{margin:10px 0;padding:8px;width:100%;}
   border-left:4px solid #0d6efd;
   border-radius:6px;
 }
+
+/* ===== CSS لـ Sprachbausteine ===== */
+.gap{
+  padding:4px 8px;
+  border:1px dashed #999;
+  cursor:pointer;
+  margin:0 4px;
+  border-radius:5px;
+  display:inline-block;
+  min-width:60px;
+  text-align:center;
+}
+
+.correct-gap{
+  background:#d4edda;
+  border-color:#28a745;
+}
+
+.wrong-gap{
+  background:#f8d7da;
+  border-color:#dc3545;
+}
 </style>
 </head>
 
@@ -155,11 +177,12 @@ select{margin:10px 0;padding:8px;width:100%;}
 
 <h2>امتحان 1</h2>
 
-<!-- أزرار التنقل بين Teil 1 و Teil 2 و Teil 3 -->
+<!-- أزرار التنقل بين Teil 1 و Teil 2 و Teil 3 و Sprachbausteine -->
 <div style="margin-bottom:20px;">
   <button onclick="showTeil(1)">Lesen Teil 1</button>
   <button onclick="showTeil(2)">Lesen Teil 2</button>
   <button onclick="showTeil(3)">Lesen Teil 3</button>
+  <button onclick="showTeil(4)">Sprachbausteine Teil 1</button>
 </div>
 
 <!-- ==================== TEIL 1 ==================== -->
@@ -390,6 +413,75 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
 
 </div> <!-- نهاية teil3 -->
 
+<!-- ==================== Sprachbausteine Teil 1 ==================== -->
+<div id="sprach1" style="display:none;">
+
+<h2>Sprachbausteine Teil 1</h2>
+
+<div style="display:flex; gap:20px; flex-wrap:wrap;">
+
+<!-- النص -->
+<div style="flex:1.5; min-width:300px; line-height:1.8;">
+
+Liebe Vanessa,<br>
+danke für deinen Brief, 
+<span class="gap" id="gap1">[1]</span>
+ ich mich total gefreut habe. Du fragst dich bestimmt, warum du schon drei Wochen 
+<span class="gap" id="gap2">[2]</span>
+ von mir gehört hast, oder? Ich war mit meiner Gastfamilie in Urlaub. Vierzehn Tage im Allgäu – mit den Kindern Stefan, Anja und Karina.
+
+<br><br>
+
+Du weißt 
+<span class="gap" id="gap3">[3]</span>
+ selbst, wie anstrengend es ist, wenn man ständig drei kleine Kinder um sich hat, die pausenlos unterhalten werden möchten. 
+<span class="gap" id="gap4">[4]</span>
+ ist es übrigens in deiner Au-pair-Familie mit der kleinen Dorothea?
+
+<br><br>
+
+Das Allgäu liegt in Süddeutschland am Fuß 
+<span class="gap" id="gap5">[5]</span>
+ Alpen. Wir sind fast jeden Tag gewandert, immer bergauf und bergab. Den Kindern und mir haben ständig die Füße weh 
+<span class="gap" id="gap6">[6]</span>
+, doch meine Gasteltern, Herr und Frau Zimmer, sind einfach immer weitergelaufen. Die Deutschen lieben es nämlich, in der Natur spazieren zu gehen, bis sie vor Erschöpfung 
+<span class="gap" id="gap7">[7]</span>
+.
+
+<br><br>
+
+Unterwegs haben wir manchmal an einer sogenannten "Wassertretstelle" Rast gemacht. Das sind kleine Wasserbecken, die oft mitten im Wald liegen. Durch das Becken fließt ein Bach mit eiskaltem Wasser, das direkt von den Bergen kommt. Stell 
+<span class="gap" id="gap8">[8]</span>
+ vor, alle Wanderer ziehen ihre Schuhe und Strümpfe aus und laufen durch dieses Becken. Als ich meinen Fuß in dieses kalte Wasser getaucht hatte, dachte ich, dass ich gleich sterben muss.
+
+<br><br>
+
+Am Wochenende haben wir alle Minigolf gespielt. Dabei muss ein Golfball mit einem Schläger in ein etwa zehn Meter entferntes Loch geschlagen werden. Aber vor dem Loch gibt es 
+<span class="gap" id="gap9">[9]</span>
+ Menge Hindernisse: Gräben, kleine Hügel, Tunnel. Der Spieler, dessen Ball mit den wenigsten Schlägen im Loch ankommt, hat gewonnen. Die Kinder wollten gar nicht mehr 
+<span class="gap" id="gap10">[10]</span>
+ aufhören.
+
+<br><br>
+
+Jetzt muss ich aber Schluss machen, die Kinder warten auf ihr Abendessen, denn die Zimmers sind heute nicht da: Sie wandern mal wieder.<br>
+Viele Grüße<br>
+deine Mercedes
+
+</div>
+
+<!-- الخيارات -->
+<div style="flex:1; min-width:250px;" id="optionsContainer"></div>
+
+</div>
+
+<button onclick="checkSprach1()" style="margin-top:20px;">تصحيح</button>
+<button onclick="resetSprach1()" style="margin-top:20px; margin-right:10px;">🔄 إعادة</button>
+
+<p id="resultSprach1"></p>
+
+</div>
+
 <button onclick="goList()">رجوع</button>
 
 </div>
@@ -418,9 +510,11 @@ function showTeil(n){
   let teil1 = document.getElementById("teil1");
   let teil2 = document.getElementById("teil2");
   let teil3 = document.getElementById("teil3");
+  let sprach1 = document.getElementById("sprach1");
   if(teil1) teil1.style.display = (n===1) ? "block" : "none";
   if(teil2) teil2.style.display = (n===2) ? "block" : "none";
   if(teil3) teil3.style.display = (n===3) ? "block" : "none";
+  if(sprach1) sprach1.style.display = (n===4) ? "block" : "none";
 }
 
 // Teil 1 functions
@@ -594,20 +688,21 @@ function selectTitle(letter, el){
 
   if(selectedText !== null){
     assign(selectedText, selectedTitle);
-     textEl.style.opacity = "0.3";
   }
 }
 
 function assign(num, letter){
   let textEl = document.querySelectorAll(".text")[num-1];
   let titleEl = document.querySelector(`.title[data-id="${letter}"]`);
+  
   // إذا كان هناك عنوان قديم → أرجعه
-if(answers[num] !== undefined){
-  let oldTitle = document.querySelector(`.title[data-id="${answers[num]}"]`);
-  if(oldTitle){
-    oldTitle.style.display = "block";
+  if(answers[num] !== undefined){
+    let oldTitle = document.querySelector(`.title[data-id="${answers[num]}"]`);
+    if(oldTitle){
+      oldTitle.style.display = "block";
+    }
   }
-}
+  
   answers[num] = letter;
 
   // إزالة أي عنوان قديم داخل الفقرة
@@ -616,31 +711,28 @@ if(answers[num] !== undefined){
 
   // إنشاء عنوان داخل الفقرة وإخفائه من القائمة
   if(titleEl){
-    titleEl.style.display = "none";  // ✅ إخفاء العنوان من القائمة
+    titleEl.style.display = "none";
 
-let clone = document.createElement("div");
-clone.classList.add("moved-title");
+    let clone = document.createElement("div");
+    clone.classList.add("moved-title");
 
-// إنشاء زر X
-let closeBtn = document.createElement("span");
-closeBtn.innerText = " ✖";
-closeBtn.style.cursor = "pointer";
-closeBtn.style.marginLeft = "10px";
+    // إنشاء زر X
+    let closeBtn = document.createElement("span");
+    closeBtn.innerText = " ✖";
+    closeBtn.style.cursor = "pointer";
+    closeBtn.style.marginLeft = "10px";
 
-// عند الضغط → يرجع العنوان
-closeBtn.onclick = function(e){
-  e.stopPropagation();
+    // عند الضغط → يرجع العنوان
+    closeBtn.onclick = function(e){
+      e.stopPropagation();
+      titleEl.style.display = "block";
+      delete answers[num];
+      clone.remove();
+      textEl.style.opacity = "1";
+    };
 
-  titleEl.style.display = "block"; // إرجاع العنوان
-
-  delete answers[num]; // حذف الربط
-
-  clone.remove(); // حذف من الفقرة
-  textEl.style.opacity = "1"; // رجوع الشفافية
-};
-
-clone.innerText = titleEl.innerText;
-clone.appendChild(closeBtn);
+    clone.innerText = titleEl.innerText;
+    clone.appendChild(closeBtn);
 
     textEl.insertBefore(clone, textEl.children[1]);
   }
@@ -765,7 +857,7 @@ function resetTeil3(){
 
   document.querySelectorAll(".title").forEach(t=>{
     t.classList.remove("matched","selected");
-    t.style.display = "block";  // ✅ إعادة إظهار جميع العناوين
+    t.style.display = "block";
     let old = t.querySelector(".no-paragraph-msg");
     if(old) old.remove();
   });
@@ -773,8 +865,131 @@ function resetTeil3(){
   document.getElementById("result3").innerText = "";
 }
 
-// تهيئة Teil 1
+// Sprachbausteine Teil 1
+const sprachAnswers = {
+  1:"über den",
+  2:"nichts mehr",
+  3:"doch",
+  4:"Wie",
+  5:"der",
+  6:"getan",
+  7:"umfallen",
+  8:"dir",
+  9:"jede",
+  10:"damit"
+};
+
+const sprachOptions = {
+  1:["an den","auf dem","über den"],
+  2:["nichts mehr","noch nicht","keines"],
+  3:["doch","eben","überhaupt"],
+  4:["Wann","Was","Wie"],
+  5:["der","die","von"],
+  6:["gelaufen","getan","geworden"],
+  7:["durchfallen","umfallen","wegfallen"],
+  8:["dich","dir","mal"],
+  9:["alle","ganze","jede"],
+  10:["dabei","damit","davon"]
+};
+
+let currentGap = null;
+let sprachUser = {};
+
+function loadSprachOptions(){
+  let container = document.getElementById("optionsContainer");
+  if(!container) return;
+  container.innerHTML = "";
+
+  for(let i=1;i<=10;i++){
+    let div = document.createElement("div");
+    div.style.marginBottom="15px";
+    div.style.padding="10px";
+    div.style.background="#f9f9f9";
+    div.style.borderRadius="8px";
+
+    div.innerHTML = "<strong style='display:block; margin-bottom:8px;'>الفراغ " + i + "</strong>";
+
+    sprachOptions[i].forEach(opt=>{
+      let btn = document.createElement("button");
+      btn.innerText = opt;
+      btn.style.margin="3px";
+      btn.style.padding="6px 12px";
+      btn.style.border="1px solid #ccc";
+      btn.style.borderRadius="5px";
+      btn.style.background="white";
+      btn.style.cursor="pointer";
+
+      btn.onclick = ()=>selectOption(i,opt);
+
+      div.appendChild(btn);
+    });
+
+    container.appendChild(div);
+  }
+}
+
+// اختيار الفراغ
+document.querySelectorAll(".gap").forEach((g,i)=>{
+  g.onclick = ()=>{
+    document.querySelectorAll(".gap").forEach(gap=>{
+      gap.style.border = "1px dashed #999";
+    });
+    currentGap = i+1;
+    g.style.border = "2px solid #0d6efd";
+  };
+});
+
+function selectOption(num, value){
+  if(currentGap !== num){
+    alert("الرجاء اختيار الفراغ أولاً (اضغط على [رقم])");
+    return;
+  }
+
+  let gap = document.getElementById("gap"+num);
+  gap.innerText = value;
+  gap.style.border = "1px dashed #999";
+
+  sprachUser[num] = value;
+  currentGap = null;
+}
+
+function checkSprach1(){
+  let score = 0;
+
+  for(let i=1;i<=10;i++){
+    let gap = document.getElementById("gap"+i);
+    gap.classList.remove("correct-gap","wrong-gap");
+
+    if(sprachUser[i] === sprachAnswers[i]){
+      gap.classList.add("correct-gap");
+      score++;
+    }else{
+      gap.classList.add("wrong-gap");
+      gap.innerText = sprachAnswers[i];
+    }
+  }
+
+  let final = (score * 2.5).toFixed(2);
+  document.getElementById("resultSprach1").innerText = "النتيجة: " + final + " / 25";
+}
+
+function resetSprach1(){
+  sprachUser = {};
+  currentGap = null;
+
+  for(let i=1;i<=10;i++){
+    let gap = document.getElementById("gap"+i);
+    gap.innerText = "["+i+"]";
+    gap.classList.remove("correct-gap","wrong-gap");
+    gap.style.border = "1px dashed #999";
+  }
+
+  document.getElementById("resultSprach1").innerText = "";
+}
+
+// تهيئة Teil 1 و Sprachbausteine
 loadOptions();
+loadSprachOptions();
 
 </script>
 
