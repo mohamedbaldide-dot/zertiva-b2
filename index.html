@@ -250,14 +250,20 @@ select{margin:10px 0;padding:8px;width:100%;}
 
 /* ===== CSS لـ Hören ===== */
 .h-question{
-  background:white;
+  border:1.5px solid #ccc;
+  border-radius:10px;
   padding:10px;
-  margin-bottom:10px;
-  border-radius:8px;
+  margin:8px 0;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  flex-wrap:wrap;
+  background:#fafafa;
+  transition:0.3s;
+}
+
+.h-question:hover{
+  background:#f1f1f1;
+  border-color:#999;
 }
 
 .h-btn{
@@ -1600,26 +1606,60 @@ function resetH1(){
 
 // Hören Teil 2
 const h2Variants = {
-  1:{title:"Roland (Spielen)", correct:[2,3,4,7,9,10]},
-  2:{title:"Roland (aufsteigen)", correct:[3,4,7,9]},
-  3:{title:"Roland (höhere Liga)", correct:[2,3,5,8,9]}
+  1:{
+    title:"Roland (Spielen)",
+    correct:[2,3,4,7,9,10],
+    questions:[
+      "Roland wünschmann arbeitet Vollzeit als Fußballtrainer bei Viktoria Köln.",
+      "Viktoria Köln möchte nicht nur gegen Mannschaften aus der Verbandsliga spielen.",
+      "Zu Beginn dieser Saison hat ein Spieler Viktoria Köln verlassen.",
+      "Neue Spieler kommen bei Viktoria Köln immer aus der eigenen Jugendmannschaft.",
+      "Die Mannschaft von Viktoria Köln hat Schwächen in der Abwehr.",
+      "Roland wünschmann wagt die Prognose, dass dieser Saison der 1 FC Mönchengladbach Meister wird.",
+      "Roland wünschmann kann seinen Beruf und sein Ehrenamt als Fußballtrainer problemlos miteinander vereinbaren.",
+      "Auch die Frau von Roland wünschmann engagiert sich im Fußball.",
+      "Der Vereinsvorstand schätzt Herrn wünschmanns Arbeit.",
+      "Roland wünschmann ist mit der bisherigen Nachwuchsförderung des Vereins zufrieden."
+    ]
+  },
+
+  2:{
+    title:"Roland (aufsteigen)",
+    correct:[3,4,7,9],
+    questions:[
+      "Roland wünschmann spielt selbst bei Viktoria Köln Fußball.",
+      "Viktoria Köln möchte am Ende der Spielsaison aufsteigen.",
+      "Zu Beginn dieser Saison hat ein Spieler Viktoria Köln verlassen.",
+      "Neue Spieler kommen bei Viktoria Köln immer aus der eigenen Jugendmannschaft.",
+      "Die Mannschaft von Viktoria Köln hat Schwächen in der Abwehr.",
+      "Roland wünschmann wagt die Prognose, dass dieser Saison der 1 FC Mönchengladbach Meister wird.",
+      "Roland wünschmann kann seinen Beruf und sein Ehrenamt als Fußballtrainer miteinander vereinbaren.",
+      "Auch die Frau von Roland wünschmann engagiert sich im Fußball.",
+      "Der Vereinsvorstand schätzt Herrn wünschmanns Arbeit.",
+      "Roland wünschmann ist mit der bisherigen Nachwuchsförderung des Vereins noch nicht voll zufrieden."
+    ]
+  },
+
+  3:{
+    title:"Roland (höhere Liga)",
+    correct:[2,3,5,8,9],
+    questions:[
+      "Roland wünschmann spielt selbst bei Viktoria Köln Fußball.",
+      "Viktoria Köln spielt seit Beginn der Saison in einer höheren Liga.",
+      "Die meisten Spieler haben schon in der letzten Saison bei Viktoria Köln gespielt.",
+      "Neuzugänge kommen meist aus unterschiedlichen Mannschaften.",
+      "Die Mannschaft möchte neue Spieltaktiken ausprobieren.",
+      "Roland wünschmann wagt die Prognose, dass dieser Saison der 1 FC Mönchengladbach Meister wird.",
+      "Roland wünschmann empfindet sein Ehrenamt oft als Belastung.",
+      "Seine Frau engagiert sich für denselben Verein.",
+      "Er und der Vorstand sind meistens einer Meinung.",
+      "Er hofft auf Verbesserungen in der Nachwuchsförderung."
+    ]
+  }
 };
 
 let currentVariant=1;
 let h2User={};
-
-const h2Questions = [
-  "Roland wünschmann spielt selbst bei Viktoria Köln Fußball.",
-  "Viktoria Köln möchte am Ende der Spielsaison aufsteigen.",
-  "zu Beginn dieser Saison hat ein Spieler Viktoria Köln verlassen.",
-  "Neue Spieler kommen bei Viktoria Köln immer aus der eigenen Jugendmannschaft.",
-  "Die Mannschaft von Viktoria Köln hat Schwächen in der Abwehr.",
-  "Roland wünschmann wagt die Prognose, dass dieser Saison der 1 FC Mönchengladbach Meister wird.",
-  "Roland wünschmann kann seinen Beruf und sein Ehrenamt als Fußballtrainer miteinander vereinbaren.",
-  "Auch die Frau von Ronald wünschmann engagiert sich im Fußball.",
-  "Der vereinsvorstand schätzt Herren wünschmann Arbeit.",
-  "Roland wünschmann ist mit bisherigen Nachwuchsförderung des Vereins zufrieden."
-];
 
 function loadVariants(){
   let c=document.getElementById("variantButtons");
@@ -1657,8 +1697,11 @@ function loadH2(){
   let container=document.getElementById("h2_questions");
   if(!container) return;
   container.innerHTML="";
+  h2User = {};
 
-  h2Questions.forEach((q,i)=>{
+  let data = h2Variants[currentVariant];
+
+  data.questions.forEach((q,i)=>{
     let div=document.createElement("div");
     div.className="h-question";
 
@@ -1669,6 +1712,7 @@ function loadH2(){
       <button class="h-btn" onclick="selectH2(${i}, false)">✖</button>
     </div>
     `;
+
     container.appendChild(div);
   });
 }
