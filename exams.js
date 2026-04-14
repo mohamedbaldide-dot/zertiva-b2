@@ -1,8 +1,8 @@
 // ============================================
-// exams.js - قائمة الامتحانات مع نظام النسخ
+// exams.js - قائمة الامتحانات
 // ============================================
 
-const exams = [
+const examsList = [
   { title: "sport ist gesund (الرياضة مفيدة للصحة)", count: 2 },
   { title: "kellner (باحث شاب)", count: 1 },
   { title: "Impfung (لقاح)", count: 1 },
@@ -35,19 +35,21 @@ const exams = [
   { title: "Farben (الألوان)", count: 1 }
 ];
 
-// ========== دالة عرض القائمة ==========
+// الامتحانات المتاحة حالياً
+const AVAILABLE_EXAMS = [1];
+
 function renderExamList() {
   const container = document.getElementById("examList");
   if (!container) return;
 
   container.innerHTML = "";
 
-  let examNumber = 1; // هذا هو الرقم الحقيقي للامتحان
+  let examNumber = 1;
 
-  exams.forEach(exam => {
+  examsList.forEach(exam => {
     for (let i = 0; i < exam.count; i++) {
       let label = "";
-
+      
       if (i === 0) {
         label = "📘 أساسي";
       } else if (exam.count === 2) {
@@ -56,30 +58,42 @@ function renderExamList() {
         label = `📗 معدل ${i}`;
       }
 
+      const isAvailable = AVAILABLE_EXAMS.includes(examNumber);
+      
       const div = document.createElement("div");
       div.className = "item";
-      div.innerHTML = `${examNumber}. ${exam.title} (${label})`;
-
-      // 🔥 المهم: استخدم قيمة examNumber الحالية، وليس بعد الزيادة
-      const currentExamNumber = examNumber; // حفظ القيمة الحالية
-
-      div.onclick = () => {
-        console.log(`فتح الامتحان رقم: ${currentExamNumber}`); // للتأكد
-        if (typeof window.openExam === "function") {
-          window.openExam({
-            id: currentExamNumber,
-            title: `${exam.title} (${label})`,
-            file: `exam${currentExamNumber}.js`
-          });
-        } else {
-          console.error("openExam function not found!");
-        }
-      };
-
+      
+      if (isAvailable) {
+        div.innerHTML = `${examNumber}. ${exam.title} (${label}) ✅`;
+        div.style.borderLeft = "4px solid #28a745";
+        div.onclick = () => {
+          if (typeof window.openExam === "function") {
+            window.openExam({
+              id: examNumber,
+              title: `${exam.title} (${label})`,
+              file: `exam${examNumber}.js`
+            });
+          }
+        };
+      } else {
+        div.innerHTML = `${examNumber}. ${exam.title} (${label}) 🔜`;
+        div.style.opacity = "0.6";
+        div.style.backgroundColor = "#f8f9fa";
+        div.onclick = () => {
+          if (typeof window.openExam === "function") {
+            window.openExam({
+              id: examNumber,
+              title: `${exam.title} (${label})`,
+              file: `exam${examNumber}.js`
+            });
+          }
+        };
+      }
+      
       container.appendChild(div);
-      examNumber++; // الزيادة بعد حفظ القيمة
+      examNumber++;
     }
   });
 
-  console.log(`✅ تم إنشاء ${examNumber - 1} امتحان`);
+  console.log(`✅ تم عرض ${examNumber - 1} امتحان (${AVAILABLE_EXAMS.length} متاح)`);
 }
