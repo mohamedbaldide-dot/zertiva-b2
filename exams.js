@@ -42,7 +42,7 @@ function renderExamList() {
 
   container.innerHTML = "";
 
-  let examNumber = 1; // الترقيم الحقيقي 1 → 51
+  let examNumber = 1; // هذا هو الرقم الحقيقي للامتحان
 
   exams.forEach(exam => {
     for (let i = 0; i < exam.count; i++) {
@@ -60,23 +60,26 @@ function renderExamList() {
       div.className = "item";
       div.innerHTML = `${examNumber}. ${exam.title} (${label})`;
 
-      // استدعاء openExam من app.js
+      // 🔥 المهم: استخدم قيمة examNumber الحالية، وليس بعد الزيادة
+      const currentExamNumber = examNumber; // حفظ القيمة الحالية
+
       div.onclick = () => {
+        console.log(`فتح الامتحان رقم: ${currentExamNumber}`); // للتأكد
         if (typeof window.openExam === "function") {
           window.openExam({
-            id: examNumber,
+            id: currentExamNumber,
             title: `${exam.title} (${label})`,
-            file: `exam${examNumber}.js`
+            file: `exam${currentExamNumber}.js`
           });
         } else {
-          console.error("openExam function not found! Make sure app.js is loaded.");
+          console.error("openExam function not found!");
         }
       };
 
       container.appendChild(div);
-      examNumber++;
+      examNumber++; // الزيادة بعد حفظ القيمة
     }
   });
 
-  console.log(`✅ تم إنشاء ${examNumber - 1} امتحان بنجاح`);
+  console.log(`✅ تم إنشاء ${examNumber - 1} امتحان`);
 }
