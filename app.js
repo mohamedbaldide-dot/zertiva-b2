@@ -1,9 +1,12 @@
 // ============================================
-// app.js - النظام الرئيسي
+// app.js - النظام الرئيسي مع نظام التحقق من الملفات
 // ============================================
 
 let loadedScripts = {};
 let currentExamId = null;
+
+// قائمة الامتحانات الموجودة فعلاً
+const AVAILABLE_EXAMS = [1];  // ✅ فقط exam1.js موجود حالياً
 
 // ========== دوال التنقل ==========
 function goList() {
@@ -25,6 +28,12 @@ function goHome() {
 function openExam(exam) {
   currentExamId = exam.id;
   
+  // ✅ التحقق: هل الامتحان موجود؟
+  if (!AVAILABLE_EXAMS.includes(exam.id)) {
+    showExamNotAvailable(exam.id);
+    return;
+  }
+  
   // إخفاء الصفحات الأخرى
   document.getElementById("list").classList.remove("active");
   document.getElementById("home").classList.remove("active");
@@ -37,7 +46,6 @@ function openExam(exam) {
       <div class="loader"></div>
       <h3>📚 جاري تحميل الامتحان...</h3>
       <p><strong>${exam.title}</strong></p>
-      <p style="font-size:14px; color:#666;">الملف: ${exam.file}</p>
     </div>
   `;
   
@@ -52,6 +60,23 @@ function openExam(exam) {
   loadExamFile(exam.file, exam.id);
 }
 
+// ✅ دالة عرض رسالة "غير متوفر"
+function showExamNotAvailable(examId) {
+  const examContainer = document.getElementById("examContent");
+  examContainer.innerHTML = `
+    <div style="text-align:center; padding:50px; background:#fff3cd; border-radius:10px; border:1px solid #ffc107;">
+      <h3 style="color:#856404;">⚠️ الامتحان غير متوفر بعد</h3>
+      <p style="color:#856404;">الامتحان رقم ${examId} سيتم إضافته قريباً.</p>
+      <p style="color:#856404; font-size:14px;">✅ حالياً الامتحان 1 فقط متاح.</p>
+      <button onclick="goList()" style="margin-top:20px;">🔙 العودة للقائمة</button>
+    </div>
+  `;
+  // إظهار صفحة الامتحان
+  document.getElementById("list").classList.remove("active");
+  document.getElementById("home").classList.remove("active");
+  document.getElementById("exam").classList.add("active");
+}
+
 function loadExamFile(filename, examId) {
   // إزالة السكريبت القديم
   const oldScript = document.getElementById(`exam-script-${examId}`);
@@ -61,21 +86,17 @@ function loadExamFile(filename, examId) {
   const script = document.createElement("script");
   script.id = `exam-script-${examId}`;
   script.src = `exams/${filename}`;
+  
   script.onload = () => {
     loadedScripts[examId] = true;
     console.log(`✅ تم تحميل ${filename} بنجاح`);
-    // engine.js سيتولى العرض عبر window.loadExam
   };
+  
   script.onerror = () => {
-    document.getElementById("examContent").innerHTML = `
-      <div style="color:red; text-align:center; padding:50px;">
-        <h3>❌ خطأ في تحميل الامتحان</h3>
-        <p>الملف <strong>exams/${filename}</strong> غير موجود</p>
-        <p>الرجاء التأكد من وجود الملف في مجلد exams</p>
-        <button onclick="goList()" style="margin-top:20px;">🔙 العودة للقائمة</button>
-      </div>
-    `;
+    console.error(`❌ فشل تحميل ${filename}`);
+    showExamNotAvailable(examId);
   };
+  
   document.body.appendChild(script);
 }
 
@@ -96,6 +117,7 @@ window.showTeil = showTeil;
 // تهيئة عند تحميل الصفحة
 document.addEventListener("DOMContentLoaded", () => {
   console.log("✅ app.js loaded");
+  console.log(`✅ الامتحانات المتاحة: ${AVAILABLE_EXAMS.join(", ")}`);
   if (typeof renderExamList === "function") {
     renderExamList();
   }
