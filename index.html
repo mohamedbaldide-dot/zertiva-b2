@@ -284,13 +284,6 @@ select{margin:10px 0;padding:8px;width:100%;}
   background:#dc3545;
   color:white;
 }
-
-.solution{
-  font-size:12px;
-  color:#000;
-  margin-top:5px;
-  width:100%;
-}
 </style>
 </head>
 
@@ -1566,36 +1559,54 @@ function selectH1(i,val){
 }
 
 function checkH1(){
-  let score=0;
+  let score = 0;
+  let questions = document.querySelectorAll("#h1_questions .h-question");
 
   for(let i=0;i<h1Data.length;i++){
     let correct = h1Correct.includes(i+1);
     let user = h1User[i];
 
-    let parent = document.getElementById("h1_questions").children[i];
+    let qDiv = questions[i];
+    let buttons = qDiv.querySelectorAll(".h-btn");
+    let btnTrue = buttons[0];
+    let btnFalse = buttons[1];
 
-    parent.style.background = "";
+    // reset style
+    btnTrue.style.background = "";
+    btnFalse.style.background = "";
+    qDiv.style.borderColor = "#ccc";
 
-    // إزالة الحل القديم
-    let oldSol = parent.querySelector(".solution");
-    if(oldSol) oldSol.remove();
-
-    if(user===correct){
-      parent.style.background = "#d4edda";
+    if(user === correct){
       score++;
+      qDiv.style.borderColor = "#28a745";
+      if(correct){
+        btnTrue.style.background = "#28a745";
+        btnTrue.style.color = "white";
+      }else{
+        btnFalse.style.background = "#28a745";
+        btnFalse.style.color = "white";
+      }
     }else{
-      parent.style.background = "#f8d7da";
-
-      let sol = document.createElement("div");
-      sol.innerText = "✔ الصحيح: " + (correct ? "✔" : "✖");
-      sol.classList.add("solution");
-
-      parent.appendChild(sol);
+      qDiv.style.borderColor = "#dc3545";
+      if(user === true){
+        btnTrue.style.background = "#dc3545";
+        btnTrue.style.color = "white";
+      }else if(user === false){
+        btnFalse.style.background = "#dc3545";
+        btnFalse.style.color = "white";
+      }
+      if(correct){
+        btnTrue.style.background = "#28a745";
+        btnTrue.style.color = "white";
+      }else{
+        btnFalse.style.background = "#28a745";
+        btnFalse.style.color = "white";
+      }
     }
   }
 
   let final = (score*(25/5)).toFixed(2);
-  document.getElementById("resultH1").innerText="النتيجة: "+final+" / 25";
+  document.getElementById("resultH1").innerText = "النتيجة: " + final + " / 25";
 }
 
 function resetH1(){
@@ -1736,34 +1747,54 @@ function selectH2(i,val){
 
 function checkH2(){
   let correctList = h2Variants[currentVariant].correct;
-  let score=0;
+  let score = 0;
+  let questions = document.querySelectorAll("#h2_questions .h-question");
 
   for(let i=0;i<10;i++){
     let correct = correctList.includes(i+1);
-    let parent = document.getElementById("h2_questions").children[i];
+    let user = h2User[i];
 
-    parent.style.background="";
+    let qDiv = questions[i];
+    let buttons = qDiv.querySelectorAll(".h-btn");
+    let btnTrue = buttons[0];
+    let btnFalse = buttons[1];
 
-    // إزالة الحل القديم
-    let oldSol = parent.querySelector(".solution");
-    if(oldSol) oldSol.remove();
+    // reset style
+    btnTrue.style.background = "";
+    btnFalse.style.background = "";
+    qDiv.style.borderColor = "#ccc";
 
-    if(h2User[i]===correct){
-      parent.style.background="#d4edda";
+    if(user === correct){
       score++;
+      qDiv.style.borderColor = "#28a745";
+      if(correct){
+        btnTrue.style.background = "#28a745";
+        btnTrue.style.color = "white";
+      }else{
+        btnFalse.style.background = "#28a745";
+        btnFalse.style.color = "white";
+      }
     }else{
-      parent.style.background="#f8d7da";
-
-      let sol=document.createElement("div");
-      sol.innerText="✔ الصحيح: " + (correct ? "✔" : "✖");
-      sol.classList.add("solution");
-
-      parent.appendChild(sol);
+      qDiv.style.borderColor = "#dc3545";
+      if(user === true){
+        btnTrue.style.background = "#dc3545";
+        btnTrue.style.color = "white";
+      }else if(user === false){
+        btnFalse.style.background = "#dc3545";
+        btnFalse.style.color = "white";
+      }
+      if(correct){
+        btnTrue.style.background = "#28a745";
+        btnTrue.style.color = "white";
+      }else{
+        btnFalse.style.background = "#28a745";
+        btnFalse.style.color = "white";
+      }
     }
   }
 
   let final = (score*(25/10)).toFixed(2);
-  document.getElementById("resultH2").innerText="النتيجة: "+final+" / 25";
+  document.getElementById("resultH2").innerText = "النتيجة: " + final + " / 25";
 }
 
 function resetH2(){
@@ -1823,34 +1854,54 @@ function selectH3(i,val){
 }
 
 function checkH3(){
-  let score=0;
+  let score = 0;
+  let questions = document.querySelectorAll("#h3_questions .h-question");
 
   for(let i=0;i<h3Data.length;i++){
     let correct = h3Correct.includes(i+1);
-    let parent = document.getElementById("h3_questions").children[i];
+    let user = h3User[i];
 
-    parent.style.background="";
+    let qDiv = questions[i];
+    let buttons = qDiv.querySelectorAll(".h-btn");
+    let btnTrue = buttons[0];
+    let btnFalse = buttons[1];
 
-    // إزالة الحل القديم
-    let oldSol = parent.querySelector(".solution");
-    if(oldSol) oldSol.remove();
+    // reset style
+    btnTrue.style.background = "";
+    btnFalse.style.background = "";
+    qDiv.style.borderColor = "#ccc";
 
-    if(h3User[i]===correct){
-      parent.style.background="#d4edda";
+    if(user === correct){
       score++;
+      qDiv.style.borderColor = "#28a745";
+      if(correct){
+        btnTrue.style.background = "#28a745";
+        btnTrue.style.color = "white";
+      }else{
+        btnFalse.style.background = "#28a745";
+        btnFalse.style.color = "white";
+      }
     }else{
-      parent.style.background="#f8d7da";
-
-      let sol=document.createElement("div");
-      sol.innerText="✔ الصحيح: " + (correct ? "✔" : "✖");
-      sol.classList.add("solution");
-
-      parent.appendChild(sol);
+      qDiv.style.borderColor = "#dc3545";
+      if(user === true){
+        btnTrue.style.background = "#dc3545";
+        btnTrue.style.color = "white";
+      }else if(user === false){
+        btnFalse.style.background = "#dc3545";
+        btnFalse.style.color = "white";
+      }
+      if(correct){
+        btnTrue.style.background = "#28a745";
+        btnTrue.style.color = "white";
+      }else{
+        btnFalse.style.background = "#28a745";
+        btnFalse.style.color = "white";
+      }
     }
   }
 
-  let final=(score*(25/5)).toFixed(2);
-  document.getElementById("resultH3").innerText="النتيجة: "+final+" / 25";
+  let final = (score*(25/5)).toFixed(2);
+  document.getElementById("resultH3").innerText = "النتيجة: " + final + " / 25";
 }
 
 function resetH3(){
