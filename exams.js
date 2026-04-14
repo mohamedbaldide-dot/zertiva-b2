@@ -49,30 +49,34 @@ function renderExamList() {
       let label = "";
 
       if (i === 0) {
-        label = "أساسي";
+        label = "📘 أساسي";
       } else if (exam.count === 2) {
-        label = "معدل";
+        label = "📙 معدل";
       } else {
-        label = `معدل ${i}`;
+        label = `📗 معدل ${i}`;
       }
 
       const div = document.createElement("div");
       div.className = "item";
       div.innerHTML = `${examNumber}. ${exam.title} (${label})`;
 
-      // حفظ رقم الامتحان الحقيقي
+      // استدعاء openExam من app.js
       div.onclick = () => {
-        openExam({
-          id: examNumber,
-          title: `${exam.title} (${label})`,
-          file: `exam${examNumber}.js`
-        });
+        if (typeof window.openExam === "function") {
+          window.openExam({
+            id: examNumber,
+            title: `${exam.title} (${label})`,
+            file: `exam${examNumber}.js`
+          });
+        } else {
+          console.error("openExam function not found! Make sure app.js is loaded.");
+        }
       };
 
       container.appendChild(div);
-      examNumber++; // زيادة الترقيم
+      examNumber++;
     }
   });
 
-  console.log(`✅ تم إنشاء ${examNumber - 1} امتحان`);
+  console.log(`✅ تم إنشاء ${examNumber - 1} امتحان بنجاح`);
 }
