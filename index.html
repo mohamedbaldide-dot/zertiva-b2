@@ -1,113 +1,178 @@
-/* ===== Base ===== */
-body { margin: 0; font-family: Arial; background: #f5f5f5; }
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zertiva B2</title>
 
-.page { display: none; min-height: 100vh; padding: 30px; }
-.page.active { display: block; }
-.home { display: flex; justify-content: center; align-items: center; text-align: center; }
+<style>
+body{margin:0;font-family:Arial;background:#f5f5f5;}
+.page{display:none;min-height:100vh;padding:30px;}
+.active{display:block;}
+.home{display:flex;justify-content:center;align-items:center;text-align:center;}
+.card{background:white;padding:40px;border-radius:15px;box-shadow:0 0 10px rgba(0,0,0,0.1);}
+button{padding:12px 20px;border:none;background:black;color:white;border-radius:10px;cursor:pointer;margin-top:10px;}
+.item{background:white;padding:15px;margin-bottom:10px;border-radius:10px;cursor:pointer;}
+.item:hover{background:#eee;}
+.exam-box{background:white;padding:20px;border-radius:10px;}
+</style>
+</head>
 
-/* ===== Common Components ===== */
-.card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-.exam-box { background: white; padding: 20px; border-radius: 10px; }
-.item { background: white; padding: 15px; margin-bottom: 10px; border-radius: 10px; cursor: pointer; }
-.item:hover { background: #eee; }
+<body>
 
-button { padding: 12px 20px; border: none; background: black; color: white; border-radius: 10px; cursor: pointer; margin-top: 10px; }
-select { margin: 10px 0; padding: 8px; width: 100%; }
+<!-- الصفحة 1 -->
+<div id="home" class="page active home">
+  <div class="card">
+    <h1>Zertiva B2</h1>
+    <p>أوثق منصة للتحضير لامتحان Telc B2</p>
+    <button onclick="goList()">لنبدأ 🚀</button>
+  </div>
+</div>
 
-.correct { background: #c8f7c5; }
-.wrong   { background: #f7c5c5; }
+<!-- الصفحة 2 -->
+<div id="list" class="page">
+  <h2>الامتحانات</h2>
+  <div id="examList"></div>
+  <button onclick="goHome()">رجوع</button>
+</div>
 
-/* ===== Settings Panel ===== */
-#settingsPanel {
-  position: fixed; top: 50px; right: 10px;
-  background: white; padding: 10px;
-  border: 1px solid #ccc; border-radius: 8px; z-index: 1000;
+<!-- الصفحة 3 -->
+<div id="exam" class="page">
+  <div class="exam-box">
+    <h2 id="examTitle">امتحان</h2>
+    <p id="examType"></p>
+    <button onclick="goList()">رجوع</button>
+  </div>
+</div>
+
+<script>
+
+// ================== الامتحانات ==================
+const exams = [
+  { id: 1, title: "sport ist gesund (أساسي)", base: 1, type: "base" },
+  { id: 2, title: "sport ist gesund (معدل)", base: 1, type: "mod" },
+
+  { id: 3, title: "kellner (أساسي)", base: 2, type: "base" },
+  { id: 4, title: "kellner (معدل)", base: 2, type: "mod" },
+
+  { id: 5, title: "Impfung (أساسي)", base: 3, type: "base" },
+
+  { id: 6, title: "tanzkurs (أساسي)", base: 4, type: "base" },
+  { id: 7, title: "tanzkurs (معدل)", base: 4, type: "mod" },
+
+  { id: 8, title: "insell (أساسي)", base: 5, type: "base" },
+  { id: 9, title: "insell (معدل)", base: 5, type: "mod" },
+
+  { id: 10, title: "Bilder (أساسي)", base: 6, type: "base" },
+
+  { id: 11, title: "Grundschule (أساسي)", base: 7, type: "base" },
+
+  { id: 12, title: "Österreich (أساسي)", base: 8, type: "base" },
+
+  { id: 13, title: "Insekten (أساسي)", base: 9, type: "base" },
+  { id: 14, title: "Insekten (معدل)", base: 9, type: "mod" },
+
+  { id: 15, title: "das Benzin (أساسي)", base: 10, type: "base" },
+
+  { id: 16, title: "kaffee (أساسي)", base: 11, type: "base" },
+
+  { id: 17, title: "Programmierer (أساسي)", base: 12, type: "base" },
+  { id: 18, title: "Programmierer (معدل)", base: 12, type: "mod" },
+
+  { id: 19, title: "Trampolin (أساسي)", base: 13, type: "base" },
+
+  { id: 20, title: "Schlafzug (أساسي)", base: 14, type: "base" },
+  { id: 21, title: "Schlafzug (معدل)", base: 14, type: "mod" },
+
+  { id: 22, title: "Bonbons (أساسي)", base: 15, type: "base" },
+
+  { id: 23, title: "Umwelt (أساسي)", base: 16, type: "base" },
+
+  { id: 24, title: "Licht (أساسي)", base: 17, type: "base" },
+  { id: 25, title: "Licht (معدل)", base: 17, type: "mod" },
+
+  { id: 26, title: "Alpen (أساسي)", base: 18, type: "base" },
+  { id: 27, title: "Alpen (معدل)", base: 18, type: "mod" },
+
+  { id: 28, title: "Spiele (أساسي)", base: 19, type: "base" },
+  { id: 29, title: "Spiele (معدل)", base: 19, type: "mod" },
+
+  { id: 30, title: "kartoffel (أساسي)", base: 20, type: "base" },
+
+  { id: 31, title: "Bienen (أساسي)", base: 21, type: "base" },
+  { id: 32, title: "Bienen (معدل)", base: 21, type: "mod" },
+
+  { id: 33, title: "Geld (أساسي)", base: 22, type: "base" },
+  { id: 34, title: "Geld (معدل)", base: 22, type: "mod" },
+
+  { id: 35, title: "Suchtmittel (أساسي)", base: 23, type: "base" },
+  { id: 36, title: "Suchtmittel (معدل)", base: 23, type: "mod" },
+
+  { id: 37, title: "Kinder und Schulen (أساسي)", base: 24, type: "base" },
+
+  { id: 38, title: "Kindertelefon (أساسي)", base: 25, type: "base" },
+
+  { id: 39, title: "Wahlen (أساسي)", base: 26, type: "base" },
+
+  { id: 40, title: "kein zeit (أساسي)", base: 27, type: "base" },
+  { id: 41, title: "kein zeit (معدل)", base: 27, type: "mod" },
+
+  { id: 42, title: "Limonade (أساسي)", base: 28, type: "base" },
+  { id: 43, title: "Limonade (معدل)", base: 28, type: "mod" },
+
+  { id: 44, title: "Auf dem Weg (أساسي)", base: 29, type: "base" },
+
+  { id: 45, title: "Farben (أساسي)", base: 30, type: "base" }
+];
+
+// ================== عرض القائمة ==================
+function renderList(){
+  let container = document.getElementById("examList");
+  container.innerHTML = "";
+
+  exams.forEach(exam => {
+    let div = document.createElement("div");
+    div.className = "item";
+    div.innerText = exam.id + " - " + exam.title;
+
+    div.onclick = function(){
+      openExam(exam);
+    };
+
+    container.appendChild(div);
+  });
 }
 
-/* ===== Teil 3 (Lesen) ===== */
-#texts { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-
-.text, .title {
-  background: #fff; padding: 12px; border-radius: 10px;
-  border: 2px solid #dee2e6; cursor: pointer; transition: 0.2s;
-}
-.text:hover, .title:hover { background: #f1f3f5; }
-.selected { border: 2px solid #0d6efd !important; background: #e7f1ff !important; }
-
-.answer-box {
-  width: 35px; height: 35px; display: flex;
-  align-items: center; justify-content: center;
-  background: #dee2e6; border-radius: 6px; font-weight: bold; margin-bottom: 8px;
-}
-.solution-box { margin-top: 6px; font-size: 12px; color: #dc3545; }
-
-.green { background: #d4edda !important; border-color: #28a745 !important; }
-.red   { background: #f8d7da !important; border-color: #dc3545 !important; }
-
-.moved-title {
-  font-size: 0.85em; padding: 6px 10px; margin-bottom: 8px;
-  background: #f1f3f5; border-left: 4px solid #0d6efd; border-radius: 6px;
+// ================== التنقل ==================
+function goList(){
+  document.getElementById("home").classList.remove("active");
+  document.getElementById("exam").classList.remove("active");
+  document.getElementById("list").classList.add("active");
+  renderList();
 }
 
-/* ===== Sprachbausteine Teil 1 ===== */
-.gap {
-  display: inline-block; padding: 6px 12px; margin: 0 4px;
-  border: 2px solid #007bff; background: #e7f1ff; color: #004085;
-  cursor: pointer; border-radius: 8px; font-weight: bold;
-  min-width: 70px; text-align: center; transition: 0.2s;
-}
-.gap:hover { background: #cfe2ff; transform: scale(1.02); }
-.gap.active-gap { background: #0d6efd; color: white; border-color: #0a58ca; box-shadow: 0 0 0 2px rgba(13,110,253,0.3); }
-.correct-gap { background: #d4edda; border-color: #28a745; color: #155724; }
-.wrong-gap   { background: #f8d7da; border-color: #dc3545; color: #721c24; }
-
-.option-btn {
-  margin: 5px; padding: 8px 14px;
-  border: 1px solid #6c757d; border-radius: 20px;
-  background: white; color: black; cursor: pointer; transition: 0.2s; font-size: 14px;
-}
-.option-btn:hover { background: #e9ecef; transform: translateY(-1px); }
-.option-btn.selected-option { background: #0d6efd; border-color: #0d6efd; color: white; }
-.option-btn.disabled-option { opacity: 0.5; text-decoration: line-through; cursor: not-allowed; pointer-events: none; }
-
-.option-group {
-  margin-bottom: 20px; padding: 12px;
-  background: #f8f9fa; border-radius: 12px; border-left: 4px solid #0d6efd;
+function goHome(){
+  document.getElementById("list").classList.remove("active");
+  document.getElementById("home").classList.add("active");
 }
 
-/* ===== Sprachbausteine Teil 2 ===== */
-.gap2 {
-  display: inline-block; padding: 6px 12px; margin: 0 4px;
-  border: 2px solid #28a745; background: #d4edda; color: #155724;
-  cursor: pointer; border-radius: 8px; font-weight: bold;
-  min-width: 70px; text-align: center; transition: 0.2s;
-}
-.gap2:hover { background: #c3e6cb; transform: scale(1.02); }
-.gap2.active-gap { background: #218838; color: white; border-color: #1e7e34; box-shadow: 0 0 0 2px rgba(33,136,56,0.3); }
-.correct-gap2 { background: #d4edda; border-color: #28a745; color: #155724; }
-.wrong-gap2   { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+// ================== فتح الامتحان ==================
+function openExam(exam){
 
-.connector-btn {
-  margin: 5px; padding: 8px 14px;
-  border: 1px solid #6c757d; border-radius: 20px;
-  background: white; color: black; cursor: pointer; transition: 0.2s; font-size: 14px;
-}
-.connector-btn:hover { background: #e9ecef; transform: translateY(-1px); }
-.connector-btn.selected-connector { background: #28a745; border-color: #28a745; color: white; }
+  document.getElementById("list").classList.remove("active");
+  document.getElementById("exam").classList.add("active");
 
-.connector-group {
-  margin-bottom: 20px; padding: 12px;
-  background: #f8f9fa; border-radius: 12px; border-left: 4px solid #28a745;
+  document.getElementById("examTitle").innerText = exam.title;
+
+  if(exam.type === "base"){
+    document.getElementById("examType").innerText = "📘 امتحان أساسي";
+  } else {
+    document.getElementById("examType").innerText = "✏️ امتحان معدل";
+  }
+
 }
 
-/* ===== Hören ===== */
-.h-question {
-  border: 1.5px solid #ccc; border-radius: 10px; padding: 10px; margin: 8px 0;
-  display: flex; justify-content: space-between; align-items: center;
-  background: #fafafa; transition: 0.3s;
-}
-.h-question:hover { background: #f1f1f1; border-color: #999; }
+</script>
 
-.h-btn { padding: 5px 10px; margin: 2px; border: 1px solid #ccc; background: white; cursor: pointer; border-radius: 5px; }
-.h-btn.active-true  { background: #28a745; color: white; }
-.h-btn.active-false { background: #dc3545; color: white; }
+</body>
+</html>
