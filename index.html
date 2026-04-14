@@ -285,16 +285,15 @@ select{margin:10px 0;padding:8px;width:100%;}
   color:white;
 }
 
-/* ملاحظة صغيرة */
-.note{
+/* ملاحظة */
+.note-box{
   font-size:12px;
-  color:#666;
   text-align:right;
-  margin-bottom:15px;
-  padding:8px;
-  background:#f8f9fa;
-  border-radius:8px;
-  border-right:3px solid #0d6efd;
+  color:#555;
+  margin-bottom:10px;
+  padding:5px;
+  background:#fff3cd;
+  border-radius:5px;
 }
 </style>
 </head>
@@ -415,8 +414,6 @@ j:"Autoindustrie: In Zukunft Mobilität ohne Grenzen"
 
 <h2>Lesen Teil 2</h2>
 
-<div class="note">📌 ملاحظة: الأسئلة التالية خاصة بالنص السابق عن Helmut Scherer</div>
-
 <div style="display:flex; gap:20px; flex-wrap:wrap;">
 
 <div style="flex:2; min-width:250px; background:#f9f9f9; padding:15px; border-radius:10px;">
@@ -430,8 +427,8 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
 <p><strong>Frage 1<br>Helmut Scherer</strong></p>
 <select id="q1">
 <option value="">اختر</option>
-<option value="a">a. ist nur in Una eine bekannte Persönlichkeit</option>
-<option value="b">b. veranstaltet an Karneval allein einen Umzug</option>
+<option value="a">a. führt in Unna einen kleinen Karnevalsumzug durch</option>
+<option value="b">b. ist in Unna seit 50 Jahren eine gefeierte Persönlichkeit</option>
 <option value="c">c. veranstaltet den einzigen Karnevalsumzug der Welt</option>
 </select>
 
@@ -601,7 +598,11 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
 
 <h2>Sprachbausteine Teil 1</h2>
 
-<div class="note">📌 ملاحظة: الرقم 3 يمكن أن يكون جوابه "jede" في بعض السياقات</div>
+<div id="variantSprach1" style="margin-bottom:15px;"></div>
+
+<div class="note-box">
+📌 ملاحظة: في بعض الحالات يمكن أن تكون الإجابة في السؤال 3 هي "je".
+</div>
 
 <div style="display:flex; gap:20px; flex-wrap:wrap;">
 
@@ -672,7 +673,9 @@ deine Mercedes
 
 <h2>Sprachbausteine Teil 2</h2>
 
-<div class="note">📌 ملاحظة: يمكنك الضغط مرة أخرى على أداة الربط داخل النص لإرجاعها إلى القائمة</div>
+<div class="note-box">
+📌 ملاحظة: يمكنك الضغط مرة أخرى على الفراغ الذي يحتوي على إجابة لحذفها وإرجاع الأداة إلى القائمة.
+</div>
 
 <div style="display:flex; gap:20px; flex-wrap:wrap;">
 
@@ -905,7 +908,7 @@ function resetTeil1(){
 
 // Teil 2 functions
 function checkTeil2(){
-  let correct = {1:"b",2:"c",3:"a",4:"b",5:"a"};
+  let correct = {1:"a",2:"c",3:"a",4:"b",5:"a"};
   let score = 0;
 
   for(let i=1;i<=5;i++){
@@ -1166,7 +1169,7 @@ function resetTeil3(){
 }
 
 // Sprachbausteine Teil 1
-const sprachAnswers = {
+let sprachAnswers = {
   1:"über den",
   2:"nichts mehr",
   3:"doch",
@@ -1178,6 +1181,71 @@ const sprachAnswers = {
   9:"jede",
   10:"damit"
 };
+
+const sprach1Variants = {
+  1:{
+    title:"النموذج الأصلي",
+    answers:{
+      1:"über den",
+      2:"nichts mehr",
+      3:"doch",
+      4:"Wie",
+      5:"der",
+      6:"getan",
+      7:"umfallen",
+      8:"dir",
+      9:"jede",
+      10:"damit"
+    }
+  },
+  2:{
+    title:"معدل",
+    answers:{
+      1:"über den",
+      2:"nichts mehr",
+      3:"je",
+      4:"Wie",
+      5:"der",
+      6:"getan",
+      7:"umfallen",
+      8:"dir",
+      9:"jede",
+      10:"damit"
+    }
+  }
+};
+
+let currentSprach1Variant = 1;
+
+function loadSprach1Variants(){
+  let c = document.getElementById("variantSprach1");
+  if(!c) return;
+  c.innerHTML = "";
+
+  for(let v in sprach1Variants){
+    let b = document.createElement("button");
+    b.innerText = sprach1Variants[v].title;
+    b.style.margin = "5px";
+    b.style.padding = "8px 15px";
+    b.style.border = "1px solid #ccc";
+    b.style.borderRadius = "8px";
+    b.style.cursor = "pointer";
+    b.style.background = "white";
+    b.onclick = ()=>{
+      currentSprach1Variant = parseInt(v);
+      sprachAnswers = sprach1Variants[v].answers;
+      resetSprach1();
+      
+      document.querySelectorAll("#variantSprach1 button").forEach(btn=>{
+        btn.style.background = "white";
+        btn.style.color = "black";
+      });
+      b.style.background = "#0d6efd";
+      b.style.color = "white";
+    };
+    c.appendChild(b);
+  }
+}
 
 const sprachOptions = {
   1:["an den","auf dem","über den"],
@@ -1452,6 +1520,17 @@ document.querySelectorAll(".gap2").forEach((gapSpan, idx)=>{
     e.stopPropagation();
     let gapNum = parseInt(this.id.replace("gap2_",""));
     
+    // ✅ إذا ضغط مرة ثانية على فراغ فيه إجابة → احذف الإجابة
+    if(sprach2User[gapNum] !== undefined){
+      let oldValue = sprach2User[gapNum];
+      let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
+      if(oldBtn) oldBtn.classList.remove("selected-connector");
+      
+      delete sprach2User[gapNum];
+      this.innerText = "["+gapNum+"]";
+      return;
+    }
+    
     // إذا كان هناك أداة مختارة مسبقاً
     if(selectedConnector !== null){
       // إذا الأداة مستعملة مسبقاً → لا تعمل
@@ -1473,18 +1552,6 @@ document.querySelectorAll(".gap2").forEach((gapSpan, idx)=>{
       
       selectedConnector = null;
       document.querySelectorAll(".connector-btn").forEach(b=>b.classList.remove("selected-connector"));
-      return;
-    }
-    
-    // ✅ التعديل الجديد: الضغط مرة أخرى على الفراغ الذي يحتوي على أداة لإرجاعها
-    if(sprach2User[gapNum] !== undefined){
-      let oldValue = sprach2User[gapNum];
-      let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
-      if(oldBtn) oldBtn.classList.remove("selected-connector");
-      
-      delete sprach2User[gapNum];
-      this.innerText = "["+gapNum+"]";
-      
       return;
     }
     
@@ -1601,7 +1668,6 @@ function checkH1(){
     let btnTrue = buttons[0];
     let btnFalse = buttons[1];
 
-    // reset style
     btnTrue.style.background = "";
     btnFalse.style.background = "";
     qDiv.style.borderColor = "#ccc";
@@ -1789,7 +1855,6 @@ function checkH2(){
     let btnTrue = buttons[0];
     let btnFalse = buttons[1];
 
-    // reset style
     btnTrue.style.background = "";
     btnFalse.style.background = "";
     qDiv.style.borderColor = "#ccc";
@@ -1896,7 +1961,6 @@ function checkH3(){
     let btnTrue = buttons[0];
     let btnFalse = buttons[1];
 
-    // reset style
     btnTrue.style.background = "";
     btnFalse.style.background = "";
     qDiv.style.borderColor = "#ccc";
@@ -1944,6 +2008,7 @@ function resetH3(){
 loadOptions();
 loadSprachOptions();
 loadSprach2Options();
+loadSprach1Variants();
 setTimeout(enhanceOptionsForMethod1, 100);
 loadH1();
 loadVariants();
