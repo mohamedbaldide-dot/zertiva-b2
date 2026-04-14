@@ -4,20 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zertiva B2</title>
-
-<style>
-body{margin:0;font-family:Arial;background:#f5f5f5;}
-.page{display:none;min-height:100vh;padding:30px;}
-.active{display:block;}
-.home{display:flex;justify-content:center;align-items:center;text-align:center;}
-.card{background:white;padding:40px;border-radius:15px;box-shadow:0 0 10px rgba(0,0,0,0.1);}
-button{padding:12px 20px;border:none;background:black;color:white;border-radius:10px;cursor:pointer;margin-top:10px;}
-.item{background:white;padding:15px;margin-bottom:10px;border-radius:10px;cursor:pointer;}
-.item:hover{background:#eee;}
-.exam-box{background:white;padding:20px;border-radius:10px;}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <!-- الصفحة 1 -->
@@ -36,143 +24,16 @@ button{padding:12px 20px;border:none;background:black;color:white;border-radius:
   <button onclick="goHome()">رجوع</button>
 </div>
 
-<!-- الصفحة 3 -->
+<!-- الصفحة 3 - الامتحان -->
 <div id="exam" class="page">
-  <div class="exam-box">
-    <h2 id="examTitle">امتحان</h2>
-    <p id="examType"></p>
+  <div class="exam-box" id="examContainer">
+    <div id="examContent"></div>
     <button onclick="goList()">رجوع</button>
   </div>
 </div>
 
-<script>
-
-// ================== الامتحانات ==================
-const exams = [
-  { id: 1, title: "sport ist gesund (أساسي)", base: 1, type: "base" },
-  { id: 2, title: "sport ist gesund (معدل)", base: 1, type: "mod" },
-
-  { id: 3, title: "kellner (أساسي)", base: 2, type: "base" },
-  { id: 4, title: "kellner (معدل)", base: 2, type: "mod" },
-
-  { id: 5, title: "Impfung (أساسي)", base: 3, type: "base" },
-
-  { id: 6, title: "tanzkurs (أساسي)", base: 4, type: "base" },
-  { id: 7, title: "tanzkurs (معدل)", base: 4, type: "mod" },
-
-  { id: 8, title: "insell (أساسي)", base: 5, type: "base" },
-  { id: 9, title: "insell (معدل)", base: 5, type: "mod" },
-
-  { id: 10, title: "Bilder (أساسي)", base: 6, type: "base" },
-
-  { id: 11, title: "Grundschule (أساسي)", base: 7, type: "base" },
-
-  { id: 12, title: "Österreich (أساسي)", base: 8, type: "base" },
-
-  { id: 13, title: "Insekten (أساسي)", base: 9, type: "base" },
-  { id: 14, title: "Insekten (معدل)", base: 9, type: "mod" },
-
-  { id: 15, title: "das Benzin (أساسي)", base: 10, type: "base" },
-
-  { id: 16, title: "kaffee (أساسي)", base: 11, type: "base" },
-
-  { id: 17, title: "Programmierer (أساسي)", base: 12, type: "base" },
-  { id: 18, title: "Programmierer (معدل)", base: 12, type: "mod" },
-
-  { id: 19, title: "Trampolin (أساسي)", base: 13, type: "base" },
-
-  { id: 20, title: "Schlafzug (أساسي)", base: 14, type: "base" },
-  { id: 21, title: "Schlafzug (معدل)", base: 14, type: "mod" },
-
-  { id: 22, title: "Bonbons (أساسي)", base: 15, type: "base" },
-
-  { id: 23, title: "Umwelt (أساسي)", base: 16, type: "base" },
-
-  { id: 24, title: "Licht (أساسي)", base: 17, type: "base" },
-  { id: 25, title: "Licht (معدل)", base: 17, type: "mod" },
-
-  { id: 26, title: "Alpen (أساسي)", base: 18, type: "base" },
-  { id: 27, title: "Alpen (معدل)", base: 18, type: "mod" },
-
-  { id: 28, title: "Spiele (أساسي)", base: 19, type: "base" },
-  { id: 29, title: "Spiele (معدل)", base: 19, type: "mod" },
-
-  { id: 30, title: "kartoffel (أساسي)", base: 20, type: "base" },
-
-  { id: 31, title: "Bienen (أساسي)", base: 21, type: "base" },
-  { id: 32, title: "Bienen (معدل)", base: 21, type: "mod" },
-
-  { id: 33, title: "Geld (أساسي)", base: 22, type: "base" },
-  { id: 34, title: "Geld (معدل)", base: 22, type: "mod" },
-
-  { id: 35, title: "Suchtmittel (أساسي)", base: 23, type: "base" },
-  { id: 36, title: "Suchtmittel (معدل)", base: 23, type: "mod" },
-
-  { id: 37, title: "Kinder und Schulen (أساسي)", base: 24, type: "base" },
-
-  { id: 38, title: "Kindertelefon (أساسي)", base: 25, type: "base" },
-
-  { id: 39, title: "Wahlen (أساسي)", base: 26, type: "base" },
-
-  { id: 40, title: "kein zeit (أساسي)", base: 27, type: "base" },
-  { id: 41, title: "kein zeit (معدل)", base: 27, type: "mod" },
-
-  { id: 42, title: "Limonade (أساسي)", base: 28, type: "base" },
-  { id: 43, title: "Limonade (معدل)", base: 28, type: "mod" },
-
-  { id: 44, title: "Auf dem Weg (أساسي)", base: 29, type: "base" },
-
-  { id: 45, title: "Farben (أساسي)", base: 30, type: "base" }
-];
-
-// ================== عرض القائمة ==================
-function renderList(){
-  let container = document.getElementById("examList");
-  container.innerHTML = "";
-
-  exams.forEach(exam => {
-    let div = document.createElement("div");
-    div.className = "item";
-    div.innerText = exam.id + " - " + exam.title;
-
-    div.onclick = function(){
-      openExam(exam);
-    };
-
-    container.appendChild(div);
-  });
-}
-
-// ================== التنقل ==================
-function goList(){
-  document.getElementById("home").classList.remove("active");
-  document.getElementById("exam").classList.remove("active");
-  document.getElementById("list").classList.add("active");
-  renderList();
-}
-
-function goHome(){
-  document.getElementById("list").classList.remove("active");
-  document.getElementById("home").classList.add("active");
-}
-
-// ================== فتح الامتحان ==================
-function openExam(exam){
-
-  document.getElementById("list").classList.remove("active");
-  document.getElementById("exam").classList.add("active");
-
-  document.getElementById("examTitle").innerText = exam.title;
-
-  if(exam.type === "base"){
-    document.getElementById("examType").innerText = "📘 امتحان أساسي";
-  } else {
-    document.getElementById("examType").innerText = "✏️ امتحان معدل";
-  }
-
-}
-
-</script>
+<script src="exams.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>
