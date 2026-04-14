@@ -1,49 +1,78 @@
-// قائمة جميع الامتحانات
+// ============================================
+// exams.js - قائمة الامتحانات مع نظام النسخ
+// ============================================
+
 const exams = [
-  { id: 1, title: "sport ist gesund (الرياضة مفيدة للصحة)", file: "exam1.js" },
-  { id: 2, title: "kellner (باحث شاب)", file: "exam2.js" },
-  { id: 3, title: "Impfung (لقاح)", file: "exam3.js" },
-  { id: 4, title: "tanzkurs 1 (دورة رقص)", file: "exam4.js" },
-  { id: 5, title: "insell (الجزر)", file: "exam5.js" },
-  { id: 6, title: "Bilder (صور)", file: "exam6.js" },
-  { id: 7, title: "Grundschule (المدرسة)", file: "exam7.js" },
-  { id: 8, title: "Österreich (النمسا)", file: "exam8.js" },
-  { id: 9, title: "Insekten 1 (الحشرات)", file: "exam9.js" },
-  { id: 10, title: "das Benzin (بَنْزِينٌ)", file: "exam10.js" },
-  { id: 11, title: "kaffee (القهوة)", file: "exam11.js" },
-  { id: 12, title: "Programmierer 1 (المبرمجين)", file: "exam12.js" },
-  { id: 13, title: "Trampolin (الترامبولين)", file: "exam13.js" },
-  { id: 14, title: "Schlafzug 1 (قطار النوم)", file: "exam14.js" },
-  { id: 15, title: "Bonbons (الحلوى)", file: "exam15.js" },
-  { id: 16, title: "Umwelt (البيئة)", file: "exam16.js" },
-  { id: 17, title: "Licht (الضوء)", file: "exam17.js" },
-  { id: 18, title: "Alpen 1 (الألب)", file: "exam18.js" },
-  { id: 19, title: "Spiele (الألعاب)", file: "exam19.js" },
-  { id: 20, title: "kartoffel (البطاطا)", file: "exam20.js" },
-  { id: 21, title: "Bienen 1 (النحل)", file: "exam21.js" },
-  { id: 22, title: "Geld (المال)", file: "exam22.js" },
-  { id: 23, title: "Suchtmittel (المخدرات)", file: "exam23.js" },
-  { id: 24, title: "Kinder und Schulen (الأطفال والمدارس)", file: "exam24.js" },
-  { id: 25, title: "Kindertelefon (هاتف الأطفال)", file: "exam25.js" },
-  { id: 26, title: "Wahlen (الانتخابات والمرأة الروسية)", file: "exam26.js" },
-  { id: 27, title: "kein zeit 1 (لا يوجد وقت)", file: "exam27.js" },
-  { id: 28, title: "Limonade (عصير الليمون)", file: "exam28.js" },
-  { id: 29, title: "Auf dem Weg (في الطريق)", file: "exam29.js" },
-  { id: 30, title: "Farben (الألوان)", file: "exam30.js" }
+  { title: "sport ist gesund (الرياضة مفيدة للصحة)", count: 2 },
+  { title: "kellner (باحث شاب)", count: 1 },
+  { title: "Impfung (لقاح)", count: 1 },
+  { title: "tanzkurs (دورة رقص)", count: 2 },
+  { title: "insell (الجزر)", count: 2 },
+  { title: "Bilder (صور)", count: 1 },
+  { title: "Grundschule (المدرسة)", count: 1 },
+  { title: "Österreich (النمسا)", count: 1 },
+  { title: "Insekten (الحشرات)", count: 2 },
+  { title: "das Benzin (بَنْزِينٌ)", count: 1 },
+  { title: "kaffee (القهوة)", count: 1 },
+  { title: "Programmierer (المبرمجين)", count: 3 },
+  { title: "Trampolin (الترامبولين)", count: 1 },
+  { title: "Schlafzug (قطار النوم)", count: 2 },
+  { title: "Bonbons (الحلوى)", count: 1 },
+  { title: "Umwelt (البيئة)", count: 1 },
+  { title: "Licht (الضوء)", count: 2 },
+  { title: "Alpen (الألب)", count: 3 },
+  { title: "Spiele (الألعاب)", count: 2 },
+  { title: "kartoffel (البطاطا)", count: 1 },
+  { title: "Bienen (النحل)", count: 2 },
+  { title: "Geld (المال)", count: 2 },
+  { title: "Suchtmittel (المخدرات)", count: 2 },
+  { title: "Kinder und Schulen (الأطفال والمدارس)", count: 1 },
+  { title: "Kindertelefon (هاتف الأطفال)", count: 1 },
+  { title: "Wahlen (الانتخابات)", count: 1 },
+  { title: "kein zeit (لا يوجد وقت)", count: 3 },
+  { title: "Limonade (عصير الليمون)", count: 6 },
+  { title: "Auf dem Weg (في الطريق)", count: 1 },
+  { title: "Farben (الألوان)", count: 1 }
 ];
 
-// دالة لعرض قائمة الامتحانات
+// ========== دالة عرض القائمة ==========
 function renderExamList() {
   const container = document.getElementById("examList");
   if (!container) return;
-  
+
   container.innerHTML = "";
-  
+
+  let examNumber = 1; // الترقيم الحقيقي 1 → 51
+
   exams.forEach(exam => {
-    const div = document.createElement("div");
-    div.className = "item";
-    div.innerHTML = `${exam.id} - ${exam.title}`;
-    div.onclick = () => openExam(exam);
-    container.appendChild(div);
+    for (let i = 0; i < exam.count; i++) {
+      let label = "";
+
+      if (i === 0) {
+        label = "أساسي";
+      } else if (exam.count === 2) {
+        label = "معدل";
+      } else {
+        label = `معدل ${i}`;
+      }
+
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerHTML = `${examNumber}. ${exam.title} (${label})`;
+
+      // حفظ رقم الامتحان الحقيقي
+      div.onclick = () => {
+        openExam({
+          id: examNumber,
+          title: `${exam.title} (${label})`,
+          file: `exam${examNumber}.js`
+        });
+      };
+
+      container.appendChild(div);
+      examNumber++; // زيادة الترقيم
+    }
   });
+
+  console.log(`✅ تم إنشاء ${examNumber - 1} امتحان`);
 }
