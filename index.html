@@ -287,18 +287,36 @@ select{margin:10px 0;padding:8px;width:100%;}
 
 /* ملاحظة */
 .note-box{
+  display:inline-block;
   font-size:12px;
-  text-align:right;
-  color:#555;
+  color:#444;
+  background:#f1f1f1;
+  padding:6px 10px;
+  border-radius:6px;
   margin-bottom:10px;
-  padding:5px;
-  background:#fff3cd;
-  border-radius:5px;
+}
+
+/* الإعدادات */
+#settingsBox{
+  position:fixed;
+  top:50px;
+  right:10px;
+  background:white;
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  z-index:1000;
 }
 </style>
 </head>
 
 <body>
+
+<button onclick="toggleSettings()" style="position:fixed; top:10px; right:10px; z-index:1000;">⚙️</button>
+<div id="settingsBox" style="display:none;">
+  حجم الخط:
+  <input type="range" min="14" max="24" value="16" onchange="changeFont(this.value)">
+</div>
 
 <!-- الصفحة 1 -->
 <div id="home" class="page active home">
@@ -312,6 +330,10 @@ select{margin:10px 0;padding:8px;width:100%;}
 <!-- الصفحة 2 -->
 <div id="list" class="page">
   <h2>الامتحانات</h2>
+  <div style="margin-bottom:20px;">
+    <button onclick="goExamList()">⏰ وقت المرح – اجتز الامتحان الآن</button>
+    <button onclick="goHelp()">❓ تحتاج مساعدة؟</button>
+  </div>
 
   <div class="item" onclick="openExam(1)">1 - sport ist gesund (الرياضة مفيدة للصحة)</div>
   <div class="item">2 - kellner (Jugend Forscherr) (باحث شاب)</div>
@@ -353,20 +375,29 @@ select{margin:10px 0;padding:8px;width:100%;}
 
 <h2>امتحان 1</h2>
 
-<!-- أزرار التنقل -->
+<div style="margin-bottom:10px;">
+  <button onclick="showBasicExam()">الأساسي</button>
+  <button onclick="showModifiedExam()">المعدل</button>
+</div>
+
+<p style="font-size:13px; color:#555; margin-bottom:15px;">اجتز جميع أجزاء الامتحان ثم اضغط على زر "رؤية النتيجة"</p>
+
+<!-- أزرار التنقل بالترتيب الجديد -->
 <div style="margin-bottom:20px;">
+  <button onclick="showTeil(6)">Hören Teil 1</button>
+  <button onclick="showTeil(7)">Hören Teil 2</button>
+  <button onclick="showTeil(8)">Hören Teil 3</button>
   <button onclick="showTeil(1)">Lesen Teil 1</button>
   <button onclick="showTeil(2)">Lesen Teil 2</button>
   <button onclick="showTeil(3)">Lesen Teil 3</button>
   <button onclick="showTeil(4)">Sprachbausteine Teil 1</button>
   <button onclick="showTeil(5)">Sprachbausteine Teil 2</button>
-  <button onclick="showTeil(6)">Hören Teil 1</button>
-  <button onclick="showTeil(7)">Hören Teil 2</button>
-  <button onclick="showTeil(8)">Hören Teil 3</button>
 </div>
 
-<!-- ==================== TEIL 1 ==================== -->
-<div id="teil1">
+<button onclick="showFinalResult()" style="background:#28a745;">📊 رؤية النتيجة</button>
+
+<!-- ==================== TEIL 1 (LESEN) ==================== -->
+<div id="teil1" style="display:none;">
 
 <script>
 let titles = {
@@ -400,71 +431,75 @@ j:"Autoindustrie: In Zukunft Mobilität ohne Grenzen"
 <select id="ans4" onchange="updateOptions()"></select>
 
 <h3 id="t5">Text 5</h3>
-<p>Viele frischgebackene Eltern stehen einem riesigen Angebot an Kinderwagen gegenüber, das in Kinderläden und Großmärkten feilgeboten wird. Doch welcher ist der richtige? Experten raten, beim Kauf dieses für die ersten Jahre mit dem Kleinkind wichtigen Gefährts auf ein paar Dinge zu achten. Erstens sollte die Matratze nicht zu weich sein, damit das Kind nicht einsinkt, wodurch die Atmung behindert werden kann. Zweitens sollten die Räder gefedert sein, um Erschütterungen auf unebenen Wegen auszugleichen. Ein hoher Wagen schützt die Babys vor dem Auspuff der Autos an Straßenkreuzungen. Zusammenklappbare Wagen passen في jeden Kofferraum und lassen sich fast überallhin mitnehmen. Der Wagen sollte vor allem kippsicher sein und keine scharfen Kanten haben, an denen sich die Kinder verletzen können. Vom TÜV geprüfte Kinderwagen erhalten ein Prüfzeichen. Damit haben die Eltern eine gewisse Sicherheit, dass der Kinderwagen auch nach Dauergebrauch nicht zu einem Sicherheitsrisiko für ihr Kind werden kann.</p>
+<p>Viele frischgebackene Eltern stehen einem riesigen Angebot an Kinderwagen gegenüber, das in Kinderläden und Großmärkten feilgeboten wird. Doch welcher ist der richtige? Experten raten, beim Kauf dieses für die ersten Jahre mit dem Kleinkind wichtigen Gefährts auf ein paar Dinge zu achten. Erstens sollte die Matratze nicht zu weich sein, damit das Kind nicht einsinkt, wodurch die Atmung behindert werden kann. Zweitens sollten die Räder gefedert sein, um Erschütterungen auf unebenen Wegen auszugleichen. Ein hoher Wagen schützt die Babys vor dem Auspuff der Autos an Straßenkreuzungen. Zusammenklappbare Wagen passen in jeden Kofferraum und lassen sich fast überallhin mitnehmen. Der Wagen sollte vor allem kippsicher sein und keine scharfen Kanten haben, an denen sich die Kinder verletzen können. Vom TÜV geprüfte Kinderwagen erhalten ein Prüfzeichen. Damit haben die Eltern eine gewisse Sicherheit, dass der Kinderwagen auch nach Dauergebrauch nicht zu einem Sicherheitsrisiko für ihr Kind werden kann.</p>
 <select id="ans5" onchange="updateOptions()"></select>
 
 <button onclick="checkExam()">تصحيح</button>
+<button onclick="savePart('lesen1')">💾 حفظ</button>
 <button onclick="resetTeil1()" style="margin-right:10px;">🔄 إعادة Teil 1</button>
 <p id="result"></p>
 
 </div> <!-- نهاية teil1 -->
 
-<!-- ==================== TEIL 2 ==================== -->
+<!-- ==================== TEIL 2 (LESEN) ==================== -->
 <div id="teil2" style="display:none;">
 
 <h2>Lesen Teil 2</h2>
+
+<p style="font-size:13px; color:#555;">اجتز جميع أجزاء الامتحان ثم اضغط على زر "رؤية النتيجة"</p>
 
 <div style="display:flex; gap:20px; flex-wrap:wrap;">
 
 <div style="flex:2; min-width:250px; background:#f9f9f9; padding:15px; border-radius:10px;">
 <p>
-Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen durch die westfälische Kleinstadt Unna zog, wurde er von den Leuten ausgelacht. Heute aber ist er eine städtische Berühmtheit und sogar weit über die Grenzen seiner Heimatstadt hinaus bekannt. Der 71-Jährige ist der einzige Teilnehmer des weltweit kleinsten Karnevalsumzugs. An Weiberfastnacht, dem letzten Donnerstag der Karnevalsperiode eines Jahres, zieht er mit seinem Handwagen los: Er selbst ist dann - dieses Jahr als blondes Schulmädchen - verkleidet und auf seinem Bollerwagen hat er aus Pappe und Gips Figuren aufgebaut, die humoristisch ein aktuelles gesellschaftliches Thema - diesmal die Schulreform - aufgreifen. So macht er sich nach alter karnevalistischer Tradition über Missstände lustig. Helmut Scherer legt natürlich Wert darauf, dass er von Karnevalsmusik begleitet wird, die jedoch nicht von einer Musikgruppe, sondern von einem Radiorekorder gespielt wird. Vor 50 Jahren kam Helmut Scherer aus dem katholisch geprägten Paderborn, wo er seine Kindheit und Jugend verbracht hatte, nach Unna, dessen überwiegend evangelische Bevölkerung sich recht kühl und nüchtern gibt und deshalb anfangs auch wenig Verständnis für den katholischen Karnevalsbrauch zeigte. "Die Leute haben mir einen Vogel gezeigt und den Kopf geschüttelt", beschreibt der "Narr aus Überzeugung" die Anfänge. Auch bei der Stadtverwaltung, wo Scherer für Weiberfastnacht seinen Umzug ordnungsgemäß anmeldete, stieß er zunächst auf Unverständnis. Aber da sein Karnevalszug niemanden behinderte und auch nicht zu befürchten war, dass Unnas öffentliche Ordnung gestört würde, bekam er die Erlaubnis, mit seinem humoristischen Handwagen loszumarschieren. Über 10 Jahre lang zog Scherer einsam, belächelt und verspottet durch Unna, weder eisige Kälte noch Schnee konnten ihn davon abhalten. Doch der Karneval blieb für lange Zeit sein Privatvergnügen. Als dann die lokale Presse anfing, ihn zu unterstützen, wandelte sich die Meinung der Öffentlichkeit. Der einst verspottete Karnevalist stieg langsam zum närrischen Wahrzeichen einer Stadt ohne Karneval auf. Für die Stadtoberen ist heute die "Ein-Mann-Show" die beste Werbung für Unna. Scherers Beharrlichkeit hat sich also ausgezahlt: Anlässlich seines fünfzigsten Karnevalsjubiläums wurde er sogar offiziell im Rathaus empfangen, um ihm - so wie es auch in den Karnevalshochburgen Köln, Düsseldorf und Mainz üblich ist - den goldenen Schlüssel des Rathauses zu übergeben. Obwohl er keinem Karnevalsverein angehört, wurde ihm die Ehre zuteil, als Karnevalsprinz in den Bund Deutscher Karneval aufgenommen zu werden; somit wurde es ihm möglich, auch bei den Rosenmontagszügen in den närrischen Hochburgen im Rheinland mitzuwirken. Weit über hundert Fans des standhaften Narren haben sich zu einem Fan-Club zusammengeschlossen, und etliche stehen beim jährlichen Umzug in Unna am Straßenrand und rufen statt "Spinner" den rheinischen Karnevalsgruß "Helau". Bei aller Fortschrittlichkeit soll aber eines so bleiben, wie es immer war - einen weiteren Teilnehmer am Zug duldet der Karnevalsprinz nicht: "Die Tradition soll aufrechterhalten bleiben", sagt er schmunzelnd. "Aber nur solange mich die Füße tragen!"
+Noch ein Wasser, bitte! Die Semesterferien sind zu Ende und diese Woche beginnt an der Universität das Sommersemester. Aber nicht nur Vorlesungen und Seminare gehen wieder los. 73 Prozent der Berliner Studenten müssen neben dem Studium auch noch Geld verdienen. Ein beliebtes Studentenjob ist der des Kellners. Denn erstens arbeitet man meist am Abend, so dass es keine Terminkollisionen mit den Vorlesungs- und Seminarprogrammen gibt. Zweitens findet man leicht einen Job, da es in der Nähe von Universitäten häufig viele Cafès und Kneipen gibt, die sehr gut besucht sind. Und je mehr Gäste, desto höher natürlich die Chancen auf Trinkgelder. Das ist auch wichtig, denn nur so kommt man auf einen akzeptablen Stundenlohn. Allerdings ist es in manchen Restaurants auch üblich, dass die Trinkgelder gesammelt und am Ende dann an alle Kellner gleichmäßig verteilt werden. Davon profitieren dann auch diejenigen, die nicht so engagiert und motiviert arbeiten. Als Kellner braucht man starke Nerven, denn der Gast hat immer recht. Manche Gäste machen es einem Kellner mit zahlreichen Beschwerden und Extrawünschen wirklich nicht leicht. Denn der Kellner ist die Person, die direkt mit dem Gast in Kontakt kommt. Wenn das Essen nicht schmeckt, kalt ist oder nicht schnell genug zubereitet wird, bekommt der Kellner den Unmut der Gäste zu spüren, obwohl die "Schuld" beim Koch liegt. Wer ist für den Job als Kellner geeignet? Man sollte offen sein und den Kontakt mit Menschen mögen und auf jeden Fall geduldig sein. Natürlich ist es wichtig, immer freundlich und zuvorkommend zu bleiben. Denn wenn der Service stimmt und der Kellner kompetent und freundlich wirkt, dann sitzt auch das Trinkgeld lockerer. Kellnern war gestern Neben den klassischen Studentenjobs wie Kellnern und Nachhilfe geben greifen manche aber auch zu eher ungewöhnlichen Jobs. Wie zum Beispiel Jan, der in Berlin als Fahrradkurier arbeitet, oder Stefanie, die Testkäuferin. Jan fährt im Auftrag von Apotheken, Filmverleihfirmen oder Pizzadiensten im Schnitt zwischen 50 km und 200 km pro Tag. Um diesen Job machen zu können, braucht er eine sehr gute Kondition. Denn manche Strecken sind lang, und oft gibt es Gegenwind. Er arbeitet wie die meisten Fahrradkuriere auf selbständiger Basis und kommt auf einen Stundenlohn von etwa 10 Euro. Jan meint: "Reich wird man damit zwar nicht, aber man kann sagen: Wer schnell ist und gut, verdient als Fahrradkurier nicht schlecht." Am liebsten würde Jan von einem Kurierdienst in einem klassischen Arbeitsverhältnis angestellt werden. Das ist in der Branche aber eher die Ausnahme. Wäre er Angestellte, würde er vom Kurierdienst ein Grundgehalt bekommen und für die gefahrenen Aufträge eine kleine Provision. Einen der größten Vorteile seines Jobs sieht Jan darin, dass er sich den ganzen Tag im Freien bewegt und so die Beiträge für das Fitnessstudio spart. Außerdem lernt man so eine Stadt sehr gut kennen. Ein Nachteil ist, dass man auch bei Wind und Wetter oder bei dichtem Verkehr fahren muss. Aber das nimmt Jan in Kauf. Denn Kellnern oder ein Büro-Job wären nichts für ihn. Der Job von Stefanie ist ein wahrer Glückstreffer: Sie darf den ganzen Tag einkaufen und wird dafür auch noch bezahlt. Stefanie arbeitet als Testkäuferin, um Beratung und Service von Verkäufern in Geschäften zu testen. Ein typischer Arbeitseinsatz sieht bei ihr so aus: Nach der letzten Vorlesung an der Uni geht sie zum Beispiel in einen Modeladen. Dort überprüft sie als Erstes den Eingang auf Sauberkeit, schlendert dann zu den Ständen mit Hosen und Blusen und schaut, ob alles ordentlich sortiert und beschildert ist. Dann spricht sie eine Verkäuferin an und sagt, dass sie eine Bluse sucht. Damit testet sie, ob sie als Kundin von der Verkäuferin angemessen beraten wird. Die Verkäuferin sollte nachfragen, für welchen Anlass und in welcher Farbe die Kundin eine Bluse sucht. Leider läuft es nicht immer so, wie er sein sollte. In 90 Prozent der Fälle gibt es Grund zur Beschwerde, weil die Verkäuferin entweder unfreundlich oder uninteressiert ist. Bevor Stefanie die Läden wieder verlässt, kommt das Beste: Sie muss etwas kaufen, um die Kasse zu testen. 20 Euro bekommt sie dafür pro Test. Außerdem darf sie das, was sie kaufen sollte, auch noch behalten.
 </p>
 </div>
 
 <div style="flex:1; min-width:200px;">
 
-<p><strong>Frage 1<br>Helmut Scherer</strong></p>
+<p><strong>Frage 1<br>Der Nebenjob als Kellner</strong></p>
 <select id="q1">
 <option value="">اختر</option>
-<option value="a">a. führt in Unna einen kleinen Karnevalsumzug durch</option>
-<option value="b">b. ist in Unna seit 50 Jahren eine gefeierte Persönlichkeit</option>
-<option value="c">c. veranstaltet den einzigen Karnevalsumzug der Welt</option>
+<option value="a">a. hat an Attraktivität deutlich verloren</option>
+<option value="b">b. ist insgesamt sehr gut bezahlt</option>
+<option value="c">c. lässt sich gut mit dem Studium vereinbaren</option>
 </select>
 
-<p><strong>Frage 2<br>Auf seinem Handwagen</strong></p>
+<p><strong>Frage 2<br>Wer als Kellner arbeitet</strong></p>
 <select id="q2">
 <option value="">اختر</option>
-<option value="a">a. fährt traditionell ein blondes Schulmädchen mit</option>
-<option value="b">b. präsentiert er kleine Szenen, die auf den Alltag Bezug nehmen</option>
-<option value="c">c. stellt er sozialkritische Themen auf witzige Art und Weise dar</option>
+<option value="a">a. muss bei Beschwerden den Kontakt zwischen Koch und Gast herstellen</option>
+<option value="b">b. muss das Trinkgeld mit den Kollegen teilen</option>
+<option value="c">c. sollte nicht aus der Ruhe zu bringen sein</option>
 </select>
 
-<p><strong>Frage 3<br>Die Bevölkerung von Unna</strong></p>
+<p><strong>Frage 3<br>Jan arbeitet gern als Fahrradkurier</strong></p>
 <select id="q3">
 <option value="">اختر</option>
-<option value="a">a. hatte zunächst wenig Verständnis für Helmut Scherer</option>
-<option value="b">b. hielt anfangs Helmut Scherer für kühl und nüchtern</option>
-<option value="c">c. verhinderte Helmut Scherers ersten Karnevalsumzug</option>
+<option value="a">a. weil er außer dem Grundgehalt noch eine Provision bekommt</option>
+<option value="b">b. weil er dann fest angestellt ist</option>
+<option value="c">c. weil er mit dem Verdienst ganz zufrieden ist</option>
 </select>
 
-<p><strong>Frage 4<br>Der kleinste Karnevalsumzug der Welt</strong></p>
+<p><strong>Frage 4<br>Jan sagte</strong></p>
 <select id="q4">
 <option value="">اختر</option>
-<option value="a">a. hat Helmut Scherer sogar Geld eingebracht</option>
-<option value="b">b. ist heute eine gute Reklame für die Stadt Unna</option>
-<option value="c">c. wird in Zukunft von einer ganzen Gruppe von Leuten durchgeführt</option>
+<option value="a">a. dass er durch seinen Job keine Ausgaben für ein Fitnessstudio hat</option>
+<option value="b">b. dass er lieber im Büro arbeiten würde</option>
+<option value="c">c. dass ihm schlechtes Wetter gar nicht stört</option>
 </select>
 
-<p><strong>Frage 5<br>Helmut Scherer</strong></p>
+<p><strong>Frage 5<br>Stefanie muss als Testkäuferin</strong></p>
 <select id="q5">
 <option value="">اختر</option>
-<option value="a">a. hat an Karnevalsumzügen in mehreren Städten teilgenommen</option>
-<option value="b">b. hat inzwischen in ganz Deutschland Fan-Clubs</option>
-<option value="c">c. sucht einen Nachfolger</option>
+<option value="a">a. auch den Service in Cafés und Kneipen überprüfen</option>
+<option value="b">b. einige Waren selbst bezahlen</option>
+<option value="c">c. sich beim Einkauf an einen festen Ablauf halten</option>
 </select>
 
 <button onclick="checkTeil2()">تصحيح</button>
+<button onclick="savePart('lesen2')">💾 حفظ</button>
 <button onclick="resetTeil2()" style="margin-right:10px;">🔄 إعادة Teil 2</button>
 <p id="result2"></p>
 
@@ -473,10 +508,12 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
 </div>
 </div> <!-- نهاية teil2 -->
 
-<!-- ==================== TEIL 3 ==================== -->
+<!-- ==================== TEIL 3 (LESEN) ==================== -->
 <div id="teil3" style="display:none;">
 
 <h2>Lesen Teil 3</h2>
+
+<p style="font-size:13px; color:#555;">اجتز جميع أجزاء الامتحان ثم اضغط على زر "رؤية النتيجة"</p>
 
 <div style="display:flex; gap:20px; flex-wrap:wrap;">
 
@@ -485,84 +522,84 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
   <div class="text" onclick="selectText(1, this)">
     <div class="answer-box"></div>
     <div class="solution-box"></div>
-    <strong>Anzeige a:</strong> Die Nachfrage nach individueller Farb- und Stilberatung ist groß. Denn wer heute im Geschäfts- wie auch im Privatleben erfolgreich sein möchte, muss sich in Outfit und Benehmen vorteilhaft präsentieren können. Der Leitfaden zeigt Ihnen, wie Sie sich selbst am besten in Szene setzen. Von der passenden und farblich stimmigen Garderobe über Make-up und Accessoires bis zu modernen Umgangsformen. Nutzen Sie also diesen "Kurs" als Eintrittskarte in diese reizvolle Welt der Selbstdarstellung. Sie werden garantiert mit einem überzeugenden und gewinnenden persönlichen Auftritt davon profitieren.
+    <strong>Anzeige a:</strong> Nicht nur Urlaub... ...kann man in anderen Ländern machen, sondern auch etwas lernen. Die Agentur für Arbeit vermittelt Schülerinnen und Schülern, aber auch Studierenden Praktikumsplätze im Ausland! Nutzt die Gelegenheit, möglichst früh Euren Wunschberuf kennenzulernen, auch wenn Ihr für das Praktikum nicht bezahlt werdet. Meldet euch gleich in der nächsten Filiale oder besucht unsere Homepage, auch dort gibt's weitere Informationen. www.agenturfuerarbeit.de
     <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
   </div>
 
   <div class="text" onclick="selectText(2, this)">
     <div class="answer-box"></div>
     <div class="solution-box"></div>
-    <strong>Anzeige b:</strong> Die meisten Menschen kennen keine Strategien, wie sie ihr Lernverhalten und die Fähigkeit, sich Informationen zu merken, gezielt trainieren können. Dieses Buch gibt zunächst einen Überblick, wie das menschliche Gedächtnis funktioniert, und bietet dann eine Fülle von Techniken an, mit denen auch Ungeübte sich das Lernen und Arbeiten leichter machen können.
+    <strong>Anzeige b:</strong> Neues Ziel, neues Glück! Du bist gerade "auf dem Sprung", willst umziehen und suchst noch eine passende Bleibe? Dann haben wir das Richtige für dich: In unserem Internetportal findest du günstige Wohnungen oder WG-Zimmer in zahlreichen Städten Deutschlands - und sogar über die Grenzen Deutschlands hinaus. Unsere Suchfunktion erlaubt es dir, Details einzugeben wie "maximale Miete", "zentrale Lage" usw. Schau einfach mal vorbei, die Suche ist natürlich kostenlos! Und noch etwas: Du kannst auch gerne ein Wohnungsangebot bei uns einstellen, wenn du einen Nachmieter oder einen Mitbewohner suchst - für nur 0,49 Euro. Du findest uns unter www.ueberallwohnen.eu
     <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
   </div>
 
   <div class="text" onclick="selectText(3, this)">
     <div class="answer-box"></div>
     <div class="solution-box"></div>
-    <strong>Anzeige c:</strong> Dieses erstmals 1788 erschienene Buch handelt von dem Umgang der Menschen miteinander und gibt Ratschläge, wie man sich im Umgang mit Menschen verschiedenster Alters- und Rangstufen richtig verhält. Es definiert, was Gutes und was schlechtes Verhalten ist, und galt so lange Zeit als ein Leitfaden für "richtiges" Benehmen.
+    <strong>Anzeige c:</strong> Superlearning Sie möchten in kurzer Zeit ihre Sprachkenntnisse besonders schnell verbessern und suchen hierfür die beste Methode? Sie möchten sich während des Aufenthaltes gleichzeitig entspannen und etwas für Ihre Gesundheit tun? Dann dürfte dieses Programm für Sie genau das Richtige sein! Nach der Methode des berühmten bulgarischen Arztes Lozanov lernen Sie in entspannter Umgebung und dennoch hoch konzentriert mit Untermalung durch klassische Musik und praxisnahen kommunikativen Übungen. Durch unser ganzheitliches System können Sie Ihre Lernleistung erheblich steigern, so dass sich der vergleichsweise hohe Preis schnell bezahlt macht. Wir informieren Sie gerne über unser Angebot an Superintensivkursen. info@superlearning.de
     <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
   </div>
 
   <div class="text" onclick="selectText(4, this)">
     <div class="answer-box"></div>
     <div class="solution-box"></div>
-    <strong>Anzeige d:</strong> Tim Gallwey entwickelte die Theorie vom Tennis-Spiel, das sich im Kopf abspielt. Er zeigt, wie jeder sein Leben frei von Angst und mit Eleganz spielen kann, ohne in Selbstzweifel oder Unkonzentriertheit zu verfallen. Das Gallwey'sche Tennisspiel setzt ungeahnte Energien frei und zeigt das grenzenlose Potential des menschlichen Körpers und Geistes, wenn es darum geht, seine Lebensziele zu verfolgen und zu erreichen.
+    <strong>Anzeige d:</strong> Andere Länder, ... ... andere Sprachen. Und wo lernt man eine Sprache am besten? Genau - in dem Land, in dem sie gesprochen wird. Wir bieten Ihnen die Möglichkeit, Sprachen auf der ganzen Welt zu lernen. Vom Einzelunterricht bis hin zu einem Kurs für eine ganze Gruppe, von A wie Arabisch bis Z wie Zulu. Entdecken Sie die Welt und die Welt der Sprachen. Wir gehen flexibel auf Ihre Wünsche ein. Sprechen Sie uns an. Egal welche Sprache Sie lernen möchten, wir haben bestimmt auch für Sie das passende Angebot! Weitere Informationen unter: info@sprachenderwelt.eu
     <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
   </div>
 
   <div class="text" onclick="selectText(5, this)">
     <div class="answer-box"></div>
     <div class="solution-box"></div>
-    <strong>Anzeige e:</strong> Jeder Mensch kann seine kommunikativen Möglichkeiten entdecken und damit sein Leben bereichern. Die Themen des Buches sind: Die Grundlagen der Kommunikation, Rede und Vortrag, Gespräche erfolgreich führen, Sicherheit gewinnen und Redeängste überwinden, Zeitmanagement für Redner und Konferenzleiter und vieles mehr. Ein ausführlicher Praxisteil mit zahlreichen Übungen ermöglicht es dem Leser, seine rhetorischen Fähigkeiten zu trainieren.
+    <strong>Anzeige e:</strong> Was bedeutet "Tandemlernen"? Zwei Menschen mit verschiedenen Muttersprachen treffen sich und helfen sich gegenseitig beim Lernen der jeweiligen Fremdsprache. Tandemlernen hat keine festgelegten Strukturen, sondern kann ganz nach Lust und Laune ablaufen. Was, wann, wo und wie du lernst, hängt von dir und deinem Tandempartner ab. Außerdem hast du die Chance, durch Tandemlernen einen interessanten Einblick in eine andere Kultur zu bekomme. Und das Beste: es kostet nichts. Schau nach unter www.tandemboerse.de
     <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
   </div>
 
   <div class="text" onclick="selectText(6, this)">
     <div class="answer-box"></div>
     <div class="solution-box"></div>
-    <strong>Anzeige f:</strong> Gute Umgangsformen sind wieder "in". Aber gilt das auch in der Schule? Auf humorvolle Weise erzählt die Autorin aus ihrem Alltag als Lehrerin an einer Realschule. Von gutem Benehmen kann da nicht immer die Rede sein - übrigens auch nicht bei den Eltern.
+    <strong>Anzeige f:</strong> Interesse an einer Ausbildung? Auf unserem Azubi-Portal finden Sie Informationen zu allen Ausbildungsberufen, die es derzeit in Deutschland gibt. Sie erfahren, welche Voraussetzungen Sie für eine Ausbildung benötigen, was genau Sie in der Ausbildung lernen, wie Ihr späteres Berufsleben aussieht - und natürlich erfahren Sie auch alles rund um das Thema Lohn. Auch wertvolle Bewerbungstipps finden Sie bei uns. Schauen Sie doch mal vorbei: www.azubiportal.eu
     <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
   </div>
 
   <div class="text" onclick="selectText(7, this)">
     <div class="answer-box"></div>
     <div class="solution-box"></div>
-    <strong>Anzeige g:</strong> Frieder Schulze "Reden wir miteinander oder aneinander vorbei?" Manche Missverständnisse entstehen, wenn Menschen miteinander reden, besonders im privaten Bereich erleben wir das oft. Wenn Kommunikation erfolgreich sein soll, ist die Fähigkeit erforderlich, den anderen zu durchschauen und seelische Vorgänge und menschliche Probleme zu erkennen. Viele Beispiele zeigen, wie psychologische Aspekte menschliche Kommunikation verkomplizieren können und wie man damit am besten klar kommen kann.
+    <strong>Anzeige g:</strong> Umzug mal anders Wer kennt das nicht: Wenn man umziehen will oder muss, gibt es viel zu erledigen. Man muss den Umzug organisieren, sich um Papiere kümmern, die neue Adresse bekanntgeben und vieles mehr. Dabei hat man auch gar keine Zeit, denn arbeiten oder studieren muss man ja auch noch. Deshalb bieten wir einen kompletten Umzugs-Service an. Sie müssen nur noch von einer Stadt in die nächste fahren - und den Rest erledigen wir. Das alles zu einem fairen Preis. Sprechen Sie uns an! E-Mail: info@umzugmalanders.eu
     <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
   </div>
 
   <div class="text" onclick="selectText(8, this)">
     <div class="answer-box"></div>
     <div class="solution-box"></div>
-    <strong>Anzeige h:</strong> Der Körper lügt nicht, Gesten und Gebärden decken die Ebene des Unbewusstsein auf: Wer einen erhobenen Zeigefinger oder eine gerümpfte Nase sieht, versteht sofort, was der Gesprächspartner meint, auch wenn der mit Worten etwas anderes sagt. Dieses Buch gibt einen anschaulichen Überblick über die Signale, die wir ständig mit unserem Körper senden, und hilft uns zu verstehen, what jemand in Wahrheit gerade denkt und meint.
+    <strong>Anzeige h:</strong> Alle Informationen auf einer Seite Die neue Internetseite www.studium.de bietet Ihnen alles rund um das Thema "Studium". So finden Sie neben Informationen zu allen deutschen Hochschulen auch genaue Beschreibungen aller Studiengänge und -fächer auf unserer Webseite. Ob sie etwas Naturwissenschaftliches studieren möchten, etwas Wirtschaftswissenschaftliches, ein Fach mit Bezug zu Kultur oder eine Sprache - bei uns finden Sie alles und erfahren natürlich auch, wo Sie was studieren können. Und als besonderen Service bieten wir Ihnen auch einen BAföG-Rechner an: Ermitteln sie gleich, ob Ihnen Unterstützung während des Studiums zusteht.
     <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
   </div>
 
   <div class="text" onclick="selectText(9, this)">
     <div class="answer-box"></div>
     <div class="solution-box"></div>
-    <strong>Anzeige i:</strong> Rolph Barth "Basiswissen: Bewerbungstraining" Die Konkurrenz auf dem Arbeitsmarkt um immer knapper werdende freie Stellen ist groß. Umso wichtiger ist es zu wissen, wie man sich richtig bewirbt. Dieses Buch gibt Arbeitsuchenden umfassende Informationen zur erfolgreichen Bewerbung und bereitet optimal auf das Vorstellungsgespräch vor. Im Übungsteil werden gute Formulierungen für das Anschreiben und das sichere Auftreten des Bewerbers im Gespräch trainiert.
+    <strong>Anzeige i:</strong> Hilfe gesucht? Studierende und Auszubildende müssen oft umziehen, ohne dass sie viel Geld dafür hätten. Deshalb haben wir unser Netzwerk "Studis und Azubis ziehen um" gegründet. Bei uns sind viele fleißige Helfer registriert, die gerne beim Umzug helfen: Kisten packen, Möbel abbauen, die Sachen zu neuen Wohnung bringen und so weiter. Und das Beste daran: Es kostet keinen Cent! Wie das funktioniert? Ganz einfach. Registriert euch bei uns - natürlich ebenfalls kostenfrei -, und wenn jemand anders Hilfe braucht, tragt ihr eben auch mal Kartons und baut Möbel auf. Wir helfen uns gegenseitig! Weitere Infos unter: www.umzugshelferlein.eu
     <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
   </div>
 
   <div class="text" onclick="selectText(10, this)">
     <div class="answer-box"></div>
     <div class="solution-box"></div>
-    <strong>Anzeige j:</strong> Brigitte Hübner "Richtig präsentieren" Dieses Buch ist ein Leitfaden für alle, die Teamsitzungen, Besprechungen, Workshops und Konferenzen durchführen. Anhand vieler praktischer Beispiele erhält der Leser Anregungen zum gekonnten visualisieren, zur gut geplanten und sicher durchgeführten Präsentation und zur effektiv gestalteten Besprechung. Es zeigt, wie durch den Einsatz von Bildern und Grafiken Präsentationen aufgelockert und Informationen besser verstanden werden können.
+    <strong>Anzeige j:</strong> Neu in der Stadt? Ihr seid umgezogen und habt eine Ausbildung oder ein Studium hier in der Stadt begonnen? Ihr sucht neue Kontakte, Leute, mit denen ihr die Freizeit verbringen könnt? Der Verein "Triff dich!" organisiert einmal pro Woche eine Stammtisch für alle, die neue Leute treffen wollen. Kommt einfach vorbei - und wenn es euch nicht gefällt, könnt ihr ja jederzeit wieder gehen! Weitere Informationen sowie den Ort und das genaue Datum für unser nächstes Treffen erhaltet ihr unter: info@triffdich.eu
     <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
   </div>
 
   <div class="text" onclick="selectText(11, this)">
     <div class="answer-box"></div>
     <div class="solution-box"></div>
-    <strong>Anzeige k:</strong> Helga Sinn-Krummacher "Delfin oder Delphin? So schreibt man das jetzt richtig" Dieses Trainingsbuch ist für den Arbeitsplatz und für zu Hause gedacht. Auf humorvolle Art werden die neuen Rechtschreibregeln der deutschen Sprache vorgestellt und eingeübt. Es enthält außerdem die neue amtliche Wortliste zur Rechtschreibung und die neuen Zeichensetzungsregeln.
+    <strong>Anzeige k:</strong> Wie es Ihnen gefällt Unser neues Lernprogramm "Sprachenfix" bietet Ihnen die Möglichkeit, eine Sprache zu lernen, wann und wo Sie möchten, ob allein zu Hause oder unterwegs. Das Programm bietet alles, was Sie brauchen: von Erklärungen und Wortschatz über Lesetexte und Hörbeispiele bis hin zu Videos mit kleinen authentischen Szenen aus dem Alltag. Unser Online-Service bietet darüber hinaus Zusatzmaterialien. Auf Wunsch können Sie auch in einem durch Passwort geschützten Bereich Ihre eigenen Texte durch unsere Lehrkräfte korrigieren und kommentieren lassen. Das Programm ist für zahl-reiche Sprachen verfügbar, sprechen Sie uns an. Sprachfix GmbH, Eiderstädt, Tel, 01800/81890132
     <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
   </div>
 
   <div class="text" onclick="selectText(12, this)">
     <div class="answer-box"></div>
     <div class="solution-box"></div>
-    <strong>Anzeige l:</strong> Viele Menschen wissen nicht mehr, wo Ihnen der Kopf steht. Zu viele Termine und Aufgaben stellen Sie unter ständigen Zeitdruck. Mit Zeitmanagement lernen Sie, wie Sie Ihre Zeit so einteilen können, dass Sie wieder Zeit zum Leben haben. Sie erkennen Ihre persönlichen Zeitdiebe, Sie lernen, Prioritäten und erreichbare Ziele zu setzen. Durch das Führen eines Zeitplanbuchs lernen Sie wieder (und dauerhaft), aus der Zeitfalle herauszukommen.
+    <strong>Anzeige l:</strong> Aller Anfang ist schwer. Einige Fächer sind schon in der Schule nicht beliebt, und das ändert sich auch später in der Berufsschule oder an der Universität nicht. Für viele sind Naturwissenschaften oder Mathematik echte "Problemfächer". Bei uns wird das anders. Unsere Lehrkräfte sind nicht nur fachlich gut ausgebildet, sondern sie haben auch eine spezielle pädagogische Ausbildung. Probieren Sie es einfach aus! Egal, ob in der Schule, in der Ausbildung, im Studium oder "einfach nur so" - bei uns finden Sie, was Sie brauchen. Bei uns lernen Sie in Lerngruppen von drei bis fünf Teilnehmenden, so können Sie sich auch gegenseitig unterstützen. Weitere Informationen unter info@lernenmachtspass.eu
     <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
   </div>
 
@@ -572,22 +609,23 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
 
   <div class="title" data-id="0" onclick="selectTitle(0, this)">0. لا شيء مناسب لهذا الإعلان</div>
 
-  <div class="title" data-id="1" onclick="selectTitle(1, this)">1. Eine Bekannte interessiert sich für Bücher über den Tennissport.</div>
-  <div class="title" data-id="2" onclick="selectTitle(2, this)">2. Ein befreundetes Ehepaar steht andauernd unter Stress und möchte wieder mehr Zeit für sich und andere haben.</div>
-  <div class="title" data-id="3" onclick="selectTitle(3, this)">3. Eine Bekannte möchte bei ihren Partys eine perfekte Gastgeberin sein.</div>
-  <div class="title" data-id="4" onclick="selectTitle(4, this)">4. Eine Studentin sucht Informationen, wie sie besser und systematischer lernen kann.</div>
-  <div class="title" data-id="5" onclick="selectTitle(5, this)">5. Ein Bekannter möchte wissen, welche Botschaften durch Gestik und Mimik transportiert werden.</div>
-  <div class="title" data-id="6" onclick="selectTitle(6, this)">6. Eine Bekannte möchte ihr äußeres Erscheinungsbild optimieren.</div>
-  <div class="title" data-id="7" onclick="selectTitle(7, this)">7. Ein Bekannter ist sich noch unsicher, wie er sich bei einem Vorstellungsgespräch am besten präsentiert.</div>
-  <div class="title" data-id="8" onclick="selectTitle(8, this)">8. Ein Bekannter schreibt an einer Hausarbeit über gesellschaftliche Normen und Verhaltensregeln verschiedener Jahrhunderte.</div>
-  <div class="title" data-id="9" onclick="selectTitle(9, this)">9. Ein Bekannter möchte Kalligraphie (Schmuckschriften) lernen.</div>
-  <div class="title" data-id="10" onclick="selectTitle(10, this)">10. Eine Bekannte ist sehr verunsichert, weil sie auf Konferenzen immer wieder Angst hat, frei zu sprechen.</div>
+  <div class="title" data-id="1" onclick="selectTitle(1, this)">1. Sie brauchen Unterstützung in Mathematik und möchten in einer kleinen Gruppe lernen.</div>
+  <div class="title" data-id="2" onclick="selectTitle(2, this)">2. Sie möchten Physik studieren und möchten sich zunächst informieren.</div>
+  <div class="title" data-id="3" onclick="selectTitle(3, this)">3. Sie möchten einen Sprachkurs in einem anderen Land machen.</div>
+  <div class="title" data-id="4" onclick="selectTitle(4, this)">4. Sie möchten in einer anderen Stadt eine Ausbildung machen und suchen dort eine Wohnung.</div>
+  <div class="title" data-id="5" onclick="selectTitle(5, this)">5. Sie ziehen wegen einer Ausbildung um und suchen so günstig wie möglich Umzugshelfer.</div>
+  <div class="title" data-id="6" onclick="selectTitle(6, this)">6. Sie sind gerade umgezogen und möchten neue Leute kennenlernen.</div>
+  <div class="title" data-id="7" onclick="selectTitle(7, this)">7. Sie suchen einen Nachmieter und wollen eine kostenlose Anzeige aufgeben.</div>
+  <div class="title" data-id="8" onclick="selectTitle(8, this)">8. Sie wollen gerne noch eine Sprache lernen und suchen einen festen Lernpartner.</div>
+  <div class="title" data-id="9" onclick="selectTitle(9, this)">9. Sie wollen umziehen, haben aber eigentlich gar keine Zeit, sich darum zu kümmern.</div>
+  <div class="title" data-id="10" onclick="selectTitle(10, this)">10. Sie suchen für eine 18-jährige Bekannte einen bezahlten Job außerhalb von Deutschland.</div>
 
 </div>
 
 </div>
 
-<button onclick="checkTeil3()" style="margin-top:20px;">تصحيح Teil 3</button>
+<button onclick="checkTeil3()" style="margin-top:20px;">تصحيح</button>
+<button onclick="savePart('lesen3')">💾 حفظ</button>
 <button onclick="resetTeil3()" style="margin-top:20px; margin-right:10px;">🔄 إعادة Teil 3</button>
 <p id="result3"></p>
 
@@ -601,67 +639,23 @@ Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen dur
 <div id="variantSprach1" style="margin-bottom:15px;"></div>
 
 <div class="note-box">
-📌 ملاحظة: في بعض الحالات يمكن أن تكون الإجابة في السؤال 3 هي "je".
+ملاحظة: في بعض الحالات يمكن أن تكون الإجابة في السؤال 3 هي "noch".
 </div>
+
+<p style="font-size:13px; color:#555; margin-bottom:15px;">اجتز جميع أجزاء الامتحان ثم اضغط على زر "رؤية النتيجة"</p>
 
 <div style="display:flex; gap:20px; flex-wrap:wrap;">
 
-<!-- النص -->
-<div style="flex:1.5; min-width:300px; line-height:1.8;">
-
-Liebe Vanessa,<br>
-danke für deinen Brief, 
-<span class="gap" id="gap1">[1]</span>
- ich mich total gefreut habe. Du fragst dich bestimmt, warum du schon drei Wochen 
-<span class="gap" id="gap2">[2]</span>
- von mir gehört hast, oder? Ich war mit meiner Gastfamilie in Urlaub. Vierzehn Tage im Allgäu – mit den Kindern Stefan, Anja und Karina.
-
-<br><br>
-
-Du weißt 
-<span class="gap" id="gap3">[3]</span>
- selbst, wie anstrengend es ist, wenn man ständig drei kleine Kinder um sich hat, die pausenlos unterhalten werden möchten. 
-<span class="gap" id="gap4">[4]</span>
- ist es übrigens in deiner Au-pair-Familie mit der kleinen Dorothea?
-
-<br><br>
-
-Das Allgäu liegt in Süddeutschland am Fuß 
-<span class="gap" id="gap5">[5]</span>
- Alpen. Wir sind fast jeden Tag gewandert, immer bergauf und bergab. Den Kindern und mir haben ständig die Füße weh 
-<span class="gap" id="gap6">[6]</span>
-, doch meine Gasteltern, Herr und Frau Zimmer, sind einfach immer weitergelaufen. Die Deutschen lieben es nämlich, in der Natur spazieren zu gehen, bis sie vor Erschöpfung 
-<span class="gap" id="gap7">[7]</span>
-.
-
-<br><br>
-
-Unterwegs haben wir manchmal an einer sogenannten "Wassertretstelle" Rast gemacht. Das sind kleine Wasserbecken, die oft mitten im Wald liegen. Durch das Becken fließt ein Bach mit eiskaltem Wasser, das direkt von den Bergen kommt. Stell 
-<span class="gap" id="gap8">[8]</span>
- vor, alle Wanderer ziehen ihre Schuhe und Strümpfe aus und laufen durch dieses Becken. Als ich meinen Fuß in dieses kalte Wasser getaucht hatte, dachte ich, dass ich gleich sterben muss.
-
-<br><br>
-
-Am Wochenende haben wir alle Minigolf gespielt. Dabei muss ein Golfball mit einem Schläger in ein etwa zehn Meter entferntes Loch geschlagen werden. Aber vor dem Loch gibt es 
-<span class="gap" id="gap9">[9]</span>
- Menge Hindernisse: Gräben, kleine Hügel, Tunnel. Der Spieler, dessen Ball mit den wenigsten Schlägen im Loch ankommt, hat gewonnen. Die Kinder wollten gar nicht mehr 
-<span class="gap" id="gap10">[10]</span>
- aufhören.
-
-<br><br>
-
-Jetzt muss ich aber Schluss machen, die Kinder warten auf ihr Abendessen, denn die Zimmers sind heute nicht da: Sie wandern mal wieder.<br>
-Viele Grüße<br>
-deine Mercedes
-
-</div>
+<!-- النص الأساسي والمعدل -->
+<div id="sprach1Text" style="flex:1.5; min-width:300px; line-height:1.8;"></div>
 
 <!-- الخيارات -->
 <div style="flex:1; min-width:250px;" id="optionsContainer"></div>
 
 </div>
 
-<button onclick="checkSprach1()" style="margin-top:20px;">تصحيح</button>
+<button onclick="checkSprach1()">تصحيح</button>
+<button onclick="savePart('sprach1')">💾 حفظ</button>
 <button onclick="resetSprach1()" style="margin-top:20px; margin-right:10px;">🔄 إعادة</button>
 
 <p id="resultSprach1"></p>
@@ -673,53 +667,26 @@ deine Mercedes
 
 <h2>Sprachbausteine Teil 2</h2>
 
+<div id="variantSprach2" style="margin-bottom:15px;"></div>
+
 <div class="note-box">
-📌 ملاحظة: يمكنك الضغط مرة أخرى على الفراغ الذي يحتوي على إجابة لحذفها وإرجاع الأداة إلى القائمة.
+ملاحظة: يمكنك الضغط مرة أخرى على الفراغ الذي يحتوي على إجابة لحذفها وإرجاع الأداة إلى القائمة.
 </div>
+
+<p style="font-size:13px; color:#555; margin-bottom:15px;">اجتز جميع أجزاء الامتحان ثم اضغط على زر "رؤية النتيجة"</p>
 
 <div style="display:flex; gap:20px; flex-wrap:wrap;">
 
 <!-- النص مع الفراغات -->
-<div style="flex:1.5; min-width:300px; line-height:1.8;">
-
-Selbst ist der Mann. Von der Wahrheit dieser alten deutschen Redewendung haben Frauen Generationen lang geträumt, wenn es um typische Hausarbeiten wie Waschen, Putzen oder Kochen ging. Zumindest bei Letzterem scheint sich jedoch in der letzten Jahren vieles zu ändern. 
-<span class="gap2" id="gap2_1">[1]</span>
-, immer mehr Männer in Deutschland greifen jetzt selbst zum Kochtopf. Ein Grund 
-<span class="gap2" id="gap2_2">[2]</span>
- diese Entwicklung mag sein, dass es immer mehr Ein-Personen-Haushalte in Deutschland gibt. Es ist einfach niemand anderes da, der die Kocharbeit übernehmen könnte. Und Hunger zwingt bekanntlich zum Handeln. Andererseits ist das Kochen inzwischen ein allgemein akzeptiertes Hobby geworden, besonders unter Männern. Doch welch ein Unterschied besteht 
-<span class="gap2" id="gap2_3">[3]</span>
- den Ansprüchen einer traditionellen Hausfrau und denen eines Hobbykochs, was die Ausstattung der Küche angeht! Nicht 
-<span class="gap2" id="gap2_4">[4]</span>
- Topf darf es für den selbsternannten Drei-Sterne-Küchenchef sein: Gebürsteter Edelstahl mit versiegelter Antihaftbeschichtung und integrierter digitaler Temperaturanzeige ist der Mindeststandard für einen echten kochenden Mann. Alles andere gilt als stillos.
-
-<br><br>
-
-Die zweite Voraussetzung 
-<span class="gap2" id="gap2_5">[5]</span>
-, dass die Gerichte auch gelingen, ist das Wissen, wie man welche Speise am besten zubereitet. Zu diesem Zweck bieten die Buchhandlungen Berge von Kochbüchern an - mit Rezepten von Alaska bis Zimbabwe, mit oder ohne Fleisch, für zu Dicke und zu Dünne. Jetzt hängt es nur noch 
-<span class="gap2" id="gap2_6">[6]</span>
- ab, was der Hobbykoch aus den Kochideen der Buchautoren macht. Wird es ein exzellentes Mahl oder wäre unser "Chefkoch" nicht doch lieber zum Dönerstand um die Ecke gegangen? Überraschungen gehören zum Kochen dazu. Helfen die Bücher nicht 
-<span class="gap2" id="gap2_7">[7]</span>
-, bieten zum Beispiel die Volkshochschulen zahlreiche Kochkurse an, die in der Regel - zumeist von kochwilligen Männern - gut besucht sind. Das Kursangebot umfasst neben deutscher Hausmannskost wie Schnitzel, Krautwickel oder Rinderbraten zumeist auch die mediterrane und die asiatische Küche. Das führt 
-<span class="gap2" id="gap2_8">[8]</span>
-, dass man(n) zu Hause immer öfter international kocht.
-
-<br><br>
-
-Das größte Problem der Hobbyköche ist aber, 
-<span class="gap2" id="gap2_9">[9]</span>
- es viel zu aufwändig ist, für sich alleine zu kochen. Daher sind zurzeit Internetseiten wie www.allein-kochen-ist-doof.de beliebt, wo sich Hobbyköche und -köchinnen Kochpartner für das gemeinsame Kochen und Essen suchen können. Das Interessante 
-<span class="gap2" id="gap2_10">[10]</span>
- ist, dass dabei unsere männlichen Chefköche feststellen müssen, dass es andere Menschen gibt, die mit vielleicht weniger Aufwand genauso gut ein Festmahl zubereiten können wie sie: nämlich die Frauen.
-
-</div>
+<div id="sprach2Text" style="flex:1.5; min-width:300px; line-height:1.8;"></div>
 
 <!-- أدوات الربط -->
 <div style="flex:1; min-width:250px;" id="connectorsContainer"></div>
 
 </div>
 
-<button onclick="checkSprach2()" style="margin-top:20px;">تصحيح</button>
+<button onclick="checkSprach2()">تصحيح</button>
+<button onclick="savePart('sprach2')">💾 حفظ</button>
 <button onclick="resetSprach2()" style="margin-top:20px; margin-right:10px;">🔄 إعادة</button>
 
 <p id="resultSprach2"></p>
@@ -733,10 +700,12 @@ Das größte Problem der Hobbyköche ist aber,
 <div class="exam-box">
 
 <p>اختر: ✔ صحيح / ✖ خطأ</p>
+<p style="font-size:13px; color:#555;">اجتز جميع أجزاء الامتحان ثم اضغط على زر "رؤية النتيجة"</p>
 
 <div id="h1_questions"></div>
 
 <button onclick="checkH1()">تصحيح</button>
+<button onclick="savePart('h1')">💾 حفظ</button>
 <button onclick="resetH1()">🔄 إعادة</button>
 
 <p id="resultH1"></p>
@@ -749,11 +718,13 @@ Das größte Problem der Hobbyköche ist aber,
 <h2>Hören Teil 2</h2>
 
 <div id="variantButtons"></div>
+<p style="font-size:13px; color:#555;">اجتز جميع أجزاء الامتحان ثم اضغط على زر "رؤية النتيجة"</p>
 
 <div class="exam-box">
 <div id="h2_questions"></div>
 
 <button onclick="checkH2()">تصحيح</button>
+<button onclick="savePart('h2')">💾 حفظ</button>
 <button onclick="resetH2()">🔄 إعادة</button>
 
 <p id="resultH2"></p>
@@ -766,9 +737,11 @@ Das größte Problem der Hobbyköche ist aber,
 <h2>Hören Teil 3</h2>
 
 <div class="exam-box">
+<p style="font-size:13px; color:#555;">اجتز جميع أجزاء الامتحان ثم اضغط على زر "رؤية النتيجة"</p>
 <div id="h3_questions"></div>
 
 <button onclick="checkH3()">تصحيح</button>
+<button onclick="savePart('h3')">💾 حفظ</button>
 <button onclick="resetH3()">🔄 إعادة</button>
 
 <p id="resultH3"></p>
@@ -784,6 +757,17 @@ Das größte Problem der Hobbyköche ist aber,
 <!-- ==================== جميع الـ JavaScript في مكان واحد ==================== -->
 <script>
 
+// حفظ البيانات المؤقتة
+let savedData = {};
+
+function savePart(part){
+  savedData[part] = {
+    data: "saved",
+    timestamp: Date.now()
+  };
+  alert("تم حفظ " + part);
+}
+
 // دوال التنقل بين الصفحات
 function goList(){
   document.getElementById("home").classList.remove("active");
@@ -798,6 +782,24 @@ function goHome(){
 function openExam(num){
   document.getElementById("list").classList.remove("active");
   document.getElementById("exam").classList.add("active");
+}
+
+function goExamList(){
+  document.getElementById("list").classList.remove("active");
+  document.getElementById("exam").classList.add("active");
+}
+
+function goHelp(){
+  alert("صفحة المساعدة (قيد التطوير)");
+}
+
+function showBasicExam(){
+  // سيتم تطبيق النسخة الأساسية
+  location.reload();
+}
+
+function showModifiedExam(){
+  alert("النسخة المعدلة قيد التطوير");
 }
 
 function showTeil(n){
@@ -817,6 +819,16 @@ function showTeil(n){
   if(hoeren1) hoeren1.style.display = (n===6) ? "block" : "none";
   if(hoeren2) hoeren2.style.display = (n===7) ? "block" : "none";
   if(hoeren3) hoeren3.style.display = (n===8) ? "block" : "none";
+}
+
+// الإعدادات
+function toggleSettings(){
+  let box = document.getElementById("settingsBox");
+  box.style.display = (box.style.display === "none") ? "block" : "none";
+}
+
+function changeFont(size){
+  document.body.style.fontSize = size + "px";
 }
 
 // Teil 1 functions
@@ -908,7 +920,7 @@ function resetTeil1(){
 
 // Teil 2 functions
 function checkTeil2(){
-  let correct = {1:"a",2:"c",3:"a",4:"b",5:"a"};
+  let correct = {1:"c",2:"c",3:"c",4:"a",5:"c"};
   let score = 0;
 
   for(let i=1;i<=5;i++){
@@ -999,7 +1011,6 @@ function assign(num, letter){
   let textEl = document.querySelectorAll(".text")[num-1];
   let titleEl = document.querySelector(`.title[data-id="${letter}"]`);
   
-  // إذا كان هناك عنوان قديم → أرجعه
   if(answers[num] !== undefined){
     let oldTitle = document.querySelector(`.title[data-id="${answers[num]}"]`);
     if(oldTitle){
@@ -1009,24 +1020,20 @@ function assign(num, letter){
   
   answers[num] = letter;
 
-  // إزالة أي عنوان قديم داخل الفقرة
   let old = textEl.querySelector(".moved-title");
   if(old) old.remove();
 
-  // إنشاء عنوان داخل الفقرة وإخفائه من القائمة
   if(titleEl){
     titleEl.style.display = "none";
 
     let clone = document.createElement("div");
     clone.classList.add("moved-title");
 
-    // إنشاء زر X
     let closeBtn = document.createElement("span");
     closeBtn.innerText = " ✖";
     closeBtn.style.cursor = "pointer";
     closeBtn.style.marginLeft = "10px";
 
-    // عند الضغط → يرجع العنوان
     closeBtn.onclick = function(e){
       e.stopPropagation();
       titleEl.style.display = "block";
@@ -1040,7 +1047,6 @@ function assign(num, letter){
     textEl.insertBefore(clone, textEl.children[1]);
   }
 
-  // إخفاء التحديد
   selectedText = null;
   selectedTitle = null;
   document.querySelectorAll(".selected").forEach(e=>e.classList.remove("selected"));
@@ -1048,18 +1054,18 @@ function assign(num, letter){
 
 function checkTeil3(){
   let correct = {
-    1:6,   // Anzeige a → عنوان 6
-    2:4,   // Anzeige b → عنوان 4
-    3:8,   // Anzeige c → عنوان 8
-    4:1,   // Anzeige d → عنوان 1
-    5:10,  // Anzeige e → عنوان 10
-    6:0,   // Anzeige f → kein Titel (0)
-    7:0,   // Anzeige g → kein Titel (0)
-    8:5,   // Anzeige h → عنوان 5
-    9:7,   // Anzeige i → عنوان 7
-    10:0,  // Anzeige j → kein Titel (0)
-    11:0,  // Anzeige k → kein Titel (0)
-    12:2   // Anzeige l → عنوان 2
+    1:10,
+    2:7,
+    3:3,
+    4:3,
+    5:8,
+    6:0,
+    7:5,
+    8:6,
+    9:9,
+    10:0,
+    11:0,
+    12:1
   };
 
   let score = 0;
@@ -1070,12 +1076,10 @@ function checkTeil3(){
     let box = el.querySelector(".answer-box");
     let sol = el.querySelector(".solution-box");
 
-    // إزالة أي عنوان قديم داخل الفقرة قبل التصحيح
     let oldTitle = el.querySelector(".moved-title");
     if(oldTitle) oldTitle.remove();
 
     if(val === correct[i]){
-      // صحيح: إظهار العنوان الصحيح باللون الأخضر
       let correctTitle = document.querySelector(`.title[data-id="${correct[i]}"]`);
       if(correctTitle && correct[i] !== 0){
         let clone = document.createElement("div");
@@ -1095,7 +1099,6 @@ function checkTeil3(){
       box.classList.add("green");
       score++;
     }else{
-      // خطأ: إظهار الحل الصحيح باللون الأحمر
       el.classList.add("red");
       let correctTitle = document.querySelector(`.title[data-id="${correct[i]}"]`);
       if(correctTitle && correct[i] !== 0){
@@ -1119,25 +1122,6 @@ function checkTeil3(){
 
   let finalScore = (score * (25/12)).toFixed(2);
   document.getElementById("result3").innerText = "النتيجة: " + finalScore + " / 25";
-
-  let unusedTitles = [3,9];
-
-  document.querySelectorAll(".title").forEach((t, idx)=>{
-    let actualNum = idx;
-
-    let old = t.querySelector(".no-paragraph-msg");
-    if(old) old.remove();
-
-    if(unusedTitles.includes(actualNum)){
-      let msg = document.createElement("div");
-      msg.innerText = "⚠️ لا توجد فقرة لهذا العنوان";
-      msg.style.color = "#dc3545";
-      msg.style.fontSize = "11px";
-      msg.style.marginTop = "5px";
-      msg.classList.add("no-paragraph-msg");
-      t.appendChild(msg);
-    }
-  });
 }
 
 function resetTeil3(){
@@ -1153,7 +1137,6 @@ function resetTeil3(){
     answerBox.style.color = "";
     answerBox.classList.remove("green");
     el.querySelector(".solution-box").innerText = "";
-    // إزالة العنوان المنقول
     let movedTitle = el.querySelector(".moved-title");
     if(movedTitle) movedTitle.remove();
   });
@@ -1169,98 +1152,49 @@ function resetTeil3(){
 }
 
 // Sprachbausteine Teil 1
-let sprachAnswers = {
-  1:"über den",
-  2:"nichts mehr",
-  3:"doch",
-  4:"Wie",
-  5:"der",
-  6:"getan",
-  7:"umfallen",
-  8:"dir",
-  9:"jede",
-  10:"damit"
-};
-
-const sprach1Variants = {
-  1:{
-    title:"النموذج الأصلي",
-    answers:{
-      1:"über den",
-      2:"nichts mehr",
-      3:"doch",
-      4:"Wie",
-      5:"der",
-      6:"getan",
-      7:"umfallen",
-      8:"dir",
-      9:"jede",
-      10:"damit"
-    }
-  },
-  2:{
-    title:"معدل",
-    answers:{
-      1:"über den",
-      2:"nichts mehr",
-      3:"je",
-      4:"Wie",
-      5:"der",
-      6:"getan",
-      7:"umfallen",
-      8:"dir",
-      9:"jede",
-      10:"damit"
-    }
-  }
-};
-
 let currentSprach1Variant = 1;
 
-function loadSprach1Variants(){
-  let c = document.getElementById("variantSprach1");
-  if(!c) return;
-  c.innerHTML = "";
-
-  for(let v in sprach1Variants){
-    let b = document.createElement("button");
-    b.innerText = sprach1Variants[v].title;
-    b.style.margin = "5px";
-    b.style.padding = "8px 15px";
-    b.style.border = "1px solid #ccc";
-    b.style.borderRadius = "8px";
-    b.style.cursor = "pointer";
-    b.style.background = "white";
-    b.onclick = ()=>{
-      currentSprach1Variant = parseInt(v);
-      sprachAnswers = sprach1Variants[v].answers;
-      resetSprach1();
-      
-      document.querySelectorAll("#variantSprach1 button").forEach(btn=>{
-        btn.style.background = "white";
-        btn.style.color = "black";
-      });
-      b.style.background = "#0d6efd";
-      b.style.color = "white";
-    };
-    c.appendChild(b);
-  }
-}
-
-const sprachOptions = {
-  1:["an den","auf dem","über den"],
-  2:["nichts mehr","noch nicht","keines"],
-  3:["doch","eben","überhaupt"],
-  4:["Wann","Was","Wie"],
-  5:["der","die","von"],
-  6:["gelaufen","getan","geworden"],
-  7:["durchfallen","umfallen","wegfallen"],
-  8:["dich","dir","mal"],
-  9:["alle","ganze","jede"],
-  10:["dabei","damit","davon"]
+const sprach1Texts = {
+  1: `Liebe Karin,
+vielen Dank für deine letzte E-Mail! Ich habe mich wirklich sehr gefreut zu lesen, dass es dir in München so gut gefällt. Endlich kannst du auch das studieren, <span class="gap" id="gap1">[1]</span> du möchtest – das ist doch super! Wie ist es <span class="gap" id="gap2">[2]</span> so an der Uni dort? Hast du schon neue Leute kennengelernt? Und wie sieht deine Woche aus? Hast du viele Veranstaltungen? Musst du zuhause auch <span class="gap" id="gap3">[3]</span> viel lernen? Jobbst du eigentlich noch nebenbei?
+<br><br>
+Du siehst, ich habe jede Menge Fragen an dich!
+Deshalb würde ich deine Einladung wirklich gerne <span class="gap" id="gap4">[4]</span> und dich demnächst in München besuchen kommen. Im Moment habe ich noch nicht so viel Zeit, weil ich mich viel <span class="gap" id="gap5">[5]</span> Jonas kümmern muss – er ist ja erst sechs Monate alt – und Thomas leider keinen Urlaub nehmen kann. Aber <span class="gap" id="gap6">[6]</span> frei hat, komme ich mal für ein, zwei Tage zu dir. Ich bin ja so gespannt, wie du wohnst! In einer Wohngemeinschaft zu leben, ist bestimmt toll, <span class="gap" id="gap7">[7]</span> es mal Streit gibt. Aber du hast ja geschrieben, dass deine beiden Mitbewohnerinnen sehr nett sind und ihr euch alle gut versteht. Das freut mich wirklich <span class="gap" id="gap8">[8]</span> dich!
+<br><br>
+Bei mir gibt es gar nicht viel Neues. Wir hatten <span class="gap" id="gap9">[9]</span> mal überlegt, in eine größere Wohnung zu ziehen, aber die Mieten sind ja hier in Köln recht hoch und wir <span class="gap" id="gap10">[10]</span> uns nicht viel zumuten – also bleiben wir lieber erst mal in dieser Wohnung. Umziehen kann man ja auch später noch.
+Also, meld' dich doch mal wieder!
+Liebe Grüße,
+Heike`,
+  2: `Liebe Karin,
+vielen Dank für deine letzte E-Mail! Ich habe mich wirklich sehr gefreut zu lesen, dass es dir in München so gut gefällt. Endlich kannst du auch das studieren, <span class="gap" id="gap1">[1]</span> du möchtest – das ist doch super! Wie ist es <span class="gap" id="gap2">[2]</span> so an der Uni dort? Hast du schon neue Leute kennengelernt? Und wie sieht deine Woche aus? Hast du viele Veranstaltungen? Musst du zuhause auch <span class="gap" id="gap3">[3]</span> viel lernen? Jobbst du eigentlich noch <span class="gap" id="gap4">[4]</span>?
+<br><br>
+Du siehst, ich habe jede Menge Fragen an dich!
+Deshalb würde ich deine Einladung wirklich gerne <span class="gap" id="gap5">[5]</span> und dich demnächst in München besuchen kommen. Im Moment habe ich noch nicht so viel Zeit, weil ich mich viel um Jonas kümmern muss – er ist ja erst sechs Monate alt – und Thomas leider keinen Urlaub nehmen kann. Aber <span class="gap" id="gap6">[6]</span> frei hat, komme ich mal für ein, zwei Tage zu dir. Ich bin ja so gespannt, wie du wohnst! In einer Wohngemeinschaft zu leben, ist bestimmt toll, <span class="gap" id="gap7">[7]</span> es mal Streit gibt. Aber du hast ja geschrieben, dass deine beiden Mitbewohnerinnen sehr nett sind und <span class="gap" id="gap8">[8]</span> euch alle gut versteht. Das freut mich wirklich für dich!
+<br><br>
+Bei mir gibt es gar nicht viel Neues. Wir hatten <span class="gap" id="gap9">[9]</span> mal überlegt, in eine größere Wohnung zu ziehen, aber die Mieten sind ja hier in Köln recht hoch und wir <span class="gap" id="gap10">[10]</span> uns nicht viel zumuten – also bleiben wir lieber erst mal in dieser Wohnung. Umziehen kann man ja auch später noch.
+Also, meld' dich doch mal wieder!
+Liebe Grüße,
+Heike`
 };
 
-let currentGap = null;
+const sprachAnswers = {
+  1:{1:"was",2:"denn",3:"noch",4:"annehmen",5:"um",6:"sobald",7:"auch wenn",8:"für",9:"neulich",10:"wollen"},
+  2:{1:"was",2:"denn",3:"noch",4:"nebenbei",5:"annehmen",6:"sobald",7:"auch wenn",8:"euch",9:"neulich",10:"wollen"}
+};
+
+const sprachOptions = {
+  1:["das","was","welches"],
+  2:["denn","doch","mal"],
+  3:["dazu","noch","sogar"],
+  4:["abnehmen","annehmen","nehmen"],
+  5:["für","um","über"],
+  6:["bevor","bis","sobald"],
+  7:["wenn","auch wenn","wenn auch"],
+  8:["an","für","über"],
+  9:["demnächst","neulich","noch nicht"],
+  10:["müssen","sollen","wollen"]
+};
+
 let sprachUser = {};
 
 function loadSprachOptions(){
@@ -1285,20 +1219,12 @@ function loadSprachOptions(){
         let gapId = parseInt(this.getAttribute("data-gap"));
         let optionValue = this.getAttribute("data-value");
         
-        if(sprachUser[gapId] !== undefined){
-          let prevBtn = document.querySelector(`.option-btn[data-gap="${gapId}"][data-value="${sprachUser[gapId]}"]`);
-          if(prevBtn) prevBtn.classList.remove("selected-option");
-        }
-        
         let gapSpan = document.getElementById("gap"+gapId);
         gapSpan.innerText = optionValue;
         sprachUser[gapId] = optionValue;
         
         document.querySelectorAll(`.option-btn[data-gap="${gapId}"]`).forEach(b=>b.classList.remove("selected-option"));
         this.classList.add("selected-option");
-        
-        document.querySelectorAll(".gap").forEach(g=>g.classList.remove("active-gap"));
-        currentGap = null;
       };
       
       groupDiv.appendChild(btn);
@@ -1308,107 +1234,28 @@ function loadSprachOptions(){
   }
 }
 
-document.querySelectorAll(".gap").forEach((gapSpan, idx)=>{
-  gapSpan.onclick = function(e){
-    e.stopPropagation();
-    let gapNum = parseInt(this.id.replace("gap",""));
-    
-    if(currentGap === gapNum){
-      currentGap = null;
-      this.classList.remove("active-gap");
-      
-      document.querySelectorAll(".option-btn").forEach(btn=>{
-        btn.style.background = "white";
-        btn.style.color = "black";
-      });
-    } else {
-      document.querySelectorAll(".gap").forEach(g=>g.classList.remove("active-gap"));
-      this.classList.add("active-gap");
-      currentGap = gapNum;
-      
-      document.querySelectorAll(".option-btn").forEach(btn=>{
-        let btnGap = parseInt(btn.getAttribute("data-gap"));
-        if(btnGap === gapNum){
-          btn.style.background = "#e7f1ff";
-          btn.style.borderColor = "#0d6efd";
-        } else {
-          btn.style.background = "white";
-          btn.style.color = "black";
-        }
-      });
-    }
-  };
-});
-
-function applySelectionToGap(gapNum, value){
-  let gapSpan = document.getElementById("gap"+gapNum);
-  gapSpan.innerText = value;
-  sprachUser[gapNum] = value;
-  
-  document.querySelectorAll(`.option-btn[data-gap="${gapNum}"]`).forEach(btn=>{
-    if(btn.getAttribute("data-value") === value){
-      btn.classList.add("selected-option");
-    } else {
-      btn.classList.remove("selected-option");
-    }
-  });
-}
-
-function selectOptionForActiveGap(gapNum, value, btnElement){
-  if(currentGap === gapNum){
-    if(sprachUser[gapNum] !== undefined){
-      let prevBtn = document.querySelector(`.option-btn[data-gap="${gapNum}"][data-value="${sprachUser[gapNum]}"]`);
-      if(prevBtn) prevBtn.classList.remove("selected-option");
-    }
-    
-    applySelectionToGap(gapNum, value);
-    
-    document.querySelectorAll(".gap").forEach(g=>g.classList.remove("active-gap"));
-    currentGap = null;
-    
-    document.querySelectorAll(".option-btn").forEach(btn=>{
-      btn.style.background = "white";
-      btn.style.color = "black";
-    });
+function loadSprach1Text(){
+  let container = document.getElementById("sprach1Text");
+  if(container){
+    container.innerHTML = sprach1Texts[currentSprach1Variant];
   }
-}
-
-function enhanceOptionsForMethod1(){
-  document.querySelectorAll(".option-btn").forEach(btn=>{
-    let gapNum = parseInt(btn.getAttribute("data-gap"));
-    let value = btn.getAttribute("data-value");
-    
-    btn.onclick = function(e){
-      e.stopPropagation();
-      if(currentGap !== null){
-        selectOptionForActiveGap(gapNum, value, this);
-      } else {
-        if(sprachUser[gapNum] !== undefined){
-          let prevBtn = document.querySelector(`.option-btn[data-gap="${gapNum}"][data-value="${sprachUser[gapNum]}"]`);
-          if(prevBtn) prevBtn.classList.remove("selected-option");
-        }
-        applySelectionToGap(gapNum, value);
-        this.classList.add("selected-option");
-      }
-    };
-  });
 }
 
 function checkSprach1(){
   let score = 0;
+  let answers = sprachAnswers[currentSprach1Variant];
 
   for(let i=1;i<=10;i++){
     let gap = document.getElementById("gap"+i);
+    if(!gap) continue;
     gap.classList.remove("correct-gap","wrong-gap");
 
-    if(sprachUser[i] === sprachAnswers[i]){
+    if(sprachUser[i] === answers[i]){
       gap.classList.add("correct-gap");
       score++;
     }else{
       gap.classList.add("wrong-gap");
-      if(sprachUser[i] !== sprachAnswers[i]){
-        gap.innerText = sprachAnswers[i];
-      }
+      gap.innerText = answers[i];
     }
   }
 
@@ -1418,46 +1265,52 @@ function checkSprach1(){
 
 function resetSprach1(){
   sprachUser = {};
-  currentGap = null;
-
-  for(let i=1;i<=10;i++){
-    let gap = document.getElementById("gap"+i);
-    gap.innerText = "["+i+"]";
-    gap.classList.remove("correct-gap","wrong-gap","active-gap");
-  }
-  
+  loadSprach1Text();
   document.querySelectorAll(".option-btn").forEach(btn=>{
     btn.classList.remove("selected-option");
-    btn.style.background = "white";
-    btn.style.color = "black";
   });
-
   document.getElementById("resultSprach1").innerText = "";
 }
 
 // Sprachbausteine Teil 2
+const sprach2Texts = {
+  1: `Wer sich einen Mann angeln will, sollte einen Blick in dessen Tiefkühlfach werfen. Einer Studie zufolge kann man <span class="gap2" id="gap2_1">[1]</span> des Inhalts des Tiefkühlfachs den Charakter seines Besitzers erkennen. Die Meinungsforscher unterscheiden fünf Kategorien <span class="gap2" id="gap2_2">[2]</span> Single-Männern: den spontanen Typ, den Bequemen, den Kreativen, <span class="gap2" id="gap2_3">[3]</span> den Cocktail- und den Gourmet-Typen. Am häufigsten gibt es in Deutschland den spontanen Typ. Er hat neben kompletten Gerichten auch tiefgekühlte Produkte wie Brokkoligemüse oder Putenfilet in der Truhe, <span class="gap2" id="gap2_4">[4]</span> denen er eine Mahlzeit zusammenstellen kann. Dieser Typ liebt die Abwechslung auf dem Teller und auch sonst im Leben. Da wird es vermutlich auch in der Liebe nicht langweilig.
+<br><br>
+Hauptgewinn für jede Frau ist aber der Gourmet-Typ. In seinem Tiefkühlfach liegen Produkte wie Garnelen, Muscheln oder Ente. Dieser Typ liebt es, Frauen zu verwöhnen. Der Nachteil liegt <span class="gap2" id="gap2_5">[5]</span> der Hand: Dieser Typ Single-Mann ist selten.
+<br><br>
+Was man in der Tiefkühltruhe von bequemen Single-Männern findet, kann man leicht erraten, denn diese Männer haben gar keine Lust zu kochen. Ihnen ist es sogar zu <span class="gap2" id="gap2_6">[6]</span>, zwei Tüten zu öffnen statt nur einer. <span class="gap2" id="gap2_7">[7]</span> kaufen diese Männer am häufigsten komplette Gerichte, die sie nur noch in die Mikrowelle oder den Backofen stellen müssen. Aber ob sie so das Herz einer Frau erobern können? Zumindest Frauen sehen das wohl <span class="gap2" id="gap2_8">[8]</span> skeptisch.
+<br><br>
+Doch egal, <span class="gap2" id="gap2_9">[9]</span> welcher Kategorie ein Mann gehört – eines haben alle gemeinsam: Sie kaufen immer mehr Tiefkühlkost. Warum das so ist, kann die Studie nicht beantworten – da kann man nur raten: Einige haben vermutlich wenig Zeit zum Kochen, andere <span class="gap2" id="gap2_10">[10]</span> eher keine Lust. Dabei wäre das doch der beste Weg, um eine Frau zu erobern.`,
+  2: `Wer sich einen Mann angeln will, sollte einen Blick in dessen Tiefkühlfach werfen. Einer Studie <span class="gap2" id="gap2_1">[1]</span> kann man anhand des Inhalts des Tiefkühlfachs den Charakter seines Besitzers erkennen. Die Meinungsforscher unterscheiden fünf Kategorien <span class="gap2" id="gap2_2">[2]</span> Single-Männern: den spontanen Typ, den Bequemen, den Kreativen, <span class="gap2" id="gap2_3">[3]</span> den Cocktail- und den Gourmet-Typen. Am häufigsten gibt es in Deutschland den spontanen Typ. Er hat neben kompletten Gerichten auch tiefgekühlte Produkte wie Brokkoligemüse oder Putenfilet in der Truhe, aus <span class="gap2" id="gap2_4">[4]</span> er eine Mahlzeit zusammenstellen kann. Dieser Typ liebt die Abwechslung auf dem Teller und auch sonst im Leben. Da wird es vermutlich auch in der Liebe nicht langweilig.
+<br><br>
+Hauptgewinn für <span class="gap2" id="gap2_5">[5]</span> Frau ist aber der Gourmet-Typ. In seinem Tiefkühlfach liegen Produkte wie Garnelen, Muscheln oder Ente. Dieser Typ liebt es, Frauen zu verwöhnen. Der Nachteil liegt auf der Hand: Dieser Typ Single-Mann ist selten.
+<br><br>
+Was man in der Tiefkühltruhe von bequemen Single-Männern findet, kann man leicht erraten, denn diese Männer haben gar keine Lust zu kochen. Ihnen ist es sogar zu <span class="gap2" id="gap2_6">[6]</span>, zwei Tüten zu öffnen statt nur einer. <span class="gap2" id="gap2_7">[7]</span> kaufen diese Männer am häufigsten komplette Gerichte, die sie nur noch in die Mikrowelle oder den Backofen stellen müssen. Aber <span class="gap2" id="gap2_8">[8]</span> sollen sie so das Herz einer Frau erobern können? Zumindest Frauen sehen das wohl eher skeptisch.
+<br><br>
+Doch egal, <span class="gap2" id="gap2_9">[9]</span> welcher Kategorie ein Mann gehört – eines haben alle gemeinsam: Sie kaufen immer mehr Tiefkühlkost. Warum das so ist, kann die Studie nicht beantworten – da kann man nur raten: Einige haben <span class="gap2" id="gap2_10">[10]</span> wenig Zeit zum Kochen, andere wohl eher keine Lust. Dabei wäre das doch der beste Weg, um eine Frau zu erobern.`
+};
+
 const sprach2Answers = {
-  1:"denn",
-  2:"für",
-  3:"zwischen",
-  4:"irgendein",
-  5:"dafür",
-  6:"davon",
-  7:"weiter",
-  8:"dazu",
-  9:"dass",
-  10:"daran"
+  1:{1:"Anhand",2:"von",3:"sowie",4:"aus",5:"auf",6:"anstrengend",7:"Folglich",8:"wohl",9:"aus",10:"eher"},
+  2:{1:"zufolge",2:"von",3:"sowie",4:"denen",5:"jede",6:"anstrengend",7:"folglich",8:"ob",9:"vermutlich",10:"fast"}
 };
 
 const connectorsList = [
-  "denn", "für", "zwischen", "irgendein", "dafür",
-  "davon", "weiter", "dazu", "dass", "daran",
-  "daher", "damit", "gegen", "was", "zu"
+  "Anhand", "von", "sowie", "aus", "auf", "anstrengend", "Folglich", "wohl", "eher",
+  "zufolge", "denen", "jede", "folglich", "ob", "vermutlich", "fast"
 ];
 
+let currentSprach2Variant = 1;
 let currentGap2 = null;
 let selectedConnector = null;
 let sprach2User = {};
+
+function loadSprach2Text(){
+  let container = document.getElementById("sprach2Text");
+  if(container){
+    container.innerHTML = sprach2Texts[currentSprach2Variant];
+  }
+}
 
 function loadSprach2Options(){
   let container = document.getElementById("connectorsContainer");
@@ -1478,14 +1331,7 @@ function loadSprach2Options(){
       e.stopPropagation();
       let value = this.getAttribute("data-value");
       
-      // إذا الأداة مستعملة مسبقاً → لا تعمل
-      if(Object.values(sprach2User).includes(value)){
-        return;
-      }
-      
-      // إذا يوجد فراغ مختار → نملأه
       if(currentGap2 !== null){
-        // إذا كان هناك اختيار سابق في هذا الفراغ نحذفه
         if(sprach2User[currentGap2] !== undefined){
           let oldValue = sprach2User[currentGap2];
           let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
@@ -1502,7 +1348,6 @@ function loadSprach2Options(){
         document.querySelectorAll(".gap2").forEach(g=>g.classList.remove("active-gap"));
         currentGap2 = null;
       } else {
-        // إذا لا يوجد فراغ → نحفظ الأداة مؤقتاً
         document.querySelectorAll(".connector-btn").forEach(b=>b.classList.remove("selected-connector"));
         this.classList.add("selected-connector");
         selectedConnector = value;
@@ -1515,71 +1360,70 @@ function loadSprach2Options(){
   container.appendChild(groupDiv);
 }
 
-document.querySelectorAll(".gap2").forEach((gapSpan, idx)=>{
-  gapSpan.onclick = function(e){
-    e.stopPropagation();
-    let gapNum = parseInt(this.id.replace("gap2_",""));
-    
-    // ✅ إذا ضغط مرة ثانية على فراغ فيه إجابة → احذف الإجابة
-    if(sprach2User[gapNum] !== undefined){
-      let oldValue = sprach2User[gapNum];
-      let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
-      if(oldBtn) oldBtn.classList.remove("selected-connector");
+function attachGap2Events(){
+  document.querySelectorAll(".gap2").forEach((gapSpan, idx)=>{
+    gapSpan.onclick = function(e){
+      e.stopPropagation();
+      let gapNum = parseInt(this.id.replace("gap2_",""));
       
-      delete sprach2User[gapNum];
-      this.innerText = "["+gapNum+"]";
-      return;
-    }
-    
-    // إذا كان هناك أداة مختارة مسبقاً
-    if(selectedConnector !== null){
-      // إذا الأداة مستعملة مسبقاً → لا تعمل
-      if(Object.values(sprach2User).includes(selectedConnector)){
+      if(sprach2User[gapNum] !== undefined){
+        let oldValue = sprach2User[gapNum];
+        let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
+        if(oldBtn) oldBtn.classList.remove("selected-connector");
+        
+        delete sprach2User[gapNum];
+        this.innerText = "["+gapNum+"]";
+        return;
+      }
+      
+      if(selectedConnector !== null){
+        if(Object.values(sprach2User).includes(selectedConnector)){
+          selectedConnector = null;
+          document.querySelectorAll(".connector-btn").forEach(b=>b.classList.remove("selected-connector"));
+          return;
+        }
+        
+        if(sprach2User[gapNum] !== undefined){
+          let oldValue = sprach2User[gapNum];
+          let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
+          if(oldBtn) oldBtn.classList.remove("selected-connector");
+        }
+        
+        sprach2User[gapNum] = selectedConnector;
+        this.innerText = selectedConnector;
+        
         selectedConnector = null;
         document.querySelectorAll(".connector-btn").forEach(b=>b.classList.remove("selected-connector"));
         return;
       }
       
-      // إذا الفراغ فيه قيمة قديمة → نرجعها
-      if(sprach2User[gapNum] !== undefined){
-        let oldValue = sprach2User[gapNum];
-        let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
-        if(oldBtn) oldBtn.classList.remove("selected-connector");
+      if(currentGap2 === gapNum){
+        currentGap2 = null;
+        this.classList.remove("active-gap");
+      } else {
+        document.querySelectorAll(".gap2").forEach(g=>g.classList.remove("active-gap"));
+        this.classList.add("active-gap");
+        currentGap2 = gapNum;
       }
-      
-      sprach2User[gapNum] = selectedConnector;
-      this.innerText = selectedConnector;
-      
-      selectedConnector = null;
-      document.querySelectorAll(".connector-btn").forEach(b=>b.classList.remove("selected-connector"));
-      return;
-    }
-    
-    // السلوك العادي
-    if(currentGap2 === gapNum){
-      currentGap2 = null;
-      this.classList.remove("active-gap");
-    } else {
-      document.querySelectorAll(".gap2").forEach(g=>g.classList.remove("active-gap"));
-      this.classList.add("active-gap");
-      currentGap2 = gapNum;
-    }
-  };
-});
+    };
+  });
+}
 
 function checkSprach2(){
   let score = 0;
+  let answers = sprach2Answers[currentSprach2Variant];
   
   for(let i=1;i<=10;i++){
     let gap = document.getElementById("gap2_"+i);
+    if(!gap) continue;
     gap.classList.remove("correct-gap2","wrong-gap2");
     
-    if(sprach2User[i] === sprach2Answers[i]){
+    if(sprach2User[i] === answers[i]){
       gap.classList.add("correct-gap2");
       score++;
     }else{
       gap.classList.add("wrong-gap2");
-      gap.innerText = sprach2Answers[i];
+      gap.innerText = answers[i];
     }
   }
   
@@ -1592,11 +1436,7 @@ function resetSprach2(){
   currentGap2 = null;
   selectedConnector = null;
   
-  for(let i=1;i<=10;i++){
-    let gap = document.getElementById("gap2_"+i);
-    gap.innerText = "["+i+"]";
-    gap.classList.remove("correct-gap2","wrong-gap2","active-gap");
-  }
+  loadSprach2Text();
   
   document.querySelectorAll(".connector-btn").forEach(btn=>{
     btn.classList.remove("selected-connector");
@@ -1607,14 +1447,14 @@ function resetSprach2(){
 
 // Hören Teil 1
 const h1Data = [
-  "Die 50-Euro-Noten der Deutschen Bundesbank sind jetzt fälschungssicherer.",
-  "Der Ärzteverband hat gefordert, dass junge Ärzte in Zukunft ein Pflichtjahr in einer Landarztpraxis absolvieren müssen.",
-  "Wissenschaftler der Universität Mainz sind am Projekt zur Erforschung des Planeten Mars beteiligt.",
-  "Der Verband 'Bildung und Erziehung' fordert 10.000 zusätzliche Lehrerstellen.",
-  "Die Schwarzarbeit hat im vergangenen Jahr um 15% zugenommen."
+  "Nach dem Erdbeben meldeten viele Bürger Schäden bei Polizei und Feuerwehr.",
+  "Eltern müssen sich neuerdings über den Impfschutz für ihre Kinder beraten lassen.",
+  "Verkehrsbehinderungen drohen in den nächsten Wochen besonders samstags und sonntags.",
+  "Pipelines tragen maßgeblich zur Umweltverschmutzung in Schleswig-Holstein bei.",
+  "Anfang nächster Woche ist mit einer erhöhten Ozonbelastung zu rechnen."
 ];
 
-const h1Correct = [3];
+const h1Correct = [1,5];
 
 let h1User = {};
 
@@ -1712,93 +1552,22 @@ function resetH1(){
 }
 
 // Hören Teil 2
-const h2Variants = {
-  1:{
-    title:"Roland (Spielen)",
-    correct:[2,3,4,7,9,10],
-    questions:[
-      "Roland wünschmann arbeitet Vollzeit als Fußballtrainer bei Viktoria Köln.",
-      "Viktoria Köln möchte nicht nur gegen Mannschaften aus der Verbandsliga spielen.",
-      "Zu Beginn dieser Saison hat ein Spieler Viktoria Köln verlassen.",
-      "Neue Spieler kommen bei Viktoria Köln immer aus der eigenen Jugendmannschaft.",
-      "Die Mannschaft von Viktoria Köln hat Schwächen in der Abwehr.",
-      "Roland wünschmann wagt die Prognose, dass dieser Saison der 1 FC Mönchengladbach Meister wird.",
-      "Roland wünschmann kann seinen Beruf und sein Ehrenamt als Fußballtrainer problemlos miteinander vereinbaren.",
-      "Auch die Frau von Roland wünschmann engagiert sich im Fußball.",
-      "Der Vereinsvorstand schätzt Herrn wünschmanns Arbeit.",
-      "Roland wünschmann ist mit der bisherigen Nachwuchsförderung des Vereins zufrieden."
-    ]
-  },
+const h2Data = [
+  "Professor Steiner ist heute gar nicht mehr nervös, wenn er moderieren muss.",
+  "Steiner möchte, dass die Studierenden das Gelernte auch in der Praxis anwenden können.",
+  "Steiners Hobby ist es, experimentelle Filme zu machen.",
+  "Journalisten sollten heute auf einzelne Medien spezialisiert sein.",
+  "Nach Steiners Ansicht ist der Berufswunsch Sportjournalist heutzutage unrealistisch.",
+  "Journalisten sollten Lust haben, etwas zu entdecken",
+  "Steiner musste wegen einer Verletzung mit dem Fußballspielen aufhören.",
+  "Steiner hat während seines Journalistik-Studiums für das ZDF-Fußballspiele kommentiert.",
+  "Steiner ist wichtig, als Moderator den Sportlern gegenüber neutral zu bleiben.",
+  "Steiner rät Abiturienten dazu, verschiedene Tests zur Möglichkeit berufliche zu machen."
+];
 
-  2:{
-    title:"Roland (aufsteigen)",
-    correct:[3,4,7,9],
-    questions:[
-      "Roland wünschmann spielt selbst bei Viktoria Köln Fußball.",
-      "Viktoria Köln möchte am Ende der Spielsaison aufsteigen.",
-      "Zu Beginn dieser Saison hat ein Spieler Viktoria Köln verlassen.",
-      "Neue Spieler kommen bei Viktoria Köln immer aus der eigenen Jugendmannschaft.",
-      "Die Mannschaft von Viktoria Köln hat Schwächen in der Abwehr.",
-      "Roland wünschmann wagt die Prognose, dass dieser Saison der 1 FC Mönchengladbach Meister wird.",
-      "Roland wünschmann kann seinen Beruf und sein Ehrenamt als Fußballtrainer miteinander vereinbaren.",
-      "Auch die Frau von Roland wünschmann engagiert sich im Fußball.",
-      "Der Vereinsvorstand schätzt Herrn wünschmanns Arbeit.",
-      "Roland wünschmann ist mit der bisherigen Nachwuchsförderung des Vereins noch nicht voll zufrieden."
-    ]
-  },
+const h2Correct = [2,9,10];
 
-  3:{
-    title:"Roland (höhere Liga)",
-    correct:[2,3,5,8,9],
-    questions:[
-      "Roland wünschmann spielt selbst bei Viktoria Köln Fußball.",
-      "Viktoria Köln spielt seit Beginn der Saison in einer höheren Liga.",
-      "Die meisten Spieler haben schon in der letzten Saison bei Viktoria Köln gespielt.",
-      "Neuzugänge kommen meist aus unterschiedlichen Mannschaften.",
-      "Die Mannschaft möchte neue Spieltaktiken ausprobieren.",
-      "Roland wünschmann wagt die Prognose, dass dieser Saison der 1 FC Mönchengladbach Meister wird.",
-      "Roland wünschmann empfindet sein Ehrenamt oft als Belastung.",
-      "Seine Frau engagiert sich für denselben Verein.",
-      "Er und der Vorstand sind meistens einer Meinung.",
-      "Er hofft auf Verbesserungen in der Nachwuchsförderung."
-    ]
-  }
-};
-
-let currentVariant=1;
 let h2User={};
-
-function loadVariants(){
-  let c=document.getElementById("variantButtons");
-  if(!c) return;
-  c.innerHTML="";
-
-  for(let v in h2Variants){
-    let b=document.createElement("button");
-    b.innerText=h2Variants[v].title;
-    b.style.margin="5px";
-    b.style.padding="8px 15px";
-    b.style.border="1px solid #ccc";
-    b.style.borderRadius="8px";
-    b.style.cursor="pointer";
-    b.style.background="white";
-    b.onclick=()=>{
-      currentVariant=parseInt(v);
-      h2User={};
-      
-      document.querySelectorAll("#variantButtons button").forEach(btn=>{
-        btn.style.background="white";
-        btn.style.color="black";
-      });
-      
-      b.style.background="#0d6efd";
-      b.style.color="white";
-      
-      loadH2();
-    };
-    c.appendChild(b);
-  }
-}
 
 function loadH2(){
   let container=document.getElementById("h2_questions");
@@ -1806,9 +1575,7 @@ function loadH2(){
   container.innerHTML="";
   h2User = {};
 
-  let data = h2Variants[currentVariant];
-
-  data.questions.forEach((q,i)=>{
+  h2Data.forEach((q,i)=>{
     let div=document.createElement("div");
     div.className="h-question";
 
@@ -1842,12 +1609,11 @@ function selectH2(i,val){
 }
 
 function checkH2(){
-  let correctList = h2Variants[currentVariant].correct;
   let score = 0;
   let questions = document.querySelectorAll("#h2_questions .h-question");
 
   for(let i=0;i<10;i++){
-    let correct = correctList.includes(i+1);
+    let correct = h2Correct.includes(i+1);
     let user = h2User[i];
 
     let qDiv = questions[i];
@@ -2004,14 +1770,60 @@ function resetH3(){
   document.getElementById("resultH3").innerText="";
 }
 
+// النتيجة النهائية
+function getScore(id){
+  let el = document.getElementById(id);
+  if(!el) return 0;
+
+  let match = el.innerText.match(/[\d.]+/);
+  return match ? parseFloat(match[0]) : 0;
+}
+
+function showFinalResult(){
+  let total = 0;
+  let max = 225;
+
+  let results = {
+    "Hören 1": getScore("resultH1"),
+    "Hören 2": getScore("resultH2"),
+    "Hören 3": getScore("resultH3"),
+    "Lesen 1": getScore("result"),
+    "Lesen 2": getScore("result2"),
+    "Lesen 3": getScore("result3"),
+    "Sprach 1": getScore("resultSprach1"),
+    "Sprach 2": getScore("resultSprach2")
+  };
+
+  let text = "";
+
+  for(let key in results){
+    total += results[key];
+    text += key + ": " + results[key] + "\n";
+  }
+
+  let message = "";
+
+  if(total >= 135){
+    message = "🎉 ممتاز! لقد نجحت، استمر هكذا!";
+  }else{
+    message = "💪 لا بأس، حاول مرة أخرى وستنجح!";
+  }
+
+  alert(
+    text +
+    "\nالمجموع: " + total + " / " + max +
+    "\n\n" + message
+  );
+}
+
 // تهيئة كل الأجزاء
 loadOptions();
 loadSprachOptions();
+loadSprach1Text();
+loadSprach2Text();
 loadSprach2Options();
-loadSprach1Variants();
-setTimeout(enhanceOptionsForMethod1, 100);
+attachGap2Events();
 loadH1();
-loadVariants();
 loadH2();
 loadH3();
 
