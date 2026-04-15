@@ -5,33 +5,47 @@
 let loadedScripts = {};
 let currentExamId = null;
 
-// قائمة الامتحانات الموجودة فعلاً (سنضيفها تدريجياً)
+// قائمة الامتحانات الموجودة فعلاً
 const AVAILABLE_EXAMS = [1];
 
 // ========== دوال التنقل بين الصفحات ==========
 function goList() {
-  console.log("🟢 goList - الانتقال إلى القائمة");
-  document.getElementById("home").classList.remove("active");
-  document.getElementById("list").classList.add("active");
-  document.getElementById("exam").classList.remove("active");
+  console.log("🟢 goList تم استدعاؤها - الانتقال إلى القائمة");
+  
+  const homePage = document.getElementById("home");
+  const listPage = document.getElementById("list");
+  const examPage = document.getElementById("exam");
+  
+  console.log("homePage:", homePage);
+  console.log("listPage:", listPage);
+  
+  if (homePage) homePage.classList.remove("active");
+  if (listPage) listPage.classList.add("active");
+  if (examPage) examPage.classList.remove("active");
   
   // استدعاء عرض القائمة
   if (typeof renderExamList === "function") {
     console.log("🟢 استدعاء renderExamList");
     renderExamList();
   } else {
-    console.error("❌ renderExamList غير موجود - تأكد من تحميل exams.js");
+    console.error("❌ renderExamList غير موجود");
     const container = document.getElementById("examList");
     if (container) {
-      container.innerHTML = '<div style="color:red; padding:20px;">⚠️ خطأ في تحميل قائمة الامتحانات. الرجاء تحديث الصفحة.</div>';
+      container.innerHTML = '<div style="color:red; padding:20px;">⚠️ خطأ في تحميل قائمة الامتحانات</div>';
     }
   }
 }
 
 function goHome() {
-  document.getElementById("list").classList.remove("active");
-  document.getElementById("home").classList.add("active");
-  document.getElementById("exam").classList.remove("active");
+  console.log("🟢 goHome تم استدعاؤها");
+  
+  const homePage = document.getElementById("home");
+  const listPage = document.getElementById("list");
+  const examPage = document.getElementById("exam");
+  
+  if (listPage) listPage.classList.remove("active");
+  if (homePage) homePage.classList.add("active");
+  if (examPage) examPage.classList.remove("active");
 }
 
 // ========== فتح الامتحان ==========
@@ -39,59 +53,64 @@ function openExam(exam) {
   console.log("🟢 openExam - فتح الامتحان:", exam);
   currentExamId = exam.id;
   
-  // التحقق: هل الامتحان موجود؟
   if (!AVAILABLE_EXAMS.includes(exam.id)) {
     showExamNotAvailable(exam.id);
     return;
   }
   
-  // إخفاء الصفحات الأخرى
-  document.getElementById("list").classList.remove("active");
-  document.getElementById("home").classList.remove("active");
-  document.getElementById("exam").classList.add("active");
+  const homePage = document.getElementById("home");
+  const listPage = document.getElementById("list");
+  const examPage = document.getElementById("exam");
   
-  // عرض محتوى التحميل
+  if (listPage) listPage.classList.remove("active");
+  if (homePage) homePage.classList.remove("active");
+  if (examPage) examPage.classList.add("active");
+  
   const examContainer = document.getElementById("examContent");
-  examContainer.innerHTML = `
-    <div style="text-align:center; padding:50px;">
-      <h3>📚 جاري تحميل الامتحان...</h3>
-      <p><strong>${exam.title}</strong></p>
-    </div>
-  `;
+  if (examContainer) {
+    examContainer.innerHTML = `
+      <div style="text-align:center; padding:50px;">
+        <h3>📚 جاري تحميل الامتحان...</h3>
+        <p><strong>${exam.title}</strong></p>
+      </div>
+    `;
+  }
   
-  // إزالة أي سكريبت محمل سابقاً
   if (loadedScripts[exam.id]) {
     const oldScript = document.getElementById(`exam-script-${exam.id}`);
     if (oldScript) oldScript.remove();
     delete loadedScripts[exam.id];
   }
   
-  // تحميل ملف الامتحان
   loadExamFile(exam.file, exam.id);
 }
 
-// دالة عرض رسالة "غير متوفر"
 function showExamNotAvailable(examId) {
   const examContainer = document.getElementById("examContent");
-  examContainer.innerHTML = `
-    <div style="text-align:center; padding:50px; background:#fff3cd; border-radius:10px; border:1px solid #ffc107;">
-      <h3 style="color:#856404;">⚠️ الامتحان غير متوفر بعد</h3>
-      <p style="color:#856404;">الامتحان رقم ${examId} سيتم إضافته قريباً.</p>
-      <p style="color:#856404; font-size:14px;">✅ حالياً الامتحان 1 فقط متاح.</p>
-      <button onclick="goList()" style="margin-top:20px;">🔙 العودة للقائمة</button>
-    </div>
-  `;
-  document.getElementById("list").classList.remove("active");
-  document.getElementById("home").classList.remove("active");
-  document.getElementById("exam").classList.add("active");
+  if (examContainer) {
+    examContainer.innerHTML = `
+      <div style="text-align:center; padding:50px; background:#fff3cd; border-radius:10px; border:1px solid #ffc107;">
+        <h3 style="color:#856404;">⚠️ الامتحان غير متوفر بعد</h3>
+        <p style="color:#856404;">الامتحان رقم ${examId} سيتم إضافته قريباً.</p>
+        <p style="color:#856404; font-size:14px;">✅ حالياً الامتحان 1 فقط متاح.</p>
+        <button onclick="goList()" style="margin-top:20px;">🔙 العودة للقائمة</button>
+      </div>
+    `;
+  }
+  
+  const homePage = document.getElementById("home");
+  const listPage = document.getElementById("list");
+  const examPage = document.getElementById("exam");
+  
+  if (listPage) listPage.classList.remove("active");
+  if (homePage) homePage.classList.remove("active");
+  if (examPage) examPage.classList.add("active");
 }
 
 function loadExamFile(filename, examId) {
-  // إزالة السكريبت القديم
   const oldScript = document.getElementById(`exam-script-${examId}`);
   if (oldScript) oldScript.remove();
   
-  // إنشاء سكريبت جديد
   const script = document.createElement("script");
   script.id = `exam-script-${examId}`;
   script.src = `exams/${filename}`;
@@ -115,4 +134,4 @@ window.goHome = goHome;
 window.openExam = openExam;
 
 console.log("✅ app.js تم تحميله بنجاح");
-// لا نستدعي renderExamList هنا لأن exams.js قد لا يكون تحمّل بعد
+console.log("📍 الدوال المتاحة: goList, goHome, openExam");
