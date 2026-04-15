@@ -45,10 +45,11 @@ function renderExamList() {
   
   const container = document.getElementById("examList");
   if (!container) {
-    console.error("❌ عنصر examList غير موجود في الصفحة");
+    console.error("❌ عنصر examList غير موجود في الصفحة - تأكد من وجود div id='examList'");
     return;
   }
 
+  // مسح المحتوى القديم
   container.innerHTML = "";
 
   let examNumber = 1;
@@ -106,15 +107,9 @@ function renderExamList() {
 // ========== تسجيل الدالة في window ==========
 window.renderExamList = renderExamList;
 
-// ========== استدعاء القائمة مباشرة عند تحميل الملف ==========
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", function() {
-    console.log("🟢 DOMContentLoaded - استدعاء renderExamList");
-    renderExamList();
-  });
-} else {
-  console.log("🟢 DOM جاهز - استدعاء renderExamList مباشرة");
-  renderExamList();
-}
+// ========== استدعاء القائمة فقط عند الحاجة (ليس تلقائياً) ==========
+// نقوم بتسجيل الدالة فقط، ولا نستدعيها تلقائياً
+// لأن app.js هو المسؤول عن استدعائها عند goList()
 
 console.log("✅ exams.js تم تحميله بنجاح");
+console.log("📋 دالة renderExamList جاهزة للاستخدام");
