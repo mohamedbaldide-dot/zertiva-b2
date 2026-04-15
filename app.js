@@ -10,11 +10,21 @@ const AVAILABLE_EXAMS = [1];
 
 // ========== دوال التنقل بين الصفحات ==========
 function goList() {
+  console.log("🟢 goList - الانتقال إلى القائمة");
   document.getElementById("home").classList.remove("active");
   document.getElementById("list").classList.add("active");
   document.getElementById("exam").classList.remove("active");
+  
+  // استدعاء عرض القائمة
   if (typeof renderExamList === "function") {
+    console.log("🟢 استدعاء renderExamList");
     renderExamList();
+  } else {
+    console.error("❌ renderExamList غير موجود - تأكد من تحميل exams.js");
+    const container = document.getElementById("examList");
+    if (container) {
+      container.innerHTML = '<div style="color:red; padding:20px;">⚠️ خطأ في تحميل قائمة الامتحانات. الرجاء تحديث الصفحة.</div>';
+    }
   }
 }
 
@@ -26,6 +36,7 @@ function goHome() {
 
 // ========== فتح الامتحان ==========
 function openExam(exam) {
+  console.log("🟢 openExam - فتح الامتحان:", exam);
   currentExamId = exam.id;
   
   // التحقق: هل الامتحان موجود؟
@@ -103,11 +114,5 @@ window.goList = goList;
 window.goHome = goHome;
 window.openExam = openExam;
 
-// تهيئة عند تحميل الصفحة
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("✅ app.js loaded");
-  console.log(`✅ الامتحانات المتاحة: ${AVAILABLE_EXAMS.join(", ")}`);
-  if (typeof renderExamList === "function") {
-    renderExamList();
-  }
-});
+console.log("✅ app.js تم تحميله بنجاح");
+// لا نستدعي renderExamList هنا لأن exams.js قد لا يكون تحمّل بعد
