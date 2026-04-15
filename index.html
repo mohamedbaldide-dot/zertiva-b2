@@ -4,8 +4,289 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zertiva B2</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+body{margin:0;font-family:Arial;background:#f5f5f5;}
+
+.page{display:none;min-height:100vh;padding:30px;}
+.active{display:block;}
+
+.home{display:flex;justify-content:center;align-items:center;text-align:center;}
+
+.card{background:white;padding:40px;border-radius:15px;box-shadow:0 0 10px rgba(0,0,0,0.1);}
+
+button{padding:12px 20px;border:none;background:black;color:white;border-radius:10px;cursor:pointer;margin-top:10px;}
+
+.item{background:white;padding:15px;margin-bottom:10px;border-radius:10px;cursor:pointer;}
+.item:hover{background:#eee;}
+
+.exam-box{background:white;padding:20px;border-radius:10px;}
+
+select{margin:10px 0;padding:8px;width:100%;}
+
+.correct{background:#c8f7c5;}
+.wrong{background:#f7c5c5;}
+
+/* ===== CSS لـ Teil 3 ===== */
+#texts{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.text{
+  background:#ffffff;
+  padding:12px;
+  border-radius:10px;
+  border:2px solid #dee2e6;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.title{
+  background:#ffffff;
+  padding:12px;
+  border-radius:10px;
+  border:2px solid #dee2e6;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.text:hover, .title:hover{
+  background:#f1f3f5;
+}
+
+.selected{
+  border:2px solid #0d6efd !important;
+  background:#e7f1ff !important;
+}
+
+.answer-box{
+  width:35px;
+  height:35px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#dee2e6;
+  border-radius:6px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.solution-box{
+  margin-top:6px;
+  font-size:12px;
+  color:#dc3545;
+}
+
+.green{
+  background:#d4edda !important;
+  border-color:#28a745 !important;
+}
+
+.red{
+  background:#f8d7da !important;
+  border-color:#dc3545 !important;
+}
+
+.moved-title{
+  font-size:0.85em;
+  padding:6px 10px;
+  margin-bottom:8px;
+  background:#f1f3f5;
+  border-left:4px solid #0d6efd;
+  border-radius:6px;
+}
+
+/* ===== CSS لـ Sprachbausteine ===== */
+.gap{
+  display:inline-block;
+  padding:6px 12px;
+  border:2px solid #007bff;
+  background:#e7f1ff;
+  color:#004085;
+  cursor:pointer;
+  margin:0 4px;
+  border-radius:8px;
+  font-weight:bold;
+  min-width:70px;
+  text-align:center;
+  transition:0.2s;
+}
+
+.gap:hover{
+  background:#cfe2ff;
+  transform:scale(1.02);
+}
+
+.gap.active-gap{
+  background:#0d6efd;
+  color:white;
+  border-color:#0a58ca;
+  box-shadow:0 0 0 2px rgba(13,110,253,0.3);
+}
+
+.correct-gap{
+  background:#d4edda;
+  border-color:#28a745;
+  color:#155724;
+}
+
+.wrong-gap{
+  background:#f8d7da;
+  border-color:#dc3545;
+  color:#721c24;
+}
+
+/* خيارات الإجابة */
+.option-btn{
+  margin:5px;
+  padding:8px 14px;
+  border:1px solid #6c757d;
+  border-radius:20px;
+  background:white;
+  color:black;
+  cursor:pointer;
+  transition:0.2s;
+  font-size:14px;
+}
+
+.option-btn:hover{
+  background:#e9ecef;
+  transform:translateY(-1px);
+}
+
+.option-btn.selected-option{
+  background:#0d6efd;
+  border-color:#0d6efd;
+  color:white;
+}
+
+.option-btn.disabled-option{
+  opacity:0.5;
+  text-decoration:line-through;
+  cursor:not-allowed;
+  pointer-events:none;
+}
+
+.option-group{
+  margin-bottom:20px;
+  padding:12px;
+  background:#f8f9fa;
+  border-radius:12px;
+  border-left:4px solid #0d6efd;
+}
+
+/* ===== CSS لـ Sprachbausteine Teil 2 ===== */
+.gap2{
+  display:inline-block;
+  padding:6px 12px;
+  border:2px solid #28a745;
+  background:#d4edda;
+  color:#155724;
+  cursor:pointer;
+  margin:0 4px;
+  border-radius:8px;
+  font-weight:bold;
+  min-width:70px;
+  text-align:center;
+  transition:0.2s;
+}
+
+.gap2:hover{
+  background:#c3e6cb;
+  transform:scale(1.02);
+}
+
+.gap2.active-gap{
+  background:#218838;
+  color:white;
+  border-color:#1e7e34;
+  box-shadow:0 0 0 2px rgba(33,136,56,0.3);
+}
+
+.correct-gap2{
+  background:#d4edda;
+  border-color:#28a745;
+  color:#155724;
+}
+
+.wrong-gap2{
+  background:#f8d7da;
+  border-color:#dc3545;
+  color:#721c24;
+}
+
+.connector-btn{
+  margin:5px;
+  padding:8px 14px;
+  border:1px solid #6c757d;
+  border-radius:20px;
+  background:white;
+  color:black;
+  cursor:pointer;
+  transition:0.2s;
+  font-size:14px;
+}
+
+.connector-btn:hover{
+  background:#e9ecef;
+  transform:translateY(-1px);
+}
+
+.connector-btn.selected-connector{
+  background:#28a745;
+  border-color:#28a745;
+  color:white;
+}
+
+.connector-group{
+  margin-bottom:20px;
+  padding:12px;
+  background:#f8f9fa;
+  border-radius:12px;
+  border-left:4px solid #28a745;
+}
+
+/* ===== CSS لـ Hören ===== */
+.h-question{
+  border:1.5px solid #ccc;
+  border-radius:10px;
+  padding:10px;
+  margin:8px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#fafafa;
+  transition:0.3s;
+}
+
+.h-question:hover{
+  background:#f1f1f1;
+  border-color:#999;
+}
+
+.h-btn{
+  padding:5px 10px;
+  margin:2px;
+  border:1px solid #ccc;
+  background:white;
+  cursor:pointer;
+  border-radius:5px;
+}
+
+.h-btn.active-true{
+  background:#28a745;
+  color:white;
+}
+
+.h-btn.active-false{
+  background:#dc3545;
+  color:white;
+}
+</style>
 </head>
+
 <body>
 
 <!-- الصفحة 1 -->
@@ -20,21 +301,1626 @@
 <!-- الصفحة 2 -->
 <div id="list" class="page">
   <h2>الامتحانات</h2>
-  <div id="examList"></div>
+
+  <div class="item" onclick="openExam(1)">1 - sport ist gesund (الرياضة مفيدة للصحة)</div>
+  <div class="item">2 - kellner (Jugend Forscherr) (باحث شاب)</div>
+  <div class="item">3 - Impfung (لقاح)</div>
+  <div class="item">4 - tanzkurs 1 (دورة رقص)</div>
+  <div class="item">5 - insell (الجزر)</div>
+  <div class="item">6 - Bilder (صور)</div>
+  <div class="item">7 - Grundschule (المدرسة)</div>
+  <div class="item">8 - Österreich (النمسا)</div>
+  <div class="item">9 - Insekten 1 (الحشرات)</div>
+  <div class="item">10 - das Benzin (بَنْزِينٌ)</div>
+  <div class="item">11 - kaffee (القهوة)</div>
+  <div class="item">12 - Programmierer 1 (المبرمجين)</div>
+  <div class="item">13 - Trampolin (الترامبولين)</div>
+  <div class="item">14 - Schlafzug 1 (قطار النوم)</div>
+  <div class="item">15 - Bonbons (الحلوى)</div>
+  <div class="item">16 - Umwelt (البيئة)</div>
+  <div class="item">17 - Licht (الضوء)</div>
+  <div class="item">18 - Alpen 1 (الألب)</div>
+  <div class="item">19 - Spiele (الألعاب)</div>
+  <div class="item">20 - kartoffel (البطاطا)</div>
+  <div class="item">21 - Bienen 1 (النحل)</div>
+  <div class="item">22 - Geld (المال)</div>
+  <div class="item">23 - Suchtmittel (المخدرات)</div>
+  <div class="item">24 - Kinder und Schulen (الأطفال والمدارس)</div>
+  <div class="item">25 - Kindertelefon (هاتف الأطفال)</div>
+  <div class="item">26 - Wahlen (الانتخابات_و_المرأة_الروسية)</div>
+  <div class="item">27 - kein zeit 1 (لا يوجد وقت)</div>
+  <div class="item">28 - Limonade (عصير الليمون)</div>
+  <div class="item">29 - Auf dem Weg (في الطريق)</div>
+  <div class="item">30 - Farben (الألوان)</div>
+
   <button onclick="goHome()">رجوع</button>
 </div>
 
 <!-- الصفحة 3 - الامتحان -->
 <div id="exam" class="page">
-  <div class="exam-box">
-    <div id="examContent"></div>
-    <button onclick="goList()" style="margin-top:20px;">رجوع</button>
-  </div>
+<div class="exam-box">
+
+<h2>امتحان 1</h2>
+
+<!-- أزرار التنقل -->
+<div style="margin-bottom:20px;">
+  <button onclick="showTeil(1)">Lesen Teil 1</button>
+  <button onclick="showTeil(2)">Lesen Teil 2</button>
+  <button onclick="showTeil(3)">Lesen Teil 3</button>
+  <button onclick="showTeil(4)">Sprachbausteine Teil 1</button>
+  <button onclick="showTeil(5)">Sprachbausteine Teil 2</button>
+  <button onclick="showTeil(6)">Hören Teil 1</button>
+  <button onclick="showTeil(7)">Hören Teil 2</button>
+  <button onclick="showTeil(8)">Hören Teil 3</button>
 </div>
 
-<script src="engine.js"></script>
-<script src="app.js"></script>
-<script src="exams.js"></script>
+<!-- ==================== TEIL 1 ==================== -->
+<div id="teil1">
+
+<script>
+let titles = {
+a:"Sport ist gesund - wenn man einige wichtige Regeln beachtet",
+b:"Griechische Sportler so erfolgreich wie nie zuvor",
+c:"Fitness auch mit wenig Zeitaufwand erreichbar",
+d:"Geprüfte Qualität für Babys",
+e:"Bluthochdruck beschleunigt das Abnehmen",
+f:"Sportbegeisterte Eltern - und auch die Babys sind beim Joggen dabei",
+g:"Täglich kurze Sprints besser als langes Ausdauertraining",
+h:"Ein Leistungssport für jedes Alter",
+i:"Unüberschaubares Angebot an Kinderwagen überfordert junge Eltern",
+j:"Autoindustrie: In Zukunft Mobilität ohne Grenzen"
+};
+</script>
+
+<h3 id="t1">Text 1</h3>
+<p>An der Ostküste Attikas in Griechenland lag in der Antike der Orte Marathon. Dort siegte der griechische König Milthiades im Jahr 490 vor Christus über das Heer der Perser. Der Sage nach soll ein Soldat die 42,2 km lange Strecke nach Athen gerannt sein, um die Nachricht dieses für Griechenland wichtigen Sieges zu überbringen. Bei seiner Ankunft in Athen brach er, noch während er die Nachricht verkündete, vor Erschöpfung tot zusammen. Auf diese Legende geht eine sportliche Disziplin zurück: der Marathonlauf. Bereits seit 1896 ist er olympische Disziplin, seit 1984 auch für Frauen. Die Streckenlänge von 42195 m. wurde 1924 festgelegt. Der Marathonlauf gilt als einziger Leistungssport, der bis ins hohe Alter ausgeübt werden kann. Wissenschaftler erklären das mit der menschlichen Evolution. Der Mensch jagte in der Frühzeit seine Beute so lange vor sich her, bis diese vor Erschöpfung nicht mehr weiter konnte. Die Fähigkeit, ausdauernd über lange Strecken zu rennen, ist also in den menschlichen Genen verankert.</p>
+<select id="ans1" onchange="updateOptions()"></select>
+
+<h3 id="t2">Text 2</h3>
+<p>Warum soll sich der Mensch nun auf Straßen und Wegen fortbewegen? Sich in Feld und Wald, über Stock und Stein fortzubewegen, ist mindestens ebenso interessant. Daher erfand die Autoindustrie den Geländewagen und die Fahrradindustrie das Mountainbike. Da fehlte eigentlich nur noch eine Neuentwicklung eines Gefährts, dessen Mobilitätsmöglichkeiten bisher relativ begrenzt waren: der Kinderwagen. Doch das ist jetzt auch vorbei: Im Trend liegt jetzt der Jogging-Stroller, ein Kinderwagen mit nur noch drei bereiften Rädern. Diese neuen Transportmittel für Babys können sportbegeisterte und von grenzenloser Mobilität träumende Eltern jetzt samt Kind beim Joggen oder beim Inlineskaten vor sich herschieben. Die Babys sollen begeistert sein von der Geschwindigkeit, die mit solchen Geräten erreichbar ist. Doch der die Gerätesicherheit prüfende TÜV, bei Fahrzeugbesitzern in Deutschland schon seit langem als Spielverderber bekannt, warnte vor den Jogging-Strollern: Sie haben einen ungünstigen Schwerpunkt auf der Hinterachse, d.h. sie kippen leicht nach hinten um, und sie können sich leicht selbständig machen - jedenfalls solange, bis die Babys das Bremsen gelernt haben.</p>
+<select id="ans2" onchange="updateOptions()"></select>
+
+<h3 id="t3">Text 3</h3>
+<p>Schweizer Forscher haben herausgefunden, dass nur 6 Minuten Hochleistungstraining pro Woche - also weniger als eine Minute pro Tag - ausreichen, um den Körper fit zu halten. In einem Versuch mit mehreren Probanden nahm eine Gruppe an einem traditionellen Ausdauertraining teil, mit je ein bis zwei Trainingsstunden täglich. Die zweite Gruppe führte täglich 60 Sekunden dauernde Radsprints durch, wobei die Teilnehmer quasi aus dem Stand Höchstgeschwindigkeit erzielen mussten. Das Resultat war überraschend: Beide Gruppen zeigten die gleichen gesundheitlichen Verbesserungen. Die Muskel nahmen gleich viel Sauerstoff auf, und auch die Werte des für die Sauerstoffaufnahme verantwortlichen Zitratenzyms waren gleich. Sehr kurze und hochintensive sportliche Übungen verbessern die Fitness genauso wie das zeitraubende traditionelle Ausdauertraining.</p>
+<select id="ans3" onchange="updateOptions()"></select>
+
+<h3 id="t4">Text 4</h3>
+<p>Mehr Bewegung als Ausgleich für zu langes Sitzen im Büro und in der Freizeit ist zurzeit angesagt, um Übergewicht, Bluthochdruck und Herz-Kreislauf-Erkrankungen vorzubeugen und um fit zu bleiben. Gerade für Einsteiger gibt es jedoch bei den die Ausdauer trainierenden Sportarten wie dem Joggen einige Grundregeln, die beachtet werden müssen, will man gesundheitliche Schäden vermeiden. Die ersten Trainingseinheiten sollen nicht länger als 20 bis 30 Minuten dauern und zweimal pro Woche durchgeführt werden. Der Puls sollte nie den Wert 200 minus Lebensalter überschreiten, bei einem 20-Jährigen kann er also bei 180, bei einem 60-Jährigen hingegen nur bei 140 liegen. Außerdem gilt für alle, die beim Sport abnehmen möchten: Je höher der Pulsschlag, desto weniger Fett wird verbrannt. Hoher Pulsschlag lässt Sporttreibenden langsamer abnehmen.</p>
+<select id="ans4" onchange="updateOptions()"></select>
+
+<h3 id="t5">Text 5</h3>
+<p>Viele frischgebackene Eltern stehen einem riesigen Angebot an Kinderwagen gegenüber, das in Kinderläden und Großmärkten feilgeboten wird. Doch welcher ist der richtige? Experten raten, beim Kauf dieses für die ersten Jahre mit dem Kleinkind wichtigen Gefährts auf ein paar Dinge zu achten. Erstens sollte die Matratze nicht zu weich sein, damit das Kind nicht einsinkt, wodurch die Atmung behindert werden kann. Zweitens sollten die Räder gefedert sein, um Erschütterungen auf unebenen Wegen auszugleichen. Ein hoher Wagen schützt die Babys vor dem Auspuff der Autos an Straßenkreuzungen. Zusammenklappbare Wagen passen في jeden Kofferraum und lassen sich fast überallhin mitnehmen. Der Wagen sollte vor allem kippsicher sein und keine scharfen Kanten haben, an denen sich die Kinder verletzen können. Vom TÜV geprüfte Kinderwagen erhalten ein Prüfzeichen. Damit haben die Eltern eine gewisse Sicherheit, dass der Kinderwagen auch nach Dauergebrauch nicht zu einem Sicherheitsrisiko für ihr Kind werden kann.</p>
+<select id="ans5" onchange="updateOptions()"></select>
+
+<button onclick="checkExam()">تصحيح</button>
+<button onclick="resetTeil1()" style="margin-right:10px;">🔄 إعادة Teil 1</button>
+<p id="result"></p>
+
+</div> <!-- نهاية teil1 -->
+
+<!-- ==================== TEIL 2 ==================== -->
+<div id="teil2" style="display:none;">
+
+<h2>Lesen Teil 2</h2>
+
+<div style="display:flex; gap:20px; flex-wrap:wrap;">
+
+<div style="flex:2; min-width:250px; background:#f9f9f9; padding:15px; border-radius:10px;">
+<p>
+Als Helmut Scherer vor genau 50 Jahren zum ersten Mal mit seinem Bollerwagen durch die westfälische Kleinstadt Unna zog, wurde er von den Leuten ausgelacht. Heute aber ist er eine städtische Berühmtheit und sogar weit über die Grenzen seiner Heimatstadt hinaus bekannt. Der 71-Jährige ist der einzige Teilnehmer des weltweit kleinsten Karnevalsumzugs. An Weiberfastnacht, dem letzten Donnerstag der Karnevalsperiode eines Jahres, zieht er mit seinem Handwagen los: Er selbst ist dann - dieses Jahr als blondes Schulmädchen - verkleidet und auf seinem Bollerwagen hat er aus Pappe und Gips Figuren aufgebaut, die humoristisch ein aktuelles gesellschaftliches Thema - diesmal die Schulreform - aufgreifen. So macht er sich nach alter karnevalistischer Tradition über Missstände lustig. Helmut Scherer legt natürlich Wert darauf, dass er von Karnevalsmusik begleitet wird, die jedoch nicht von einer Musikgruppe, sondern von einem Radiorekorder gespielt wird. Vor 50 Jahren kam Helmut Scherer aus dem katholisch geprägten Paderborn, wo er seine Kindheit und Jugend verbracht hatte, nach Unna, dessen überwiegend evangelische Bevölkerung sich recht kühl und nüchtern gibt und deshalb anfangs auch wenig Verständnis für den katholischen Karnevalsbrauch zeigte. "Die Leute haben mir einen Vogel gezeigt und den Kopf geschüttelt", beschreibt der "Narr aus Überzeugung" die Anfänge. Auch bei der Stadtverwaltung, wo Scherer für Weiberfastnacht seinen Umzug ordnungsgemäß anmeldete, stieß er zunächst auf Unverständnis. Aber da sein Karnevalszug niemanden behinderte und auch nicht zu befürchten war, dass Unnas öffentliche Ordnung gestört würde, bekam er die Erlaubnis, mit seinem humoristischen Handwagen loszumarschieren. Über 10 Jahre lang zog Scherer einsam, belächelt und verspottet durch Unna, weder eisige Kälte noch Schnee konnten ihn davon abhalten. Doch der Karneval blieb für lange Zeit sein Privatvergnügen. Als dann die lokale Presse anfing, ihn zu unterstützen, wandelte sich die Meinung der Öffentlichkeit. Der einst verspottete Karnevalist stieg langsam zum närrischen Wahrzeichen einer Stadt ohne Karneval auf. Für die Stadtoberen ist heute die "Ein-Mann-Show" die beste Werbung für Unna. Scherers Beharrlichkeit hat sich also ausgezahlt: Anlässlich seines fünfzigsten Karnevalsjubiläums wurde er sogar offiziell im Rathaus empfangen, um ihm - so wie es auch in den Karnevalshochburgen Köln, Düsseldorf und Mainz üblich ist - den goldenen Schlüssel des Rathauses zu übergeben. Obwohl er keinem Karnevalsverein angehört, wurde ihm die Ehre zuteil, als Karnevalsprinz in den Bund Deutscher Karneval aufgenommen zu werden; somit wurde es ihm möglich, auch bei den Rosenmontagszügen in den närrischen Hochburgen im Rheinland mitzuwirken. Weit über hundert Fans des standhaften Narren haben sich zu einem Fan-Club zusammengeschlossen, und etliche stehen beim jährlichen Umzug in Unna am Straßenrand und rufen statt "Spinner" den rheinischen Karnevalsgruß "Helau". Bei aller Fortschrittlichkeit soll aber eines so bleiben, wie es immer war - einen weiteren Teilnehmer am Zug duldet der Karnevalsprinz nicht: "Die Tradition soll aufrechterhalten bleiben", sagt er schmunzelnd. "Aber nur solange mich die Füße tragen!"
+</p>
+</div>
+
+<div style="flex:1; min-width:200px;">
+
+<p><strong>Frage 1<br>Helmut Scherer</strong></p>
+<select id="q1">
+<option value="">اختر</option>
+<option value="a">a. führt in Unna einen kleinen Karnevalsumzug durch</option>
+<option value="b">b. ist in Unna seit 50 Jahren eine gefeierte Persönlichkeit</option>
+<option value="c">c. veranstaltet den einzigen Karnevalsumzug der Welt</option>
+</select>
+
+<p><strong>Frage 2<br>Auf seinem Handwagen</strong></p>
+<select id="q2">
+<option value="">اختر</option>
+<option value="a">a. fährt traditionell ein blondes Schulmädchen mit</option>
+<option value="b">b. präsentiert er kleine Szenen, die auf den Alltag Bezug nehmen</option>
+<option value="c">c. stellt er sozialkritische Themen auf witzige Art und Weise dar</option>
+</select>
+
+<p><strong>Frage 3<br>Die Bevölkerung von Unna</strong></p>
+<select id="q3">
+<option value="">اختر</option>
+<option value="a">a. hatte zunächst wenig Verständnis für Helmut Scherer</option>
+<option value="b">b. hielt anfangs Helmut Scherer für kühl und nüchtern</option>
+<option value="c">c. verhinderte Helmut Scherers ersten Karnevalsumzug</option>
+</select>
+
+<p><strong>Frage 4<br>Der kleinste Karnevalsumzug der Welt</strong></p>
+<select id="q4">
+<option value="">اختر</option>
+<option value="a">a. hat Helmut Scherer sogar Geld eingebracht</option>
+<option value="b">b. ist heute eine gute Reklame für die Stadt Unna</option>
+<option value="c">c. wird in Zukunft von einer ganzen Gruppe von Leuten durchgeführt</option>
+</select>
+
+<p><strong>Frage 5<br>Helmut Scherer</strong></p>
+<select id="q5">
+<option value="">اختر</option>
+<option value="a">a. hat an Karnevalsumzügen in mehreren Städten teilgenommen</option>
+<option value="b">b. hat inzwischen in ganz Deutschland Fan-Clubs</option>
+<option value="c">c. sucht einen Nachfolger</option>
+</select>
+
+<button onclick="checkTeil2()">تصحيح</button>
+<button onclick="resetTeil2()" style="margin-right:10px;">🔄 إعادة Teil 2</button>
+<p id="result2"></p>
+
+</div>
+
+</div>
+</div> <!-- نهاية teil2 -->
+
+<!-- ==================== TEIL 3 ==================== -->
+<div id="teil3" style="display:none;">
+
+<h2>Lesen Teil 3</h2>
+
+<div style="display:flex; gap:20px; flex-wrap:wrap;">
+
+<div id="texts" style="flex:1.5; min-width:300px;">
+
+  <div class="text" onclick="selectText(1, this)">
+    <div class="answer-box"></div>
+    <div class="solution-box"></div>
+    <strong>Anzeige a:</strong> Die Nachfrage nach individueller Farb- und Stilberatung ist groß. Denn wer heute im Geschäfts- wie auch im Privatleben erfolgreich sein möchte, muss sich in Outfit und Benehmen vorteilhaft präsentieren können. Der Leitfaden zeigt Ihnen, wie Sie sich selbst am besten in Szene setzen. Von der passenden und farblich stimmigen Garderobe über Make-up und Accessoires bis zu modernen Umgangsformen. Nutzen Sie also diesen "Kurs" als Eintrittskarte in diese reizvolle Welt der Selbstdarstellung. Sie werden garantiert mit einem überzeugenden und gewinnenden persönlichen Auftritt davon profitieren.
+    <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
+  </div>
+
+  <div class="text" onclick="selectText(2, this)">
+    <div class="answer-box"></div>
+    <div class="solution-box"></div>
+    <strong>Anzeige b:</strong> Die meisten Menschen kennen keine Strategien, wie sie ihr Lernverhalten und die Fähigkeit, sich Informationen zu merken, gezielt trainieren können. Dieses Buch gibt zunächst einen Überblick, wie das menschliche Gedächtnis funktioniert, und bietet dann eine Fülle von Techniken an, mit denen auch Ungeübte sich das Lernen und Arbeiten leichter machen können.
+    <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
+  </div>
+
+  <div class="text" onclick="selectText(3, this)">
+    <div class="answer-box"></div>
+    <div class="solution-box"></div>
+    <strong>Anzeige c:</strong> Dieses erstmals 1788 erschienene Buch handelt von dem Umgang der Menschen miteinander und gibt Ratschläge, wie man sich im Umgang mit Menschen verschiedenster Alters- und Rangstufen richtig verhält. Es definiert, was Gutes und was schlechtes Verhalten ist, und galt so lange Zeit als ein Leitfaden für "richtiges" Benehmen.
+    <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
+  </div>
+
+  <div class="text" onclick="selectText(4, this)">
+    <div class="answer-box"></div>
+    <div class="solution-box"></div>
+    <strong>Anzeige d:</strong> Tim Gallwey entwickelte die Theorie vom Tennis-Spiel, das sich im Kopf abspielt. Er zeigt, wie jeder sein Leben frei von Angst und mit Eleganz spielen kann, ohne in Selbstzweifel oder Unkonzentriertheit zu verfallen. Das Gallwey'sche Tennisspiel setzt ungeahnte Energien frei und zeigt das grenzenlose Potential des menschlichen Körpers und Geistes, wenn es darum geht, seine Lebensziele zu verfolgen und zu erreichen.
+    <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
+  </div>
+
+  <div class="text" onclick="selectText(5, this)">
+    <div class="answer-box"></div>
+    <div class="solution-box"></div>
+    <strong>Anzeige e:</strong> Jeder Mensch kann seine kommunikativen Möglichkeiten entdecken und damit sein Leben bereichern. Die Themen des Buches sind: Die Grundlagen der Kommunikation, Rede und Vortrag, Gespräche erfolgreich führen, Sicherheit gewinnen und Redeängste überwinden, Zeitmanagement für Redner und Konferenzleiter und vieles mehr. Ein ausführlicher Praxisteil mit zahlreichen Übungen ermöglicht es dem Leser, seine rhetorischen Fähigkeiten zu trainieren.
+    <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
+  </div>
+
+  <div class="text" onclick="selectText(6, this)">
+    <div class="answer-box"></div>
+    <div class="solution-box"></div>
+    <strong>Anzeige f:</strong> Gute Umgangsformen sind wieder "in". Aber gilt das auch in der Schule? Auf humorvolle Weise erzählt die Autorin aus ihrem Alltag als Lehrerin an einer Realschule. Von gutem Benehmen kann da nicht immer die Rede sein - übrigens auch nicht bei den Eltern.
+    <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
+  </div>
+
+  <div class="text" onclick="selectText(7, this)">
+    <div class="answer-box"></div>
+    <div class="solution-box"></div>
+    <strong>Anzeige g:</strong> Frieder Schulze "Reden wir miteinander oder aneinander vorbei?" Manche Missverständnisse entstehen, wenn Menschen miteinander reden, besonders im privaten Bereich erleben wir das oft. Wenn Kommunikation erfolgreich sein soll, ist die Fähigkeit erforderlich, den anderen zu durchschauen und seelische Vorgänge und menschliche Probleme zu erkennen. Viele Beispiele zeigen, wie psychologische Aspekte menschliche Kommunikation verkomplizieren können und wie man damit am besten klar kommen kann.
+    <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
+  </div>
+
+  <div class="text" onclick="selectText(8, this)">
+    <div class="answer-box"></div>
+    <div class="solution-box"></div>
+    <strong>Anzeige h:</strong> Der Körper lügt nicht, Gesten und Gebärden decken die Ebene des Unbewusstsein auf: Wer einen erhobenen Zeigefinger oder eine gerümpfte Nase sieht, versteht sofort, was der Gesprächspartner meint, auch wenn der mit Worten etwas anderes sagt. Dieses Buch gibt einen anschaulichen Überblick über die Signale, die wir ständig mit unserem Körper senden, und hilft uns zu verstehen, what jemand in Wahrheit gerade denkt und meint.
+    <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
+  </div>
+
+  <div class="text" onclick="selectText(9, this)">
+    <div class="answer-box"></div>
+    <div class="solution-box"></div>
+    <strong>Anzeige i:</strong> Rolph Barth "Basiswissen: Bewerbungstraining" Die Konkurrenz auf dem Arbeitsmarkt um immer knapper werdende freie Stellen ist groß. Umso wichtiger ist es zu wissen, wie man sich richtig bewirbt. Dieses Buch gibt Arbeitsuchenden umfassende Informationen zur erfolgreichen Bewerbung und bereitet optimal auf das Vorstellungsgespräch vor. Im Übungsteil werden gute Formulierungen für das Anschreiben und das sichere Auftreten des Bewerbers im Gespräch trainiert.
+    <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
+  </div>
+
+  <div class="text" onclick="selectText(10, this)">
+    <div class="answer-box"></div>
+    <div class="solution-box"></div>
+    <strong>Anzeige j:</strong> Brigitte Hübner "Richtig präsentieren" Dieses Buch ist ein Leitfaden für alle, die Teamsitzungen, Besprechungen, Workshops und Konferenzen durchführen. Anhand vieler praktischer Beispiele erhält der Leser Anregungen zum gekonnten visualisieren, zur gut geplanten und sicher durchgeführten Präsentation und zur effektiv gestalteten Besprechung. Es zeigt, wie durch den Einsatz von Bildern und Grafiken Präsentationen aufgelockert und Informationen besser verstanden werden können.
+    <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
+  </div>
+
+  <div class="text" onclick="selectText(11, this)">
+    <div class="answer-box"></div>
+    <div class="solution-box"></div>
+    <strong>Anzeige k:</strong> Helga Sinn-Krummacher "Delfin oder Delphin? So schreibt man das jetzt richtig" Dieses Trainingsbuch ist für den Arbeitsplatz und für zu Hause gedacht. Auf humorvolle Art werden die neuen Rechtschreibregeln der deutschen Sprache vorgestellt und eingeübt. Es enthält außerdem die neue amtliche Wortliste zur Rechtschreibung und die neuen Zeichensetzungsregeln.
+    <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
+  </div>
+
+  <div class="text" onclick="selectText(12, this)">
+    <div class="answer-box"></div>
+    <div class="solution-box"></div>
+    <strong>Anzeige l:</strong> Viele Menschen wissen nicht mehr, wo Ihnen der Kopf steht. Zu viele Termine und Aufgaben stellen Sie unter ständigen Zeitdruck. Mit Zeitmanagement lernen Sie, wie Sie Ihre Zeit so einteilen können, dass Sie wieder Zeit zum Leben haben. Sie erkennen Ihre persönlichen Zeitdiebe, Sie lernen, Prioritäten und erreichbare Ziele zu setzen. Durch das Führen eines Zeitplanbuchs lernen Sie wieder (und dauerhaft), aus der Zeitfalle herauszukommen.
+    <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
+  </div>
+
+</div>
+
+<div id="titles" style="flex:1; min-width:250px;">
+
+  <div class="title" data-id="0" onclick="selectTitle(0, this)">0. لا شيء مناسب لهذا الإعلان</div>
+
+  <div class="title" data-id="1" onclick="selectTitle(1, this)">1. Eine Bekannte interessiert sich für Bücher über den Tennissport.</div>
+  <div class="title" data-id="2" onclick="selectTitle(2, this)">2. Ein befreundetes Ehepaar steht andauernd unter Stress und möchte wieder mehr Zeit für sich und andere haben.</div>
+  <div class="title" data-id="3" onclick="selectTitle(3, this)">3. Eine Bekannte möchte bei ihren Partys eine perfekte Gastgeberin sein.</div>
+  <div class="title" data-id="4" onclick="selectTitle(4, this)">4. Eine Studentin sucht Informationen, wie sie besser und systematischer lernen kann.</div>
+  <div class="title" data-id="5" onclick="selectTitle(5, this)">5. Ein Bekannter möchte wissen, welche Botschaften durch Gestik und Mimik transportiert werden.</div>
+  <div class="title" data-id="6" onclick="selectTitle(6, this)">6. Eine Bekannte möchte ihr äußeres Erscheinungsbild optimieren.</div>
+  <div class="title" data-id="7" onclick="selectTitle(7, this)">7. Ein Bekannter ist sich noch unsicher, wie er sich bei einem Vorstellungsgespräch am besten präsentiert.</div>
+  <div class="title" data-id="8" onclick="selectTitle(8, this)">8. Ein Bekannter schreibt an einer Hausarbeit über gesellschaftliche Normen und Verhaltensregeln verschiedener Jahrhunderte.</div>
+  <div class="title" data-id="9" onclick="selectTitle(9, this)">9. Ein Bekannter möchte Kalligraphie (Schmuckschriften) lernen.</div>
+  <div class="title" data-id="10" onclick="selectTitle(10, this)">10. Eine Bekannte ist sehr verunsichert, weil sie auf Konferenzen immer wieder Angst hat, frei zu sprechen.</div>
+
+</div>
+
+</div>
+
+<button onclick="checkTeil3()" style="margin-top:20px;">تصحيح Teil 3</button>
+<button onclick="resetTeil3()" style="margin-top:20px; margin-right:10px;">🔄 إعادة Teil 3</button>
+<p id="result3"></p>
+
+</div> <!-- نهاية teil3 -->
+
+<!-- ==================== Sprachbausteine Teil 1 ==================== -->
+<div id="sprach1" style="display:none;">
+
+<h2>Sprachbausteine Teil 1</h2>
+
+<div style="display:flex; gap:20px; flex-wrap:wrap;">
+
+<!-- النص -->
+<div style="flex:1.5; min-width:300px; line-height:1.8;">
+
+Liebe Vanessa,<br>
+danke für deinen Brief, 
+<span class="gap" id="gap1">[1]</span>
+ ich mich total gefreut habe. Du fragst dich bestimmt, warum du schon drei Wochen 
+<span class="gap" id="gap2">[2]</span>
+ von mir gehört hast, oder? Ich war mit meiner Gastfamilie in Urlaub. Vierzehn Tage im Allgäu – mit den Kindern Stefan, Anja und Karina.
+
+<br><br>
+
+Du weißt 
+<span class="gap" id="gap3">[3]</span>
+ selbst, wie anstrengend es ist, wenn man ständig drei kleine Kinder um sich hat, die pausenlos unterhalten werden möchten. 
+<span class="gap" id="gap4">[4]</span>
+ ist es übrigens in deiner Au-pair-Familie mit der kleinen Dorothea?
+
+<br><br>
+
+Das Allgäu liegt in Süddeutschland am Fuß 
+<span class="gap" id="gap5">[5]</span>
+ Alpen. Wir sind fast jeden Tag gewandert, immer bergauf und bergab. Den Kindern und mir haben ständig die Füße weh 
+<span class="gap" id="gap6">[6]</span>
+, doch meine Gasteltern, Herr und Frau Zimmer, sind einfach immer weitergelaufen. Die Deutschen lieben es nämlich, in der Natur spazieren zu gehen, bis sie vor Erschöpfung 
+<span class="gap" id="gap7">[7]</span>
+.
+
+<br><br>
+
+Unterwegs haben wir manchmal an einer sogenannten "Wassertretstelle" Rast gemacht. Das sind kleine Wasserbecken, die oft mitten im Wald liegen. Durch das Becken fließt ein Bach mit eiskaltem Wasser, das direkt von den Bergen kommt. Stell 
+<span class="gap" id="gap8">[8]</span>
+ vor, alle Wanderer ziehen ihre Schuhe und Strümpfe aus und laufen durch dieses Becken. Als ich meinen Fuß in dieses kalte Wasser getaucht hatte, dachte ich, dass ich gleich sterben muss.
+
+<br><br>
+
+Am Wochenende haben wir alle Minigolf gespielt. Dabei muss ein Golfball mit einem Schläger in ein etwa zehn Meter entferntes Loch geschlagen werden. Aber vor dem Loch gibt es 
+<span class="gap" id="gap9">[9]</span>
+ Menge Hindernisse: Gräben, kleine Hügel, Tunnel. Der Spieler, dessen Ball mit den wenigsten Schlägen im Loch ankommt, hat gewonnen. Die Kinder wollten gar nicht mehr 
+<span class="gap" id="gap10">[10]</span>
+ aufhören.
+
+<br><br>
+
+Jetzt muss ich aber Schluss machen, die Kinder warten auf ihr Abendessen, denn die Zimmers sind heute nicht da: Sie wandern mal wieder.<br>
+Viele Grüße<br>
+deine Mercedes
+
+</div>
+
+<!-- الخيارات -->
+<div style="flex:1; min-width:250px;" id="optionsContainer"></div>
+
+</div>
+
+<button onclick="checkSprach1()" style="margin-top:20px;">تصحيح</button>
+<button onclick="resetSprach1()" style="margin-top:20px; margin-right:10px;">🔄 إعادة</button>
+
+<p id="resultSprach1"></p>
+
+</div>
+
+<!-- ==================== Sprachbausteine Teil 2 ==================== -->
+<div id="sprach2" style="display:none;">
+
+<h2>Sprachbausteine Teil 2</h2>
+
+<div style="display:flex; gap:20px; flex-wrap:wrap;">
+
+<!-- النص مع الفراغات -->
+<div style="flex:1.5; min-width:300px; line-height:1.8;">
+
+Selbst ist der Mann. Von der Wahrheit dieser alten deutschen Redewendung haben Frauen Generationen lang geträumt, wenn es um typische Hausarbeiten wie Waschen, Putzen oder Kochen ging. Zumindest bei Letzterem scheint sich jedoch in der letzten Jahren vieles zu ändern. 
+<span class="gap2" id="gap2_1">[1]</span>
+, immer mehr Männer in Deutschland greifen jetzt selbst zum Kochtopf. Ein Grund 
+<span class="gap2" id="gap2_2">[2]</span>
+ diese Entwicklung mag sein, dass es immer mehr Ein-Personen-Haushalte in Deutschland gibt. Es ist einfach niemand anderes da, der die Kocharbeit übernehmen könnte. Und Hunger zwingt bekanntlich zum Handeln. Andererseits ist das Kochen inzwischen ein allgemein akzeptiertes Hobby geworden, besonders unter Männern. Doch welch ein Unterschied besteht 
+<span class="gap2" id="gap2_3">[3]</span>
+ den Ansprüchen einer traditionellen Hausfrau und denen eines Hobbykochs, was die Ausstattung der Küche angeht! Nicht 
+<span class="gap2" id="gap2_4">[4]</span>
+ Topf darf es für den selbsternannten Drei-Sterne-Küchenchef sein: Gebürsteter Edelstahl mit versiegelter Antihaftbeschichtung und integrierter digitaler Temperaturanzeige ist der Mindeststandard für einen echten kochenden Mann. Alles andere gilt als stillos.
+
+<br><br>
+
+Die zweite Voraussetzung 
+<span class="gap2" id="gap2_5">[5]</span>
+, dass die Gerichte auch gelingen, ist das Wissen, wie man welche Speise am besten zubereitet. Zu diesem Zweck bieten die Buchhandlungen Berge von Kochbüchern an - mit Rezepten von Alaska bis Zimbabwe, mit oder ohne Fleisch, für zu Dicke und zu Dünne. Jetzt hängt es nur noch 
+<span class="gap2" id="gap2_6">[6]</span>
+ ab, was der Hobbykoch aus den Kochideen der Buchautoren macht. Wird es ein exzellentes Mahl oder wäre unser "Chefkoch" nicht doch lieber zum Dönerstand um die Ecke gegangen? Überraschungen gehören zum Kochen dazu. Helfen die Bücher nicht 
+<span class="gap2" id="gap2_7">[7]</span>
+, bieten zum Beispiel die Volkshochschulen zahlreiche Kochkurse an, die in der Regel - zumeist von kochwilligen Männern - gut besucht sind. Das Kursangebot umfasst neben deutscher Hausmannskost wie Schnitzel, Krautwickel oder Rinderbraten zumeist auch die mediterrane und die asiatische Küche. Das führt 
+<span class="gap2" id="gap2_8">[8]</span>
+, dass man(n) zu Hause immer öfter international kocht.
+
+<br><br>
+
+Das größte Problem der Hobbyköche ist aber, 
+<span class="gap2" id="gap2_9">[9]</span>
+ es viel zu aufwändig ist, für sich alleine zu kochen. Daher sind zurzeit Internetseiten wie www.allein-kochen-ist-doof.de beliebt, wo sich Hobbyköche und -köchinnen Kochpartner für das gemeinsame Kochen und Essen suchen können. Das Interessante 
+<span class="gap2" id="gap2_10">[10]</span>
+ ist, dass dabei unsere männlichen Chefköche feststellen müssen, dass es andere Menschen gibt, die mit vielleicht weniger Aufwand genauso gut ein Festmahl zubereiten können wie sie: nämlich die Frauen.
+
+</div>
+
+<!-- أدوات الربط -->
+<div style="flex:1; min-width:250px;" id="connectorsContainer"></div>
+
+</div>
+
+<button onclick="checkSprach2()" style="margin-top:20px;">تصحيح</button>
+<button onclick="resetSprach2()" style="margin-top:20px; margin-right:10px;">🔄 إعادة</button>
+
+<p id="resultSprach2"></p>
+
+</div>
+
+<!-- ==================== Hören Teil 1 ==================== -->
+<div id="hoeren1" style="display:none;">
+<h2>Hören Teil 1</h2>
+
+<div class="exam-box">
+
+<p>اختر: ✔ صحيح / ✖ خطأ</p>
+
+<div id="h1_questions"></div>
+
+<button onclick="checkH1()">تصحيح</button>
+<button onclick="resetH1()">🔄 إعادة</button>
+
+<p id="resultH1"></p>
+
+</div>
+</div>
+
+<!-- ==================== Hören Teil 2 ==================== -->
+<div id="hoeren2" style="display:none;">
+<h2>Hören Teil 2</h2>
+
+<div id="variantButtons"></div>
+
+<div class="exam-box">
+<div id="h2_questions"></div>
+
+<button onclick="checkH2()">تصحيح</button>
+<button onclick="resetH2()">🔄 إعادة</button>
+
+<p id="resultH2"></p>
+</div>
+
+</div>
+
+<!-- ==================== Hören Teil 3 ==================== -->
+<div id="hoeren3" style="display:none;">
+<h2>Hören Teil 3</h2>
+
+<div class="exam-box">
+<div id="h3_questions"></div>
+
+<button onclick="checkH3()">تصحيح</button>
+<button onclick="resetH3()">🔄 إعادة</button>
+
+<p id="resultH3"></p>
+</div>
+
+</div>
+
+<button onclick="goList()">رجوع</button>
+
+</div>
+</div>
+
+<!-- ==================== جميع الـ JavaScript في مكان واحد ==================== -->
+<script>
+
+// دوال التنقل بين الصفحات
+function goList(){
+  document.getElementById("home").classList.remove("active");
+  document.getElementById("list").classList.add("active");
+}
+
+function goHome(){
+  document.getElementById("list").classList.remove("active");
+  document.getElementById("home").classList.add("active");
+}
+
+function openExam(num){
+  document.getElementById("list").classList.remove("active");
+  document.getElementById("exam").classList.add("active");
+}
+
+function showTeil(n){
+  let teil1 = document.getElementById("teil1");
+  let teil2 = document.getElementById("teil2");
+  let teil3 = document.getElementById("teil3");
+  let sprach1 = document.getElementById("sprach1");
+  let sprach2 = document.getElementById("sprach2");
+  let hoeren1 = document.getElementById("hoeren1");
+  let hoeren2 = document.getElementById("hoeren2");
+  let hoeren3 = document.getElementById("hoeren3");
+  if(teil1) teil1.style.display = (n===1) ? "block" : "none";
+  if(teil2) teil2.style.display = (n===2) ? "block" : "none";
+  if(teil3) teil3.style.display = (n===3) ? "block" : "none";
+  if(sprach1) sprach1.style.display = (n===4) ? "block" : "none";
+  if(sprach2) sprach2.style.display = (n===5) ? "block" : "none";
+  if(hoeren1) hoeren1.style.display = (n===6) ? "block" : "none";
+  if(hoeren2) hoeren2.style.display = (n===7) ? "block" : "none";
+  if(hoeren3) hoeren3.style.display = (n===8) ? "block" : "none";
+}
+
+// Teil 1 functions
+function loadOptions(){
+  for(let i=1;i<=5;i++){
+    let s=document.getElementById("ans"+i);
+    if(s){
+      s.innerHTML="<option value=''>اختر</option>";
+      for(let key in titles){
+        s.innerHTML+=`<option value="${key}">${key}. ${titles[key]}</option>`;
+      }
+    }
+  }
+}
+
+function updateOptions(){
+  let selected=[];
+  for(let i=1;i<=5;i++){
+    let v=document.getElementById("ans"+i).value;
+    if(v) selected.push(v);
+  }
+
+  for(let i=1;i<=5;i++){
+    let s=document.getElementById("ans"+i);
+    if(s){
+      let current=s.value;
+      s.innerHTML="<option value=''>اختر</option>";
+      for(let key in titles){
+        if(!selected.includes(key) || key===current){
+          s.innerHTML+=`<option value="${key}">${key}. ${titles[key]}</option>`;
+        }
+      }
+      s.value=current;
+    }
+  }
+}
+
+function checkExam(){
+  let correct={1:"h",2:"f",3:"g",4:"a",5:"d"};
+  let score=0;
+
+  for(let i=1;i<=5;i++){
+    let val=document.getElementById("ans"+i).value;
+    let text=document.getElementById("t"+i);
+
+    text.classList.remove("correct","wrong");
+
+    if(val===correct[i]){
+      text.classList.add("correct");
+      score++;
+    }else{
+      text.classList.add("wrong");
+      
+      let select = document.getElementById("ans"+i);
+      
+      if(!select.querySelector(".correct-answer")){
+        let opt = document.createElement("option");
+        opt.value = correct[i];
+        opt.textContent = "✔ الصحيح: " + correct[i] + ". " + titles[correct[i]];
+        opt.classList.add("correct-answer");
+        select.appendChild(opt);
+      }
+      select.value = correct[i];
+    }
+  }
+
+  let final = (score * (25/5)).toFixed(2);
+  document.getElementById("result").innerText="النتيجة: "+final+" / 25";
+}
+
+function resetTeil1(){
+  for(let i=1;i<=5;i++){
+    let select = document.getElementById("ans"+i);
+    if(select){
+      let correctOptions = select.querySelectorAll(".correct-answer");
+      correctOptions.forEach(opt => opt.remove());
+      select.value = "";
+    }
+    let text = document.getElementById("t"+i);
+    if(text){
+      text.classList.remove("correct","wrong");
+      if(text.innerHTML.includes("(✔ الصحيح:")){
+        text.innerHTML = "Text " + i;
+      }
+    }
+  }
+  document.getElementById("result").innerText = "";
+}
+
+// Teil 2 functions
+function checkTeil2(){
+  let correct = {1:"a",2:"c",3:"a",4:"b",5:"a"};
+  let score = 0;
+
+  for(let i=1;i<=5;i++){
+    let val = document.getElementById("q"+i).value;
+    let select = document.getElementById("q"+i);
+
+    select.classList.remove("correct","wrong");
+
+    if(val === correct[i]){
+      select.classList.add("correct");
+      score++;
+    }else{
+      select.classList.add("wrong");
+      
+      let existing = false;
+      for(let j=0;j<select.options.length;j++){
+        if(select.options[j].textContent.includes("✔ الصحيح:")){
+          existing = true;
+          break;
+        }
+      }
+      if(!existing){
+        let opt = document.createElement("option");
+        opt.textContent = "✔ الصحيح: " + correct[i];
+        opt.classList.add("correct-answer");
+        select.appendChild(opt);
+      }
+    }
+  }
+
+  let final = (score * (25/5)).toFixed(2);
+  document.getElementById("result2").innerText = "النتيجة: " + final + " / 25";
+}
+
+function resetTeil2(){
+  for(let i=1;i<=5;i++){
+    let select = document.getElementById("q"+i);
+    if(select){
+      let correctOptions = select.querySelectorAll("option:not([value='']):not([value='a']):not([value='b']):not([value='c'])");
+      correctOptions.forEach(opt => {
+        if(opt.textContent.includes("✔ الصحيح:")) opt.remove();
+      });
+      select.value = "";
+      select.classList.remove("correct","wrong");
+    }
+  }
+  document.getElementById("result2").innerText = "";
+}
+
+// Teil 3 variables
+let selectedText = null;
+let selectedTitle = null;
+let answers = {};
+
+function selectText(num, el){
+  if(selectedText === num){
+    selectedText = null;
+    el.classList.remove("selected");
+    return;
+  }
+
+  document.querySelectorAll(".text").forEach(t=>t.classList.remove("selected"));
+  selectedText = num;
+  el.classList.add("selected");
+
+  if(selectedTitle !== null){
+    assign(num, selectedTitle);
+  }
+}
+
+function selectTitle(letter, el){
+  if(selectedTitle === letter){
+    selectedTitle = null;
+    el.classList.remove("selected");
+    return;
+  }
+
+  document.querySelectorAll(".title").forEach(t=>t.classList.remove("selected"));
+  selectedTitle = letter;
+  el.classList.add("selected");
+
+  if(selectedText !== null){
+    assign(selectedText, selectedTitle);
+  }
+}
+
+function assign(num, letter){
+  let textEl = document.querySelectorAll(".text")[num-1];
+  let titleEl = document.querySelector(`.title[data-id="${letter}"]`);
+  
+  // إذا كان هناك عنوان قديم → أرجعه
+  if(answers[num] !== undefined){
+    let oldTitle = document.querySelector(`.title[data-id="${answers[num]}"]`);
+    if(oldTitle){
+      oldTitle.style.display = "block";
+    }
+  }
+  
+  answers[num] = letter;
+
+  // إزالة أي عنوان قديم داخل الفقرة
+  let old = textEl.querySelector(".moved-title");
+  if(old) old.remove();
+
+  // إنشاء عنوان داخل الفقرة وإخفائه من القائمة
+  if(titleEl){
+    titleEl.style.display = "none";
+
+    let clone = document.createElement("div");
+    clone.classList.add("moved-title");
+
+    // إنشاء زر X
+    let closeBtn = document.createElement("span");
+    closeBtn.innerText = " ✖";
+    closeBtn.style.cursor = "pointer";
+    closeBtn.style.marginLeft = "10px";
+
+    // عند الضغط → يرجع العنوان
+    closeBtn.onclick = function(e){
+      e.stopPropagation();
+      titleEl.style.display = "block";
+      delete answers[num];
+      clone.remove();
+    };
+
+    clone.innerText = titleEl.innerText;
+    clone.appendChild(closeBtn);
+
+    textEl.insertBefore(clone, textEl.children[1]);
+  }
+
+  // إخفاء التحديد
+  selectedText = null;
+  selectedTitle = null;
+  document.querySelectorAll(".selected").forEach(e=>e.classList.remove("selected"));
+}
+
+function checkTeil3(){
+  let correct = {
+    1:6,   // Anzeige a → عنوان 6
+    2:4,   // Anzeige b → عنوان 4
+    3:8,   // Anzeige c → عنوان 8
+    4:1,   // Anzeige d → عنوان 1
+    5:10,  // Anzeige e → عنوان 10
+    6:0,   // Anzeige f → kein Titel (0)
+    7:0,   // Anzeige g → kein Titel (0)
+    8:5,   // Anzeige h → عنوان 5
+    9:7,   // Anzeige i → عنوان 7
+    10:0,  // Anzeige j → kein Titel (0)
+    11:0,  // Anzeige k → kein Titel (0)
+    12:2   // Anzeige l → عنوان 2
+  };
+
+  let score = 0;
+
+  for(let i=1;i<=12;i++){
+    let el = document.querySelectorAll(".text")[i-1];
+    let val = answers[i];
+    let box = el.querySelector(".answer-box");
+    let sol = el.querySelector(".solution-box");
+
+    // إزالة أي عنوان قديم داخل الفقرة قبل التصحيح
+    let oldTitle = el.querySelector(".moved-title");
+    if(oldTitle) oldTitle.remove();
+
+    if(val === correct[i]){
+      // صحيح: إظهار العنوان الصحيح باللون الأخضر
+      let correctTitle = document.querySelector(`.title[data-id="${correct[i]}"]`);
+      if(correctTitle && correct[i] !== 0){
+        let clone = document.createElement("div");
+        clone.classList.add("moved-title");
+        clone.innerText = correctTitle.innerText;
+        clone.style.borderLeftColor = "#28a745";
+        clone.style.background = "#d4edda";
+        el.insertBefore(clone, el.children[1]);
+      } else if(correct[i] === 0){
+        let clone = document.createElement("div");
+        clone.classList.add("moved-title");
+        clone.innerText = "❌ لا يوجد عنوان مناسب";
+        clone.style.borderLeftColor = "#28a745";
+        clone.style.background = "#d4edda";
+        el.insertBefore(clone, el.children[1]);
+      }
+      box.classList.add("green");
+      score++;
+    }else{
+      // خطأ: إظهار الحل الصحيح باللون الأحمر
+      el.classList.add("red");
+      let correctTitle = document.querySelector(`.title[data-id="${correct[i]}"]`);
+      if(correctTitle && correct[i] !== 0){
+        let clone = document.createElement("div");
+        clone.classList.add("moved-title");
+        clone.innerText = correctTitle.innerText;
+        clone.style.borderLeftColor = "#dc3545";
+        clone.style.background = "#f8d7da";
+        el.insertBefore(clone, el.children[1]);
+      } else if(correct[i] === 0){
+        let clone = document.createElement("div");
+        clone.classList.add("moved-title");
+        clone.innerText = "❌ لا يوجد عنوان مناسب";
+        clone.style.borderLeftColor = "#dc3545";
+        clone.style.background = "#f8d7da";
+        el.insertBefore(clone, el.children[1]);
+      }
+      sol.innerText = "✔ الصحيح: " + correct[i];
+    }
+  }
+
+  let finalScore = (score * (25/12)).toFixed(2);
+  document.getElementById("result3").innerText = "النتيجة: " + finalScore + " / 25";
+
+  let unusedTitles = [3,9];
+
+  document.querySelectorAll(".title").forEach((t, idx)=>{
+    let actualNum = idx;
+
+    let old = t.querySelector(".no-paragraph-msg");
+    if(old) old.remove();
+
+    if(unusedTitles.includes(actualNum)){
+      let msg = document.createElement("div");
+      msg.innerText = "⚠️ لا توجد فقرة لهذا العنوان";
+      msg.style.color = "#dc3545";
+      msg.style.fontSize = "11px";
+      msg.style.marginTop = "5px";
+      msg.classList.add("no-paragraph-msg");
+      t.appendChild(msg);
+    }
+  });
+}
+
+function resetTeil3(){
+  answers = {};
+  selectedText = null;
+  selectedTitle = null;
+
+  document.querySelectorAll(".text").forEach(el=>{
+    el.classList.remove("matched","red","selected");
+    let answerBox = el.querySelector(".answer-box");
+    answerBox.innerText = "";
+    answerBox.style.background = "#dee2e6";
+    answerBox.style.color = "";
+    answerBox.classList.remove("green");
+    el.querySelector(".solution-box").innerText = "";
+    // إزالة العنوان المنقول
+    let movedTitle = el.querySelector(".moved-title");
+    if(movedTitle) movedTitle.remove();
+  });
+
+  document.querySelectorAll(".title").forEach(t=>{
+    t.classList.remove("matched","selected");
+    t.style.display = "block";
+    let old = t.querySelector(".no-paragraph-msg");
+    if(old) old.remove();
+  });
+
+  document.getElementById("result3").innerText = "";
+}
+
+// Sprachbausteine Teil 1
+const sprachAnswers = {
+  1:"über den",
+  2:"nichts mehr",
+  3:"doch",
+  4:"Wie",
+  5:"der",
+  6:"getan",
+  7:"umfallen",
+  8:"dir",
+  9:"jede",
+  10:"damit"
+};
+
+const sprachOptions = {
+  1:["an den","auf dem","über den"],
+  2:["nichts mehr","noch nicht","keines"],
+  3:["doch","eben","überhaupt"],
+  4:["Wann","Was","Wie"],
+  5:["der","die","von"],
+  6:["gelaufen","getan","geworden"],
+  7:["durchfallen","umfallen","wegfallen"],
+  8:["dich","dir","mal"],
+  9:["alle","ganze","jede"],
+  10:["dabei","damit","davon"]
+};
+
+let currentGap = null;
+let sprachUser = {};
+
+function loadSprachOptions(){
+  let container = document.getElementById("optionsContainer");
+  if(!container) return;
+  container.innerHTML = "";
+
+  for(let i=1;i<=10;i++){
+    let groupDiv = document.createElement("div");
+    groupDiv.className = "option-group";
+    groupDiv.innerHTML = `<strong style="display:block; margin-bottom:8px;">الفراغ ${i}</strong>`;
+    
+    sprachOptions[i].forEach(opt=>{
+      let btn = document.createElement("button");
+      btn.innerText = opt;
+      btn.className = "option-btn";
+      btn.setAttribute("data-gap", i);
+      btn.setAttribute("data-value", opt);
+      
+      btn.onclick = function(e){
+        e.stopPropagation();
+        let gapId = parseInt(this.getAttribute("data-gap"));
+        let optionValue = this.getAttribute("data-value");
+        
+        if(sprachUser[gapId] !== undefined){
+          let prevBtn = document.querySelector(`.option-btn[data-gap="${gapId}"][data-value="${sprachUser[gapId]}"]`);
+          if(prevBtn) prevBtn.classList.remove("selected-option");
+        }
+        
+        let gapSpan = document.getElementById("gap"+gapId);
+        gapSpan.innerText = optionValue;
+        sprachUser[gapId] = optionValue;
+        
+        document.querySelectorAll(`.option-btn[data-gap="${gapId}"]`).forEach(b=>b.classList.remove("selected-option"));
+        this.classList.add("selected-option");
+        
+        document.querySelectorAll(".gap").forEach(g=>g.classList.remove("active-gap"));
+        currentGap = null;
+      };
+      
+      groupDiv.appendChild(btn);
+    });
+    
+    container.appendChild(groupDiv);
+  }
+}
+
+document.querySelectorAll(".gap").forEach((gapSpan, idx)=>{
+  gapSpan.onclick = function(e){
+    e.stopPropagation();
+    let gapNum = parseInt(this.id.replace("gap",""));
+    
+    if(currentGap === gapNum){
+      currentGap = null;
+      this.classList.remove("active-gap");
+      
+      document.querySelectorAll(".option-btn").forEach(btn=>{
+        btn.style.background = "white";
+        btn.style.color = "black";
+      });
+    } else {
+      document.querySelectorAll(".gap").forEach(g=>g.classList.remove("active-gap"));
+      this.classList.add("active-gap");
+      currentGap = gapNum;
+      
+      document.querySelectorAll(".option-btn").forEach(btn=>{
+        let btnGap = parseInt(btn.getAttribute("data-gap"));
+        if(btnGap === gapNum){
+          btn.style.background = "#e7f1ff";
+          btn.style.borderColor = "#0d6efd";
+        } else {
+          btn.style.background = "white";
+          btn.style.color = "black";
+        }
+      });
+    }
+  };
+});
+
+function applySelectionToGap(gapNum, value){
+  let gapSpan = document.getElementById("gap"+gapNum);
+  gapSpan.innerText = value;
+  sprachUser[gapNum] = value;
+  
+  document.querySelectorAll(`.option-btn[data-gap="${gapNum}"]`).forEach(btn=>{
+    if(btn.getAttribute("data-value") === value){
+      btn.classList.add("selected-option");
+    } else {
+      btn.classList.remove("selected-option");
+    }
+  });
+}
+
+function selectOptionForActiveGap(gapNum, value, btnElement){
+  if(currentGap === gapNum){
+    if(sprachUser[gapNum] !== undefined){
+      let prevBtn = document.querySelector(`.option-btn[data-gap="${gapNum}"][data-value="${sprachUser[gapNum]}"]`);
+      if(prevBtn) prevBtn.classList.remove("selected-option");
+    }
+    
+    applySelectionToGap(gapNum, value);
+    
+    document.querySelectorAll(".gap").forEach(g=>g.classList.remove("active-gap"));
+    currentGap = null;
+    
+    document.querySelectorAll(".option-btn").forEach(btn=>{
+      btn.style.background = "white";
+      btn.style.color = "black";
+    });
+  }
+}
+
+function enhanceOptionsForMethod1(){
+  document.querySelectorAll(".option-btn").forEach(btn=>{
+    let gapNum = parseInt(btn.getAttribute("data-gap"));
+    let value = btn.getAttribute("data-value");
+    
+    btn.onclick = function(e){
+      e.stopPropagation();
+      if(currentGap !== null){
+        selectOptionForActiveGap(gapNum, value, this);
+      } else {
+        if(sprachUser[gapNum] !== undefined){
+          let prevBtn = document.querySelector(`.option-btn[data-gap="${gapNum}"][data-value="${sprachUser[gapNum]}"]`);
+          if(prevBtn) prevBtn.classList.remove("selected-option");
+        }
+        applySelectionToGap(gapNum, value);
+        this.classList.add("selected-option");
+      }
+    };
+  });
+}
+
+function checkSprach1(){
+  let score = 0;
+
+  for(let i=1;i<=10;i++){
+    let gap = document.getElementById("gap"+i);
+    gap.classList.remove("correct-gap","wrong-gap");
+
+    if(sprachUser[i] === sprachAnswers[i]){
+      gap.classList.add("correct-gap");
+      score++;
+    }else{
+      gap.classList.add("wrong-gap");
+      if(sprachUser[i] !== sprachAnswers[i]){
+        gap.innerText = sprachAnswers[i];
+      }
+    }
+  }
+
+  let final = (score * (15/10)).toFixed(2);
+  document.getElementById("resultSprach1").innerText = "النتيجة: " + final + " / 15";
+}
+
+function resetSprach1(){
+  sprachUser = {};
+  currentGap = null;
+
+  for(let i=1;i<=10;i++){
+    let gap = document.getElementById("gap"+i);
+    gap.innerText = "["+i+"]";
+    gap.classList.remove("correct-gap","wrong-gap","active-gap");
+  }
+  
+  document.querySelectorAll(".option-btn").forEach(btn=>{
+    btn.classList.remove("selected-option");
+    btn.style.background = "white";
+    btn.style.color = "black";
+  });
+
+  document.getElementById("resultSprach1").innerText = "";
+}
+
+// Sprachbausteine Teil 2
+const sprach2Answers = {
+  1:"denn",
+  2:"für",
+  3:"zwischen",
+  4:"irgendein",
+  5:"dafür",
+  6:"davon",
+  7:"weiter",
+  8:"dazu",
+  9:"dass",
+  10:"daran"
+};
+
+const connectorsList = [
+  "denn", "für", "zwischen", "irgendein", "dafür",
+  "davon", "weiter", "dazu", "dass", "daran",
+  "daher", "damit", "gegen", "was", "zu"
+];
+
+let currentGap2 = null;
+let selectedConnector = null;
+let sprach2User = {};
+
+function loadSprach2Options(){
+  let container = document.getElementById("connectorsContainer");
+  if(!container) return;
+  container.innerHTML = "";
+  
+  let groupDiv = document.createElement("div");
+  groupDiv.className = "connector-group";
+  groupDiv.innerHTML = `<strong style="display:block; margin-bottom:8px;">أدوات الربط</strong>`;
+  
+  connectorsList.forEach(connector=>{
+    let btn = document.createElement("button");
+    btn.innerText = connector;
+    btn.className = "connector-btn";
+    btn.setAttribute("data-value", connector);
+    
+    btn.onclick = function(e){
+      e.stopPropagation();
+      let value = this.getAttribute("data-value");
+      
+      // إذا الأداة مستعملة مسبقاً → لا تعمل
+      if(Object.values(sprach2User).includes(value)){
+        return;
+      }
+      
+      // إذا يوجد فراغ مختار → نملأه
+      if(currentGap2 !== null){
+        // إذا كان هناك اختيار سابق في هذا الفراغ نحذفه
+        if(sprach2User[currentGap2] !== undefined){
+          let oldValue = sprach2User[currentGap2];
+          let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
+          if(oldBtn) oldBtn.classList.remove("selected-connector");
+        }
+        
+        sprach2User[currentGap2] = value;
+        
+        let gapSpan = document.getElementById("gap2_"+currentGap2);
+        gapSpan.innerText = value;
+        
+        this.classList.add("selected-connector");
+        
+        document.querySelectorAll(".gap2").forEach(g=>g.classList.remove("active-gap"));
+        currentGap2 = null;
+      } else {
+        // إذا لا يوجد فراغ → نحفظ الأداة مؤقتاً
+        document.querySelectorAll(".connector-btn").forEach(b=>b.classList.remove("selected-connector"));
+        this.classList.add("selected-connector");
+        selectedConnector = value;
+      }
+    };
+    
+    groupDiv.appendChild(btn);
+  });
+  
+  container.appendChild(groupDiv);
+}
+
+document.querySelectorAll(".gap2").forEach((gapSpan, idx)=>{
+  gapSpan.onclick = function(e){
+    e.stopPropagation();
+    let gapNum = parseInt(this.id.replace("gap2_",""));
+    
+    // إذا كان هناك أداة مختارة مسبقاً
+    if(selectedConnector !== null){
+      // إذا الأداة مستعملة مسبقاً → لا تعمل
+      if(Object.values(sprach2User).includes(selectedConnector)){
+        selectedConnector = null;
+        document.querySelectorAll(".connector-btn").forEach(b=>b.classList.remove("selected-connector"));
+        return;
+      }
+      
+      // إذا الفراغ فيه قيمة قديمة → نرجعها
+      if(sprach2User[gapNum] !== undefined){
+        let oldValue = sprach2User[gapNum];
+        let oldBtn = document.querySelector(`.connector-btn[data-value="${oldValue}"]`);
+        if(oldBtn) oldBtn.classList.remove("selected-connector");
+      }
+      
+      sprach2User[gapNum] = selectedConnector;
+      this.innerText = selectedConnector;
+      
+      selectedConnector = null;
+      document.querySelectorAll(".connector-btn").forEach(b=>b.classList.remove("selected-connector"));
+      return;
+    }
+    
+    // السلوك العادي
+    if(currentGap2 === gapNum){
+      currentGap2 = null;
+      this.classList.remove("active-gap");
+    } else {
+      document.querySelectorAll(".gap2").forEach(g=>g.classList.remove("active-gap"));
+      this.classList.add("active-gap");
+      currentGap2 = gapNum;
+    }
+  };
+});
+
+function checkSprach2(){
+  let score = 0;
+  
+  for(let i=1;i<=10;i++){
+    let gap = document.getElementById("gap2_"+i);
+    gap.classList.remove("correct-gap2","wrong-gap2");
+    
+    if(sprach2User[i] === sprach2Answers[i]){
+      gap.classList.add("correct-gap2");
+      score++;
+    }else{
+      gap.classList.add("wrong-gap2");
+      gap.innerText = sprach2Answers[i];
+    }
+  }
+  
+  let final = (score * (15/10)).toFixed(2);
+  document.getElementById("resultSprach2").innerText = "النتيجة: " + final + " / 15";
+}
+
+function resetSprach2(){
+  sprach2User = {};
+  currentGap2 = null;
+  selectedConnector = null;
+  
+  for(let i=1;i<=10;i++){
+    let gap = document.getElementById("gap2_"+i);
+    gap.innerText = "["+i+"]";
+    gap.classList.remove("correct-gap2","wrong-gap2","active-gap");
+  }
+  
+  document.querySelectorAll(".connector-btn").forEach(btn=>{
+    btn.classList.remove("selected-connector");
+  });
+  
+  document.getElementById("resultSprach2").innerText = "";
+}
+
+// Hören Teil 1
+const h1Data = [
+  "Die 50-Euro-Noten der Deutschen Bundesbank sind jetzt fälschungssicherer.",
+  "Der Ärzteverband hat gefordert, dass junge Ärzte in Zukunft ein Pflichtjahr in einer Landarztpraxis absolvieren müssen.",
+  "Wissenschaftler der Universität Mainz sind am Projekt zur Erforschung des Planeten Mars beteiligt.",
+  "Der Verband 'Bildung und Erziehung' fordert 10.000 zusätzliche Lehrerstellen.",
+  "Die Schwarzarbeit hat im vergangenen Jahr um 15% zugenommen."
+];
+
+const h1Correct = [3];
+
+let h1User = {};
+
+function loadH1(){
+  let container = document.getElementById("h1_questions");
+  if(!container) return;
+  container.innerHTML = "";
+
+  h1Data.forEach((q,i)=>{
+    let div = document.createElement("div");
+    div.className = "h-question";
+
+    div.innerHTML = `
+      <span>${i+1}. ${q}</span>
+      <div>
+        <button class="h-btn" onclick="selectH1(${i}, true)">✔</button>
+        <button class="h-btn" onclick="selectH1(${i}, false)">✖</button>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function selectH1(i,val){
+  h1User[i]=val;
+
+  let parent = document.getElementById("h1_questions").children[i];
+  let buttons = parent.querySelectorAll(".h-btn");
+
+  buttons.forEach(btn=>{
+    btn.classList.remove("active-true","active-false");
+  });
+
+  if(val){
+    buttons[0].classList.add("active-true");
+  }else{
+    buttons[1].classList.add("active-false");
+  }
+}
+
+function checkH1(){
+  let score = 0;
+  let questions = document.querySelectorAll("#h1_questions .h-question");
+
+  for(let i=0;i<h1Data.length;i++){
+    let correct = h1Correct.includes(i+1);
+    let user = h1User[i];
+
+    let qDiv = questions[i];
+    let buttons = qDiv.querySelectorAll(".h-btn");
+    let btnTrue = buttons[0];
+    let btnFalse = buttons[1];
+
+    // reset style
+    btnTrue.style.background = "";
+    btnFalse.style.background = "";
+    qDiv.style.borderColor = "#ccc";
+
+    if(user === correct){
+      score++;
+      qDiv.style.borderColor = "#28a745";
+      if(correct){
+        btnTrue.style.background = "#28a745";
+        btnTrue.style.color = "white";
+      }else{
+        btnFalse.style.background = "#28a745";
+        btnFalse.style.color = "white";
+      }
+    }else{
+      qDiv.style.borderColor = "#dc3545";
+      if(user === true){
+        btnTrue.style.background = "#dc3545";
+        btnTrue.style.color = "white";
+      }else if(user === false){
+        btnFalse.style.background = "#dc3545";
+        btnFalse.style.color = "white";
+      }
+      if(correct){
+        btnTrue.style.background = "#28a745";
+        btnTrue.style.color = "white";
+      }else{
+        btnFalse.style.background = "#28a745";
+        btnFalse.style.color = "white";
+      }
+    }
+  }
+
+  let final = (score*(25/5)).toFixed(2);
+  document.getElementById("resultH1").innerText = "النتيجة: " + final + " / 25";
+}
+
+function resetH1(){
+  h1User={};
+  loadH1();
+  document.getElementById("resultH1").innerText="";
+}
+
+// Hören Teil 2
+const h2Variants = {
+  1:{
+    title:"Roland (Spielen)",
+    correct:[2,3,4,7,9,10],
+    questions:[
+      "Roland wünschmann arbeitet Vollzeit als Fußballtrainer bei Viktoria Köln.",
+      "Viktoria Köln möchte nicht nur gegen Mannschaften aus der Verbandsliga spielen.",
+      "Zu Beginn dieser Saison hat ein Spieler Viktoria Köln verlassen.",
+      "Neue Spieler kommen bei Viktoria Köln immer aus der eigenen Jugendmannschaft.",
+      "Die Mannschaft von Viktoria Köln hat Schwächen in der Abwehr.",
+      "Roland wünschmann wagt die Prognose, dass dieser Saison der 1 FC Mönchengladbach Meister wird.",
+      "Roland wünschmann kann seinen Beruf und sein Ehrenamt als Fußballtrainer problemlos miteinander vereinbaren.",
+      "Auch die Frau von Roland wünschmann engagiert sich im Fußball.",
+      "Der Vereinsvorstand schätzt Herrn wünschmanns Arbeit.",
+      "Roland wünschmann ist mit der bisherigen Nachwuchsförderung des Vereins zufrieden."
+    ]
+  },
+
+  2:{
+    title:"Roland (aufsteigen)",
+    correct:[3,4,7,9],
+    questions:[
+      "Roland wünschmann spielt selbst bei Viktoria Köln Fußball.",
+      "Viktoria Köln möchte am Ende der Spielsaison aufsteigen.",
+      "Zu Beginn dieser Saison hat ein Spieler Viktoria Köln verlassen.",
+      "Neue Spieler kommen bei Viktoria Köln immer aus der eigenen Jugendmannschaft.",
+      "Die Mannschaft von Viktoria Köln hat Schwächen in der Abwehr.",
+      "Roland wünschmann wagt die Prognose, dass dieser Saison der 1 FC Mönchengladbach Meister wird.",
+      "Roland wünschmann kann seinen Beruf und sein Ehrenamt als Fußballtrainer miteinander vereinbaren.",
+      "Auch die Frau von Roland wünschmann engagiert sich im Fußball.",
+      "Der Vereinsvorstand schätzt Herrn wünschmanns Arbeit.",
+      "Roland wünschmann ist mit der bisherigen Nachwuchsförderung des Vereins noch nicht voll zufrieden."
+    ]
+  },
+
+  3:{
+    title:"Roland (höhere Liga)",
+    correct:[2,3,5,8,9],
+    questions:[
+      "Roland wünschmann spielt selbst bei Viktoria Köln Fußball.",
+      "Viktoria Köln spielt seit Beginn der Saison in einer höheren Liga.",
+      "Die meisten Spieler haben schon in der letzten Saison bei Viktoria Köln gespielt.",
+      "Neuzugänge kommen meist aus unterschiedlichen Mannschaften.",
+      "Die Mannschaft möchte neue Spieltaktiken ausprobieren.",
+      "Roland wünschmann wagt die Prognose, dass dieser Saison der 1 FC Mönchengladbach Meister wird.",
+      "Roland wünschmann empfindet sein Ehrenamt oft als Belastung.",
+      "Seine Frau engagiert sich für denselben Verein.",
+      "Er und der Vorstand sind meistens einer Meinung.",
+      "Er hofft auf Verbesserungen in der Nachwuchsförderung."
+    ]
+  }
+};
+
+let currentVariant=1;
+let h2User={};
+
+function loadVariants(){
+  let c=document.getElementById("variantButtons");
+  if(!c) return;
+  c.innerHTML="";
+
+  for(let v in h2Variants){
+    let b=document.createElement("button");
+    b.innerText=h2Variants[v].title;
+    b.style.margin="5px";
+    b.style.padding="8px 15px";
+    b.style.border="1px solid #ccc";
+    b.style.borderRadius="8px";
+    b.style.cursor="pointer";
+    b.style.background="white";
+    b.onclick=()=>{
+      currentVariant=parseInt(v);
+      h2User={};
+      
+      document.querySelectorAll("#variantButtons button").forEach(btn=>{
+        btn.style.background="white";
+        btn.style.color="black";
+      });
+      
+      b.style.background="#0d6efd";
+      b.style.color="white";
+      
+      loadH2();
+    };
+    c.appendChild(b);
+  }
+}
+
+function loadH2(){
+  let container=document.getElementById("h2_questions");
+  if(!container) return;
+  container.innerHTML="";
+  h2User = {};
+
+  let data = h2Variants[currentVariant];
+
+  data.questions.forEach((q,i)=>{
+    let div=document.createElement("div");
+    div.className="h-question";
+
+    div.innerHTML=`
+    <span>${i+1}. ${q}</span>
+    <div>
+      <button class="h-btn" onclick="selectH2(${i}, true)">✔</button>
+      <button class="h-btn" onclick="selectH2(${i}, false)">✖</button>
+    </div>
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+function selectH2(i,val){
+  h2User[i]=val;
+
+  let parent = document.getElementById("h2_questions").children[i];
+  let buttons = parent.querySelectorAll(".h-btn");
+
+  buttons.forEach(btn=>{
+    btn.classList.remove("active-true","active-false");
+  });
+
+  if(val){
+    buttons[0].classList.add("active-true");
+  }else{
+    buttons[1].classList.add("active-false");
+  }
+}
+
+function checkH2(){
+  let correctList = h2Variants[currentVariant].correct;
+  let score = 0;
+  let questions = document.querySelectorAll("#h2_questions .h-question");
+
+  for(let i=0;i<10;i++){
+    let correct = correctList.includes(i+1);
+    let user = h2User[i];
+
+    let qDiv = questions[i];
+    let buttons = qDiv.querySelectorAll(".h-btn");
+    let btnTrue = buttons[0];
+    let btnFalse = buttons[1];
+
+    // reset style
+    btnTrue.style.background = "";
+    btnFalse.style.background = "";
+    qDiv.style.borderColor = "#ccc";
+
+    if(user === correct){
+      score++;
+      qDiv.style.borderColor = "#28a745";
+      if(correct){
+        btnTrue.style.background = "#28a745";
+        btnTrue.style.color = "white";
+      }else{
+        btnFalse.style.background = "#28a745";
+        btnFalse.style.color = "white";
+      }
+    }else{
+      qDiv.style.borderColor = "#dc3545";
+      if(user === true){
+        btnTrue.style.background = "#dc3545";
+        btnTrue.style.color = "white";
+      }else if(user === false){
+        btnFalse.style.background = "#dc3545";
+        btnFalse.style.color = "white";
+      }
+      if(correct){
+        btnTrue.style.background = "#28a745";
+        btnTrue.style.color = "white";
+      }else{
+        btnFalse.style.background = "#28a745";
+        btnFalse.style.color = "white";
+      }
+    }
+  }
+
+  let final = (score*(25/10)).toFixed(2);
+  document.getElementById("resultH2").innerText = "النتيجة: " + final + " / 25";
+}
+
+function resetH2(){
+  h2User={};
+  loadH2();
+  document.getElementById("resultH2").innerText="";
+}
+
+// Hören Teil 3
+const h3Data = [
+  "Besucher des Reitturniers sollten möglichst Parkplätze außerhalb des Turniergeländes nutzen.",
+  "Das Open-Air-Gospelkonzert wird live im Radio übertragen.",
+  "Bei der Berliner Museumsnacht können Sie mit einer Sonderbuslinie bequem erreichen.",
+  "Wegen Glätte ist die A5 zwischen Mannheim und Frankfurt in beide Richtungen voll gesperrt.",
+  "Hotelreservierungen in Dresden sind ausschließlich telefonisch möglich."
+];
+
+const h3Correct=[1,3];
+
+let h3User={};
+
+function loadH3(){
+  let c=document.getElementById("h3_questions");
+  if(!c) return;
+  c.innerHTML="";
+
+  h3Data.forEach((q,i)=>{
+    let div=document.createElement("div");
+    div.className="h-question";
+
+    div.innerHTML=`
+    <span>${i+1}. ${q}</span>
+    <div>
+      <button class="h-btn" onclick="selectH3(${i}, true)">✔</button>
+      <button class="h-btn" onclick="selectH3(${i}, false)">✖</button>
+    </div>
+    `;
+    c.appendChild(div);
+  });
+}
+
+function selectH3(i,val){
+  h3User[i]=val;
+
+  let parent = document.getElementById("h3_questions").children[i];
+  let buttons = parent.querySelectorAll(".h-btn");
+
+  buttons.forEach(btn=>{
+    btn.classList.remove("active-true","active-false");
+  });
+
+  if(val){
+    buttons[0].classList.add("active-true");
+  }else{
+    buttons[1].classList.add("active-false");
+  }
+}
+
+function checkH3(){
+  let score = 0;
+  let questions = document.querySelectorAll("#h3_questions .h-question");
+
+  for(let i=0;i<h3Data.length;i++){
+    let correct = h3Correct.includes(i+1);
+    let user = h3User[i];
+
+    let qDiv = questions[i];
+    let buttons = qDiv.querySelectorAll(".h-btn");
+    let btnTrue = buttons[0];
+    let btnFalse = buttons[1];
+
+    // reset style
+    btnTrue.style.background = "";
+    btnFalse.style.background = "";
+    qDiv.style.borderColor = "#ccc";
+
+    if(user === correct){
+      score++;
+      qDiv.style.borderColor = "#28a745";
+      if(correct){
+        btnTrue.style.background = "#28a745";
+        btnTrue.style.color = "white";
+      }else{
+        btnFalse.style.background = "#28a745";
+        btnFalse.style.color = "white";
+      }
+    }else{
+      qDiv.style.borderColor = "#dc3545";
+      if(user === true){
+        btnTrue.style.background = "#dc3545";
+        btnTrue.style.color = "white";
+      }else if(user === false){
+        btnFalse.style.background = "#dc3545";
+        btnFalse.style.color = "white";
+      }
+      if(correct){
+        btnTrue.style.background = "#28a745";
+        btnTrue.style.color = "white";
+      }else{
+        btnFalse.style.background = "#28a745";
+        btnFalse.style.color = "white";
+      }
+    }
+  }
+
+  let final = (score*(25/5)).toFixed(2);
+  document.getElementById("resultH3").innerText = "النتيجة: " + final + " / 25";
+}
+
+function resetH3(){
+  h3User={};
+  loadH3();
+  document.getElementById("resultH3").innerText="";
+}
+
+// تهيئة كل الأجزاء
+loadOptions();
+loadSprachOptions();
+loadSprach2Options();
+setTimeout(enhanceOptionsForMethod1, 100);
+loadH1();
+loadVariants();
+loadH2();
+loadH3();
+
+</script>
 
 </body>
 </html>
