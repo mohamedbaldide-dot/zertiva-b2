@@ -41,8 +41,13 @@ const AVAILABLE_EXAMS = [1];
 
 // ========== دالة عرض القائمة ==========
 function renderExamList() {
+  console.log("🟢 renderExamList تم استدعاؤها");
+  
   const container = document.getElementById("examList");
-  if (!container) return;
+  if (!container) {
+    console.error("❌ عنصر examList غير موجود في الصفحة");
+    return;
+  }
 
   container.innerHTML = "";
 
@@ -66,29 +71,27 @@ function renderExamList() {
       div.className = "item";
       
       if (isAvailable) {
-        div.innerHTML = `${examNumber}. ${exam.title} (${label})`;
+        div.innerHTML = `${examNumber}. ${exam.title} (${label}) ✅`;
         div.style.borderLeft = "4px solid #28a745";
         div.onclick = () => {
+          console.log(`✅ فتح الامتحان رقم ${examNumber}`);
           if (typeof window.openExam === "function") {
             window.openExam({
               id: examNumber,
               title: `${exam.title} (${label})`,
               file: `exam${examNumber}.js`
             });
+          } else {
+            console.error("❌ window.openExam غير موجود");
+            alert("خطأ: نظام فتح الامتحان لم يتم تحميله");
           }
         };
       } else {
-        div.innerHTML = `${examNumber}. ${exam.title} (${label})`;
+        div.innerHTML = `${examNumber}. ${exam.title} (${label}) 🔜`;
         div.style.opacity = "0.6";
         div.style.backgroundColor = "#f8f9fa";
         div.onclick = () => {
-          if (typeof window.openExam === "function") {
-            window.openExam({
-              id: examNumber,
-              title: `${exam.title} (${label})`,
-              file: `exam${examNumber}.js`
-            });
-          }
+          alert(`⚠️ الامتحان رقم ${examNumber} سيتم إضافته قريباً.\n✅ حالياً الامتحان 1 فقط متاح.`);
         };
       }
       
@@ -100,5 +103,18 @@ function renderExamList() {
   console.log(`✅ تم عرض ${examNumber - 1} امتحان (${AVAILABLE_EXAMS.length} متاح حالياً)`);
 }
 
-// تسجيل الدالة في window
+// ========== تسجيل الدالة في window ==========
 window.renderExamList = renderExamList;
+
+// ========== استدعاء القائمة مباشرة عند تحميل الملف ==========
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", function() {
+    console.log("🟢 DOMContentLoaded - استدعاء renderExamList");
+    renderExamList();
+  });
+} else {
+  console.log("🟢 DOM جاهز - استدعاء renderExamList مباشرة");
+  renderExamList();
+}
+
+console.log("✅ exams.js تم تحميله بنجاح");
