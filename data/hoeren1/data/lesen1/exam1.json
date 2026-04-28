@@ -1,0 +1,25 @@
+{
+  "title": "Gesundheitstrends",
+  "questions": [
+    {
+      "text": "Immer mehr Menschen achten auf gesunde Ernährung.",
+      "correct": true
+    },
+    {
+      "text": "Fitnessstudios verzeichnen sinkende Mitgliederzahlen.",
+      "correct": false
+    },
+    {
+      "text": "Der Konsum von Softdrinks ist rückläufig.",
+      "correct": true
+    },
+    {
+      "text": "Die meisten Deutschen treiben nie Sport.",
+      "correct": false
+    },
+    {
+      "text": "Bio-Produkte werden immer beliebter.",
+      "correct": true
+    }
+  ]
+}

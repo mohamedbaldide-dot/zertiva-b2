@@ -1,0 +1,25 @@
+{
+  "title": "Erdbeben in der Stadt",
+  "questions": [
+    {
+      "text": "Nach dem Erdbeben meldeten viele Bürger Schäden an ihren Häusern.",
+      "correct": true
+    },
+    {
+      "text": "Die Feuerwehr war innerhalb von 10 Minuten vor Ort.",
+      "correct": false
+    },
+    {
+      "text": "Es gab keine Verletzten bei dem Beben.",
+      "correct": false
+    },
+    {
+      "text": "Die Stadtverwaltung richtete ein Hilfstelefon ein.",
+      "correct": true
+    },
+    {
+      "text": "Die Schulen blieben am nächsten Tag geschlossen.",
+      "correct": true
+    }
+  ]
+}
