@@ -3,536 +3,414 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zertiva B2 - نظام ديناميكي</title>
+<title>Zertiva B2</title>
+
 <style>
-/* === جميع الأنماط الأصلية محفوظة كما هي === */
+/* جميع الأنماط الأصلية لم يتم تغييرها ولو قليلاً */
 body{margin:0;font-family:Arial;background:#f5f5f5;}
+
 .page{display:none;min-height:100vh;padding:30px;}
 .active{display:block;}
+
 .home{display:flex;justify-content:center;align-items:center;text-align:center;}
+
 .card{background:white;padding:40px;border-radius:15px;box-shadow:0 0 10px rgba(0,0,0,0.1);}
+
 button{padding:12px 20px;border:none;background:black;color:white;border-radius:10px;cursor:pointer;margin-top:10px;}
+
 .item{background:white;padding:15px;margin-bottom:10px;border-radius:10px;cursor:pointer;}
 .item:hover{background:#eee;}
+
 .exam-box{background:white;padding:20px;border-radius:10px;}
+
 select{margin:10px 0;padding:8px;width:100%;}
+
 .correct{background:#c8f7c5;}
 .wrong{background:#f7c5c5;}
-#texts{display:grid;grid-template-columns:1fr 1fr;gap:15px;}
-.text, .title{background:#ffffff;padding:12px;border-radius:10px;border:2px solid #dee2e6;cursor:pointer;transition:0.2s;}
-.title{background:#ffffff;padding:12px;border-radius:10px;border:2px solid #dee2e6;cursor:pointer;}
-.text:hover, .title:hover{background:#f1f3f5;}
-.selected{border:2px solid #0d6efd !important;background:#e7f1ff !important;}
-.answer-box{width:35px;height:35px;display:flex;align-items:center;justify-content:center;background:#dee2e6;border-radius:6px;font-weight:bold;margin-bottom:8px;}
-.solution-box{margin-top:6px;font-size:12px;color:#dc3545;}
-.green{background:#d4edda !important;border-color:#28a745 !important;}
-.red{background:#f8d7da !important;border-color:#dc3545 !important;}
-.moved-title{font-size:0.85em;padding:6px 10px;margin-bottom:8px;background:#f1f3f5;border-left:4px solid #0d6efd;border-radius:6px;}
-.gap{display:inline-block;padding:6px 12px;border:2px solid #007bff;background:#e7f1ff;color:#004085;cursor:pointer;margin:0 4px;border-radius:8px;font-weight:bold;min-width:70px;text-align:center;transition:0.2s;}
-.gap:hover{background:#cfe2ff;transform:scale(1.02);}
-.gap.active-gap{background:#0d6efd;color:white;border-color:#0a58ca;box-shadow:0 0 0 2px rgba(13,110,253,0.3);}
-.correct-gap{background:#d4edda;border-color:#28a745;color:#155724;}
-.wrong-gap{background:#f8d7da;border-color:#dc3545;color:#721c24;}
-.option-btn{margin:5px;padding:8px 14px;border:1px solid #6c757d;border-radius:20px;background:white;color:black;cursor:pointer;transition:0.2s;font-size:14px;}
-.option-btn:hover{background:#e9ecef;transform:translateY(-1px);}
-.option-btn.selected-option{background:#0d6efd;border-color:#0d6efd;color:white;}
-.option-group{margin-bottom:20px;padding:12px;background:#f8f9fa;border-radius:12px;border-left:4px solid #0d6efd;}
-.gap2{display:inline-block;padding:6px 12px;border:2px solid #28a745;background:#d4edda;color:#155724;cursor:pointer;margin:0 4px;border-radius:8px;font-weight:bold;min-width:70px;text-align:center;transition:0.2s;}
-.gap2:hover{background:#c3e6cb;transform:scale(1.02);}
-.gap2.active-gap{background:#218838;color:white;border-color:#1e7e34;box-shadow:0 0 0 2px rgba(33,136,56,0.3);}
-.correct-gap2{background:#d4edda;border-color:#28a745;color:#155724;}
-.wrong-gap2{background:#f8d7da;border-color:#dc3545;color:#721c24;}
-.connector-btn{margin:5px;padding:8px 14px;border:1px solid #6c757d;border-radius:20px;background:white;color:black;cursor:pointer;font-size:14px;}
-.connector-btn:hover{background:#e9ecef;transform:translateY(-1px);}
-.connector-btn.selected-connector{background:#28a745;border-color:#28a745;color:white;}
-.connector-group{margin-bottom:20px;padding:12px;background:#f8f9fa;border-radius:12px;border-left:4px solid #28a745;}
-.h-question{border:1.5px solid #ccc;border-radius:10px;padding:10px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;background:#fafafa;transition:0.3s;}
-.h-question:hover{background:#f1f1f1;border-color:#999;}
-.h-btn{padding:5px 10px;margin:2px;border:1px solid #ccc;background:white;cursor:pointer;border-radius:5px;}
-.h-btn.active-true{background:#28a745;color:white;}
-.h-btn.active-false{background:#dc3545;color:white;}
-.note{font-size:12px;color:#666;text-align:right;margin-bottom:15px;padding:8px;background:#f8f9fa;border-radius:8px;border-right:3px solid #0d6efd;}
+
+/* ===== CSS لـ Teil 3 ===== */
+#texts{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.text{
+  background:#ffffff;
+  padding:12px;
+  border-radius:10px;
+  border:2px solid #dee2e6;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.title{
+  background:#ffffff;
+  padding:12px;
+  border-radius:10px;
+  border:2px solid #dee2e6;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.text:hover, .title:hover{
+  background:#f1f3f5;
+}
+
+.selected{
+  border:2px solid #0d6efd !important;
+  background:#e7f1ff !important;
+}
+
+.answer-box{
+  width:35px;
+  height:35px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#dee2e6;
+  border-radius:6px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.solution-box{
+  margin-top:6px;
+  font-size:12px;
+  color:#dc3545;
+}
+
+.green{
+  background:#d4edda !important;
+  border-color:#28a745 !important;
+}
+
+.red{
+  background:#f8d7da !important;
+  border-color:#dc3545 !important;
+}
+
+.moved-title{
+  font-size:0.85em;
+  padding:6px 10px;
+  margin-bottom:8px;
+  background:#f1f3f5;
+  border-left:4px solid #0d6efd;
+  border-radius:6px;
+}
+
+/* ===== CSS لـ Sprachbausteine ===== */
+.gap{
+  display:inline-block;
+  padding:6px 12px;
+  border:2px solid #007bff;
+  background:#e7f1ff;
+  color:#004085;
+  cursor:pointer;
+  margin:0 4px;
+  border-radius:8px;
+  font-weight:bold;
+  min-width:70px;
+  text-align:center;
+  transition:0.2s;
+}
+
+.gap:hover{
+  background:#cfe2ff;
+  transform:scale(1.02);
+}
+
+.gap.active-gap{
+  background:#0d6efd;
+  color:white;
+  border-color:#0a58ca;
+  box-shadow:0 0 0 2px rgba(13,110,253,0.3);
+}
+
+.correct-gap{
+  background:#d4edda;
+  border-color:#28a745;
+  color:#155724;
+}
+
+.wrong-gap{
+  background:#f8d7da;
+  border-color:#dc3545;
+  color:#721c24;
+}
+
+/* خيارات الإجابة */
+.option-btn{
+  margin:5px;
+  padding:8px 14px;
+  border:1px solid #6c757d;
+  border-radius:20px;
+  background:white;
+  color:black;
+  cursor:pointer;
+  transition:0.2s;
+  font-size:14px;
+}
+
+.option-btn:hover{
+  background:#e9ecef;
+  transform:translateY(-1px);
+}
+
+.option-btn.selected-option{
+  background:#0d6efd;
+  border-color:#0d6efd;
+  color:white;
+}
+
+.option-btn.disabled-option{
+  opacity:0.5;
+  text-decoration:line-through;
+  cursor:not-allowed;
+  pointer-events:none;
+}
+
+.option-group{
+  margin-bottom:20px;
+  padding:12px;
+  background:#f8f9fa;
+  border-radius:12px;
+  border-left:4px solid #0d6efd;
+}
+
+/* ===== CSS لـ Sprachbausteine Teil 2 ===== */
+.gap2{
+  display:inline-block;
+  padding:6px 12px;
+  border:2px solid #28a745;
+  background:#d4edda;
+  color:#155724;
+  cursor:pointer;
+  margin:0 4px;
+  border-radius:8px;
+  font-weight:bold;
+  min-width:70px;
+  text-align:center;
+  transition:0.2s;
+}
+
+.gap2:hover{
+  background:#c3e6cb;
+  transform:scale(1.02);
+}
+
+.gap2.active-gap{
+  background:#218838;
+  color:white;
+  border-color:#1e7e34;
+  box-shadow:0 0 0 2px rgba(33,136,56,0.3);
+}
+
+.correct-gap2{
+  background:#d4edda;
+  border-color:#28a745;
+  color:#155724;
+}
+
+.wrong-gap2{
+  background:#f8d7da;
+  border-color:#dc3545;
+  color:#721c24;
+}
+
+.connector-btn{
+  margin:5px;
+  padding:8px 14px;
+  border:1px solid #6c757d;
+  border-radius:20px;
+  background:white;
+  color:black;
+  cursor:pointer;
+  transition:0.2s;
+  font-size:14px;
+}
+
+.connector-btn:hover{
+  background:#e9ecef;
+  transform:translateY(-1px);
+}
+
+.connector-btn.selected-connector{
+  background:#28a745;
+  border-color:#28a745;
+  color:white;
+}
+
+.connector-group{
+  margin-bottom:20px;
+  padding:12px;
+  background:#f8f9fa;
+  border-radius:12px;
+  border-left:4px solid #28a745;
+}
+
+/* ===== CSS لـ Hören ===== */
+.h-question{
+  border:1.5px solid #ccc;
+  border-radius:10px;
+  padding:10px;
+  margin:8px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#fafafa;
+  transition:0.3s;
+}
+
+.h-question:hover{
+  background:#f1f1f1;
+  border-color:#999;
+}
+
+.h-btn{
+  padding:5px 10px;
+  margin:2px;
+  border:1px solid #ccc;
+  background:white;
+  cursor:pointer;
+  border-radius:5px;
+}
+
+.h-btn.active-true{
+  background:#28a745;
+  color:white;
+}
+
+.h-btn.active-false{
+  background:#dc3545;
+  color:white;
+}
+
+.note{
+  font-size:12px;
+  color:#666;
+  text-align:right;
+  margin-bottom:15px;
+  padding:8px;
+  background:#f8f9fa;
+  border-radius:8px;
+  border-right:3px solid #0d6efd;
+}
 </style>
 </head>
+
 <body>
 
-<!-- الصفحة 1 -->
+<!-- الصفحة 1: البداية -->
 <div id="home" class="page active home">
   <div class="card">
     <h1>Zertiva B2</h1>
-    <p>أوثق منصة للتحضير لامتحان Telc B2 - نظام متطور</p>
-    <button onclick="goList()">لنبدأ 🚀</button>
+    <p>أوثق منصة للتحضير لامتحان Telc B2</p>
+    <button id="startBtn">لنبدأ 🚀</button>
   </div>
 </div>
 
-<!-- الصفحة 2 -->
+<!-- الصفحة 2: قائمة الأجزاء (Teile) -->
 <div id="list" class="page">
-  <h2>الامتحانات المتاحة</h2>
-  <div id="examsList"></div>
+  <h2>اختر الجزء الذي ترغب في التدرب عليه</h2>
+  <div id="teileList"></div>
   <button onclick="goHome()">رجوع</button>
 </div>
 
-<!-- الصفحة 3 - عرض الامتحان الديناميكي -->
+<!-- الصفحة 3: عرض النماذج (1-40) لجزء معين -->
 <div id="exam" class="page">
 <div class="exam-box">
-<h2 id="examTitle"></h2>
-
-<!-- أزرار التنقل -->
-<div id="navButtons" style="margin-bottom:20px;"></div>
-
-<!-- حاويات الأجزاء -->
-<div id="teil1_container" style="display:none;"></div>
-<div id="teil2_container" style="display:none;"></div>
-<div id="teil3_container" style="display:none;"></div>
-<div id="sprach1_container" style="display:none;"></div>
-<div id="sprach2_container" style="display:none;"></div>
-<div id="hoeren1_container" style="display:none;"></div>
-<div id="hoeren2_container" style="display:none;"></div>
-<div id="hoeren3_container" style="display:none;"></div>
-
-<button onclick="goList()">رجوع</button>
+  <h2 id="examTitle"></h2>
+  <div id="modelsList" style="display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0;"></div>
+  <button id="backToListBtn">رجوع إلى الأجزاء</button>
+  <button id="backHomeFromExam" style="margin-right:10px;">الرئيسية</button>
 </div>
 </div>
 
 <script>
-// ======================= النظام الديناميكي لقراءة الامتحانات =======================
-let currentExamId = null;     // مثلاً "exam1"
-let currentExamData = {};     // سيتم تخزين بيانات الأجزاء المحملة
+// =============== تعريف الأجزاء (Teile) الثمانية ===============
+const teile = [
+  { id: 1, name: "Lesen Teil 1" },
+  { id: 2, name: "Lesen Teil 2" },
+  { id: 3, name: "Lesen Teil 3" },
+  { id: 4, name: "Sprachbausteine Teil 1" },
+  { id: 5, name: "Sprachbausteine Teil 2" },
+  { id: 6, name: "Hören Teil 1" },
+  { id: 7, name: "Hören Teil 2" },
+  { id: 8, name: "Hören Teil 3" }
+];
 
-// قائمة الامتحانات (سيتم تعبئتها من السيرفر)
-let availableExams = [];
+// الصفحات
+const homePage = document.getElementById("home");
+const listPage = document.getElementById("list");
+const examPage = document.getElementById("exam");
 
-// دالة تحميل قائمة الامتحانات من مجلد exams/ (نتوقع وجود ملف index.json أو نقرأ المجلد ديناميكياً)
-// بما أن المتصفح لا يستطيع قراءة محتويات المجلد مباشرة، سنفترض وجود ملف exams_list.json
-// ولكن لتسهيل التوسع، سنقوم بإنشاء مصفوفة ثابتة كتجربة، ويمكن استبدالها بطلب AJAX لاحقاً.
-// في هذا الحل، سنقوم بإنشاء قائمة الامتحانات بناءً على ملفات موجودة مسبقاً.
-// لتكون ديناميكية حقاً، يمكن للمطور تحديث ملف exams_list.json يدوياً أو عبر سكربت.
-// سنقوم بتحميل exams_list.json أولاً.
-
-async function loadExamsList() {
-  try {
-    const response = await fetch('exams_list.json');
-    if (!response.ok) throw new Error('لا يوجد ملف exams_list.json');
-    const data = await response.json();
-    availableExams = data.exams;
-    renderExamsList();
-  } catch(e) {
-    console.warn("لم يتم العثور على exams_list.json، سيتم استخدام قائمة افتراضية.");
-    // قائمة افتراضية للاختبار
-    availableExams = [
-      { id: "exam1", title: "1 - Sport ist gesund (الرياضة مفيدة للصحة)" },
-      { id: "exam2", title: "2 - Kellner (باحث شاب)" }
-    ];
-    renderExamsList();
-  }
+// دوال التنقل الأساسية
+function goHome() {
+  homePage.classList.add("active");
+  listPage.classList.remove("active");
+  examPage.classList.remove("active");
 }
 
-function renderExamsList() {
-  const container = document.getElementById("examsList");
-  if (!container) return;
+function goToList() {
+  homePage.classList.remove("active");
+  listPage.classList.add("active");
+  examPage.classList.remove("active");
+  renderTeile(); // إعادة عرض الأجزاء كل مرة
+}
+
+function goToExam(teilId, teilName) {
+  homePage.classList.remove("active");
+  listPage.classList.remove("active");
+  examPage.classList.add("active");
+  document.getElementById("examTitle").innerText = teilName + " : اختر رقم الامتحان (1 - 40)";
+  renderModels(teilId);
+}
+
+// عرض الأجزاء في صفحة القائمة
+function renderTeile() {
+  const container = document.getElementById("teileList");
   container.innerHTML = "";
-  availableExams.forEach(exam => {
+  teile.forEach(teil => {
     const div = document.createElement("div");
     div.className = "item";
-    div.innerText = exam.title;
-    div.onclick = () => openExam(exam.id);
+    div.innerText = teil.name;
+    div.onclick = () => goToExam(teil.id, teil.name);
     container.appendChild(div);
   });
 }
 
-// دالة فتح الامتحان: تحميل جميع الأجزاء الخاصة بهذا الامتحان
-async function openExam(examId) {
-  currentExamId = examId;
-  document.getElementById("list").classList.remove("active");
-  document.getElementById("exam").classList.add("active");
-  document.getElementById("examTitle").innerText = availableExams.find(e => e.id === examId)?.title || examId;
-
-  // قائمة الأجزاء المطلوبة (نفس ترتيب الأزرار)
-  const parts = [
-    { name: "teil1", folder: "lesen1", container: "teil1_container", displayName: "Lesen Teil 1" },
-    { name: "teil2", folder: "lesen2", container: "teil2_container", displayName: "Lesen Teil 2" },
-    { name: "teil3", folder: "lesen3", container: "teil3_container", displayName: "Lesen Teil 3" },
-    { name: "sprach1", folder: "sprach1", container: "sprach1_container", displayName: "Sprachbausteine Teil 1" },
-    { name: "sprach2", folder: "sprach2", container: "sprach2_container", displayName: "Sprachbausteine Teil 2" },
-    { name: "hoeren1", folder: "hoeren1", container: "hoeren1_container", displayName: "Hören Teil 1" },
-    { name: "hoeren2", folder: "hoeren2", container: "hoeren2_container", displayName: "Hören Teil 2" },
-    { name: "hoeren3", folder: "hoeren3", container: "hoeren3_container", displayName: "Hören Teil 3" }
-  ];
-
-  // تخزين البيانات المحملة
-  currentExamData = {};
-
-  // تحميل كل جزء (ملف JSON خاص بالامتحان داخل المجلد المناسب)
-  for (let part of parts) {
-    try {
-      const url = `data/${part.folder}/${examId}.json`;
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`404 - ${url}`);
-      const jsonData = await response.json();
-      currentExamData[part.name] = jsonData;
-    } catch(e) {
-      console.warn(`لم يتم العثور على ملف ${part.name} للامتحان ${examId}`);
-      currentExamData[part.name] = null;
-    }
-  }
-
-  // إنشاء أزرار التنقل بناءً على الأجزاء المتوفرة
-  const navDiv = document.getElementById("navButtons");
-  navDiv.innerHTML = "";
-  parts.forEach((part, idx) => {
-    if (currentExamData[part.name]) {
-      const btn = document.createElement("button");
-      btn.innerText = part.displayName;
-      btn.onclick = () => showTeil(idx+1);
-      navDiv.appendChild(btn);
-    }
-  });
-
-  // إخفاء جميع الحاويات أولاً
-  parts.forEach(p => {
-    const container = document.getElementById(p.container);
-    if (container) container.style.display = "none";
-  });
-
-  // بناء محتوى الأجزاء بشكل منفصل حسب النوع
-  if (currentExamData.teil1) buildTeil1(currentExamData.teil1);
-  if (currentExamData.teil2) buildTeil2(currentExamData.teil2);
-  if (currentExamData.teil3) buildTeil3(currentExamData.teil3);
-  if (currentExamData.sprach1) buildSprach1(currentExamData.sprach1);
-  if (currentExamData.sprach2) buildSprach2(currentExamData.sprach2);
-  if (currentExamData.hoeren1) buildHoeren1(currentExamData.hoeren1);
-  if (currentExamData.hoeren2) buildHoeren2(currentExamData.hoeren2);
-  if (currentExamData.hoeren3) buildHoeren3(currentExamData.hoeren3);
-
-  // عرض أول جزء موجود
-  let firstIndex = 1;
-  for (let i=0; i<parts.length; i++) {
-    if (currentExamData[parts[i].name]) {
-      firstIndex = i+1;
-      break;
-    }
-  }
-  showTeil(firstIndex);
-}
-
-// ======================= دوال عرض الأجزاء حسب النوع =======================
-function showTeil(num) {
-  const containers = ["teil1_container", "teil2_container", "teil3_container", "sprach1_container", "sprach2_container", "hoeren1_container", "hoeren2_container", "hoeren3_container"];
-  containers.forEach((id, idx) => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = (idx+1 === num) ? "block" : "none";
-  });
-}
-
-// بناء Teil 1 (مطابقة العناوين مع النصوص)
-function buildTeil1(data) {
-  const container = document.getElementById("teil1_container");
-  if (!container) return;
+// عرض الأرقام من 1 إلى 40 كنماذج (مؤقتة)
+function renderModels(teilId) {
+  const container = document.getElementById("modelsList");
   container.innerHTML = "";
-  // data يحتوي على: { texts: [{id, content}], titles: {key: title}, correctAnswers: {textId: key} }
-  const texts = data.texts;
-  const titlesObj = data.titles;
-  const correct = data.correctAnswers;
-
-  let html = `<h3>Teil 1 - Zuordnung von Texten zu Titeln</h3>`;
-  for (let i=0; i<texts.length; i++) {
-    html += `<h3 id="t${texts[i].id}">Text ${texts[i].id}</h3>`;
-    html += `<p>${texts[i].content}</p>`;
-    html += `<select id="ans${texts[i].id}" onchange="updateOptionsTeil1()">`;
-    html += `<option value="">اختر</option>`;
-    for (let [key, title] of Object.entries(titlesObj)) {
-      html += `<option value="${key}">${key}. ${title}</option>`;
-    }
-    html += `</select>`;
-  }
-  html += `<button onclick="checkTeil1Dynamic(${JSON.stringify(correct)})">تصحيح</button>`;
-  html += `<button onclick="resetTeil1Dynamic()" style="margin-right:10px;">🔄 إعادة Teil 1</button>`;
-  html += `<p id="resultTeil1"></p>`;
-  container.innerHTML = html;
-  window.correctTeil1 = correct;
-}
-
-function updateOptionsTeil1() { /* نفس منطق منع التكرار، سنعيد تنفيذه */ }
-window.updateOptionsTeil1 = function() {
-  let selected = [];
-  for (let i=1; i<=5; i++) {
-    let s = document.getElementById(`ans${i}`);
-    if(s && s.value) selected.push(s.value);
-  }
-  for (let i=1; i<=5; i++) {
-    let s = document.getElementById(`ans${i}`);
-    if(s) {
-      let current = s.value;
-      s.innerHTML = "<option value=''>اختر</option>";
-      for (let [key, title] of Object.entries(window.titlesObj || {})) {
-        if (!selected.includes(key) || key===current) {
-          s.innerHTML += `<option value="${key}">${key}. ${title}</option>`;
-        }
-      }
-      s.value = current;
-    }
-  }
-};
-
-window.checkTeil1Dynamic = function(correctMap) {
-  let score = 0;
-  for (let i=1; i<=5; i++) {
-    let val = document.getElementById(`ans${i}`).value;
-    let textElem = document.getElementById(`t${i}`);
-    textElem.classList.remove("correct","wrong");
-    if (val === correctMap[i]) {
-      textElem.classList.add("correct");
-      score++;
-    } else {
-      textElem.classList.add("wrong");
-      let select = document.getElementById(`ans${i}`);
-      if (!select.querySelector(".correct-answer")) {
-        let opt = document.createElement("option");
-        opt.value = correctMap[i];
-        opt.textContent = "✔ الصحيح: " + correctMap[i] + ". " + window.titlesObj[correctMap[i]];
-        opt.classList.add("correct-answer");
-        select.appendChild(opt);
-      }
-      select.value = correctMap[i];
-    }
-  }
-  let final = (score * (25/5)).toFixed(2);
-  document.getElementById("resultTeil1").innerText = "النتيجة: "+final+" / 25";
-};
-
-window.resetTeil1Dynamic = function() {
-  for(let i=1;i<=5;i++) {
-    let s = document.getElementById(`ans${i}`);
-    if(s) {
-      s.querySelectorAll(".correct-answer").forEach(opt => opt.remove());
-      s.value = "";
-    }
-    let t = document.getElementById(`t${i}`);
-    if(t) t.classList.remove("correct","wrong");
-  }
-  document.getElementById("resultTeil1").innerText = "";
-};
-
-// بناء Teil 2 (أسئلة اختيار من متعدد على نص)
-function buildTeil2(data) {
-  const container = document.getElementById("teil2_container");
-  container.innerHTML = `<h2>Lesen Teil 2</h2><div class="note">📌 ملاحظة: الأسئلة التالية خاصة بالنص التالي</div>
-  <div style="display:flex; gap:20px; flex-wrap:wrap;"><div style="flex:2; background:#f9f9f9; padding:15px; border-radius:10px;"><p>${data.text}</p></div>
-  <div style="flex:1;" id="teil2_questions_div"></div></div>
-  <button onclick="checkTeil2Dynamic()">تصحيح</button><button onclick="resetTeil2Dynamic()" style="margin-right:10px;">🔄 إعادة Teil 2</button><p id="resultTeil2"></p>`;
-  const questionsDiv = document.getElementById("teil2_questions_div");
-  questionsDiv.innerHTML = "";
-  window.teil2Correct = {};
-  data.questions.forEach((q, idx) => {
-    let qHtml = `<p><strong>Frage ${idx+1}<br>${q.text}</strong></p><select id="teil2_q${idx+1}"><option value="">اختر</option>`;
-    q.options.forEach(opt => { qHtml += `<option value="${opt.value}">${opt.label}</option>`; });
-    qHtml += `</select>`;
-    questionsDiv.innerHTML += qHtml;
-    window.teil2Correct[idx+1] = q.correct;
-  });
-}
-
-window.checkTeil2Dynamic = function() {
-  let score=0;
-  for(let i=1; i<=Object.keys(window.teil2Correct).length; i++) {
-    let sel = document.getElementById(`teil2_q${i}`);
-    let val = sel.value;
-    sel.classList.remove("correct","wrong");
-    if(val === window.teil2Correct[i]) {
-      sel.classList.add("correct"); score++;
-    } else {
-      sel.classList.add("wrong");
-      if(!sel.querySelector(".correct-answer")) {
-        let opt = document.createElement("option");
-        opt.textContent = "✔ الصحيح: "+window.teil2Correct[i];
-        opt.classList.add("correct-answer");
-        sel.appendChild(opt);
-      }
-    }
-  }
-  let final = (score * (25 / Object.keys(window.teil2Correct).length)).toFixed(2);
-  document.getElementById("resultTeil2").innerText = "النتيجة: "+final+" / 25";
-};
-window.resetTeil2Dynamic = function() {
-  for(let i=1; i<=Object.keys(window.teil2Correct).length; i++) {
-    let sel = document.getElementById(`teil2_q${i}`);
-    if(sel) {
-      sel.querySelectorAll(".correct-answer").forEach(opt=>opt.remove());
-      sel.value = "";
-      sel.classList.remove("correct","wrong");
-    }
-  }
-  document.getElementById("resultTeil2").innerText = "";
-};
-
-// بناء Teil 3 (ربط الإعلانات بالعناوين)
-function buildTeil3(data) {
-  const container = document.getElementById("teil3_container");
-  // بناء الواجهة بنفس الطريقة الأصلية ولكن باستخدام البيانات
-  let html = `<h2>Lesen Teil 3</h2><div style="display:flex; gap:20px; flex-wrap:wrap;"><div id="texts" style="flex:1.5; min-width:300px;">`;
-  data.texts.forEach((text, idx) => {
-    html += `<div class="text" onclick="selectTextDynamic(${idx+1}, this)">
-              <div class="answer-box"></div><div class="solution-box"></div>
-              <strong>Anzeige ${String.fromCharCode(97+idx)}:</strong> ${text}
-              <p style="color:#666; font-size:12px; margin-top:8px;">انقر هنا ثم اختر إجابة من اليمين</p>
-            </div>`;
-  });
-  html += `</div><div id="titles" style="flex:1; min-width:250px;"><div class="title" data-id="0" onclick="selectTitleDynamic(0, this)">0. لا شيء مناسب لهذا الإعلان</div>`;
-  data.titles.forEach((title, idx) => {
-    html += `<div class="title" data-id="${idx+1}" onclick="selectTitleDynamic(${idx+1}, this)">${idx+1}. ${title}</div>`;
-  });
-  html += `</div></div><button onclick="checkTeil3Dynamic()">تصحيح Teil 3</button><button onclick="resetTeil3Dynamic()">🔄 إعادة Teil 3</button><p id="resultTeil3"></p>`;
-  container.innerHTML = html;
-  window.teil3Data = data;
-  window.answersTeil3 = {};
-  window.selectedText = null;
-  window.selectedTitle = null;
-  // إعادة تعريف الدوال
-  window.selectTextDynamic = function(num, el) { /* نفس المنطق */ };
-  window.selectTitleDynamic = function(letter, el) { /* نفس المنطق */ };
-  // للاختصار، سنعيد استخدام نفس دوال Teil 3 الأصلية مع تعديل بسيط
-  attachTeil3Events();
-}
-
-function attachTeil3Events() {
-  // سنقوم بتنفيذ منطق مشابه للأصل ولكن مع بيانات dynamique
-  window.selectTextDynamic = function(num, el) {
-    if(window.selectedText === num) {
-      window.selectedText = null; el.classList.remove("selected"); return;
-    }
-    document.querySelectorAll("#texts .text").forEach(t=>t.classList.remove("selected"));
-    window.selectedText = num; el.classList.add("selected");
-    if(window.selectedTitle !== null) assignTeil3(num, window.selectedTitle);
-  };
-  window.selectTitleDynamic = function(letter, el) {
-    if(window.selectedTitle === letter) {
-      window.selectedTitle = null; el.classList.remove("selected"); return;
-    }
-    document.querySelectorAll("#titles .title").forEach(t=>t.classList.remove("selected"));
-    window.selectedTitle = letter; el.classList.add("selected");
-    if(window.selectedText !== null) assignTeil3(window.selectedText, window.selectedTitle);
-  };
-  window.assignTeil3 = function(num, letter) {
-    let textEl = document.querySelectorAll("#texts .text")[num-1];
-    let titleEl = document.querySelector(`#titles .title[data-id="${letter}"]`);
-    if(window.answersTeil3[num] !== undefined) {
-      let oldTitle = document.querySelector(`#titles .title[data-id="${window.answersTeil3[num]}"]`);
-      if(oldTitle) oldTitle.style.display = "block";
-    }
-    window.answersTeil3[num] = letter;
-    let oldMoved = textEl.querySelector(".moved-title");
-    if(oldMoved) oldMoved.remove();
-    if(titleEl) {
-      titleEl.style.display = "none";
-      let clone = document.createElement("div");
-      clone.classList.add("moved-title");
-      let closeBtn = document.createElement("span");
-      closeBtn.innerText = " ✖";
-      closeBtn.style.cursor = "pointer";
-      closeBtn.style.marginLeft = "10px";
-      closeBtn.onclick = (e) => {
-        e.stopPropagation();
-        titleEl.style.display = "block";
-        delete window.answersTeil3[num];
-        clone.remove();
+  for (let i = 1; i <= 40; i++) {
+    const btn = document.createElement("button");
+    btn.innerText = i;
+    btn.style.margin = "5px";
+    btn.style.padding = "10px 15px";
+    btn.style.backgroundColor = "#f0f0f0";
+    btn.style.border = "1px solid #ccc";
+    btn.style.borderRadius = "8px";
+    btn.style.cursor = "pointer";
+    btn.style.fontSize = "16px";
+    btn.onclick = (function(num) {
+      return function() {
+        // مؤقتاً: رسالة تفيد بأن الامتحان سيتم إضافته لاحقاً
+        alert(`الامتحان رقم ${num} في الجزء ${teilId} سيتم إضافته قريباً. يمكنك لاحقاً ملء محتواه.`);
       };
-      clone.innerText = titleEl.innerText;
-      clone.appendChild(closeBtn);
-      textEl.insertBefore(clone, textEl.children[1]);
-    }
-    window.selectedText = null; window.selectedTitle = null;
-    document.querySelectorAll(".selected").forEach(e=>e.classList.remove("selected"));
-  };
-}
-
-window.checkTeil3Dynamic = function() {
-  let correct = window.teil3Data.correct;
-  let score = 0;
-  for(let i=1; i<=window.teil3Data.texts.length; i++) {
-    let el = document.querySelectorAll("#texts .text")[i-1];
-    let val = window.answersTeil3[i];
-    let box = el.querySelector(".answer-box");
-    let sol = el.querySelector(".solution-box");
-    let oldTitle = el.querySelector(".moved-title");
-    if(oldTitle) oldTitle.remove();
-    if(val === correct[i]) {
-      let correctTitle = document.querySelector(`#titles .title[data-id="${correct[i]}"]`);
-      if(correctTitle && correct[i] !== 0) {
-        let clone = document.createElement("div");
-        clone.classList.add("moved-title");
-        clone.innerText = correctTitle.innerText;
-        clone.style.borderLeftColor = "#28a745";
-        clone.style.background = "#d4edda";
-        el.insertBefore(clone, el.children[1]);
-      }
-      box.classList.add("green"); score++;
-    } else {
-      el.classList.add("red");
-      let correctTitle = document.querySelector(`#titles .title[data-id="${correct[i]}"]`);
-      if(correctTitle && correct[i] !== 0) {
-        let clone = document.createElement("div");
-        clone.classList.add("moved-title");
-        clone.innerText = correctTitle.innerText;
-        clone.style.borderLeftColor = "#dc3545";
-        clone.style.background = "#f8d7da";
-        el.insertBefore(clone, el.children[1]);
-      }
-      sol.innerText = "✔ الصحيح: "+correct[i];
-    }
+    })(i);
+    container.appendChild(btn);
   }
-  let final = (score * (25/window.teil3Data.texts.length)).toFixed(2);
-  document.getElementById("resultTeil3").innerText = "النتيجة: "+final+" / 25";
-};
-
-window.resetTeil3Dynamic = function() {
-  window.answersTeil3 = {};
-  window.selectedText = null; window.selectedTitle = null;
-  document.querySelectorAll("#texts .text").forEach(el=>{
-    el.classList.remove("matched","red","selected");
-    let box = el.querySelector(".answer-box");
-    if(box) box.classList.remove("green");
-    let sol = el.querySelector(".solution-box");
-    if(sol) sol.innerText = "";
-    let moved = el.querySelector(".moved-title");
-    if(moved) moved.remove();
-  });
-  document.querySelectorAll("#titles .title").forEach(t=>{
-    t.classList.remove("selected");
-    t.style.display = "block";
-  });
-  document.getElementById("resultTeil3").innerText = "";
-};
-
-// باقي الدوال (Sprach1, Sprach2, Hören1-2-3) يمكن تنفيذها بنفس المنطق
-// نظراً للطول، سيتم تقديم نموذج مختصر لها. ولكن لضمان اكتمال الحل نعطي هيكلاً عاماً:
-function buildSprach1(data) { /* بناء مشابه للأصل لكن يعتمد على JSON */ }
-function buildSprach2(data) { /* ... */ }
-function buildHoeren1(data) { /* ... */ }
-function buildHoeren2(data) { /* ... */ }
-function buildHoeren3(data) { /* ... */ }
-
-// وللتوسع الكامل يجب إكمال هذه الدوال بنفس طريقة عرض وتصحيح الأجزاء الأخرى.
-// ولكن نظراً لأن المطلوب هو النظام القابل للتوسع فقط، سنكتفي بهذا الهيكل مع إمكانية إضافة الملفات.
-// المستخدم يمكنه إضافة ملفات JSON جديدة وسيتم عرضها تلقائياً.
-
-// تحميل قائمة الامتحانات عند بدء التشغيل
-loadExamsList();
-
-// دوال التنقل بين الصفحات
-function goList() {
-  document.getElementById("home").classList.remove("active");
-  document.getElementById("list").classList.add("active");
 }
-function goHome() {
-  document.getElementById("list").classList.remove("active");
-  document.getElementById("home").classList.add("active");
-}
-</script>
 
-<!-- إضافة بعض البيانات الوهمية للاختبار السريع (يمكن حذفها عند الاستخدام الفعلي) -->
-<script>
-// لتوضيح كيفية إضافة الامتحانات، نضع مثالاً لملف exams_list.json
-console.log("ينبغي إنشاء مجلد data وملفات JSON كما هو موضح في التعليقات.");
+// ربط الأزرار
+document.getElementById("startBtn").onclick = () => goToList();
+document.getElementById("backToListBtn").onclick = () => goToList();
+document.getElementById("backHomeFromExam").onclick = () => goHome();
+
+// عند تحميل الصفحة لأول مرة نتأكد من أن القائمة جاهزة
+renderTeile();
 </script>
 
 </body>
