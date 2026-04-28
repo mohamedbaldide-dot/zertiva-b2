@@ -1,15 +1,42 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zertiva B2 - نظام المهارات</title>
+  <title>Deutsch Prüfung</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="app">
-  <!-- المحتوى ديناميكي -->
+<!-- الصفحة 1 -->
+<div id="homePage" class="page">
+  <h1>Willkommen</h1>
+  <button onclick="start()">لنبدأ</button>
+</div>
+
+<!-- صفحة المهارات -->
+<div id="skillsPage" class="page hidden">
+  <h2>Wähle eine Fähigkeit</h2>
+
+  <button onclick="openSkill('hoeren1')">Hören Teil 1</button>
+  <button onclick="openSkill('hoeren2')">Hören Teil 2</button>
+  <button onclick="openSkill('hoeren3')">Hören Teil 3</button>
+
+  <button onclick="openSkill('lesen1')">Lesen Teil 1</button>
+  <button onclick="openSkill('lesen2')">Lesen Teil 2</button>
+  <button onclick="openSkill('lesen3')">Lesen Teil 3</button>
+
+  <button onclick="openSkill('sprach1')">Sprachbaustein Teil 1</button>
+  <button onclick="openSkill('sprach2')">Sprachbaustein Teil 2</button>
+</div>
+
+<!-- صفحة الامتحانات -->
+<div id="examListPage" class="page hidden"></div>
+
+<!-- صفحة الامتحان -->
+<div id="examPage" class="page hidden">
+  <div id="examContainer"></div>
+  <button onclick="checkAnswers()">Prüfen</button>
+  <button onclick="goBack()">رجوع</button>
 </div>
 
 <script src="app.js"></script>
