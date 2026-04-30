@@ -65,7 +65,21 @@ async function openExam(examId) {
     document.getElementById("examTitle").innerHTML = currentExamData.title;
     
     buildNavButtons();
-    buildTeil1(currentExamData.questions);
+    
+    // ✅ التعديل المطلوب: التحقق من نوع الامتحان
+    if (currentExamData.type === "matching") {
+      // استخدام نظام Matching (Dropdown بدون تكرار)
+      if (typeof window.loadMatchingExam === "function") {
+        window.loadMatchingExam(currentExamData);
+      } else {
+        console.error("❌ loadMatchingExam غير موجود");
+        alert("نظام التصحيح غير متوفر حالياً");
+      }
+    } else {
+      // النظام القديم (Radio Buttons)
+      buildTeil1(currentExamData.questions);
+    }
+    
     showTeil(1);
   } catch(e) {
     console.error("❌ خطأ:", e);
@@ -102,7 +116,7 @@ function showTeil(teilNumber) {
   }
 }
 
-// بناء Teil 1
+// بناء Teil 1 (النظام القديم - Radio Buttons)
 function buildTeil1(questions) {
   const container = document.getElementById("teil1");
   if (!container) return;
