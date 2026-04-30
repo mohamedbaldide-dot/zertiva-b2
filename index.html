@@ -4,414 +4,49 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zertiva B2</title>
-
-<style>
-/* جميع الأنماط الأصلية لم يتم تغييرها ولو قليلاً */
-body{margin:0;font-family:Arial;background:#f5f5f5;}
-
-.page{display:none;min-height:100vh;padding:30px;}
-.active{display:block;}
-
-.home{display:flex;justify-content:center;align-items:center;text-align:center;}
-
-.card{background:white;padding:40px;border-radius:15px;box-shadow:0 0 10px rgba(0,0,0,0.1);}
-
-button{padding:12px 20px;border:none;background:black;color:white;border-radius:10px;cursor:pointer;margin-top:10px;}
-
-.item{background:white;padding:15px;margin-bottom:10px;border-radius:10px;cursor:pointer;}
-.item:hover{background:#eee;}
-
-.exam-box{background:white;padding:20px;border-radius:10px;}
-
-select{margin:10px 0;padding:8px;width:100%;}
-
-.correct{background:#c8f7c5;}
-.wrong{background:#f7c5c5;}
-
-/* ===== CSS لـ Teil 3 ===== */
-#texts{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-}
-
-.text{
-  background:#ffffff;
-  padding:12px;
-  border-radius:10px;
-  border:2px solid #dee2e6;
-  cursor:pointer;
-  transition:0.2s;
-}
-
-.title{
-  background:#ffffff;
-  padding:12px;
-  border-radius:10px;
-  border:2px solid #dee2e6;
-  cursor:pointer;
-  transition:0.2s;
-}
-
-.text:hover, .title:hover{
-  background:#f1f3f5;
-}
-
-.selected{
-  border:2px solid #0d6efd !important;
-  background:#e7f1ff !important;
-}
-
-.answer-box{
-  width:35px;
-  height:35px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#dee2e6;
-  border-radius:6px;
-  font-weight:bold;
-  margin-bottom:8px;
-}
-
-.solution-box{
-  margin-top:6px;
-  font-size:12px;
-  color:#dc3545;
-}
-
-.green{
-  background:#d4edda !important;
-  border-color:#28a745 !important;
-}
-
-.red{
-  background:#f8d7da !important;
-  border-color:#dc3545 !important;
-}
-
-.moved-title{
-  font-size:0.85em;
-  padding:6px 10px;
-  margin-bottom:8px;
-  background:#f1f3f5;
-  border-left:4px solid #0d6efd;
-  border-radius:6px;
-}
-
-/* ===== CSS لـ Sprachbausteine ===== */
-.gap{
-  display:inline-block;
-  padding:6px 12px;
-  border:2px solid #007bff;
-  background:#e7f1ff;
-  color:#004085;
-  cursor:pointer;
-  margin:0 4px;
-  border-radius:8px;
-  font-weight:bold;
-  min-width:70px;
-  text-align:center;
-  transition:0.2s;
-}
-
-.gap:hover{
-  background:#cfe2ff;
-  transform:scale(1.02);
-}
-
-.gap.active-gap{
-  background:#0d6efd;
-  color:white;
-  border-color:#0a58ca;
-  box-shadow:0 0 0 2px rgba(13,110,253,0.3);
-}
-
-.correct-gap{
-  background:#d4edda;
-  border-color:#28a745;
-  color:#155724;
-}
-
-.wrong-gap{
-  background:#f8d7da;
-  border-color:#dc3545;
-  color:#721c24;
-}
-
-/* خيارات الإجابة */
-.option-btn{
-  margin:5px;
-  padding:8px 14px;
-  border:1px solid #6c757d;
-  border-radius:20px;
-  background:white;
-  color:black;
-  cursor:pointer;
-  transition:0.2s;
-  font-size:14px;
-}
-
-.option-btn:hover{
-  background:#e9ecef;
-  transform:translateY(-1px);
-}
-
-.option-btn.selected-option{
-  background:#0d6efd;
-  border-color:#0d6efd;
-  color:white;
-}
-
-.option-btn.disabled-option{
-  opacity:0.5;
-  text-decoration:line-through;
-  cursor:not-allowed;
-  pointer-events:none;
-}
-
-.option-group{
-  margin-bottom:20px;
-  padding:12px;
-  background:#f8f9fa;
-  border-radius:12px;
-  border-left:4px solid #0d6efd;
-}
-
-/* ===== CSS لـ Sprachbausteine Teil 2 ===== */
-.gap2{
-  display:inline-block;
-  padding:6px 12px;
-  border:2px solid #28a745;
-  background:#d4edda;
-  color:#155724;
-  cursor:pointer;
-  margin:0 4px;
-  border-radius:8px;
-  font-weight:bold;
-  min-width:70px;
-  text-align:center;
-  transition:0.2s;
-}
-
-.gap2:hover{
-  background:#c3e6cb;
-  transform:scale(1.02);
-}
-
-.gap2.active-gap{
-  background:#218838;
-  color:white;
-  border-color:#1e7e34;
-  box-shadow:0 0 0 2px rgba(33,136,56,0.3);
-}
-
-.correct-gap2{
-  background:#d4edda;
-  border-color:#28a745;
-  color:#155724;
-}
-
-.wrong-gap2{
-  background:#f8d7da;
-  border-color:#dc3545;
-  color:#721c24;
-}
-
-.connector-btn{
-  margin:5px;
-  padding:8px 14px;
-  border:1px solid #6c757d;
-  border-radius:20px;
-  background:white;
-  color:black;
-  cursor:pointer;
-  transition:0.2s;
-  font-size:14px;
-}
-
-.connector-btn:hover{
-  background:#e9ecef;
-  transform:translateY(-1px);
-}
-
-.connector-btn.selected-connector{
-  background:#28a745;
-  border-color:#28a745;
-  color:white;
-}
-
-.connector-group{
-  margin-bottom:20px;
-  padding:12px;
-  background:#f8f9fa;
-  border-radius:12px;
-  border-left:4px solid #28a745;
-}
-
-/* ===== CSS لـ Hören ===== */
-.h-question{
-  border:1.5px solid #ccc;
-  border-radius:10px;
-  padding:10px;
-  margin:8px 0;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:#fafafa;
-  transition:0.3s;
-}
-
-.h-question:hover{
-  background:#f1f1f1;
-  border-color:#999;
-}
-
-.h-btn{
-  padding:5px 10px;
-  margin:2px;
-  border:1px solid #ccc;
-  background:white;
-  cursor:pointer;
-  border-radius:5px;
-}
-
-.h-btn.active-true{
-  background:#28a745;
-  color:white;
-}
-
-.h-btn.active-false{
-  background:#dc3545;
-  color:white;
-}
-
-.note{
-  font-size:12px;
-  color:#666;
-  text-align:right;
-  margin-bottom:15px;
-  padding:8px;
-  background:#f8f9fa;
-  border-radius:8px;
-  border-right:3px solid #0d6efd;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- الصفحة 1: البداية -->
+<!-- الصفحة 1 -->
 <div id="home" class="page active home">
   <div class="card">
     <h1>Zertiva B2</h1>
     <p>أوثق منصة للتحضير لامتحان Telc B2</p>
-    <button id="startBtn">لنبدأ 🚀</button>
+    <button onclick="goList()">لنبدأ 🚀</button>
   </div>
 </div>
 
-<!-- الصفحة 2: قائمة الأجزاء (Teile) -->
+<!-- الصفحة 2 -->
 <div id="list" class="page">
-  <h2>اختر الجزء الذي ترغب في التدرب عليه</h2>
-  <div id="teileList"></div>
+  <h2>الامتحانات</h2>
+  <div id="examsList"></div>
   <button onclick="goHome()">رجوع</button>
 </div>
 
-<!-- الصفحة 3: عرض النماذج (1-40) لجزء معين -->
+<!-- الصفحة 3 - الامتحان -->
 <div id="exam" class="page">
 <div class="exam-box">
   <h2 id="examTitle"></h2>
-  <div id="modelsList" style="display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0;"></div>
-  <button id="backToListBtn">رجوع إلى الأجزاء</button>
-  <button id="backHomeFromExam" style="margin-right:10px;">الرئيسية</button>
+
+  <!-- أزرار التنقل -->
+  <div style="margin-bottom:20px;" id="navButtons"></div>
+
+  <!-- الأجزاء -->
+  <div id="teil1" style="display:none;"></div>
+  <div id="teil2" style="display:none;"></div>
+  <div id="teil3" style="display:none;"></div>
+  <div id="sprach1" style="display:none;"></div>
+  <div id="sprach2" style="display:none;"></div>
+  <div id="hoeren1" style="display:none;"></div>
+  <div id="hoeren2" style="display:none;"></div>
+  <div id="hoeren3" style="display:none;"></div>
+
+  <button onclick="goList()">رجوع</button>
 </div>
 </div>
 
-<script>
-// =============== تعريف الأجزاء (Teile) الثمانية ===============
-const teile = [
-  { id: 1, name: "Lesen Teil 1" },
-  { id: 2, name: "Lesen Teil 2" },
-  { id: 3, name: "Lesen Teil 3" },
-  { id: 4, name: "Sprachbausteine Teil 1" },
-  { id: 5, name: "Sprachbausteine Teil 2" },
-  { id: 6, name: "Hören Teil 1" },
-  { id: 7, name: "Hören Teil 2" },
-  { id: 8, name: "Hören Teil 3" }
-];
-
-// الصفحات
-const homePage = document.getElementById("home");
-const listPage = document.getElementById("list");
-const examPage = document.getElementById("exam");
-
-// دوال التنقل الأساسية
-function goHome() {
-  homePage.classList.add("active");
-  listPage.classList.remove("active");
-  examPage.classList.remove("active");
-}
-
-function goToList() {
-  homePage.classList.remove("active");
-  listPage.classList.add("active");
-  examPage.classList.remove("active");
-  renderTeile(); // إعادة عرض الأجزاء كل مرة
-}
-
-function goToExam(teilId, teilName) {
-  homePage.classList.remove("active");
-  listPage.classList.remove("active");
-  examPage.classList.add("active");
-  document.getElementById("examTitle").innerText = teilName + " : اختر رقم الامتحان (1 - 40)";
-  renderModels(teilId);
-}
-
-// عرض الأجزاء في صفحة القائمة
-function renderTeile() {
-  const container = document.getElementById("teileList");
-  container.innerHTML = "";
-  teile.forEach(teil => {
-    const div = document.createElement("div");
-    div.className = "item";
-    div.innerText = teil.name;
-    div.onclick = () => goToExam(teil.id, teil.name);
-    container.appendChild(div);
-  });
-}
-
-// عرض الأرقام من 1 إلى 40 كنماذج (مؤقتة)
-function renderModels(teilId) {
-  const container = document.getElementById("modelsList");
-  container.innerHTML = "";
-  for (let i = 1; i <= 40; i++) {
-    const btn = document.createElement("button");
-    btn.innerText = i;
-    btn.style.margin = "5px";
-    btn.style.padding = "10px 15px";
-    btn.style.backgroundColor = "#f0f0f0";
-    btn.style.border = "1px solid #ccc";
-    btn.style.borderRadius = "8px";
-    btn.style.cursor = "pointer";
-    btn.style.fontSize = "16px";
-    btn.onclick = (function(num) {
-      return function() {
-        // مؤقتاً: رسالة تفيد بأن الامتحان سيتم إضافته لاحقاً
-        alert(`الامتحان رقم ${num} في الجزء ${teilId} سيتم إضافته قريباً. يمكنك لاحقاً ملء محتواه.`);
-      };
-    })(i);
-    container.appendChild(btn);
-  }
-}
-
-// ربط الأزرار
-document.getElementById("startBtn").onclick = () => goToList();
-document.getElementById("backToListBtn").onclick = () => goToList();
-document.getElementById("backHomeFromExam").onclick = () => goHome();
-
-// عند تحميل الصفحة لأول مرة نتأكد من أن القائمة جاهزة
-renderTeile();
-</script>
-
+<script src="exams.js"></script>
+<script src="engine.js"></script>
 </body>
 </html>
