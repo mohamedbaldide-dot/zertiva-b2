@@ -8,28 +8,28 @@
 </head>
 <body>
 
-<!-- الصفحة 1 -->
+<!-- الصفحة 1: البداية -->
 <div id="home" class="page active home">
   <div class="card">
     <h1>Zertiva B2</h1>
     <p>أوثق منصة للتحضير لامتحان Telc B2</p>
-    <button onclick="goList()">لنبدأ 🚀</button>
+    <button id="startBtn">لنبدأ 🚀</button>
   </div>
 </div>
 
-<!-- الصفحة 2 -->
+<!-- الصفحة 2: قائمة الامتحانات -->
 <div id="list" class="page">
-  <h2>الامتحانات</h2>
+  <h2>📚 الامتحانات المتاحة</h2>
   <div id="examsList"></div>
-  <button onclick="goHome()">رجوع</button>
+  <button id="backHomeBtn">🏠 الرئيسية</button>
 </div>
 
-<!-- الصفحة 3 - الامتحان -->
+<!-- الصفحة 3: الامتحان -->
 <div id="exam" class="page">
 <div class="exam-box">
   <h2 id="examTitle"></h2>
 
-  <!-- أزرار التنقل -->
+  <!-- أزرار التنقل بين الأجزاء -->
   <div style="margin-bottom:20px;" id="navButtons"></div>
 
   <!-- الأجزاء -->
@@ -42,7 +42,7 @@
   <div id="hoeren2" style="display:none;"></div>
   <div id="hoeren3" style="display:none;"></div>
 
-  <button onclick="goList()">رجوع</button>
+  <button id="backToListBtn">📋 قائمة الامتحانات</button>
 </div>
 </div>
 

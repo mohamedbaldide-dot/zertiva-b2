@@ -13,53 +13,53 @@ const teile = [
   { id: 8, name: "Hören Teil 3", container: "hoeren3" }
 ];
 
-let currentExamId = null;
 let currentExamData = null;
 
-// دالة لقراءة جميع الامتحانات المتاحة من مجلد data/lesen1/
-async function getAvailableExams() {
-  const exams = [];
-  for (let i = 1; i <= 40; i++) {
-    try {
-      const response = await fetch(`data/lesen1/exam${i}.json`);
-      if (response.ok) {
-        const data = await response.json();
-        exams.push({ id: i, title: data.title, skill: data.skill });
-      }
-    } catch(e) {}
-  }
-  return exams;
-}
+// قائمة الامتحانات المتاحة (ثابتة حالياً)
+const availableExamsList = [
+  { id: 1, title: "Lesen Teil 1 - Exam 1: Jugend Forscher" },
+  { id: 2, title: "Lesen Teil 1 - Exam 2: sport ist gesund" }
+];
 
 // عرض قائمة الامتحانات
-async function renderExamList() {
+function renderExamList() {
+  console.log("🟢 renderExamList تم استدعاؤها");
   const container = document.getElementById("examsList");
-  if (!container) return;
-  container.innerHTML = "";
-  
-  const exams = await getAvailableExams();
-  
-  if (exams.length === 0) {
-    container.innerHTML = '<div class="item">⚠️ لا توجد امتحانات متاحة حالياً</div>';
+  if (!container) {
+    console.error("❌ عنصر examsList غير موجود");
     return;
   }
   
-  exams.forEach(exam => {
+  container.innerHTML = "";
+  
+  for (let i = 0; i < availableExamsList.length; i++) {
+    const exam = availableExamsList[i];
     const div = document.createElement("div");
     div.className = "item";
-    div.innerHTML = `${exam.id}. ${exam.title}`;
-    div.onclick = () => openExam(exam.id);
+    div.innerHTML = `${exam.id}. ${exam.title} ✅`;
+    div.onclick = (function(id) {
+      return function() { openExam(id); };
+    })(exam.id);
     container.appendChild(div);
-  });
+  }
+  
+  if (availableExamsList.length === 0) {
+    container.innerHTML = '<div class="item">⚠️ لا توجد امتحانات متاحة حالياً</div>';
+  }
 }
 
 // فتح امتحان محدد
 async function openExam(examId) {
-  currentExamId = examId;
+  console.log("🟢 فتح الامتحان رقم:", examId);
   try {
+    // محاولة تحميل ملف JSON
     const response = await fetch(`data/lesen1/exam${examId}.json`);
+    if (!response.ok) {
+      throw new Error(`الملف exam${examId}.json غير موجود`);
+    }
     currentExamData = await response.json();
     
+    document.getElementById("home").classList.remove("active");
     document.getElementById("list").classList.remove("active");
     document.getElementById("exam").classList.add("active");
     document.getElementById("examTitle").innerHTML = currentExamData.title;
@@ -68,6 +68,7 @@ async function openExam(examId) {
     buildTeil1(currentExamData.questions);
     showTeil(1);
   } catch(e) {
+    console.error("❌ خطأ:", e);
     alert("خطأ في تحميل الامتحان: " + e.message);
   }
 }
@@ -80,7 +81,9 @@ function buildNavButtons() {
     const btn = document.createElement("button");
     btn.innerText = teil.name;
     btn.className = "teil-btn";
-    btn.onclick = () => showTeil(idx + 1);
+    btn.onclick = (function(num) {
+      return function() { showTeil(num); };
+    })(idx + 1);
     navDiv.appendChild(btn);
   });
 }
@@ -92,13 +95,14 @@ function showTeil(teilNumber) {
     if (container) container.style.display = (idx + 1 === teilNumber) ? "block" : "none";
   });
   
-  document.querySelectorAll(".teil-btn").forEach((btn, idx) => {
-    if (idx + 1 === teilNumber) btn.classList.add("active");
-    else btn.classList.remove("active");
-  });
+  const btns = document.querySelectorAll(".teil-btn");
+  for (let i = 0; i < btns.length; i++) {
+    if (i + 1 === teilNumber) btns[i].classList.add("active");
+    else btns[i].classList.remove("active");
+  }
 }
 
-// بناء Teil 1 (Lesen Teil 1)
+// بناء Teil 1
 function buildTeil1(questions) {
   const container = document.getElementById("teil1");
   if (!container) return;
@@ -106,34 +110,39 @@ function buildTeil1(questions) {
   
   let userAnswers = {};
   
-  questions.forEach((q, idx) => {
+  for (let i = 0; i < questions.length; i++) {
+    const q = questions[i];
     const card = document.createElement("div");
     card.className = "question-card";
-    card.id = `q_${idx}`;
+    card.id = "q_" + i;
     
     const questionText = document.createElement("div");
     questionText.className = "question-text";
-    questionText.innerHTML = `<strong>${idx + 1}. ${q.text}</strong>`;
+    questionText.innerHTML = "<strong>" + (i + 1) + ". " + q.text + "</strong>";
     card.appendChild(questionText);
     
     const optionsDiv = document.createElement("div");
-    q.options.forEach((opt, optIdx) => {
+    for (let j = 0; j < q.options.length; j++) {
       const label = document.createElement("label");
       label.className = "option-label";
-      label.innerHTML = `
-        <input type="radio" name="q${idx}" value="${optIdx}" class="option-input" onchange="selectAnswerTeil1(${idx}, ${optIdx})">
-        <span>${opt}</span>
-      `;
+      const radioId = "q" + i + "_" + j;
+      label.innerHTML = '<input type="radio" name="q' + i + '" value="' + j + '" class="option-input" id="' + radioId + '"> <span>' + q.options[j] + '</span>';
+      label.onclick = (function(qIdx, ansIdx) {
+        return function() {
+          userAnswers[qIdx] = ansIdx;
+        };
+      })(i, j);
       optionsDiv.appendChild(label);
-    });
+    }
     card.appendChild(optionsDiv);
-    
     container.appendChild(card);
-  });
+  }
   
   const checkBtn = document.createElement("button");
-  checkBtn.innerText = "✅ تصحيح";
-  checkBtn.onclick = () => checkTeil1(questions, userAnswers);
+  checkBtn.innerText = "✅ تصحيح الامتحان";
+  checkBtn.onclick = function() {
+    checkTeil1(questions, userAnswers);
+  };
   container.appendChild(checkBtn);
   
   const resultDiv = document.createElement("div");
@@ -141,66 +150,68 @@ function buildTeil1(questions) {
   resultDiv.className = "result-box";
   resultDiv.style.display = "none";
   container.appendChild(resultDiv);
-  
-  window.selectAnswerTeil1 = (qIdx, ansIdx) => { userAnswers[qIdx] = ansIdx; };
-  window.checkTeil1 = (questions, answers) => {
-    let score = 0;
-    const total = questions.length;
-    const pointsPerQuestion = 25 / total;
-    
-    questions.forEach((q, idx) => {
-      const card = document.getElementById(`q_${idx}`);
-      const userAnswer = answers[idx];
-      const isCorrect = (userAnswer === q.correct);
-      
-      if (isCorrect) {
-        score++;
-        card.classList.add("correct-answer-card");
-        card.classList.remove("wrong-answer-card");
-        
-        // إزالة رسالة الخطأ السابقة إن وجدت
-        const oldMsg = card.querySelector(".correct-message");
-        if (oldMsg) oldMsg.remove();
-      } else {
-        card.classList.add("wrong-answer-card");
-        card.classList.remove("correct-answer-card");
-        
-        let correctMsg = card.querySelector(".correct-message");
-        if (!correctMsg) {
-          correctMsg = document.createElement("div");
-          correctMsg.className = "correct-message";
-          correctMsg.style.color = "#28a745";
-          correctMsg.style.marginTop = "10px";
-          correctMsg.style.fontSize = "14px";
-          card.appendChild(correctMsg);
-        }
-        correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.options[q.correct]}`;
-      }
-    });
-    
-    const finalScore = (score * pointsPerQuestion).toFixed(2);
-    const resultDiv = document.getElementById("teil1Result");
-    resultDiv.innerHTML = `🎯 النتيجة: ${finalScore} / 25 (${score} من ${total} إجابات صحيحة)`;
-    resultDiv.style.display = "block";
-  };
 }
 
-// دوال التنقل بين الصفحات
+function checkTeil1(questions, answers) {
+  let score = 0;
+  const total = questions.length;
+  const pointsPerQuestion = 25 / total;
+  
+  for (let i = 0; i < questions.length; i++) {
+    const q = questions[i];
+    const card = document.getElementById("q_" + i);
+    const userAnswer = answers[i];
+    const isCorrect = (userAnswer === q.correct);
+    
+    if (isCorrect) {
+      score++;
+      card.classList.add("correct-answer-card");
+      card.classList.remove("wrong-answer-card");
+      const oldMsg = card.querySelector(".correct-message");
+      if (oldMsg) oldMsg.remove();
+    } else {
+      card.classList.add("wrong-answer-card");
+      card.classList.remove("correct-answer-card");
+      
+      let correctMsg = card.querySelector(".correct-message");
+      if (!correctMsg) {
+        correctMsg = document.createElement("div");
+        correctMsg.className = "correct-message";
+        correctMsg.style.color = "#28a745";
+        correctMsg.style.marginTop = "10px";
+        correctMsg.style.fontSize = "14px";
+        card.appendChild(correctMsg);
+      }
+      correctMsg.innerHTML = "✅ الإجابة الصحيحة: " + q.options[q.correct];
+    }
+  }
+  
+  const finalScore = (score * pointsPerQuestion).toFixed(2);
+  const resultDiv = document.getElementById("teil1Result");
+  resultDiv.innerHTML = "🎯 النتيجة: " + finalScore + " / 25 (" + score + " من " + total + " إجابات صحيحة)";
+  resultDiv.style.display = "block";
+}
+
+// دوال التنقل
+function goHome() {
+  document.getElementById("home").classList.add("active");
+  document.getElementById("list").classList.remove("active");
+  document.getElementById("exam").classList.remove("active");
+}
+
 function goList() {
   document.getElementById("home").classList.remove("active");
   document.getElementById("list").classList.add("active");
+  document.getElementById("exam").classList.remove("active");
   renderExamList();
 }
 
-function goHome() {
-  document.getElementById("list").classList.remove("active");
-  document.getElementById("home").classList.add("active");
-}
+// ربط الأزرار
+document.getElementById("startBtn").onclick = function() { goList(); };
+document.getElementById("backHomeBtn").onclick = function() { goHome(); };
+document.getElementById("backToListBtn").onclick = function() { goList(); };
 
-// تسجيل الدوال في window
-window.goList = goList;
-window.goHome = goHome;
-window.openExam = openExam;
-window.showTeil = showTeil;
+// تحميل القائمة عند بدء الصفحة
+renderExamList();
 
-console.log("✅ exams.js تم تحميله");
+console.log("✅ exams.js تم تحميله بنجاح");
