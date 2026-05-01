@@ -242,16 +242,20 @@ function goList() {
   document.getElementById("list").classList.add("active");
   document.getElementById("exam").classList.remove("active");
   renderTeileList();
-  renderExamListForSkill("lesen1");
+  // ✅ عند العودة إلى القائمة، نعرض رسالة بدلاً من الامتحانات
+  document.getElementById("examsList").innerHTML = '<div class="item" style="text-align:center; color:#999;">👈 اضغط على أحد الأجزاء أعلاه لعرض الامتحانات</div>';
 }
+
+// ✅ عند الضغط على جزء، يتم عرض امتحاناته فقط
+window.renderExamListForSkill = renderExamListForSkill;
 
 // ربط الأزرار
 document.getElementById("startBtn").onclick = function() { goList(); };
 document.getElementById("backHomeBtn").onclick = function() { goHome(); };
 document.getElementById("backToListBtn").onclick = function() { goList(); };
 
-// تحميل القائمة عند بدء الصفحة (بدون عرض الصفحة الرئيسية)
+// ✅ تحميل الأجزاء فقط، بدون عرض أي امتحانات بشكل افتراضي
 renderTeileList();
-renderExamListForSkill("lesen1");
+document.getElementById("examsList").innerHTML = '<div class="item" style="text-align:center; color:#999;">👈 اضغط على أحد الأجزاء أعلاه لعرض الامتحانات</div>';
 
 console.log("✅ exams.js تم تحميله بنجاح");
