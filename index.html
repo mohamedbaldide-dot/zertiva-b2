@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<!-- الصفحة 1: البداية -->
+<!-- الصفحة 1: البداية (تختفي بعد الضغط على لنبدأ) -->
 <div id="home" class="page active home">
   <div class="card">
     <h1>Zertiva B2</h1>
@@ -19,8 +19,9 @@
 
 <!-- الصفحة 2: قائمة الأجزاء والامتحانات -->
 <div id="list" class="page">
-  <!-- ✅ تم إزالة "📚 الامتحانات المتاحة" -->
-  <div id="teileList" style="margin-bottom: 20px;"></div>
+  <!-- الأجزاء في صف واحد -->
+  <div id="teileList" class="teile-row"></div>
+  <!-- الامتحانات -->
   <div id="examsList"></div>
   <button id="backHomeBtn">🏠 الرئيسية</button>
 </div>
@@ -29,11 +30,7 @@
 <div id="exam" class="page">
 <div class="exam-box">
   <h2 id="examTitle"></h2>
-
-  <!-- أزرار التنقل بين الأجزاء -->
   <div style="margin-bottom:20px;" id="navButtons"></div>
-
-  <!-- الأجزاء -->
   <div id="teil1" style="display:none;"></div>
   <div id="teil2" style="display:none;"></div>
   <div id="teil3" style="display:none;"></div>
@@ -42,7 +39,6 @@
   <div id="hoeren1" style="display:none;"></div>
   <div id="hoeren2" style="display:none;"></div>
   <div id="hoeren3" style="display:none;"></div>
-
   <button id="backToListBtn">📋 عودة</button>
 </div>
 </div>
