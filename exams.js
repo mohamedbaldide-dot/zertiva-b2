@@ -18,7 +18,7 @@ let currentSkill = "lesen1";
 let currentExamId = null;
 let currentExamsList = [];
 
-// ✅ قائمة جميع الامتحانات (من 1 إلى 48 حسب الترتيب المطلوب)
+// قائمة جميع الامتحانات (من 1 إلى 48)
 const allExams = [
   { id: 1, title: "Jugend Forscher", enabled: true, hasFile: true },
   { id: 2, title: "sport ist gesund", enabled: true, hasFile: true },
@@ -70,7 +70,6 @@ const allExams = [
   { id: 48, title: "Bäder", enabled: true, hasFile: true }
 ];
 
-// 🗺️ تعيين اسم الملف الفعلي لكل امتحان
 const actualFileNames = {
   1: "exam1.json", 2: "exam2.json", 3: "exam3.json",
   4: "exam4.json", 5: "exam5.json", 6: "exam6.json",
@@ -87,13 +86,10 @@ const actualFileNames = {
   37: "exam37.json", 38: "exam38.json", 39: "exam39.json",
   40: "exam40.json", 41: "exam41.json", 42: "exam42.json",
   43: "exam43.json", 44: "exam44.json",
-  45: "exam48.json",  // Frauen im Arbeitsmarkt
-  46: "exam45.json",  // Baby TV
-  47: "exam46.json",  // Farben
-  48: "exam47.json"   // Bäder
+  45: "exam48.json", 46: "exam45.json", 47: "exam46.json", 48: "exam47.json"
 };
 
-// قائمة الامتحانات لكل جزء
+// ✅ قائمة الامتحانات لكل جزء
 const examsDatabase = {
   lesen1: allExams.filter(exam => exam.enabled === true),
   lesen2: [],
@@ -107,7 +103,6 @@ const examsDatabase = {
   hoeren3: []
 };
 
-// عرض أجزاء (Teile) في صف واحد
 function renderTeileList() {
   const container = document.getElementById("teileList");
   if (!container) return;
@@ -127,7 +122,6 @@ function renderTeileList() {
   }
 }
 
-// عرض الامتحانات لجزء معين
 function renderExamListForSkill(skill, teilName) {
   currentSkill = skill;
   
@@ -135,7 +129,6 @@ function renderExamListForSkill(skill, teilName) {
   if (!container) return;
   container.innerHTML = "";
   
-  // عرض عنوان الـ Teil المختار
   const headerDiv = document.createElement("div");
   headerDiv.className = "teil-header";
   headerDiv.innerHTML = `<strong>📚 ${teilName || getTeilNameBySkill(skill)}</strong>`;
@@ -205,7 +198,6 @@ async function openExam(examId, examTitle, skill) {
     
     updateExamNavButtons();
     
-    // ✅ معالجة أنواع الامتحانات المختلفة
     if (currentExamData.type === "matching") {
       if (typeof window.loadMatchingExam === "function") {
         window.loadMatchingExam(currentExamData);
@@ -378,7 +370,6 @@ function goList() {
   }
 }
 
-// ربط الأزرار
 document.addEventListener("DOMContentLoaded", function() {
   const startBtn = document.getElementById("startBtn");
   const backHomeBtn = document.getElementById("backHomeBtn");
