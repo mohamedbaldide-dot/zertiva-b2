@@ -19,6 +19,33 @@ select{margin:10px 0;padding:8px;width:100%;}
 .correct{background:#c8f7c5;}
 .wrong{background:#f7c5c5;}
 
+/* ✅ أنماط الأجزاء في صف واحد */
+.teile-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  justify-content: flex-start;
+  direction: ltr;
+}
+
+.teil-item {
+  background: #2c3e66;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  transition: 0.3s;
+  min-width: 140px;
+}
+
+.teil-item:hover {
+  background: #1e2a45;
+  transform: translateY(-2px);
+}
+
 /* أنماط الأسئلة */
 .question-card{background:#f9f9f9;border:1px solid #ddd;border-radius:10px;padding:15px;margin-bottom:15px;}
 .question-text{font-size:15px;line-height:1.6;margin-bottom:12px;}
