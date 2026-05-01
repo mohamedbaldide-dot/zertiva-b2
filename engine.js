@@ -1,8 +1,8 @@
 // ============================================
-// engine.js - محرك الامتحانات (يدعم Matching System مع إلغاء الاختيار)
+// engine.js - محرك الامتحانات (Custom Dropdown - إلغاء بالضغط على نفس الخيار)
 // ============================================
 
-console.log("✅ engine.js تم تحميله");
+console.log("✅ engine.js تم تحميله (Custom Dropdown)");
 
 window.loadExamFromFile = async function(skill, examId) {
   try {
@@ -17,10 +17,11 @@ window.loadExamFromFile = async function(skill, examId) {
   }
 };
 
-// ========== نظام Matching ==========
+// ========== نظام Matching (Custom Dropdown) ==========
 let currentMatchingExamData = null;
 let matchingSelectedAnswers = {};
 let matchingAvailableOptions = [];
+let openDropdownIndex = null;
 
 window.loadMatchingExam = function(examData) {
   console.log("🟢 loadMatchingExam", examData.title);
@@ -51,32 +52,92 @@ function renderMatchingQuestions() {
     questionText.innerHTML = "<strong>" + (i + 1) + ". " + q.text + "</strong>";
     card.appendChild(questionText);
     
-    // إنشاء Dropdown
-    const select = document.createElement("select");
-    select.className = "matching-select";
-    select.id = "m_select_" + i;
-    select.style.width = "100%";
-    select.style.padding = "10px";
-    select.style.marginTop = "10px";
-    select.style.borderRadius = "8px";
-    select.style.border = "1px solid #ccc";
-    select.style.backgroundColor = "white";
-    select.style.cursor = "pointer";
+    // إنشاء Custom Dropdown
+    const dropdownContainer = document.createElement("div");
+    dropdownContainer.className = "custom-dropdown";
+    dropdownContainer.id = "m_dropdown_" + i;
+    dropdownContainer.style.position = "relative";
+    dropdownContainer.style.width = "100%";
+    dropdownContainer.style.marginTop = "10px";
     
-    // حفظ رقم السؤال في الـ select نفسه
-    select.setAttribute("data-question-index", i);
+    // زر الاختيار
+    const dropdownBtn = document.createElement("div");
+    dropdownBtn.className = "dropdown-btn";
+    dropdownBtn.id = "m_btn_" + i;
+    dropdownBtn.style.width = "100%";
+    dropdownBtn.style.padding = "10px";
+    dropdownBtn.style.backgroundColor = "white";
+    dropdownBtn.style.border = "1px solid #ccc";
+    dropdownBtn.style.borderRadius = "8px";
+    dropdownBtn.style.cursor = "pointer";
+    dropdownBtn.style.display = "flex";
+    dropdownBtn.style.justifyContent = "space-between";
+    dropdownBtn.style.alignItems = "center";
+    dropdownBtn.style.boxSizing = "border-box";
     
-    // إضافة الخيارات
-    updateSelectOptions(select, i);
+    // النص داخل الزر
+    const btnText = document.createElement("span");
+    const currentVal = matchingSelectedAnswers[i];
+    btnText.textContent = currentVal || "-- اختر الإجابة --";
+    btnText.style.color = currentVal ? "#333" : "#999";
     
-    // ربط الحدث
-    select.addEventListener("change", function(e) {
-      handleSelectChange(this);
+    // سهم للأسفل
+    const arrow = document.createElement("span");
+    arrow.textContent = "▼";
+    arrow.style.fontSize = "12px";
+    arrow.style.color = "#666";
+    
+    dropdownBtn.appendChild(btnText);
+    dropdownBtn.appendChild(arrow);
+    
+    // القائمة المنسدلة
+    const dropdownList = document.createElement("div");
+    dropdownList.className = "dropdown-list";
+    dropdownList.id = "m_list_" + i;
+    dropdownList.style.position = "absolute";
+    dropdownList.style.top = "100%";
+    dropdownList.style.left = "0";
+    dropdownList.style.right = "0";
+    dropdownList.style.backgroundColor = "white";
+    dropdownList.style.border = "1px solid #ccc";
+    dropdownList.style.borderTop = "none";
+    dropdownList.style.borderRadius = "0 0 8px 8px";
+    dropdownList.style.maxHeight = "200px";
+    dropdownList.style.overflowY = "auto";
+    dropdownList.style.zIndex = "1000";
+    dropdownList.style.display = "none";
+    
+    dropdownContainer.appendChild(dropdownBtn);
+    dropdownContainer.appendChild(dropdownList);
+    card.appendChild(dropdownContainer);
+    
+    // تحديث القائمة
+    updateDropdownList(i);
+    
+    // ربط الأحداث
+    dropdownBtn.addEventListener("click", function(e) {
+      e.stopPropagation();
+      // إغلاق أي قائمة مفتوحة أخرى
+      if (openDropdownIndex !== null && openDropdownIndex !== i) {
+        closeDropdown(openDropdownIndex);
+      }
+      // تبديل حالة القائمة الحالية
+      if (dropdownList.style.display === "block") {
+        closeDropdown(i);
+      } else {
+        openDropdown(i);
+      }
     });
     
-    card.appendChild(select);
     container.appendChild(card);
   }
+  
+  // إغلاق القائمة عند النقر في أي مكان آخر
+  document.addEventListener("click", function() {
+    if (openDropdownIndex !== null) {
+      closeDropdown(openDropdownIndex);
+    }
+  });
   
   // إضافة زر التصحيح
   const checkBtn = document.createElement("button");
@@ -91,97 +152,120 @@ function renderMatchingQuestions() {
   container.appendChild(resultDiv);
 }
 
-function updateSelectOptions(select, questionIndex) {
-  // حفظ القيمة المختارة حالياً
-  const currentValue = matchingSelectedAnswers[questionIndex] || "";
+function updateDropdownList(questionIndex) {
+  const list = document.getElementById("m_list_" + questionIndex);
+  if (!list) return;
   
-  // تفريغ الـ select
-  select.innerHTML = "";
-  
-  // إضافة الخيار الفارغ
-  const emptyOption = document.createElement("option");
-  emptyOption.value = "";
-  emptyOption.textContent = "-- اختر الإجابة --";
-  select.appendChild(emptyOption);
+  list.innerHTML = "";
   
   // إضافة الخيارات المتاحة
   for (let i = 0; i < matchingAvailableOptions.length; i++) {
-    const option = document.createElement("option");
-    option.value = matchingAvailableOptions[i];
-    option.textContent = matchingAvailableOptions[i];
-    select.appendChild(option);
+    const option = matchingAvailableOptions[i];
+    const optionDiv = document.createElement("div");
+    optionDiv.className = "dropdown-option";
+    optionDiv.textContent = option;
+    optionDiv.style.padding = "10px";
+    optionDiv.style.cursor = "pointer";
+    optionDiv.style.borderBottom = "1px solid #eee";
+    optionDiv.style.transition = "background 0.2s";
+    
+    optionDiv.addEventListener("mouseenter", function() {
+      this.style.backgroundColor = "#f0f0f0";
+    });
+    optionDiv.addEventListener("mouseleave", function() {
+      this.style.backgroundColor = "white";
+    });
+    
+    optionDiv.addEventListener("click", (function(qIdx, optText) {
+      return function(e) {
+        e.stopPropagation();
+        selectOption(qIdx, optText);
+      };
+    })(questionIndex, option));
+    
+    list.appendChild(optionDiv);
   }
   
-  // استعادة القيمة المختارة إذا كانت موجودة ولا تزال في القائمة
-  if (currentValue !== "") {
-    for (let i = 0; i < select.options.length; i++) {
-      if (select.options[i].value === currentValue) {
-        select.selectedIndex = i;
-        break;
-      }
-    }
+  if (matchingAvailableOptions.length === 0) {
+    const emptyDiv = document.createElement("div");
+    emptyDiv.textContent = "⚠️ لا توجد خيارات متاحة";
+    emptyDiv.style.padding = "10px";
+    emptyDiv.style.color = "#999";
+    emptyDiv.style.textAlign = "center";
+    list.appendChild(emptyDiv);
   }
 }
 
-function handleSelectChange(select) {
-  const questionIndex = parseInt(select.getAttribute("data-question-index"));
-  const selectedValue = select.value;
+function openDropdown(questionIndex) {
+  const list = document.getElementById("m_list_" + questionIndex);
+  const btn = document.getElementById("m_btn_" + questionIndex);
+  if (list && btn) {
+    list.style.display = "block";
+    btn.style.borderRadius = "8px 8px 0 0";
+    btn.style.borderBottom = "none";
+    openDropdownIndex = questionIndex;
+    updateDropdownList(questionIndex);
+  }
+}
+
+function closeDropdown(questionIndex) {
+  const list = document.getElementById("m_list_" + questionIndex);
+  const btn = document.getElementById("m_btn_" + questionIndex);
+  if (list && btn) {
+    list.style.display = "none";
+    btn.style.borderRadius = "8px";
+    btn.style.border = "1px solid #ccc";
+  }
+  if (openDropdownIndex === questionIndex) {
+    openDropdownIndex = null;
+  }
+}
+
+function selectOption(questionIndex, selectedText) {
   const oldValue = matchingSelectedAnswers[questionIndex] || "";
   
-  // حالة 1: إلغاء الاختيار (اختيار الخيار الفارغ)
-  if (selectedValue === "") {
+  // ✅ إلغاء الاختيار: إذا كان الخيار المختار هو نفسه المختار حالياً
+  if (oldValue === selectedText && oldValue !== "") {
+    // نعيد الخيار إلى القائمة المتاحة
+    if (!matchingAvailableOptions.includes(selectedText)) {
+      matchingAvailableOptions.push(selectedText);
+      matchingAvailableOptions.sort();
+    }
+    matchingSelectedAnswers[questionIndex] = "";
+  } 
+  // اختيار خيار جديد
+  else {
+    // نزيل الخيار الجديد من القائمة المتاحة
+    const indexInAvailable = matchingAvailableOptions.indexOf(selectedText);
+    if (indexInAvailable !== -1) {
+      matchingAvailableOptions.splice(indexInAvailable, 1);
+    }
+    
+    // نعيد الخيار القديم إلى القائمة المتاحة (إن وجد)
     if (oldValue !== "") {
-      // نعيد الخيار القديم إلى القائمة المتاحة
       if (!matchingAvailableOptions.includes(oldValue)) {
         matchingAvailableOptions.push(oldValue);
         matchingAvailableOptions.sort();
       }
-      matchingSelectedAnswers[questionIndex] = "";
     }
-    rebuildAllDropdowns();
-    return;
+    
+    matchingSelectedAnswers[questionIndex] = selectedText;
   }
   
-  // حالة 2: اختيار نفس الإجابة مرة أخرى → إلغاء الاختيار
-  if (selectedValue === oldValue && oldValue !== "") {
-    // نعيد الخيار إلى القائمة المتاحة
-    if (!matchingAvailableOptions.includes(selectedValue)) {
-      matchingAvailableOptions.push(selectedValue);
-      matchingAvailableOptions.sort();
-    }
-    matchingSelectedAnswers[questionIndex] = "";
-    rebuildAllDropdowns();
-    return;
+  // تحديث النص في الزر
+  const btnSpan = document.querySelector(`#m_btn_${questionIndex} span:first-child`);
+  if (btnSpan) {
+    const newVal = matchingSelectedAnswers[questionIndex];
+    btnSpan.textContent = newVal || "-- اختر الإجابة --";
+    btnSpan.style.color = newVal ? "#333" : "#999";
   }
   
-  // حالة 3: اختيار إجابة جديدة
-  // نزيل الإجابة الجديدة من القائمة المتاحة
-  const indexInAvailable = matchingAvailableOptions.indexOf(selectedValue);
-  if (indexInAvailable !== -1) {
-    matchingAvailableOptions.splice(indexInAvailable, 1);
-  }
+  // إغلاق القائمة
+  closeDropdown(questionIndex);
   
-  // نعيد الإجابة القديمة إلى القائمة المتاحة (إن وجدت)
-  if (oldValue !== "") {
-    if (!matchingAvailableOptions.includes(oldValue)) {
-      matchingAvailableOptions.push(oldValue);
-      matchingAvailableOptions.sort();
-    }
-  }
-  
-  // حفظ الإجابة الجديدة
-  matchingSelectedAnswers[questionIndex] = selectedValue;
-  
-  // إعادة بناء جميع القوائم المنسدلة
-  rebuildAllDropdowns();
-}
-
-function rebuildAllDropdowns() {
+  // إعادة بناء جميع القوائم لتحديث الخيارات المتاحة
   for (let i = 0; i < currentMatchingExamData.questions.length; i++) {
-    const select = document.getElementById("m_select_" + i);
-    if (select) {
-      updateSelectOptions(select, i);
-    }
+    updateDropdownList(i);
   }
 }
 
@@ -231,4 +315,4 @@ function checkMatchingExam() {
   resultDiv.style.display = "block";
 }
 
-console.log("✅ نظام Matching جاهز (إلغاء الاختيار يعمل)");
+console.log("✅ Custom Dropdown جاهز (إلغاء بالضغط على نفس الخيار يعمل)");
