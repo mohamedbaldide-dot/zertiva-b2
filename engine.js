@@ -292,12 +292,27 @@ function checkMatchingExam() {
   resultDiv.style.display = "block";
 }
 
-// ========== عرض امتحان True/False (Richtig/Falsch) ==========
-window.buildTrueFalseExam = function(container, questions) {
+// ========== عرض امتحان True/False (Richtig/Falsch) مع دعم الملاحظات ==========
+window.buildTrueFalseExam = function(container, questions, note) {
     container.innerHTML = '';
     
     let userAnswers = {};
     let currentQuestions = questions;
+    
+    // عرض الملاحظة إذا وجدت
+    if (note) {
+        const noteDiv = document.createElement('div');
+        noteDiv.style.backgroundColor = '#fff3cd';
+        noteDiv.style.color = '#856404';
+        noteDiv.style.padding = '12px 15px';
+        noteDiv.style.borderRadius = '8px';
+        noteDiv.style.marginBottom = '20px';
+        noteDiv.style.border = '1px solid #ffeeba';
+        noteDiv.style.fontSize = '14px';
+        noteDiv.style.fontWeight = 'bold';
+        noteDiv.innerHTML = `📌 <strong>ملاحظة:</strong> ${note}`;
+        container.appendChild(noteDiv);
+    }
     
     questions.forEach((q, i) => {
         const div = document.createElement('div');
@@ -563,4 +578,4 @@ function checkTrueFalseExam(questions, answers) {
 }
 
 console.log("✅ Custom Dropdown جاهز");
-console.log("✅ True/False Exam جاهز مع تلوين أخضر/أحمر وزر ↺");
+console.log("✅ True/False Exam جاهز مع تلوين أخضر/أحمر وزر ↺ ودعم الملاحظات");
