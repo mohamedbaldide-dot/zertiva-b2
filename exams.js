@@ -3,59 +3,88 @@
 // ============================================
 
 const teile = [
-  { id: 1, name: "Lesen Teil 1", container: "teil1" },
-  { id: 2, name: "Lesen Teil 2", container: "teil2" },
-  { id: 3, name: "Lesen Teil 3", container: "teil3" },
-  { id: 4, name: "Sprachbausteine Teil 1", container: "sprach1" },
-  { id: 5, name: "Sprachbausteine Teil 2", container: "sprach2" },
-  { id: 6, name: "Hören Teil 1", container: "hoeren1" },
-  { id: 7, name: "Hören Teil 2", container: "hoeren2" },
-  { id: 8, name: "Hören Teil 3", container: "hoeren3" }
+  { id: 1, name: "Lesen Teil 1", container: "teil1", skill: "lesen1" },
+  { id: 2, name: "Lesen Teil 2", container: "teil2", skill: "lesen2" },
+  { id: 3, name: "Lesen Teil 3", container: "teil3", skill: "lesen3" },
+  { id: 4, name: "Sprachbausteine Teil 1", container: "sprach1", skill: "sprach1" },
+  { id: 5, name: "Sprachbausteine Teil 2", container: "sprach2", skill: "sprach2" },
+  { id: 6, name: "Hören Teil 1", container: "hoeren1", skill: "hoeren1" },
+  { id: 7, name: "Hören Teil 2", container: "hoeren2", skill: "hoeren2" },
+  { id: 8, name: "Hören Teil 3", container: "hoeren3", skill: "hoeren3" }
 ];
 
 let currentExamData = null;
+let currentSkill = "lesen1";
 
-// قائمة الامتحانات المتاحة (ثابتة حالياً)
-const availableExamsList = [
-  { id: 1, title: "Lesen Teil 1 - Exam 1: Jugend Forscher" },
-  { id: 2, title: "Lesen Teil 1 - Exam 2: sport ist gesund" }
-];
+// قائمة الامتحانات المتاحة لكل جزء
+const examsDatabase = {
+  lesen1: [
+    { id: 1, title: "Jugend Forscher" },
+    { id: 2, title: "sport ist gesund" }
+  ],
+  lesen2: [],
+  lesen3: [],
+  sprach1: [],
+  sprach2: [],
+  hoeren1: [],
+  hoeren2: [],
+  hoeren3: []
+};
 
-// عرض قائمة الامتحانات
-function renderExamList() {
-  console.log("🟢 renderExamList تم استدعاؤها");
+// عرض أجزاء (Teile) بشكل عمودي
+function renderTeileList() {
+  const container = document.getElementById("teileList");
+  if (!container) return;
+  container.innerHTML = "";
+  
+  for (let i = 0; i < teile.length; i++) {
+    const teil = teile[i];
+    const div = document.createElement("div");
+    div.className = "item teil-item";
+    div.innerHTML = teil.name;
+    div.style.fontWeight = "bold";
+    div.style.borderRight = "4px solid #2c3e66";
+    div.onclick = (function(skill) {
+      return function() { renderExamListForSkill(skill); };
+    })(teil.skill);
+    container.appendChild(div);
+  }
+}
+
+// عرض الامتحانات لجزء معين
+function renderExamListForSkill(skill) {
+  currentSkill = skill;
   const container = document.getElementById("examsList");
-  if (!container) {
-    console.error("❌ عنصر examsList غير موجود");
+  if (!container) return;
+  container.innerHTML = "";
+  
+  const exams = examsDatabase[skill] || [];
+  
+  if (exams.length === 0) {
+    container.innerHTML = '<div class="item" style="text-align:center; color:#999;">⚠️ لا توجد امتحانات متاحة حالياً في هذا الجزء</div>';
     return;
   }
   
-  container.innerHTML = "";
-  
-  for (let i = 0; i < availableExamsList.length; i++) {
-    const exam = availableExamsList[i];
+  for (let i = 0; i < exams.length; i++) {
+    const exam = exams[i];
     const div = document.createElement("div");
     div.className = "item";
-    div.innerHTML = `${exam.id}. ${exam.title} ✅`;
-    div.onclick = (function(id) {
-      return function() { openExam(id); };
-    })(exam.id);
+    // ✅ التنسيق الجديد: "1: Jugend Forscher" بدلاً من الاسم الكامل
+    div.innerHTML = `${exam.id}: ${exam.title}`;
+    div.onclick = (function(id, title) {
+      return function() { openExam(id, title, skill); };
+    })(exam.id, exam.title, skill);
     container.appendChild(div);
-  }
-  
-  if (availableExamsList.length === 0) {
-    container.innerHTML = '<div class="item">⚠️ لا توجد امتحانات متاحة حالياً</div>';
   }
 }
 
 // فتح امتحان محدد
-async function openExam(examId) {
-  console.log("🟢 فتح الامتحان رقم:", examId);
+async function openExam(examId, examTitle, skill) {
+  console.log("🟢 فتح الامتحان:", examId, examTitle, skill);
   try {
-    // محاولة تحميل ملف JSON
-    const response = await fetch(`data/lesen1/exam${examId}.json`);
+    const response = await fetch(`data/${skill}/exam${examId}.json`);
     if (!response.ok) {
-      throw new Error(`الملف exam${examId}.json غير موجود`);
+      throw new Error(`الملف exam${examId}.json غير موجود في مجلد ${skill}`);
     }
     currentExamData = await response.json();
     
@@ -66,9 +95,7 @@ async function openExam(examId) {
     
     buildNavButtons();
     
-    // ✅ التعديل المطلوب: التحقق من نوع الامتحان
     if (currentExamData.type === "matching") {
-      // استخدام نظام Matching (Dropdown بدون تكرار) - خاص بـ Lesen Teil 1
       if (typeof window.loadMatchingExam === "function") {
         window.loadMatchingExam(currentExamData);
       } else {
@@ -76,7 +103,6 @@ async function openExam(examId) {
         alert("نظام التصحيح غير متوفر حالياً");
       }
     } else {
-      // النظام القديم (Radio Buttons) - لباقي الأجزاء
       buildTeil1(currentExamData.questions);
     }
     
@@ -116,7 +142,7 @@ function showTeil(teilNumber) {
   }
 }
 
-// بناء Teil 1 (النظام القديم - Radio Buttons) - لباقي الامتحانات التي ليس فيها type matching
+// بناء Teil 1 (النظام القديم - Radio Buttons)
 function buildTeil1(questions) {
   const container = document.getElementById("teil1");
   if (!container) return;
@@ -153,7 +179,7 @@ function buildTeil1(questions) {
   }
   
   const checkBtn = document.createElement("button");
-  checkBtn.innerText = "✅ تصحيح الامتحان";
+  checkBtn.innerText = "✅ تصحيح";
   checkBtn.onclick = function() {
     checkTeil1(questions, userAnswers);
   };
@@ -202,7 +228,7 @@ function checkTeil1(questions, answers) {
   
   const finalScore = (score * pointsPerQuestion).toFixed(2);
   const resultDiv = document.getElementById("teil1Result");
-  resultDiv.innerHTML = "🎯 النتيجة: " + finalScore + " / 25 (" + score + " من " + total + " إجابات صحيحة)";
+  resultDiv.innerHTML = "النتيجة: " + finalScore + " / 25";
   resultDiv.style.display = "block";
 }
 
@@ -217,7 +243,10 @@ function goList() {
   document.getElementById("home").classList.remove("active");
   document.getElementById("list").classList.add("active");
   document.getElementById("exam").classList.remove("active");
-  renderExamList();
+  // عرض أجزاء (Teile) عند الدخول إلى القائمة
+  renderTeileList();
+  // عرض الامتحانات للجزء الأول بشكل افتراضي
+  renderExamListForSkill("lesen1");
 }
 
 // ربط الأزرار
@@ -226,6 +255,7 @@ document.getElementById("backHomeBtn").onclick = function() { goHome(); };
 document.getElementById("backToListBtn").onclick = function() { goList(); };
 
 // تحميل القائمة عند بدء الصفحة
-renderExamList();
+renderTeileList();
+renderExamListForSkill("lesen1");
 
 console.log("✅ exams.js تم تحميله بنجاح");
