@@ -313,6 +313,7 @@ window.buildTrueFalseExam = function(container, questions) {
         
         // Richtig
         const labelTrue = document.createElement('label');
+        labelTrue.className = 'option-label';
         labelTrue.style.display = 'inline-flex';
         labelTrue.style.alignItems = 'center';
         labelTrue.style.gap = '5px';
@@ -333,6 +334,7 @@ window.buildTrueFalseExam = function(container, questions) {
         
         // Falsch
         const labelFalse = document.createElement('label');
+        labelFalse.className = 'option-label';
         labelFalse.style.display = 'inline-flex';
         labelFalse.style.alignItems = 'center';
         labelFalse.style.gap = '5px';
@@ -389,7 +391,7 @@ window.buildTrueFalseExam = function(container, questions) {
     container.appendChild(resultDiv);
 };
 
-// ========== تصحيح امتحان True/False ==========
+// ========== تصحيح امتحان True/False مع تلوين الإجابات ==========
 function checkTrueFalseExam(questions, answers) {
     let score = 0;
     const total = questions.length;
@@ -405,45 +407,91 @@ function checkTrueFalseExam(questions, answers) {
         
         if (!card) continue;
         
+        // إزالة التلوين القديم
         card.classList.remove('correct-answer-card', 'wrong-answer-card');
         
+        // إزالة الرسالة القديمة
         const oldMsg = card.querySelector('.correct-message');
         if (oldMsg) oldMsg.remove();
         
+        // تلوين الخلفية
         if (isCorrect && userAnswer !== undefined) {
             score++;
-            card.classList.add('correct-answer-card');
-        } else if (userAnswer !== undefined) {
-            card.classList.add('wrong-answer-card');
+            card.classList.add('correct-answer-card');  // ✅ أخضر
+        } else {
+            card.classList.add('wrong-answer-card');    // ❌ أحمر
             
-            const correctMsg = document.createElement('div');
-            correctMsg.className = 'correct-message';
-            correctMsg.style.color = '#28a745';
-            correctMsg.style.marginTop = '10px';
-            correctMsg.style.fontSize = '14px';
-            correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.correct ? 'Richtig' : 'Falsch'}`;
-            card.appendChild(correctMsg);
-        } else if (userAnswer === undefined) {
-            card.classList.add('wrong-answer-card');
+            if (userAnswer !== undefined) {
+                const correctMsg = document.createElement('div');
+                correctMsg.className = 'correct-message';
+                correctMsg.style.color = '#28a745';
+                correctMsg.style.marginTop = '10px';
+                correctMsg.style.fontSize = '14px';
+                correctMsg.style.fontWeight = 'bold';
+                correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.correct ? 'Richtig' : 'Falsch'}`;
+                card.appendChild(correctMsg);
+            } else if (userAnswer === undefined) {
+                const correctMsg = document.createElement('div');
+                correctMsg.className = 'correct-message';
+                correctMsg.style.color = '#ff9800';
+                correctMsg.style.marginTop = '10px';
+                correctMsg.style.fontSize = '14px';
+                correctMsg.style.fontWeight = 'bold';
+                correctMsg.innerHTML = `⚠️ لم يتم الإجابة - الصحيح: ${q.correct ? 'Richtig' : 'Falsch'}`;
+                card.appendChild(correctMsg);
+            }
+        }
+        
+        // ✅ تلوين الخيارات (Richtig/Falsch) نفسها
+        const radios = card.querySelectorAll('input[type="radio"]');
+        for (let r = 0; r < radios.length; r++) {
+            const radio = radios[r];
+            const radioValue = radio.value === 'true';
+            const parentLabel = radio.parentElement;
             
-            const correctMsg = document.createElement('div');
-            correctMsg.className = 'correct-message';
-            correctMsg.style.color = '#ff9800';
-            correctMsg.style.marginTop = '10px';
-            correctMsg.style.fontSize = '14px';
-            correctMsg.innerHTML = `⚠️ لم يتم الإجابة - الصحيح: ${q.correct ? 'Richtig' : 'Falsch'}`;
-            card.appendChild(correctMsg);
+            if (isCorrect && userAnswer !== undefined) {
+                // الإجابة صحيحة: لون أخضر للخيار المختار فقط
+                if (radio.checked) {
+                    parentLabel.style.backgroundColor = '#d4edda';
+                    parentLabel.style.borderColor = '#28a745';
+                    parentLabel.style.border = '2px solid #28a745';
+                }
+            } else {
+                // الإجابة خطأ
+                if (radio.checked) {
+                    // الخيار الذي اختاره الطالب خطأ: أحمر
+                    parentLabel.style.backgroundColor = '#f8d7da';
+                    parentLabel.style.borderColor = '#dc3545';
+                    parentLabel.style.border = '2px solid #dc3545';
+                }
+                if (radioValue === q.correct) {
+                    // الخيار الصحيح: أخضر فاتح
+                    parentLabel.style.backgroundColor = '#d4edda';
+                    parentLabel.style.borderColor = '#28a745';
+                    parentLabel.style.border = '2px solid #28a745';
+                }
+            }
         }
     }
     
-    // ✅ حساب النتيجة: 5 أسئلة = كل سؤال 5 نقاط (25/25)
+    // حساب النتيجة
     const finalScore = (score * pointsPerQuestion).toFixed(2);
     const resultDiv = document.getElementById('truefalseResult');
     if (resultDiv) {
         resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
         resultDiv.style.display = 'block';
+        
+        // تغيير لون النتيجة حسب الدرجة
+        if (finalScore >= 20) {
+            resultDiv.style.backgroundColor = '#28a745';
+        } else if (finalScore >= 15) {
+            resultDiv.style.backgroundColor = '#ffc107';
+            resultDiv.style.color = '#333';
+        } else {
+            resultDiv.style.backgroundColor = '#dc3545';
+        }
     }
 }
 
 console.log("✅ Custom Dropdown جاهز");
-console.log("✅ True/False Exam جاهز (5 أسئلة = 25 نقطة)");
+console.log("✅ True/False Exam جاهز مع تلوين أخضر/أحمر");
