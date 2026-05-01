@@ -28,7 +28,6 @@ window.loadMatchingExam = function(examData) {
   currentMatchingExamData = examData;
   matchingSelectedAnswers = {};
   
-  // نسخ الخيارات المتاحة
   matchingAvailableOptions = [...examData.sharedOptions];
   
   renderMatchingQuestions();
@@ -52,7 +51,6 @@ function renderMatchingQuestions() {
     questionText.innerHTML = "<strong>" + (i + 1) + ". " + q.text + "</strong>";
     card.appendChild(questionText);
     
-    // إنشاء Custom Dropdown
     const dropdownContainer = document.createElement("div");
     dropdownContainer.className = "custom-dropdown";
     dropdownContainer.id = "m_dropdown_" + i;
@@ -60,7 +58,6 @@ function renderMatchingQuestions() {
     dropdownContainer.style.width = "100%";
     dropdownContainer.style.marginTop = "10px";
     
-    // زر الاختيار
     const dropdownBtn = document.createElement("div");
     dropdownBtn.className = "dropdown-btn";
     dropdownBtn.id = "m_btn_" + i;
@@ -75,13 +72,11 @@ function renderMatchingQuestions() {
     dropdownBtn.style.alignItems = "center";
     dropdownBtn.style.boxSizing = "border-box";
     
-    // النص داخل الزر
     const btnText = document.createElement("span");
     const currentVal = matchingSelectedAnswers[i];
     btnText.textContent = currentVal || "-- اختر الإجابة --";
     btnText.style.color = currentVal ? "#333" : "#999";
     
-    // سهم للأسفل
     const arrow = document.createElement("span");
     arrow.textContent = "▼";
     arrow.style.fontSize = "12px";
@@ -90,7 +85,6 @@ function renderMatchingQuestions() {
     dropdownBtn.appendChild(btnText);
     dropdownBtn.appendChild(arrow);
     
-    // القائمة المنسدلة
     const dropdownList = document.createElement("div");
     dropdownList.className = "dropdown-list";
     dropdownList.id = "m_list_" + i;
@@ -111,10 +105,8 @@ function renderMatchingQuestions() {
     dropdownContainer.appendChild(dropdownList);
     card.appendChild(dropdownContainer);
     
-    // تحديث القائمة
     updateDropdownList(i);
     
-    // ربط الأحداث
     dropdownBtn.addEventListener("click", function(e) {
       e.stopPropagation();
       if (openDropdownIndex !== null && openDropdownIndex !== i) {
@@ -136,7 +128,6 @@ function renderMatchingQuestions() {
     }
   });
   
-  // ✅ زر التصحيح (تم التعديل)
   const checkBtn = document.createElement("button");
   checkBtn.innerText = "✅ تصحيح";
   checkBtn.onclick = checkMatchingExam;
@@ -297,8 +288,6 @@ function checkMatchingExam() {
   
   const finalScore = (score * pointsPerQuestion).toFixed(2);
   const resultDiv = document.getElementById("matchingResult");
-  
-  // ✅ تم التعديل هنا
   resultDiv.innerHTML = "النتيجة: " + finalScore + " / 25";
   resultDiv.style.display = "block";
 }
@@ -406,7 +395,7 @@ function checkTrueFalseExam(questions, answers) {
     const total = questions.length;
     const pointsPerQuestion = 25 / total;
     
-    const cards = document.querySelectorAll('#hoeren1 .question-card, #teil1 .question-card');
+    const cards = document.querySelectorAll('#hoeren1 .question-card');
     
     for (let i = 0; i < questions.length; i++) {
         const q = questions[i];
@@ -416,10 +405,8 @@ function checkTrueFalseExam(questions, answers) {
         
         if (!card) continue;
         
-        // إزالة التلوين القديم
         card.classList.remove('correct-answer-card', 'wrong-answer-card');
         
-        // إزالة الرسالة القديمة
         const oldMsg = card.querySelector('.correct-message');
         if (oldMsg) oldMsg.remove();
         
@@ -449,6 +436,7 @@ function checkTrueFalseExam(questions, answers) {
         }
     }
     
+    // ✅ حساب النتيجة: 5 أسئلة = كل سؤال 5 نقاط (25/25)
     const finalScore = (score * pointsPerQuestion).toFixed(2);
     const resultDiv = document.getElementById('truefalseResult');
     if (resultDiv) {
@@ -457,5 +445,5 @@ function checkTrueFalseExam(questions, answers) {
     }
 }
 
-console.log("✅ Custom Dropdown جاهز (إلغاء بالضغط على نفس الخيار يعمل)");
-console.log("✅ True/False Exam جاهز");
+console.log("✅ Custom Dropdown جاهز");
+console.log("✅ True/False Exam جاهز (5 أسئلة = 25 نقطة)");
