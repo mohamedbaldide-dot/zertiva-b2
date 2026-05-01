@@ -89,7 +89,7 @@ const actualFileNames = {
   45: "exam48.json", 46: "exam45.json", 47: "exam46.json", 48: "exam47.json"
 };
 
-// ✅ قائمة الامتحانات لكل جزء (واحد أسفل واحد)
+// ✅ قائمة الامتحانات لكل جزء (واحد أسفل واحد) - كاملة من 1 إلى 27
 const examsDatabase = {
   lesen1: allExams.filter(exam => exam.enabled === true),
   lesen2: [],
@@ -116,7 +116,14 @@ const examsDatabase = {
     { id: 17, title: "Insel Bali", enabled: true, hasFile: true },
     { id: 18, title: "Die Fluggesellschaft", enabled: true, hasFile: true },
     { id: 19, title: "Der Fluggesellschaft (Mittel)", enabled: true, hasFile: true },
-    { id: 20, title: "Der Bau", enabled: true, hasFile: true }
+    { id: 20, title: "Der Bau", enabled: true, hasFile: true },
+    { id: 21, title: "50-Euro", enabled: true, hasFile: true },
+    { id: 22, title: "Das Schladminger", enabled: true, hasFile: true },
+    { id: 23, title: "Bei den Europawahlen (Linksparteien)", enabled: true, hasFile: true },
+    { id: 24, title: "Bei den Europawahlen (CDU/CSU)", enabled: true, hasFile: true },
+    { id: 25, title: "Die Bundesländer", enabled: true, hasFile: true },
+    { id: 26, title: "Bio-Siegels", enabled: true, hasFile: true },
+    { id: 27, title: "Berufen (bonbon)", enabled: true, hasFile: true }
   ],
   hoeren2: [],
   hoeren3: []
@@ -408,4 +415,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 renderTeileList();
 
-console.log("✅ exams.js تم تحميله بنجاح");
+console.log("✅ exams.js تم تحميله بنجاح مع 27 امتحان في Hören Teil 1");
