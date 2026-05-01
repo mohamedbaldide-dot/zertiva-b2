@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<!-- الصفحة 1: البداية (تختفي بعد الضغط على لنبدأ) -->
+<!-- الصفحة 1: البداية -->
 <div id="home" class="page active home">
   <div class="card">
     <h1>Zertiva B2</h1>
@@ -19,9 +19,13 @@
 
 <!-- الصفحة 2: قائمة الأجزاء والامتحانات -->
 <div id="list" class="page">
-  <!-- الأجزاء في صف واحد -->
+  <!-- ✅ زر رجوع في أعلى اليسار -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <button id="backArrowBtn" style="background: none; border: none; font-size: 28px; cursor: pointer; color: #2c3e66; padding: 0;">↰</button>
+    <div style="width: 50px;"></div>
+  </div>
+  
   <div id="teileList" class="teile-row"></div>
-  <!-- الامتحانات -->
   <div id="examsList"></div>
   <button id="backHomeBtn">🏠 الرئيسية</button>
 </div>
@@ -29,8 +33,15 @@
 <!-- الصفحة 3: الامتحان -->
 <div id="exam" class="page">
 <div class="exam-box">
-  <h2 id="examTitle"></h2>
+  <!-- ✅ زر رجوع في أعلى اليسار داخل صفحة الامتحان -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <button id="backArrowFromExam" style="background: none; border: none; font-size: 28px; cursor: pointer; color: #2c3e66; padding: 0;">↰</button>
+    <h2 id="examTitle" style="margin: 0; flex-grow: 1; text-align: center;"></h2>
+    <div style="width: 50px;"></div>
+  </div>
+
   <div style="margin-bottom:20px;" id="navButtons"></div>
+
   <div id="teil1" style="display:none;"></div>
   <div id="teil2" style="display:none;"></div>
   <div id="teil3" style="display:none;"></div>
@@ -39,7 +50,14 @@
   <div id="hoeren1" style="display:none;"></div>
   <div id="hoeren2" style="display:none;"></div>
   <div id="hoeren3" style="display:none;"></div>
-  <button id="backToListBtn">📋 عودة</button>
+
+  <!-- ✅ أزرار التنقل بين الامتحانات -->
+  <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+    <button id="prevExamBtn" style="background: #6c757d;">◀ السابق</button>
+    <button id="nextExamBtn" style="background: #6c757d;">التالي ▶</button>
+  </div>
+
+  <button id="backToListBtn" style="margin-top: 15px;">📋 عودة</button>
 </div>
 </div>
 
