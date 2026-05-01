@@ -19,11 +19,8 @@
 
 <!-- الصفحة 2: قائمة الأجزاء والامتحانات -->
 <div id="list" class="page">
-  <!-- ✅ زر رجوع في أعلى اليسار -->
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-    <button id="backArrowBtn" style="background: none; border: none; font-size: 28px; cursor: pointer; color: #2c3e66; padding: 0;">↰</button>
-    <div style="width: 50px;"></div>
-  </div>
+  <!-- ✅ تم إزالة زر الرجوع ↰ -->
+  <div style="height: 20px;"></div>
   
   <div id="teileList" class="teile-row"></div>
   <div id="examsList"></div>
@@ -33,7 +30,7 @@
 <!-- الصفحة 3: الامتحان -->
 <div id="exam" class="page">
 <div class="exam-box">
-  <!-- ✅ زر رجوع في أعلى اليسار داخل صفحة الامتحان -->
+  <!-- ✅ زر رجوع في صفحة الامتحان فقط (تم الإبقاء عليه) -->
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
     <button id="backArrowFromExam" style="background: none; border: none; font-size: 28px; cursor: pointer; color: #2c3e66; padding: 0;">↰</button>
     <h2 id="examTitle" style="margin: 0; flex-grow: 1; text-align: center;"></h2>
@@ -51,7 +48,7 @@
   <div id="hoeren2" style="display:none;"></div>
   <div id="hoeren3" style="display:none;"></div>
 
-  <!-- ✅ أزرار التنقل بين الامتحانات -->
+  <!-- أزرار التنقل بين الامتحانات -->
   <div style="display: flex; justify-content: space-between; margin-top: 20px;">
     <button id="prevExamBtn" style="background: #6c757d;">◀ السابق</button>
     <button id="nextExamBtn" style="background: #6c757d;">التالي ▶</button>
