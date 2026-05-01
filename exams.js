@@ -18,7 +18,7 @@ let currentSkill = "lesen1";
 let currentExamId = null;
 let currentExamsList = [];
 
-// قائمة جميع الامتحانات
+// ✅ قائمة جميع الامتحانات (من 1 إلى 50)
 const allExams = [
   { id: 1, title: "Jugend Forscher" },
   { id: 2, title: "sport ist gesund" },
@@ -59,7 +59,17 @@ const allExams = [
   { id: 37, title: "kein Zeit (التعديل)" },
   { id: 38, title: "Limonade" },
   { id: 39, title: "Limonade (التعديل 1)" },
-  { id: 40, title: "Limonade (التعديل 2)" }
+  { id: 40, title: "Limonade (التعديل 2)" },
+  { id: 41, title: "Limonade (التعديل 3)" },
+  { id: 42, title: "Auf dem Weg" },
+  { id: 43, title: "Farben" },
+  { id: 44, title: "Schlafzug" },
+  { id: 45, title: "Schlafzug (التعديل)" },
+  { id: 46, title: "Löwen" },
+  { id: 47, title: "Fisch" },
+  { id: 48, title: "Frauen im Arbeitsmarkt" },
+  { id: 49, title: "Baby TV" },
+  { id: 50, title: "Bäder" }
 ];
 
 // قائمة الامتحانات لكل جزء
@@ -202,7 +212,7 @@ function showTeil(teilNumber) {
   });
 }
 
-// بناء Teil 1 (النظام القديم)
+// بناء Teil 1 (النظام القديم - Radio Buttons)
 function buildTeil1(questions) {
   const container = document.getElementById("teil1");
   if (!container) return;
@@ -304,12 +314,8 @@ function goList() {
   document.getElementById("list").classList.add("active");
   document.getElementById("exam").classList.remove("active");
   renderTeileList();
-  // ✅ بدون رسالة - فارغة
-  document.getElementById("examsList").innerHTML = '';
-}
-
-function goBackToList() {
-  goList();
+  // عرض الامتحانات لـ Lesen Teil 1 بشكل افتراضي
+  renderExamListForSkill("lesen1");
 }
 
 // ربط الأزرار
@@ -320,11 +326,12 @@ document.addEventListener("DOMContentLoaded", function() {
   
   if (startBtn) startBtn.onclick = function() { goList(); };
   if (backHomeBtn) backHomeBtn.onclick = function() { goHome(); };
-  if (backToListBtn) backToListBtn.onclick = function() { goBackToList(); };
+  if (backToListBtn) backToListBtn.onclick = function() { goList(); };
 });
 
 // تحميل القائمة عند بدء الصفحة
 renderTeileList();
-document.getElementById("examsList").innerHTML = '';
+renderExamListForSkill("lesen1");
 
 console.log("✅ exams.js تم تحميله بنجاح");
+console.log("📋 عدد امتحانات lesen1:", examsDatabase.lesen1.length);
