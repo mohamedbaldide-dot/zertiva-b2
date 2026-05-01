@@ -16,9 +16,8 @@ const teile = [
 let currentExamData = null;
 let currentSkill = "lesen1";
 
-// ✅ قائمة الامتحانات المتاحة لكل جزء (محدثة)
+// ✅ قائمة الامتحانات المتاحة لـ Lesen Teil 1 (من 1 إلى 40)
 const examsDatabase = {
-  // Lesen Teil 1 - الامتحانات من 1 إلى 40
   lesen1: [
     { id: 1, title: "Jugend Forscher" },
     { id: 2, title: "sport ist gesund" },
@@ -61,7 +60,6 @@ const examsDatabase = {
     { id: 39, title: "Limonade (modifiziert 1)" },
     { id: 40, title: "Limonade (modifiziert 2)" }
   ],
-  // الأجزاء الأخرى (فارغة حالياً)
   lesen2: [],
   lesen3: [],
   sprach1: [],
@@ -264,17 +262,23 @@ function goList() {
   document.getElementById("list").classList.add("active");
   document.getElementById("exam").classList.remove("active");
   renderTeileList();
-  // عرض الامتحانات لـ Lesen Teil 1 بشكل افتراضي
   renderExamListForSkill("lesen1");
 }
 
-// ربط الأزرار
-document.getElementById("startBtn").onclick = function() { goList(); };
-document.getElementById("backHomeBtn").onclick = function() { goHome(); };
-document.getElementById("backToListBtn").onclick = function() { goList(); };
+// تأكد من وجود الأزرار قبل ربطها
+document.addEventListener("DOMContentLoaded", function() {
+  const startBtn = document.getElementById("startBtn");
+  const backHomeBtn = document.getElementById("backHomeBtn");
+  const backToListBtn = document.getElementById("backToListBtn");
+  
+  if (startBtn) startBtn.onclick = function() { goList(); };
+  if (backHomeBtn) backHomeBtn.onclick = function() { goHome(); };
+  if (backToListBtn) backToListBtn.onclick = function() { goList(); };
+});
 
 // تحميل القائمة عند بدء الصفحة
 renderTeileList();
 renderExamListForSkill("lesen1");
 
 console.log("✅ exams.js تم تحميله بنجاح");
+console.log("📋 عدد امتحانات lesen1:", examsDatabase.lesen1.length);
