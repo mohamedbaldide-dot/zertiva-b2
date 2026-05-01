@@ -125,7 +125,39 @@ const examsDatabase = {
     { id: 26, title: "Bio-Siegels", enabled: true, hasFile: true },
     { id: 27, title: "Berufen (bonbon)", enabled: true, hasFile: true }
   ],
-  hoeren2: [],
+  hoeren2: [
+    { id: 1, title: "Herr Gasser und Frau Janke", enabled: true, hasFile: true },
+    { id: 2, title: "Suza Hotop", enabled: true, hasFile: true },
+    { id: 3, title: "Suza Hotop (Mittel)", enabled: true, hasFile: true },
+    { id: 4, title: "Professor Steiner", enabled: true, hasFile: true },
+    { id: 5, title: "Professor Steiner (Mittel)", enabled: true, hasFile: true },
+    { id: 6, title: "Mallorca", enabled: true, hasFile: true },
+    { id: 7, title: "Mallorca (Mittel)", enabled: true, hasFile: true },
+    { id: 8, title: "In dem Restaurant", enabled: true, hasFile: true },
+    { id: 9, title: "Julia", enabled: true, hasFile: true },
+    { id: 10, title: "Carina", enabled: true, hasFile: true },
+    { id: 11, title: "Carina (Mittel)", enabled: true, hasFile: true },
+    { id: 12, title: "Frau Schenk", enabled: true, hasFile: true },
+    { id: 13, title: "Frau Schenk (Mittel)", enabled: true, hasFile: true },
+    { id: 14, title: "Herr Karimov", enabled: true, hasFile: true },
+    { id: 15, title: "Nadine", enabled: true, hasFile: true },
+    { id: 16, title: "Markus", enabled: true, hasFile: true },
+    { id: 17, title: "Markus (Mittel)", enabled: true, hasFile: true },
+    { id: 18, title: "Roland (Spielen)", enabled: true, hasFile: true },
+    { id: 19, title: "Roland (aufsteigen)", enabled: true, hasFile: true },
+    { id: 20, title: "Roland (einer höheren Lige)", enabled: true, hasFile: true },
+    { id: 21, title: "Die Deutschen machen", enabled: true, hasFile: true },
+    { id: 22, title: "Herr Scherer", enabled: true, hasFile: true },
+    { id: 23, title: "Beim Wettkampf", enabled: true, hasFile: true },
+    { id: 24, title: "Vanessa", enabled: true, hasFile: true },
+    { id: 25, title: "Zu Beginn", enabled: true, hasFile: true },
+    { id: 26, title: "Die TU Dresden", enabled: true, hasFile: true },
+    { id: 27, title: "Lisa Eisenberg", enabled: true, hasFile: true },
+    { id: 28, title: "Franz Schumacher", enabled: true, hasFile: true },
+    { id: 29, title: "Meron Makeba", enabled: true, hasFile: true },
+    { id: 30, title: "Frau Kedar Malta", enabled: true, hasFile: true },
+    { id: 31, title: "Frau Keder aus Malta", enabled: true, hasFile: true }
+  ],
   hoeren3: [
     { id: 1, title: "Telefon", enabled: true, hasFile: true },
     { id: 2, title: "Musikfestivals", enabled: true, hasFile: true },
@@ -443,4 +475,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 renderTeileList();
 
-console.log("✅ exams.js تم تحميله بنجاح مع 27 امتحان في Hören Teil 1 و 27 امتحان في Hören Teil 3");
+console.log("✅ exams.js تم تحميله بنجاح مع 27 امتحان في Hören Teil 1 و 31 امتحان في Hören Teil 2 و 27 امتحان في Hören Teil 3");
