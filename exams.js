@@ -1,231 +1,239 @@
 // ============================================
-// exams.js - نظام الامتحانات المتكامل
+// engine.js - محرك الامتحانات (يدعم Matching System مع إمكانية إلغاء الاختيار)
 // ============================================
 
-const teile = [
-  { id: 1, name: "Lesen Teil 1", container: "teil1" },
-  { id: 2, name: "Lesen Teil 2", container: "teil2" },
-  { id: 3, name: "Lesen Teil 3", container: "teil3" },
-  { id: 4, name: "Sprachbausteine Teil 1", container: "sprach1" },
-  { id: 5, name: "Sprachbausteine Teil 2", container: "sprach2" },
-  { id: 6, name: "Hören Teil 1", container: "hoeren1" },
-  { id: 7, name: "Hören Teil 2", container: "hoeren2" },
-  { id: 8, name: "Hören Teil 3", container: "hoeren3" }
-];
+console.log("✅ engine.js تم تحميله");
 
-let currentExamData = null;
-
-// قائمة الامتحانات المتاحة (ثابتة حالياً)
-const availableExamsList = [
-  { id: 1, title: "Lesen Teil 1 - Exam 1: Jugend Forscher" },
-  { id: 2, title: "Lesen Teil 1 - Exam 2: sport ist gesund" }
-];
-
-// عرض قائمة الامتحانات
-function renderExamList() {
-  console.log("🟢 renderExamList تم استدعاؤها");
-  const container = document.getElementById("examsList");
-  if (!container) {
-    console.error("❌ عنصر examsList غير موجود");
-    return;
-  }
-  
-  container.innerHTML = "";
-  
-  for (let i = 0; i < availableExamsList.length; i++) {
-    const exam = availableExamsList[i];
-    const div = document.createElement("div");
-    div.className = "item";
-    div.innerHTML = `${exam.id}. ${exam.title} ✅`;
-    div.onclick = (function(id) {
-      return function() { openExam(id); };
-    })(exam.id);
-    container.appendChild(div);
-  }
-  
-  if (availableExamsList.length === 0) {
-    container.innerHTML = '<div class="item">⚠️ لا توجد امتحانات متاحة حالياً</div>';
-  }
-}
-
-// فتح امتحان محدد
-async function openExam(examId) {
-  console.log("🟢 فتح الامتحان رقم:", examId);
+window.loadExamFromFile = async function(skill, examId) {
   try {
-    // محاولة تحميل ملف JSON
-    const response = await fetch(`data/lesen1/exam${examId}.json`);
-    if (!response.ok) {
-      throw new Error(`الملف exam${examId}.json غير موجود`);
+    const response = await fetch(`data/${skill}/exam${examId}.json`);
+    if (response.ok) {
+      return await response.json();
     }
-    currentExamData = await response.json();
-    
-    document.getElementById("home").classList.remove("active");
-    document.getElementById("list").classList.remove("active");
-    document.getElementById("exam").classList.add("active");
-    document.getElementById("examTitle").innerHTML = currentExamData.title;
-    
-    buildNavButtons();
-    
-    // ✅ التعديل المطلوب: التحقق من نوع الامتحان
-    if (currentExamData.type === "matching") {
-      // استخدام نظام Matching (Dropdown بدون تكرار) - خاص بـ Lesen Teil 1
-      if (typeof window.loadMatchingExam === "function") {
-        window.loadMatchingExam(currentExamData);
-      } else {
-        console.error("❌ loadMatchingExam غير موجود");
-        alert("نظام التصحيح غير متوفر حالياً");
-      }
-    } else {
-      // النظام القديم (Radio Buttons) - لباقي الأجزاء
-      buildTeil1(currentExamData.questions);
-    }
-    
-    showTeil(1);
+    return null;
   } catch(e) {
-    console.error("❌ خطأ:", e);
-    alert("خطأ في تحميل الامتحان: " + e.message);
+    console.error("خطأ:", e);
+    return null;
   }
-}
+};
 
-// بناء أزرار التنقل
-function buildNavButtons() {
-  const navDiv = document.getElementById("navButtons");
-  navDiv.innerHTML = "";
-  teile.forEach((teil, idx) => {
-    const btn = document.createElement("button");
-    btn.innerText = teil.name;
-    btn.className = "teil-btn";
-    btn.onclick = (function(num) {
-      return function() { showTeil(num); };
-    })(idx + 1);
-    navDiv.appendChild(btn);
-  });
-}
+// ========== نظام Matching (Dropdown بدون تكرار + إمكانية إلغاء الاختيار) ==========
+let currentMatchingExamData = null;
+let matchingSelectedAnswers = {};
+let matchingAvailableOptions = [];
 
-// عرض جزء معين
-function showTeil(teilNumber) {
-  teile.forEach((teil, idx) => {
-    const container = document.getElementById(teil.container);
-    if (container) container.style.display = (idx + 1 === teilNumber) ? "block" : "none";
-  });
+window.loadMatchingExam = function(examData) {
+  console.log("🟢 loadMatchingExam تم استدعاؤها", examData.title);
+  currentMatchingExamData = examData;
+  matchingSelectedAnswers = {};
   
-  const btns = document.querySelectorAll(".teil-btn");
-  for (let i = 0; i < btns.length; i++) {
-    if (i + 1 === teilNumber) btns[i].classList.add("active");
-    else btns[i].classList.remove("active");
-  }
-}
+  // نسخ الخيارات المتاحة
+  matchingAvailableOptions = [...examData.sharedOptions];
+  
+  // عرض الأسئلة بنظام Matching
+  renderMatchingQuestions();
+};
 
-// بناء Teil 1 (النظام القديم - Radio Buttons) - لباقي الامتحانات التي ليس فيها type matching
-function buildTeil1(questions) {
+function renderMatchingQuestions() {
   const container = document.getElementById("teil1");
   if (!container) return;
   container.innerHTML = "";
   
-  let userAnswers = {};
+  const questions = currentMatchingExamData.questions;
   
   for (let i = 0; i < questions.length; i++) {
     const q = questions[i];
     const card = document.createElement("div");
     card.className = "question-card";
-    card.id = "q_" + i;
+    card.id = "m_q_" + i;
     
     const questionText = document.createElement("div");
     questionText.className = "question-text";
     questionText.innerHTML = "<strong>" + (i + 1) + ". " + q.text + "</strong>";
     card.appendChild(questionText);
     
-    const optionsDiv = document.createElement("div");
-    for (let j = 0; j < q.options.length; j++) {
-      const label = document.createElement("label");
-      label.className = "option-label";
-      const radioId = "q" + i + "_" + j;
-      label.innerHTML = '<input type="radio" name="q' + i + '" value="' + j + '" class="option-input" id="' + radioId + '"> <span>' + q.options[j] + '</span>';
-      label.onclick = (function(qIdx, ansIdx) {
-        return function() {
-          userAnswers[qIdx] = ansIdx;
-        };
-      })(i, j);
-      optionsDiv.appendChild(label);
+    // إنشاء Dropdown
+    const select = document.createElement("select");
+    select.className = "matching-select";
+    select.id = "m_select_" + i;
+    select.style.width = "100%";
+    select.style.padding = "10px";
+    select.style.marginTop = "10px";
+    select.style.borderRadius = "8px";
+    select.style.border = "1px solid #ccc";
+    select.style.backgroundColor = "white";
+    select.style.cursor = "pointer";
+    
+    // خيار فارغ (اختر)
+    const emptyOption = document.createElement("option");
+    emptyOption.value = "";
+    emptyOption.textContent = "-- اختر الإجابة --";
+    select.appendChild(emptyOption);
+    
+    // إضافة الخيارات المتاحة
+    for (let j = 0; j < matchingAvailableOptions.length; j++) {
+      const option = document.createElement("option");
+      option.value = j;
+      option.textContent = matchingAvailableOptions[j];
+      select.appendChild(option);
     }
-    card.appendChild(optionsDiv);
+    
+    // إذا كان هناك اختيار سابق
+    if (matchingSelectedAnswers[i] !== undefined && matchingSelectedAnswers[i] !== "") {
+      const oldVal = matchingSelectedAnswers[i];
+      for (let k = 0; k < select.options.length; k++) {
+        if (select.options[k].textContent === oldVal) {
+          select.selectedIndex = k;
+          break;
+        }
+      }
+    }
+    
+    // الحدث عند تغيير الاختيار
+    select.onchange = (function(qIdx, selectElement) {
+      return function() {
+        const selectedIndex = selectElement.selectedIndex;
+        const selectedText = selectElement.options[selectedIndex].textContent;
+        
+        // حالة 1: اختيار "-- اختر الإجابة --" → إلغاء الاختيار
+        if (selectedIndex === 0 || selectedText === "-- اختر الإجابة --") {
+          const oldValueText = matchingSelectedAnswers[qIdx];
+          if (oldValueText && oldValueText !== "" && oldValueText !== "-- اختر الإجابة --") {
+            if (!matchingAvailableOptions.includes(oldValueText)) {
+              matchingAvailableOptions.push(oldValueText);
+              matchingAvailableOptions.sort();
+            }
+          }
+          matchingSelectedAnswers[qIdx] = "";
+          selectElement.selectedIndex = 0;
+          refreshAllDropdowns();
+          return;
+        }
+        
+        // حالة 2: اختيار نفس العنوان الذي كان مختاراً مسبقاً → إلغاء الاختيار
+        const currentSelected = matchingSelectedAnswers[qIdx];
+        if (currentSelected === selectedText && currentSelected !== "") {
+          if (!matchingAvailableOptions.includes(selectedText)) {
+            matchingAvailableOptions.push(selectedText);
+            matchingAvailableOptions.sort();
+          }
+          matchingSelectedAnswers[qIdx] = "";
+          selectElement.selectedIndex = 0;
+          refreshAllDropdowns();
+          return;
+        }
+        
+        // حالة 3: اختيار عنوان جديد
+        const oldValueText = matchingSelectedAnswers[qIdx];
+        if (oldValueText && oldValueText !== "" && oldValueText !== "-- اختر الإجابة --") {
+          if (!matchingAvailableOptions.includes(oldValueText)) {
+            matchingAvailableOptions.push(oldValueText);
+            matchingAvailableOptions.sort();
+          }
+        }
+        
+        const indexInAvailable = matchingAvailableOptions.indexOf(selectedText);
+        if (indexInAvailable !== -1) {
+          matchingAvailableOptions.splice(indexInAvailable, 1);
+        }
+        
+        matchingSelectedAnswers[qIdx] = selectedText;
+        refreshAllDropdowns();
+      };
+    })(i, select);
+    
+    card.appendChild(select);
     container.appendChild(card);
   }
   
+  // إضافة زر التصحيح
   const checkBtn = document.createElement("button");
   checkBtn.innerText = "✅ تصحيح الامتحان";
-  checkBtn.onclick = function() {
-    checkTeil1(questions, userAnswers);
-  };
+  checkBtn.onclick = checkMatchingExam;
   container.appendChild(checkBtn);
   
   const resultDiv = document.createElement("div");
-  resultDiv.id = "teil1Result";
+  resultDiv.id = "matchingResult";
   resultDiv.className = "result-box";
   resultDiv.style.display = "none";
   container.appendChild(resultDiv);
 }
 
-function checkTeil1(questions, answers) {
+function refreshAllDropdowns() {
+  for (let k = 0; k < currentMatchingExamData.questions.length; k++) {
+    const sel = document.getElementById("m_select_" + k);
+    if (sel) {
+      const currentVal = matchingSelectedAnswers[k];
+      sel.innerHTML = "";
+      
+      const emptyOpt = document.createElement("option");
+      emptyOpt.value = "";
+      emptyOpt.textContent = "-- اختر الإجابة --";
+      sel.appendChild(emptyOpt);
+      
+      for (let m = 0; m < matchingAvailableOptions.length; m++) {
+        const opt = document.createElement("option");
+        opt.value = m;
+        opt.textContent = matchingAvailableOptions[m];
+        sel.appendChild(opt);
+      }
+      
+      if (currentVal && currentVal !== "" && currentVal !== "-- اختر الإجابة --") {
+        for (let p = 0; p < sel.options.length; p++) {
+          if (sel.options[p].textContent === currentVal) {
+            sel.selectedIndex = p;
+            break;
+          }
+        }
+      } else {
+        sel.selectedIndex = 0;
+      }
+    }
+  }
+}
+
+function checkMatchingExam() {
   let score = 0;
+  const questions = currentMatchingExamData.questions;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
   
-  for (let i = 0; i < questions.length; i++) {
+  for (let i = 0; i < total; i++) {
+    const card = document.getElementById("m_q_" + i);
+    if (card) {
+      card.classList.remove("correct-answer-card", "wrong-answer-card");
+      const oldMsg = card.querySelector(".correct-message");
+      if (oldMsg) oldMsg.remove();
+    }
+  }
+  
+  for (let i = 0; i < total; i++) {
     const q = questions[i];
-    const card = document.getElementById("q_" + i);
-    const userAnswer = answers[i];
-    const isCorrect = (userAnswer === q.correct);
+    const card = document.getElementById("m_q_" + i);
+    const userAnswerText = matchingSelectedAnswers[i];
+    const correctAnswerText = currentMatchingExamData.sharedOptions[q.correct];
+    const isCorrect = (userAnswerText === correctAnswerText);
     
     if (isCorrect) {
       score++;
       card.classList.add("correct-answer-card");
-      card.classList.remove("wrong-answer-card");
-      const oldMsg = card.querySelector(".correct-message");
-      if (oldMsg) oldMsg.remove();
     } else {
       card.classList.add("wrong-answer-card");
-      card.classList.remove("correct-answer-card");
       
-      let correctMsg = card.querySelector(".correct-message");
-      if (!correctMsg) {
-        correctMsg = document.createElement("div");
-        correctMsg.className = "correct-message";
-        correctMsg.style.color = "#28a745";
-        correctMsg.style.marginTop = "10px";
-        correctMsg.style.fontSize = "14px";
-        card.appendChild(correctMsg);
-      }
-      correctMsg.innerHTML = "✅ الإجابة الصحيحة: " + q.options[q.correct];
+      const correctMsg = document.createElement("div");
+      correctMsg.className = "correct-message";
+      correctMsg.style.color = "#28a745";
+      correctMsg.style.marginTop = "10px";
+      correctMsg.style.fontSize = "14px";
+      correctMsg.innerHTML = "✅ الإجابة الصحيحة: " + correctAnswerText;
+      card.appendChild(correctMsg);
     }
   }
   
   const finalScore = (score * pointsPerQuestion).toFixed(2);
-  const resultDiv = document.getElementById("teil1Result");
+  const resultDiv = document.getElementById("matchingResult");
   resultDiv.innerHTML = "🎯 النتيجة: " + finalScore + " / 25 (" + score + " من " + total + " إجابات صحيحة)";
   resultDiv.style.display = "block";
 }
 
-// دوال التنقل
-function goHome() {
-  document.getElementById("home").classList.add("active");
-  document.getElementById("list").classList.remove("active");
-  document.getElementById("exam").classList.remove("active");
-}
-
-function goList() {
-  document.getElementById("home").classList.remove("active");
-  document.getElementById("list").classList.add("active");
-  document.getElementById("exam").classList.remove("active");
-  renderExamList();
-}
-
-// ربط الأزرار
-document.getElementById("startBtn").onclick = function() { goList(); };
-document.getElementById("backHomeBtn").onclick = function() { goHome(); };
-document.getElementById("backToListBtn").onclick = function() { goList(); };
-
-// تحميل القائمة عند بدء الصفحة
-renderExamList();
-
-console.log("✅ exams.js تم تحميله بنجاح");
+console.log("✅ نظام Matching (Dropdown بدون تكرار + إلغاء الاختيار) جاهز");
