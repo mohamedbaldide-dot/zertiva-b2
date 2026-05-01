@@ -18,59 +18,101 @@ let currentSkill = "lesen1";
 let currentExamId = null;
 let currentExamsList = [];
 
-// ✅ قائمة جميع الامتحانات (من 1 إلى 50)
+// ✅ قائمة جميع الامتحانات (من 1 إلى 48 حسب الترتيب المطلوب)
 const allExams = [
   { id: 1, title: "Jugend Forscher" },
   { id: 2, title: "sport ist gesund" },
-  { id: 3, title: "sport ist gesund (التعديل)" },
+  { id: 3, title: "sport ist gesund (التعديل 1)" },
   { id: 4, title: "Tanzkurs" },
-  { id: 5, title: "Tanzkurs (التعديل)" },
+  { id: 5, title: "Tanzkurs (التعديل 1)" },
   { id: 6, title: "Impfung" },
   { id: 7, title: "Insel" },
   { id: 8, title: "Bilder" },
   { id: 9, title: "Grundschule" },
-  { id: 10, title: "Grundschule (التعديل)" },
-  { id: 11, title: "Österreich - Naschmarkt" },
-  { id: 12, title: "Insekten" },
-  { id: 13, title: "Insekten (التعديل)" },
-  { id: 14, title: "das Benzin" },
-  { id: 15, title: "Kaffee" },
-  { id: 16, title: "Programmierer" },
-  { id: 17, title: "Programmierer (التعديل 1)" },
-  { id: 18, title: "Programmierer (التعديل 2)" },
-  { id: 19, title: "Trampolin" },
-  { id: 20, title: "Bonbons" },
-  { id: 21, title: "Umwelt" },
-  { id: 22, title: "Licht" },
-  { id: 23, title: "Licht (التعديل)" },
-  { id: 24, title: "Kartoffel" },
-  { id: 25, title: "Kartoffel (التعديل)" },
-  { id: 26, title: "Bienen" },
-  { id: 27, title: "Spiele" },
-  { id: 28, title: "Geld" },
-  { id: 29, title: "Kinder und Schulen" },
-  { id: 30, title: "Kindertelefon" },
-  { id: 31, title: "Alpen" },
-  { id: 32, title: "Alpen (التعديل 1)" },
-  { id: 33, title: "Alpen (التعديل 2)" },
-  { id: 34, title: "Suchtmittel - Nase" },
-  { id: 35, title: "Wahlen & Frauen" },
-  { id: 36, title: "kein Zeit" },
-  { id: 37, title: "kein Zeit (التعديل)" },
-  { id: 38, title: "Limonade" },
-  { id: 39, title: "Limonade (التعديل 1)" },
-  { id: 40, title: "Limonade (التعديل 2)" },
-  { id: 41, title: "Limonade (التعديل 3)" },
-  { id: 42, title: "Auf dem Weg" },
-  { id: 43, title: "Farben" },
-  { id: 44, title: "Schlafzug" },
-  { id: 45, title: "Schlafzug (التعديل)" },
-  { id: 46, title: "Löwen" },
-  { id: 47, title: "Fisch" },
-  { id: 48, title: "Frauen im Arbeitsmarkt" },
-  { id: 49, title: "Baby TV" },
-  { id: 50, title: "Bäder" }
+  { id: 10, title: "Österreich - Naschmarkt" },
+  { id: 11, title: "Insekten" },
+  { id: 12, title: "Insekten (التعديل 1)" },
+  { id: 13, title: "das Benzin" },
+  { id: 14, title: "Kaffee" },
+  { id: 15, title: "Programmierer" },
+  { id: 16, title: "Programmierer (التعديل 1)" },
+  { id: 17, title: "Programmierer (التعديل 2)" },
+  { id: 18, title: "Trampolin" },
+  { id: 19, title: "Bonbons" },
+  { id: 20, title: "Umwelt" },
+  { id: 21, title: "Licht" },
+  { id: 22, title: "Licht (التعديل 1)" },
+  { id: 23, title: "Kartoffel" },
+  { id: 24, title: "Kartoffel (التعديل 1)" },
+  { id: 25, title: "Bienen" },
+  { id: 26, title: "Spiele" },
+  { id: 27, title: "Geld" },
+  { id: 28, title: "Kinder und Schulen" },
+  { id: 29, title: "Kindertelefon" },
+  { id: 30, title: "Alpen" },
+  { id: 31, title: "Alpen (التعديل 1)" },
+  { id: 32, title: "Alpen (التعديل 2)" },
+  { id: 33, title: "Suchtmittel - Nase" },
+  { id: 34, title: "الانتخابات والمرأة الروسية" },
+  { id: 35, title: "kein Zeit" },
+  { id: 36, title: "kein Zeit (التعديل 1)" },
+  { id: 37, title: "Limonade" },
+  { id: 38, title: "Limonade (التعديل 1)" },
+  { id: 39, title: "Limonade (التعديل 2)" },
+  { id: 40, title: "Auf dem Weg" },
+  { id: 41, title: "Schlafzug" },
+  { id: 42, title: "Schlafzug (التعديل 1)" },
+  { id: 43, title: "Löwen" },
+  { id: 44, title: "Fisch" },
+  { id: 45, title: "Frauen im Arbeitsmarkt" },
+  { id: 46, title: "Baby TV" },
+  { id: 47, title: "Farben" },
+  { id: 48, title: "Bäder" }
 ];
+
+// 🔧 تعيين أسماء الملفات الفعلية (لأنها لا تتطابق مع الترتيب)
+const actualFileNames = {
+  // الامتحانات التي تختلف أرقام ملفاتها عن أرقامها في الترتيب
+  10: "exam10.json",   // Österreich - Naschmarkt
+  11: "exam11.json",   // Insekten
+  12: "exam12.json",   // Insekten (التعديل 1)
+  13: "exam13.json",   // das Benzin
+  14: "exam14.json",   // Kaffee
+  15: "exam15.json",   // Programmierer
+  16: "exam16.json",   // Programmierer (التعديل 1)
+  17: "exam17.json",   // Programmierer (التعديل 2)
+  18: "exam18.json",   // Trampolin
+  19: "exam19.json",   // Bonbons
+  20: "exam20.json",   // Umwelt
+  21: "exam21.json",   // Licht
+  22: "exam22.json",   // Licht (التعديل 1)
+  23: "exam23.json",   // Kartoffel
+  24: "exam24.json",   // Kartoffel (التعديل 1)
+  25: "exam25.json",   // Bienen
+  26: "exam26.json",   // Spiele
+  27: "exam27.json",   // Geld
+  28: "exam28.json",   // Kinder und Schulen
+  29: "exam29.json",   // Kindertelefon
+  30: "exam30.json",   // Alpen
+  31: "exam31.json",   // Alpen (التعديل 1)
+  32: "exam32.json",   // Alpen (التعديل 2)
+  33: "exam33.json",   // Suchtmittel - Nase
+  34: "exam34.json",   // الانتخابات والمرأة الروسية
+  35: "exam35.json",   // kein Zeit
+  36: "exam36.json",   // kein Zeit (التعديل 1)
+  37: "exam37.json",   // Limonade
+  38: "exam38.json",   // Limonade (التعديل 1)
+  39: "exam39.json",   // Limonade (التعديل 2)
+  40: "exam40.json",   // Auf dem Weg
+  41: "exam41.json",   // Schlafzug
+  42: "exam42.json",   // Schlafzug (التعديل 1)
+  43: "exam43.json",   // Löwen
+  44: "exam44.json",   // Fisch
+  45: "exam48.json",   // ⚠️ Frauen im Arbeitsmarkt (ملف exam48)
+  46: "exam46.json",   // ⚠️ Baby TV (ملف exam46 - سيتم إنشاؤه)
+  47: "exam47.json",   // ⚠️ Farben (ملف exam47 - سيتم إنشاؤه)
+  48: "exam45.json"    // ⚠️ Bäder (ملف exam45 - سيتم إنشاؤه)
+};
 
 // قائمة الامتحانات لكل جزء
 const examsDatabase = {
@@ -122,11 +164,19 @@ function renderExamListForSkill(skill) {
     const div = document.createElement("div");
     div.className = "item";
     div.innerHTML = `${exam.id}: ${exam.title}`;
-    div.onclick = (function(id, title) {
+    div.onclick = (function(id, title, skill) {
       return function() { openExam(id, title, skill); };
     })(exam.id, exam.title, skill);
     container.appendChild(div);
   }
+}
+
+// الحصول على اسم الملف الفعلي للامتحان
+function getActualFileName(examId) {
+  if (actualFileNames[examId]) {
+    return actualFileNames[examId];
+  }
+  return `exam${examId}.json`;
 }
 
 // فتح امتحان محدد
@@ -134,14 +184,29 @@ async function openExam(examId, examTitle, skill) {
   currentExamId = examId;
   currentSkill = skill;
   
+  const fileName = getActualFileName(examId);
+  
   console.log("🟢 فتح الامتحان:", examId, examTitle, skill);
+  console.log("📁 اسم الملف:", fileName);
+  
   try {
-    const response = await fetch(`data/${skill}/exam${examId}.json`);
+    const response = await fetch(`data/${skill}/${fileName}`);
     if (!response.ok) {
-      alert(`⚠️ الامتحان "${examTitle}" سيتم إضافته قريباً.\nالملف exam${examId}.json غير موجود بعد.`);
-      return;
+      console.warn(`⚠️ الملف ${fileName} غير موجود`);
+      
+      // محاولة البحث عن الملف بصيغة مختلفة
+      const fallbackName = `exam${examId}.json`;
+      console.log(`🔄 محاولة البحث عن: ${fallbackName}`);
+      
+      const fallbackResponse = await fetch(`data/${skill}/${fallbackName}`);
+      if (!fallbackResponse.ok) {
+        alert(`⚠️ الامتحان "${examTitle}" غير متوفر حالياً.\nالملف المطلوب: ${fileName}\nيرجى إضافة هذا الامتحان لاحقاً.`);
+        return;
+      }
+      currentExamData = await fallbackResponse.json();
+    } else {
+      currentExamData = await response.json();
     }
-    currentExamData = await response.json();
     
     document.getElementById("home").classList.remove("active");
     document.getElementById("list").classList.remove("active");
@@ -335,3 +400,7 @@ renderExamListForSkill("lesen1");
 
 console.log("✅ exams.js تم تحميله بنجاح");
 console.log("📋 عدد امتحانات lesen1:", examsDatabase.lesen1.length);
+console.log("📋 ترتيب الامتحانات حسب المطلوب:");
+allExams.forEach(exam => {
+  console.log(`  ${exam.id}: ${exam.title} -> ملف: ${getActualFileName(exam.id)}`);
+});
