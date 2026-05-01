@@ -297,6 +297,7 @@ window.buildTrueFalseExam = function(container, questions) {
     container.innerHTML = '';
     
     let userAnswers = {};
+    let currentQuestions = questions;
     
     questions.forEach((q, i) => {
         const div = document.createElement('div');
@@ -310,6 +311,7 @@ window.buildTrueFalseExam = function(container, questions) {
         div.style.border = '1px solid #ddd';
         div.style.borderRadius = '10px';
         div.style.backgroundColor = '#f9f9f9';
+        div.id = `truefalse_card_${i}`;
         
         // Richtig
         const labelTrue = document.createElement('label');
@@ -324,6 +326,7 @@ window.buildTrueFalseExam = function(container, questions) {
         radioTrue.type = 'radio';
         radioTrue.name = `q${i}`;
         radioTrue.value = 'true';
+        radioTrue.id = `q${i}_true`;
         
         radioTrue.onchange = () => {
             userAnswers[i] = true;
@@ -344,6 +347,7 @@ window.buildTrueFalseExam = function(container, questions) {
         radioFalse.type = 'radio';
         radioFalse.name = `q${i}`;
         radioFalse.value = 'false';
+        radioFalse.id = `q${i}_false`;
         
         radioFalse.onchange = () => {
             userAnswers[i] = false;
@@ -365,23 +369,49 @@ window.buildTrueFalseExam = function(container, questions) {
         container.appendChild(div);
     });
     
-    // زر التصحيح
+    // إنشاء حاوية الأزرار (Prüfen + Reset)
+    const buttonContainer = document.createElement('div');
+    buttonContainer.style.display = 'flex';
+    buttonContainer.style.gap = '15px';
+    buttonContainer.style.justifyContent = 'center';
+    buttonContainer.style.marginTop = '20px';
+    buttonContainer.style.alignItems = 'center';
+    
+    // زر التصحيح Prüfen
     const checkBtn = document.createElement('button');
     checkBtn.innerText = '📝 Prüfen';
     checkBtn.className = 'check-btn';
-    checkBtn.style.marginTop = '20px';
     checkBtn.style.padding = '12px 24px';
     checkBtn.style.backgroundColor = '#2c3e66';
     checkBtn.style.color = 'white';
     checkBtn.style.border = 'none';
     checkBtn.style.borderRadius = '8px';
     checkBtn.style.cursor = 'pointer';
+    checkBtn.style.fontSize = '16px';
     
     checkBtn.onclick = () => {
-        checkTrueFalseExam(questions, userAnswers);
+        checkTrueFalseExam(currentQuestions, userAnswers);
     };
     
-    container.appendChild(checkBtn);
+    // زر إعادة التعيين ↺
+    const resetBtn = document.createElement('button');
+    resetBtn.innerText = '↺ إعادة تعيين';
+    resetBtn.className = 'reset-btn';
+    resetBtn.style.padding = '12px 24px';
+    resetBtn.style.backgroundColor = '#6c757d';
+    resetBtn.style.color = 'white';
+    resetBtn.style.border = 'none';
+    resetBtn.style.borderRadius = '8px';
+    resetBtn.style.cursor = 'pointer';
+    resetBtn.style.fontSize = '16px';
+    
+    resetBtn.onclick = () => {
+        resetTrueFalseExam(currentQuestions, container, userAnswers);
+    };
+    
+    buttonContainer.appendChild(checkBtn);
+    buttonContainer.appendChild(resetBtn);
+    container.appendChild(buttonContainer);
     
     // مكان النتيجة
     const resultDiv = document.createElement('div');
@@ -390,6 +420,46 @@ window.buildTrueFalseExam = function(container, questions) {
     resultDiv.style.display = 'none';
     container.appendChild(resultDiv);
 };
+
+// ========== إعادة تعيين الامتحان ==========
+function resetTrueFalseExam(questions, container, userAnswers) {
+    // مسح جميع الإجابات المخزنة
+    for (let key in userAnswers) {
+        delete userAnswers[key];
+    }
+    
+    // إلغاء تحديد جميع الراديوهات
+    const allRadios = container.querySelectorAll('input[type="radio"]');
+    allRadios.forEach(radio => {
+        radio.checked = false;
+    });
+    
+    // إزالة التلوين من جميع البطاقات
+    const cards = container.querySelectorAll('.question-card');
+    cards.forEach(card => {
+        card.classList.remove('correct-answer-card', 'wrong-answer-card');
+    });
+    
+    // إزالة جميع رسائل الإجابة الصحيحة
+    const allMessages = container.querySelectorAll('.correct-message');
+    allMessages.forEach(msg => msg.remove());
+    
+    // إعادة تعيين ألوان الخيارات إلى الوضع الطبيعي
+    const optionLabels = container.querySelectorAll('.option-label');
+    optionLabels.forEach(label => {
+        label.style.backgroundColor = 'white';
+        label.style.border = '1px solid #e0e0e0';
+    });
+    
+    // إخفاء نتيجة التصحيح
+    const resultDiv = document.getElementById('truefalseResult');
+    if (resultDiv) {
+        resultDiv.style.display = 'none';
+        resultDiv.innerHTML = '';
+    }
+    
+    console.log("✅ تم إعادة تعيين الامتحان");
+}
 
 // ========== تصحيح امتحان True/False مع تلوين الإجابات ==========
 function checkTrueFalseExam(questions, answers) {
@@ -494,4 +564,4 @@ function checkTrueFalseExam(questions, answers) {
 }
 
 console.log("✅ Custom Dropdown جاهز");
-console.log("✅ True/False Exam جاهز مع تلوين أخضر/أحمر");
+console.log("✅ True/False Exam جاهز مع تلوين أخضر/أحمر وزر إعادة تعيين");
