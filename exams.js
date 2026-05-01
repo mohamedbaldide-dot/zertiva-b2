@@ -138,7 +138,6 @@ async function openExam(examId, examTitle, skill) {
     document.getElementById("exam").classList.add("active");
     document.getElementById("examTitle").innerHTML = currentExamData.title;
     
-    // إظهار أزرار التنقل بين الامتحانات
     updateExamNavButtons();
     
     const navDiv = document.getElementById("navButtons");
@@ -170,7 +169,6 @@ function updateExamNavButtons() {
   
   if (!prevBtn || !nextBtn) return;
   
-  // البحث عن الفهرس الحالي
   const currentIndex = currentExamsList.findIndex(e => e.id === currentExamId);
   const hasPrev = currentIndex > 0;
   const hasNext = currentIndex < currentExamsList.length - 1;
@@ -306,11 +304,10 @@ function goList() {
   document.getElementById("list").classList.add("active");
   document.getElementById("exam").classList.remove("active");
   renderTeileList();
-  // ✅ لا نعرض أي امتحانات بشكل افتراضي - فقط الأجزاء
-  document.getElementById("examsList").innerHTML = '<div class="item" style="text-align:center; color:#999;">👈 اضغط على أحد الأجزاء أعلاه لعرض الامتحانات</div>';
+  // ✅ إزالة الرسالة - نتركها فارغة
+  document.getElementById("examsList").innerHTML = '';
 }
 
-// رجوع إلى القائمة من صفحة الامتحان
 function goBackToList() {
   goList();
 }
@@ -320,16 +317,14 @@ document.addEventListener("DOMContentLoaded", function() {
   const startBtn = document.getElementById("startBtn");
   const backHomeBtn = document.getElementById("backHomeBtn");
   const backToListBtn = document.getElementById("backToListBtn");
-  const backArrowBtn = document.getElementById("backArrowBtn");
   
   if (startBtn) startBtn.onclick = function() { goList(); };
   if (backHomeBtn) backHomeBtn.onclick = function() { goHome(); };
   if (backToListBtn) backToListBtn.onclick = function() { goBackToList(); };
-  if (backArrowBtn) backArrowBtn.onclick = function() { goBackToList(); };
 });
 
-// تحميل القائمة عند بدء الصفحة (بدون عرض امتحانات)
+// تحميل القائمة عند بدء الصفحة (بدون رسالة)
 renderTeileList();
-document.getElementById("examsList").innerHTML = '<div class="item" style="text-align:center; color:#999;">👈 اضغط على أحد الأجزاء أعلاه لعرض الامتحانات</div>';
+document.getElementById("examsList").innerHTML = '';
 
 console.log("✅ exams.js تم تحميله بنجاح");
