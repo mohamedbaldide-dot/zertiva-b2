@@ -89,7 +89,7 @@ const actualFileNames = {
   45: "exam48.json", 46: "exam45.json", 47: "exam46.json", 48: "exam47.json"
 };
 
-// ✅ قائمة الامتحانات لكل جزء (واحد أسفل واحد) - كاملة من 1 إلى 27
+// ✅ قائمة الامتحانات لكل جزء (واحد أسفل واحد)
 const examsDatabase = {
   lesen1: allExams.filter(exam => exam.enabled === true),
   lesen2: [],
@@ -126,7 +126,35 @@ const examsDatabase = {
     { id: 27, title: "Berufen (bonbon)", enabled: true, hasFile: true }
   ],
   hoeren2: [],
-  hoeren3: []
+  hoeren3: [
+    { id: 1, title: "Telefon", enabled: true, hasFile: true },
+    { id: 2, title: "Musikfestivals", enabled: true, hasFile: true },
+    { id: 3, title: "Musikfestivals (Mittel)", enabled: true, hasFile: true },
+    { id: 4, title: "Fahrschule", enabled: true, hasFile: true },
+    { id: 5, title: "Im Süden Deutschlands (regnen)", enabled: true, hasFile: true },
+    { id: 6, title: "Im Süden Deutschlands (Schnee)", enabled: true, hasFile: true },
+    { id: 7, title: "Internet prüfen", enabled: true, hasFile: true },
+    { id: 8, title: "Ehrenamts", enabled: true, hasFile: true },
+    { id: 9, title: "Ehrenamts (Mittel)", enabled: true, hasFile: true },
+    { id: 10, title: "Demonstration", enabled: true, hasFile: true },
+    { id: 11, title: "Wochenanfang", enabled: true, hasFile: true },
+    { id: 12, title: "Im August", enabled: true, hasFile: true },
+    { id: 13, title: "Fundbüro", enabled: true, hasFile: true },
+    { id: 14, title: "Ausgang 26", enabled: true, hasFile: true },
+    { id: 15, title: "Ausgang 26 (Mittel)", enabled: true, hasFile: true },
+    { id: 16, title: "Blutspenden", enabled: true, hasFile: true },
+    { id: 17, title: "Reitturnier", enabled: true, hasFile: true },
+    { id: 18, title: "Delikatessen", enabled: true, hasFile: true },
+    { id: 19, title: "Für ein Konzert (Bus gratis)", enabled: true, hasFile: true },
+    { id: 20, title: "Für ein Konzert (in der ganzen Stadt)", enabled: true, hasFile: true },
+    { id: 21, title: "In Raum C23", enabled: true, hasFile: true },
+    { id: 22, title: "Trainingsausfahrten", enabled: true, hasFile: true },
+    { id: 23, title: "Das Geschäft", enabled: true, hasFile: true },
+    { id: 24, title: "Nach einer Großdemonstration", enabled: true, hasFile: true },
+    { id: 25, title: "Das Fest (ohne Frankfurt)", enabled: true, hasFile: true },
+    { id: 26, title: "Das Fest (mit Frankfurt)", enabled: true, hasFile: true },
+    { id: 27, title: "Radio Konzert", enabled: true, hasFile: true }
+  ]
 };
 
 function renderTeileList() {
@@ -415,4 +443,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 renderTeileList();
 
-console.log("✅ exams.js تم تحميله بنجاح مع 27 امتحان في Hören Teil 1");
+console.log("✅ exams.js تم تحميله بنجاح مع 27 امتحان في Hören Teil 1 و 27 امتحان في Hören Teil 3");
