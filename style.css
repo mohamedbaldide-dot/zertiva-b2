@@ -112,3 +112,45 @@ select{margin:10px 0;padding:8px;width:100%;}
 .dropdown-option:last-child {
   border-bottom: none;
 }
+
+/* ========== أزرار الرجوع (↰) ========== */
+#backArrowBtn, #backArrowFromExam {
+  background: none !important;
+  border: none !important;
+  font-size: 28px !important;
+  cursor: pointer !important;
+  color: #2c3e66 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transition: transform 0.2s ease !important;
+}
+
+#backArrowBtn:hover, #backArrowFromExam:hover {
+  transform: scale(1.1);
+  background: none !important;
+  color: #1e2a45 !important;
+}
+
+/* ========== أزرار التنقل بين الامتحانات (السابق/التالي) ========== */
+#prevExamBtn, #nextExamBtn {
+  background: #6c757d !important;
+  color: white !important;
+  padding: 10px 20px !important;
+  font-size: 14px !important;
+  margin: 5px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease !important;
+}
+
+#prevExamBtn:hover, #nextExamBtn:hover {
+  background: #5a6268 !important;
+  transform: translateY(-1px);
+}
+
+/* ========== رسالة انتظار الامتحانات ========== */
+.waiting-message {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+}
