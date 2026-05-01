@@ -2,7 +2,6 @@
 // exams.js - نظام الامتحانات المتكامل
 // ============================================
 
-// ✅ الترتيب الجديد للأجزاء (من اليسار إلى اليمين)
 const teile = [
   { id: 1, name: "Hören Teil 1", container: "hoeren1", skill: "hoeren1" },
   { id: 2, name: "Hören Teil 2", container: "hoeren2", skill: "hoeren2" },
@@ -17,12 +16,52 @@ const teile = [
 let currentExamData = null;
 let currentSkill = "lesen1";
 
-// قائمة الامتحانات المتاحة لكل جزء
+// ✅ قائمة الامتحانات المتاحة لكل جزء (محدثة)
 const examsDatabase = {
+  // Lesen Teil 1 - الامتحانات من 1 إلى 40
   lesen1: [
     { id: 1, title: "Jugend Forscher" },
-    { id: 2, title: "sport ist gesund" }
+    { id: 2, title: "sport ist gesund" },
+    { id: 3, title: "sport ist gesund (modifiziert)" },
+    { id: 4, title: "Tanzkurs" },
+    { id: 5, title: "Tanzkurs (modifiziert)" },
+    { id: 6, title: "Impfung" },
+    { id: 7, title: "Insel" },
+    { id: 8, title: "Bilder" },
+    { id: 9, title: "Grundschule" },
+    { id: 10, title: "Grundschule (modifiziert)" },
+    { id: 11, title: "Österreich - Naschmarkt" },
+    { id: 12, title: "Insekten" },
+    { id: 13, title: "Insekten (modifiziert)" },
+    { id: 14, title: "das Benzin" },
+    { id: 15, title: "Kaffee" },
+    { id: 16, title: "Programmierer" },
+    { id: 17, title: "Programmierer (modifiziert 1)" },
+    { id: 18, title: "Programmierer (modifiziert 2)" },
+    { id: 19, title: "Trampolin" },
+    { id: 20, title: "Bonbons" },
+    { id: 21, title: "Umwelt" },
+    { id: 22, title: "Licht" },
+    { id: 23, title: "Licht (modifiziert)" },
+    { id: 24, title: "Kartoffel" },
+    { id: 25, title: "Kartoffel (modifiziert)" },
+    { id: 26, title: "Bienen" },
+    { id: 27, title: "Spiele" },
+    { id: 28, title: "Geld" },
+    { id: 29, title: "Kinder und Schulen" },
+    { id: 30, title: "Kindertelefon" },
+    { id: 31, title: "Alpen" },
+    { id: 32, title: "Alpen (modifiziert 1)" },
+    { id: 33, title: "Alpen (modifiziert 2)" },
+    { id: 34, title: "Suchtmittel - Nase" },
+    { id: 35, title: "Wahlen & Frauen" },
+    { id: 36, title: "kein Zeit" },
+    { id: 37, title: "kein Zeit (modifiziert)" },
+    { id: 38, title: "Limonade" },
+    { id: 39, title: "Limonade (modifiziert 1)" },
+    { id: 40, title: "Limonade (modifiziert 2)" }
   ],
+  // الأجزاء الأخرى (فارغة حالياً)
   lesen2: [],
   lesen3: [],
   sprach1: [],
@@ -91,7 +130,7 @@ async function openExam(examId, examTitle, skill) {
     document.getElementById("exam").classList.add("active");
     document.getElementById("examTitle").innerHTML = currentExamData.title;
     
-    // ✅ إخفاء أزرار التنقل (لا نريد عرض Hören/Lesen/Sprachbausteine مرة أخرى)
+    // إخفاء أزرار التنقل
     const navDiv = document.getElementById("navButtons");
     if (navDiv) navDiv.style.display = "none";
     
@@ -225,8 +264,8 @@ function goList() {
   document.getElementById("list").classList.add("active");
   document.getElementById("exam").classList.remove("active");
   renderTeileList();
-  // ✅ إزالة الرسالة - نتركها فارغة
-  document.getElementById("examsList").innerHTML = '';
+  // عرض الامتحانات لـ Lesen Teil 1 بشكل افتراضي
+  renderExamListForSkill("lesen1");
 }
 
 // ربط الأزرار
@@ -234,8 +273,8 @@ document.getElementById("startBtn").onclick = function() { goList(); };
 document.getElementById("backHomeBtn").onclick = function() { goHome(); };
 document.getElementById("backToListBtn").onclick = function() { goList(); };
 
-// ✅ تحميل الأجزاء فقط (بدون رسالة)
+// تحميل القائمة عند بدء الصفحة
 renderTeileList();
-document.getElementById("examsList").innerHTML = '';
+renderExamListForSkill("lesen1");
 
 console.log("✅ exams.js تم تحميله بنجاح");
