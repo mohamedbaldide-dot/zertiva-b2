@@ -91,7 +91,9 @@ async function openExam(examId, examTitle, skill) {
     document.getElementById("exam").classList.add("active");
     document.getElementById("examTitle").innerHTML = currentExamData.title;
     
-    buildNavButtons();
+    // ✅ إخفاء أزرار التنقل (لا نريد عرض Hören/Lesen/Sprachbausteine مرة أخرى)
+    const navDiv = document.getElementById("navButtons");
+    if (navDiv) navDiv.style.display = "none";
     
     if (currentExamData.type === "matching") {
       if (typeof window.loadMatchingExam === "function") {
@@ -104,26 +106,13 @@ async function openExam(examId, examTitle, skill) {
       buildTeil1(currentExamData.questions);
     }
     
-    showTeil(teile.findIndex(t => t.skill === skill) + 1);
+    // عرض الجزء المناسب
+    const teilIndex = teile.findIndex(t => t.skill === skill);
+    showTeil(teilIndex + 1);
   } catch(e) {
     console.error("❌ خطأ:", e);
     alert("خطأ في تحميل الامتحان: " + e.message);
   }
-}
-
-// بناء أزرار التنقل بين الأجزاء داخل الامتحان
-function buildNavButtons() {
-  const navDiv = document.getElementById("navButtons");
-  navDiv.innerHTML = "";
-  teile.forEach((teil, idx) => {
-    const btn = document.createElement("button");
-    btn.innerText = teil.name;
-    btn.className = "teil-btn";
-    btn.onclick = (function(num) {
-      return function() { showTeil(num); };
-    })(idx + 1);
-    navDiv.appendChild(btn);
-  });
 }
 
 // عرض جزء معين
@@ -132,12 +121,6 @@ function showTeil(teilNumber) {
     const container = document.getElementById(teil.container);
     if (container) container.style.display = (idx + 1 === teilNumber) ? "block" : "none";
   });
-  
-  const btns = document.querySelectorAll(".teil-btn");
-  for (let i = 0; i < btns.length; i++) {
-    if (i + 1 === teilNumber) btns[i].classList.add("active");
-    else btns[i].classList.remove("active");
-  }
 }
 
 // بناء Teil 1 (النظام القديم - Radio Buttons)
@@ -242,20 +225,17 @@ function goList() {
   document.getElementById("list").classList.add("active");
   document.getElementById("exam").classList.remove("active");
   renderTeileList();
-  // ✅ عند العودة إلى القائمة، نعرض رسالة بدلاً من الامتحانات
-  document.getElementById("examsList").innerHTML = '<div class="item" style="text-align:center; color:#999;">👈 اضغط على أحد الأجزاء أعلاه لعرض الامتحانات</div>';
+  // ✅ إزالة الرسالة - نتركها فارغة
+  document.getElementById("examsList").innerHTML = '';
 }
-
-// ✅ عند الضغط على جزء، يتم عرض امتحاناته فقط
-window.renderExamListForSkill = renderExamListForSkill;
 
 // ربط الأزرار
 document.getElementById("startBtn").onclick = function() { goList(); };
 document.getElementById("backHomeBtn").onclick = function() { goHome(); };
 document.getElementById("backToListBtn").onclick = function() { goList(); };
 
-// ✅ تحميل الأجزاء فقط، بدون عرض أي امتحانات بشكل افتراضي
+// ✅ تحميل الأجزاء فقط (بدون رسالة)
 renderTeileList();
-document.getElementById("examsList").innerHTML = '<div class="item" style="text-align:center; color:#999;">👈 اضغط على أحد الأجزاء أعلاه لعرض الامتحانات</div>';
+document.getElementById("examsList").innerHTML = '';
 
 console.log("✅ exams.js تم تحميله بنجاح");
