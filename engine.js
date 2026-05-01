@@ -321,6 +321,10 @@ window.buildTrueFalseExam = function(container, questions) {
         labelTrue.style.gap = '5px';
         labelTrue.style.cursor = 'pointer';
         labelTrue.style.marginRight = '15px';
+        labelTrue.style.padding = '5px 10px';
+        labelTrue.style.border = '1px solid #ccc';
+        labelTrue.style.borderRadius = '5px';
+        labelTrue.style.backgroundColor = 'white';
         
         const radioTrue = document.createElement('input');
         radioTrue.type = 'radio';
@@ -342,6 +346,10 @@ window.buildTrueFalseExam = function(container, questions) {
         labelFalse.style.alignItems = 'center';
         labelFalse.style.gap = '5px';
         labelFalse.style.cursor = 'pointer';
+        labelFalse.style.padding = '5px 10px';
+        labelFalse.style.border = '1px solid #ccc';
+        labelFalse.style.borderRadius = '5px';
+        labelFalse.style.backgroundColor = 'white';
         
         const radioFalse = document.createElement('input');
         radioFalse.type = 'radio';
@@ -374,7 +382,7 @@ window.buildTrueFalseExam = function(container, questions) {
     buttonContainer.style.display = 'flex';
     buttonContainer.style.gap = '15px';
     buttonContainer.style.justifyContent = 'center';
-    buttonContainer.style.marginTop = '20px';
+    buttonContainer.style.marginTop = '25px';
     buttonContainer.style.alignItems = 'center';
     
     // زر التصحيح Prüfen
@@ -395,18 +403,54 @@ window.buildTrueFalseExam = function(container, questions) {
     
     // زر إعادة التعيين ↺
     const resetBtn = document.createElement('button');
-    resetBtn.innerText = '↺ إعادة تعيين';
+    resetBtn.innerText = '↺';
     resetBtn.className = 'reset-btn';
-    resetBtn.style.padding = '12px 24px';
+    resetBtn.style.padding = '12px 18px';
     resetBtn.style.backgroundColor = '#6c757d';
     resetBtn.style.color = 'white';
     resetBtn.style.border = 'none';
     resetBtn.style.borderRadius = '8px';
     resetBtn.style.cursor = 'pointer';
-    resetBtn.style.fontSize = '16px';
+    resetBtn.style.fontSize = '18px';
+    resetBtn.style.fontWeight = 'bold';
     
-    resetBtn.onclick = () => {
-        resetTrueFalseExam(currentQuestions, container, userAnswers);
+    resetBtn.onclick = function() {
+        // مسح جميع الإجابات المخزنة
+        for (let key in userAnswers) {
+            delete userAnswers[key];
+        }
+        
+        // إلغاء تحديد جميع الراديوهات
+        const allRadios = container.querySelectorAll('input[type="radio"]');
+        allRadios.forEach(radio => {
+            radio.checked = false;
+        });
+        
+        // إزالة التلوين من جميع البطاقات
+        const cards = container.querySelectorAll('.question-card');
+        cards.forEach(card => {
+            card.classList.remove('correct-answer-card', 'wrong-answer-card');
+        });
+        
+        // إزالة جميع رسائل الإجابة الصحيحة
+        const allMessages = container.querySelectorAll('.correct-message');
+        allMessages.forEach(msg => msg.remove());
+        
+        // إعادة تعيين ألوان الخيارات إلى الوضع الطبيعي
+        const optionLabels = container.querySelectorAll('.option-label');
+        optionLabels.forEach(label => {
+            label.style.backgroundColor = 'white';
+            label.style.border = '1px solid #ccc';
+        });
+        
+        // إخفاء نتيجة التصحيح
+        const resultDiv = document.getElementById('truefalseResult');
+        if (resultDiv) {
+            resultDiv.style.display = 'none';
+            resultDiv.innerHTML = '';
+        }
+        
+        console.log("✅ تم إعادة تعيين الامتحان");
     };
     
     buttonContainer.appendChild(checkBtn);
@@ -420,46 +464,6 @@ window.buildTrueFalseExam = function(container, questions) {
     resultDiv.style.display = 'none';
     container.appendChild(resultDiv);
 };
-
-// ========== إعادة تعيين الامتحان ==========
-function resetTrueFalseExam(questions, container, userAnswers) {
-    // مسح جميع الإجابات المخزنة
-    for (let key in userAnswers) {
-        delete userAnswers[key];
-    }
-    
-    // إلغاء تحديد جميع الراديوهات
-    const allRadios = container.querySelectorAll('input[type="radio"]');
-    allRadios.forEach(radio => {
-        radio.checked = false;
-    });
-    
-    // إزالة التلوين من جميع البطاقات
-    const cards = container.querySelectorAll('.question-card');
-    cards.forEach(card => {
-        card.classList.remove('correct-answer-card', 'wrong-answer-card');
-    });
-    
-    // إزالة جميع رسائل الإجابة الصحيحة
-    const allMessages = container.querySelectorAll('.correct-message');
-    allMessages.forEach(msg => msg.remove());
-    
-    // إعادة تعيين ألوان الخيارات إلى الوضع الطبيعي
-    const optionLabels = container.querySelectorAll('.option-label');
-    optionLabels.forEach(label => {
-        label.style.backgroundColor = 'white';
-        label.style.border = '1px solid #e0e0e0';
-    });
-    
-    // إخفاء نتيجة التصحيح
-    const resultDiv = document.getElementById('truefalseResult');
-    if (resultDiv) {
-        resultDiv.style.display = 'none';
-        resultDiv.innerHTML = '';
-    }
-    
-    console.log("✅ تم إعادة تعيين الامتحان");
-}
 
 // ========== تصحيح امتحان True/False مع تلوين الإجابات ==========
 function checkTrueFalseExam(questions, answers) {
@@ -487,9 +491,9 @@ function checkTrueFalseExam(questions, answers) {
         // تلوين الخلفية
         if (isCorrect && userAnswer !== undefined) {
             score++;
-            card.classList.add('correct-answer-card');  // ✅ أخضر
+            card.classList.add('correct-answer-card');
         } else {
-            card.classList.add('wrong-answer-card');    // ❌ أحمر
+            card.classList.add('wrong-answer-card');
             
             if (userAnswer !== undefined) {
                 const correctMsg = document.createElement('div');
@@ -512,7 +516,7 @@ function checkTrueFalseExam(questions, answers) {
             }
         }
         
-        // ✅ تلوين الخيارات (Richtig/Falsch) نفسها
+        // تلوين الخيارات (Richtig/Falsch) نفسها
         const radios = card.querySelectorAll('input[type="radio"]');
         for (let r = 0; r < radios.length; r++) {
             const radio = radios[r];
@@ -520,22 +524,18 @@ function checkTrueFalseExam(questions, answers) {
             const parentLabel = radio.parentElement;
             
             if (isCorrect && userAnswer !== undefined) {
-                // الإجابة صحيحة: لون أخضر للخيار المختار فقط
                 if (radio.checked) {
                     parentLabel.style.backgroundColor = '#d4edda';
                     parentLabel.style.borderColor = '#28a745';
                     parentLabel.style.border = '2px solid #28a745';
                 }
             } else {
-                // الإجابة خطأ
                 if (radio.checked) {
-                    // الخيار الذي اختاره الطالب خطأ: أحمر
                     parentLabel.style.backgroundColor = '#f8d7da';
                     parentLabel.style.borderColor = '#dc3545';
                     parentLabel.style.border = '2px solid #dc3545';
                 }
                 if (radioValue === q.correct) {
-                    // الخيار الصحيح: أخضر فاتح
                     parentLabel.style.backgroundColor = '#d4edda';
                     parentLabel.style.borderColor = '#28a745';
                     parentLabel.style.border = '2px solid #28a745';
@@ -551,7 +551,6 @@ function checkTrueFalseExam(questions, answers) {
         resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
         resultDiv.style.display = 'block';
         
-        // تغيير لون النتيجة حسب الدرجة
         if (finalScore >= 20) {
             resultDiv.style.backgroundColor = '#28a745';
         } else if (finalScore >= 15) {
@@ -564,4 +563,4 @@ function checkTrueFalseExam(questions, answers) {
 }
 
 console.log("✅ Custom Dropdown جاهز");
-console.log("✅ True/False Exam جاهز مع تلوين أخضر/أحمر وزر إعادة تعيين");
+console.log("✅ True/False Exam جاهز مع تلوين أخضر/أحمر وزر ↺");
