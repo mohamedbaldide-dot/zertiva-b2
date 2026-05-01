@@ -15,54 +15,56 @@ const teile = [
 
 let currentExamData = null;
 let currentSkill = "lesen1";
+let currentExamId = null;
+let currentExamsList = [];
 
-// ✅ قائمة جميع الامتحانات (حتى لو لم تكن ملفاتها موجودة بعد)
+// ✅ قائمة جميع الامتحانات (مع أسماء عربية)
 const allExams = [
   { id: 1, title: "Jugend Forscher" },
   { id: 2, title: "sport ist gesund" },
-  { id: 3, title: "sport ist gesund (modifiziert)" },
+  { id: 3, title: "sport ist gesund (التعديل)" },
   { id: 4, title: "Tanzkurs" },
-  { id: 5, title: "Tanzkurs (modifiziert)" },
+  { id: 5, title: "Tanzkurs (التعديل)" },
   { id: 6, title: "Impfung" },
   { id: 7, title: "Insel" },
   { id: 8, title: "Bilder" },
   { id: 9, title: "Grundschule" },
-  { id: 10, title: "Grundschule (modifiziert)" },
+  { id: 10, title: "Grundschule (التعديل)" },
   { id: 11, title: "Österreich - Naschmarkt" },
   { id: 12, title: "Insekten" },
-  { id: 13, title: "Insekten (modifiziert)" },
+  { id: 13, title: "Insekten (التعديل)" },
   { id: 14, title: "das Benzin" },
   { id: 15, title: "Kaffee" },
   { id: 16, title: "Programmierer" },
-  { id: 17, title: "Programmierer (modifiziert 1)" },
-  { id: 18, title: "Programmierer (modifiziert 2)" },
+  { id: 17, title: "Programmierer (التعديل 1)" },
+  { id: 18, title: "Programmierer (التعديل 2)" },
   { id: 19, title: "Trampolin" },
   { id: 20, title: "Bonbons" },
   { id: 21, title: "Umwelt" },
   { id: 22, title: "Licht" },
-  { id: 23, title: "Licht (modifiziert)" },
+  { id: 23, title: "Licht (التعديل)" },
   { id: 24, title: "Kartoffel" },
-  { id: 25, title: "Kartoffel (modifiziert)" },
+  { id: 25, title: "Kartoffel (التعديل)" },
   { id: 26, title: "Bienen" },
   { id: 27, title: "Spiele" },
   { id: 28, title: "Geld" },
   { id: 29, title: "Kinder und Schulen" },
   { id: 30, title: "Kindertelefon" },
   { id: 31, title: "Alpen" },
-  { id: 32, title: "Alpen (modifiziert 1)" },
-  { id: 33, title: "Alpen (modifiziert 2)" },
+  { id: 32, title: "Alpen (التعديل 1)" },
+  { id: 33, title: "Alpen (التعديل 2)" },
   { id: 34, title: "Suchtmittel - Nase" },
   { id: 35, title: "Wahlen & Frauen" },
   { id: 36, title: "kein Zeit" },
-  { id: 37, title: "kein Zeit (modifiziert)" },
+  { id: 37, title: "kein Zeit (التعديل)" },
   { id: 38, title: "Limonade" },
-  { id: 39, title: "Limonade (modifiziert 1)" },
-  { id: 40, title: "Limonade (modifiziert 2)" }
+  { id: 39, title: "Limonade (التعديل 1)" },
+  { id: 40, title: "Limonade (التعديل 2)" }
 ];
 
-// قائمة الامتحانات لكل جزء (سيتم تعبئتها)
+// قائمة الامتحانات لكل جزء
 const examsDatabase = {
-  lesen1: allExams,  // ✅ جميع الامتحانات من 1 إلى 40
+  lesen1: allExams,
   lesen2: [],
   lesen3: [],
   sprach1: [],
@@ -98,6 +100,7 @@ function renderExamListForSkill(skill) {
   container.innerHTML = "";
   
   const exams = examsDatabase[skill] || [];
+  currentExamsList = exams;
   
   if (exams.length === 0) {
     container.innerHTML = '<div class="item" style="text-align:center; color:#999;">⚠️ لا توجد امتحانات متاحة حالياً في هذا الجزء</div>';
@@ -118,6 +121,9 @@ function renderExamListForSkill(skill) {
 
 // فتح امتحان محدد
 async function openExam(examId, examTitle, skill) {
+  currentExamId = examId;
+  currentSkill = skill;
+  
   console.log("🟢 فتح الامتحان:", examId, examTitle, skill);
   try {
     const response = await fetch(`data/${skill}/exam${examId}.json`);
@@ -131,6 +137,9 @@ async function openExam(examId, examTitle, skill) {
     document.getElementById("list").classList.remove("active");
     document.getElementById("exam").classList.add("active");
     document.getElementById("examTitle").innerHTML = currentExamData.title;
+    
+    // إظهار أزرار التنقل بين الامتحانات
+    updateExamNavButtons();
     
     const navDiv = document.getElementById("navButtons");
     if (navDiv) navDiv.style.display = "none";
@@ -151,6 +160,39 @@ async function openExam(examId, examTitle, skill) {
   } catch(e) {
     console.error("❌ خطأ:", e);
     alert("خطأ في تحميل الامتحان: " + e.message);
+  }
+}
+
+// تحديث أزرار التنقل بين الامتحانات
+function updateExamNavButtons() {
+  const prevBtn = document.getElementById("prevExamBtn");
+  const nextBtn = document.getElementById("nextExamBtn");
+  
+  if (!prevBtn || !nextBtn) return;
+  
+  // البحث عن الفهرس الحالي
+  const currentIndex = currentExamsList.findIndex(e => e.id === currentExamId);
+  const hasPrev = currentIndex > 0;
+  const hasNext = currentIndex < currentExamsList.length - 1;
+  
+  if (hasPrev) {
+    prevBtn.style.display = "inline-block";
+    prevBtn.onclick = () => {
+      const prevExam = currentExamsList[currentIndex - 1];
+      openExam(prevExam.id, prevExam.title, currentSkill);
+    };
+  } else {
+    prevBtn.style.display = "none";
+  }
+  
+  if (hasNext) {
+    nextBtn.style.display = "inline-block";
+    nextBtn.onclick = () => {
+      const nextExam = currentExamsList[currentIndex + 1];
+      openExam(nextExam.id, nextExam.title, currentSkill);
+    };
+  } else {
+    nextBtn.style.display = "none";
   }
 }
 
@@ -264,7 +306,13 @@ function goList() {
   document.getElementById("list").classList.add("active");
   document.getElementById("exam").classList.remove("active");
   renderTeileList();
-  renderExamListForSkill("lesen1");
+  // ✅ لا نعرض أي امتحانات بشكل افتراضي - فقط الأجزاء
+  document.getElementById("examsList").innerHTML = '<div class="item" style="text-align:center; color:#999;">👈 اضغط على أحد الأجزاء أعلاه لعرض الامتحانات</div>';
+}
+
+// رجوع إلى القائمة من صفحة الامتحان
+function goBackToList() {
+  goList();
 }
 
 // ربط الأزرار
@@ -272,15 +320,16 @@ document.addEventListener("DOMContentLoaded", function() {
   const startBtn = document.getElementById("startBtn");
   const backHomeBtn = document.getElementById("backHomeBtn");
   const backToListBtn = document.getElementById("backToListBtn");
+  const backArrowBtn = document.getElementById("backArrowBtn");
   
   if (startBtn) startBtn.onclick = function() { goList(); };
   if (backHomeBtn) backHomeBtn.onclick = function() { goHome(); };
-  if (backToListBtn) backToListBtn.onclick = function() { goList(); };
+  if (backToListBtn) backToListBtn.onclick = function() { goBackToList(); };
+  if (backArrowBtn) backArrowBtn.onclick = function() { goBackToList(); };
 });
 
-// تحميل القائمة عند بدء الصفحة
+// تحميل القائمة عند بدء الصفحة (بدون عرض امتحانات)
 renderTeileList();
-renderExamListForSkill("lesen1");
+document.getElementById("examsList").innerHTML = '<div class="item" style="text-align:center; color:#999;">👈 اضغط على أحد الأجزاء أعلاه لعرض الامتحانات</div>';
 
 console.log("✅ exams.js تم تحميله بنجاح");
-console.log("📋 عدد امتحانات lesen1:", examsDatabase.lesen1.length);
