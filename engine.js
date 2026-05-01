@@ -1,5 +1,5 @@
 // ============================================
-// engine.js - محرك الامتحانات (يدعم Matching System)
+// engine.js - محرك الامتحانات (يدعم Matching System مع إمكانية إلغاء الاختيار)
 // ============================================
 
 console.log("✅ engine.js تم تحميله");
@@ -17,7 +17,7 @@ window.loadExamFromFile = async function(skill, examId) {
   }
 };
 
-// ========== نظام Matching (Dropdown بدون تكرار) - خاص بـ Lesen Teil 1 فقط ==========
+// ========== نظام Matching (Dropdown بدون تكرار + إمكانية إلغاء الاختيار) ==========
 let currentMatchingExamData = null;
 let matchingSelectedAnswers = {};
 let matchingAvailableOptions = [];
@@ -62,8 +62,9 @@ function renderMatchingQuestions() {
     select.style.borderRadius = "8px";
     select.style.border = "1px solid #ccc";
     select.style.backgroundColor = "white";
+    select.style.cursor = "pointer";
     
-    // خيار فارغ
+    // خيار فارغ (اختر)
     const emptyOption = document.createElement("option");
     emptyOption.value = "";
     emptyOption.textContent = "-- اختر الإجابة --";
@@ -78,29 +79,63 @@ function renderMatchingQuestions() {
     }
     
     // إذا كان هناك اختيار سابق
-    if (matchingSelectedAnswers[i] !== undefined) {
+    if (matchingSelectedAnswers[i] !== undefined && matchingSelectedAnswers[i] !== "") {
       const oldVal = matchingSelectedAnswers[i];
-      // نبحث عن النص القديم في القائمة الجديدة
       for (let k = 0; k < select.options.length; k++) {
-        if (select.options[k].textContent === matchingSelectedAnswers[i]) {
+        if (select.options[k].textContent === oldVal) {
           select.selectedIndex = k;
           break;
         }
       }
     }
     
+    // الحدث عند تغيير الاختيار
     select.onchange = (function(qIdx, selectElement) {
       return function() {
-        const oldValueText = matchingSelectedAnswers[qIdx];
-        const newValueText = selectElement.options[selectElement.selectedIndex].textContent;
+        const selectedIndex = selectElement.selectedIndex;
+        const selectedText = selectElement.options[selectedIndex].textContent;
         
-        // إذا كان الاختيار هو "-- اختر الإجابة --" نخرج
-        if (selectElement.selectedIndex === 0 || newValueText === "-- اختر الإجابة --") {
+        // حالة 1: اختيار "-- اختر الإجابة --" → إلغاء الاختيار
+        if (selectedIndex === 0 || selectedText === "-- اختر الإجابة --") {
+          // إذا كان هناك اختيار سابق، نعيده إلى القائمة
+          const oldValueText = matchingSelectedAnswers[qIdx];
+          if (oldValueText && oldValueText !== "" && oldValueText !== "-- اختر الإجابة --") {
+            if (!matchingAvailableOptions.includes(oldValueText)) {
+              matchingAvailableOptions.push(oldValueText);
+              matchingAvailableOptions.sort();
+            }
+          }
+          // حذف الاختيار الحالي
+          matchingSelectedAnswers[qIdx] = "";
+          selectElement.selectedIndex = 0;
+          
+          // إعادة تحميل كل الـ Dropdowns
+          refreshAllDropdowns();
           return;
         }
         
-        // إذا كان هناك اختيار قديم، نعيد الخيار إلى القائمة
-        if (oldValueText && oldValueText !== "-- اختر الإجابة --" && oldValueText !== "") {
+        // حالة 2: اختيار نفس العنوان الذي كان مختاراً مسبقاً → إلغاء الاختيار
+        const currentSelected = matchingSelectedAnswers[qIdx];
+        if (currentSelected === selectedText && currentSelected !== "") {
+          // نعيد الخيار إلى القائمة
+          if (!matchingAvailableOptions.includes(selectedText)) {
+            matchingAvailableOptions.push(selectedText);
+            matchingAvailableOptions.sort();
+          }
+          // نلغي الاختيار
+          matchingSelectedAnswers[qIdx] = "";
+          selectElement.selectedIndex = 0;
+          
+          // إعادة تحميل كل الـ Dropdowns
+          refreshAllDropdowns();
+          return;
+        }
+        
+        // حالة 3: اختيار عنوان جديد
+        const oldValueText = matchingSelectedAnswers[qIdx];
+        
+        // إذا كان هناك اختيار قديم، نعيده إلى القائمة
+        if (oldValueText && oldValueText !== "" && oldValueText !== "-- اختر الإجابة --") {
           if (!matchingAvailableOptions.includes(oldValueText)) {
             matchingAvailableOptions.push(oldValueText);
             matchingAvailableOptions.sort();
@@ -108,43 +143,15 @@ function renderMatchingQuestions() {
         }
         
         // إزالة الخيار الجديد من القائمة
-        const indexInAvailable = matchingAvailableOptions.indexOf(newValueText);
+        const indexInAvailable = matchingAvailableOptions.indexOf(selectedText);
         if (indexInAvailable !== -1) {
           matchingAvailableOptions.splice(indexInAvailable, 1);
         }
         
-        matchingSelectedAnswers[qIdx] = newValueText;
+        matchingSelectedAnswers[qIdx] = selectedText;
         
-        // إعادة تحميل كل الـ Dropdowns لتحديث الخيارات
-        for (let k = 0; k < currentMatchingExamData.questions.length; k++) {
-          const sel = document.getElementById("m_select_" + k);
-          if (sel) {
-            const currentVal = matchingSelectedAnswers[k];
-            sel.innerHTML = "";
-            
-            const emptyOpt = document.createElement("option");
-            emptyOpt.value = "";
-            emptyOpt.textContent = "-- اختر الإجابة --";
-            sel.appendChild(emptyOpt);
-            
-            for (let m = 0; m < matchingAvailableOptions.length; m++) {
-              const opt = document.createElement("option");
-              opt.value = m;
-              opt.textContent = matchingAvailableOptions[m];
-              sel.appendChild(opt);
-            }
-            
-            // استعادة القيمة المختارة سابقاً
-            if (currentVal && currentVal !== "" && currentVal !== "-- اختر الإجابة --") {
-              for (let p = 0; p < sel.options.length; p++) {
-                if (sel.options[p].textContent === currentVal) {
-                  sel.selectedIndex = p;
-                  break;
-                }
-              }
-            }
-          }
-        }
+        // إعادة تحميل كل الـ Dropdowns
+        refreshAllDropdowns();
       };
     })(i, select);
     
@@ -163,6 +170,41 @@ function renderMatchingQuestions() {
   resultDiv.className = "result-box";
   resultDiv.style.display = "none";
   container.appendChild(resultDiv);
+}
+
+// دالة مساعدة لإعادة تحميل كل الـ Dropdowns
+function refreshAllDropdowns() {
+  for (let k = 0; k < currentMatchingExamData.questions.length; k++) {
+    const sel = document.getElementById("m_select_" + k);
+    if (sel) {
+      const currentVal = matchingSelectedAnswers[k];
+      sel.innerHTML = "";
+      
+      const emptyOpt = document.createElement("option");
+      emptyOpt.value = "";
+      emptyOpt.textContent = "-- اختر الإجابة --";
+      sel.appendChild(emptyOpt);
+      
+      for (let m = 0; m < matchingAvailableOptions.length; m++) {
+        const opt = document.createElement("option");
+        opt.value = m;
+        opt.textContent = matchingAvailableOptions[m];
+        sel.appendChild(opt);
+      }
+      
+      // استعادة القيمة المختارة سابقاً
+      if (currentVal && currentVal !== "" && currentVal !== "-- اختر الإجابة --") {
+        for (let p = 0; p < sel.options.length; p++) {
+          if (sel.options[p].textContent === currentVal) {
+            sel.selectedIndex = p;
+            break;
+          }
+        }
+      } else {
+        sel.selectedIndex = 0;
+      }
+    }
+  }
 }
 
 function checkMatchingExam() {
@@ -213,4 +255,4 @@ function checkMatchingExam() {
   resultDiv.style.display = "block";
 }
 
-console.log("✅ نظام Matching (Dropdown بدون تكرار) جاهز");
+console.log("✅ نظام Matching (Dropdown بدون تكرار + إلغاء الاختيار) جاهز");
