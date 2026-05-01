@@ -89,7 +89,7 @@ const actualFileNames = {
   45: "exam48.json", 46: "exam45.json", 47: "exam46.json", 48: "exam47.json"
 };
 
-// ✅ قائمة الامتحانات لكل جزء
+// ✅ قائمة الامتحانات لكل جزء (واحد أسفل واحد)
 const examsDatabase = {
   lesen1: allExams.filter(exam => exam.enabled === true),
   lesen2: [],
@@ -97,7 +97,26 @@ const examsDatabase = {
   sprach1: [],
   sprach2: [],
   hoeren1: [
-    { id: 1, title: "Die Deutsche Lufthansa", enabled: true, hasFile: true }
+    { id: 1, title: "Die Deutsche Lufthansa", enabled: true, hasFile: true },
+    { id: 2, title: "Die Piloten der Lufthansa", enabled: true, hasFile: true },
+    { id: 3, title: "Die Stadt Friedrichsberg", enabled: true, hasFile: true },
+    { id: 4, title: "Erdbeben", enabled: true, hasFile: true },
+    { id: 5, title: "Bierkonsum", enabled: true, hasFile: true },
+    { id: 6, title: "Bierkonsum (Mittel)", enabled: true, hasFile: true },
+    { id: 7, title: "Deutsches Schiff", enabled: true, hasFile: true },
+    { id: 8, title: "Weniger Vögel - Viele Kunden", enabled: true, hasFile: true },
+    { id: 9, title: "Europäische Union", enabled: true, hasFile: true },
+    { id: 10, title: "Unwetterschäden", enabled: true, hasFile: true },
+    { id: 11, title: "Nicht sicher", enabled: true, hasFile: true },
+    { id: 12, title: "Nicht sicher 2", enabled: true, hasFile: true },
+    { id: 13, title: "Frau Jürgens", enabled: true, hasFile: true },
+    { id: 14, title: "Die Wahlbeteiligung", enabled: true, hasFile: true },
+    { id: 15, title: "Die Wetterlage in den Alpen", enabled: true, hasFile: true },
+    { id: 16, title: "Wetter in den Alpen (Mittel)", enabled: true, hasFile: true },
+    { id: 17, title: "Insel Bali", enabled: true, hasFile: true },
+    { id: 18, title: "Die Fluggesellschaft", enabled: true, hasFile: true },
+    { id: 19, title: "Der Fluggesellschaft (Mittel)", enabled: true, hasFile: true },
+    { id: 20, title: "Der Bau", enabled: true, hasFile: true }
   ],
   hoeren2: [],
   hoeren3: []
@@ -208,7 +227,7 @@ async function openExam(examId, examTitle, skill) {
     } else if (currentExamData.type === "truefalse") {
       const container = document.getElementById(currentSkill);
       if (container && typeof window.buildTrueFalseExam === "function") {
-        window.buildTrueFalseExam(container, currentExamData.questions);
+        window.buildTrueFalseExam(container, currentExamData.questions, currentExamData.note);
       } else {
         console.error("❌ buildTrueFalseExam غير موجود");
         buildTeil1(currentExamData.questions);
