@@ -1,14 +1,14 @@
 {
-  "title": "Lesen Teil 1 - Exam 36: kein Zeit",
+  "title": "Lesen Teil 1 - Exam 36: kein Zeit (التعديل 1)",
   "skill": "lesen1",
   "type": "matching",
   "sharedOptions": [
-    "a. Keine Zeit für die Kinder",
+    "a. Termindruck schon bei Kindern",
     "b. Vorsicht vor zweifelhaften Kontaktagenturen!",
     "c. Liebe fürs Leben muss wachsen",
-    "d. Mehr Zeit für Hobbys",
+    "d. Kinder bleiben immer länger bei den Eltern wohnen",
     "e. Partnervermittlungen generell empfehlenswert",
-    "f. Wer sucht, der findet",
+    "f. Aktive Partnersuche gegen das Alleinsein",
     "g. Probleme bei der Kindererziehung",
     "h. Partnervermittlung per Telefon",
     "i. Wenn die Kinder aus dem Haus sind",
@@ -20,11 +20,11 @@
       "correct": 9
     },
     {
-      "text": "Text 2: Der Wunsch nach Zweisamkeit hat sich zu einem guten Geschäft entwickelt, denn gerade reiferen Alleinstehenden fällt es oft schwer, neue Partnerschaften herzustellen. Vermittlungsagenturen bieten ihre Dienste im Internet oder in den Tageszeitungen an. Neben vielen seriösen Firmen finden sich auf dem Markt aber auch zahlreiche schwarze Schafe. Bei solchen Anbietern beginnen die Tricks bereits bei den Anzeigen in der Zeitung oder im Netz. Dort stellen Personen angeblich sich selbst vor. Ihre Beschreibung ist direkt auf die Wünsche älterer Singles zugeschnitten, oft genug auch schon mit ansprechendem 'Originalfoto'.",
+      "text": "Text 2: Der Wunsch nach Zweisamkeit hat sich zu einem guten Geschäft entwickelt, denn gerade reiferen Alleinstehenden fällt es oft schwer, neue Partnerschaften herzustellen. Vermittlungsagenturen bieten ihre Dienste im Internet oder in den Tageszeitungen an. Neben vielen seriösen Firmen finden sich auf dem Markt aber auch zahlreiche schwarze Schafe. Bei solchen Anbietern beginnen die Tricks bereits bei den Anzeigen in der Zeitung oder im Netz. Dort stellen Personen angeblich sich selbst vor. Ihre Beschreibung ist direkt auf die Wünsche älterer Singles zugeschnitten, oft genug auch schon mit ansprechendem 'Originalfoto'. Wer die angegebene Telefonnummer wählt, muss dann plötzlich feststellen, es in Wirklichkeit mit einer Partnervermittlungsagentur zu tun zu haben.",
       "correct": 1
     },
     {
-      "text": "Text 3: Die Partnerschaft verläuft in Phasen. Fast jede Liebe beginnt mit einer Hochphase der Verliebtheit. Ist diese Phase vorüber, folgt eine Phase des satten Glücks, in der beide den Wunsch haben, mit diesem Menschen ein ganzes Leben zu verbringen. Fast alle Paare erleben danach eine Zeit, in der der Alltag in die Beziehung eintritt. Man ist gezwungen, sich in einem realistischeren Licht zu sehen. In der folgenden Stress- und Streitphase geht es darum, die Bedingungen des Zusammenlebens festzulegen, Lösungen für Partnerschaft und Beruf zu finden. Bleibt ein Paar nach dieser schwierigen Phase zusammen, festigt sich die Partnerschaft weiter und wird ruhiger.",
+      "text": "Text 3: Wie entsteht eine langfristige Beziehung? Was viele nicht wissen: Die Partnerschaft verläuft in Phasen. Fast jede Liebe beginnt mit einer Hochphase der Verliebtheit. Ist diese Phase vorbei, folgt eine Phase des satten Glücks, in der beide den Wunsch haben, mit diesem Menschen ein ganzes Leben zu verbringen. Fast alle Paare erleben danach eine Zeit, in der der Alltag eintritt. Man ist gezwungen, sich in einem realistischeren Licht zu sehen. In der Folge entstehen Stress- und Streitphasen, die darum gehen, die Bedingungen des Zusammenlebens festzulegen. Lösungen für Partnerschaft und Beruf zu finden. Bleibt ein Paar nach dieser schwierigen Phase zusammen, festigt sich die Partnerschaft weiter.",
       "correct": 2
     },
     {

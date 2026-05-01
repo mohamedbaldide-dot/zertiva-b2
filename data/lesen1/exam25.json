@@ -1,38 +1,38 @@
 {
-  "title": "Lesen Teil 1 - Exam 25: Kartoffel (التعديل)",
+  "title": "Lesen Teil 1 - Exam 25: Bienen",
   "skill": "lesen1",
   "type": "matching",
   "sharedOptions": [
-    "a. Das ideale Gemüse für schwer Arbeitende",
-    "b. Ein schlankes Gemüse für schlanke Leute",
-    "c. Gesundes Leben schützt vor Zivilisationskrankheiten",
-    "d. Gesundheitsrisiken durch fettreiche Ernährung",
-    "e. Kartoffelrezepte als Zeitungsbeilage",
-    "f. Pflanzliche Stoffe für die Gesundheit der Haut",
-    "g. Tolle Figur durch ausgewogene Ernährung",
-    "h. Vitaminreiche Ernährung mit Aloe Vera",
-    "i. Von der Wildpflanze zum international geschätzten Nahrungsmittel",
-    "j. WHO untersucht Zusammenhang von Krebs und Herzinfarkt"
+    "a. Wie aus Tieren Frostschutzmittel gewonnen werden",
+    "b. Genussmittel erhöht die Wahrnehmung bestimmter Wörter",
+    "c. Insektensterben in der kalten Jahreszeit",
+    "d. Pflanzen und Insekten - eine gemeinsame Entwicklung",
+    "e. Koffeinrückstände in landwirtschaftlichen Erzeugnissen",
+    "f. Koffein im Blütennektar verbessert die Gedächtnisleistung",
+    "g. Die bisher ältesten Pflanzensamen entdeckt",
+    "h. Neue Erkenntnisse über das weltweite Bienensterben",
+    "i. Methoden zum Überleben in der kalten Jahreszeit",
+    "j. Wie Kaffee unser Sprachvermögen beeinträchtigt"
   ],
   "questions": [
     {
-      "text": "Text 1: Über zehntausend wissenschaftliche Studien wurden in den vergangenen Jahren im Auftrag der Weltgesundheitsorganisation WHO durchgeführt, um herauszufinden, warum manche Menschen erheblich seltener an lebensgefährlichen Krankheiten wie Krebs oder Herzinfarkt erkranken als andere. Die Zahl dieser Erkrankungen hat nämlich in den Industriestaaten inzwischen einen traurigen Höhepunkt erreicht. Die Forscher fanden heraus, dass mit wenigen Tricks viele Menschen gesünder leben und damit ihr Leben verlängern könnten. Das Risiko eines Herzinfarkts kann man zum Beispiel durch den täglichen Verzehr eines Apfels und tägliches zwanzigminütiges Radfahren erheblich reduzieren.",
-      "correct": 2
+      "text": "Text 1: Kaffee verleiht neuen Schwung und hebt die Stimmung. Viele Kaffeetrinker schätzen diesen Effekt des Koffeins. Forscher der Ruhr-Universität Bochum haben das Phänomen untersucht und herausgefunden, dass Koffein selektiv das Erkennungsvermögen für positive Begriffe schärft. Die Wahrnehmung von negativen oder neutralen Wörtern verändert der Muntermacher dagegen nicht. Es war bereits vorher bekannt, dass der Mensch beim Lesen emotional positiv besetzte Begriffe besser und schneller erfasst als negative oder neutrale Wörter. Die anregende Wirkung von Koffein auf das Denkvermögen und die Aufmerksamkeit ist durch Studien ebenfalls gut belegt. Psychologen wollten nun durch ihre Untersuchungen herausfinden, ob es eine Kombinationswirkung dieser beiden Effekte gibt.",
+      "correct": 1
     },
     {
-      "text": "Text 2: Am Mittelmeer und in Mexiko wächst die Aloe-Vera-Pflanze, der in der heutigen Naturmedizin eine wachsende Rolle zukommt. Durch die dickfleischigen Blätter dieser Pflanze ist für Schädlinge kein Hindurchkommen, deshalb kann sie in Plantagen ohne chemische Schutzmittel angebaut werden. Unter der dicken Haut der Pflanze befindet sich eine gelartige Flüssigkeit, deren Aufgabe darin besteht, Wasser möglichst lange zu speichern - schließlich ist die Pflanze in extrem trockenen Landschaften beheimatet. Dieses Gel ist sehr vitamin- und mineralstoffreich. In der Wundheilung ist Aloegel sehr effektiv. Kosmetisch wird es für Cremes benutzt.",
+      "text": "Text 2: Ihr Gehirn ist gerade ein Millionstel Mal so groß wie unseres, und doch haben sie ein Verhalten inklusive Sozialleben und Kommunikation entwickelt, über das wir nur staunen können. Sie bestäuben nicht nur viele Pflanzen, sondern haben die Entwicklung dieser Pflanzen erst ermöglicht sowie gegenseitig ihre Evolution vorangetrieben: In Amerika wurde die bisher älteste Biene entdeckt. Sie lag seit 100 Millionen Jahren in Bernstein in Burma, und sie war winzig - 2,95 Millimeter lang, so winzig wie die Blüten, die sie damals bestäubte. Dann wuchsen beide auf ihre heutigen Größen. Fast gleichzeitig wurde das Genom der Honigbiene publiziert. Das zeigt, dass Bienen für die Blütensuche bestens gerüstet sind.",
+      "correct": 3
+    },
+    {
+      "text": "Text 3: Bienen, die Pollen von Kaffee oder anderen koffeinhaltigen Pflanzen sammeln, kommen dabei so richtig in Fahrt. Wie die amerikanische Fachzeitschrift 'Science' berichtet, erinnern sich Bienen mit der richtigen Dosis Koffein bis zu dreimal länger an den Duft einer Futterpflanze. Das hilft nicht nur den Bienen bei ihrer Suche, sondern auch den Pflanzen. In hoher Konzentration ist Koffein bitter und schreckt Insekten ab. In geringen Dosen scheint er die Bienen aber nicht zu stören, sondern ihnen eher auf die Sprünge zu helfen. Koffein stärkt offensichtlich das Langzeitgedächtnis der Bienen, schlussfolgerten die Forscher aus ihrem Versuch.",
+      "correct": 5
+    },
+    {
+      "text": "Text 4: Es ist ein schwerer Gang im Leben jedes Imkers. Die paar Schritte hin zu seinen Völkern im Frühjahr, wenn an den Fluglöchern eigentlich schon seit Tagen emsiges Treiben herrschen sollte - aber stattdessen nur Stille von einer Tragödie kündet. Ein paar Schritte, bevor der Imker den Deckel von der 'Beute', wie ein Stock in der Fachsprache heißt, nimmt und schließlich Gewissheit über das erlangt, was er längst befürchtet hat: Das ganze Volk - tot. Es ist frustrierend, wenn ein Imker Ende Februar Handvoll um Handvoll vertrockneter Insekten wegschaufeln muss - aber völlig ungewöhnlich ist es nicht. Jahr für Jahr überstehen zwischen zehn und 15 Prozent aller Bienenvölker die Winterruhe zwischen November und Februar nicht.",
       "correct": 7
     },
     {
-      "text": "Text 3: Eine der ältesten bekannten Gemüsesorten ist der Spargel. Schon vor 5000 Jahren war er bei den Chinesen bekannt. Geschätzt wurde er vor allem in der Medizin als Herzschutzmittel und zur Stärkung der körpereigenen Abwehrkräfte: Spargel hält gesund. Heute schätzen wir am Spargel besonders, dass er nicht dick macht. Die körperlich hart arbeitende Bevölkerung früherer Zeiten schätzte ihn deshalb nicht sehr, weil er kaum Energie lieferte. Im Südwesten Deutschlands wächst der Spargel von Mitte April bis zum Johannistag, dem 24. Juni.",
-      "correct": 0
-    },
-    {
-      "text": "Text 4: Schlank sein ist 'in'. Deshalb versuchen Millionen Menschen nicht nur in Deutschland immer wieder ihre Pfunde loszuwerden. Und so purzeln sie von einer Diät zur nächsten, immer mit dem gleichen Erfolg: Nach dem Abnehmen nehmen sie genauso schnell wieder zu. Und bei vielen kommt mit dem Gewichtsverlust die Krankheit, denn die meisten Diäten sind sehr einseitig und entziehen dem Körper viele für sein Wohlbefinden wichtige Nährstoffe. Hier setzt eine neue Theorie an: Sie unterscheidet Nahrungsmittel in Fetthorter, die Fett im Körper speichern, und Fettburner, die dem Körper helfen, zu viel Fett und damit Kilos zu verwerten.",
-      "correct": 6
-    },
-    {
-      "text": "Text 5: Als typisch deutsch gilt sie, doch rund um den Globus ist sie eines der Basislebensmittel schlechthin. In Österreich nennt man sie Erdapfel, an der Mosel heißt sie Grumbeere. Gemeint ist die überaus populäre Kartoffel. Hunderte verschiedener Sorten gibt es auf der Welt, doch ihr Ursprung liegt in Südamerika. Präkolumbianische Kulturen begannen damit, die bis dahin wild wachsende Urform der Kartoffel systematisch anzubauen. Die englischen Seehelden Sir Francis Drake und Sir Walter Raleigh sollen sie im 16. Jahrhundert nach Europa mitgebracht haben. Etwa zur gleichen Zeit wurde sie in Spanien und Portugal bekannt.",
+      "text": "Text 5: Viele Insekten überwintern als Puppe oder Larve. Doch auch 'erwachsene' Fliegen, Bienen und Käfer überleben die eisige Zeit. Wichtig ist die Wahl von geschützten Orten wie Baumritzen, Laubstreu, Höhlen, Dachböden oder Kellern. Honigbienen bilden im Nest eine Traube und wärmen sich gegenseitig durch Muskelzittern. Bei Wespen und Hummeln überwintern nur die Königinnen in Erdlöchern. Sie bauen dann im Frühling neue Staaten auf. Maikäfer überdauern als Engerlinge den Winter, Marienkäfer suchen geschützte Bereiche auf. Viele Insekten unserer Regionen sind 'gefriertolerant'. Sie stellen im Herbst ihren Organismus um und versetzen ihr Blut mit einem Cocktail aus Gefrierschutzmitteln.",
       "correct": 8
     }
   ]

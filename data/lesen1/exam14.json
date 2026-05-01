@@ -1,39 +1,39 @@
 {
-  "title": "Lesen Teil 1 - Exam 14: das Benzin",
+  "title": "Lesen Teil 1 - Exam 14: Kaffee",
   "skill": "lesen1",
   "type": "matching",
   "sharedOptions": [
-    "a. Benzingeld sparen: Tipp vom Tankwart",
-    "b. Die wichtigsten Erste-Hilfe-Ratschläge",
-    "c. Einmal die Welt als Ganzes sehen",
-    "d. Einmal um die Welt ohne einen Tropfen Benzin",
-    "e. Fliegen statt fahren",
-    "f. Innerdeutsche Reisen besonders beliebt",
-    "g. Frau im All",
-    "h. Schweizer nutzen Solartaxis",
-    "i. Steigende Spritpreise: die Tricks der Autofahrer",
-    "j. Die richtige Unfallversicherung"
+    "a. Altes Handwerk und alte Technik anschaulich präsentiert",
+    "b. Attraktive Kleinstadt - touristischer Geheimtipp",
+    "c. Ein altes Kloster als Feuerwache",
+    "d. Eine Universität mit langer Geschichte",
+    "e. Eliteschule für Schriftsteller",
+    "f. Entdeckung und Verbreitung des Kaffees",
+    "g. Kaffee macht die Leute süß",
+    "h. Klösterliche Strenge für berühmte Schüler",
+    "i. Mehr Ziegenmilch dank Energy-Drink",
+    "j. Ohne Kaffee geht hier nichts"
   ],
   "questions": [
     {
-      "text": "Text 1: Aussteigen, tanken, wegfahren: Wenn die Benzinpreise steigen, ist wieder Hochsaison bei den Benzindieben. Früh morgens und abends schlagen sie besonders gerne zu. Viele setzen auf den Schutz der Dunkelheit. Vor Weihnachten und im Januar und Februar häufen sich die Fälle. Auch am Monatsende, wenn das Geld knapp wird, steigt die Zahl der Benzindiebstähle. Doch sparen lässt sich durch Benzinklau nicht. Fast alle Täter werden von der Polizei gefasst. Schließlich gibt es an jeder Tankstelle eine Kamera, die das Autokennzeichen aufgenommen hat. Tankwart Kurt Jochimsen aus Emden zeigt uns einen Fall aus seiner großen Videosammlung. Ein Wagen mit zwei Insassen fährt an die Zapfsäule. Der Fahrer tankt, seine Frau geht in den Shop. Sie kauft dort zwei Cola und bezahlt. Aber nicht das Benzin. Der Mann hat inzwischen voll getankt und wartet im Wagen. 'Hier sehen Sie: Die Frau kommt raus, steigt ein und das Fahrzeug fährt davon. Hinterher heißt es dann, ich habe doch glatt vergessen, das Benzin zu bezahlen', erklärt Kurt Jochimsen. Bei der Polizei kennt man diese Ausreden. Polizeihauptkommissar Werner Knips: 'Vergessen gilt nicht, es gibt immer eine Anzeige. Und dann wird es richtig teuer.'",
-      "correct": 0
+      "text": "Text 1: Das erste Kaffeehaus in Leipzig, 'Zum arabischen Coffee-Baum', öffnete 1685 seine Pforten. Seitdem ist der Kaffee in Sachsen zum beliebten Getränk geworden, das weder zu Hause auf Partys und Feiern noch beim Ausgehen fehlen darf. 'Kaffeesachsen' wurden früher die Bewohner des Landes zwischen Leipzig und polnischer Grenze scherzhaft von den anderen Deutschen genannt. Bevorzugt wird der Kaffee heiß und süß getrunken. Süße Ergänzungen wie Dresdner Stollen oder Leipziger Lerchen, beides traditionell gebackene Kuchenspezialitäten, gehören zum Kaffee wie das Tüpfelchen zum 'i'. Dabei wird das Gebäck auf echt sächsische Art 'gedibbscht', das heißt: Es wird in den Kaffee getunkt, bevor es gegessen wird. Die Sachsen schwören darauf, dass sowohl das Gebäck als auch der Kaffee so und nur so ihr volles Aroma entfalten.",
+      "correct": 9
     },
     {
-      "text": "Text 2: Viele Autofahrer, die in einen Unfall verwickelt sind, sind so aufgeregt, dass sie vergessen, was zu tun ist. Der Versicherungsexperte Klaus Lenhoff gibt die wichtigsten Tipps: 1. Unfallstelle absichern: Warnblinkanlage einschalten und Warndreieck in 100 Metern Entfernung aufstellen. 2. Rettung aus dem Gefahrenbereich: alle Unfallbeteiligten aus dem Gefahrenbereich retten. Eingeschlossene befreien und Brände sofort bekämpfen. 3. Rettungskräfte informieren: bei schweren Unfällen und wenn es Verletzte gibt, die Polizei (Ruf 110) oder die Rettungsleitstelle (Ruf 112) informieren. Dabei an 'die fünf W's' denken: Wo ist es passiert? Was ist passiert? Wie viele Verletzte? Welche Verletzungen? Warten sie auf Rückfragen. 4. Verletzten Hilfe leisten, zum Beispiel: Kontrolle von Atmung und Puls, Atemspende, stabile Seitenlage, Erkennen und Behandeln eines Schocks, Stillen von Blutungen.",
+      "text": "Text 2: Eppingen liegt etwa auf halbem Weg zwischen Karlsruhe und Heilbronn im Kraichgau, einer geschichtsträchtigen Region mit wunderschöner Landschaft und bodenständiger Kultur, die von Erholung suchenden Menschenmassen noch nicht überrollt ist. Die Altstadt des Städtchens ist ein einziges Museum: Über 100 Fachwerkhäuser mit ihrem romantisch anmutenden Muster aus braunen Holzbalken und weiß getünchtem Lehm können hier bewundert werden. Die bekanntesten davon sind das 'Baumannsche Haus' (erbaut 1582), heute ein Hotel, und die 'Alte Universität', heute ein Museum. Hier befand sich 1564/1565 die Heidelberger Universität, als in Heidelberg die Pest wütete, hierhin ausgelagert wurde. Im heutigen Museum kann man die Fachwerkbaukunst studieren. Seit 1993 findet im Juli und August der 'Carillonsommer' statt.",
       "correct": 1
     },
     {
-      "text": "Text 3: Hast du schon mal mit dem Gedanken gespielt, Pilotin zu werden? Nicht? Dann geht es euch wahrscheinlich wie den meisten Mädchen oder Frauen. Warum wollen eigentlich so wenige Frauen Pilotinnen werden? Nur weil der Beruf angeblich ein typischer Männerberuf ist? Wir haben eine Pilotin getroffen: Monique Bellin ist 39 Jahre alt, wohnt im Süden Frankfurts und ist Pilotin. 'Schon seit früher Kindheit habe ich mich für die Fliegerei interessiert. Es hat mich schon immer fasziniert, dass es mit Hilfe technischer Mittel möglich ist, die Schwerkraft zu überwinden und die Welt aus der Vogelperspektive zu betrachten. Und irgendwann wollte ich diese Technik dann auch selbst beherrschen', so Bellin. Seit sie in diesem Beruf arbeite, habe sich ihre Einstellung zu vielen Dingen verändert: 'Ich bin toleranter als vor meinem Fliegerleben - vielleicht weil ich versuche, mein Umfeld aus anderen Perspektiven zu betrachten.'",
-      "correct": 2
+      "text": "Text 3: Das Kloster Maulbronn wurde 1147 von Zisterziensermönchen gegründet. Man sagt, ein Maulesel, den die Mönche auf ihren Wanderungen mitgeführt hatten, solle hier einen Brunnen gefunden haben und man habe daraufhin beschlossen, an dieser Stelle das Kloster zu bauen. Im 16. Jahrhundert wurde es im Verlauf der Reformation säkularisiert und zum Internat umfunktioniert. Heute von der UNESCO zum Weltkulturerbe der Menschheit erhoben, ist das Kloster ein Touristenmagnet. Maulbronn war besonders wegen seiner Klosterschule bekannt, die von namhaften Persönlichkeiten besucht wurde: Johannes Kepler lernte hier Latein und Mathematik, der Schriftsteller Hermann Hesse litt sehr unter der eisernen Disziplin und Härte, die hier herrschte. Hermann Hesse hat die Klosteranlage später in seinen Romanen 'Unterm Rad' und 'Narziß und Goldmund' zum Schauplatz gemacht.",
+      "correct": 7
     },
     {
-      "text": "Text 4: Der Schweizer Louis Palmer hat eine Weltumrundung mit seinem 'Solartaxi' fast abgeschlossen. Er habe bereits 47000 km mit seinem Solarauto zurückgelegt, sagte Palmer bei einem Stopp in Paris. 'Nun habe ich fast den ganzen Planeten umrundet, ohne einen Tropfen Benzin zu brauchen.' Die Batterien des bis zu 90 Stundenkilometer schnellen Solarmobils können Energie für eine Reichweite von 400 km speichern. 'Das Wetter spielt keine Rolle', sagte Palmer. 'Es kann mehrere Tage in Folge regnen, ich fahre ohne Probleme weiter.' Palmer war mit seinem dreirädrigen 'Taxi' im Juli in Luzern gestartet. Seitdem hat er Europa, Asien, Australien, Neuseeland und Nordamerika durchquert. Er zieht einen Anhänger mit sechs Quadratmetern Solarzellen hinter sich her und die Sonnenenergie treibt das Gefährt an.",
-      "correct": 3
+      "text": "Text 4: Auf einer Anhöhe oberhalb des Bodensees liegt, ca. 10 km vom See entfernt in idyllischer ländlicher Umgebung, das ehemalige Zisterzienserkloster Salem. Innerhalb der weitläufigen Klosteranlage aus dem 12. Jahrhundert befinden sich heute mehrere Museen und das gotische Münster. Im Feuerwehrmuseum findet der interessierte Besucher alte Feuerwehrwagen, die noch von Pferden gezogen wurden, alte Geräte, Spritzen und Pumpen sowie mehrere Modellanlagen. Im Weinbaumuseum bekommt man einen Überblick über die Weinproduktion der Bodenseeregion. International bekannt ist jedoch das von Kurt Hahn und dem Prinzen Max von Baden 1920 gegründete Internat Salem, das von den Söhnen und Töchtern bekannter Familien aus ganz Europa besucht wurde und wird.",
+      "correct": 0
     },
     {
-      "text": "Text 5: Die Bundesregierung und ihre Spitzenbeamten sind auf Dienstreisen gern mit dem Flugzeug unterwegs - aber nicht nur, wenn es um Fernreisen geht, sondern auch bei kurzen Inlandsreisen. Wie aus der Antwort des Innenministeriums auf eine Frage eines Abgeordneten hervorgeht, gab die Bundesregierung im letzten Jahr 7,7 Millionen Euro für innendeutsche Flugreisen aus. Fahrkarten der Bahn hingegen schlugen lediglich mit 3,2 Millionen zu Buche. Der Vergleich mit anderen Jahren zeigt aber, dass sich die meisten Politiker bemühen, immer häufiger vom Flugzeug auf die Bahn umzusteigen. Eine Ausnahme bildet das Kanzleramt (Flugkosten um 30% erhöht gegenüber dem Vorjahr) sowie ausgerechnet das Ressort des Bundesumweltministers (plus 7%).",
-      "correct": 4
+      "text": "Text 5: Vermutlich vor fast 900 Jahren, irgendwann im dreizehnten Jahrhundert, sollen die Menschen herausgefunden haben, was es mit dem Kaffee auf sich hat. Eine Legende erzählt von einem jemenitischen Ziegenhirten, dessen Ziegen sich nach dem Genuss der roten Beeren eines bestimmten Strauches merkwürdig lebendig und aufgedreht benommen haben sollen. Im Dorf habe der Dorfgelehrte dann herausgefunden, dass die Früchte, die bisher nur den Ziegen zu viel 'Energie' verholfen hatten, auch beim Menschen ihre Wirkung zeigten. Nach mehreren Experimenten habe man dann herausgefunden, dass die Beeren, wenn man sie trocknet und dann mit heißem Wasser aufkocht, am besten schmecken. Der Kaffee war erfunden. Wegen seiner berauschenden Wirkung, so eine Theorie, soll das Getränk dann arabisch qahwa genannt worden sein, was auch einen Wein bezeichnen konnte.",
+      "correct": 5
     }
   ]
 }

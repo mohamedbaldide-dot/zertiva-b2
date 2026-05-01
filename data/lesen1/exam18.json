@@ -1,38 +1,38 @@
 {
-  "title": "Lesen Teil 1 - Exam 18: Programmierer (التعديل 2)",
+  "title": "Lesen Teil 1 - Exam 18: Trampolin",
   "skill": "lesen1",
   "type": "matching",
   "sharedOptions": [
-    "a. Verleihung des Jugendnobelpreises in Stockholm",
-    "b. Studienabsolventen technischer Fächer sehen ihre Zukunft meist in der Fahrzeugbranche",
-    "c. Spannende Gewinne für wissenschaftliche Nachwuchstalente",
-    "d. Mehr Bemühungen um weiblichen Nachwuchs gefordert",
-    "e. Immer mehr Jugendliche werden Programmierer",
-    "f. Immer mehr Frauen ergreifen technische Berufe",
-    "g. Förderwochenende für junge Softwareentwickler",
-    "h. Diskussion über schulische Berufsorientierung",
-    "i. Berufswahl: Jugendliche werden stark von ihrem gesellschaftlichen Umfeld geprägt",
-    "j. Automobilindustrie schafft neue Arbeitsplätze"
+    "a. Viele Trampoline haben erhebliche Sicherheitsmängel",
+    "b. Traditionelle Nachrichtenmedien immer noch gefragt",
+    "c. Soziale Medien ersetzen alte Informationsquellen",
+    "d. Schüler bereiten Nachrichtensendungen vor",
+    "e. Mit Nachrichten im Unterricht arbeiten",
+    "f. Medienkonsum fördert ungesunde Lebensweise",
+    "g. Kritik an der Nachrichtensprache",
+    "h. Jugendliche konsumieren mehr Fett und Zucker",
+    "i. Informationen leichter verstehen",
+    "j. Fachleute warnen vor unsachgemäßer Nutzung von Sprunggeräten"
   ],
   "questions": [
     {
-      "text": "Text 1: Martina Lux hat ein Hobby, mit dem sie im Kreis ihrer Freundinnen ziemlich allein steht: Sie programmiert in ihrer Freizeit. 'Mich hat immer schon interessiert, wie Computerprogramme eigentlich funktionieren', sagt die 17-Jährige. Außerdem habe sie großen Spaß an logischem Denken. Ihr Informatiklehrer erzählte ihr von einem Workshop in Berlin: Bei 'Jugend programmiert' traf Martina von letztem Freitag bis Sonntag mit gleichgesinnten Jungen und Mädchen zwischen zwölf und 18 Jahren zusammen, um gemeinsam Programme zu entwickeln. Dabei standen ihnen erfahrene Informatiker zur Seite. In 15 Gruppen entwickelten die jungen Nachwuchsprogrammierer ihre Projekte.",
-      "correct": 6
-    },
-    {
-      "text": "Text 2: 'Jugend forscht' ist ein bundesweiter Nachwuchswettbewerb für junge Menschen bis zum Alter von 21 Jahren, bei dem besondere Leistungen in Mathematik, Technik, Naturwissenschaften und Informatik ausgezeichnet werden. Neben Geldpreisen werden auch einige Sonderpreise vergeben, die bei den Jugendlichen ganz besonders begehrt sind. Dazu gehört die Teilnahme an internationalen Wettbewerben, bei denen die jungen Forscher Fachleuten aus aller Welt ihre Projekte vorstellen können. Auch Einladungen zu Studienreisen und Kongressen im Ausland sind für viele Teilnehmer besonders attraktiv. Im Rahmen von 'Jugend forscht' wird sogar eine Reise zur Nobelpreisverleihung in Stockholm angeboten.",
-      "correct": 2
-    },
-    {
-      "text": "Text 3: Die Industriellenvereinigung beklagt in einer jüngsten Pressemitteilung den deutlichen Mangel an Fachkräften in den Naturwissenschaften und technischen Berufen. Dieser Fachkräftemangel sei besonders ausgeprägt in den Bereichen Maschinenbau, Elektrotechnik, Werkstoffwissenschaften und Verfahrenstechnik. Um dem entgegenzusteuern, ruft die Industriellenvereinigung unter anderem dazu auf, insbesondere Mädchen und junge Frauen für solche Berufe zu gewinnen. Die Berufsorientierung der Schulen muss noch gezielter auf die vielfältigen und interessanten Themenfelder sowie die guten Zukunftschancen technischer Berufe hinweisen.",
-      "correct": 3
-    },
-    {
-      "text": "Text 4: Im Kulturzentrum war gestern Abend Tobias Meyer zu Gast. Die Organisatoren hatten den bekannten Autor zahlreicher Sachbücher über Erziehung und Bildung eingeladen, zum Thema Berufsorientierung zu sprechen. In seinem Vortrag ging Meyer auf zwei wesentliche Aspekte von Berufsorientierung ein. Zum einen versteht er Berufsorientierung als eine Entwicklung, die eng mit den persönlichen und sozialen Beziehungen eines jungen Menschen zusammenhängt. Die Orientierung auf einen Beruf hin wertet er als einen Teil der Persönlichkeitsentwicklung. In engem Zusammenhang damit sieht er die Berufsvorbilder, an denen sich Jugendliche orientieren.",
+      "text": "Text 1: Die meisten Menschen verbinden den Begriff 'Barrierefreiheit' mit dem Zugang zu Gebäuden oder Transportmitteln. Dabei betrifft Barrierefreiheit viel mehr Bereiche unseres Alltags, so zum Beispiel auch die Informations- und Kommunikationstechnologie. Die APA, die Austria Presse Agentur, hat deshalb einen Nachrichtendienst in einfacher und leicht verständlicher Sprache ins Leben gerufen. Er wendet sich an Menschen mit Lese- oder Lernschwierigkeiten oder die die deutsche Sprache noch nicht so gut beherrschen. Für diesen Nachrichtendienst werden die wichtigsten Meldungen des Tages für die Niveaustufen A2 und B1 geschrieben. Interessenten können sich die Texte fünfmal pro Woche am späten Nachmittag per E-Mail schicken lassen oder über eine besondere Informationsplattform bekommen.",
       "correct": 8
     },
     {
-      "text": "Text 5: Wie eine repräsentative Umfrage unter Studenten kürzlich zeigte, erfreut sich die Automobilindustrie nach wie vor großer Beliebtheit bei Studierenden der Fachgebiete Wirtschaft und Technik. Gefragt nach den fünf attraktivsten zukünftigen Arbeitgebern, nannten Wirtschaftsstudenten vier führende Automobilkonzerne und eine Internet-Suchmaschine; künftige Ingenieure nannten sogar ausschließlich Automobilunternehmen. Auch für Studenten der Informatik gewinnt die Automobilindustrie zunehmend an Attraktivität - wenig verwunderlich angesichts der rasch zunehmenden Bedeutung, die der Elektronik in Fahrzeugen zukommt.",
+      "text": "Text 2: Die WHO, die Weltgesundheitsorganisation, warnt vor den Folgen ungesunder Werbung im Internet. Kinder und Jugendliche treffen beim Nutzen der sozialen Medien häufig auf Anzeigen für ungesunde Lebensmittel wie Süßigkeiten oder salzige und fettreiche Snacks. So werden Übergewicht und damit zusammenhängende Krankheiten im Erwachsenenalter gefördert, mahnt die Organisation. Sie fordert deshalb Regierungen dazu auf, diese Werbung zum Schutze der Kinder stärker zu begrenzen. Die WHO weist außerdem auf die Gefahr von Bewegungsmangel im Zusammenhang mit den neuen Medien hin. Kleinkinder sollten sich mindestens drei Stunden pro Tag bewegen und so wenig Zeit wie möglich vor einem Bildschirm verbringen.",
+      "correct": 5
+    },
+    {
+      "text": "Text 3: Schülerinnen und Schüler sollen im Schulunterricht auch den Umgang mit Nachrichten lernen. Das forderten kürzlich in Wien die Teilnehmenden an einer Konferenz zur politischen Bildung von Jugendlichen. Das Ziel dabei ist, jungen Menschen den kritischen Umgang mit den Inhalten und der Präsentation von Nachrichten beizubringen. Heute ist der Zugriff auf Nachrichtensendungen so einfach wie noch nie. Viele Nachrichtensendungen können mindestens eine Woche lang im Internet abgerufen werden. Schülerinnen und Schüler können sie so zur eigenen Arbeit nutzen oder gemeinsam in der Klasse besprechen. Die Konferenz nannte auch gleich konkrete Fragen für die Analyse von Nachrichtensendungen.",
+      "correct": 4
+    },
+    {
+      "text": "Text 4: Mit dem Trampolin den Körper in Schwung bringen - für viele Menschen ist das Sprunggerät eine gute Möglichkeit, sich mit viel Spaß und ohne allzu großen Aufwand zu bewegen. Besonders beliebt ist das Trampolin bei Kindern. Expertinnen und Experten betonen auch die Vorteile des Hüpfens auf dem Trampolin. Die Bewegung auf dem Trampolin fördert nicht nur die Beweglichkeit, sondern auch die Koordination. Allerdings ist sie nicht ganz ungefährlich. Orthopäden weisen auf die extrem hohe Unfallgefahr hin. Die Ärzteschaft möchte Kindern und Eltern keineswegs die Freude am Trampolinspringen verderben. Vielmehr möchte sie dazu aufrufen, einige Sicherheitsregeln zu befolgen. Eine harte, ebene Stellfläche und ein Sicherheitsnetz seien unverzichtbar.",
+      "correct": 9
+    },
+    {
+      "text": "Text 5: Die Klage, dass Jugendliche und junge Erwachsene kein Interesse mehr an Nachrichten haben, ist unbegründet. So lautet zumindest eine der Schlussfolgerungen aus einer Studie zum durchschnittlichen Medienkonsum junger Menschen mit dem Schwerpunkt Nachrichten. Demnach lesen oder hören in Österreich nahezu 50% der Personen unter 30 Jahren täglich Nachrichten. Viele der Befragten gaben an, dass sie sich nicht auf die Inhalte der sozialen Medien verlassen möchten, da ihre Glaubwürdigkeit oft angezweifelt wird. Den klassischen Medien wie Nachrichtensendungen oder Tageszeitungen wird hingegen eher geglaubt. Soziale Netzwerke können herkömmliche Nachrichtenquellen nicht ersetzen.",
       "correct": 1
     }
   ]

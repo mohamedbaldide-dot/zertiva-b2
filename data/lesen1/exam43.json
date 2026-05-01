@@ -1,39 +1,39 @@
 {
-  "title": "Lesen Teil 1 - Exam 43: Farben",
+  "title": "Lesen Teil 1 - Exam 43: Löwen",
   "skill": "lesen1",
   "type": "matching",
   "sharedOptions": [
-    "a. Farben in der Wohnung als Therapie",
-    "b. Pflanzen machen den Wohnraum gesünder",
-    "c. Zimmerpflanzen sind selten krank",
-    "d. Möbel als Energiequellen der Zukunft",
-    "e. Gesünder durch kräftige, leuchtende Farben in der Wohnung",
-    "f. Farbberatung durch den Gärtner oder die Floristin",
-    "g. Wohnen in Harmonie mit den Kräften der Natur",
-    "h. Kräuter als Zimmerpflanzen",
-    "i. Kräuter bringen Farbe in Wohnräume",
-    "j. Zimmerpflanzen sorgen für gute Stimmung bei Menschen"
+    "a. Der Berliner Zoo ist ein beliebter Ort für Führungen und Workshops",
+    "b. Die Löwen sind sehr beliebt unter den Besuchern",
+    "c. Das Problem ist, dass Löwen Menschen angreifen",
+    "d. Amerikanische Safari-Parks locken mit ihren Übernachtungspaketen",
+    "e. Löwen bringen Touristen in amerikanische Safari-Parks",
+    "f. Zum Schutz bedrohter Arten werden neue Schutzgebiete geschaffen",
+    "g. Mehr Bemühungen für den Tierschutz",
+    "h. Löwen als Haustier",
+    "i. Planung für den Tierschutz",
+    "j. Reiche Familien züchten exotische Tiere in Asien"
   ],
   "questions": [
     {
-      "text": "Text 1: Feng Shui – wörtlich: 'Wind und Wasser' – ist die taoistische Lehre vom Leben im Einklang mit der Umgebung. Seit Jahrhunderten wird Feng Shui in China und anderen fernöstlichen Kulturen praktiziert, inzwischen ist es auch bei uns beliebt. Wohnen mit Feng Shui bedeutet ein Gleichgewicht herzustellen – beginnend bei der Auswahl des Grundstücks, der Anordnung von Türen und Fenstern und der Gestaltung der Wohnräume. Türen und Fenster leiten den Energiefluss wie Schleusen, die Position der Möbel lässt die positive Energie weiterströmen oder behindert sie. Wie man vorhandene Energie-Störungen durch einfaches Umstellen der Möbel beseitigen kann, zeigen Feng-Shui-erfahrene Innenarchitekten.",
-      "correct": 6
-    },
-    {
-      "text": "Text 2: Farben haben eine stärkere Wirkung auf Menschen, als viele vermuten. Der Einfluss der Farben ist sogar so groß, dass er für therapeutische Zwecke genutzt wird. Bei der farblichen Gestaltung einer neuen Wohnung sollte man zuerst einmal zurückhaltend sein. Ist der Raum nämlich in knalligem Rot oder blendendem Gelb gestrichen, müssen die Möbel und alle Gegenstände farblich darauf abgestimmt sein, da sonst eine unruhige oder aggressive Atmosphäre entstehen kann. Weiß gestrichene Wände stehen hingegen zwar in dem Ruf, langweilig zu sein, sie lassen sich aber mit allen Möbeln, Stoffen und Dekorationsgegenständen kombinieren und schaffen so leicht eine gemütliche und für das Auge ansprechende Atmosphäre.",
+      "text": "Text 1: Der Berliner Zoo gehört zu den bekanntesten Tierparks in Deutschland und zieht jedes Jahr Tausende Besucher an. Besonders beliebt sind die Löwen, die im neu gestalteten Gehege leben. Viele Familien kommen am Wochenende, um die Tiere zu beobachten und mehr über ihr Verhalten zu lernen. Der Zoo bietet außerdem regelmäßig Führungen an, bei denen Besucher spannende Informationen über die Löwen und ihre Lebensweise erfahren. Kinder können an speziellen Workshops teilnehmen, in denen sie lernen, wie Löwen in der Wildnis leben und welche Gefahren ihnen drohen. So wird der Besuch für die ganze Familie zu einem besonderen Erlebnis.",
       "correct": 0
     },
     {
-      "text": "Text 3: Ein allgemeingültiger Optimalwert wird von Fachleuten ungern benannt, da kaum ein Wert so hohen natürlichen Schwankungen unterliegt wie die Luftfeuchte. Witterung, Temperaturunterschiede, Wohngewohnheiten – alles sorgt für ständiges Auf und Ab. Als Mittelwert kann 40-60% angenommen werden. Die relative Luftfeuchtigkeit sollte in Wohnräumen nie dauerhaft unter 30% oder über 70% liegen. In den meisten Wohnräumen ist die Luft zu trocken. Die Luftfeuchtigkeit beträgt nur 20%. Besonders Zentralheizungen und Klimaanlagen trocknen die Luft aus und wirbeln Staub, Keime und Schadstoffe auf. Atemwegserkrankungen und Allergien sind oft die Folge. Gegen üble Gerüche und zu hohe Lufttrockenheit helfen am besten Pflanzen. Sie geben Wasserdampf an die Umgebung ab und sorgen für ein gutes Raumklima.",
-      "correct": 1
+      "text": "Text 2: In Südafrika gab es in den letzten Jahren immer wieder Konflikte zwischen Löwen und Menschen. Viele Einheimische hatten große Angst vor den Raubtieren, weil einige Angriffe auf Viehherden stattfanden. Um die Löwenpopulation besser zu schützen und gleichzeitig die Sicherheit der Menschen zu gewährleisten, hat die Regierung beschlossen, große Reservate einzurichten. Diese Schutzgebiete sollen verhindern, dass Löwen aussterben, und gleichzeitig mehr Touristen anziehen. In den Parks werden regelmäßig Ranger eingesetzt, die die Tiere beobachten und dafür sorgen, dass sie in ihrer natürlichen Umgebung ungestört leben können. So hofft man, den Artenschutz langfristig zu sichern.",
+      "correct": 5
     },
     {
-      "text": "Text 4: Frische Kräuter machen jedes Essen zum Genuss. Man braucht keinen großen Garten, um sich für den Eigenbedarf aromatische Gewürzpflanzen selbst ziehen zu können. Die meisten dieser Kräuter gedeihen nämlich auch im Blumentopf auf dem Balkon oder auf der Fensterbank. Dabei sind natürlich solche Pflanzen, die im Freien wachsen können, durch den Einfluss des Sonnenlichts aromatischer als solche, die nur hinter Glas wachsen können. Die Pflanzen im Zimmer brauchen auch mehr Pflege als ihre Kollegen an der frischen Luft. Wegen der Lufttrockenheit in den Wohnungen müssen sie z.B. viel häufiger gegossen werden als Freilandpflanzen, auch sind sie weniger widerstandsfähig gegen Schädlinge und Pflanzenkrankheiten.",
-      "correct": 7
+      "text": "Text 3: In den USA spielt der Tourismus eine wichtige Rolle, besonders in Regionen mit bekannten Zoos. Ein Beispiel ist ein großer Safari-Park, der Besucher aus dem ganzen Land anzieht. Die Löwen sind dort die Hauptattraktion und haben eine besondere Bedeutung für die Tourismusbranche. Studien zeigen, dass viele Reisende ihre Reisepläne extra wegen der Möglichkeit, Löwen aus nächster Nähe zu sehen, ändern. Der Park bietet sogar spezielle Übernachtungspakete in Lodges an, von denen man die Tiere direkt beobachten kann. Für die Region bedeutet das mehr Einnahmen, und für die Besucher wird der Aufenthalt zu einem unvergesslichen Erlebnis.",
+      "correct": 3
     },
     {
-      "text": "Text 5: Bei der Wohnraumgestaltung lässt sich viel erreichen mit der richtigen Auswahl der Zimmerpflanzen. Es müssen nicht nur grünblättrige Gummibäume oder Palmen sein, die einen Raum verschönern – vielfältige Blatt- und Blütenfarben machen selbst trostlos wirkende Räume farbenfroh und fröhlich. So können Blühpflanzen auf der Fensterbank auch im Herbst oder Winter die Bewohner in gute Laune versetzen. Grünpflanzen beruhigen zudem und man fühlt sich beim Anblick der Natur in der eigenen Wohnung einfach ruhiger und ausgeglichener. Bedenken Sie aber: Pflanzen müssen am richtigen Platz stehen, wenn man lange an ihnen Freude haben möchte. Viele Gärtnereien oder Blumengeschäfte bieten daher einen Beratungsservice an.",
+      "text": "Text 4: In einigen asiatischen Ländern investieren wohlhabende Familien viel Geld, um exotische Tiere wie Löwen und Leoparden zu halten. Oftmals besitzen sie riesige Paläste mit privaten Gärten, in denen diese Tiere gehalten werden. Während manche Züchter behaupten, damit einen Beitrag zum Artenschutz zu leisten, kritisieren Tierschutzorganisationen diese Praxis scharf. Sie weisen darauf hin, dass viele Tiere nicht artgerecht gehalten werden und unter dem Mangel an Bewegung und falscher Ernährung leiden. Trotzdem wächst die Nachfrage nach seltenen Tierarten weiter. Diese Entwicklung sorgt immer wieder für Diskussionen zwischen Befürwortern der privaten Zucht und Umweltschützern.",
       "correct": 9
+    },
+    {
+      "text": "Text 5: Die internationale Tierschutzorganisation 'Save the Wildlife' hat kürzlich eine große Informationskampagne gestartet. Ziel ist es, Menschen weltweit über den richtigen Umgang mit Tieren aufzuklären. In mehreren Städten finden Workshops, Vorträge und Ausstellungen statt, in denen Experten erklären, wie Löwen und andere Wildtiere besser geschützt werden können. Außerdem sollen neue Schutzgebiete entstehen, um bedrohten Tierarten langfristig zu helfen. Die Organisation fordert auch eine bessere Ausbildung von Rangern und Tierpflegern, damit die Tiere in freier Wildbahn sicherer leben können. Mit diesen Maßnahmen hofft man, das Bewusstsein der Menschen für den Tierschutz zu stärken.",
+      "correct": 6
     }
   ]
 }

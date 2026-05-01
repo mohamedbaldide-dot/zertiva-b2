@@ -1,39 +1,39 @@
 {
-  "title": "Lesen Teil 1 - Exam 26: Bienen",
+  "title": "Lesen Teil 1 - Exam 26: Spiele",
   "skill": "lesen1",
   "type": "matching",
   "sharedOptions": [
-    "a. Wie aus Tieren Frostschutzmittel gewonnen werden",
-    "b. Genussmittel erhöht die Wahrnehmung bestimmter Wörter",
-    "c. Insektensterben in der kalten Jahreszeit",
-    "d. Pflanzen und Insekten - eine gemeinsame Entwicklung",
-    "e. Koffeinrückstände in landwirtschaftlichen Erzeugnissen",
-    "f. Koffein im Blütennektar verbessert die Gedächtnisleistung",
-    "g. Die bisher ältesten Pflanzensamen entdeckt",
-    "h. Neue Erkenntnisse über das weltweite Bienensterben",
-    "i. Methoden zum Überleben in der kalten Jahreszeit",
-    "j. Wie Kaffee unser Sprachvermögen beeinträchtigt"
+    "a. Alte Spiele stärken das Miteinander",
+    "b. Dinge zum Anfassen bleiben beliebt",
+    "c. Je mehr Spielsachen, desto größer die Kreativität",
+    "d. Kleine Züge mit langer Geschichte",
+    "e. Massenfertigung von Kuscheltieren",
+    "f. Naturgetreue Handarbeit für das Kinderzimmer",
+    "g. Technik-Spielzeug von früher wieder im Handel",
+    "h. Überfluss im Kinderzimmer",
+    "i. Viele Computerspiele kommen schnell aus der Mode",
+    "j. Warum sich Leser von Büchern abwenden"
   ],
   "questions": [
     {
-      "text": "Text 1: Kaffee verleiht neuen Schwung und hebt die Stimmung. Viele Kaffeetrinker schätzen diesen Effekt des Koffeins. Forscher der Ruhr-Universität Bochum haben das Phänomen untersucht und herausgefunden, dass Koffein selektiv das Erkennungsvermögen für positive Begriffe schärft. Die Wahrnehmung von negativen oder neutralen Wörtern verändert der Muntermacher dagegen nicht. Es war bereits vorher bekannt, dass der Mensch beim Lesen emotional positiv besetzte Begriffe besser und schneller erfasst als negative oder neutrale Wörter. Die anregende Wirkung von Koffein auf das Denkvermögen und die Aufmerksamkeit ist durch Studien ebenfalls gut belegt.",
-      "correct": 1
-    },
-    {
-      "text": "Text 2: Ihr Gehirn ist gerade ein Millionstel Mal so groß wie unseres, und doch haben sie ein Verhalten inklusive Sozialleben und Kommunikation entwickelt, über das wir nur staunen können. Sie bestäuben nicht nur viele Pflanzen, sondern haben die Entwicklung dieser Pflanzen erst ermöglicht sowie gegenseitig ihre Evolution vorangetrieben: In Amerika wurde die bisher älteste Biene entdeckt. Sie lag seit 100 Millionen Jahren in Bernstein in Burma, und sie war winzig - 2,95 Millimeter lang, so winzig wie die Blüten, die sie damals bestäubte. Dann wuchsen beide auf ihre heutigen Größen. Fast gleichzeitig wurde das Genom der Honigbiene publiziert.",
-      "correct": 3
-    },
-    {
-      "text": "Text 3: Bienen, die Pollen von Kaffee oder anderen koffeinhaltigen Pflanzen sammeln, kommen dabei so richtig in Fahrt. Wie die amerikanische Fachzeitschrift 'Science' berichtet, erinnern sich Bienen mit der richtigen Dosis Koffein bis zu dreimal länger an den Duft einer Futterpflanze. Das hilft nicht nur den Bienen bei ihrer Suche, sondern auch den Pflanzen. In hoher Konzentration ist Koffein bitter und schreckt Insekten ab. In geringen Dosen scheint er die Bienen aber nicht zu stören, sondern ihnen eher auf die Sprünge zu helfen. Koffein stärkt offensichtlich das Langzeitgedächtnis der Bienen, schlussfolgerten die Forscher aus ihrem Versuch.",
+      "text": "Text 1: Die erste Kösener Puppenfabrik wurde 1912 von Käthe Kruse gegründet. 80 Jahre später übernahm der Unternehmer Helmut Schache die traditionsreiche Spielzeugmanufaktur in Sachsen-Anhalt, seitdem wird sie von seiner Familie geführt. Dort werden noch wie früher Plüschtiere einzeln angefertigt, rund 80.000 jährlich, von der kleinen Maus bis zum 1,65 Meter großen Bären. 'Wir machen keine niedlichen Plüschtiere. Wir versuchen die Tiere so zu gestalten, wie sie in ihrer Umwelt sind', erklärt Helmut Schache. Die Plüschtiere entstehen nicht in Fließbandproduktion, sondern werden einzeln zusammengenäht, manche aus über 100 Teilen. Nur so gelingt es, die charakteristischen Merkmale der Tiere authentisch abzubilden.",
       "correct": 5
     },
     {
-      "text": "Text 4: Es ist ein schwerer Gang im Leben jedes Imkers. Die paar Schritte hin zu seinen Völkern im Frühjahr, wenn an den Fluglöchern eigentlich schon seit Tagen emsiges Treiben herrschen sollte - aber stattdessen nur Stille von einer Tragödie kündet. Ein paar Schritte, bevor der Imker den Deckel von der 'Beute', wie ein Stock in der Fachsprache heißt, nimmt und schließlich Gewissheit über das erlangt, was er längst befürchtet hat: Das ganze Volk - tot. Es ist frustrierend, wenn ein Imker Ende Februar Handvoll um Handvoll vertrockneter Insekten wegschaufeln muss - aber völlig ungewöhnlich ist es nicht. Jahr für Jahr überstehen zwischen zehn und 15 Prozent aller Bienenvölker die Winterruhe zwischen November und Februar nicht.",
-      "correct": 7
+      "text": "Text 2: Die Modelleisenbahn hat auch im Computerzeitalter ihre Anziehungskraft nicht verloren. Bis heute bringt sie die Augen von großen und kleinen Eisenbahnfans zum Leuchten. Doch ihre ersten Erfolge feierte sie schon vor langer Zeit: 1891 rollte die erste Uhrwerkeisenbahn zum Aufziehen über die Gleise, und mit ihr begann der Aufstieg der Firma Märklin zum führenden Hersteller von Spielzeugeisenbahnen. Damals brachte die beginnende Industrialisierung mit ihren neuen Technologien auch für die Spielzeugherstellung neue Impulse. 1895 brachte Märklin die erste dampfbetriebene Bahn auf den Markt. Einige Jahre später entwickelte man daraus die elektrische Modelleisenbahn, wie sie noch immer zu kaufen ist.",
+      "correct": 3
     },
     {
-      "text": "Text 5: Viele Insekten überwintern als Puppe oder Larve. Doch auch 'erwachsene' Fliegen, Bienen und Käfer überleben die eisige Zeit. Wichtig ist die Wahl von geschützten Orten wie Baumritzen, Laubstreu, Höhlen, Dachböden oder Kellern. Honigbienen bilden im Nest eine Traube und wärmen sich gegenseitig durch Muskelzittern. Bei Wespen und Hummeln überwintern nur die Königinnen in Erdlöchern. Sie bauen dann im Frühling neue Staaten auf. Maikäfer überdauern als Engerlinge den Winter, Marienkäfer suchen geschützte Bereiche auf. Viele Insekten unserer Regionen sind 'gefriertolerant'.",
-      "correct": 8
+      "text": "Text 3: Gedruckten Büchern wurde vor einigen Jahren von Experten ein schnelles Ende vorausgesagt. Das papierlose Lesen sei die Zukunft, hieß es. Höchstens als Nischenprodukt könnten Bücher noch existieren. Doch schon wenig später stiegen deren Verkaufszahlen überraschend an. Vieles deutet darauf hin, dass sich Sachen, die man selbst in die Hand nehmen kann, doch nicht so leicht von digitalen Inhalten verdrängen lassen. Zum Beispiel sind Papierkalender nicht aus den Geschäften verschwunden und die Schallplatte findet trotz der Verbreitung von Streaming-Angeboten viele Käufer. Zukunftsforscher erkennen darin sogar einen Trend, nämlich eine Gegenbewegung zur Digitalisierung.",
+      "correct": 1
+    },
+    {
+      "text": "Text 4: Immer neue Spielekonsolen, Spielformate und Apps drängen auf den elektronischen Spielemarkt - und dennoch haben Brettspiele nie an Bedeutung verloren. Die Hersteller vermelden sogar Jahr für Jahr steigende Umsätze. Was aber macht den Zauber des klassischen analogen Brettspiels aus? Wer selbst sein Glück am Würfelbecher versucht, kommt dem Geheimnis schnell auf die Spur: Beim gemeinsamen Spiel genießen die Mitspieler besondere Momente der Zusammengehörigkeit. 'Bei solchen Spielen steht das gemeinsame Erlebnis im Vordergrund: Familie und Freunde kommen an einem Tisch zusammen', erklärt Stefan Wiese vom Naumburger Spieleverlag. Das gute Brettspiel von früher wird auch in Zukunft Anhänger haben.",
+      "correct": 0
+    },
+    {
+      "text": "Text 5: Jahr für Jahr steigt der Umsatz der Spielzeughersteller. Und das ist auch kein Wunder: Denn kaum etwas erfreut Eltern mehr als die leuchtenden Augen der Kinder, wenn sie ein neues Spielzeug bekommen. Und so sind die Schränke und Spielzeugkisten der lieben Kleinen voll mit Puppen, Kuscheltieren und Autos. Doch das hat auch unerwünschte Folgen. Wenn ein Kind zu viel Spielzeug hat, wird sich seine Konzentration verringern. Deshalb verzichten manche Betreuungseinrichtungen, wie zum Beispiel ein Berliner Kindergarten, auf zu viel Spielzeug. Es kommt für die Kinder gar nicht so sehr darauf an, womit sie spielen, sondern vor allem darauf, wie. Das gemeinsame Spielen mit Freunden ist für Kinder sowieso am wichtigsten.",
+      "correct": 7
     }
   ]
 }

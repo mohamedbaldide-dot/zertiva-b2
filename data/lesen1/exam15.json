@@ -1,39 +1,39 @@
 {
-  "title": "Lesen Teil 1 - Exam 15: Kaffee",
+  "title": "Lesen Teil 1 - Exam 15: Programmierer",
   "skill": "lesen1",
   "type": "matching",
   "sharedOptions": [
-    "a. Altes Handwerk und alte Technik anschaulich präsentiert",
-    "b. Attraktive Kleinstadt - touristischer Geheimtipp",
-    "c. Ein altes Kloster als Feuerwache",
-    "d. Eine Universität mit langer Geschichte",
-    "e. Eliteschule für Schriftsteller",
-    "f. Entdeckung und Verbreitung des Kaffees",
-    "g. Kaffee macht die Leute süß",
-    "h. Klösterliche Strenge für berühmte Schüler",
-    "i. Mehr Ziegenmilch dank Energy-Drink",
-    "j. Ohne Kaffee geht hier nichts"
+    "a. Immer mehr Jugendliche werden Programmierer",
+    "b. Automobilindustrie schafft neue Arbeitsplätze",
+    "c. Diskussion über schulische Berufsorientierung",
+    "d. Förderwochenende für junge Softwareentwickler",
+    "e. Frauen in technischen Berufen werden stärker gefördert",
+    "f. Spannende Gewinne für wissenschaftliche Nachwuchstalente",
+    "g. Mehr Bemühungen um weiblichen Nachwuchs gefordert",
+    "h. Verleihung des Jugendnobelpreises in Stockholm",
+    "i. Berufswahl: Jugendliche werden stark von ihrem gesellschaftlichen Umfeld geprägt",
+    "j. Studienabsolventen technischer Fächer sehen ihre Zukunft meist in der Automobilindustrie"
   ],
   "questions": [
     {
-      "text": "Text 1: Das erste Kaffeehaus in Leipzig, 'Zum arabischen Coffee-Baum', öffnete 1685 seine Pforten. Seitdem ist der Kaffee in Sachsen zum beliebten Getränk geworden, das weder zu Hause auf Partys und Feiern noch beim Ausgehen fehlen darf. 'Kaffeesachsen' wurden früher die Bewohner des Landes zwischen Leipzig und polnischer Grenze scherzhaft von den anderen Deutschen genannt. Bevorzugt wird der Kaffee heiß und süß getrunken. Süße Ergänzungen wie Dresdner Stollen oder Leipziger Lerchen, beides traditionell gebackene Kuchenspezialitäten, gehören zum Kaffee wie das Tüpfelchen zum 'i'. Dabei wird das Gebäck auf echt sächsische Art 'gedibbscht', das heißt: Es wird in den Kaffee getunkt, bevor es gegessen wird.",
-      "correct": 9
+      "text": "Text 1: Martina Lux hat ein Hobby, mit dem sie im Kreis ihrer Freundinnen ziemlich allein steht: Sie programmiert in ihrer Freizeit. 'Mich hat immer schon interessiert, wie Computerprogramme eigentlich funktionieren', sagt die 17-Jährige. Außerdem habe sie großen Spaß an logischem Denken. Ihr Informatiklehrer erzählte ihr von einem Workshop in Berlin: Bei 'Jugend programmiert' traf Martina von letztem Freitag bis Sonntag mit gleichgesinnten Jungen und Mädchen zwischen zwölf und 18 Jahren zusammen, um gemeinsam Programme zu entwickeln. Dabei standen ihnen erfahrene Informatiker zur Seite. In 15 Gruppen entwickelten die jungen Nachwuchsprogrammierer ihre Projekte. Eine Jury verlieh Preise in vier Kategorien. Bewertet wurden die originellste Idee, die sauberste Umsetzung, die beste Präsentation und die größte Relevanz für die Gesellschaft.",
+      "correct": 3
     },
     {
-      "text": "Text 2: Eppingen liegt etwa auf halbem Weg zwischen Karlsruhe und Heilbronn im Kraichgau, einer geschichtsträchtigen Region mit wunderschöner Landschaft und bodenständiger Kultur, die von Erholung suchenden Menschenmassen noch nicht überrollt ist. Die Altstadt des Städtchens ist ein einziges Museum: Über 100 Fachwerkhäuser mit ihrem romantisch anmutenden Muster aus braunen Holzbalken und weiß getünchtem Lehm können hier bewundert werden. Die bekanntesten davon sind das 'Baumannsche Haus' (erbaut 1582), heute ein Hotel, und die 'Alte Universität', heute ein Museum. Hier befand sich 1564/1565 die Heidelberger Universität, als in Heidelberg die Pest wütete, hierhin ausgelagert wurde.",
-      "correct": 1
-    },
-    {
-      "text": "Text 3: Das Kloster Maulbronn wurde 1147 von Zisterziensermönchen gegründet. Man sagt, ein Maulesel, den die Mönche auf ihren Wanderungen mitgeführt hatten, solle hier einen Brunnen gefunden haben und man habe daraufhin beschlossen, an dieser Stelle das Kloster zu bauen. Im 16. Jahrhundert wurde es im Verlauf der Reformation säkularisiert und zum Internat umfunktioniert. Heute von der UNESCO zum Weltkulturerbe der Menschheit erhoben, ist das Kloster ein Touristenmagnet. Maulbronn war besonders wegen seiner Klosterschule bekannt, die von namhaften Persönlichkeiten besucht wurde: Johannes Kepler lernte hier Latein und Mathematik, der Schriftsteller Hermann Hesse litt sehr unter der eisernen Disziplin und Härte, die hier herrschte.",
-      "correct": 7
-    },
-    {
-      "text": "Text 4: Auf einer Anhöhe oberhalb des Bodensees liegt, ca. 10 km vom See entfernt in idyllischer ländlicher Umgebung, das ehemalige Zisterzienserkloster Salem. Innerhalb der weitläufigen Klosteranlage aus dem 12. Jahrhundert befinden sich heute mehrere Museen und das gotische Münster. Im Feuerwehrmuseum findet der interessierte Besucher alte Feuerwehrwagen, die noch von Pferden gezogen wurden, alte Geräte, Spritzen und Pumpen sowie mehrere Modellanlagen. Im Weinbaumuseum bekommt man einen Überblick über die Weinproduktion der Bodenseeregion. International bekannt ist jedoch das von Kurt Hahn und dem Prinzen Max von Baden 1920 gegründete Internat Salem.",
-      "correct": 0
-    },
-    {
-      "text": "Text 5: Vermutlich vor fast 900 Jahren, irgendwann im dreizehnten Jahrhundert, sollen die Menschen herausgefunden haben, was es mit dem Kaffee auf sich hat. Eine Legende erzählt von einem jemenitischen Ziegenhirten, dessen Ziegen sich nach dem Genuss der roten Beeren eines bestimmten Strauches merkwürdig lebendig und aufgedreht benommen haben sollen. Im Dorf habe der Dorfgelehrte dann herausgefunden, dass die Früchte, die bisher nur den Ziegen zu viel 'Energie' verholfen hatten, auch beim Menschen ihre Wirkung zeigten. Nach mehreren Experimenten habe man dann herausgefunden, dass die Beeren, wenn man sie trocknet und dann mit heißem Wasser aufkocht, am besten schmecken. Der Kaffee war erfunden.",
+      "text": "Text 2: 'Jugend forscht' ist ein bundesweiter Nachwuchswettbewerb für junge Menschen bis zum Alter von 21 Jahren, bei dem besondere Leistungen in Mathematik, Technik, Naturwissenschaften und Informatik ausgezeichnet werden. Neben Geldpreisen werden auch einige Sonderpreise vergeben, die bei den Jugendlichen ganz besonders begehrt sind. Dazu gehört die Teilnahme an internationalen Wettbewerben, bei denen die jungen Forscher Fachleuten aus aller Welt ihre Projekte vorstellen können. Auch Einladungen zu Studienreisen und Kongressen im Ausland sind für viele Teilnehmer besonders attraktiv. Im Rahmen von 'Jugend forscht' wird sogar eine Reise zur Nobelpreisverleihung in Stockholm angeboten. Im Inland haben die Preisträger die Möglichkeit, ein langes Praktikum an angesehenen Forschungsinstituten und bei wichtigen Unternehmen zu absolvieren.",
       "correct": 5
+    },
+    {
+      "text": "Text 3: Die Industriellenvereinigung beklagt in einer jüngsten Pressemitteilung den deutlichen Mangel an Fachkräften in den Naturwissenschaften und technischen Berufen. Dieser Fachkräftemangel sei besonders ausgeprägt in den Bereichen Maschinenbau, Elektrotechnik, Werkstoffwissenschaften und Verfahrenstechnik. Um dem entgegenzusteuern, ruft die Industriellenvereinigung unter anderem dazu auf, insbesondere Mädchen und junge Frauen für solche Berufe zu gewinnen. Die Berufsorientierung der Schulen muss noch gezielter auf die vielfältigen und interessanten Themenfelder sowie die guten Zukunftschancen technischer Berufe hinweisen. Erfolgreiche Frauen aus diesen Bereichen sollten sich zudem verstärkt als Vorbilder für SchülerInnen präsentieren.",
+      "correct": 6
+    },
+    {
+      "text": "Text 4: Im Kulturzentrum war gestern Abend Tobias Meyer zu Gast. Die Organisatoren hatten den bekannten Autor zahlreicher Sachbücher über Erziehung und Bildung eingeladen, zum Thema Berufsorientierung zu sprechen. In seinem Vortrag ging Meyer auf zwei wesentliche Aspekte von Berufsorientierung ein. Zum einen versteht er Berufsorientierung als eine Entwicklung, die eng mit den persönlichen und sozialen Beziehungen eines jungen Menschen zusammenhängt. Die Orientierung auf einen Beruf hin wertet er als einen Teil der Persönlichkeitsentwicklung. In engem Zusammenhang damit sieht er die Berufsvorbilder, an denen sich Jugendliche orientieren: Diese hängen ebenso wie die Erwartungen, die an einen Beruf gestellt würden, stark von der sozialen Umgebung ab. Zudem spielten lokale wirtschaftliche Umstände eine Rolle.",
+      "correct": 8
+    },
+    {
+      "text": "Text 5: Wie eine repräsentative Umfrage unter Studenten kürzlich zeigte, erfreut sich die Automobilindustrie nach wie vor großer Beliebtheit bei Studierenden der Fachgebiete Wirtschaft und Technik. Gefragt nach den fünf attraktivsten zukünftigen Arbeitgebern, nannten Wirtschaftsstudenten vier führende Automobilkonzerne und eine Internet-Suchmaschine; künftige Ingenieure nannten sogar ausschließlich Automobilunternehmen. Auch für Studenten der Informatik gewinnt die Automobilindustrie zunehmend an Attraktivität - wenig verwunderlich angesichts der rasch zunehmenden Bedeutung, die der Elektronik in Fahrzeugen zukommt. Die Branche punktet bei jungen Absolventen mit vielen spannenden Themen: Wie wird die Mobilität der Zukunft aussehen? Welche alternativen Antriebe wird es geben?",
+      "correct": 9
     }
   ]
 }

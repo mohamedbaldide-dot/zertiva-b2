@@ -1,39 +1,39 @@
 {
-  "title": "Lesen Teil 1 - Exam 20: Bonbons",
+  "title": "Lesen Teil 1 - Exam 20: Umwelt",
   "skill": "lesen1",
   "type": "matching",
   "sharedOptions": [
-    "a. Für unterwegs: Leckereien im Zugrestaurant",
-    "b. In der Stadt der warmen Quellen",
-    "c. Irrtum: Süßes macht doch nicht glücklich",
-    "d. Mitmach-Museum: Bonbons selbst herstellen",
-    "e. Naschen statt wegwerfen",
-    "f. Neues Thermalbad in Rom",
-    "g. Reisen: Die beliebtesten Thermalbäder",
-    "h. Süßwaren mit langer Tradition",
-    "i. Wasser, Wärme, Wellness - antike Badefreuden",
-    "j. Zucker sorgt für Stimmungshoch"
+    "a. Gemeinsam kaputte Geräte retten",
+    "b. Kaufsucht überwinden – diese Möglichkeiten gibt es",
+    "c. Neue Besitzer für nicht mehr gebrauchte Gegenstände",
+    "d. Reparatur alter Haushaltsgeräte lohnt oft nicht",
+    "e. Rücksendungen verderben Online-Händlern das Geschäft",
+    "f. Rücksendungen verringern: Händler hoffen auf Lösungen",
+    "g. Studie zeigt, welche Geschenke glücklich machen",
+    "h. Verein mit Preis für Umweltschutz ausgezeichnet",
+    "i. Volle Einkaufstüten machen nur kurze Zeit Freude",
+    "j. Wer Engagement zeigt, steigert sein Glücksgefühl"
   ],
   "questions": [
     {
-      "text": "Text 1: Bonbons machen Kinder glücklich, und zwar nicht erst seit gestern: Denn diese beliebte Süßigkeit ist viel älter, als man eigentlich vermuten würde. Schon vor über 1.000 Jahren gab es im antiken China, in Griechenland und im Römischen Reich Süßwaren aus Honig, Blüten und Früchten. Wer noch mehr über Bonbons erfahren möchte, sollte einen Ausflug nach Vaihingen an der Enz unternehmen: Dort gibt es nicht nur seit 1828 die Bonbon- und Zuckerwarenfabrik Jung, sondern auch das einzige Bonbon-Museum Deutschlands. Auf 300 Quadratmetern Ausstellungsfläche finden sich Antworten auf viele Fragen. Gezeigt werden auch Bonbondosen, Bonbon-Maschinen und alte Werbemittel.",
-      "correct": 7
-    },
-    {
-      "text": "Text 2: Am Frankfurter Hauptbahnhof können Reisende beim Warten auf den Zug noch schnell einen besonderen Snack genießen. Denn am Bahnhof steht jetzt ein Retomat - ein Automat, in dem abgelaufene Schokoriegel, Chips, Nüsse und andere Leckereien verkauft werden. Das Mindesthaltbarkeitsdatum der Produkte ist in den meisten Fällen fast abgelaufen, daher werden sie günstiger angeboten als im Handel. Auch Getränke hält der Automat bereit. Die Produkte sind überschüssig beziehungsweise stehen kurz vor oder nach dem Ablauf des Mindesthaltbarkeitsdatums, sind aber trotzdem noch gut, erklärt ein Sprecher der Deutschen Bahn.",
-      "correct": 4
-    },
-    {
-      "text": "Text 3: Mehrere Badebecken sowie Räume für Schwitz- und Dampfbäder machten sie zu ganz besonderen Prestigebauten. Doch in den öffentlichen Badehäusern spielte sich auch das gesellschaftliche Leben ab: Dort traf man sich, tauschte sich aus oder verhandelte sogar über Geschäfte. Für viele Menschen im alten Rom gehörte ein Besuch in einer Therme zu den beliebtesten Freizeitaktivitäten. Mit den Jahren wurde die römische Badekultur immer weiterentwickelt und verbreitete sich auch über die Grenzen des Reiches hinaus. Schon im alten Rom wusste man, dass ein Bad im warmen Wasser wohltuend ist und gegen Alltagsstress, Verspannungen und Stimmungstiefs wirkt.",
-      "correct": 8
-    },
-    {
-      "text": "Text 4: Nicht nur in Hollywoodfilmen tröstet man sich bei Liebeskummer mit Pralinen: Der Griff zu Süßigkeiten ist überall weit verbreitet. Viele glauben, dass sie die Stimmung aufhellen, die Konzentration verbessern oder gegen Nachmittagstiefs im Büro helfen. Doch damit liegen sie womöglich falsch. Denn Wissenschaftler haben nun genauer erforscht, wie Zucker auf unser Gemüt wirkt. In ihrer Studie stellten sie praktisch keinen positiven Einfluss des Zuckerkonsums auf die Laune fest - im Gegenteil. Die Idee, dass Zucker die Stimmung heben kann, ist auf der ganzen Welt verbreitet, sagen die Forscher. Unsere Ergebnisse bestätigen solche Annahmen jedoch keineswegs.",
+      "text": "Text 1: Sie sind eine gut funktionierende Gemeinschaft mit einer Vision: Schon seit den 80er Jahren leben Mitglieder des 'Tauschrings Harmsdorf e.V.' vor, wie man nachhaltig mit Ressourcen umgehen kann und dadurch die Umwelt schont. 'Tauschen, nicht wegwerfen!' ist das Motto dieser Initiative – die damals als eine der ersten ihrer Art in Deutschland noch belächelt wurde, heute aber viel Lob und Anerkennung bekommt. Ob Küchengeräte, Bücher oder auch Kleidungsstücke, die man nicht anzieht: Was ungenutzt ist, findet bei jemandem Verwendung, der etwas damit anfangen kann. Getauscht werden nicht nur Güter, sondern auch Dienstleistungen. Eine der Voraussetzungen für das Gelingen: 'Die Dienstleistungen dürfen nicht in Konkurrenz zum Handwerk stehen'.",
       "correct": 2
     },
     {
-      "text": "Text 5: Wellness und der Besuch von Kurorten und Thermalbädern haben seit Jahrhunderten Tradition in Ungarn. Das Land besitzt zwar keinen direkten Zugang zum Meer, aber dafür wimmelt es in diesem Binnenstaat nur so von Thermalquellen. Dabei handelt es sich um Quellen, aus denen Grundwasser austritt, das über 20 Grad warm ist. Dieses Wasser enthält Mineralstoffe, denen eine positive Wirkung auf den Organismus zugeschrieben wird. 123 Thermalquellen finden sich allein in Budapest, das berühmt für seine Bäder ist. Diese Stadt ist damit nicht nur das einzige Kurbad, das zugleich die Hauptstadt eines Landes ist, sondern auch die größte Kurstadt Europas.",
+      "text": "Text 2: 'Man gönnt sich ja sonst nichts.' Und schon ist die Einkaufstüte voll und das Konto leer. Macht das glücklich? Oder wieso sonst kauft man mehr, als man eigentlich geplant hat? 'Ein Einkauf kann sich ähnlich anfühlen wie eine Belohnung', sagt der Psychologe Daniel Stüber. Denn dabei würden Glückshormone ausgeschüttet. Manchmal könne das sogar in einem Kaufrausch enden. Denn das Glücksgefühl, das Konsumenten beim Kaufen erleben, könne sie dazu anregen, immer mehr Geld auszugeben. Doch die Ernüchterung folge oft schnell, warnt Stüber: 'Denn wer später merkt, wie teuer das alles war, schüttet Stresshormone aus.' Dies könne zu Schlafstörungen und schlechter Laune führen.",
+      "correct": 8
+    },
+    {
+      "text": "Text 3: Geklickt, gekauft, zurückgeschickt: Kunden nutzen im Online-Handel gerne die Möglichkeit, Waren innerhalb einer bestimmten Frist kostenlos zurückzusenden. Vor allem im Modehandel steigt die Zahl der Rücksendungen immer weiter an. Oft bestellen Kunden gleich mehrere Modelle in unterschiedlichen Größen, um sie zu Hause in Ruhe anzuprobieren. Die Kosten für die Retouren trägt der Anbieter. Dennoch lohnt sich für die Online-Händler das Geschäft. Rücksendungen werden sich im Online-Handel nie ganz vermeiden lassen, erklärt Birgit Steinkühler vom Bundesverband Online-Handel. Dennoch ist es möglich, dass sich ihre Anzahl in Zukunft senken lässt. 'Dies wünschen natürlich auch die Online-Verkäufer und suchen nach neuen Möglichkeiten.'",
       "correct": 5
+    },
+    {
+      "text": "Text 4: Keine Lust mehr auf die Konsum-Gesellschaft? Dann könnte es ein erster Schritt sein, den Lieblingspulli zu stopfen statt zu entsorgen oder den alten Wecker von Oma noch mal zum Laufen zu bringen. Ob Fahrrad, Fernseher oder Smartphone – man muss bei Defekten nicht gleich alles wegwerfen. In sogenannten Repair-Cafés können defekte Gegenstände unter fachkundiger Anleitung wieder instandgesetzt werden. 'Damit schonen wir die Umwelt und den Geldbeutel', erklärt Thomas Rederitz, Inhaber eines solchen Reparaturcafés. Repair-Cafés verstehen sich als Initiative gegen die Wegwerfmentalität. Da viele Firmen keinen Reparaturservice mehr anbieten, muss vieles aufwendig entsorgt werden. 'Manchmal ist ja nur eine Schraube locker, oder es fehlt ein kleines Bauteil, das leicht ersetzt werden kann.'",
+      "correct": 0
+    },
+    {
+      "text": "Text 5: Viele Menschen sind erstaunlich großzügig: Sie machen anderen gern Geschenke, spenden Geld für gute Zwecke oder opfern Zeit für ehrenamtliche Tätigkeiten. Aber was motiviert sie dazu? Die Wissenschaft liefert ganz unterschiedliche Erklärungsansätze. Eine Erklärung lautet, dass großzügige Menschen auf Gegenseitigkeit hoffen: Wer viel gibt, bekommt auch viel zurück. Eine Studie konnte nun aber zeigen, dass die Antwort vielleicht ganz einfach ist: Großzügigkeit mache eben glücklich. Dies fanden Forscher der Universität Lübeck heraus. Eine Verknüpfung zwischen großzügigem Verhalten und Glücksgefühl zeige sich auch im Gehirn. So aktiviere ein solches Verhalten ein Hirnareal, das eng mit unserem Belohnungszentrum verknüpft ist.",
+      "correct": 9
     }
   ]
 }

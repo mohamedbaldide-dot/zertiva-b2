@@ -1,39 +1,39 @@
 {
-  "title": "Lesen Teil 1 - Exam 37: kein Zeit (التعديل)",
+  "title": "Lesen Teil 1 - Exam 37: Limonade",
   "skill": "lesen1",
   "type": "matching",
   "sharedOptions": [
-    "a. Termindruck schon bei Kindern",
-    "b. Vorsicht vor zweifelhaften Kontaktagenturen!",
-    "c. Liebe fürs Leben muss wachsen",
-    "d. Kinder bleiben immer länger bei den Eltern wohnen",
-    "e. Partnervermittlungen generell empfehlenswert",
-    "f. Aktive Partnersuche gegen das Alleinsein",
-    "g. Probleme bei der Kindererziehung",
-    "h. Partnervermittlung per Telefon",
-    "i. Wenn die Kinder aus dem Haus sind",
-    "j. Zeitprobleme in der Familie"
+    "a. Limonade aus dem Wasserhahn",
+    "b. Limonade ist moderner als Wasser",
+    "c. Sommer bedeutet in Zukunft nicht unbedingt Sonne",
+    "d. Mehr Sauerstoff im Wasser macht müde Menschen fit",
+    "e. Viel Wasser trinken - Gesundheit tanken",
+    "f. Frische Luft macht stark",
+    "g. Die Sonne macht Landwirten Probleme",
+    "h. Sprudel hausgemacht – Zeit des Flaschen-Tragens ist vorbei",
+    "i. Alarm: Nitrat im Regenwasser bedroht die Gesundheit",
+    "j. Vom Regen zum Mineralwasser"
   ],
   "questions": [
     {
-      "text": "Text 1: Die Krüger sind eine ganz normale Familie. Vater Bernd arbeitet 40 Stunden pro Woche in einer Versicherungsagentur, Mutter Yvonne hat einen Teilzeitjob als Arzthelferin. Das Paar hat zwei Kinder. Tom ist neun, Linda ist vier Jahre alt. Nach ihrer Arbeit holt Yvonne die beiden aus der Schule und dem Kindergarten ab. Dann geht sie einkaufen, sie wäscht, putzt und kocht, sie bringt Tom zum Fußballtraining oder Linda zum Turnen. Wenn Bernd abends nach Hause kommt, kontrolliert er noch Hausaufgaben oder besucht seinen alten Vater, der immer öfter seine Hilfe braucht. Bernd Krüger kann sich nicht erinnern, wann er das letzte Buch gelesen hat.",
+      "text": "Text 1: Möchten Sie Kraft, Jugend und Gesundheit aus der Flasche? Dann suchen Sie bei Ihrem nächsten Einkauf im Supermarkt nach Sauerstoff-Mineralwasser. Für den etwas doppelten Preis eines normalen Mineralwassers erhalten Sie dann ein Getränk, von dem die Hersteller versprechen, dass es Ihnen - natürlich nur, wenn Sie es regelmäßig trinken - magische Kräfte verleiht. In einer Umfrage wurden Schülerinnen und Schüler in Bayern nach ihren Erfahrungen mit dem Sauerstoffkraftdrink befragt. Die meisten fanden, dass es nicht anders schmeckt als andere Mineralwässer auch. Das Deutsche Institut für Ernährungsforschung in Potsdam hält es für Unsinn, Wasser mit Sauerstoff anzureichern. Der menschliche Körper nimmt Sauerstoff hauptsächlich über die Atemluft auf, höchstens 0,3 % können auch über den Magen-Darm-Trakt aufgenommen werden. Möchten Sie immer noch Kraft, Jugend und Gesundheit? Dann gehen Sie doch einfach mehr an die frische Luft. Und die ist kostenlos.",
+      "correct": 3
+    },
+    {
+      "text": "Text 2: Wenn es regnet, dann fließt das Regenwasser in den Erdboden, der es wie ein Schwamm aufsaugt. Langsam sickert das Wasser dann in immer tiefere Erdschichten, in denen es gefiltert und gereinigt wird. Aus dem Regenwasser ist Trinkwasser geworden. Schließlich sammelt es sich in einer Schicht aus Sandstein, wo es sich mit älterem Wasser vermischt. Mehrere tausend Jahre lang kann das Trinkwasser so in den Tiefen der Erde ruhen. Durch Brunnen, die bis in die tiefen Sandsteinschichten reichen, kann dann Mineralwasser gewonnen werden. 10,6 Milliarden Liter Mineralwasser sind im letzten Jahr in Deutschland verkauft und getrunken worden. Jedoch gelangt in den letzten Jahrzehnten Nitrat durch übermäßige Düngung in der Landwirtschaft vermehrt in das Trinkwasser und stellt langfristig eine Gesundheitsbedrohung für die Menschen dar.",
       "correct": 9
     },
     {
-      "text": "Text 2: Der Wunsch nach Zweisamkeit hat sich zu einem guten Geschäft entwickelt, denn gerade reiferen Alleinstehenden fällt es oft schwer, neue Partnerschaften herzustellen. Vermittlungsagenturen bieten ihre Dienste im Internet oder in den Tageszeitungen an. Neben vielen seriösen Firmen finden sich auf dem Markt aber auch zahlreiche schwarze Schafe. Bei solchen Anbietern beginnen die Tricks bereits bei den Anzeigen in der Zeitung oder im Netz. Dort stellen Personen angeblich sich selbst vor. Ihre Beschreibung ist direkt auf die Wünsche älterer Singles zugeschnitten, oft genug auch schon mit ansprechendem 'Originalfoto'.",
-      "correct": 1
-    },
-    {
-      "text": "Text 3: Wie entsteht eine langfristige Beziehung? Was viele nicht wissen: Die Partnerschaft verläuft in Phasen. Fast jede Liebe beginnt mit einer Hochphase der Verliebtheit. Ist diese Phase vorbei, folgt eine Phase des satten Glücks, in der beide den Wunsch haben, mit diesem Menschen ein ganzes Leben zu verbringen. Fast alle Paare erleben danach eine Zeit, in der der Alltag eintritt. Man ist gezwungen, sich in einem realistischeren Licht zu sehen. In der Folge entstehen Stress- und Streitphasen, die darum gehen, die Bedingungen des Zusammenlebens festzulegen. Lösungen für Partnerschaft und Beruf zu finden.",
+      "text": "Text 3: Nach den Unwettern der letzten Sommer sprechen Meteorologen in ganz Europa davon, dass sich das Klima weltweit dramatisch verändert. Stabile Sommer mit Sonnenschein pur von Juni bis August sollen selbst am Mittelmeer in Zukunft passé sein. Die durch Treibhausgase aufgeheizte Atmosphäre hat sich erwärmt, mehr Wasser verdunstet durch die höheren Temperaturen aus den Ozeanen und prasselt in extrem starken Unwettern mit Donner, Blitz und Hagel auf die Erde. Dort kann die Erde nicht mehr solche Mengen Wassers aufnehmen, wie in kürzester Zeit fallen. Die Folge davon sind Überschwemmungen. Kurze Sonnenscheinperioden werden sich mit Unwetterfronten abwechseln. Dies wird vielen Menschen den Badespaß an den Stränden nicht nur des Mittelmeeres gründlich verderben.",
       "correct": 2
     },
     {
-      "text": "Text 4: Knapp 13 Millionen Single-Haushalte - d.h. Haushalte von Alleinlebenden - gibt es in Deutschland, und das meist unfreiwillig. Fast jeder, der alleine lebt, wünscht sich den richtigen Partner. Doch wie und wo ist er oder sie zu finden? Glückliche Zweisamkeit - davon träumen die meisten Singles. Oftmals stecken Singles in einer schwierigen Situation: Wer lange allein gelebt hat, wünscht sich zwar eine feste Bindung, gleichzeitig wächst aber auch die Angst davor. Dieses Wechselbad aus Wollen und Vorsichtig-Sein macht die Sache immer schwieriger - und nicht selten vergehen so die Jahre des Alleinseins.",
-      "correct": 5
+      "text": "Text 4: Wozu noch Kästen mit Mineralwasserflaschen nach Hause schleppen, wenn es sich doch bequem zu Hause zubereiten lässt. Tatsächlich ist das Leitungswasser, das aus den Wasserhähnen in deutschen Wohnungen fließt, von guter bis sehr guter Qualität. Einzig das Prickeln auf der Zunge, das durch das Hinzufügen von Kohlensäure in viele Mineralwässer entsteht, fehlt bei dem Leitungswasser. Doch auch hier gibt es bereits eine preiswerte Möglichkeit, dies selbst zu tun: mit einer Sodamaschine. Damit lassen sich Sprudel und Limonaden selbst herstellen, ganz nach dem individuellen Geschmack des Nutzers: mal mit mehr, mal mit weniger Prickeln, mal süßer, mal fruchtiger. Und das Wasser kommt wie von selbst ins Haus, das Tragen und Stapeln von Getränkekästen ist für den cleveren Selbsthersteller Vergangenheit.",
+      "correct": 7
     },
     {
-      "text": "Text 5: Nach dem Abitur, zum Studium oder weil der Zeitpunkt einfach gekommen ist: Wenn die Kinder ausziehen, verändert sich viel, auch für die Eltern. Neben der Freude, endlich wieder Zeit und Raum für sich zu haben, entsteht auch eine Leere, die es nun zu füllen gilt. Erika Paxmann hat drei Kinder. Zwei ihrer Kinder sind schon ausgezogen, innerhalb von vier Monaten. Zurück blieben die Eltern und die 14-jährige Alina. Noch während die Kinder zu Hause wohnten, hat Erika Paxmann sich beruflich weitergebildet und sich neue Aufgaben gesucht. Trotzdem war sie traurig, als die Kinder auszogen.",
-      "correct": 8
+      "text": "Text 5: 'Wasser ist zum Waschen da' lautete ein deutscher Schlager Mitte der 1950er, in dem es weiter hieß: 'Auch zum Zähneputzen kann man es benutzen.' Wasser zu trinken schien damals manchen Leuten nicht in die neue Wohlstandswelt zu passen. Süße Limonaden galten als besser als einfach nur Wasser. Dabei raten heute die meisten Ärzte zum Wassertrinken: 'Trinken Sie täglich mindestens 2,5 Liter davon', steht auch in nahezu allen medizinischen Ratgebern von heute. Mineralwasser hat durch seine mineralischen Inhaltsstoffe Natrium, Kalium, Magnesium, Kalzium und Spurenelemente für den menschlichen Körper viele Vorteile: Es gleicht den Mineral- und Flüssigkeitsverlust beim Schwitzen aus, es fördert die Verdauung - und das alles ohne Zucker und Kalorien.",
+      "correct": 4
     }
   ]
 }

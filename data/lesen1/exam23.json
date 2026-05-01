@@ -1,39 +1,39 @@
 {
-  "title": "Lesen Teil 1 - Exam 23: Licht (التعديل)",
+  "title": "Lesen Teil 1 - Exam 23: Kartoffel",
   "skill": "lesen1",
   "type": "matching",
   "sharedOptions": [
-    "a. Der Wald als neues Zuhause",
-    "b. Die Auswirkungen künstlichen Lichts",
-    "c. Landbewohner fordern besseren öffentlichen Nahverkehr",
-    "d. Plötzlich geht das Licht aus - was tun bei Stromausfall?",
-    "e. Stadtbewohner entdecken das Landleben",
-    "f. Stadtbewohner leben umweltfreundlicher",
-    "g. Trend: Großstädter machen Urlaub im Wald",
-    "h. Warum Licht für unser Wohlbefinden wichtig ist",
-    "i. Was tun, wenn es Nacht wird? Lichtquellen vergangener Zeiten",
-    "j. Wohnungsnot in Metropolen"
+    "a. Das ideale Gemüse für schwer Arbeitende",
+    "b. Ein schlankes Gemüse für schlanke Leute",
+    "c. Gesunde Ernährung mit Aloe Vera",
+    "d. Gesundes Leben schützt vor Zivilisationskrankheiten",
+    "e. Gesundheitsrisiken durch fettreiche Ernährung",
+    "f. Kartoffelrezepte als Zeitungsbeilage",
+    "g. Pflanzliche Kosmetik für gesunde Haut",
+    "h. Tolle Figur durch ausgewogene Ernährung",
+    "i. Von der Wildpflanze zum international geschätzten Nahrungsmittel",
+    "j. WHO untersucht Zusammenhang von Krebs und Herzinfarkt"
   ],
   "questions": [
     {
-      "text": "Text 1: Heute machen die elektrische Beleuchtung in Wohnhäusern, Straßenlaternen, Ampeln, Neonreklamen und Scheinwerferlicht im Freien die Nacht fast zum Tag. Vor der Erfindung der Elektrizität war das anders: Der Arbeitstag der Menschen richtete sich nach den Jahreszeiten und dem Tageslicht. Gearbeitet wurde von Sonnenaufgang bis Sonnenuntergang. Danach war Beleuchtung nur mit Hilfsmitteln wie Feuer, Kerzen oder Petroleum möglich. Das Museum für Dorfkultur in Weinheim zeigt in einer Sonderausstellung, wie sich das Landleben früher nach Einbruch der Dunkelheit gestaltete. Anhand der Hausarbeit erfährt man, wie mühsam es war, das Feuer ständig am Brennen zu halten.",
-      "correct": 8
+      "text": "Text 1: Über zehntausend wissenschaftliche Studien wurden in den vergangenen Jahren im Auftrag der Weltgesundheitsorganisation WHO durchgeführt, um herauszufinden, warum manche Menschen erheblich seltener an lebensgefährlichen Krankheiten wie Krebs oder Herzinfarkt erkranken als andere. Die Zahl dieser Erkrankungen hat nämlich in den Industriestaaten inzwischen einen traurigen Höhepunkt erreicht. Die Forscher fanden heraus, dass mit wenigen Tricks viele Menschen gesünder leben und damit ihr Leben verlängern könnten. Das Risiko eines Herzinfarkts kann man zum Beispiel durch den täglichen Verzehr eines Apfels und tägliches zwanzigminütiges Radfahren erheblich reduzieren. Die Entstehung von Krebs hemmt zum Beispiel der tägliche Genuss eines Löffels reinen Olivenöls oder eine große Tasse grünen Tees.",
+      "correct": 3
     },
     {
-      "text": "Text 2: Jahrelang zog es vor allem junge Berufstätige in die großen Städte. Dort fanden sie mehr Arbeitsplätze und ein vielfältigeres Freizeitangebot. Auf dem Land hingegen verschlechterte sich der öffentliche Nahverkehr, Schulen wurden geschlossen, Geschäfte gaben auf. Doch seit einiger Zeit beobachten Forscher eine gegenläufige Entwicklung: Immer mehr Menschen verlassen die Metropolen und ziehen zurück in ländliche Regionen. Sie schätzen die Ruhe, die Nähe zur Natur, die Hilfsbereitschaft der Nachbarn und die niedrigeren Mieten. So erlebt das Landleben eine Renaissance, während die Städte aufgrund der wachsenden Bevölkerung unter Wohnungsknappheit leiden.",
-      "correct": 4
+      "text": "Text 2: Am Mittelmeer und in Mexiko wächst die Aloe-Vera-Pflanze, der in der heutigen Naturmedizin eine wachsende Rolle zukommt. Durch die dickfleischigen Blätter dieser Pflanze ist für Schädlinge kein Hindurchkommen, deshalb kann sie in Plantagen ohne chemische Schutzmittel angebaut werden. Unter der dicken Haut der Pflanze befindet sich eine gelartige Flüssigkeit, deren Aufgabe darin besteht, Wasser möglichst lange zu speichern - schließlich ist die Pflanze in extrem trockenen Landschaften beheimatet. Dieses Gel ist sehr vitamin- und mineralstoffreich. In der Wundheilung ist Aloegel sehr effektiv. Kosmetisch wird es für Cremes benutzt, die Hauterkrankungen und leichte Verbrennungen wie zum Beispiel Sonnenbrand lindern, Feuchtigkeit spenden und die Haut straffen.",
+      "correct": 6
     },
     {
-      "text": "Text 3: Satellitenbilder der Erde bei Nacht zeigen ein strahlendes Lichtermeer, das sich fast durchgehend über alle Erdteile erstreckt. Seit der Erfindung der Glühbirne steht Licht für Wohlstand und Fortschritt. Die Städte sind nachts hell erleuchtet - nicht immer zum Vorteil von Mensch und Umwelt. Denn zu viel Licht hat Folgen für Menschen und Tiere. An Straßenlaternen verenden jedes Jahr Milliarden von Insekten, Zugvögel verlieren die Orientierung, und selbst der Mensch wird durch das Kunstlicht um einen gesunden Schlaf gebracht. Wissenschaftler sprechen bereits von einer massiven 'Lichtverschmutzung'.",
-      "correct": 1
-    },
-    {
-      "text": "Text 4: Vor zehn Jahren lebten Dirk und Antje Seebens noch in Mannheim, mitten in der Stadt. Dann kauften sie sich ein Wochenendhaus im Wald. Als Antje es zufällig entdeckte, war sie sofort begeistert. 'Plötzlich hatten wir einen eigenen Ort gefunden, an dem wir am Wochenende dem Stadtleben entfliehen konnten', erinnert sich Dirk. Besonders gefiel ihnen, dass es dort weder Strom noch fließendes Wasser gab. Das war für sie ein Abenteuer. Heute verbringen sie dort so viel Zeit wie möglich. Im Laufe der Jahre bauten sie das Haus um. Das Dach liefert Strom, eingesammelt durch eine Solaranlage. Die Brunnen auf dem Grundstück versorgen sie mit Wasser.",
+      "text": "Text 3: Eine der ältesten bekannten Gemüsesorten ist der Spargel. Schon vor 5000 Jahren war er bei den Chinesen bekannt. Geschätzt wurde er vor allem in der Medizin als Herzschutzmittel und zur Stärkung der körpereigenen Abwehrkräfte: Spargel hält gesund. Heute schätzen wir am Spargel besonders, dass er nicht dick macht. Die körperlich hart arbeitende Bevölkerung früherer Zeiten schätzte ihn deshalb nicht sehr, weil er kaum Energie lieferte. Im Südwesten Deutschlands wächst der Spargel von Mitte April bis zum Johannistag, dem 24. Juni. Besonders rund um Mainz, Darmstadt, Heidelberg, Bruchsal und in der Pfalz erntet man das stangenförmige Gemüse.",
       "correct": 0
     },
     {
-      "text": "Text 5: Wer verbringt nicht gerne sein Wochenende fernab der Stadt? Im Grünen, wo es noch Wiesen und Schmetterlinge gibt und weder Staus noch Lärm. Viele zieht es gleich ganz aufs Land. Doch dort braucht man meist ein Auto. Wer nicht im Home-Office arbeiten kann, wird zum Pendler. Hinzu kommt, dass es in vielen Dörfern kaum noch Einkaufsmöglichkeiten oder Schulen gibt und der öffentliche Nahverkehr so schlecht ist, dass die Bewohner nicht ohne PKW auskommen können. Forscher haben errechnet, dass wir bis zu 87 Prozent der Emissionen aus unserer Alltagsmobilität einsparen können, wenn wir in verkehrstechnisch günstiger Lage wohnen.",
-      "correct": 5
+      "text": "Text 4: Schlank sein ist 'in'. Deshalb versuchen Millionen Menschen nicht nur in Deutschland immer wieder ihre Pfunde loszuwerden. Und so purzeln sie von einer Diät zur nächsten, immer mit dem gleichen Erfolg: Nach dem Abnehmen nehmen sie genauso schnell wieder zu. Und bei vielen kommt mit dem Gewichtsverlust die Krankheit, denn die meisten Diäten sind sehr einseitig und entziehen dem Körper viele für sein Wohlbefinden wichtige Nährstoffe. Hier setzt eine neue Theorie an: Sie unterscheidet Nahrungsmittel in Fetthorter, die Fett im Körper speichern, und Fettburner, die dem Körper helfen, zu viel Fett und damit Kilos zu verwerten. Frisches Gemüse, Obst, Fisch und Geflügel versorgen den Körper mit Energie und helfen ihm dabei, die Nahrungsstoffe optimal zu verwerten.",
+      "correct": 7
+    },
+    {
+      "text": "Text 5: Als typisch deutsch gilt sie, doch rund um den Globus ist sie eines der Basislebensmittel schlechthin. In Österreich nennt man sie Erdapfel, an der Mosel heißt sie Grumbeere. Gemeint ist die überaus populäre Kartoffel. Hunderte verschiedener Sorten gibt es auf der Welt, doch ihr Ursprung liegt in Südamerika. Präkolumbianische Kulturen begannen damit, die bis dahin wild wachsende Urform der Kartoffel systematisch anzubauen. Die englischen Seehelden Sir Francis Drake und Sir Walter Raleigh sollen sie im 16. Jahrhundert nach Europa mitgebracht haben. Etwa zur gleichen Zeit wurde sie in Spanien und Portugal bekannt. Dennoch ist das Klischee von der 'deutschen' Kartoffel nicht ganz falsch, denn zu vielen traditionellen Gerichten wird die Knolle gekocht oder in der Form von Bratkartoffeln, Kartoffelknödeln oder Pommes frites als Beilage gereicht.",
+      "correct": 8
     }
   ]
 }

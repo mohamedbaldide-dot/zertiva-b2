@@ -1,39 +1,39 @@
 {
-  "title": "Lesen Teil 1 - Exam 33: Alpen (التعديل 2)",
+  "title": "Lesen Teil 1 - Exam 33: Suchtmittel - Nase",
   "skill": "lesen1",
   "type": "matching",
   "sharedOptions": [
-    "a. Zum Leistungssport in die Berge",
-    "b. Zigaretten gegen Alleinsein",
-    "c. Vereine wirken positiv auf Jugendliche",
-    "d. Studenten engagieren sich gegen das Rauchen",
-    "e. Mädchen geben mehr Geld für Zigaretten aus als Jungen",
-    "f. Lehrer berichten von ihren Erfahrungen mit dem Rauchen",
-    "g. Höhenluft fördert die Gesundheit",
-    "h. Hochgebirge als Skiparadies",
-    "i. Freizeitsport in den Alpen",
-    "j. Alkohol- und Rauchverbot in Sportvereinen"
+    "a. Doping für Drogenspürhunde",
+    "b. Durch den Geruchssinn die Welt neu erfahren",
+    "c. Elefanten mit dem feinsten Näschen",
+    "d. Erst schmecken, dann riechen",
+    "e. Mit vierbeinigen Spürnasen gegen den Drogenschmuggel",
+    "f. Nasenkorrektur für jedermann",
+    "g. Neue Therapie für Allergikernasen",
+    "h. Schönheitsoperationen nicht um jeden Preis",
+    "i. Selbstreinigung für unser Riechorgan",
+    "j. Tierische Riechorgane - unterschiedlich ausgeprägt"
   ],
   "questions": [
     {
-      "text": "Text 1: Seit einigen Jahren schon gibt es das bundesweite Projekt 'Aufklärung gegen Tabak'. Ins Leben gerufen hat es ein Medizinstudent. Mittlerweile machen rund 500 Studenten in 23 deutschen Städten mit Schülern der sechsten bis achten Klasse die Gefahren des Rauchens auf. 'Unser Ziel ist es, die Kinder möglichst früh anzusprechen und präventiv zu arbeiten', erklärt Alisha Haney, die im vierten Semester in Heidelberg Medizin studiert. 'Dabei ist es auch hilfreich, dass wir Studenten den Kindern auf Augenhöhe sind und nicht wie alte Lehrer. Da wir selbst noch so jung sind, verstehen wir leichter Gespräche auf Augenhöhe.'",
-      "correct": 3
+      "text": "Text 1: Wie wollen wir von anderen gesehen werden? Von unserer Schokoladenseite natürlich. Aber es gibt Menschen, die haben keine. Eine Frau mit schiefer Nase mag sich weder im Profil noch frontal zeigen. 'Die Nase', so der plastische Chirurg Professor Henrik Menke, 'sitzt mitten im Gesicht - so banal das klingt. Zu große Abweichungen von der Norm beeinträchtigen den ganzen Menschen'. Der Chirurg, der eine Abteilung für ästhetische Chirurgie leitet, lehnt es ab, am Mängelwesen Mensch alles chirurgisch Machbare auszuführen. Keinem unter 18 würde er die Nase operieren - es sei denn, sie ist durch einen Unfall oder eine Krankheit verunstaltet. 'Wenn ich die Probleme nachvollziehen kann, die junge Leute mit ihrer Nase haben, werde ich in allen Details mit den Patienten besprechen, was getan werden kann, lehne es aber ab, mit Videoanimation zu arbeiten.'",
+      "correct": 7
     },
     {
-      "text": "Text 2: Urlaub in den Bergen ist sehr gesund. Das fanden jetzt Wissenschaftler am Anatomischen Zentrum der Universität Köln heraus. Besonders die Höhenlagen um die 2.000 Meter wirken sich messbar positiv auf die Gesundheit aus. Die 'dünnere Luft' in Hochgebirgslagen bewirkt eine Senkung des Blutdrucks und des Pulsschlages, eine verbesserte Leistungsfähigkeit des Herzens und damit eine Stärkung der Funktion von Herz, Lunge und Kreislauf. Wichtig sei es aber, in den ersten Tagen auf eine ausreichende Akklimatisierung zu achten. Denn etwa eine Woche benötigt der Körper, um sich an die neuen klimatischen Bedingungen im Gebirge anzupassen.",
-      "correct": 6
+      "text": "Text 2: Der Riechsinn ist unser ursprünglichster Sinn - sagt Matthias Schenk vom Schloss Freudenberg. Wer ihn schärfen will, ist im dort untergebrachten 'Erfahrungsfeld der Sinne' an der richtigen Adresse. 'Es entsteht eine neue Welt, sogar ein ganz neuer Kosmos, wenn man sich mit der Nase beschäftigt', weiß Matthias Schenk. Sein 'Erfahrungsfeld der Sinne' wird täglich von rund 400 Gästen besucht. An 140 Stationen lässt es sich bewusst fühlen, hören, sehen, riechen und schmecken. Der Nase kommt eine zentrale Rolle zu. Schließlich, so Schenk, sei der Geruchssinn gehirngeschichtlich der älteste Sinn. 'Er ist ein Ur-Sinn, der uns mit allen Tieren verbindet'.",
+      "correct": 1
     },
     {
-      "text": "Text 3: Schlechte Haut, übler Atem, leere Brieftasche. Das ist eigentlich ziemlich 'uncool'. Und doch dauert es ziemlich lange, bis junge Raucher begriffen haben, dass Rauchen nicht hält, was viele Jugendliche in ihrer Phantasie damit verbinden: Freiheit und Attraktivität - der Glimmstängel macht 'cool' und begehrenswert. Stress und Leistungsdruck verschwinden angeblich, sobald man nur an der Zigarette zieht. Doch das Gegenteil ist der Fall: Die zuerst genannten Negativfolgen stellen sich oft schneller ein als gedacht. Häufig ist es aber dann schon zu spät, denn das Entwöhnen von der Sucht ist ein langwieriger und oft auch schmerzhafter Weg.",
+      "text": "Text 3: Mit Drogen kennt sich Falko aus. Der sechs Jahre alte Schäferhund sucht für den Zoll nach Kokain, Haschisch und Heroin. Bis zu vier Kofferladungen, meist aus Südamerika, Afrika und Südostasien, beschnüffelt der Vierbeiner am Tag. Rund 300 Mal in der Minute atmet er dabei ein und aus - ein wahrer Nasenmarathon. Hunde riechen bis zu eine Million Mal besser als Menschen. Hat der Mensch fünf Millionen Riechzellen, so sind es bei einem Schäferhund 220 Millionen. Grundsätzlich gilt: Je länger die Hundeschnauze, desto besser das Geruchsvermögen. Schnüffler wie Falko können 'stereo' riechen, das heißt, ihre Nase kann zwischen rechts und links unterscheiden. Spürhunde erkennen deshalb auch die Richtung eines Geruchs.",
       "correct": 4
     },
     {
-      "text": "Text 4: Sport im Hochgebirge? Da denkt man zuallererst an Wintersport: Skifahren, Rodeln, Eislaufen. Doch auch im Sommer ist das Hochgebirge ein Ort, an dem man sich vielfältig sportlich betätigen kann: Wandern, Klettern oder Schwimmen in einem der zahlreichen kristallklaren Bergseen erfreuen sich großer Beliebtheit bei Jung und Alt. In Deutschland ist Hochgebirgssport vor allem in den Alpenregionen im südlichen Bayern möglich. Es muss jedoch nicht unbedingt gleich Deutschlands höchster Berg - die Zugspitze - sein, die man als Ziel ansteuert. Auch rund um Oberstdorf, Füssen, Berchtesgaden oder rund um den Tegernsee bieten sich viele Möglichkeiten.",
-      "correct": 8
+      "text": "Text 4: Beim Menschen ist das Sehen der Sinn Nummer eins, gefolgt vom Hören und an dritter Stelle dem Riechen. Ganz anders sieht es bei vielen Tieren aus, zum Beispiel bei Hunden. 'Ein Hund, der nicht sehen kann, ist wie ein Mensch ohne Geruch - das ist nicht schön, aber auch nicht dramatisch', sagt Ralf Spangenberg, Tierarzt aus Ingelheim. Zum Vergleich: Während die Riechschleimhaut des Menschen rund fünf Quadratzentimeter misst, bringt es der Hund auf 85 Quadratzentimeter und mehr. 'Hunde sind Riechweltmeister', bringt es der Tierarzt auf den Punkt. Nicht die beste, dafür die längste Nase der Welt hat der Elefant. 'Das Riechen ist allerdings Nebensache - beim Elefanten ist die Nase zum Werkzeug geworden'. Er kann damit Baumstämme umschlingen und schleppen, die Nase kann als Rüsseldusche genutzt werden.",
+      "correct": 9
     },
     {
-      "text": "Text 5: Sportvereine spielen eine immer wichtigere soziale Rolle für junge Leute in Deutschland. Das haben neueste Untersuchungen ans Licht gebracht. Ging man früher in einen Sportverein, um Fußball zu spielen, zu reiten oder zu turnen, geben die Clubs heute vielen Jugendlichen ein zweites Zuhause. Hier treffen sich Freunde, hier kümmert sich jemand um sie, hier haben sie eine Aufgabe. Zuhause fühlen sie sich einsam und überflüssig. Die Eltern arbeiten und sind nicht da, die Kommunikation mit dem Fernseher oder dem Computer ist eine recht einseitige Angelegenheit. Jugendliche, die in Sportvereinen Mitglied sind, sind geselliger, werden weniger gewalttätig, leben gesundheitsbewusster, rauchen deutlich weniger.",
-      "correct": 2
+      "text": "Text 5: Niesen ist eine Reaktion auf die Umwelt. Mal kitzelt Staub die Nase, mal reizt ein chemischer Stoff oder ein anderer Fremdkörper in der Luft unser Riechorgan. Sogar grelles Licht kann durch die Verbindung der Gesichtsnerven zum Niesen führen. Unwillkürlich wird ein Reflex ausgelöst, der die Nase 'säubern' soll. Es kommt zu einem explosionsartigen Ausstoßen der Luft durch die Nase - dem Niesen. Allergiker niesen oft serienweise, bis der letzte Reiz aus der Nase entfernt ist. Auf die Reizmeldung hin holt der Körper tief Luft - bis die Lungen maximal gefüllt sind. Dann wird der Atem kurz angehalten. Und schließlich stößt der Körper in Sekundenschnelle die eingeatmete Luft wieder aus.",
+      "correct": 8
     }
   ]
 }

@@ -1,39 +1,39 @@
 {
-  "title": "Lesen Teil 1 - Exam 40: Limonade (التعديل 2)",
+  "title": "Lesen Teil 1 - Exam 40: Auf dem Weg",
   "skill": "lesen1",
   "type": "matching",
   "sharedOptions": [
-    "a. Vom Regen zum Mineralwasser",
-    "b. Viel Wasser trinken - Gesundheit tanken",
-    "c. Sprudel hausgemacht – Zeit des Flaschen-Tragens ist vorbei",
-    "d. Sommer bedeutet in Zukunft nicht unbedingt Sonne",
-    "e. Mehr Sauerstoff im Sprudel macht fit",
-    "f. Limonade aus dem Wasserhahn",
-    "g. Limonade - als modernes Kultgetränk wieder im Trend",
-    "h. Frische Luft als wahre Energiequelle",
-    "i. Die Sonne macht Landwirten Probleme",
-    "j. Alarm: Nitrat im Regenwasser bedroht die Gesundheit"
+    "a. Auf dem Weg zu internationalen Wettkämpfen",
+    "b. Durch Wassergymnastik Verspannungen lösen",
+    "c. Ein tierischer Lernspaß für alle",
+    "d. Fit und gesund auch nach der Pensionierung",
+    "e. Gefahren beim Tauchen",
+    "f. Mit dem eigenen Pferd zu Olympia",
+    "g. Muskeln wie ein Gewichtheber",
+    "h. Neueröffnetes Internat für junge Sporttaucher",
+    "i. Schlank, fit und glücklich im Flug",
+    "j. Sport treiben wie ein Fisch unter Wasser"
   ],
   "questions": [
     {
-      "text": "Text 1: Möchten Sie Kraft, Jugend und Gesundheit aus der Flasche? Dann suchen Sie bei Ihrem nächsten Einkauf im Supermarkt nach Sauerstoff-Mineralwasser. Für den etwas doppelten Preis eines normalen Mineralwassers erhalten Sie dann ein Getränk, von dem die Hersteller versprechen, dass es Ihnen - natürlich nur, wenn Sie es regelmäßig trinken - magische Kräfte verleiht. In einer Umfrage wurden Schülerinnen und Schüler in Bayern nach ihren Erfahrungen mit dem Sauerstoffkraftdrink befragt. Die meisten fanden, dass es nicht anders schmeckt als andere Mineralwässer auch. Das Deutsche Institut für Ernährungsforschung in Potsdam hält es für Unsinn, Wasser mit Sauerstoff anzureichern.",
-      "correct": 4
-    },
-    {
-      "text": "Text 2: Wenn es regnet, dann fließt das Regenwasser in den Erdboden, der es wie ein Schwamm aufsaugt. Langsam sickert das Wasser dann in immer tiefere Erdschichten, in denen es gefiltert und gereinigt wird. Aus dem Regenwasser ist Trinkwasser geworden. Schließlich sammelt es sich in einer Schicht aus Sandstein, wo es sich mit älterem Wasser vermischt. Mehrere tausend Jahre lang kann das Trinkwasser so in den Tiefen der Erde ruhen. Durch Brunnen, die bis in die tiefen Sandsteinschichten reichen, kann dann Mineralwasser gewonnen werden. Jedoch gelangt in den letzten Jahrzehnten Nitrat durch übermäßige Düngung in der Landwirtschaft vermehrt in das Trinkwasser.",
-      "correct": 0
-    },
-    {
-      "text": "Text 3: Nach den Unwettern der letzten Sommer sprechen Meteorologen in ganz Europa davon, dass sich das Klima weltweit dramatisch verändert. Stabile Sommer mit Sonnenschein pur von Juni bis August sollen selbst am Mittelmeer in Zukunft passé sein. Die durch Treibhausgase aufgeheizte Atmosphäre hat sich erwärmt, mehr Wasser verdunstet durch die höheren Temperaturen aus den Ozeanen und prasselt in extrem starken Unwettern mit Donner, Blitz und Hagel auf die Erde. Dort kann die Erde nicht mehr solche Mengen Wassers aufnehmen, wie in kürzester Zeit fallen. Die Folge davon sind Überschwemmungen. Kurze Sonnenscheinperioden werden sich mit Unwetterfronten abwechseln.",
-      "correct": 3
-    },
-    {
-      "text": "Text 4: Wozu noch Kästen mit Mineralwasserflaschen nach Hause schleppen, wenn es sich doch bequem zu Hause zubereiten lässt. Tatsächlich ist das Leitungswasser, das aus den Wasserhähnen in deutschen Wohnungen fließt, von guter bis sehr guter Qualität. Einzig das Prickeln auf der Zunge, das durch das Hinzufügen von Kohlensäure in viele Mineralwässer entsteht, fehlt bei dem Leitungswasser. Doch auch hier gibt es bereits eine preiswerte Möglichkeit, dies selbst zu tun: mit einer Sodamaschine. Damit lassen sich Sprudel und Limonaden selbst herstellen, ganz nach dem individuellen Geschmack des Nutzers: mal mit mehr, mal mit weniger Prickeln, mal süßer, mal fruchtiger.",
+      "text": "Text 1: Wir bieten Bewegungsförderung mit und auf Pferden zur Stärkung der körperlichen und geistigen Fitness. Ponys und Pferde stehen im Mittelpunkt dieses Programms. Sie zu beobachten, füttern, streicheln, putzen, führen oder reiten zu können, übt auf Teenies eine große Faszination aus. Spielerisch werden sie in Kontakt mit unseren Tieren gebracht und haben dann vielfältige Möglichkeiten, unter Anleitung Aufgaben für, mit oder auf den Pferden durchzuführen. Zudem können sie auf dem Gelände der Ranch weitere ungewohnte Bewegungs- und Wahrnehmungserfahrungen sammeln, z.B. auf dem Erlebnis-Parcours. Die Betreuung erfolgt durch einen Reitlehrer und qualifiziertes Personal. Unsere Sattel- und Kleiderkammer verfügt über alle notwendigen Utensilien.",
       "correct": 2
     },
     {
-      "text": "Text 5: 'Wasser ist zum Waschen da' lautete ein deutscher Schlager Mitte der 1950er, in dem es weiter hieß: 'Auch zum Zähneputzen kann man es benutzen.' Wasser zu trinken schien damals manchen Leuten nicht in die neue Wohlstandswelt zu passen. Süße Limonaden galten als besser als einfach nur Wasser. Dabei raten heute die meisten Ärzte zum Wassertrinken: 'Trinken Sie täglich mindestens 2,5 Liter davon', steht auch in nahezu allen medizinischen Ratgebern von heute. Mineralwasser hat durch seine mineralischen Inhaltsstoffe Natrium, Kalium, Magnesium, Kalzium und Spurenelemente für den menschlichen Körper viele Vorteile: Es gleicht den Mineral- und Flüssigkeitsverlust beim Schwitzen aus, es fördert die Verdauung - und das alles ohne Zucker und Kalorien.",
+      "text": "Text 2: Die Schwimm- und Sportfreunde 1905 e.V. gehörten in den 70er und 80er Jahren zu den besten Vereinen im deutschen Schwimmsport. Auch noch zu Beginn der 90er Jahre stellte der Verein Schwimmer für die Nationalmannschaft, die bei Weltmeisterschaften oder Olympischen Spielen für Deutschland an den Start gingen. Seit 2010 versuchen die Schwimm- und Sportfreunde, wieder an alte Zeit anzuknüpfen. Mit idealen Voraussetzungen, nämlich der vereinseigenen 50-Meter-Bahn im Sportpark Nord, dem Stadion, der großen Mehrfachsporthalle über dem Bad, einem sehr gut eingerichteten Kraftraum und einer idealen Betreuung durch zwei ganztags angestellte Trainer, stellten sich in den letzten Jahren wieder Erfolge auf Landes- und Bundesebene ein. Die Sportler können auch das Teilzeitinternat nutzen.",
+      "correct": 0
+    },
+    {
+      "text": "Text 3: In unserem modernen Studio bieten wir Ihnen alle Arten von Gesundheits-, Kraft- und Fitnesstraining an. Wer selbst im Rentenalter noch einen durchtrainierten Körper haben möchte, der sollte schon in jungen Jahren das Ausdauertraining nicht vernachlässigen. Aber auch wer spät mit dem Sport beginnt, fühlt sich nach dem Training einfach besser. Um auch im Alter noch mit allen Problemen des Alltags klarzukommen, ist ein Ausdauertraining wirklich wichtig. Deshalb haben wir für Sie zum Beispiel moderne Trainingsgeräte, die Ihren Herzschlag kontrollieren. Auch bei Rückenschmerzen hilft das Fitnessstudio. Acht von zehn Deutschen haben Rückenschmerzen, aber sie werden beim Arzt selten richtig behandelt. Die Gründe für die Rückenprobleme liegen darin, dass die Muskeln nicht ausreichend trainiert sind.",
+      "correct": 3
+    },
+    {
+      "text": "Text 4: Das Trampolin ist ein einzigartiges Trainingsgerät, das die Möglichkeit bietet, auch bei verschiedenen körperlichen Einschränkungen ein umfassendes Trainingsprogramm zu absolvieren. Die Übungen auf dem Trampolin haben vielfältige positive Effekte auf den Körper und den gesamten Organismus. Neben einer Gewichtsabnahme (der Kalorienverbrauch ist ähnlich hoch wie beim Joggen) und der Straffung des Körpergewebes werden Muskeln gelockert, Verspannungen lösen sich und der komplette Bewegungsapparat wird nicht so hart belastet wie bei herkömmlichen Sportarten. Ein weiterer wichtiger Effekt für den Körper ist die Unterstützung des Lymphflusses. Aber auch Geist und Seele werden positiv beeinflusst.",
       "correct": 1
+    },
+    {
+      "text": "Text 5: Sporttauchen ist eine fantastische Natursportart. In den Vereinen und Tauchschulen des Verbandes Deutscher Sporttaucher wird das immer wieder faszinierende Sporttauchen mit verschiedenen Schwerpunkten angeboten. Dort wird auch Tauchfitness aufgebaut und regelmäßig trainiert. Sie können sich in allen Bereichen von gut geschulten Trainern ausbilden lassen und die Welt unter Wasser kennen lernen. Im Sporttauchen sollte man sich auf jeden Fall durch regelmäßiges Training 'tauchfit' halten. Eine ausreichende Kondition unter Wasser ist sehr wichtig, denn untrainiert ist man als Sporttaucher ein Risiko für sich und andere. Ziel des Tauchtrainings ist ebenfalls das Lernen der richtigen Technik für das Atmen und das Beherrschen der Techniken für das Abtauchen.",
+      "correct": 9
     }
   ]
 }
