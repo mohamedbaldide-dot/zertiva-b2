@@ -303,4 +303,159 @@ function checkMatchingExam() {
   resultDiv.style.display = "block";
 }
 
+// ========== عرض امتحان True/False (Richtig/Falsch) ==========
+window.buildTrueFalseExam = function(container, questions) {
+    container.innerHTML = '';
+    
+    let userAnswers = {};
+    
+    questions.forEach((q, i) => {
+        const div = document.createElement('div');
+        div.className = 'question-card';
+        div.style.display = 'flex';
+        div.style.alignItems = 'center';
+        div.style.gap = '15px';
+        div.style.marginBottom = '12px';
+        div.style.flexWrap = 'wrap';
+        div.style.padding = '12px';
+        div.style.border = '1px solid #ddd';
+        div.style.borderRadius = '10px';
+        div.style.backgroundColor = '#f9f9f9';
+        
+        // Richtig
+        const labelTrue = document.createElement('label');
+        labelTrue.style.display = 'inline-flex';
+        labelTrue.style.alignItems = 'center';
+        labelTrue.style.gap = '5px';
+        labelTrue.style.cursor = 'pointer';
+        labelTrue.style.marginRight = '15px';
+        
+        const radioTrue = document.createElement('input');
+        radioTrue.type = 'radio';
+        radioTrue.name = `q${i}`;
+        radioTrue.value = 'true';
+        
+        radioTrue.onchange = () => {
+            userAnswers[i] = true;
+        };
+        
+        labelTrue.appendChild(radioTrue);
+        labelTrue.appendChild(document.createTextNode(' Richtig'));
+        
+        // Falsch
+        const labelFalse = document.createElement('label');
+        labelFalse.style.display = 'inline-flex';
+        labelFalse.style.alignItems = 'center';
+        labelFalse.style.gap = '5px';
+        labelFalse.style.cursor = 'pointer';
+        
+        const radioFalse = document.createElement('input');
+        radioFalse.type = 'radio';
+        radioFalse.name = `q${i}`;
+        radioFalse.value = 'false';
+        
+        radioFalse.onchange = () => {
+            userAnswers[i] = false;
+        };
+        
+        labelFalse.appendChild(radioFalse);
+        labelFalse.appendChild(document.createTextNode(' Falsch'));
+        
+        // النص: الرقم + الجملة
+        const textSpan = document.createElement('span');
+        textSpan.innerHTML = `<strong>${i + 1}</strong> ${q.text}`;
+        textSpan.style.flex = '1';
+        textSpan.style.minWidth = '200px';
+        
+        div.appendChild(labelTrue);
+        div.appendChild(labelFalse);
+        div.appendChild(textSpan);
+        
+        container.appendChild(div);
+    });
+    
+    // زر التصحيح
+    const checkBtn = document.createElement('button');
+    checkBtn.innerText = '📝 Prüfen';
+    checkBtn.className = 'check-btn';
+    checkBtn.style.marginTop = '20px';
+    checkBtn.style.padding = '12px 24px';
+    checkBtn.style.backgroundColor = '#2c3e66';
+    checkBtn.style.color = 'white';
+    checkBtn.style.border = 'none';
+    checkBtn.style.borderRadius = '8px';
+    checkBtn.style.cursor = 'pointer';
+    
+    checkBtn.onclick = () => {
+        checkTrueFalseExam(questions, userAnswers);
+    };
+    
+    container.appendChild(checkBtn);
+    
+    // مكان النتيجة
+    const resultDiv = document.createElement('div');
+    resultDiv.id = 'truefalseResult';
+    resultDiv.className = 'result-box';
+    resultDiv.style.display = 'none';
+    container.appendChild(resultDiv);
+};
+
+// ========== تصحيح امتحان True/False ==========
+function checkTrueFalseExam(questions, answers) {
+    let score = 0;
+    const total = questions.length;
+    const pointsPerQuestion = 25 / total;
+    
+    const cards = document.querySelectorAll('#hoeren1 .question-card, #teil1 .question-card');
+    
+    for (let i = 0; i < questions.length; i++) {
+        const q = questions[i];
+        const card = cards[i];
+        const userAnswer = answers[i];
+        const isCorrect = (userAnswer === q.correct);
+        
+        if (!card) continue;
+        
+        // إزالة التلوين القديم
+        card.classList.remove('correct-answer-card', 'wrong-answer-card');
+        
+        // إزالة الرسالة القديمة
+        const oldMsg = card.querySelector('.correct-message');
+        if (oldMsg) oldMsg.remove();
+        
+        if (isCorrect && userAnswer !== undefined) {
+            score++;
+            card.classList.add('correct-answer-card');
+        } else if (userAnswer !== undefined) {
+            card.classList.add('wrong-answer-card');
+            
+            const correctMsg = document.createElement('div');
+            correctMsg.className = 'correct-message';
+            correctMsg.style.color = '#28a745';
+            correctMsg.style.marginTop = '10px';
+            correctMsg.style.fontSize = '14px';
+            correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.correct ? 'Richtig' : 'Falsch'}`;
+            card.appendChild(correctMsg);
+        } else if (userAnswer === undefined) {
+            card.classList.add('wrong-answer-card');
+            
+            const correctMsg = document.createElement('div');
+            correctMsg.className = 'correct-message';
+            correctMsg.style.color = '#ff9800';
+            correctMsg.style.marginTop = '10px';
+            correctMsg.style.fontSize = '14px';
+            correctMsg.innerHTML = `⚠️ لم يتم الإجابة - الصحيح: ${q.correct ? 'Richtig' : 'Falsch'}`;
+            card.appendChild(correctMsg);
+        }
+    }
+    
+    const finalScore = (score * pointsPerQuestion).toFixed(2);
+    const resultDiv = document.getElementById('truefalseResult');
+    if (resultDiv) {
+        resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
+        resultDiv.style.display = 'block';
+    }
+}
+
 console.log("✅ Custom Dropdown جاهز (إلغاء بالضغط على نفس الخيار يعمل)");
+console.log("✅ True/False Exam جاهز");
