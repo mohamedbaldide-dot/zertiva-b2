@@ -18,7 +18,7 @@ let currentSkill = "lesen1";
 let currentExamId = null;
 let currentExamsList = [];
 
-// ✅ قائمة جميع الامتحانات (مع أسماء عربية)
+// قائمة جميع الامتحانات
 const allExams = [
   { id: 1, title: "Jugend Forscher" },
   { id: 2, title: "sport ist gesund" },
@@ -202,7 +202,7 @@ function showTeil(teilNumber) {
   });
 }
 
-// بناء Teil 1 (النظام القديم - Radio Buttons)
+// بناء Teil 1 (النظام القديم)
 function buildTeil1(questions) {
   const container = document.getElementById("teil1");
   if (!container) return;
@@ -304,7 +304,7 @@ function goList() {
   document.getElementById("list").classList.add("active");
   document.getElementById("exam").classList.remove("active");
   renderTeileList();
-  // ✅ إزالة الرسالة - نتركها فارغة
+  // ✅ بدون رسالة - فارغة
   document.getElementById("examsList").innerHTML = '';
 }
 
@@ -323,7 +323,7 @@ document.addEventListener("DOMContentLoaded", function() {
   if (backToListBtn) backToListBtn.onclick = function() { goBackToList(); };
 });
 
-// تحميل القائمة عند بدء الصفحة (بدون رسالة)
+// تحميل القائمة عند بدء الصفحة
 renderTeileList();
 document.getElementById("examsList").innerHTML = '';
 
