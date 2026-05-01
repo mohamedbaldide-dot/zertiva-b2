@@ -70,60 +70,30 @@ const allExams = [
   { id: 48, title: "Bäder", enabled: true, hasFile: true }
 ];
 
-// 🗺️ تعيين اسم الملف الفعلي لكل امتحان (لأن أرقام الملفات لا تتطابق مع ترتيب العرض)
+// 🗺️ تعيين اسم الملف الفعلي لكل امتحان
 const actualFileNames = {
-  // الامتحانات 1-9: match
-  1: "exam1.json",
-  2: "exam2.json",
-  3: "exam3.json",
-  4: "exam4.json",
-  5: "exam5.json",
-  6: "exam6.json",
-  7: "exam7.json",
-  8: "exam8.json",
-  9: "exam9.json",
-  10: "exam10.json",  // Österreich - Naschmarkt
-  11: "exam11.json",  // Insekten
-  12: "exam12.json",  // Insekten (التعديل 1)
-  13: "exam13.json",  // das Benzin
-  14: "exam14.json",  // Kaffee
-  15: "exam15.json",  // Programmierer
-  16: "exam16.json",  // Programmierer (التعديل 1)
-  17: "exam17.json",  // Programmierer (التعديل 2)
-  18: "exam18.json",  // Trampolin
-  19: "exam19.json",  // Bonbons
-  20: "exam20.json",  // Umwelt
-  21: "exam21.json",  // Licht
-  22: "exam22.json",  // Licht (التعديل 1)
-  23: "exam23.json",  // Kartoffel
-  24: "exam24.json",  // Kartoffel (التعديل 1)
-  25: "exam25.json",  // Bienen
-  26: "exam26.json",  // Spiele
-  27: "exam27.json",  // Geld
-  28: "exam28.json",  // Kinder und Schulen
-  29: "exam29.json",  // Kindertelefon
-  30: "exam30.json",  // Alpen
-  31: "exam31.json",  // Alpen (التعديل 1)
-  32: "exam32.json",  // Alpen (التعديل 2)
-  33: "exam33.json",  // Suchtmittel - Nase
-  34: "exam34.json",  // الانتخابات والمرأة الروسية
-  35: "exam35.json",  // kein Zeit
-  36: "exam36.json",  // kein Zeit (التعديل 1)
-  37: "exam37.json",  // Limonade
-  38: "exam38.json",  // Limonade (التعديل 1)
-  39: "exam39.json",  // Limonade (التعديل 2)
-  40: "exam40.json",  // Auf dem Weg
-  41: "exam41.json",  // Schlafzug
-  42: "exam42.json",  // Schlafzug (التعديل 1)
-  43: "exam43.json",  // Löwen
-  44: "exam44.json",  // Fisch
-  45: "exam48.json",  // ⚠️ Frauen im Arbeitsmarkt (ملف exam48)
-  46: "exam45.json",  // ⚠️ Baby TV (ملف exam45)
-  47: "exam46.json",  // ⚠️ Farben (ملف exam46)
-  48: "exam47.json"   // ⚠️ Bäder (ملف exam47)
+  1: "exam1.json", 2: "exam2.json", 3: "exam3.json",
+  4: "exam4.json", 5: "exam5.json", 6: "exam6.json",
+  7: "exam7.json", 8: "exam8.json", 9: "exam9.json",
+  10: "exam10.json", 11: "exam11.json", 12: "exam12.json",
+  13: "exam13.json", 14: "exam14.json", 15: "exam15.json",
+  16: "exam16.json", 17: "exam17.json", 18: "exam18.json",
+  19: "exam19.json", 20: "exam20.json", 21: "exam21.json",
+  22: "exam22.json", 23: "exam23.json", 24: "exam24.json",
+  25: "exam25.json", 26: "exam26.json", 27: "exam27.json",
+  28: "exam28.json", 29: "exam29.json", 30: "exam30.json",
+  31: "exam31.json", 32: "exam32.json", 33: "exam33.json",
+  34: "exam34.json", 35: "exam35.json", 36: "exam36.json",
+  37: "exam37.json", 38: "exam38.json", 39: "exam39.json",
+  40: "exam40.json", 41: "exam41.json", 42: "exam42.json",
+  43: "exam43.json", 44: "exam44.json",
+  45: "exam48.json",  // Frauen im Arbeitsmarkt
+  46: "exam45.json",  // Baby TV
+  47: "exam46.json",  // Farben
+  48: "exam47.json"   // Bäder
 };
 
-// قائمة الامتحانات لكل جزء (يتم فلترة الامتحانات غير المتاحة)
+// قائمة الامتحانات لكل جزء
 const examsDatabase = {
   lesen1: allExams.filter(exam => exam.enabled === true),
   lesen2: [],
@@ -134,6 +104,9 @@ const examsDatabase = {
   hoeren2: [],
   hoeren3: []
 };
+
+// متغير لتخزين الـ Teil المختار حالياً
+let currentSelectedTeil = null;
 
 // عرض أجزاء (Teile) في صف واحد
 function renderTeileList() {
@@ -146,25 +119,40 @@ function renderTeileList() {
     const div = document.createElement("div");
     div.className = "item teil-item";
     div.innerHTML = teil.name;
-    div.onclick = (function(skill) {
-      return function() { renderExamListForSkill(skill); };
-    })(teil.skill);
+    div.onclick = (function(skill, teilName) {
+      return function() { 
+        renderExamListForSkill(skill, teilName);
+      };
+    })(teil.skill, teil.name);
     container.appendChild(div);
   }
 }
 
 // عرض الامتحانات لجزء معين
-function renderExamListForSkill(skill) {
+function renderExamListForSkill(skill, teilName) {
   currentSkill = skill;
+  currentSelectedTeil = teilName;
+  
   const container = document.getElementById("examsList");
   if (!container) return;
   container.innerHTML = "";
+  
+  // عرض عنوان الـ Teil المختار
+  const headerDiv = document.createElement("div");
+  headerDiv.className = "teil-header";
+  headerDiv.innerHTML = `<strong>📚 ${teilName || getTeilNameBySkill(skill)}</strong>`;
+  headerDiv.style.textAlign = "center";
+  headerDiv.style.padding = "10px";
+  headerDiv.style.marginBottom = "15px";
+  headerDiv.style.borderBottom = "2px solid #007bff";
+  headerDiv.style.color = "#007bff";
+  container.appendChild(headerDiv);
   
   const exams = examsDatabase[skill] || [];
   currentExamsList = exams;
   
   if (exams.length === 0) {
-    container.innerHTML = '<div class="item" style="text-align:center; color:#999;">⚠️ لا توجد امتحانات متاحة حالياً في هذا الجزء</div>';
+    container.innerHTML += '<div class="item" style="text-align:center; color:#999;">⚠️ لا توجد امتحانات متاحة حالياً في هذا الجزء</div>';
     return;
   }
   
@@ -186,6 +174,12 @@ function renderExamListForSkill(skill) {
     }
     container.appendChild(div);
   }
+}
+
+// الحصول على اسم الـ Teil من skill
+function getTeilNameBySkill(skill) {
+  const teil = teile.find(t => t.skill === skill);
+  return teil ? teil.name : skill;
 }
 
 // الحصول على اسم الملف الفعلي
@@ -222,8 +216,9 @@ async function openExam(examId, examTitle, skill) {
     
     updateExamNavButtons();
     
+    // إظهار أزرار التنقل في صفحة الامتحان
     const navDiv = document.getElementById("navButtons");
-    if (navDiv) navDiv.style.display = "none";
+    if (navDiv) navDiv.style.display = "flex";
     
     if (currentExamData.type === "matching") {
       if (typeof window.loadMatchingExam === "function") {
@@ -248,6 +243,7 @@ async function openExam(examId, examTitle, skill) {
 function updateExamNavButtons() {
   const prevBtn = document.getElementById("prevExamBtn");
   const nextBtn = document.getElementById("nextExamBtn");
+  const backToListBtn = document.getElementById("backToListFromExam");
   
   if (!prevBtn || !nextBtn) return;
   
@@ -273,6 +269,13 @@ function updateExamNavButtons() {
     };
   } else {
     nextBtn.style.display = "none";
+  }
+  
+  // زر العودة إلى القائمة
+  if (backToListBtn) {
+    backToListBtn.onclick = () => {
+      goList();
+    };
   }
 }
 
@@ -304,6 +307,7 @@ function buildTeil1(questions) {
     card.appendChild(questionText);
     
     const optionsDiv = document.createElement("div");
+    optionsDiv.className = "options-container";
     for (let j = 0; j < q.options.length; j++) {
       const label = document.createElement("label");
       label.className = "option-label";
@@ -322,6 +326,7 @@ function buildTeil1(questions) {
   
   const checkBtn = document.createElement("button");
   checkBtn.innerText = "✅ تصحيح";
+  checkBtn.className = "check-btn";
   checkBtn.onclick = function() {
     checkTeil1(questions, userAnswers);
   };
@@ -379,30 +384,46 @@ function goHome() {
   document.getElementById("home").classList.add("active");
   document.getElementById("list").classList.remove("active");
   document.getElementById("exam").classList.remove("active");
+  // إخفاء أزرار التنقل
+  const navDiv = document.getElementById("navButtons");
+  if (navDiv) navDiv.style.display = "none";
 }
 
 function goList() {
   document.getElementById("home").classList.remove("active");
   document.getElementById("list").classList.add("active");
   document.getElementById("exam").classList.remove("active");
+  
+  // إعادة عرض قائمة الـ Teile
   renderTeileList();
-  renderExamListForSkill("lesen1");
+  
+  // ✅ لا نعرض الامتحانات تلقائياً - ننتظر حتى يختار المستخدم Teil
+  const examsContainer = document.getElementById("examsList");
+  if (examsContainer) {
+    examsContainer.innerHTML = '<div class="item" style="text-align:center; color:#888; padding:20px;">👈 اختر القسم (Teil) من الأعلى لعرض الامتحانات</div>';
+  }
+  
+  // إخفاء أزرار التنقل
+  const navDiv = document.getElementById("navButtons");
+  if (navDiv) navDiv.style.display = "none";
 }
 
 // ربط الأزرار
 document.addEventListener("DOMContentLoaded", function() {
   const startBtn = document.getElementById("startBtn");
   const backHomeBtn = document.getElementById("backHomeBtn");
-  const backToListBtn = document.getElementById("backToListBtn");
   
   if (startBtn) startBtn.onclick = function() { goList(); };
   if (backHomeBtn) backHomeBtn.onclick = function() { goHome(); };
-  if (backToListBtn) backToListBtn.onclick = function() { goList(); };
+  
+  // ✅ عرض رسالة ترحيبية بدلاً من الامتحانات مباشرة
+  const examsContainer = document.getElementById("examsList");
+  if (examsContainer) {
+    examsContainer.innerHTML = '<div class="item" style="text-align:center; color:#888; padding:20px;">👈 اختر القسم (Teil) من الأعلى لعرض الامتحانات</div>';
+  }
 });
 
-// تحميل القائمة عند بدء الصفحة
+// تحميل قائمة الـ Teile فقط عند بدء الصفحة
 renderTeileList();
-renderExamListForSkill("lesen1");
 
 console.log("✅ exams.js تم تحميله بنجاح");
-console.log("📋 عدد امتحانات lesen1:", examsDatabase.lesen1.length);
