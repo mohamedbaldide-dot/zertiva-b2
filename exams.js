@@ -16,50 +16,53 @@ const teile = [
 let currentExamData = null;
 let currentSkill = "lesen1";
 
-// ✅ قائمة الامتحانات المتاحة لـ Lesen Teil 1 (من 1 إلى 40)
+// ✅ قائمة جميع الامتحانات (حتى لو لم تكن ملفاتها موجودة بعد)
+const allExams = [
+  { id: 1, title: "Jugend Forscher" },
+  { id: 2, title: "sport ist gesund" },
+  { id: 3, title: "sport ist gesund (modifiziert)" },
+  { id: 4, title: "Tanzkurs" },
+  { id: 5, title: "Tanzkurs (modifiziert)" },
+  { id: 6, title: "Impfung" },
+  { id: 7, title: "Insel" },
+  { id: 8, title: "Bilder" },
+  { id: 9, title: "Grundschule" },
+  { id: 10, title: "Grundschule (modifiziert)" },
+  { id: 11, title: "Österreich - Naschmarkt" },
+  { id: 12, title: "Insekten" },
+  { id: 13, title: "Insekten (modifiziert)" },
+  { id: 14, title: "das Benzin" },
+  { id: 15, title: "Kaffee" },
+  { id: 16, title: "Programmierer" },
+  { id: 17, title: "Programmierer (modifiziert 1)" },
+  { id: 18, title: "Programmierer (modifiziert 2)" },
+  { id: 19, title: "Trampolin" },
+  { id: 20, title: "Bonbons" },
+  { id: 21, title: "Umwelt" },
+  { id: 22, title: "Licht" },
+  { id: 23, title: "Licht (modifiziert)" },
+  { id: 24, title: "Kartoffel" },
+  { id: 25, title: "Kartoffel (modifiziert)" },
+  { id: 26, title: "Bienen" },
+  { id: 27, title: "Spiele" },
+  { id: 28, title: "Geld" },
+  { id: 29, title: "Kinder und Schulen" },
+  { id: 30, title: "Kindertelefon" },
+  { id: 31, title: "Alpen" },
+  { id: 32, title: "Alpen (modifiziert 1)" },
+  { id: 33, title: "Alpen (modifiziert 2)" },
+  { id: 34, title: "Suchtmittel - Nase" },
+  { id: 35, title: "Wahlen & Frauen" },
+  { id: 36, title: "kein Zeit" },
+  { id: 37, title: "kein Zeit (modifiziert)" },
+  { id: 38, title: "Limonade" },
+  { id: 39, title: "Limonade (modifiziert 1)" },
+  { id: 40, title: "Limonade (modifiziert 2)" }
+];
+
+// قائمة الامتحانات لكل جزء (سيتم تعبئتها)
 const examsDatabase = {
-  lesen1: [
-    { id: 1, title: "Jugend Forscher" },
-    { id: 2, title: "sport ist gesund" },
-    { id: 3, title: "sport ist gesund (modifiziert)" },
-    { id: 4, title: "Tanzkurs" },
-    { id: 5, title: "Tanzkurs (modifiziert)" },
-    { id: 6, title: "Impfung" },
-    { id: 7, title: "Insel" },
-    { id: 8, title: "Bilder" },
-    { id: 9, title: "Grundschule" },
-    { id: 10, title: "Grundschule (modifiziert)" },
-    { id: 11, title: "Österreich - Naschmarkt" },
-    { id: 12, title: "Insekten" },
-    { id: 13, title: "Insekten (modifiziert)" },
-    { id: 14, title: "das Benzin" },
-    { id: 15, title: "Kaffee" },
-    { id: 16, title: "Programmierer" },
-    { id: 17, title: "Programmierer (modifiziert 1)" },
-    { id: 18, title: "Programmierer (modifiziert 2)" },
-    { id: 19, title: "Trampolin" },
-    { id: 20, title: "Bonbons" },
-    { id: 21, title: "Umwelt" },
-    { id: 22, title: "Licht" },
-    { id: 23, title: "Licht (modifiziert)" },
-    { id: 24, title: "Kartoffel" },
-    { id: 25, title: "Kartoffel (modifiziert)" },
-    { id: 26, title: "Bienen" },
-    { id: 27, title: "Spiele" },
-    { id: 28, title: "Geld" },
-    { id: 29, title: "Kinder und Schulen" },
-    { id: 30, title: "Kindertelefon" },
-    { id: 31, title: "Alpen" },
-    { id: 32, title: "Alpen (modifiziert 1)" },
-    { id: 33, title: "Alpen (modifiziert 2)" },
-    { id: 34, title: "Suchtmittel - Nase" },
-    { id: 35, title: "Wahlen & Frauen" },
-    { id: 36, title: "kein Zeit" },
-    { id: 37, title: "kein Zeit (modifiziert)" },
-    { id: 38, title: "Limonade" },
-    { id: 39, title: "Limonade (modifiziert 1)" },
-    { id: 40, title: "Limonade (modifiziert 2)" }
-  ],
+  lesen1: allExams,  // ✅ جميع الامتحانات من 1 إلى 40
   lesen2: [],
   lesen3: [],
   sprach1: [],
@@ -119,7 +122,8 @@ async function openExam(examId, examTitle, skill) {
   try {
     const response = await fetch(`data/${skill}/exam${examId}.json`);
     if (!response.ok) {
-      throw new Error(`الملف exam${examId}.json غير موجود في مجلد ${skill}`);
+      alert(`⚠️ الامتحان "${examTitle}" سيتم إضافته قريباً.\nالملف exam${examId}.json غير موجود بعد.`);
+      return;
     }
     currentExamData = await response.json();
     
@@ -128,7 +132,6 @@ async function openExam(examId, examTitle, skill) {
     document.getElementById("exam").classList.add("active");
     document.getElementById("examTitle").innerHTML = currentExamData.title;
     
-    // إخفاء أزرار التنقل
     const navDiv = document.getElementById("navButtons");
     if (navDiv) navDiv.style.display = "none";
     
@@ -143,7 +146,6 @@ async function openExam(examId, examTitle, skill) {
       buildTeil1(currentExamData.questions);
     }
     
-    // عرض الجزء المناسب
     const teilIndex = teile.findIndex(t => t.skill === skill);
     showTeil(teilIndex + 1);
   } catch(e) {
@@ -265,7 +267,7 @@ function goList() {
   renderExamListForSkill("lesen1");
 }
 
-// تأكد من وجود الأزرار قبل ربطها
+// ربط الأزرار
 document.addEventListener("DOMContentLoaded", function() {
   const startBtn = document.getElementById("startBtn");
   const backHomeBtn = document.getElementById("backHomeBtn");
