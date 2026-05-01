@@ -105,9 +105,6 @@ const examsDatabase = {
   hoeren3: []
 };
 
-// متغير لتخزين الـ Teil المختار حالياً
-let currentSelectedTeil = null;
-
 // عرض أجزاء (Teile) في صف واحد
 function renderTeileList() {
   const container = document.getElementById("teileList");
@@ -131,7 +128,6 @@ function renderTeileList() {
 // عرض الامتحانات لجزء معين
 function renderExamListForSkill(skill, teilName) {
   currentSkill = skill;
-  currentSelectedTeil = teilName;
   
   const container = document.getElementById("examsList");
   if (!container) return;
@@ -141,11 +137,6 @@ function renderExamListForSkill(skill, teilName) {
   const headerDiv = document.createElement("div");
   headerDiv.className = "teil-header";
   headerDiv.innerHTML = `<strong>📚 ${teilName || getTeilNameBySkill(skill)}</strong>`;
-  headerDiv.style.textAlign = "center";
-  headerDiv.style.padding = "10px";
-  headerDiv.style.marginBottom = "15px";
-  headerDiv.style.borderBottom = "2px solid #007bff";
-  headerDiv.style.color = "#007bff";
   container.appendChild(headerDiv);
   
   const exams = examsDatabase[skill] || [];
@@ -176,13 +167,11 @@ function renderExamListForSkill(skill, teilName) {
   }
 }
 
-// الحصول على اسم الـ Teil من skill
 function getTeilNameBySkill(skill) {
   const teil = teile.find(t => t.skill === skill);
   return teil ? teil.name : skill;
 }
 
-// الحصول على اسم الملف الفعلي
 function getActualFileName(examId) {
   if (actualFileNames[examId]) {
     return actualFileNames[examId];
@@ -190,7 +179,6 @@ function getActualFileName(examId) {
   return `exam${examId}.json`;
 }
 
-// فتح امتحان محدد
 async function openExam(examId, examTitle, skill) {
   currentExamId = examId;
   currentSkill = skill;
@@ -203,7 +191,6 @@ async function openExam(examId, examTitle, skill) {
   try {
     const response = await fetch(`data/${skill}/${fileName}`);
     if (!response.ok) {
-      console.warn(`⚠️ الملف ${fileName} غير موجود`);
       alert(`⚠️ الامتحان "${examTitle}" سيتم إضافته قريباً.\nالملف المطلوب: ${fileName}`);
       return;
     }
@@ -215,10 +202,6 @@ async function openExam(examId, examTitle, skill) {
     document.getElementById("examTitle").innerHTML = currentExamData.title;
     
     updateExamNavButtons();
-    
-    // إظهار أزرار التنقل في صفحة الامتحان
-    const navDiv = document.getElementById("navButtons");
-    if (navDiv) navDiv.style.display = "flex";
     
     if (currentExamData.type === "matching") {
       if (typeof window.loadMatchingExam === "function") {
@@ -239,11 +222,9 @@ async function openExam(examId, examTitle, skill) {
   }
 }
 
-// تحديث أزرار التنقل بين الامتحانات
 function updateExamNavButtons() {
   const prevBtn = document.getElementById("prevExamBtn");
   const nextBtn = document.getElementById("nextExamBtn");
-  const backToListBtn = document.getElementById("backToListFromExam");
   
   if (!prevBtn || !nextBtn) return;
   
@@ -270,16 +251,8 @@ function updateExamNavButtons() {
   } else {
     nextBtn.style.display = "none";
   }
-  
-  // زر العودة إلى القائمة
-  if (backToListBtn) {
-    backToListBtn.onclick = () => {
-      goList();
-    };
-  }
 }
 
-// عرض جزء معين
 function showTeil(teilNumber) {
   teile.forEach((teil, idx) => {
     const container = document.getElementById(teil.container);
@@ -287,7 +260,6 @@ function showTeil(teilNumber) {
   });
 }
 
-// بناء Teil 1 (النظام القديم - Radio Buttons)
 function buildTeil1(questions) {
   const container = document.getElementById("teil1");
   if (!container) return;
@@ -364,9 +336,6 @@ function checkTeil1(questions, answers) {
       if (!correctMsg) {
         correctMsg = document.createElement("div");
         correctMsg.className = "correct-message";
-        correctMsg.style.color = "#28a745";
-        correctMsg.style.marginTop = "10px";
-        correctMsg.style.fontSize = "14px";
         card.appendChild(correctMsg);
       }
       correctMsg.innerHTML = "✅ الإجابة الصحيحة: " + q.options[q.correct];
@@ -379,14 +348,10 @@ function checkTeil1(questions, answers) {
   resultDiv.style.display = "block";
 }
 
-// دوال التنقل
 function goHome() {
   document.getElementById("home").classList.add("active");
   document.getElementById("list").classList.remove("active");
   document.getElementById("exam").classList.remove("active");
-  // إخفاء أزرار التنقل
-  const navDiv = document.getElementById("navButtons");
-  if (navDiv) navDiv.style.display = "none";
 }
 
 function goList() {
@@ -394,36 +359,32 @@ function goList() {
   document.getElementById("list").classList.add("active");
   document.getElementById("exam").classList.remove("active");
   
-  // إعادة عرض قائمة الـ Teile
   renderTeileList();
   
-  // ✅ لا نعرض الامتحانات تلقائياً - ننتظر حتى يختار المستخدم Teil
   const examsContainer = document.getElementById("examsList");
   if (examsContainer) {
-    examsContainer.innerHTML = '<div class="item" style="text-align:center; color:#888; padding:20px;">👈 اختر القسم (Teil) من الأعلى لعرض الامتحانات</div>';
+    examsContainer.innerHTML = '<div class="welcome-message">👈 اختر القسم (Teil) من الأعلى لعرض الامتحانات</div>';
   }
-  
-  // إخفاء أزرار التنقل
-  const navDiv = document.getElementById("navButtons");
-  if (navDiv) navDiv.style.display = "none";
 }
 
 // ربط الأزرار
 document.addEventListener("DOMContentLoaded", function() {
   const startBtn = document.getElementById("startBtn");
   const backHomeBtn = document.getElementById("backHomeBtn");
+  const backToListBtn = document.getElementById("backToListBtn");
+  const backArrowFromExam = document.getElementById("backArrowFromExam");
   
   if (startBtn) startBtn.onclick = function() { goList(); };
   if (backHomeBtn) backHomeBtn.onclick = function() { goHome(); };
+  if (backToListBtn) backToListBtn.onclick = function() { goList(); };
+  if (backArrowFromExam) backArrowFromExam.onclick = function() { goList(); };
   
-  // ✅ عرض رسالة ترحيبية بدلاً من الامتحانات مباشرة
   const examsContainer = document.getElementById("examsList");
   if (examsContainer) {
-    examsContainer.innerHTML = '<div class="item" style="text-align:center; color:#888; padding:20px;">👈 اختر القسم (Teil) من الأعلى لعرض الامتحانات</div>';
+    examsContainer.innerHTML = '<div class="welcome-message">👈 اختر القسم (Teil) من الأعلى لعرض الامتحانات</div>';
   }
 });
 
-// تحميل قائمة الـ Teile فقط عند بدء الصفحة
 renderTeileList();
 
 console.log("✅ exams.js تم تحميله بنجاح");
