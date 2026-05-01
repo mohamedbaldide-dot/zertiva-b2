@@ -1,5 +1,5 @@
 // ============================================
-// engine.js - محرك الامتحانات (يدعم Matching System مع خيار "إلغاء الاختيار")
+// engine.js - محرك الامتحانات (يدعم Matching System مع إلغاء الاختيار)
 // ============================================
 
 console.log("✅ engine.js تم تحميله");
@@ -17,7 +17,7 @@ window.loadExamFromFile = async function(skill, examId) {
   }
 };
 
-// ========== نظام Matching (مع خيار إلغاء الاختيار) ==========
+// ========== نظام Matching ==========
 let currentMatchingExamData = null;
 let matchingSelectedAnswers = {};
 let matchingAvailableOptions = [];
@@ -98,19 +98,13 @@ function updateSelectOptions(select, questionIndex) {
   // تفريغ الـ select
   select.innerHTML = "";
   
-  // ✅ الخيار 1: اختر الإجابة
+  // إضافة الخيار الفارغ
   const emptyOption = document.createElement("option");
   emptyOption.value = "";
   emptyOption.textContent = "-- اختر الإجابة --";
   select.appendChild(emptyOption);
   
-  // ✅ الخيار 2: إلغاء الاختيار (جديد!)
-  const removeOption = document.createElement("option");
-  removeOption.value = "__REMOVE__";
-  removeOption.textContent = "❌ إلغاء الاختيار";
-  select.appendChild(removeOption);
-  
-  // ✅ الخيار 3: الخيارات المتاحة (العناوين)
+  // إضافة الخيارات المتاحة
   for (let i = 0; i < matchingAvailableOptions.length; i++) {
     const option = document.createElement("option");
     option.value = matchingAvailableOptions[i];
@@ -118,7 +112,7 @@ function updateSelectOptions(select, questionIndex) {
     select.appendChild(option);
   }
   
-  // استعادة القيمة المختارة إذا كانت موجودة
+  // استعادة القيمة المختارة إذا كانت موجودة ولا تزال في القائمة
   if (currentValue !== "") {
     for (let i = 0; i < select.options.length; i++) {
       if (select.options[i].value === currentValue) {
@@ -134,8 +128,8 @@ function handleSelectChange(select) {
   const selectedValue = select.value;
   const oldValue = matchingSelectedAnswers[questionIndex] || "";
   
-  // ✅ حالة إلغاء الاختيار (من خلال الخيار المخصص)
-  if (selectedValue === "__REMOVE__") {
+  // حالة 1: إلغاء الاختيار (اختيار الخيار الفارغ)
+  if (selectedValue === "") {
     if (oldValue !== "") {
       // نعيد الخيار القديم إلى القائمة المتاحة
       if (!matchingAvailableOptions.includes(oldValue)) {
@@ -148,20 +142,19 @@ function handleSelectChange(select) {
     return;
   }
   
-  // حالة اختيار الخيار الفارغ
-  if (selectedValue === "") {
-    if (oldValue !== "") {
-      if (!matchingAvailableOptions.includes(oldValue)) {
-        matchingAvailableOptions.push(oldValue);
-        matchingAvailableOptions.sort();
-      }
-      matchingSelectedAnswers[questionIndex] = "";
+  // حالة 2: اختيار نفس الإجابة مرة أخرى → إلغاء الاختيار
+  if (selectedValue === oldValue && oldValue !== "") {
+    // نعيد الخيار إلى القائمة المتاحة
+    if (!matchingAvailableOptions.includes(selectedValue)) {
+      matchingAvailableOptions.push(selectedValue);
+      matchingAvailableOptions.sort();
     }
+    matchingSelectedAnswers[questionIndex] = "";
     rebuildAllDropdowns();
     return;
   }
   
-  // حالة اختيار إجابة جديدة
+  // حالة 3: اختيار إجابة جديدة
   // نزيل الإجابة الجديدة من القائمة المتاحة
   const indexInAvailable = matchingAvailableOptions.indexOf(selectedValue);
   if (indexInAvailable !== -1) {
@@ -238,4 +231,4 @@ function checkMatchingExam() {
   resultDiv.style.display = "block";
 }
 
-console.log("✅ نظام Matching جاهز (مع خيار إلغاء الاختيار)");
+console.log("✅ نظام Matching جاهز (إلغاء الاختيار يعمل)");
