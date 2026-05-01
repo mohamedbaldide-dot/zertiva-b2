@@ -117,11 +117,9 @@ function renderMatchingQuestions() {
     // ربط الأحداث
     dropdownBtn.addEventListener("click", function(e) {
       e.stopPropagation();
-      // إغلاق أي قائمة مفتوحة أخرى
       if (openDropdownIndex !== null && openDropdownIndex !== i) {
         closeDropdown(openDropdownIndex);
       }
-      // تبديل حالة القائمة الحالية
       if (dropdownList.style.display === "block") {
         closeDropdown(i);
       } else {
@@ -132,16 +130,15 @@ function renderMatchingQuestions() {
     container.appendChild(card);
   }
   
-  // إغلاق القائمة عند النقر في أي مكان آخر
   document.addEventListener("click", function() {
     if (openDropdownIndex !== null) {
       closeDropdown(openDropdownIndex);
     }
   });
   
-  // إضافة زر التصحيح
+  // ✅ زر التصحيح (تم التعديل)
   const checkBtn = document.createElement("button");
-  checkBtn.innerText = "✅ تصحيح الامتحان";
+  checkBtn.innerText = "✅ تصحيح";
   checkBtn.onclick = checkMatchingExam;
   container.appendChild(checkBtn);
   
@@ -158,7 +155,6 @@ function updateDropdownList(questionIndex) {
   
   list.innerHTML = "";
   
-  // إضافة الخيارات المتاحة
   for (let i = 0; i < matchingAvailableOptions.length; i++) {
     const option = matchingAvailableOptions[i];
     const optionDiv = document.createElement("div");
@@ -224,24 +220,19 @@ function closeDropdown(questionIndex) {
 function selectOption(questionIndex, selectedText) {
   const oldValue = matchingSelectedAnswers[questionIndex] || "";
   
-  // ✅ إلغاء الاختيار: إذا كان الخيار المختار هو نفسه المختار حالياً
   if (oldValue === selectedText && oldValue !== "") {
-    // نعيد الخيار إلى القائمة المتاحة
     if (!matchingAvailableOptions.includes(selectedText)) {
       matchingAvailableOptions.push(selectedText);
       matchingAvailableOptions.sort();
     }
     matchingSelectedAnswers[questionIndex] = "";
   } 
-  // اختيار خيار جديد
   else {
-    // نزيل الخيار الجديد من القائمة المتاحة
     const indexInAvailable = matchingAvailableOptions.indexOf(selectedText);
     if (indexInAvailable !== -1) {
       matchingAvailableOptions.splice(indexInAvailable, 1);
     }
     
-    // نعيد الخيار القديم إلى القائمة المتاحة (إن وجد)
     if (oldValue !== "") {
       if (!matchingAvailableOptions.includes(oldValue)) {
         matchingAvailableOptions.push(oldValue);
@@ -252,7 +243,6 @@ function selectOption(questionIndex, selectedText) {
     matchingSelectedAnswers[questionIndex] = selectedText;
   }
   
-  // تحديث النص في الزر
   const btnSpan = document.querySelector(`#m_btn_${questionIndex} span:first-child`);
   if (btnSpan) {
     const newVal = matchingSelectedAnswers[questionIndex];
@@ -260,10 +250,8 @@ function selectOption(questionIndex, selectedText) {
     btnSpan.style.color = newVal ? "#333" : "#999";
   }
   
-  // إغلاق القائمة
   closeDropdown(questionIndex);
   
-  // إعادة بناء جميع القوائم لتحديث الخيارات المتاحة
   for (let i = 0; i < currentMatchingExamData.questions.length; i++) {
     updateDropdownList(i);
   }
@@ -275,7 +263,6 @@ function checkMatchingExam() {
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
   
-  // إعادة تعيين الألوان
   for (let i = 0; i < total; i++) {
     const card = document.getElementById("m_q_" + i);
     if (card) {
@@ -285,7 +272,6 @@ function checkMatchingExam() {
     }
   }
   
-  // التصحيح
   for (let i = 0; i < total; i++) {
     const q = questions[i];
     const card = document.getElementById("m_q_" + i);
@@ -311,7 +297,9 @@ function checkMatchingExam() {
   
   const finalScore = (score * pointsPerQuestion).toFixed(2);
   const resultDiv = document.getElementById("matchingResult");
-  resultDiv.innerHTML = "🎯 النتيجة: " + finalScore + " / 25 (" + score + " من " + total + " إجابات صحيحة)";
+  
+  // ✅ تم التعديل هنا
+  resultDiv.innerHTML = "النتيجة: " + finalScore + " / 25";
   resultDiv.style.display = "block";
 }
 
