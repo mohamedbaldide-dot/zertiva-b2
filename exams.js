@@ -1,5 +1,6 @@
 // ============================================
 // exams.js - نظام الامتحانات المتكامل
+// يدعم: Lesen Teil 1, Lesen Teil 2, Hören Teil 1-3, إلخ
 // ============================================
 
 const teile = [
@@ -89,10 +90,49 @@ const actualFileNames = {
   45: "exam48.json", 46: "exam45.json", 47: "exam46.json", 48: "exam47.json"
 };
 
-// ✅ قائمة الامتحانات لكل جزء (واحد أسفل واحد)
+// ✅ قائمة الامتحانات لكل جزء
 const examsDatabase = {
   lesen1: allExams.filter(exam => exam.enabled === true),
-  lesen2: [],
+  lesen2: [
+    { id: 1, title: "Krista", enabled: true, hasFile: true },
+    { id: 2, title: "Krista (معدل)", enabled: true, hasFile: true },
+    { id: 3, title: "Der Ein-Personen-Karneval", enabled: true, hasFile: true },
+    { id: 4, title: "Der Ein-Personen-Karneval (معدل)", enabled: true, hasFile: true },
+    { id: 5, title: "ein leben für den Kaffee", enabled: true, hasFile: true },
+    { id: 6, title: "ein leben für den Kaffee (معدل 1)", enabled: true, hasFile: true },
+    { id: 7, title: "ein leben für den Kaffee (معدل 2)", enabled: true, hasFile: true },
+    { id: 8, title: "Kreditkarte", enabled: true, hasFile: true },
+    { id: 9, title: "Gedächtnis", enabled: true, hasFile: true },
+    { id: 10, title: "Gedächtnis (معدل)", enabled: true, hasFile: true },
+    { id: 11, title: "Kaufentscheidungen", enabled: true, hasFile: true },
+    { id: 12, title: "Kellnern - Nebenjob", enabled: true, hasFile: true },
+    { id: 13, title: "die Ernährung", enabled: true, hasFile: true },
+    { id: 14, title: "Geschichte des Hauspersonals", enabled: true, hasFile: true },
+    { id: 15, title: "Geschichte des Hauspersonals (نسخة)", enabled: true, hasFile: true },
+    { id: 16, title: "Österreich, das Land der Poolbesitzer", enabled: true, hasFile: true },
+    { id: 17, title: "Großraumbüros", enabled: true, hasFile: true },
+    { id: 18, title: "Korbjagd zu Pferde", enabled: true, hasFile: true },
+    { id: 19, title: "Mehrsprachige Erziehung", enabled: true, hasFile: true },
+    { id: 20, title: "Mehrsprachige Erziehung (معدل)", enabled: true, hasFile: true },
+    { id: 21, title: "Verpackungen im Supermarkt", enabled: true, hasFile: true },
+    { id: 22, title: "Der Puppenmacher", enabled: true, hasFile: true },
+    { id: 23, title: "Der Puppenmacher (معدل)", enabled: true, hasFile: true },
+    { id: 24, title: "Lehrkräftepreis", enabled: true, hasFile: true },
+    { id: 25, title: "Wer parkt, muss zahlen", enabled: true, hasFile: true },
+    { id: 26, title: "Wer parkt, muss zahlen (معدل)", enabled: true, hasFile: true },
+    { id: 27, title: "Familienglück oder Generationskonflikte", enabled: true, hasFile: true },
+    { id: 28, title: "Traumfrau und Traummann gesucht", enabled: true, hasFile: true },
+    { id: 29, title: "Traumfrau und Traummann gesucht (معدل)", enabled: true, hasFile: true },
+    { id: 30, title: "Wie Babys lernen", enabled: true, hasFile: true },
+    { id: 31, title: "Volkskrankheit Rückenschmerz", enabled: true, hasFile: true },
+    { id: 32, title: "Volkskrankheit Rückenschmerz (معدل)", enabled: true, hasFile: true },
+    { id: 33, title: "Die ganze Welt auf dem eigenen PC", enabled: true, hasFile: true },
+    { id: 34, title: "Die deutschen und ihre Ernährung", enabled: true, hasFile: true },
+    { id: 35, title: "Weniger Euro-Blüten in Deutschland", enabled: true, hasFile: true },
+    { id: 36, title: "Nachtzug", enabled: true, hasFile: true },
+    { id: 37, title: "Nachtzug (معدل)", enabled: true, hasFile: true },
+    { id: 38, title: "Wie zwei US-Teenager Millionäre wurden", enabled: true, hasFile: true }
+  ],
   lesen3: [],
   sprach1: [],
   sprach2: [],
@@ -284,6 +324,7 @@ async function openExam(examId, examTitle, skill) {
     
     updateExamNavButtons();
     
+    // دعم أنواع الامتحانات المختلفة
     if (currentExamData.type === "matching") {
       if (typeof window.loadMatchingExam === "function") {
         window.loadMatchingExam(currentExamData);
@@ -298,6 +339,13 @@ async function openExam(examId, examTitle, skill) {
       } else {
         console.error("❌ buildTrueFalseExam غير موجود");
         buildTeil1(currentExamData.questions);
+      }
+    } else if (currentExamData.type === "teil2") {
+      if (typeof window.loadTeil2Exam === "function") {
+        window.loadTeil2Exam(currentExamData);
+      } else {
+        console.error("❌ loadTeil2Exam غير موجود");
+        alert("نظام Teil 2 غير متوفر حالياً");
       }
     } else {
       buildTeil1(currentExamData.questions);
@@ -475,4 +523,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 renderTeileList();
 
-console.log("✅ exams.js تم تحميله بنجاح مع 27 امتحان في Hören Teil 1 و 31 امتحان في Hören Teil 2 و 27 امتحان في Hören Teil 3");
+console.log("✅ exams.js تم تحميله بنجاح");
+console.log("📚 Lesen Teil 1:", examsDatabase.lesen1.length, "امتحان");
+console.log("📚 Lesen Teil 2:", examsDatabase.lesen2.length, "امتحان");
+console.log("🎧 Hören Teil 1:", examsDatabase.hoeren1.length, "امتحان");
+console.log("🎧 Hören Teil 2:", examsDatabase.hoeren2.length, "امتحان");
+console.log("🎧 Hören Teil 3:", examsDatabase.hoeren3.length, "امتحان");
