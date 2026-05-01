@@ -1,5 +1,5 @@
 // ============================================
-// engine.js - محرك الامتحانات (يدعم Matching System مع إمكانية إلغاء الاختيار)
+// engine.js - محرك الامتحانات (يدعم Matching System مع إلغاء الاختيار)
 // ============================================
 
 console.log("✅ engine.js تم تحميله");
@@ -17,7 +17,7 @@ window.loadExamFromFile = async function(skill, examId) {
   }
 };
 
-// ========== نظام Matching (Dropdown بدون تكرار + إمكانية إلغاء الاختيار) ==========
+// ========== نظام Matching (Dropdown بدون تكرار + إلغاء الاختيار) ==========
 let currentMatchingExamData = null;
 let matchingSelectedAnswers = {};
 let matchingAvailableOptions = [];
@@ -27,10 +27,12 @@ window.loadMatchingExam = function(examData) {
   currentMatchingExamData = examData;
   matchingSelectedAnswers = {};
   
-  // نسخ الخيارات المتاحة
-  matchingAvailableOptions = [...examData.sharedOptions];
+  // نسخ الخيارات المتاحة كمصفوفة من الكائنات {value, text}
+  matchingAvailableOptions = examData.sharedOptions.map((opt, idx) => ({
+    value: idx,
+    text: opt
+  }));
   
-  // عرض الأسئلة بنظام Matching
   renderMatchingQuestions();
 };
 
@@ -73,74 +75,86 @@ function renderMatchingQuestions() {
     // إضافة الخيارات المتاحة
     for (let j = 0; j < matchingAvailableOptions.length; j++) {
       const option = document.createElement("option");
-      option.value = j;
-      option.textContent = matchingAvailableOptions[j];
+      option.value = matchingAvailableOptions[j].value;
+      option.textContent = matchingAvailableOptions[j].text;
       select.appendChild(option);
     }
     
     // إذا كان هناك اختيار سابق
     if (matchingSelectedAnswers[i] !== undefined && matchingSelectedAnswers[i] !== "") {
-      const oldVal = matchingSelectedAnswers[i];
       for (let k = 0; k < select.options.length; k++) {
-        if (select.options[k].textContent === oldVal) {
+        if (select.options[k].textContent === matchingSelectedAnswers[i]) {
           select.selectedIndex = k;
           break;
         }
       }
     }
     
+    // حفظ مرجع للـ select
+    select.setAttribute("data-qidx", i);
+    
     // الحدث عند تغيير الاختيار
-    select.onchange = (function(qIdx, selectElement) {
-      return function() {
-        const selectedIndex = selectElement.selectedIndex;
-        const selectedText = selectElement.options[selectedIndex].textContent;
-        
-        // حالة 1: اختيار "-- اختر الإجابة --" → إلغاء الاختيار
-        if (selectedIndex === 0 || selectedText === "-- اختر الإجابة --") {
-          const oldValueText = matchingSelectedAnswers[qIdx];
-          if (oldValueText && oldValueText !== "" && oldValueText !== "-- اختر الإجابة --") {
-            if (!matchingAvailableOptions.includes(oldValueText)) {
-              matchingAvailableOptions.push(oldValueText);
-              matchingAvailableOptions.sort();
-            }
-          }
-          matchingSelectedAnswers[qIdx] = "";
-          selectElement.selectedIndex = 0;
-          refreshAllDropdowns();
-          return;
-        }
-        
-        // حالة 2: اختيار نفس العنوان الذي كان مختاراً مسبقاً → إلغاء الاختيار
-        const currentSelected = matchingSelectedAnswers[qIdx];
-        if (currentSelected === selectedText && currentSelected !== "") {
-          if (!matchingAvailableOptions.includes(selectedText)) {
-            matchingAvailableOptions.push(selectedText);
-            matchingAvailableOptions.sort();
-          }
-          matchingSelectedAnswers[qIdx] = "";
-          selectElement.selectedIndex = 0;
-          refreshAllDropdowns();
-          return;
-        }
-        
-        // حالة 3: اختيار عنوان جديد
-        const oldValueText = matchingSelectedAnswers[qIdx];
-        if (oldValueText && oldValueText !== "" && oldValueText !== "-- اختر الإجابة --") {
-          if (!matchingAvailableOptions.includes(oldValueText)) {
-            matchingAvailableOptions.push(oldValueText);
-            matchingAvailableOptions.sort();
+    select.addEventListener("change", function(e) {
+      const qIdx = parseInt(this.getAttribute("data-qidx"));
+      const selectedIndex = this.selectedIndex;
+      
+      // حالة: اختيار "-- اختر الإجابة --" (الفارغ)
+      if (selectedIndex === 0) {
+        // إذا كان هناك إجابة قديمة، نعيدها إلى القائمة
+        const oldAnswer = matchingSelectedAnswers[qIdx];
+        if (oldAnswer && oldAnswer !== "") {
+          // نبحث عن الخيار القديم في matchingAvailableOptions
+          const found = matchingAvailableOptions.some(opt => opt.text === oldAnswer);
+          if (!found) {
+            // نستعيد النص القديم إلى القائمة
+            const oldOption = { value: matchingAvailableOptions.length, text: oldAnswer };
+            matchingAvailableOptions.push(oldOption);
+            matchingAvailableOptions.sort((a, b) => a.text.localeCompare(b.text));
           }
         }
-        
-        const indexInAvailable = matchingAvailableOptions.indexOf(selectedText);
-        if (indexInAvailable !== -1) {
-          matchingAvailableOptions.splice(indexInAvailable, 1);
+        matchingSelectedAnswers[qIdx] = "";
+        rebuildAllDropdowns();
+        return;
+      }
+      
+      const selectedValue = this.options[selectedIndex].value;
+      const selectedText = this.options[selectedIndex].textContent;
+      const oldAnswer = matchingSelectedAnswers[qIdx];
+      
+      // حالة: اختيار نفس الإجابة مرة أخرى → إلغاء الاختيار
+      if (oldAnswer === selectedText && oldAnswer !== "") {
+        // نعيد الخيار إلى القائمة
+        const found = matchingAvailableOptions.some(opt => opt.text === selectedText);
+        if (!found) {
+          const restoredOption = { value: matchingAvailableOptions.length, text: selectedText };
+          matchingAvailableOptions.push(restoredOption);
+          matchingAvailableOptions.sort((a, b) => a.text.localeCompare(b.text));
         }
-        
-        matchingSelectedAnswers[qIdx] = selectedText;
-        refreshAllDropdowns();
-      };
-    })(i, select);
+        matchingSelectedAnswers[qIdx] = "";
+        rebuildAllDropdowns();
+        return;
+      }
+      
+      // حالة: اختيار إجابة جديدة
+      // نزيل الخيار الجديد من القائمة
+      const indexInAvailable = matchingAvailableOptions.findIndex(opt => opt.text === selectedText);
+      if (indexInAvailable !== -1) {
+        matchingAvailableOptions.splice(indexInAvailable, 1);
+      }
+      
+      // إذا كان هناك إجابة قديمة، نعيدها إلى القائمة
+      if (oldAnswer && oldAnswer !== "") {
+        const found = matchingAvailableOptions.some(opt => opt.text === oldAnswer);
+        if (!found) {
+          const restoredOption = { value: matchingAvailableOptions.length, text: oldAnswer };
+          matchingAvailableOptions.push(restoredOption);
+          matchingAvailableOptions.sort((a, b) => a.text.localeCompare(b.text));
+        }
+      }
+      
+      matchingSelectedAnswers[qIdx] = selectedText;
+      rebuildAllDropdowns();
+    });
     
     card.appendChild(select);
     container.appendChild(card);
@@ -159,36 +173,93 @@ function renderMatchingQuestions() {
   container.appendChild(resultDiv);
 }
 
-function refreshAllDropdowns() {
+function rebuildAllDropdowns() {
   for (let k = 0; k < currentMatchingExamData.questions.length; k++) {
     const sel = document.getElementById("m_select_" + k);
-    if (sel) {
-      const currentVal = matchingSelectedAnswers[k];
-      sel.innerHTML = "";
-      
-      const emptyOpt = document.createElement("option");
-      emptyOpt.value = "";
-      emptyOpt.textContent = "-- اختر الإجابة --";
-      sel.appendChild(emptyOpt);
-      
-      for (let m = 0; m < matchingAvailableOptions.length; m++) {
-        const opt = document.createElement("option");
-        opt.value = m;
-        opt.textContent = matchingAvailableOptions[m];
-        sel.appendChild(opt);
+    if (!sel) continue;
+    
+    const currentVal = matchingSelectedAnswers[k];
+    const qIdx = k;
+    
+    // حفظ القيمة القديمة للـ value
+    sel.innerHTML = "";
+    
+    const emptyOpt = document.createElement("option");
+    emptyOpt.value = "";
+    emptyOpt.textContent = "-- اختر الإجابة --";
+    sel.appendChild(emptyOpt);
+    
+    for (let m = 0; m < matchingAvailableOptions.length; m++) {
+      const opt = document.createElement("option");
+      opt.value = matchingAvailableOptions[m].value;
+      opt.textContent = matchingAvailableOptions[m].text;
+      sel.appendChild(opt);
+    }
+    
+    // استعادة القيمة المختارة سابقاً
+    if (currentVal && currentVal !== "") {
+      for (let p = 0; p < sel.options.length; p++) {
+        if (sel.options[p].textContent === currentVal) {
+          sel.selectedIndex = p;
+          break;
+        }
       }
+    } else {
+      sel.selectedIndex = 0;
+    }
+    
+    // إعادة تعيين الحدث
+    sel.setAttribute("data-qidx", qIdx);
+    sel.removeEventListener("change", sel._listener);
+    sel._listener = function(e) {
+      const idx = parseInt(this.getAttribute("data-qidx"));
+      const selectedIndex = this.selectedIndex;
       
-      if (currentVal && currentVal !== "" && currentVal !== "-- اختر الإجابة --") {
-        for (let p = 0; p < sel.options.length; p++) {
-          if (sel.options[p].textContent === currentVal) {
-            sel.selectedIndex = p;
-            break;
+      if (selectedIndex === 0) {
+        const oldAnswer = matchingSelectedAnswers[idx];
+        if (oldAnswer && oldAnswer !== "") {
+          const found = matchingAvailableOptions.some(opt => opt.text === oldAnswer);
+          if (!found) {
+            matchingAvailableOptions.push({ value: matchingAvailableOptions.length, text: oldAnswer });
+            matchingAvailableOptions.sort((a, b) => a.text.localeCompare(b.text));
           }
         }
-      } else {
-        sel.selectedIndex = 0;
+        matchingSelectedAnswers[idx] = "";
+        rebuildAllDropdowns();
+        return;
       }
-    }
+      
+      const selectedText = this.options[selectedIndex].textContent;
+      const oldAnswer = matchingSelectedAnswers[idx];
+      
+      if (oldAnswer === selectedText && oldAnswer !== "") {
+        const found = matchingAvailableOptions.some(opt => opt.text === selectedText);
+        if (!found) {
+          matchingAvailableOptions.push({ value: matchingAvailableOptions.length, text: selectedText });
+          matchingAvailableOptions.sort((a, b) => a.text.localeCompare(b.text));
+        }
+        matchingSelectedAnswers[idx] = "";
+        rebuildAllDropdowns();
+        return;
+      }
+      
+      const indexInAvailable = matchingAvailableOptions.findIndex(opt => opt.text === selectedText);
+      if (indexInAvailable !== -1) {
+        matchingAvailableOptions.splice(indexInAvailable, 1);
+      }
+      
+      if (oldAnswer && oldAnswer !== "") {
+        const found = matchingAvailableOptions.some(opt => opt.text === oldAnswer);
+        if (!found) {
+          matchingAvailableOptions.push({ value: matchingAvailableOptions.length, text: oldAnswer });
+          matchingAvailableOptions.sort((a, b) => a.text.localeCompare(b.text));
+        }
+      }
+      
+      matchingSelectedAnswers[idx] = selectedText;
+      rebuildAllDropdowns();
+    };
+    sel.addEventListener("change", sel._listener);
   }
 }
 
@@ -236,4 +307,4 @@ function checkMatchingExam() {
   resultDiv.style.display = "block";
 }
 
-console.log("✅ نظام Matching (Dropdown بدون تكرار + إلغاء الاختيار) جاهز");
+console.log("✅ نظام Matching (Dropdown بدون تكرار + إلغاء الاختيار) جاهز - النسخة المحسنة");
