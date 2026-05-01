@@ -17,25 +17,38 @@
   </div>
 </div>
 
-<!-- (  الصفحة 2: قائمة الأجزاء والامتحاناتبدون  ) -->
+<!-- الصفحة 2: قائمة الأجزاء والامتحانات -->
 <div id="list" class="page">
+  <div class="teile-header-section">
+    <h3>📌 اختر القسم (Teil)</h3>
+  </div>
   <div id="teileList" class="teile-row"></div>
-  <div id="examsList"></div>
-  <button id="backHomeBtn">🏠 الرئيسية</button>
+  <div id="examsList" class="exams-container">
+    <div class="welcome-message">
+      👈 اختر القسم (Teil) من الأعلى لعرض الامتحانات
+    </div>
+  </div>
+  <button id="backHomeBtn" class="back-home-btn">🏠 الرئيسية</button>
 </div>
 
 <!-- الصفحة 3: الامتحان -->
 <div id="exam" class="page">
 <div class="exam-box">
+  
   <!-- زر رجوع في صفحة الامتحان فقط -->
-  <div style="display: flex; justify-content: flex-start; margin-bottom: 20px;">
-    <button id="backArrowFromExam" style="background: none; border: none; font-size: 28px; cursor: pointer; color: #2c3e66; padding: 0;">↰</button>
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <button id="backArrowFromExam" class="arrow-back-btn">↰</button>
+    <h2 id="examTitle" style="margin: 0; flex: 1; text-align: center;"></h2>
+    <div style="width: 40px;"></div>
   </div>
 
-  <h2 id="examTitle" style="text-align: center; margin-top: -10px;"></h2>
+  <!-- أزرار التنقل بين الامتحانات (السابق/التالي) -->
+  <div id="examNavButtons" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 20px;">
+    <button id="prevExamBtn" class="nav-exam-btn">◀ السابق</button>
+    <button id="nextExamBtn" class="nav-exam-btn">التالي ▶</button>
+  </div>
 
-  <div style="margin-bottom:20px;" id="navButtons"></div>
-
+  <!-- محتوى الأجزاء المختلفة -->
   <div id="teil1" style="display:none;"></div>
   <div id="teil2" style="display:none;"></div>
   <div id="teil3" style="display:none;"></div>
@@ -45,13 +58,10 @@
   <div id="hoeren2" style="display:none;"></div>
   <div id="hoeren3" style="display:none;"></div>
 
-  <!-- أزرار التنقل بين الامتحانات -->
-  <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-    <button id="prevExamBtn" style="background: #6c757d;">◀ السابق</button>
-    <button id="nextExamBtn" style="background: #6c757d;">التالي ▶</button>
+  <!-- زر العودة إلى القائمة -->
+  <div style="display: flex; justify-content: center; margin-top: 25px;">
+    <button id="backToListBtn" class="back-list-btn">📋 عودة إلى القائمة</button>
   </div>
-
-  <button id="backToListBtn" style="margin-top: 15px;">📋 عودة</button>
 </div>
 </div>
 
