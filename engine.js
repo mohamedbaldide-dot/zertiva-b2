@@ -1,34 +1,51 @@
 // ============================================
-// engine.js - يدعم Matching System (Dropdown بدون تكرار)
+// engine.js - محرك الامتحانات (يدعم Matching System)
 // ============================================
 
-let currentExamData = null;
-let selectedAnswers = {};
-let availableOptions = [];
+console.log("✅ engine.js تم تحميله");
 
-function loadMatchingExam(examData) {
-  currentExamData = examData;
-  selectedAnswers = {};
+window.loadExamFromFile = async function(skill, examId) {
+  try {
+    const response = await fetch(`data/${skill}/exam${examId}.json`);
+    if (response.ok) {
+      return await response.json();
+    }
+    return null;
+  } catch(e) {
+    console.error("خطأ:", e);
+    return null;
+  }
+};
+
+// ========== نظام Matching (Dropdown بدون تكرار) - خاص بـ Lesen Teil 1 فقط ==========
+let currentMatchingExamData = null;
+let matchingSelectedAnswers = {};
+let matchingAvailableOptions = [];
+
+window.loadMatchingExam = function(examData) {
+  console.log("🟢 loadMatchingExam تم استدعاؤها", examData.title);
+  currentMatchingExamData = examData;
+  matchingSelectedAnswers = {};
   
   // نسخ الخيارات المتاحة
-  availableOptions = [...examData.sharedOptions];
+  matchingAvailableOptions = [...examData.sharedOptions];
   
-  // عرض الأسئلة
+  // عرض الأسئلة بنظام Matching
   renderMatchingQuestions();
-}
+};
 
 function renderMatchingQuestions() {
   const container = document.getElementById("teil1");
   if (!container) return;
   container.innerHTML = "";
   
-  const questions = currentExamData.questions;
+  const questions = currentMatchingExamData.questions;
   
   for (let i = 0; i < questions.length; i++) {
     const q = questions[i];
     const card = document.createElement("div");
     card.className = "question-card";
-    card.id = "q_" + i;
+    card.id = "m_q_" + i;
     
     const questionText = document.createElement("div");
     questionText.className = "question-text";
@@ -38,12 +55,13 @@ function renderMatchingQuestions() {
     // إنشاء Dropdown
     const select = document.createElement("select");
     select.className = "matching-select";
-    select.id = "select_" + i;
+    select.id = "m_select_" + i;
     select.style.width = "100%";
     select.style.padding = "10px";
     select.style.marginTop = "10px";
     select.style.borderRadius = "8px";
     select.style.border = "1px solid #ccc";
+    select.style.backgroundColor = "white";
     
     // خيار فارغ
     const emptyOption = document.createElement("option");
@@ -52,47 +70,56 @@ function renderMatchingQuestions() {
     select.appendChild(emptyOption);
     
     // إضافة الخيارات المتاحة
-    for (let j = 0; j < availableOptions.length; j++) {
+    for (let j = 0; j < matchingAvailableOptions.length; j++) {
       const option = document.createElement("option");
       option.value = j;
-      option.textContent = availableOptions[j];
+      option.textContent = matchingAvailableOptions[j];
       select.appendChild(option);
     }
     
     // إذا كان هناك اختيار سابق
-    if (selectedAnswers[i] !== undefined) {
-      select.value = selectedAnswers[i];
+    if (matchingSelectedAnswers[i] !== undefined) {
+      const oldVal = matchingSelectedAnswers[i];
+      // نبحث عن النص القديم في القائمة الجديدة
+      for (let k = 0; k < select.options.length; k++) {
+        if (select.options[k].textContent === matchingSelectedAnswers[i]) {
+          select.selectedIndex = k;
+          break;
+        }
+      }
     }
     
-    select.onchange = (function(qIdx) {
+    select.onchange = (function(qIdx, selectElement) {
       return function() {
-        const oldValue = selectedAnswers[qIdx];
-        const newValue = parseInt(this.value);
+        const oldValueText = matchingSelectedAnswers[qIdx];
+        const newValueText = selectElement.options[selectElement.selectedIndex].textContent;
+        
+        // إذا كان الاختيار هو "-- اختر الإجابة --" نخرج
+        if (selectElement.selectedIndex === 0 || newValueText === "-- اختر الإجابة --") {
+          return;
+        }
         
         // إذا كان هناك اختيار قديم، نعيد الخيار إلى القائمة
-        if (oldValue !== undefined && !isNaN(oldValue)) {
-          const oldOptionText = availableOptions[oldValue];
-          if (oldOptionText && !availableOptions.includes(oldOptionText)) {
-            availableOptions.push(oldOptionText);
+        if (oldValueText && oldValueText !== "-- اختر الإجابة --" && oldValueText !== "") {
+          if (!matchingAvailableOptions.includes(oldValueText)) {
+            matchingAvailableOptions.push(oldValueText);
+            matchingAvailableOptions.sort();
           }
         }
         
         // إزالة الخيار الجديد من القائمة
-        if (!isNaN(newValue)) {
-          const selectedText = this.options[this.selectedIndex].textContent;
-          const indexInAvailable = availableOptions.indexOf(selectedText);
-          if (indexInAvailable !== -1) {
-            availableOptions.splice(indexInAvailable, 1);
-          }
+        const indexInAvailable = matchingAvailableOptions.indexOf(newValueText);
+        if (indexInAvailable !== -1) {
+          matchingAvailableOptions.splice(indexInAvailable, 1);
         }
         
-        selectedAnswers[qIdx] = newValue;
+        matchingSelectedAnswers[qIdx] = newValueText;
         
         // إعادة تحميل كل الـ Dropdowns لتحديث الخيارات
-        for (let k = 0; k < currentExamData.questions.length; k++) {
-          const sel = document.getElementById("select_" + k);
+        for (let k = 0; k < currentMatchingExamData.questions.length; k++) {
+          const sel = document.getElementById("m_select_" + k);
           if (sel) {
-            const currentVal = selectedAnswers[k];
+            const currentVal = matchingSelectedAnswers[k];
             sel.innerHTML = "";
             
             const emptyOpt = document.createElement("option");
@@ -100,27 +127,26 @@ function renderMatchingQuestions() {
             emptyOpt.textContent = "-- اختر الإجابة --";
             sel.appendChild(emptyOpt);
             
-            for (let m = 0; m < availableOptions.length; m++) {
+            for (let m = 0; m < matchingAvailableOptions.length; m++) {
               const opt = document.createElement("option");
               opt.value = m;
-              opt.textContent = availableOptions[m];
+              opt.textContent = matchingAvailableOptions[m];
               sel.appendChild(opt);
             }
             
-            if (currentVal !== undefined && !isNaN(currentVal)) {
-              const selectedText = selectedAnswers[k];
-              const opt = document.createElement("option");
-              opt.value = selectedText;
-              opt.textContent = availableOptions[selectedText] || "اختيار سابق";
-              opt.selected = true;
-              sel.appendChild(opt);
-            } else {
-              sel.value = "";
+            // استعادة القيمة المختارة سابقاً
+            if (currentVal && currentVal !== "" && currentVal !== "-- اختر الإجابة --") {
+              for (let p = 0; p < sel.options.length; p++) {
+                if (sel.options[p].textContent === currentVal) {
+                  sel.selectedIndex = p;
+                  break;
+                }
+              }
             }
           }
         }
       };
-    })(i);
+    })(i, select);
     
     card.appendChild(select);
     container.appendChild(card);
@@ -133,7 +159,7 @@ function renderMatchingQuestions() {
   container.appendChild(checkBtn);
   
   const resultDiv = document.createElement("div");
-  resultDiv.id = "teil1Result";
+  resultDiv.id = "matchingResult";
   resultDiv.className = "result-box";
   resultDiv.style.display = "none";
   container.appendChild(resultDiv);
@@ -141,26 +167,29 @@ function renderMatchingQuestions() {
 
 function checkMatchingExam() {
   let score = 0;
-  const questions = currentExamData.questions;
+  const questions = currentMatchingExamData.questions;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
   
   // إعادة تعيين الألوان
   for (let i = 0; i < total; i++) {
-    const card = document.getElementById("q_" + i);
-    card.classList.remove("correct-answer-card", "wrong-answer-card");
-    
-    // إزالة الرسائل القديمة
-    const oldMsg = card.querySelector(".correct-message");
-    if (oldMsg) oldMsg.remove();
+    const card = document.getElementById("m_q_" + i);
+    if (card) {
+      card.classList.remove("correct-answer-card", "wrong-answer-card");
+      const oldMsg = card.querySelector(".correct-message");
+      if (oldMsg) oldMsg.remove();
+    }
   }
   
   // التصحيح
   for (let i = 0; i < total; i++) {
     const q = questions[i];
-    const card = document.getElementById("q_" + i);
-    const userAnswer = selectedAnswers[i];
-    const isCorrect = (userAnswer === q.correct);
+    const card = document.getElementById("m_q_" + i);
+    const userAnswerText = matchingSelectedAnswers[i];
+    
+    // البحث عن رقم الإجابة الصحيحة
+    const correctAnswerText = currentMatchingExamData.sharedOptions[q.correct];
+    const isCorrect = (userAnswerText === correctAnswerText);
     
     if (isCorrect) {
       score++;
@@ -173,16 +202,15 @@ function checkMatchingExam() {
       correctMsg.style.color = "#28a745";
       correctMsg.style.marginTop = "10px";
       correctMsg.style.fontSize = "14px";
-      correctMsg.innerHTML = "✅ الإجابة الصحيحة: " + currentExamData.sharedOptions[q.correct];
+      correctMsg.innerHTML = "✅ الإجابة الصحيحة: " + correctAnswerText;
       card.appendChild(correctMsg);
     }
   }
   
   const finalScore = (score * pointsPerQuestion).toFixed(2);
-  const resultDiv = document.getElementById("teil1Result");
+  const resultDiv = document.getElementById("matchingResult");
   resultDiv.innerHTML = "🎯 النتيجة: " + finalScore + " / 25 (" + score + " من " + total + " إجابات صحيحة)";
   resultDiv.style.display = "block";
 }
 
-// تصدير الدوال
-window.loadMatchingExam = loadMatchingExam;
+console.log("✅ نظام Matching (Dropdown بدون تكرار) جاهز");
