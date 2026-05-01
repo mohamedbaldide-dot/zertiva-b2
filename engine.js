@@ -480,14 +480,14 @@ window.buildTrueFalseExam = function(container, questions, note) {
     container.appendChild(resultDiv);
 };
 
-// ========== تصحيح امتحان True/False مع تلوين الإجابات (يدعم hoeren1 و hoeren3) ==========
+// ========== تصحيح امتحان True/False مع تلوين الإجابات (يدعم hoeren1, hoeren2, hoeren3) ==========
 function checkTrueFalseExam(questions, answers) {
     let score = 0;
     const total = questions.length;
     const pointsPerQuestion = 25 / total;
     
-    // دعم كل من hoeren1 و hoeren3
-    const cards = document.querySelectorAll('#hoeren1 .question-card, #hoeren3 .question-card');
+    // دعم كل من hoeren1 و hoeren2 و hoeren3
+    const cards = document.querySelectorAll('#hoeren1 .question-card, #hoeren2 .question-card, #hoeren3 .question-card');
     
     for (let i = 0; i < questions.length; i++) {
         const q = questions[i];
@@ -580,4 +580,4 @@ function checkTrueFalseExam(questions, answers) {
 
 console.log("✅ Custom Dropdown جاهز");
 console.log("✅ True/False Exam جاهز مع تلوين أخضر/أحمر وزر ↺ ودعم الملاحظات");
-console.log("✅ يدعم Hören Teil 1 و Hören Teil 3");
+console.log("✅ يدعم Hören Teil 1 و Hören Teil 2 و Hören Teil 3");
