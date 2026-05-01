@@ -100,7 +100,9 @@ const examsDatabase = {
   lesen3: [],
   sprach1: [],
   sprach2: [],
-  hoeren1: [],
+  hoeren1: [
+    { id: 1, title: "Die Deutsche Lufthansa", enabled: true, hasFile: true }
+  ],
   hoeren2: [],
   hoeren3: []
 };
@@ -203,12 +205,21 @@ async function openExam(examId, examTitle, skill) {
     
     updateExamNavButtons();
     
+    // ✅ معالجة أنواع الامتحانات المختلفة
     if (currentExamData.type === "matching") {
       if (typeof window.loadMatchingExam === "function") {
         window.loadMatchingExam(currentExamData);
       } else {
         console.error("❌ loadMatchingExam غير موجود");
         alert("نظام التصحيح غير متوفر حالياً");
+      }
+    } else if (currentExamData.type === "truefalse") {
+      const container = document.getElementById(currentSkill);
+      if (container && typeof window.buildTrueFalseExam === "function") {
+        window.buildTrueFalseExam(container, currentExamData.questions);
+      } else {
+        console.error("❌ buildTrueFalseExam غير موجود");
+        buildTeil1(currentExamData.questions);
       }
     } else {
       buildTeil1(currentExamData.questions);
