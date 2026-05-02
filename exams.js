@@ -1,6 +1,6 @@
 // ============================================
 // exams.js - نظام الامتحانات المتكامل
-// يدعم: Lesen Teil 1, Lesen Teil 2, Lesen Teil 3, Hören Teil 1-3, Sprachbausteine Teil 1, إلخ
+// يدعم: Lesen Teil 1, Lesen Teil 2, Lesen Teil 3, Hören Teil 1-3, Sprachbausteine Teil 1, Sprachbausteine Teil 2
 // ============================================
 
 const teile = [
@@ -212,7 +212,53 @@ const examsDatabase = {
     { id: 39, title: "Sehr geehrte Frau Melchior", enabled: true, hasFile: true },
     { id: 40, title: "Liebe Sandra", enabled: true, hasFile: true }
   ],
-  sprach2: [],
+  sprach2: [
+    { id: 1, title: "Das Fahrrad", enabled: true, hasFile: true },
+    { id: 2, title: "Das Fahrrad (معدل)", enabled: true, hasFile: true },
+    { id: 3, title: "Man(n) kocht selbst", enabled: true, hasFile: true },
+    { id: 4, title: "Jugend diskutiert - mach mit!", enabled: true, hasFile: true },
+    { id: 5, title: "Theater für Kinder und Jugendliche", enabled: true, hasFile: true },
+    { id: 6, title: "Umgang mit Haustieren", enabled: true, hasFile: true },
+    { id: 7, title: "Liebesgrüße aus der Kühltruhe", enabled: true, hasFile: true },
+    { id: 8, title: "Liebesgrüße aus der Kühltruhe (معدل)", enabled: true, hasFile: true },
+    { id: 9, title: "Online-Sprachkurse", enabled: true, hasFile: true },
+    { id: 10, title: "Deutschland – ein Paradies für Kinder?", enabled: true, hasFile: true },
+    { id: 11, title: "Deutschland – ein Paradies für Kinder? (معدل 1)", enabled: true, hasFile: true },
+    { id: 12, title: "Deutschland – ein Paradies für Kinder? (معدل 2)", enabled: true, hasFile: true },
+    { id: 13, title: "Das Schicksal des Braunbären", enabled: true, hasFile: true },
+    { id: 14, title: "Das Schicksal des Braunbären (معدل)", enabled: true, hasFile: true },
+    { id: 15, title: "Was steckt hinter Bio?", enabled: true, hasFile: true },
+    { id: 16, title: "Was genau sind eigentlich Bio-Lebensmittel (معدل)", enabled: true, hasFile: true },
+    { id: 17, title: "Sicherer Schulweg", enabled: true, hasFile: true },
+    { id: 18, title: "Der Hund als intelligentes Wesen", enabled: true, hasFile: true },
+    { id: 19, title: "Die wichtigsten Regeln auf der Skipiste", enabled: true, hasFile: true },
+    { id: 20, title: "Kaffee und Kuchen – ein Stück Tradition", enabled: true, hasFile: true },
+    { id: 21, title: "Fische sind schlauer, als wir denken", enabled: true, hasFile: true },
+    { id: 22, title: "Schwarzarbeit kann teuer werden", enabled: true, hasFile: true },
+    { id: 23, title: "Schwarzarbeit kann teuer werden (معدل 1)", enabled: true, hasFile: true },
+    { id: 24, title: "Schwarzarbeit kann teuer werden (معدل 2)", enabled: true, hasFile: true },
+    { id: 25, title: "Teamarbeit als Schlüssel zum Erfolg", enabled: true, hasFile: true },
+    { id: 26, title: "Teamarbeit als Schlüssel zum Erfolg (معدل)", enabled: true, hasFile: true },
+    { id: 27, title: "Wie Handschrift wieder cool wird (معدل)", enabled: true, hasFile: true },
+    { id: 28, title: "Wie Handschrift wieder cool wird", enabled: true, hasFile: true },
+    { id: 29, title: "Ausbildung mit über 30", enabled: true, hasFile: true },
+    { id: 30, title: "Verlernen die Deutschen die Höflichkeit?", enabled: true, hasFile: true },
+    { id: 31, title: "Joggen: Mehr als nur Laufen", enabled: true, hasFile: true },
+    { id: 32, title: "Der klügste Freund des Menschen", enabled: true, hasFile: true },
+    { id: 33, title: "Der klügste Freund des Menschen (معدل)", enabled: true, hasFile: true },
+    { id: 34, title: "Manipulierte Bilder", enabled: true, hasFile: true },
+    { id: 35, title: "Maßgeschneidert nach Bodyscanning", enabled: true, hasFile: true },
+    { id: 36, title: "Maßgeschneidert nach Bodyscanning (معدل)", enabled: true, hasFile: true },
+    { id: 37, title: "Im Restaurant", enabled: true, hasFile: true },
+    { id: 38, title: "Im Restaurant (معدل)", enabled: true, hasFile: true },
+    { id: 39, title: "Lernen ist kein Privileg der Jugend", enabled: true, hasFile: true },
+    { id: 40, title: "Lernen ist kein Privileg der Jugend (معدل)", enabled: true, hasFile: true },
+    { id: 41, title: "Wie TV-Bilder die Fantasie von Kindern prägen", enabled: true, hasFile: true },
+    { id: 42, title: "Städte vor dem Infarkt", enabled: true, hasFile: true },
+    { id: 43, title: "Es ist erst 6 Uhr morgens", enabled: true, hasFile: true },
+    { id: 44, title: "Die Katzen", enabled: true, hasFile: true },
+    { id: 45, title: "Teleshopping – nicht immer gut und günstig", enabled: true, hasFile: true }
+  ],
   hoeren1: [
     { id: 1, title: "Die Deutsche Lufthansa", enabled: true, hasFile: true },
     { id: 2, title: "Die Piloten der Lufthansa", enabled: true, hasFile: true },
@@ -438,6 +484,13 @@ async function openExam(examId, examTitle, skill) {
         console.error("❌ loadSprach1Exam غير موجود");
         alert("نظام Sprachbausteine Teil 1 غير متوفر حالياً");
       }
+    } else if (currentExamData.type === "sprach2") {
+      if (typeof window.loadSprach2Exam === "function") {
+        window.loadSprach2Exam(currentExamData);
+      } else {
+        console.error("❌ loadSprach2Exam غير موجود");
+        alert("نظام Sprachbausteine Teil 2 غير متوفر حالياً");
+      }
     } else {
       buildTeil1(currentExamData.questions);
     }
@@ -619,6 +672,7 @@ console.log("📚 Lesen Teil 1:", examsDatabase.lesen1.length, "امتحان");
 console.log("📚 Lesen Teil 2:", examsDatabase.lesen2.length, "امتحان");
 console.log("📚 Lesen Teil 3:", examsDatabase.lesen3.length, "امتحان");
 console.log("📝 Sprachbausteine Teil 1:", examsDatabase.sprach1.length, "امتحان");
+console.log("📝 Sprachbausteine Teil 2:", examsDatabase.sprach2.length, "امتحان");
 console.log("🎧 Hören Teil 1:", examsDatabase.hoeren1.length, "امتحان");
 console.log("🎧 Hören Teil 2:", examsDatabase.hoeren2.length, "امتحان");
 console.log("🎧 Hören Teil 3:", examsDatabase.hoeren3.length, "امتحان");
