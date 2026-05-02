@@ -83,11 +83,13 @@ function renderSchreibenExam() {
   const pointsList = document.createElement("ul");
   pointsList.style.marginTop = "10px";
   pointsList.style.paddingLeft = "20px";
-  for (let i = 0; i < currentSchreibenData.aufgabe.points.length; i++) {
-    const li = document.createElement("li");
-    li.innerHTML = currentSchreibenData.aufgabe.points[i];
-    li.style.marginBottom = "5px";
-    pointsList.appendChild(li);
+  if (currentSchreibenData.aufgabe.points && currentSchreibenData.aufgabe.points.length > 0) {
+    for (let i = 0; i < currentSchreibenData.aufgabe.points.length; i++) {
+      const li = document.createElement("li");
+      li.innerHTML = currentSchreibenData.aufgabe.points[i];
+      li.style.marginBottom = "5px";
+      pointsList.appendChild(li);
+    }
   }
   leftColumn.appendChild(pointsList);
   
@@ -110,7 +112,11 @@ function renderSchreibenExam() {
   
   const templateTextDiv = document.createElement("div");
   let templateHtml = currentSchreibenData.template.text;
-  const bluePoints = currentSchreibenData.template.colors?.blue_points || [];
+  
+  // دعم كل من blue_points و bluePoints
+  const bluePoints = currentSchreibenData.template.colors?.blue_points || 
+                     currentSchreibenData.template.colors?.bluePoints || [];
+  
   for (let i = 0; i < bluePoints.length; i++) {
     const point = bluePoints[i];
     const regex = new RegExp(`(${point.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'g');
@@ -1060,6 +1066,13 @@ window.buildTrueFalseExam = function(container, questions, note) {
   buttonContainer.style.alignItems = 'center';
   buttonContainer.style.marginTop = '25px';
   
+  const originalCorrectIndices = [];
+  for (let i = 0; i < questions.length; i++) {
+    if (questions[i].correct === true) {
+      originalCorrectIndices.push(i + 1);
+    }
+  }
+  
   const correctNumbersContainer = document.createElement('div');
   correctNumbersContainer.id = "truefalseCorrectNumbers";
   correctNumbersContainer.style.backgroundColor = "#e3f2fd";
@@ -1069,8 +1082,11 @@ window.buildTrueFalseExam = function(container, questions, note) {
   correctNumbersContainer.style.fontWeight = "bold";
   correctNumbersContainer.style.fontSize = "14px";
   correctNumbersContainer.style.border = "1px solid #90caf9";
-  correctNumbersContainer.style.display = "none";
-  correctNumbersContainer.innerHTML = '▸ : ';
+  if (originalCorrectIndices.length > 0) {
+    correctNumbersContainer.innerHTML = `▸ : ${originalCorrectIndices.join("")}`;
+  } else {
+    correctNumbersContainer.innerHTML = "▸ : —";
+  }
   
   const buttonsDiv = document.createElement('div');
   buttonsDiv.style.display = 'flex';
@@ -1088,7 +1104,7 @@ window.buildTrueFalseExam = function(container, questions, note) {
   checkBtn.style.fontSize = '16px';
   
   checkBtn.onclick = () => {
-    checkTrueFalseExam(questions, userAnswers, correctNumbersContainer);
+    checkTrueFalseExam(questions, userAnswers);
   };
   
   const resetBtn = document.createElement('button');
@@ -1126,8 +1142,6 @@ window.buildTrueFalseExam = function(container, questions, note) {
       label.style.border = '1px solid #ccc';
     });
     
-    correctNumbersContainer.style.display = 'none';
-    
     const resultDiv = document.getElementById('truefalseResult');
     if (resultDiv) {
       resultDiv.style.display = 'none';
@@ -1151,11 +1165,10 @@ window.buildTrueFalseExam = function(container, questions, note) {
   container.appendChild(resultDiv);
 };
 
-function checkTrueFalseExam(questions, answers, correctNumbersContainer) {
+function checkTrueFalseExam(questions, answers) {
   let score = 0;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
-  let correctIndices = [];
   
   const cards = document.querySelectorAll('#hoeren1 .question-card, #hoeren2 .question-card, #hoeren3 .question-card');
   
@@ -1173,30 +1186,9 @@ function checkTrueFalseExam(questions, answers, correctNumbersContainer) {
     
     if (isCorrect && userAnswer !== undefined) {
       score++;
-      correctIndices.push(i + 1);
       card.classList.add('correct-answer-card');
     } else {
       card.classList.add('wrong-answer-card');
-      
-      if (userAnswer !== undefined) {
-        const correctMsg = document.createElement('div');
-        correctMsg.className = 'correct-message';
-        correctMsg.style.color = '#28a745';
-        correctMsg.style.marginTop = '10px';
-        correctMsg.style.fontSize = '14px';
-        correctMsg.style.fontWeight = 'bold';
-        correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.correct ? 'Richtig' : 'Falsch'}`;
-        card.appendChild(correctMsg);
-      } else if (userAnswer === undefined) {
-        const correctMsg = document.createElement('div');
-        correctMsg.className = 'correct-message';
-        correctMsg.style.color = '#ff9800';
-        correctMsg.style.marginTop = '10px';
-        correctMsg.style.fontSize = '14px';
-        correctMsg.style.fontWeight = 'bold';
-        correctMsg.innerHTML = `⚠️ لم يتم الإجابة - الصحيح: ${q.correct ? 'Richtig' : 'Falsch'}`;
-        card.appendChild(correctMsg);
-      }
     }
     
     const radios = card.querySelectorAll('input[type="radio"]');
@@ -1223,15 +1215,6 @@ function checkTrueFalseExam(questions, answers, correctNumbersContainer) {
           parentLabel.style.border = '2px solid #28a745';
         }
       }
-    }
-  }
-  
-  if (correctNumbersContainer) {
-    correctNumbersContainer.style.display = 'block';
-    if (correctIndices.length > 0) {
-      correctNumbersContainer.innerHTML = `▸ : ${correctIndices.join("")}`;
-    } else {
-      correctNumbersContainer.innerHTML = "▸ : لا توجد إجابات صحيحة";
     }
   }
   
