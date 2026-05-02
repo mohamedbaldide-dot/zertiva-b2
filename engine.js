@@ -268,7 +268,7 @@ function updateTeil3DropdownList(questionIndex) {
   // خيار "ليس لها عنوان"
   const noneOption = document.createElement("div");
   noneOption.className = "dropdown-option";
-  noneOption.textContent = "❌ ليس لها عنوان";
+  noneOption.textContent =  " — ليس لها عنوان — ";
   noneOption.style.padding = "10px";
   noneOption.style.cursor = "pointer";
   noneOption.style.borderBottom = "1px solid #eee";
@@ -355,7 +355,7 @@ function selectTeil3Option(questionIndex, selectedText) {
   
   if (selectedText === null) {
     // اختيار "ليس لها عنوان"
-    teil3UserAnswers[questionIndex] = "❌ ليس لها عنوان";
+    teil3UserAnswers[questionIndex] = "— ليس لها عنوان —";
   } else {
     // إزالة الخيار الجديد من القائمة المتاحة
     const indexInAvailable = teil3AvailableOptions.indexOf(selectedText);
@@ -409,7 +409,7 @@ function checkTeil3Exam() {
     
     // فقرة بدون عنوان (correct = null)
     if (correctIndex === null) {
-      if (userAnswer === "❌ ليس لها عنوان" || userAnswer === null || userAnswer === "") {
+      if (userAnswer === "— ليس لها عنوان —" || userAnswer === null || userAnswer === "") {
         isCorrect = true;
         score++;
         if (card) card.classList.add("correct-answer-card");
