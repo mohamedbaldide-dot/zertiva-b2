@@ -1,6 +1,6 @@
 // ============================================
 // engine.js - محرك الامتحانات المتكامل
-// يدعم: Matching (Custom Dropdown) + True/False (Hören 1,2,3) + Teil 2 + Teil 3 + Sprachbausteine Teil 1 + Sprachbausteine Teil 2
+// يدعم: Matching (Custom Dropdown) + True/False (Hören 1,2,3) + Teil 2 + Teil 3 + Sprachbausteine Teil 1 + Sprachbausteine Teil 2 + Schreiben
 // ============================================
 
 console.log("✅ engine.js تم تحميله (النسخة النهائية)");
@@ -17,6 +17,219 @@ window.loadExamFromFile = async function(skill, examId) {
     return null;
   }
 };
+
+// ========== نظام Schreiben (الكتابة) ==========
+let currentSchreibenData = null;
+let schreibenAnswer = "";
+
+window.loadSchreibenExam = function(examData) {
+  console.log("🟢 loadSchreibenExam", examData.title);
+  currentSchreibenData = examData;
+  renderSchreibenExam();
+};
+
+function renderSchreibenExam() {
+  const container = document.getElementById("schreiben");
+  if (!container) return;
+  container.innerHTML = "";
+  
+  const title = document.createElement("h2");
+  title.innerHTML = currentSchreibenData.title;
+  title.style.color = "#2c3e66";
+  title.style.marginBottom = "20px";
+  container.appendChild(title);
+  
+  const twoColumns = document.createElement("div");
+  twoColumns.style.display = "flex";
+  twoColumns.style.gap = "30px";
+  twoColumns.style.flexWrap = "wrap";
+  
+  // العمود الأيسر: Situation + Aufgabe
+  const leftColumn = document.createElement("div");
+  leftColumn.style.flex = "1";
+  leftColumn.style.minWidth = "350px";
+  leftColumn.style.backgroundColor = "#f9f9f9";
+  leftColumn.style.padding = "20px";
+  leftColumn.style.borderRadius = "12px";
+  leftColumn.style.border = "1px solid #ddd";
+  leftColumn.style.maxHeight = "600px";
+  leftColumn.style.overflowY = "auto";
+  
+  const situationTitle = document.createElement("h3");
+  situationTitle.innerHTML = `📋 ${currentSchreibenData.situation.title}`;
+  situationTitle.style.color = "#2c3e66";
+  situationTitle.style.marginBottom = "15px";
+  leftColumn.appendChild(situationTitle);
+  
+  const situationText = document.createElement("div");
+  situationText.innerHTML = currentSchreibenData.situation.text;
+  situationText.style.lineHeight = "1.7";
+  situationText.style.fontSize = "14px";
+  situationText.style.whiteSpace = "pre-line";
+  leftColumn.appendChild(situationText);
+  
+  const aufgabeTitle = document.createElement("h3");
+  aufgabeTitle.innerHTML = `📝 Aufgabe (${currentSchreibenData.aufgabe.wordCount})`;
+  aufgabeTitle.style.color = "#2c3e66";
+  aufgabeTitle.style.marginTop = "20px";
+  aufgabeTitle.style.marginBottom = "10px";
+  leftColumn.appendChild(aufgabeTitle);
+  
+  const aufgabeText = document.createElement("div");
+  aufgabeText.innerHTML = currentSchreibenData.aufgabe.description;
+  aufgabeText.style.marginBottom = "10px";
+  leftColumn.appendChild(aufgabeText);
+  
+  const pointsList = document.createElement("ul");
+  pointsList.style.marginTop = "10px";
+  pointsList.style.paddingLeft = "20px";
+  for (let i = 0; i < currentSchreibenData.aufgabe.points.length; i++) {
+    const li = document.createElement("li");
+    li.innerHTML = currentSchreibenData.aufgabe.points[i];
+    li.style.marginBottom = "5px";
+    pointsList.appendChild(li);
+  }
+  leftColumn.appendChild(pointsList);
+  
+  // العمود الأيمن: القالب الثابت
+  const rightColumn = document.createElement("div");
+  rightColumn.style.flex = "1";
+  rightColumn.style.minWidth = "350px";
+  rightColumn.style.backgroundColor = "#e8f4f8";
+  rightColumn.style.padding = "20px";
+  rightColumn.style.borderRadius = "12px";
+  rightColumn.style.border = "1px solid #b8d9e8";
+  rightColumn.style.maxHeight = "600px";
+  rightColumn.style.overflowY = "auto";
+  
+  const templateTitle = document.createElement("h3");
+  templateTitle.innerHTML = `✦ ${currentSchreibenData.template.title}`;
+  templateTitle.style.color = "#4A90E2";
+  templateTitle.style.marginBottom = "15px";
+  rightColumn.appendChild(templateTitle);
+  
+  const templateTextDiv = document.createElement("div");
+  let templateHtml = currentSchreibenData.template.text;
+  const bluePoints = currentSchreibenData.template.colors?.blue_points || [];
+  for (let i = 0; i < bluePoints.length; i++) {
+    const point = bluePoints[i];
+    const regex = new RegExp(`(${point.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'g');
+    templateHtml = templateHtml.replace(regex, '<span style="color: #4A90E2; font-weight: bold;">$1</span>');
+  }
+  templateHtml = templateHtml.replace(/\n/g, '<br>');
+  templateTextDiv.innerHTML = templateHtml;
+  templateTextDiv.style.lineHeight = "1.7";
+  templateTextDiv.style.fontSize = "14px";
+  templateTextDiv.style.whiteSpace = "pre-line";
+  rightColumn.appendChild(templateTextDiv);
+  
+  twoColumns.appendChild(leftColumn);
+  twoColumns.appendChild(rightColumn);
+  container.appendChild(twoColumns);
+  
+  // منطقة كتابة الإجابة
+  const answerSection = document.createElement("div");
+  answerSection.style.marginTop = "25px";
+  
+  const answerLabel = document.createElement("label");
+  answerLabel.innerHTML = "<strong>✍️ Ihre Antwort (150-180 Wörter):</strong>";
+  answerLabel.style.display = "block";
+  answerLabel.style.marginBottom = "10px";
+  answerSection.appendChild(answerLabel);
+  
+  const textarea = document.createElement("textarea");
+  textarea.id = "schreibenAnswer";
+  textarea.placeholder = "Schreiben Sie hier Ihre E-Mail / Ihren Brief...";
+  textarea.style.width = "100%";
+  textarea.style.minHeight = "250px";
+  textarea.style.padding = "15px";
+  textarea.style.fontSize = "14px";
+  textarea.style.fontFamily = "Arial";
+  textarea.style.border = "1px solid #ccc";
+  textarea.style.borderRadius = "8px";
+  textarea.style.resize = "vertical";
+  textarea.value = schreibenAnswer;
+  
+  textarea.oninput = function() {
+    schreibenAnswer = textarea.value;
+  };
+  
+  answerSection.appendChild(textarea);
+  
+  const wordCountDiv = document.createElement("div");
+  wordCountDiv.id = "schreibenWordCount";
+  wordCountDiv.style.marginTop = "8px";
+  wordCountDiv.style.fontSize = "12px";
+  wordCountDiv.style.color = "#666";
+  wordCountDiv.innerHTML = "📊 Anzahl der Wörter: 0";
+  answerSection.appendChild(wordCountDiv);
+  
+  textarea.onkeyup = function() {
+    const text = textarea.value;
+    const words = text.trim().split(/\s+/).filter(w => w.length > 0);
+    wordCountDiv.innerHTML = `📊 Anzahl der Wörter: ${words.length}`;
+    if (words.length < 150) {
+      wordCountDiv.style.color = "#dc3545";
+    } else if (words.length > 180) {
+      wordCountDiv.style.color = "#ffc107";
+    } else {
+      wordCountDiv.style.color = "#28a745";
+    }
+  };
+  
+  container.appendChild(answerSection);
+  
+  // أزرار التحكم
+  const buttonContainer = document.createElement("div");
+  buttonContainer.style.display = "flex";
+  buttonContainer.style.gap = "15px";
+  buttonContainer.style.justifyContent = "center";
+  buttonContainer.style.marginTop = "20px";
+  
+  const saveBtn = document.createElement("button");
+  saveBtn.innerText = "💾 Antwort speichern";
+  saveBtn.className = "check-btn";
+  saveBtn.style.padding = "12px 24px";
+  saveBtn.style.backgroundColor = "#28a745";
+  saveBtn.style.color = "white";
+  saveBtn.style.border = "none";
+  saveBtn.style.borderRadius = "8px";
+  saveBtn.style.cursor = "pointer";
+  saveBtn.style.fontSize = "16px";
+  saveBtn.onclick = function() {
+    localStorage.setItem(`schreiben_${currentSchreibenData.title}`, schreibenAnswer);
+    alert("✅ Ihre Antwort wurde gespeichert!");
+  };
+  buttonContainer.appendChild(saveBtn);
+  
+  const resetBtn = document.createElement("button");
+  resetBtn.innerText = "↺ Zurücksetzen";
+  resetBtn.style.padding = "12px 24px";
+  resetBtn.style.backgroundColor = "#6c757d";
+  resetBtn.style.color = "white";
+  resetBtn.style.border = "none";
+  resetBtn.style.borderRadius = "8px";
+  resetBtn.style.cursor = "pointer";
+  resetBtn.style.fontSize = "16px";
+  resetBtn.onclick = function() {
+    textarea.value = "";
+    schreibenAnswer = "";
+    wordCountDiv.innerHTML = "📊 Anzahl der Wörter: 0";
+    wordCountDiv.style.color = "#666";
+    localStorage.removeItem(`schreiben_${currentSchreibenData.title}`);
+  };
+  buttonContainer.appendChild(resetBtn);
+  
+  container.appendChild(buttonContainer);
+  
+  const savedAnswer = localStorage.getItem(`schreiben_${currentSchreibenData.title}`);
+  if (savedAnswer) {
+    textarea.value = savedAnswer;
+    schreibenAnswer = savedAnswer;
+    const words = savedAnswer.trim().split(/\s+/).filter(w => w.length > 0);
+    wordCountDiv.innerHTML = `📊 Anzahl der Wörter: ${words.length}`;
+  }
+}
 
 // ========== نظام Sprachbausteine Teil 2 ==========
 let currentSprach2Data = null;
@@ -49,13 +262,11 @@ function renderSprach2Exam() {
   const options = currentSprach2Data.options;
   const allOptions = currentSprach2Data.allOptions;
   
-  // تقسيم الصفحة إلى عمودين
   const twoColumns = document.createElement("div");
   twoColumns.style.display = "flex";
   twoColumns.style.gap = "30px";
   twoColumns.style.flexWrap = "wrap";
   
-  // ========== العمود الأيسر: النص ==========
   const leftColumn = document.createElement("div");
   leftColumn.style.flex = "1.5";
   leftColumn.style.minWidth = "400px";
@@ -72,7 +283,6 @@ function renderSprach2Exam() {
   leftTitle.style.color = "#2c3e66";
   leftColumn.appendChild(leftTitle);
   
-  // عرض النص مع تحويل الفجوات إلى أزرار قابلة للنقر
   let htmlText = text;
   for (let i = 1; i <= options.length; i++) {
     const btnId = `sprach2_btn_${i}`;
@@ -91,7 +301,6 @@ function renderSprach2Exam() {
   textDiv.style.fontSize = "14px";
   textDiv.style.textAlign = "justify";
   
-  // ربط الأزرار
   for (let i = 1; i <= options.length; i++) {
     const btn = textDiv.querySelector(`#sprach2_btn_${i}`);
     if (btn) {
@@ -103,7 +312,6 @@ function renderSprach2Exam() {
   
   leftColumn.appendChild(textDiv);
   
-  // ========== العمود الأيمن: الخيارات ==========
   const rightColumn = document.createElement("div");
   rightColumn.style.flex = "0.8";
   rightColumn.style.minWidth = "250px";
@@ -120,7 +328,6 @@ function renderSprach2Exam() {
   rightTitle.style.color = "#2c3e66";
   rightColumn.appendChild(rightTitle);
   
-  // عرض الكلمات في شبكة 3x5
   const wordsGrid = document.createElement("div");
   wordsGrid.style.display = "grid";
   wordsGrid.style.gridTemplateColumns = "repeat(3, 1fr)";
@@ -173,7 +380,6 @@ function renderSprach2Exam() {
   twoColumns.appendChild(rightColumn);
   container.appendChild(twoColumns);
   
-  // أزرار التحكم
   const buttonContainer = document.createElement("div");
   buttonContainer.style.display = "flex";
   buttonContainer.style.gap = "15px";
@@ -2100,4 +2306,4 @@ function checkMatchingExam() {
 }
 
 console.log("✅ engine.js جاهز بالكامل");
-console.log("✅ يدعم: Matching (Teil 1) | True/False (Hören 1,2,3) | Teil 2 | Teil 3 | Sprachbausteine Teil 1 | Sprachbausteine Teil 2");
+console.log("✅ يدعم: Matching (Teil 1) | True/False (Hören 1,2,3) | Teil 2 | Teil 3 | Sprachbausteine Teil 1 | Sprachbausteine Teil 2 | Schreiben");
