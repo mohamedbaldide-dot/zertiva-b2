@@ -1,6 +1,6 @@
 // ============================================
 // exams.js - نظام الامتحانات المتكامل
-// يدعم: Lesen Teil 1, Lesen Teil 2, Lesen Teil 3, Hören Teil 1-3, Sprachbausteine Teil 1, Sprachbausteine Teil 2
+// يدعم: Lesen Teil 1-3, Hören Teil 1-3, Sprachbausteine Teil 1-2, Schreiben
 // ============================================
 
 const teile = [
@@ -11,7 +11,8 @@ const teile = [
   { id: 5, name: "Lesen Teil 2", container: "teil2", skill: "lesen2" },
   { id: 6, name: "Lesen Teil 3", container: "teil3", skill: "lesen3" },
   { id: 7, name: "Sprachbausteine Teil 1", container: "sprach1", skill: "sprach1" },
-  { id: 8, name: "Sprachbausteine Teil 2", container: "sprach2", skill: "sprach2" }
+  { id: 8, name: "Sprachbausteine Teil 2", container: "sprach2", skill: "sprach2" },
+  { id: 9, name: "Schreiben", container: "schreiben", skill: "schreiben" }
 ];
 
 let currentExamData = null;
@@ -349,6 +350,40 @@ const examsDatabase = {
     { id: 25, title: "Das Fest (ohne Frankfurt)", enabled: true, hasFile: true },
     { id: 26, title: "Das Fest (mit Frankfurt)", enabled: true, hasFile: true },
     { id: 27, title: "Radio Konzert", enabled: true, hasFile: true }
+  ],
+  schreiben: [
+    { id: 1, title: "Fotobuch", enabled: true, hasFile: true },
+    { id: 2, title: "Abenteuer TIKKI TAKKA", enabled: true, hasFile: true },
+    { id: 3, title: "Informatik-Shop", enabled: true, hasFile: true },
+    { id: 4, title: "Kosmetik-Shop", enabled: true, hasFile: true },
+    { id: 5, title: "Partyservice", enabled: true, hasFile: true },
+    { id: 6, title: "ESS Firma", enabled: true, hasFile: true },
+    { id: 7, title: "Kursbeschreibung (Wohndesign)", enabled: true, hasFile: true },
+    { id: 8, title: "Renovierungskurs", enabled: true, hasFile: true },
+    { id: 9, title: "Engagement für Jugendliche", enabled: true, hasFile: true },
+    { id: 10, title: "Wohnen auf Zeit in Oranienburg", enabled: true, hasFile: true },
+    { id: 11, title: "Autovermietung Neustadt", enabled: true, hasFile: true },
+    { id: 12, title: "Freizeitverein", enabled: true, hasFile: true },
+    { id: 13, title: "Naturmuseum", enabled: true, hasFile: true },
+    { id: 14, title: "Backstage-Musical-Tour", enabled: true, hasFile: true },
+    { id: 15, title: "KULTUR UND KULINARIK", enabled: true, hasFile: true },
+    { id: 16, title: "Mehr bewegen - aber wie? (Fahrradtour)", enabled: true, hasFile: true },
+    { id: 17, title: "Super Clean-Staubsaugroboter", enabled: true, hasFile: true },
+    { id: 18, title: "Apartment-Haus", enabled: true, hasFile: true },
+    { id: 19, title: "Kostenlose Apps für dein Handy!", enabled: true, hasFile: true },
+    { id: 20, title: "Nie mehr schlaflos in Deutschland - Komfort-Matratze", enabled: true, hasFile: true },
+    { id: 21, title: "Schmelzkäse Alpengeschmack", enabled: true, hasFile: true },
+    { id: 22, title: "Meine Kiste: Obst und Gemüse", enabled: true, hasFile: true },
+    { id: 23, title: "Hotel mit Thermen", enabled: true, hasFile: true },
+    { id: 24, title: "Antwort an Anne (Laras Geburtstag) - B1", enabled: true, hasFile: true },
+    { id: 25, title: "Kopfhörer", enabled: true, hasFile: true },
+    { id: 26, title: "Badezimmer renovieren", enabled: true, hasFile: true },
+    { id: 27, title: "FREIZEITBAD MEERESRAUSCHEN", enabled: true, hasFile: true },
+    { id: 28, title: "Reisebüro Sonnenschein", enabled: true, hasFile: true },
+    { id: 29, title: "Kursbeschreibung (sich vorstellen)", enabled: true, hasFile: true },
+    { id: 30, title: "FITWATCH Smartwatch", enabled: true, hasFile: true },
+    { id: 31, title: "Securvia Reisegepäckversicherung", enabled: true, hasFile: true },
+    { id: 32, title: "DIGIBIKE - Das smarte Hightech-Fahrrad", enabled: true, hasFile: true }
   ]
 };
 
@@ -490,6 +525,13 @@ async function openExam(examId, examTitle, skill) {
       } else {
         console.error("❌ loadSprach2Exam غير موجود");
         alert("نظام Sprachbausteine Teil 2 غير متوفر حالياً");
+      }
+    } else if (currentExamData.type === "schreiben") {
+      if (typeof window.loadSchreibenExam === "function") {
+        window.loadSchreibenExam(currentExamData);
+      } else {
+        console.error("❌ loadSchreibenExam غير موجود");
+        alert("نظام Schreiben غير متوفر حالياً");
       }
     } else {
       buildTeil1(currentExamData.questions);
@@ -676,3 +718,4 @@ console.log("📝 Sprachbausteine Teil 2:", examsDatabase.sprach2.length, "ام�
 console.log("🎧 Hören Teil 1:", examsDatabase.hoeren1.length, "امتحان");
 console.log("🎧 Hören Teil 2:", examsDatabase.hoeren2.length, "امتحان");
 console.log("🎧 Hören Teil 3:", examsDatabase.hoeren3.length, "امتحان");
+console.log("✍️ Schreiben:", examsDatabase.schreiben.length, "امتحان");
