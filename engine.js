@@ -86,7 +86,6 @@ function renderTeil3Exam() {
     itemText.style.lineHeight = "1.5";
     itemText.style.marginBottom = "12px";
     itemText.style.color = "#555";
-    // ✅ تم إزالة اختصار النص - الآن يظهر النص كاملاً
     itemText.innerHTML = item.text;
     card.appendChild(itemText);
     
@@ -215,11 +214,30 @@ function renderTeil3Exam() {
   const buttonContainer = document.createElement("div");
   buttonContainer.style.display = "flex";
   buttonContainer.style.gap = "15px";
-  buttonContainer.style.justifyContent = "center";
+  buttonContainer.style.justifyContent = "space-between";
+  buttonContainer.style.alignItems = "center";
   buttonContainer.style.marginTop = "25px";
   
+  // حاوية للأرقام الصحيحة (الجهة اليسرى)
+  const correctNumbersContainer = document.createElement("div");
+  correctNumbersContainer.id = "teil3CorrectNumbers";
+  correctNumbersContainer.style.backgroundColor = "#e3f2fd";
+  correctNumbersContainer.style.color = "#0d47a1";
+  correctNumbersContainer.style.padding = "10px 15px";
+  correctNumbersContainer.style.borderRadius = "8px";
+  correctNumbersContainer.style.fontWeight = "bold";
+  correctNumbersContainer.style.fontSize = "14px";
+  correctNumbersContainer.style.display = "none";
+  correctNumbersContainer.style.border = "1px solid #90caf9";
+  correctNumbersContainer.innerHTML = "▸ : ";
+  
+  // حاوية للأزرار (الجهة اليمنى)
+  const buttonsDiv = document.createElement("div");
+  buttonsDiv.style.display = "flex";
+  buttonsDiv.style.gap = "15px";
+  
   const checkBtn = document.createElement("button");
-  checkBtn.innerText = "✅ تصحيح";
+  checkBtn.innerText = "📝 Prüfen";
   checkBtn.className = "check-btn";
   checkBtn.style.padding = "12px 24px";
   checkBtn.style.backgroundColor = "#2c3e66";
@@ -229,7 +247,7 @@ function renderTeil3Exam() {
   checkBtn.style.cursor = "pointer";
   checkBtn.style.fontSize = "16px";
   checkBtn.onclick = checkTeil3Exam;
-  buttonContainer.appendChild(checkBtn);
+  buttonsDiv.appendChild(checkBtn);
   
   const resetBtn = document.createElement("button");
   resetBtn.innerText = "↺";
@@ -242,8 +260,10 @@ function renderTeil3Exam() {
   resetBtn.style.fontSize = "16px";
   resetBtn.style.fontWeight = "bold";
   resetBtn.onclick = resetTeil3Exam;
-  buttonContainer.appendChild(resetBtn);
+  buttonsDiv.appendChild(resetBtn);
   
+  buttonContainer.appendChild(correctNumbersContainer);
+  buttonContainer.appendChild(buttonsDiv);
   container.appendChild(buttonContainer);
   
   const resultDiv = document.createElement("div");
@@ -264,7 +284,7 @@ function updateTeil3DropdownList(questionIndex) {
   
   list.innerHTML = "";
   
-  // خيار "ليس لها عنوان" - بالشكل المطلوب
+  // خيار "ليس لها عنوان"
   const noneOption = document.createElement("div");
   noneOption.className = "dropdown-option";
   noneOption.textContent = "— ليس لها عنوان —";
@@ -344,7 +364,6 @@ function closeTeil3Dropdown(questionIndex) {
 function selectTeil3Option(questionIndex, selectedText) {
   const oldValue = teil3UserAnswers[questionIndex] || "";
   
-  // إعادة الخيار القديم إلى القائمة المتاحة
   if (oldValue && typeof oldValue === 'string') {
     if (!teil3AvailableOptions.includes(oldValue)) {
       teil3AvailableOptions.push(oldValue);
@@ -353,10 +372,8 @@ function selectTeil3Option(questionIndex, selectedText) {
   }
   
   if (selectedText === null) {
-    // اختيار "ليس لها عنوان"
     teil3UserAnswers[questionIndex] = "— ليس لها عنوان —";
   } else {
-    // إزالة الخيار الجديد من القائمة المتاحة
     const indexInAvailable = teil3AvailableOptions.indexOf(selectedText);
     if (indexInAvailable !== -1) {
       teil3AvailableOptions.splice(indexInAvailable, 1);
@@ -364,7 +381,6 @@ function selectTeil3Option(questionIndex, selectedText) {
     teil3UserAnswers[questionIndex] = selectedText;
   }
   
-  // تحديث عرض الزر
   const btnSpan = document.querySelector(`#teil3_btn_${questionIndex} span:first-child`);
   if (btnSpan) {
     const newVal = teil3UserAnswers[questionIndex];
@@ -374,7 +390,6 @@ function selectTeil3Option(questionIndex, selectedText) {
   
   closeTeil3Dropdown(questionIndex);
   
-  // تحديث قوائم dropdown
   for (let i = 0; i < currentTeil3Data.items.length; i++) {
     updateTeil3DropdownList(i);
   }
@@ -384,8 +399,8 @@ function checkTeil3Exam() {
   const items = currentTeil3Data.items;
   let score = 0;
   let total = items.length;
+  let correctIndices = [];
   
-  // إزالة التلوين القديم والرسائل
   for (let i = 0; i < total; i++) {
     const card = document.getElementById(`teil3_item_${i}`);
     if (card) {
@@ -395,7 +410,6 @@ function checkTeil3Exam() {
     }
   }
   
-  // تصحيح الإجابات
   for (let i = 0; i < total; i++) {
     const item = items[i];
     const card = document.getElementById(`teil3_item_${i}`);
@@ -406,11 +420,11 @@ function checkTeil3Exam() {
     let isCorrect = false;
     let displayText = "";
     
-    // فقرة بدون عنوان (correct = null)
     if (correctIndex === null) {
       if (userAnswer === "— ليس لها عنوان —" || userAnswer === null || userAnswer === "") {
         isCorrect = true;
         score++;
+        correctIndices.push(i + 1);
         if (card) card.classList.add("correct-answer-card");
         displayText = "✅ — ليس لها عنوان —";
       } else {
@@ -418,13 +432,12 @@ function checkTeil3Exam() {
         if (card) card.classList.add("wrong-answer-card");
         displayText = "✅ — ليس لها عنوان —";
       }
-    } 
-    // فقرة لها عنوان صحيح
-    else {
+    } else {
       const correctText = currentTeil3Data.situations[correctIndex];
       if (userAnswer === correctText) {
         isCorrect = true;
         score++;
+        correctIndices.push(i + 1);
         if (card) card.classList.add("correct-answer-card");
         displayText = `✅ ${String.fromCharCode(97 + correctIndex)}. ${correctText}`;
       } else {
@@ -434,18 +447,27 @@ function checkTeil3Exam() {
       }
     }
     
-    // تغيير نص الزر إلى الإجابة الصحيحة
     if (btnSpan) {
       btnSpan.textContent = displayText;
       btnSpan.style.color = isCorrect ? "#28a745" : "#dc3545";
     }
     
-    // تخزين الإجابة بشكل كامل
     teil3UserAnswers[i] = {
       selected: userAnswer,
       displayText: displayText,
       isCorrect: isCorrect
     };
+  }
+  
+  // عرض الأرقام الصحيحة
+  const correctNumbersContainer = document.getElementById("teil3CorrectNumbers");
+  if (correctNumbersContainer) {
+    correctNumbersContainer.style.display = "block";
+    if (correctIndices.length > 0) {
+      correctNumbersContainer.innerHTML = `▸ : ${correctIndices.join("")}`;
+    } else {
+      correctNumbersContainer.innerHTML = "▸ : لا توجد إجابات صحيحة";
+    }
   }
   
   const finalScore = (score * 25 / total).toFixed(2);
@@ -466,12 +488,9 @@ function checkTeil3Exam() {
 }
 
 function resetTeil3Exam() {
-  // إعادة تعيين الإجابات
   teil3UserAnswers = {};
-  // إعادة تعيين القائمة المتاحة
   teil3AvailableOptions = [...currentTeil3Data.situations];
   
-  // تحديث جميع أزرار dropdown
   for (let i = 0; i < currentTeil3Data.items.length; i++) {
     const btnSpan = document.querySelector(`#teil3_btn_${i} span:first-child`);
     if (btnSpan) {
@@ -481,7 +500,6 @@ function resetTeil3Exam() {
     updateTeil3DropdownList(i);
   }
   
-  // إزالة التلوين
   for (let i = 0; i < currentTeil3Data.items.length; i++) {
     const card = document.getElementById(`teil3_item_${i}`);
     if (card) {
@@ -491,7 +509,9 @@ function resetTeil3Exam() {
     }
   }
   
-  // إخفاء النتيجة
+  const correctNumbersContainer = document.getElementById("teil3CorrectNumbers");
+  if (correctNumbersContainer) correctNumbersContainer.style.display = "none";
+  
   const resultDiv = document.getElementById("teil3Result");
   if (resultDiv) resultDiv.style.display = "none";
   
@@ -633,12 +653,32 @@ function renderTeil2Exam() {
   
   questionsColumn.appendChild(questionsContainer);
   
+  const buttonContainer = document.createElement("div");
+  buttonContainer.style.display = "flex";
+  buttonContainer.style.justifyContent = "space-between";
+  buttonContainer.style.alignItems = "center";
+  buttonContainer.style.marginTop = "20px";
+  
+  const correctNumbersContainer = document.createElement("div");
+  correctNumbersContainer.id = "teil2CorrectNumbers";
+  correctNumbersContainer.style.backgroundColor = "#e3f2fd";
+  correctNumbersContainer.style.color = "#0d47a1";
+  correctNumbersContainer.style.padding = "10px 15px";
+  correctNumbersContainer.style.borderRadius = "8px";
+  correctNumbersContainer.style.fontWeight = "bold";
+  correctNumbersContainer.style.fontSize = "14px";
+  correctNumbersContainer.style.display = "none";
+  correctNumbersContainer.style.border = "1px solid #90caf9";
+  correctNumbersContainer.innerHTML = "▸ : ";
+  
+  const buttonsDiv = document.createElement("div");
+  buttonsDiv.style.display = "flex";
+  buttonsDiv.style.gap = "15px";
+  
   const checkBtn = document.createElement("button");
   checkBtn.innerText = "✅ تصحيح";
   checkBtn.className = "check-btn";
-  checkBtn.style.width = "100%";
-  checkBtn.style.marginTop = "20px";
-  checkBtn.style.padding = "12px";
+  checkBtn.style.padding = "12px 24px";
   checkBtn.style.backgroundColor = "#2c3e66";
   checkBtn.style.color = "white";
   checkBtn.style.border = "none";
@@ -646,12 +686,10 @@ function renderTeil2Exam() {
   checkBtn.style.cursor = "pointer";
   checkBtn.style.fontSize = "16px";
   checkBtn.onclick = checkTeil2Exam;
-  questionsColumn.appendChild(checkBtn);
+  buttonsDiv.appendChild(checkBtn);
   
   const resetBtn = document.createElement("button");
   resetBtn.innerText = "↺";
-  resetBtn.style.width = "auto";
-  resetBtn.style.marginTop = "10px";
   resetBtn.style.padding = "8px 12px";
   resetBtn.style.backgroundColor = "#6c757d";
   resetBtn.style.color = "white";
@@ -674,10 +712,16 @@ function renderTeil2Exam() {
       const oldMsg = document.querySelector(`#teil2_q_${i} .correct-message`);
       if (oldMsg) oldMsg.remove();
     }
+    const correctNumbersContainerInner = document.getElementById("teil2CorrectNumbers");
+    if (correctNumbersContainerInner) correctNumbersContainerInner.style.display = "none";
     const resultDiv = document.getElementById("teil2Result");
     if (resultDiv) resultDiv.style.display = "none";
   };
-  questionsColumn.appendChild(resetBtn);
+  buttonsDiv.appendChild(resetBtn);
+  
+  buttonContainer.appendChild(correctNumbersContainer);
+  buttonContainer.appendChild(buttonsDiv);
+  questionsColumn.appendChild(buttonContainer);
   
   const resultDiv = document.createElement("div");
   resultDiv.id = "teil2Result";
@@ -700,6 +744,7 @@ function checkTeil2Exam() {
   let score = 0;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
+  let correctIndices = [];
   
   for (let i = 0; i < total; i++) {
     const q = questions[i];
@@ -714,18 +759,10 @@ function checkTeil2Exam() {
       
       if (isCorrect && userAnswer !== undefined) {
         score++;
+        correctIndices.push(i + 1);
         card.classList.add("correct-answer-card");
       } else {
         card.classList.add("wrong-answer-card");
-        
-        const correctMsg = document.createElement("div");
-        correctMsg.className = "correct-message";
-        correctMsg.style.color = "#28a745";
-        correctMsg.style.marginTop = "10px";
-        correctMsg.style.fontSize = "14px";
-        correctMsg.style.fontWeight = "bold";
-        correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.options[q.correct]}`;
-        card.appendChild(correctMsg);
       }
       
       const radios = card.querySelectorAll('input[type="radio"]');
@@ -753,6 +790,16 @@ function checkTeil2Exam() {
           }
         }
       }
+    }
+  }
+  
+  const correctNumbersContainer = document.getElementById("teil2CorrectNumbers");
+  if (correctNumbersContainer) {
+    correctNumbersContainer.style.display = "block";
+    if (correctIndices.length > 0) {
+      correctNumbersContainer.innerHTML = `▸ : ${correctIndices.join("")}`;
+    } else {
+      correctNumbersContainer.innerHTML = "▸ : لا توجد إجابات صحيحة";
     }
   }
   
@@ -882,11 +929,72 @@ function renderMatchingQuestions() {
     }
   });
   
+  const buttonContainer = document.createElement("div");
+  buttonContainer.style.display = "flex";
+  buttonContainer.style.justifyContent = "space-between";
+  buttonContainer.style.alignItems = "center";
+  buttonContainer.style.marginTop = "20px";
+  
+  const correctNumbersContainer = document.createElement("div");
+  correctNumbersContainer.id = "matchingCorrectNumbers";
+  correctNumbersContainer.style.backgroundColor = "#e3f2fd";
+  correctNumbersContainer.style.color = "#0d47a1";
+  correctNumbersContainer.style.padding = "10px 15px";
+  correctNumbersContainer.style.borderRadius = "8px";
+  correctNumbersContainer.style.fontWeight = "bold";
+  correctNumbersContainer.style.fontSize = "14px";
+  correctNumbersContainer.style.display = "none";
+  correctNumbersContainer.innerHTML = "▸ : ";
+  
+  const buttonsDiv = document.createElement("div");
+  buttonsDiv.style.display = "flex";
+  buttonsDiv.style.gap = "15px";
+  
   const checkBtn = document.createElement("button");
   checkBtn.innerText = "✅ تصحيح";
   checkBtn.className = "check-btn";
   checkBtn.onclick = checkMatchingExam;
-  container.appendChild(checkBtn);
+  buttonsDiv.appendChild(checkBtn);
+  
+  const resetBtn = document.createElement("button");
+  resetBtn.innerText = "↺";
+  resetBtn.style.padding = "8px 12px";
+  resetBtn.style.backgroundColor = "#6c757d";
+  resetBtn.style.color = "white";
+  resetBtn.style.border = "none";
+  resetBtn.style.borderRadius = "6px";
+  resetBtn.style.cursor = "pointer";
+  resetBtn.style.fontSize = "16px";
+  resetBtn.style.fontWeight = "bold";
+  resetBtn.onclick = function() {
+    matchingSelectedAnswers = {};
+    matchingAvailableOptions = [...currentMatchingExamData.sharedOptions];
+    for (let i = 0; i < currentMatchingExamData.questions.length; i++) {
+      const btnSpan = document.querySelector(`#m_btn_${i} span:first-child`);
+      if (btnSpan) {
+        btnSpan.textContent = "-- اختر الإجابة --";
+        btnSpan.style.color = "#999";
+      }
+      updateDropdownList(i);
+    }
+    for (let i = 0; i < currentMatchingExamData.questions.length; i++) {
+      const card = document.getElementById(`m_q_${i}`);
+      if (card) {
+        card.classList.remove("correct-answer-card", "wrong-answer-card");
+        const oldMsg = card.querySelector(".correct-message");
+        if (oldMsg) oldMsg.remove();
+      }
+    }
+    const correctNumbersContainerInner = document.getElementById("matchingCorrectNumbers");
+    if (correctNumbersContainerInner) correctNumbersContainerInner.style.display = "none";
+    const resultDiv = document.getElementById("matchingResult");
+    if (resultDiv) resultDiv.style.display = "none";
+  };
+  buttonsDiv.appendChild(resetBtn);
+  
+  buttonContainer.appendChild(correctNumbersContainer);
+  buttonContainer.appendChild(buttonsDiv);
+  container.appendChild(buttonContainer);
   
   const resultDiv = document.createElement("div");
   resultDiv.id = "matchingResult";
@@ -1008,6 +1116,7 @@ function checkMatchingExam() {
   const questions = currentMatchingExamData.questions;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
+  let correctIndices = [];
   
   for (let i = 0; i < total; i++) {
     const card = document.getElementById("m_q_" + i);
@@ -1027,17 +1136,20 @@ function checkMatchingExam() {
     
     if (isCorrect && userAnswerText !== "") {
       score++;
+      correctIndices.push(i + 1);
       card.classList.add("correct-answer-card");
     } else {
       card.classList.add("wrong-answer-card");
-      
-      const correctMsg = document.createElement("div");
-      correctMsg.className = "correct-message";
-      correctMsg.style.color = "#28a745";
-      correctMsg.style.marginTop = "10px";
-      correctMsg.style.fontSize = "14px";
-      correctMsg.innerHTML = "✅ " + correctAnswerText;
-      card.appendChild(correctMsg);
+    }
+  }
+  
+  const correctNumbersContainer = document.getElementById("matchingCorrectNumbers");
+  if (correctNumbersContainer) {
+    correctNumbersContainer.style.display = "block";
+    if (correctIndices.length > 0) {
+      correctNumbersContainer.innerHTML = `▸ : ${correctIndices.join("")}`;
+    } else {
+      correctNumbersContainer.innerHTML = "▸ : لا توجد إجابات صحيحة";
     }
   }
   
@@ -1053,6 +1165,19 @@ window.buildTrueFalseExam = function(container, questions, note) {
   
   let userAnswers = {};
   let currentQuestions = questions;
+  
+  // عرض الملاحظة إذا وجدت
+  if (note) {
+    const noteDiv = document.createElement('div');
+    noteDiv.style.backgroundColor = '#fff3cd';
+    noteDiv.style.color = '#856404';
+    noteDiv.style.padding = '8px 12px';
+    noteDiv.style.borderRadius = '6px';
+    noteDiv.style.marginBottom = '15px';
+    noteDiv.style.fontSize = '13px';
+    noteDiv.innerHTML = `📌 ${note}`;
+    container.appendChild(noteDiv);
+  }
   
   questions.forEach((q, i) => {
     const div = document.createElement('div');
@@ -1131,10 +1256,25 @@ window.buildTrueFalseExam = function(container, questions, note) {
   
   const buttonContainer = document.createElement('div');
   buttonContainer.style.display = 'flex';
-  buttonContainer.style.gap = '15px';
-  buttonContainer.style.justifyContent = 'center';
-  buttonContainer.style.marginTop = '25px';
+  buttonContainer.style.justifyContent = 'space-between';
   buttonContainer.style.alignItems = 'center';
+  buttonContainer.style.marginTop = '25px';
+  
+  const correctNumbersContainer = document.createElement('div');
+  correctNumbersContainer.id = 'truefalseCorrectNumbers';
+  correctNumbersContainer.style.backgroundColor = '#e3f2fd';
+  correctNumbersContainer.style.color = '#0d47a1';
+  correctNumbersContainer.style.padding = '10px 15px';
+  correctNumbersContainer.style.borderRadius = '8px';
+  correctNumbersContainer.style.fontWeight = 'bold';
+  correctNumbersContainer.style.fontSize = '14px';
+  correctNumbersContainer.style.display = 'none';
+  correctNumbersContainer.style.border = '1px solid #90caf9';
+  correctNumbersContainer.innerHTML = '▸ : ';
+  
+  const buttonsDiv = document.createElement('div');
+  buttonsDiv.style.display = 'flex';
+  buttonsDiv.style.gap = '15px';
   
   const checkBtn = document.createElement('button');
   checkBtn.innerText = '📝 Prüfen';
@@ -1187,6 +1327,9 @@ window.buildTrueFalseExam = function(container, questions, note) {
       label.style.border = '1px solid #ccc';
     });
     
+    const correctNumbersContainerInner = document.getElementById('truefalseCorrectNumbers');
+    if (correctNumbersContainerInner) correctNumbersContainerInner.style.display = 'none';
+    
     const resultDiv = document.getElementById('truefalseResult');
     if (resultDiv) {
       resultDiv.style.display = 'none';
@@ -1196,8 +1339,11 @@ window.buildTrueFalseExam = function(container, questions, note) {
     console.log("✅ تم إعادة تعيين الامتحان");
   };
   
-  buttonContainer.appendChild(checkBtn);
-  buttonContainer.appendChild(resetBtn);
+  buttonsDiv.appendChild(checkBtn);
+  buttonsDiv.appendChild(resetBtn);
+  
+  buttonContainer.appendChild(correctNumbersContainer);
+  buttonContainer.appendChild(buttonsDiv);
   container.appendChild(buttonContainer);
   
   const resultDiv = document.createElement('div');
@@ -1211,6 +1357,7 @@ function checkTrueFalseExam(questions, answers) {
   let score = 0;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
+  let correctIndices = [];
   
   const cards = document.querySelectorAll('#hoeren1 .question-card, #hoeren2 .question-card, #hoeren3 .question-card');
   
@@ -1228,29 +1375,10 @@ function checkTrueFalseExam(questions, answers) {
     
     if (isCorrect && userAnswer !== undefined) {
       score++;
+      correctIndices.push(i + 1);
       card.classList.add('correct-answer-card');
     } else {
       card.classList.add('wrong-answer-card');
-      
-      if (userAnswer !== undefined) {
-        const correctMsg = document.createElement('div');
-        correctMsg.className = 'correct-message';
-        correctMsg.style.color = '#28a745';
-        correctMsg.style.marginTop = '10px';
-        correctMsg.style.fontSize = '14px';
-        correctMsg.style.fontWeight = 'bold';
-        correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.correct ? 'Richtig' : 'Falsch'}`;
-        card.appendChild(correctMsg);
-      } else if (userAnswer === undefined) {
-        const correctMsg = document.createElement('div');
-        correctMsg.className = 'correct-message';
-        correctMsg.style.color = '#ff9800';
-        correctMsg.style.marginTop = '10px';
-        correctMsg.style.fontSize = '14px';
-        correctMsg.style.fontWeight = 'bold';
-        correctMsg.innerHTML = `⚠️ لم يتم الإجابة - الصحيح: ${q.correct ? 'Richtig' : 'Falsch'}`;
-        card.appendChild(correctMsg);
-      }
     }
     
     const radios = card.querySelectorAll('input[type="radio"]');
@@ -1280,6 +1408,17 @@ function checkTrueFalseExam(questions, answers) {
     }
   }
   
+  // عرض الأرقام الصحيحة
+  const correctNumbersContainer = document.getElementById('truefalseCorrectNumbers');
+  if (correctNumbersContainer) {
+    correctNumbersContainer.style.display = 'block';
+    if (correctIndices.length > 0) {
+      correctNumbersContainer.innerHTML = `▸ : ${correctIndices.join("")}`;
+    } else {
+      correctNumbersContainer.innerHTML = "▸ : لا توجد إجابات صحيحة";
+    }
+  }
+  
   const finalScore = (score * pointsPerQuestion).toFixed(2);
   const resultDiv = document.getElementById('truefalseResult');
   if (resultDiv) {
@@ -1301,3 +1440,5 @@ function checkTrueFalseExam(questions, answers) {
 
 console.log("✅ engine.js جاهز بالكامل");
 console.log("✅ يدعم: Matching (Teil 1) | True/False (Hören) | Teil 2 | Teil 3");
+console.log("✅ تم إزالة رسائل 'لم يتم الإجابة'");
+console.log("✅ تم إضافة مربع الأرقام الصحيحة ▸ :");
