@@ -1,6 +1,6 @@
 // ============================================
 // exams.js - نظام الامتحانات المتكامل
-// يدعم: Lesen Teil 1, Lesen Teil 2, Hören Teil 1-3, إلخ
+// يدعم: Lesen Teil 1, Lesen Teil 2, Lesen Teil 3, Hören Teil 1-3, إلخ
 // ============================================
 
 const teile = [
@@ -133,7 +133,43 @@ const examsDatabase = {
     { id: 37, title: "Nachtzug (معدل)", enabled: true, hasFile: true },
     { id: 38, title: "Wie zwei US-Teenager Millionäre wurden", enabled: true, hasFile: true }
   ],
-  lesen3: [],
+  lesen3: [
+    { id: 1, title: "Filme - Fernsehprogramme", enabled: true, hasFile: true },
+    { id: 2, title: "Filme - Fernsehprogramme (معدل)", enabled: true, hasFile: true },
+    { id: 3, title: "Im Katalog eines Buchversands", enabled: true, hasFile: true },
+    { id: 4, title: "kein Zeit", enabled: true, hasFile: true },
+    { id: 5, title: "kein Zeit (معدل)", enabled: true, hasFile: true },
+    { id: 6, title: "Musik - spielt Gitarre", enabled: true, hasFile: true },
+    { id: 7, title: "Die schwangere Frau", enabled: true, hasFile: true },
+    { id: 8, title: "Unterstützung in Mathematik", enabled: true, hasFile: true },
+    { id: 9, title: "Ganztagesausflug", enabled: true, hasFile: true },
+    { id: 10, title: "Ihren Eltern zur Silberhochzeit", enabled: true, hasFile: true },
+    { id: 11, title: "Rechtsanwalt", enabled: true, hasFile: true },
+    { id: 12, title: "Rechtsanwalt (معدل)", enabled: true, hasFile: true },
+    { id: 13, title: "Au-pair Mädchen", enabled: true, hasFile: true },
+    { id: 14, title: "Hautprobleme", enabled: true, hasFile: true },
+    { id: 15, title: "Eine Bekannte ist schwanger", enabled: true, hasFile: true },
+    { id: 16, title: "Die Tochter einer Bekannten wird vier Jahre alt", enabled: true, hasFile: true },
+    { id: 17, title: "Tierdokumentationen", enabled: true, hasFile: true },
+    { id: 18, title: "Aufräumen", enabled: true, hasFile: true },
+    { id: 19, title: "Erholung und Reisen", enabled: true, hasFile: true },
+    { id: 20, title: "Sport", enabled: true, hasFile: true },
+    { id: 21, title: "Sport (معدل)", enabled: true, hasFile: true },
+    { id: 22, title: "Wein und Insekten", enabled: true, hasFile: true },
+    { id: 23, title: "Reiseführer", enabled: true, hasFile: true },
+    { id: 24, title: "Gartenbau", enabled: true, hasFile: true },
+    { id: 25, title: "Haushaltshilfe", enabled: true, hasFile: true },
+    { id: 26, title: "Einwanderung", enabled: true, hasFile: true },
+    { id: 27, title: "Musikinstrumente", enabled: true, hasFile: true },
+    { id: 28, title: "Musikinstrumente (معدل)", enabled: true, hasFile: true },
+    { id: 29, title: "Arbeitsorganisation", enabled: true, hasFile: true },
+    { id: 30, title: "Hunde", enabled: true, hasFile: true },
+    { id: 31, title: "schnelle Wasserfahrzeuge", enabled: true, hasFile: true },
+    { id: 32, title: "ein paar Tage in Berlin", enabled: true, hasFile: true },
+    { id: 33, title: "ein paar Tage in Berlin (معدل)", enabled: true, hasFile: true },
+    { id: 34, title: "Autos", enabled: true, hasFile: true },
+    { id: 35, title: "Möbel für die neue Wohnung", enabled: true, hasFile: true }
+  ],
   sprach1: [],
   sprach2: [],
   hoeren1: [
@@ -347,6 +383,13 @@ async function openExam(examId, examTitle, skill) {
         console.error("❌ loadTeil2Exam غير موجود");
         alert("نظام Teil 2 غير متوفر حالياً");
       }
+    } else if (currentExamData.type === "teil3") {
+      if (typeof window.loadTeil3Exam === "function") {
+        window.loadTeil3Exam(currentExamData);
+      } else {
+        console.error("❌ loadTeil3Exam غير موجود");
+        alert("نظام Teil 3 غير متوفر حالياً");
+      }
     } else {
       buildTeil1(currentExamData.questions);
     }
@@ -526,6 +569,7 @@ renderTeileList();
 console.log("✅ exams.js تم تحميله بنجاح");
 console.log("📚 Lesen Teil 1:", examsDatabase.lesen1.length, "امتحان");
 console.log("📚 Lesen Teil 2:", examsDatabase.lesen2.length, "امتحان");
+console.log("📚 Lesen Teil 3:", examsDatabase.lesen3.length, "امتحان");
 console.log("🎧 Hören Teil 1:", examsDatabase.hoeren1.length, "امتحان");
 console.log("🎧 Hören Teil 2:", examsDatabase.hoeren2.length, "امتحان");
 console.log("🎧 Hören Teil 3:", examsDatabase.hoeren3.length, "امتحان");
