@@ -269,7 +269,7 @@ function updateTeil3DropdownList(questionIndex) {
   // إضافة خيار "ليس لها عنوان"
   const noneOption = document.createElement("div");
   noneOption.className = "dropdown-option";
-  noneOption.textContent = "❌ ليس لها عنوان";
+  noneOption.textContent = " — ليس لها عنوان — ";
   noneOption.style.padding = "10px";
   noneOption.style.cursor = "pointer";
   noneOption.style.borderBottom = "1px solid #eee";
