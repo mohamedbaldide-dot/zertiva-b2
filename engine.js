@@ -1,9 +1,9 @@
 // ============================================
 // engine.js - محرك الامتحانات المتكامل
-// يدعم: Matching (Custom Dropdown) + True/False (Hören 1,2,3) + Teil 2 + Teil 3
+// يدعم: Matching (Custom Dropdown) + True/False + Teil 2 + Teil 3
 // ============================================
 
-console.log("✅ engine.js تم تحميله (النسخة النهائية)");
+console.log("✅ engine.js تم تحميله (نسخة متكاملة مع Teil 3)");
 
 window.loadExamFromFile = async function(skill, examId) {
   try {
@@ -218,7 +218,7 @@ function renderTeil3Exam() {
   buttonContainer.style.alignItems = "center";
   buttonContainer.style.marginTop = "25px";
   
-  // حاوية للأرقام الصحيحة (الجهة اليسرى) - حسب الإجابات الأصلية
+  // حاوية للأرقام الصحيحة (الجهة اليسرى)
   const correctNumbersContainer = document.createElement("div");
   correctNumbersContainer.id = "teil3CorrectNumbers";
   correctNumbersContainer.style.backgroundColor = "#e3f2fd";
@@ -227,19 +227,9 @@ function renderTeil3Exam() {
   correctNumbersContainer.style.borderRadius = "8px";
   correctNumbersContainer.style.fontWeight = "bold";
   correctNumbersContainer.style.fontSize = "14px";
+  correctNumbersContainer.style.display = "none";
   correctNumbersContainer.style.border = "1px solid #90caf9";
-  // عرض الأرقام الصحيحة الأصلية فوراً
-  let originalCorrectIndices = [];
-  for (let i = 0; i < items.length; i++) {
-    if (items[i].correct !== null) {
-      originalCorrectIndices.push(i + 1);
-    }
-  }
-  if (originalCorrectIndices.length > 0) {
-    correctNumbersContainer.innerHTML = `▸ : ${originalCorrectIndices.join("")}`;
-  } else {
-    correctNumbersContainer.innerHTML = "▸ : —";
-  }
+  correctNumbersContainer.innerHTML = "▸ : ";
   
   // حاوية للأزرار (الجهة اليمنى)
   const buttonsDiv = document.createElement("div");
@@ -409,6 +399,7 @@ function checkTeil3Exam() {
   const items = currentTeil3Data.items;
   let score = 0;
   let total = items.length;
+  let correctIndices = [];
   
   for (let i = 0; i < total; i++) {
     const card = document.getElementById(`teil3_item_${i}`);
@@ -433,6 +424,7 @@ function checkTeil3Exam() {
       if (userAnswer === "— ليس لها عنوان —" || userAnswer === null || userAnswer === "") {
         isCorrect = true;
         score++;
+        correctIndices.push(i + 1);
         if (card) card.classList.add("correct-answer-card");
         displayText = "✅ — ليس لها عنوان —";
       } else {
@@ -445,6 +437,7 @@ function checkTeil3Exam() {
       if (userAnswer === correctText) {
         isCorrect = true;
         score++;
+        correctIndices.push(i + 1);
         if (card) card.classList.add("correct-answer-card");
         displayText = `✅ ${String.fromCharCode(97 + correctIndex)}. ${correctText}`;
       } else {
@@ -464,6 +457,17 @@ function checkTeil3Exam() {
       displayText: displayText,
       isCorrect: isCorrect
     };
+  }
+  
+  // عرض الأرقام الصحيحة
+  const correctNumbersContainer = document.getElementById("teil3CorrectNumbers");
+  if (correctNumbersContainer) {
+    correctNumbersContainer.style.display = "block";
+    if (correctIndices.length > 0) {
+      correctNumbersContainer.innerHTML = `▸ : ${correctIndices.join("")}`;
+    } else {
+      correctNumbersContainer.innerHTML = "▸ : لا توجد إجابات صحيحة";
+    }
   }
   
   const finalScore = (score * 25 / total).toFixed(2);
@@ -504,6 +508,9 @@ function resetTeil3Exam() {
       if (oldMsg) oldMsg.remove();
     }
   }
+  
+  const correctNumbersContainer = document.getElementById("teil3CorrectNumbers");
+  if (correctNumbersContainer) correctNumbersContainer.style.display = "none";
   
   const resultDiv = document.getElementById("teil3Result");
   if (resultDiv) resultDiv.style.display = "none";
@@ -648,9 +655,21 @@ function renderTeil2Exam() {
   
   const buttonContainer = document.createElement("div");
   buttonContainer.style.display = "flex";
-  buttonContainer.style.justifyContent = "flex-end";
+  buttonContainer.style.justifyContent = "space-between";
   buttonContainer.style.alignItems = "center";
   buttonContainer.style.marginTop = "20px";
+  
+  const correctNumbersContainer = document.createElement("div");
+  correctNumbersContainer.id = "teil2CorrectNumbers";
+  correctNumbersContainer.style.backgroundColor = "#e3f2fd";
+  correctNumbersContainer.style.color = "#0d47a1";
+  correctNumbersContainer.style.padding = "10px 15px";
+  correctNumbersContainer.style.borderRadius = "8px";
+  correctNumbersContainer.style.fontWeight = "bold";
+  correctNumbersContainer.style.fontSize = "14px";
+  correctNumbersContainer.style.display = "none";
+  correctNumbersContainer.style.border = "1px solid #90caf9";
+  correctNumbersContainer.innerHTML = "▸ : ";
   
   const buttonsDiv = document.createElement("div");
   buttonsDiv.style.display = "flex";
@@ -693,11 +712,14 @@ function renderTeil2Exam() {
       const oldMsg = document.querySelector(`#teil2_q_${i} .correct-message`);
       if (oldMsg) oldMsg.remove();
     }
+    const correctNumbersContainerInner = document.getElementById("teil2CorrectNumbers");
+    if (correctNumbersContainerInner) correctNumbersContainerInner.style.display = "none";
     const resultDiv = document.getElementById("teil2Result");
     if (resultDiv) resultDiv.style.display = "none";
   };
   buttonsDiv.appendChild(resetBtn);
   
+  buttonContainer.appendChild(correctNumbersContainer);
   buttonContainer.appendChild(buttonsDiv);
   questionsColumn.appendChild(buttonContainer);
   
@@ -722,6 +744,7 @@ function checkTeil2Exam() {
   let score = 0;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
+  let correctIndices = [];
   
   for (let i = 0; i < total; i++) {
     const q = questions[i];
@@ -736,6 +759,7 @@ function checkTeil2Exam() {
       
       if (isCorrect && userAnswer !== undefined) {
         score++;
+        correctIndices.push(i + 1);
         card.classList.add("correct-answer-card");
       } else {
         card.classList.add("wrong-answer-card");
@@ -769,6 +793,16 @@ function checkTeil2Exam() {
     }
   }
   
+  const correctNumbersContainer = document.getElementById("teil2CorrectNumbers");
+  if (correctNumbersContainer) {
+    correctNumbersContainer.style.display = "block";
+    if (correctIndices.length > 0) {
+      correctNumbersContainer.innerHTML = `▸ : ${correctIndices.join("")}`;
+    } else {
+      correctNumbersContainer.innerHTML = "▸ : لا توجد إجابات صحيحة";
+    }
+  }
+  
   const finalScore = (score * pointsPerQuestion).toFixed(2);
   const resultDiv = document.getElementById("teil2Result");
   resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
@@ -786,7 +820,7 @@ function checkTeil2Exam() {
   }
 }
 
-// ========== نظام Matching القديم (Teil 1 - Lesen) ==========
+// ========== نظام Matching القديم (Teil 1) ==========
 let currentMatchingExamData = null;
 let matchingSelectedAnswers = {};
 let matchingAvailableOptions = [];
@@ -897,9 +931,20 @@ function renderMatchingQuestions() {
   
   const buttonContainer = document.createElement("div");
   buttonContainer.style.display = "flex";
-  buttonContainer.style.justifyContent = "flex-end";
+  buttonContainer.style.justifyContent = "space-between";
   buttonContainer.style.alignItems = "center";
   buttonContainer.style.marginTop = "20px";
+  
+  const correctNumbersContainer = document.createElement("div");
+  correctNumbersContainer.id = "matchingCorrectNumbers";
+  correctNumbersContainer.style.backgroundColor = "#e3f2fd";
+  correctNumbersContainer.style.color = "#0d47a1";
+  correctNumbersContainer.style.padding = "10px 15px";
+  correctNumbersContainer.style.borderRadius = "8px";
+  correctNumbersContainer.style.fontWeight = "bold";
+  correctNumbersContainer.style.fontSize = "14px";
+  correctNumbersContainer.style.display = "none";
+  correctNumbersContainer.innerHTML = "▸ : ";
   
   const buttonsDiv = document.createElement("div");
   buttonsDiv.style.display = "flex";
@@ -940,11 +985,14 @@ function renderMatchingQuestions() {
         if (oldMsg) oldMsg.remove();
       }
     }
+    const correctNumbersContainerInner = document.getElementById("matchingCorrectNumbers");
+    if (correctNumbersContainerInner) correctNumbersContainerInner.style.display = "none";
     const resultDiv = document.getElementById("matchingResult");
     if (resultDiv) resultDiv.style.display = "none";
   };
   buttonsDiv.appendChild(resetBtn);
   
+  buttonContainer.appendChild(correctNumbersContainer);
   buttonContainer.appendChild(buttonsDiv);
   container.appendChild(buttonContainer);
   
@@ -1068,6 +1116,7 @@ function checkMatchingExam() {
   const questions = currentMatchingExamData.questions;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
+  let correctIndices = [];
   
   for (let i = 0; i < total; i++) {
     const card = document.getElementById("m_q_" + i);
@@ -1087,17 +1136,20 @@ function checkMatchingExam() {
     
     if (isCorrect && userAnswerText !== "") {
       score++;
+      correctIndices.push(i + 1);
       card.classList.add("correct-answer-card");
     } else {
       card.classList.add("wrong-answer-card");
-      
-      const correctMsg = document.createElement("div");
-      correctMsg.className = "correct-message";
-      correctMsg.style.color = "#28a745";
-      correctMsg.style.marginTop = "10px";
-      correctMsg.style.fontSize = "14px";
-      correctMsg.innerHTML = "✅ " + correctAnswerText;
-      card.appendChild(correctMsg);
+    }
+  }
+  
+  const correctNumbersContainer = document.getElementById("matchingCorrectNumbers");
+  if (correctNumbersContainer) {
+    correctNumbersContainer.style.display = "block";
+    if (correctIndices.length > 0) {
+      correctNumbersContainer.innerHTML = `▸ : ${correctIndices.join("")}`;
+    } else {
+      correctNumbersContainer.innerHTML = "▸ : لا توجد إجابات صحيحة";
     }
   }
   
@@ -1107,14 +1159,14 @@ function checkMatchingExam() {
   resultDiv.style.display = "block";
 }
 
-// ========== نظام True/False (Richtig/Falsch) لـ Hören Teil 1, 2, 3 ==========
+// ========== نظام True/False (Richtig/Falsch) ==========
 window.buildTrueFalseExam = function(container, questions, note) {
   container.innerHTML = '';
   
   let userAnswers = {};
   let currentQuestions = questions;
   
-  // عرض الملاحظة إذا وجدت (فقط لـ Hören)
+  // عرض الملاحظة إذا وجدت
   if (note) {
     const noteDiv = document.createElement('div');
     noteDiv.style.backgroundColor = '#fff3cd';
@@ -1208,7 +1260,6 @@ window.buildTrueFalseExam = function(container, questions, note) {
   buttonContainer.style.alignItems = 'center';
   buttonContainer.style.marginTop = '25px';
   
-  // مربع الأرقام الصحيحة الأصلية (▸) - يظهر فقط لـ Hören
   const correctNumbersContainer = document.createElement('div');
   correctNumbersContainer.id = 'truefalseCorrectNumbers';
   correctNumbersContainer.style.backgroundColor = '#e3f2fd';
@@ -1217,20 +1268,9 @@ window.buildTrueFalseExam = function(container, questions, note) {
   correctNumbersContainer.style.borderRadius = '8px';
   correctNumbersContainer.style.fontWeight = 'bold';
   correctNumbersContainer.style.fontSize = '14px';
+  correctNumbersContainer.style.display = 'none';
   correctNumbersContainer.style.border = '1px solid #90caf9';
-  
-  // حساب الأرقام الصحيحة الأصلية من ملف JSON
-  let originalCorrectIndices = [];
-  for (let i = 0; i < questions.length; i++) {
-    if (questions[i].correct === true) {
-      originalCorrectIndices.push(i + 1);
-    }
-  }
-  if (originalCorrectIndices.length > 0) {
-    correctNumbersContainer.innerHTML = `▸ : ${originalCorrectIndices.join("")}`;
-  } else {
-    correctNumbersContainer.innerHTML = "▸ : —";
-  }
+  correctNumbersContainer.innerHTML = '▸ : ';
   
   const buttonsDiv = document.createElement('div');
   buttonsDiv.style.display = 'flex';
@@ -1287,13 +1327,14 @@ window.buildTrueFalseExam = function(container, questions, note) {
       label.style.border = '1px solid #ccc';
     });
     
+    const correctNumbersContainerInner = document.getElementById('truefalseCorrectNumbers');
+    if (correctNumbersContainerInner) correctNumbersContainerInner.style.display = 'none';
+    
     const resultDiv = document.getElementById('truefalseResult');
     if (resultDiv) {
       resultDiv.style.display = 'none';
       resultDiv.innerHTML = '';
     }
-    
-    // ▸ يبقى ظاهراً (لا نخفيه)
     
     console.log("✅ تم إعادة تعيين الامتحان");
   };
@@ -1316,6 +1357,7 @@ function checkTrueFalseExam(questions, answers) {
   let score = 0;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
+  let correctIndices = [];
   
   const cards = document.querySelectorAll('#hoeren1 .question-card, #hoeren2 .question-card, #hoeren3 .question-card');
   
@@ -1333,6 +1375,7 @@ function checkTrueFalseExam(questions, answers) {
     
     if (isCorrect && userAnswer !== undefined) {
       score++;
+      correctIndices.push(i + 1);
       card.classList.add('correct-answer-card');
     } else {
       card.classList.add('wrong-answer-card');
@@ -1365,6 +1408,17 @@ function checkTrueFalseExam(questions, answers) {
     }
   }
   
+  // عرض الأرقام الصحيحة
+  const correctNumbersContainer = document.getElementById('truefalseCorrectNumbers');
+  if (correctNumbersContainer) {
+    correctNumbersContainer.style.display = 'block';
+    if (correctIndices.length > 0) {
+      correctNumbersContainer.innerHTML = `▸ : ${correctIndices.join("")}`;
+    } else {
+      correctNumbersContainer.innerHTML = "▸ : لا توجد إجابات صحيحة";
+    }
+  }
+  
   const finalScore = (score * pointsPerQuestion).toFixed(2);
   const resultDiv = document.getElementById('truefalseResult');
   if (resultDiv) {
@@ -1385,5 +1439,6 @@ function checkTrueFalseExam(questions, answers) {
 }
 
 console.log("✅ engine.js جاهز بالكامل");
-console.log("✅ يدعم: Matching (Teil 1) | True/False (Hören 1,2,3) | Teil 2 | Teil 3");
-console.log("✅ ▸ يظهر فقط في Hören Teil 1,2,3 ويعرض الأرقام الصحيحة الأصلية");
+console.log("✅ يدعم: Matching (Teil 1) | True/False (Hören) | Teil 2 | Teil 3");
+console.log("✅ تم إزالة رسائل 'لم يتم الإجابة'");
+console.log("✅ تم إضافة مربع الأرقام الصحيحة ▸ :");
