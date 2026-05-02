@@ -20,7 +20,7 @@ let currentSkill = "lesen1";
 let currentExamId = null;
 let currentExamsList = [];
 
-// قائمة جميع الامتحانات الجديدة (32 امتحاناً)
+// قائمة جميع الامتحانات (30 امتحاناً بعد حذف 24 و 32)
 const allExams = [
   { id: 1, title: "Fotobuch", enabled: true, hasFile: true },
   { id: 2, title: "Abenteuer TIKKI TAKKA", enabled: true, hasFile: true },
@@ -45,15 +45,15 @@ const allExams = [
   { id: 21, title: "Schmelzkäse Alpengeschmack", enabled: true, hasFile: true },
   { id: 22, title: "Meine Kiste: Obst und Gemüse", enabled: true, hasFile: true },
   { id: 23, title: "Hotel mit Thermen", enabled: true, hasFile: true },
-  { id: 24, title: "Antwort an Anne - Laras Geburtstag", enabled: true, hasFile: true },
-  { id: 25, title: "Kopfhörer", enabled: true, hasFile: true },
-  { id: 26, title: "Badezimmer renovieren", enabled: true, hasFile: true },
-  { id: 27, title: "FREIZEITBAD MEERESRAUSCHEN", enabled: true, hasFile: true },
-  { id: 28, title: "Reisebüro Sonnenschein", enabled: true, hasFile: true },
-  { id: 29, title: "Kursbeschreibung (sich vorstellen)", enabled: true, hasFile: true },
-  { id: 30, title: "FITWATCH Smartwatch", enabled: true, hasFile: true },
-  { id: 31, title: "Securvia Reisegepäckversicherung", enabled: true, hasFile: true },
-  { id: 32, title: "DIGIBIKE - Das smarte Hightech-Fahrrad", enabled: true, hasFile: true }
+  // id 24 محذوف (Antwort an Anne - Laras Geburtstag)
+  { id: 24, title: "Kopfhörer", enabled: true, hasFile: true },      // كان 25
+  { id: 25, title: "Badezimmer renovieren", enabled: true, hasFile: true },  // كان 26
+  { id: 26, title: "FREIZEITBAD MEERESRAUSCHEN", enabled: true, hasFile: true }, // كان 27
+  { id: 27, title: "Reisebüro Sonnenschein", enabled: true, hasFile: true },     // كان 28
+  { id: 28, title: "Kursbeschreibung (sich vorstellen)", enabled: true, hasFile: true }, // كان 29
+  { id: 29, title: "FITWATCH Smartwatch", enabled: true, hasFile: true },         // كان 30
+  { id: 30, title: "Securvia Reisegepäckversicherung", enabled: true, hasFile: true }  // كان 31
+  // id 32 محذوف (DIGIBIKE - Das smarte Hightech-Fahrrad)
 ];
 
 const actualFileNames = {
@@ -66,8 +66,7 @@ const actualFileNames = {
   19: "exam19.json", 20: "exam20.json", 21: "exam21.json",
   22: "exam22.json", 23: "exam23.json", 24: "exam24.json",
   25: "exam25.json", 26: "exam26.json", 27: "exam27.json",
-  28: "exam28.json", 29: "exam29.json", 30: "exam30.json",
-  31: "exam31.json", 32: "exam32.json"
+  28: "exam28.json", 29: "exam29.json", 30: "exam30.json"
 };
 
 // ✅ قائمة الامتحانات لكل جزء
