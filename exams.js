@@ -1,6 +1,6 @@
 // ============================================
 // exams.js - نظام الامتحانات المتكامل
-// يدعم: Lesen Teil 1, Lesen Teil 2, Lesen Teil 3, Hören Teil 1-3, Sprachbausteine Teil 1, Sprachbausteine Teil 2
+// يدعم: Lesen Teil 1, Lesen Teil 2, Lesen Teil 3, Hören Teil 1-3, Sprachbausteine Teil 1, Sprachbausteine Teil 2, Schreiben
 // ============================================
 
 const teile = [
@@ -11,7 +11,8 @@ const teile = [
   { id: 5, name: "Lesen Teil 2", container: "teil2", skill: "lesen2" },
   { id: 6, name: "Lesen Teil 3", container: "teil3", skill: "lesen3" },
   { id: 7, name: "Sprachbausteine Teil 1", container: "sprach1", skill: "sprach1" },
-  { id: 8, name: "Sprachbausteine Teil 2", container: "sprach2", skill: "sprach2" }
+  { id: 8, name: "Sprachbausteine Teil 2", container: "sprach2", skill: "sprach2" },
+  { id: 9, name: "Schreiben", container: "schreiben", skill: "schreiben" }
 ];
 
 let currentExamData = null;
@@ -328,7 +329,8 @@ const examsDatabase = {
     { id: 25, title: "Das Fest (ohne Frankfurt)", enabled: true, hasFile: true },
     { id: 26, title: "Das Fest (mit Frankfurt)", enabled: true, hasFile: true },
     { id: 27, title: "Radio Konzert", enabled: true, hasFile: true }
-  ]
+  ],
+  schreiben: allExams.filter(exam => exam.enabled === true)
 };
 
 function renderTeileList() {
@@ -469,6 +471,13 @@ async function openExam(examId, examTitle, skill) {
       } else {
         console.error("❌ loadSprach2Exam غير موجود");
         alert("نظام Sprachbausteine Teil 2 غير متوفر حالياً");
+      }
+    } else if (currentExamData.type === "schreiben") {
+      if (typeof window.loadSchreibenExam === "function") {
+        window.loadSchreibenExam(currentExamData);
+      } else {
+        console.error("❌ loadSchreibenExam غير موجود");
+        alert("نظام Schreiben غير متوفر حالياً");
       }
     } else {
       buildTeil1(currentExamData.questions);
@@ -655,3 +664,4 @@ console.log("📝 Sprachbausteine Teil 2:", examsDatabase.sprach2.length, "ام�
 console.log("🎧 Hören Teil 1:", examsDatabase.hoeren1.length, "امتحان");
 console.log("🎧 Hören Teil 2:", examsDatabase.hoeren2.length, "امتحان");
 console.log("🎧 Hören Teil 3:", examsDatabase.hoeren3.length, "امتحان");
+console.log("✏️ Schreiben:", examsDatabase.schreiben.length, "امتحان");
