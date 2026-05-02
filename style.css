@@ -20,26 +20,16 @@ select{margin:10px 0;padding:8px;width:100%;}
 .wrong{background:#f7c5c5;}
 
 /* أنماط الأسئلة */
-.question-card{background:#f9f9f9;border:1px solid #ddd;border-radius:10px;padding:15px;margin-bottom:15px;transition:all 0.3s ease;}
+.question-card{background:#f9f9f9;border:1px solid #ddd;border-radius:10px;padding:15px;margin-bottom:15px;}
 .question-text{font-size:15px;line-height:1.6;margin-bottom:12px;}
-.option-label{display:flex;align-items:center;gap:10px;margin:8px 0;padding:8px;background:white;border-radius:8px;cursor:pointer;border:1px solid #e0e0e0;transition:all 0.3s ease;}
+.option-label{display:flex;align-items:center;gap:10px;margin:8px 0;padding:8px;background:white;border-radius:8px;cursor:pointer;border:1px solid #e0e0e0;}
 .option-label:hover{background:#f0f0f0;}
 .option-input{margin:0;}
-.correct-answer-card{background:#d4edda !important;border:2px solid #28a745 !important;}
-.wrong-answer-card{background:#f8d7da !important;border:2px solid #dc3545 !important;}
-.result-box{background:#2c3e66;color:white;padding:15px;border-radius:10px;text-align:center;margin-top:20px;transition:all 0.3s ease;font-weight:bold;font-size:18px;}
+.correct-answer-card{background:#d4edda;border-color:#28a745;}
+.wrong-answer-card{background:#f8d7da;border-color:#dc3545;}
+.result-box{background:#2c3e66;color:white;padding:15px;border-radius:10px;text-align:center;margin-top:20px;}
 .teil-btn{background:#e9ecef;color:#333;padding:10px 20px;border:none;border-radius:8px;cursor:pointer;margin:3px;}
 .teil-btn.active{background:#2c3e66;color:white;}
-
-/* تنسيق رسالة الإجابة الصحيحة */
-.correct-message {
-    font-weight: bold;
-    margin-top: 10px;
-    padding: 8px;
-    background-color: #e8f5e9;
-    border-radius: 5px;
-    border-right: 4px solid #28a745;
-}
 
 /* ========== أنماط الأجزاء في صف واحد (أفقياً) ========== */
 .teile-row {
