@@ -1,6 +1,6 @@
 // ============================================
 // exams.js - نظام الامتحانات المتكامل
-// يدعم: Lesen Teil 1, Lesen Teil 2, Lesen Teil 3, Hören Teil 1-3, إلخ
+// يدعم: Lesen Teil 1, Lesen Teil 2, Lesen Teil 3, Hören Teil 1-3, Sprachbausteine Teil 1, إلخ
 // ============================================
 
 const teile = [
@@ -170,7 +170,48 @@ const examsDatabase = {
     { id: 34, title: "Autos", enabled: true, hasFile: true },
     { id: 35, title: "Möbel für die neue Wohnung", enabled: true, hasFile: true }
   ],
-  sprach1: [],
+  sprach1: [
+    { id: 1, title: "Hallo Ferdinand", enabled: true, hasFile: true },
+    { id: 2, title: "Hallo Ferdinand (معدل)", enabled: true, hasFile: true },
+    { id: 3, title: "Liebe Vanessa", enabled: true, hasFile: true },
+    { id: 4, title: "Hallo Judith / Lina", enabled: true, hasFile: true },
+    { id: 5, title: "Liebe Karin", enabled: true, hasFile: true },
+    { id: 6, title: "Liebe Karin (معدل)", enabled: true, hasFile: true },
+    { id: 7, title: "Hallo Leon", enabled: true, hasFile: true },
+    { id: 8, title: "Sehr geehrter Herr Martini", enabled: true, hasFile: true },
+    { id: 9, title: "Sehr geehrter Herr Martini (معدل)", enabled: true, hasFile: true },
+    { id: 10, title: "Liebe Maria, lieber Timur", enabled: true, hasFile: true },
+    { id: 11, title: "Lieber Justus", enabled: true, hasFile: true },
+    { id: 12, title: "Lieber Justus (معدل)", enabled: true, hasFile: true },
+    { id: 13, title: "Lieber Thomas", enabled: true, hasFile: true },
+    { id: 14, title: "Sehr geehrte Frau Goronska", enabled: true, hasFile: true },
+    { id: 15, title: "Liebe Agnieszka", enabled: true, hasFile: true },
+    { id: 16, title: "Liebe Anna", enabled: true, hasFile: true },
+    { id: 17, title: "Sehr geehrter Herr Dr. Moosberger (معدل)", enabled: true, hasFile: true },
+    { id: 18, title: "Sehr geehrter Herr Dr. Dobromil", enabled: true, hasFile: true },
+    { id: 19, title: "Liebe Lina, lieber Florian", enabled: true, hasFile: true },
+    { id: 20, title: "Liebes Julian", enabled: true, hasFile: true },
+    { id: 21, title: "Liebe Meike", enabled: true, hasFile: true },
+    { id: 22, title: "Liebe Corinna (معدل)", enabled: true, hasFile: true },
+    { id: 23, title: "Liebe Corinna", enabled: true, hasFile: true },
+    { id: 24, title: "Liebe Ida", enabled: true, hasFile: true },
+    { id: 25, title: "Liebe Paola", enabled: true, hasFile: true },
+    { id: 26, title: "Liebe Jutta", enabled: true, hasFile: true },
+    { id: 27, title: "Liebe Familie Geissler", enabled: true, hasFile: true },
+    { id: 28, title: "Liebe Andrea", enabled: true, hasFile: true },
+    { id: 29, title: "Liebe Andrea (معدل)", enabled: true, hasFile: true },
+    { id: 30, title: "Hallo Maria", enabled: true, hasFile: true },
+    { id: 31, title: "Sehr geehrte Frau Szabo", enabled: true, hasFile: true },
+    { id: 32, title: "Sehr geehrte Frau Szabo (معدل)", enabled: true, hasFile: true },
+    { id: 33, title: "Lieber Igor", enabled: true, hasFile: true },
+    { id: 34, title: "Liebe Lara", enabled: true, hasFile: true },
+    { id: 35, title: "Lieber David", enabled: true, hasFile: true },
+    { id: 36, title: "Sehr geehrter Herr Wenzel", enabled: true, hasFile: true },
+    { id: 37, title: "Liebe Autorinnen und Autoren", enabled: true, hasFile: true },
+    { id: 38, title: "Liebe Clara", enabled: true, hasFile: true },
+    { id: 39, title: "Sehr geehrte Frau Melchior", enabled: true, hasFile: true },
+    { id: 40, title: "Liebe Sandra", enabled: true, hasFile: true }
+  ],
   sprach2: [],
   hoeren1: [
     { id: 1, title: "Die Deutsche Lufthansa", enabled: true, hasFile: true },
@@ -390,6 +431,13 @@ async function openExam(examId, examTitle, skill) {
         console.error("❌ loadTeil3Exam غير موجود");
         alert("نظام Teil 3 غير متوفر حالياً");
       }
+    } else if (currentExamData.type === "sprach1") {
+      if (typeof window.loadSprach1Exam === "function") {
+        window.loadSprach1Exam(currentExamData);
+      } else {
+        console.error("❌ loadSprach1Exam غير موجود");
+        alert("نظام Sprachbausteine Teil 1 غير متوفر حالياً");
+      }
     } else {
       buildTeil1(currentExamData.questions);
     }
@@ -570,6 +618,7 @@ console.log("✅ exams.js تم تحميله بنجاح");
 console.log("📚 Lesen Teil 1:", examsDatabase.lesen1.length, "امتحان");
 console.log("📚 Lesen Teil 2:", examsDatabase.lesen2.length, "امتحان");
 console.log("📚 Lesen Teil 3:", examsDatabase.lesen3.length, "امتحان");
+console.log("📝 Sprachbausteine Teil 1:", examsDatabase.sprach1.length, "امتحان");
 console.log("🎧 Hören Teil 1:", examsDatabase.hoeren1.length, "امتحان");
 console.log("🎧 Hören Teil 2:", examsDatabase.hoeren2.length, "امتحان");
 console.log("🎧 Hören Teil 3:", examsDatabase.hoeren3.length, "امتحان");
