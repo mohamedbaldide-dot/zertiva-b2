@@ -1,6 +1,6 @@
 // ============================================
 // engine.js - محرك الامتحانات المتكامل
-// يدعم: Matching (Custom Dropdown) + True/False (Hören 1,2,3) + Teil 2 + Teil 3 + Sprachbausteine Teil 1
+// يدعم: Matching (Custom Dropdown) + True/False (Hören 1,2,3) + Teil 2 + Teil 3
 // ============================================
 
 console.log("✅ engine.js تم تحميله (النسخة النهائية)");
@@ -17,727 +17,6 @@ window.loadExamFromFile = async function(skill, examId) {
     return null;
   }
 };
-
-// ========== نظام Sprachbausteine Teil 1 ==========
-let currentSprach1Data = null;
-let sprach1UserAnswers = {};
-
-window.loadSprach1Exam = function(examData) {
-  console.log("🟢 loadSprach1Exam", examData.title);
-  currentSprach1Data = examData;
-  sprach1UserAnswers = {};
-  renderSprach1Exam();
-};
-
-function renderSprach1Exam() {
-  const container = document.getElementById("sprach1");
-  if (!container) return;
-  container.innerHTML = "";
-  
-  const text = currentSprach1Data.text;
-  const options = currentSprach1Data.options;
-  
-  // تقسيم الصفحة إلى عمودين
-  const twoColumns = document.createElement("div");
-  twoColumns.style.display = "flex";
-  twoColumns.style.gap = "30px";
-  twoColumns.style.flexWrap = "wrap";
-  
-  // العمود الأيسر: النص
-  const leftColumn = document.createElement("div");
-  leftColumn.style.flex = "1.5";
-  leftColumn.style.minWidth = "400px";
-  leftColumn.style.backgroundColor = "#f9f9f9";
-  leftColumn.style.padding = "20px";
-  leftColumn.style.borderRadius = "12px";
-  leftColumn.style.border = "1px solid #ddd";
-  leftColumn.style.maxHeight = "600px";
-  leftColumn.style.overflowY = "auto";
-  
-  const leftTitle = document.createElement("h3");
-  leftTitle.innerHTML = "📝 Text";
-  leftTitle.style.marginTop = "0";
-  leftTitle.style.color = "#2c3e66";
-  leftColumn.appendChild(leftTitle);
-  
-  // عرض النص مع تحويل الفجوات إلى أزرار قابلة للنقر
-  let htmlText = text;
-  for (let i = 1; i <= options.length; i++) {
-    const btnId = `sprach1_btn_${i}`;
-    const currentAnswer = sprach1UserAnswers[i];
-    const btnText = currentAnswer || `__(${i})__`;
-    const btnHtml = `<button id="${btnId}" class="sprach1-gap-btn" style="background-color: #e0e0e0; border: none; padding: 4px 12px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: bold; margin: 0 2px;">${btnText}</button>`;
-    htmlText = htmlText.replace(`⌄ __ (${i}) __ ⌄`, btnHtml);
-  }
-  
-  const textDiv = document.createElement("div");
-  textDiv.innerHTML = htmlText;
-  textDiv.style.lineHeight = "1.8";
-  textDiv.style.fontSize = "14px";
-  textDiv.style.textAlign = "justify";
-  
-  // ربط الأزرار
-  for (let i = 1; i <= options.length; i++) {
-    const btn = textDiv.querySelector(`#sprach1_btn_${i}`);
-    if (btn) {
-      btn.onclick = (function(qId) {
-        return function() { openSprach1Dropdown(qId); };
-      })(i);
-    }
-  }
-  
-  leftColumn.appendChild(textDiv);
-  
-  // العمود الأيمن: الخيارات
-  const rightColumn = document.createElement("div");
-  rightColumn.style.flex = "0.8";
-  rightColumn.style.minWidth = "250px";
-  rightColumn.style.backgroundColor = "#f0f8ff";
-  rightColumn.style.padding = "20px";
-  rightColumn.style.borderRadius = "12px";
-  rightColumn.style.border = "1px solid #d0e0ff";
-  rightColumn.style.maxHeight = "600px";
-  rightColumn.style.overflowY = "auto";
-  
-  const rightTitle = document.createElement("h3");
-  rightTitle.innerHTML = "📋 Optionen";
-  rightTitle.style.marginTop = "0";
-  rightTitle.style.color = "#2c3e66";
-  rightColumn.appendChild(rightTitle);
-  
-  const optionsContainer = document.createElement("div");
-  optionsContainer.id = "sprach1_options_container";
-  
-  for (let i = 0; i < options.length; i++) {
-    const opt = options[i];
-    const optDiv = document.createElement("div");
-    optDiv.className = "sprach1-option-group";
-    optDiv.id = `sprach1_opt_group_${opt.id}`;
-    optDiv.style.marginBottom = "20px";
-    optDiv.style.padding = "10px";
-    optDiv.style.backgroundColor = "white";
-    optDiv.style.borderRadius = "8px";
-    optDiv.style.border = "1px solid #ddd";
-    
-    const optTitle = document.createElement("div");
-    optTitle.innerHTML = `<strong>${opt.id} Optionen</strong>`;
-    optTitle.style.marginBottom = "10px";
-    optTitle.style.color = "#007bff";
-    optDiv.appendChild(optTitle);
-    
-    const optList = document.createElement("div");
-    optList.style.display = "flex";
-    optList.style.flexWrap = "wrap";
-    optList.style.gap = "15px";
-    
-    for (let j = 0; j < opt.options.length; j++) {
-      const optionLabel = document.createElement("label");
-      optionLabel.style.display = "inline-flex";
-      optionLabel.style.alignItems = "center";
-      optionLabel.style.gap = "5px";
-      optionLabel.style.cursor = "pointer";
-      optionLabel.style.padding = "5px 10px";
-      optionLabel.style.borderRadius = "5px";
-      optionLabel.style.backgroundColor = "#f8f9fa";
-      optionLabel.style.border = "1px solid #ccc";
-      
-      const radio = document.createElement("input");
-      radio.type = "radio";
-      radio.name = `sprach1_q${opt.id}`;
-      radio.value = opt.options[j];
-      radio.id = `sprach1_opt_${opt.id}_${j}`;
-      
-      // التحقق مما إذا كان هذا الخيار هو المختار حالياً
-      if (sprach1UserAnswers[opt.id] === opt.options[j]) {
-        radio.checked = true;
-      }
-      
-      radio.onchange = (function(qId, selectedValue, optIdx) {
-        return function() {
-          selectSprach1Option(qId, selectedValue);
-        };
-      })(opt.id, opt.options[j], j);
-      
-      const optionText = document.createElement("span");
-      optionText.textContent = opt.options[j];
-      optionText.style.fontSize = "13px";
-      
-      optionLabel.appendChild(radio);
-      optionLabel.appendChild(optionText);
-      optList.appendChild(optionLabel);
-    }
-    
-    optDiv.appendChild(optList);
-    optionsContainer.appendChild(optDiv);
-  }
-  
-  rightColumn.appendChild(optionsContainer);
-  
-  twoColumns.appendChild(leftColumn);
-  twoColumns.appendChild(rightColumn);
-  container.appendChild(twoColumns);
-  
-  // أزرار التحكم
-  const buttonContainer = document.createElement("div");
-  buttonContainer.style.display = "flex";
-  buttonContainer.style.gap = "15px";
-  buttonContainer.style.justifyContent = "center";
-  buttonContainer.style.marginTop = "25px";
-  
-  const checkBtn = document.createElement("button");
-  checkBtn.innerText = "✅ تصحيح";
-  checkBtn.className = "check-btn";
-  checkBtn.style.padding = "12px 24px";
-  checkBtn.style.backgroundColor = "#2c3e66";
-  checkBtn.style.color = "white";
-  checkBtn.style.border = "none";
-  checkBtn.style.borderRadius = "8px";
-  checkBtn.style.cursor = "pointer";
-  checkBtn.style.fontSize = "16px";
-  checkBtn.onclick = checkSprach1Exam;
-  buttonContainer.appendChild(checkBtn);
-  
-  const resetBtn = document.createElement("button");
-  resetBtn.innerText = "↺";
-  resetBtn.style.padding = "8px 12px";
-  resetBtn.style.backgroundColor = "#6c757d";
-  resetBtn.style.color = "white";
-  resetBtn.style.border = "none";
-  resetBtn.style.borderRadius = "6px";
-  resetBtn.style.cursor = "pointer";
-  resetBtn.style.fontSize = "16px";
-  resetBtn.style.fontWeight = "bold";
-  resetBtn.onclick = resetSprach1Exam;
-  buttonContainer.appendChild(resetBtn);
-  
-  container.appendChild(buttonContainer);
-  
-  const resultDiv = document.createElement("div");
-  resultDiv.id = "sprach1Result";
-  resultDiv.className = "result-box";
-  resultDiv.style.display = "none";
-  resultDiv.style.marginTop = "20px";
-  resultDiv.style.padding = "15px";
-  resultDiv.style.borderRadius = "8px";
-  resultDiv.style.textAlign = "center";
-  resultDiv.style.fontWeight = "bold";
-  container.appendChild(resultDiv);
-}
-
-let sprach1OpenDropdownId = null;
-
-function openSprach1Dropdown(questionId) {
-  // إغلاق أي dropdown مفتوح
-  if (sprach1OpenDropdownId) {
-    const oldList = document.getElementById(`sprach1_dropdown_list_${sprach1OpenDropdownId}`);
-    if (oldList) oldList.remove();
-  }
-  
-  const btn = document.getElementById(`sprach1_btn_${questionId}`);
-  if (!btn) return;
-  
-  // حذف القائمة السابقة إن وجدت
-  const oldList = document.getElementById(`sprach1_dropdown_list_${questionId}`);
-  if (oldList) oldList.remove();
-  
-  // إنشاء القائمة المنسدلة
-  const dropdownList = document.createElement("div");
-  dropdownList.id = `sprach1_dropdown_list_${questionId}`;
-  dropdownList.style.position = "absolute";
-  dropdownList.style.backgroundColor = "white";
-  dropdownList.style.border = "1px solid #ccc";
-  dropdownList.style.borderRadius = "8px";
-  dropdownList.style.padding = "5px 0";
-  dropdownList.style.zIndex = "1000";
-  dropdownList.style.minWidth = "150px";
-  dropdownList.style.boxShadow = "0 2px 10px rgba(0,0,0,0.2)";
-  
-  // الحصول على خيارات هذا السؤال
-  const optionItem = currentSprach1Data.options.find(opt => opt.id === questionId);
-  if (optionItem) {
-    for (let i = 0; i < optionItem.options.length; i++) {
-      const opt = optionItem.options[i];
-      const optDiv = document.createElement("div");
-      optDiv.textContent = opt;
-      optDiv.style.padding = "8px 12px";
-      optDiv.style.cursor = "pointer";
-      optDiv.style.transition = "background 0.2s";
-      
-      optDiv.addEventListener("mouseenter", function() {
-        this.style.backgroundColor = "#f0f0f0";
-      });
-      optDiv.addEventListener("mouseleave", function() {
-        this.style.backgroundColor = "white";
-      });
-      
-      optDiv.addEventListener("click", (function(qId, selectedValue) {
-        return function() {
-          selectSprach1Option(qId, selectedValue);
-          dropdownList.remove();
-          sprach1OpenDropdownId = null;
-        };
-      })(questionId, opt));
-      
-      dropdownList.appendChild(optDiv);
-    }
-  }
-  
-  // تحديد موقع الزر
-  const rect = btn.getBoundingClientRect();
-  dropdownList.style.position = "fixed";
-  dropdownList.style.top = `${rect.bottom + 5}px`;
-  dropdownList.style.left = `${rect.left}px`;
-  
-  document.body.appendChild(dropdownList);
-  sprach1OpenDropdownId = questionId;
-  
-  // إغلاق القائمة عند النقر خارجها
-  setTimeout(() => {
-    document.addEventListener("click", function closeDropdown(e) {
-      if (!dropdownList.contains(e.target) && e.target !== btn) {
-        dropdownList.remove();
-        document.removeEventListener("click", closeDropdown);
-        sprach1OpenDropdownId = null;
-      }
-    });
-  }, 0);
-}
-
-function selectSprach1Option(questionId, selectedValue) {
-  sprach1UserAnswers[questionId] = selectedValue;
-  
-  // تحديث الزر في النص
-  const btn = document.getElementById(`sprach1_btn_${questionId}`);
-  if (btn) {
-    btn.textContent = selectedValue;
-    btn.style.backgroundColor = "#d4edda";
-    btn.style.color = "#155724";
-  }
-  
-  // تحديث الراديو في الخيارات
-  for (let i = 0; i < currentSprach1Data.options.length; i++) {
-    const opt = currentSprach1Data.options[i];
-    if (opt.id === questionId) {
-      for (let j = 0; j < opt.options.length; j++) {
-        const radio = document.getElementById(`sprach1_opt_${questionId}_${j}`);
-        if (radio && radio.value === selectedValue) {
-          radio.checked = true;
-        }
-      }
-      break;
-    }
-  }
-}
-
-function resetSprach1Exam() {
-  sprach1UserAnswers = {};
-  
-  // إعادة تعيين جميع الأزرار
-  for (let i = 1; i <= currentSprach1Data.options.length; i++) {
-    const btn = document.getElementById(`sprach1_btn_${i}`);
-    if (btn) {
-      btn.textContent = `__(${i})__`;
-      btn.style.backgroundColor = "#e0e0e0";
-      btn.style.color = "#333";
-    }
-    
-    // إلغاء تحديد جميع الراديوهات
-    for (let j = 0; j < currentSprach1Data.options.length; j++) {
-      const opt = currentSprach1Data.options[j];
-      if (opt.id === i) {
-        for (let k = 0; k < opt.options.length; k++) {
-          const radio = document.getElementById(`sprach1_opt_${i}_${k}`);
-          if (radio) radio.checked = false;
-        }
-        break;
-      }
-    }
-  }
-  
-  // إخفاء النتيجة
-  const resultDiv = document.getElementById("sprach1Result");
-  if (resultDiv) resultDiv.style.display = "none";
-  
-  console.log("✅ تم إعادة تعيين Sprachbausteine Teil 1");
-}
-
-function checkSprach1Exam() {
-  const options = currentSprach1Data.options;
-  let score = 0;
-  const total = options.length;
-  const pointsPerQuestion = 25 / total;
-  
-  for (let i = 0; i < options.length; i++) {
-    const opt = options[i];
-    const userAnswer = sprach1UserAnswers[opt.id];
-    const isCorrect = (userAnswer === opt.options[opt.correct]);
-    
-    if (isCorrect) {
-      score++;
-    }
-    
-    // تلوين الزر حسب الصحة
-    const btn = document.getElementById(`sprach1_btn_${opt.id}`);
-    if (btn) {
-      if (isCorrect) {
-        btn.style.backgroundColor = "#28a745";
-        btn.style.color = "white";
-      } else if (userAnswer) {
-        btn.style.backgroundColor = "#dc3545";
-        btn.style.color = "white";
-      } else {
-        btn.style.backgroundColor = "#ffc107";
-        btn.style.color = "#333";
-      }
-    }
-    
-    // تلوين مجموعة الخيارات
-    const optGroup = document.getElementById(`sprach1_opt_group_${opt.id}`);
-    if (optGroup) {
-      if (isCorrect) {
-        optGroup.style.backgroundColor = "#d4edda";
-        optGroup.style.border = "2px solid #28a745";
-      } else if (userAnswer) {
-        optGroup.style.backgroundColor = "#f8d7da";
-        optGroup.style.border = "2px solid #dc3545";
-      } else {
-        optGroup.style.backgroundColor = "#fff3cd";
-        optGroup.style.border = "2px solid #ffc107";
-      }
-    }
-    
-    // إظهار الإجابة الصحيحة في الخيارات
-    const correctAnswer = opt.options[opt.correct];
-    const correctIndex = opt.options.indexOf(correctAnswer);
-    const correctRadio = document.getElementById(`sprach1_opt_${opt.id}_${correctIndex}`);
-    if (correctRadio) {
-      const parentLabel = correctRadio.parentElement;
-      if (parentLabel && !isCorrect) {
-        parentLabel.style.backgroundColor = "#d4edda";
-        parentLabel.style.border = "2px solid #28a745";
-      }
-    }
-  }
-  
-  const finalScore = (score * pointsPerQuestion).toFixed(2);
-  const resultDiv = document.getElementById("sprach1Result");
-  resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
-  resultDiv.style.display = "block";
-  
-  if (finalScore >= 20) {
-    resultDiv.style.backgroundColor = "#d4edda";
-    resultDiv.style.color = "#155724";
-  } else if (finalScore >= 15) {
-    resultDiv.style.backgroundColor = "#fff3cd";
-    resultDiv.style.color = "#856404";
-  } else {
-    resultDiv.style.backgroundColor = "#f8d7da";
-    resultDiv.style.color = "#721c24";
-  }
-}
-
-// ========== نظام True/False مع عرض أرقام الإجابات الصحيحة (فقط لـ Hören) ==========
-let currentTrueFalseData = null;
-let trueFalseUserAnswers = {};
-
-window.buildTrueFalseExam = function(container, questions, note) {
-  container.innerHTML = '';
-  
-  currentTrueFalseData = { questions: questions, note: note };
-  trueFalseUserAnswers = {};
-  
-  if (note) {
-    const noteDiv = document.createElement('div');
-    noteDiv.style.backgroundColor = '#fff3cd';
-    noteDiv.style.color = '#856404';
-    noteDiv.style.padding = '12px 15px';
-    noteDiv.style.borderRadius = '8px';
-    noteDiv.style.marginBottom = '20px';
-    noteDiv.style.border = '1px solid #ffeeba';
-    noteDiv.style.fontSize = '14px';
-    noteDiv.style.fontWeight = 'bold';
-    noteDiv.innerHTML = `📌 <strong>ملاحظة:</strong> ${note}`;
-    container.appendChild(noteDiv);
-  }
-  
-  questions.forEach((q, i) => {
-    const div = document.createElement('div');
-    div.className = 'question-card';
-    div.style.display = 'flex';
-    div.style.alignItems = 'center';
-    div.style.gap = '15px';
-    div.style.marginBottom = '12px';
-    div.style.flexWrap = 'wrap';
-    div.style.padding = '12px';
-    div.style.border = '1px solid #ddd';
-    div.style.borderRadius = '10px';
-    div.style.backgroundColor = '#f9f9f9';
-    div.id = `truefalse_card_${i}`;
-    
-    const labelTrue = document.createElement('label');
-    labelTrue.className = 'option-label';
-    labelTrue.style.display = 'inline-flex';
-    labelTrue.style.alignItems = 'center';
-    labelTrue.style.gap = '5px';
-    labelTrue.style.cursor = 'pointer';
-    labelTrue.style.marginRight = '15px';
-    labelTrue.style.padding = '5px 10px';
-    labelTrue.style.border = '1px solid #ccc';
-    labelTrue.style.borderRadius = '5px';
-    labelTrue.style.backgroundColor = 'white';
-    
-    const radioTrue = document.createElement('input');
-    radioTrue.type = 'radio';
-    radioTrue.name = `q${i}`;
-    radioTrue.value = 'true';
-    radioTrue.id = `q${i}_true`;
-    
-    radioTrue.onchange = () => {
-      trueFalseUserAnswers[i] = true;
-    };
-    
-    labelTrue.appendChild(radioTrue);
-    labelTrue.appendChild(document.createTextNode(' Richtig'));
-    
-    const labelFalse = document.createElement('label');
-    labelFalse.className = 'option-label';
-    labelFalse.style.display = 'inline-flex';
-    labelFalse.style.alignItems = 'center';
-    labelFalse.style.gap = '5px';
-    labelFalse.style.cursor = 'pointer';
-    labelFalse.style.padding = '5px 10px';
-    labelFalse.style.border = '1px solid #ccc';
-    labelFalse.style.borderRadius = '5px';
-    labelFalse.style.backgroundColor = 'white';
-    
-    const radioFalse = document.createElement('input');
-    radioFalse.type = 'radio';
-    radioFalse.name = `q${i}`;
-    radioFalse.value = 'false';
-    radioFalse.id = `q${i}_false`;
-    
-    radioFalse.onchange = () => {
-      trueFalseUserAnswers[i] = false;
-    };
-    
-    labelFalse.appendChild(radioFalse);
-    labelFalse.appendChild(document.createTextNode(' Falsch'));
-    
-    const textSpan = document.createElement('span');
-    textSpan.innerHTML = `<strong>${i + 1}</strong> ${q.text}`;
-    textSpan.style.flex = '1';
-    textSpan.style.minWidth = '200px';
-    
-    div.appendChild(labelTrue);
-    div.appendChild(labelFalse);
-    div.appendChild(textSpan);
-    
-    container.appendChild(div);
-  });
-  
-  const buttonContainer = document.createElement('div');
-  buttonContainer.style.display = 'flex';
-  buttonContainer.style.gap = '15px';
-  buttonContainer.style.justifyContent = 'space-between';
-  buttonContainer.style.alignItems = 'center';
-  buttonContainer.style.marginTop = '25px';
-  
-  // حاوية الأرقام الصحيحة (الجهة اليسرى)
-  const correctNumbersContainer = document.createElement('div');
-  correctNumbersContainer.id = "truefalseCorrectNumbers";
-  correctNumbersContainer.style.backgroundColor = "#e3f2fd";
-  correctNumbersContainer.style.color = "#0d47a1";
-  correctNumbersContainer.style.padding = "10px 15px";
-  correctNumbersContainer.style.borderRadius = "8px";
-  correctNumbersContainer.style.fontWeight = "bold";
-  correctNumbersContainer.style.fontSize = "14px";
-  correctNumbersContainer.style.border = "1px solid #90caf9";
-  
-  // عرض الأرقام الصحيحة الأصلية فوراً
-  let originalCorrectIndices = [];
-  for (let i = 0; i < questions.length; i++) {
-    if (questions[i].correct === true) {
-      originalCorrectIndices.push(i + 1);
-    }
-  }
-  if (originalCorrectIndices.length > 0) {
-    correctNumbersContainer.innerHTML = `▸ : ${originalCorrectIndices.join("")}`;
-  } else {
-    correctNumbersContainer.innerHTML = "▸ : —";
-  }
-  
-  // حاوية الأزرار (الجهة اليمنى)
-  const buttonsDiv = document.createElement('div');
-  buttonsDiv.style.display = 'flex';
-  buttonsDiv.style.gap = '15px';
-  
-  const checkBtn = document.createElement('button');
-  checkBtn.innerText = '📝 Prüfen';
-  checkBtn.className = 'check-btn';
-  checkBtn.style.padding = '12px 24px';
-  checkBtn.style.backgroundColor = '#2c3e66';
-  checkBtn.style.color = 'white';
-  checkBtn.style.border = 'none';
-  checkBtn.style.borderRadius = '8px';
-  checkBtn.style.cursor = 'pointer';
-  checkBtn.style.fontSize = '16px';
-  
-  checkBtn.onclick = () => {
-    checkTrueFalseExam(questions, trueFalseUserAnswers);
-  };
-  
-  const resetBtn = document.createElement('button');
-  resetBtn.innerText = '↺';
-  resetBtn.style.padding = '8px 12px';
-  resetBtn.style.backgroundColor = '#6c757d';
-  resetBtn.style.color = 'white';
-  resetBtn.style.border = 'none';
-  resetBtn.style.borderRadius = '6px';
-  resetBtn.style.cursor = 'pointer';
-  resetBtn.style.fontSize = '16px';
-  resetBtn.style.fontWeight = 'bold';
-  
-  resetBtn.onclick = function() {
-    // مسح الإجابات
-    for (let key in trueFalseUserAnswers) {
-      delete trueFalseUserAnswers[key];
-    }
-    
-    // إلغاء تحديد جميع الراديوهات
-    const allRadios = container.querySelectorAll('input[type="radio"]');
-    allRadios.forEach(radio => {
-      radio.checked = false;
-    });
-    
-    // إزالة التلوين
-    const cards = container.querySelectorAll('.question-card');
-    cards.forEach(card => {
-      card.classList.remove('correct-answer-card', 'wrong-answer-card');
-    });
-    
-    const allMessages = container.querySelectorAll('.correct-message');
-    allMessages.forEach(msg => msg.remove());
-    
-    const optionLabels = container.querySelectorAll('.option-label');
-    optionLabels.forEach(label => {
-      label.style.backgroundColor = 'white';
-      label.style.border = '1px solid #ccc';
-    });
-    
-    const resultDiv = document.getElementById('truefalseResult');
-    if (resultDiv) {
-      resultDiv.style.display = 'none';
-      resultDiv.innerHTML = '';
-    }
-    
-    console.log("✅ تم إعادة تعيين الامتحان");
-  };
-  
-  buttonsDiv.appendChild(checkBtn);
-  buttonsDiv.appendChild(resetBtn);
-  
-  buttonContainer.appendChild(correctNumbersContainer);
-  buttonContainer.appendChild(buttonsDiv);
-  container.appendChild(buttonContainer);
-  
-  const resultDiv = document.createElement('div');
-  resultDiv.id = 'truefalseResult';
-  resultDiv.className = 'result-box';
-  resultDiv.style.display = 'none';
-  container.appendChild(resultDiv);
-};
-
-function checkTrueFalseExam(questions, answers) {
-  let score = 0;
-  const total = questions.length;
-  const pointsPerQuestion = 25 / total;
-  
-  const cards = document.querySelectorAll('#hoeren1 .question-card, #hoeren2 .question-card, #hoeren3 .question-card');
-  
-  for (let i = 0; i < questions.length; i++) {
-    const q = questions[i];
-    const card = cards[i];
-    const userAnswer = answers[i];
-    const isCorrect = (userAnswer === q.correct);
-    
-    if (!card) continue;
-    
-    card.classList.remove('correct-answer-card', 'wrong-answer-card');
-    const oldMsg = card.querySelector('.correct-message');
-    if (oldMsg) oldMsg.remove();
-    
-    if (isCorrect && userAnswer !== undefined) {
-      score++;
-      card.classList.add('correct-answer-card');
-    } else {
-      card.classList.add('wrong-answer-card');
-      
-      if (userAnswer !== undefined) {
-        const correctMsg = document.createElement('div');
-        correctMsg.className = 'correct-message';
-        correctMsg.style.color = '#28a745';
-        correctMsg.style.marginTop = '10px';
-        correctMsg.style.fontSize = '14px';
-        correctMsg.style.fontWeight = 'bold';
-        correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.correct ? 'Richtig' : 'Falsch'}`;
-        card.appendChild(correctMsg);
-      } else if (userAnswer === undefined) {
-        const correctMsg = document.createElement('div');
-        correctMsg.className = 'correct-message';
-        correctMsg.style.color = '#ff9800';
-        correctMsg.style.marginTop = '10px';
-        correctMsg.style.fontSize = '14px';
-        correctMsg.style.fontWeight = 'bold';
-        correctMsg.innerHTML = `⚠️ لم يتم الإجابة - الصحيح: ${q.correct ? 'Richtig' : 'Falsch'}`;
-        card.appendChild(correctMsg);
-      }
-    }
-    
-    const radios = card.querySelectorAll('input[type="radio"]');
-    for (let r = 0; r < radios.length; r++) {
-      const radio = radios[r];
-      const radioValue = radio.value === 'true';
-      const parentLabel = radio.parentElement;
-      
-      if (isCorrect && userAnswer !== undefined) {
-        if (radio.checked) {
-          parentLabel.style.backgroundColor = '#d4edda';
-          parentLabel.style.borderColor = '#28a745';
-          parentLabel.style.border = '2px solid #28a745';
-        }
-      } else {
-        if (radio.checked) {
-          parentLabel.style.backgroundColor = '#f8d7da';
-          parentLabel.style.borderColor = '#dc3545';
-          parentLabel.style.border = '2px solid #dc3545';
-        }
-        if (radioValue === q.correct) {
-          parentLabel.style.backgroundColor = '#d4edda';
-          parentLabel.style.borderColor = '#28a745';
-          parentLabel.style.border = '2px solid #28a745';
-        }
-      }
-    }
-  }
-  
-  const finalScore = (score * pointsPerQuestion).toFixed(2);
-  const resultDiv = document.getElementById('truefalseResult');
-  if (resultDiv) {
-    resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
-    resultDiv.style.display = 'block';
-    
-    if (finalScore >= 20) {
-      resultDiv.style.backgroundColor = '#28a745';
-      resultDiv.style.color = 'white';
-    } else if (finalScore >= 15) {
-      resultDiv.style.backgroundColor = '#ffc107';
-      resultDiv.style.color = '#333';
-    } else {
-      resultDiv.style.backgroundColor = '#dc3545';
-      resultDiv.style.color = 'white';
-    }
-  }
-}
 
 // ========== نظام Teil 3 (Matching جديد مع عمودين و Dropdown) ==========
 let currentTeil3Data = null;
@@ -931,12 +210,41 @@ function renderTeil3Exam() {
   twoColumns.appendChild(rightColumn);
   container.appendChild(twoColumns);
   
-  // أزرار التحكم (بدون ▸ : لأنه خاص بـ Hören فقط)
+  // أزرار التحكم
   const buttonContainer = document.createElement("div");
   buttonContainer.style.display = "flex";
   buttonContainer.style.gap = "15px";
-  buttonContainer.style.justifyContent = "center";
+  buttonContainer.style.justifyContent = "space-between";
+  buttonContainer.style.alignItems = "center";
   buttonContainer.style.marginTop = "25px";
+  
+  // حاوية للأرقام الصحيحة (الجهة اليسرى) - حسب الإجابات الأصلية
+  const correctNumbersContainer = document.createElement("div");
+  correctNumbersContainer.id = "teil3CorrectNumbers";
+  correctNumbersContainer.style.backgroundColor = "#e3f2fd";
+  correctNumbersContainer.style.color = "#0d47a1";
+  correctNumbersContainer.style.padding = "10px 15px";
+  correctNumbersContainer.style.borderRadius = "8px";
+  correctNumbersContainer.style.fontWeight = "bold";
+  correctNumbersContainer.style.fontSize = "14px";
+  correctNumbersContainer.style.border = "1px solid #90caf9";
+  // عرض الأرقام الصحيحة الأصلية فوراً
+  let originalCorrectIndices = [];
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].correct !== null) {
+      originalCorrectIndices.push(i + 1);
+    }
+  }
+  if (originalCorrectIndices.length > 0) {
+    correctNumbersContainer.innerHTML = `▸ : ${originalCorrectIndices.join("")}`;
+  } else {
+    correctNumbersContainer.innerHTML = "▸ : —";
+  }
+  
+  // حاوية للأزرار (الجهة اليمنى)
+  const buttonsDiv = document.createElement("div");
+  buttonsDiv.style.display = "flex";
+  buttonsDiv.style.gap = "15px";
   
   const checkBtn = document.createElement("button");
   checkBtn.innerText = "📝 Prüfen";
@@ -949,7 +257,7 @@ function renderTeil3Exam() {
   checkBtn.style.cursor = "pointer";
   checkBtn.style.fontSize = "16px";
   checkBtn.onclick = checkTeil3Exam;
-  buttonContainer.appendChild(checkBtn);
+  buttonsDiv.appendChild(checkBtn);
   
   const resetBtn = document.createElement("button");
   resetBtn.innerText = "↺";
@@ -962,8 +270,10 @@ function renderTeil3Exam() {
   resetBtn.style.fontSize = "16px";
   resetBtn.style.fontWeight = "bold";
   resetBtn.onclick = resetTeil3Exam;
-  buttonContainer.appendChild(resetBtn);
+  buttonsDiv.appendChild(resetBtn);
   
+  buttonContainer.appendChild(correctNumbersContainer);
+  buttonContainer.appendChild(buttonsDiv);
   container.appendChild(buttonContainer);
   
   const resultDiv = document.createElement("div");
@@ -1114,7 +424,7 @@ function checkTeil3Exam() {
     const card = document.getElementById(`teil3_item_${i}`);
     const userAnswer = teil3UserAnswers[i];
     const correctIndex = item.correct;
-    const btnSpan = document.querySelector(`teil3_btn_${i} span:first-child`);
+    const btnSpan = document.querySelector(`#teil3_btn_${i} span:first-child`);
     
     let isCorrect = false;
     let displayText = "";
@@ -1198,10 +508,10 @@ function resetTeil3Exam() {
   const resultDiv = document.getElementById("teil3Result");
   if (resultDiv) resultDiv.style.display = "none";
   
-  console.log("✅ تم إعادة تعیین Teil 3");
+  console.log("✅ تم إعادة تعيين Teil 3");
 }
 
-// ========== نظام Teil 2 (نص طويل + أسئلة) ==========
+// ========== نظام Teil 2 (نص طويل + 5 أسئلة) ==========
 let currentTeil2Data = null;
 let teil2UserAnswers = {};
 
@@ -1336,12 +646,20 @@ function renderTeil2Exam() {
   
   questionsColumn.appendChild(questionsContainer);
   
+  const buttonContainer = document.createElement("div");
+  buttonContainer.style.display = "flex";
+  buttonContainer.style.justifyContent = "flex-end";
+  buttonContainer.style.alignItems = "center";
+  buttonContainer.style.marginTop = "20px";
+  
+  const buttonsDiv = document.createElement("div");
+  buttonsDiv.style.display = "flex";
+  buttonsDiv.style.gap = "15px";
+  
   const checkBtn = document.createElement("button");
   checkBtn.innerText = "✅ تصحيح";
   checkBtn.className = "check-btn";
-  checkBtn.style.width = "100%";
-  checkBtn.style.marginTop = "20px";
-  checkBtn.style.padding = "12px";
+  checkBtn.style.padding = "12px 24px";
   checkBtn.style.backgroundColor = "#2c3e66";
   checkBtn.style.color = "white";
   checkBtn.style.border = "none";
@@ -1349,12 +667,10 @@ function renderTeil2Exam() {
   checkBtn.style.cursor = "pointer";
   checkBtn.style.fontSize = "16px";
   checkBtn.onclick = checkTeil2Exam;
-  questionsColumn.appendChild(checkBtn);
+  buttonsDiv.appendChild(checkBtn);
   
   const resetBtn = document.createElement("button");
   resetBtn.innerText = "↺";
-  resetBtn.style.width = "auto";
-  resetBtn.style.marginTop = "10px";
   resetBtn.style.padding = "8px 12px";
   resetBtn.style.backgroundColor = "#6c757d";
   resetBtn.style.color = "white";
@@ -1380,7 +696,10 @@ function renderTeil2Exam() {
     const resultDiv = document.getElementById("teil2Result");
     if (resultDiv) resultDiv.style.display = "none";
   };
-  questionsColumn.appendChild(resetBtn);
+  buttonsDiv.appendChild(resetBtn);
+  
+  buttonContainer.appendChild(buttonsDiv);
+  questionsColumn.appendChild(buttonContainer);
   
   const resultDiv = document.createElement("div");
   resultDiv.id = "teil2Result";
@@ -1420,15 +739,6 @@ function checkTeil2Exam() {
         card.classList.add("correct-answer-card");
       } else {
         card.classList.add("wrong-answer-card");
-        
-        const correctMsg = document.createElement("div");
-        correctMsg.className = "correct-message";
-        correctMsg.style.color = "#28a745";
-        correctMsg.style.marginTop = "10px";
-        correctMsg.style.fontSize = "14px";
-        correctMsg.style.fontWeight = "bold";
-        correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.options[q.correct]}`;
-        card.appendChild(correctMsg);
       }
       
       const radios = card.querySelectorAll('input[type="radio"]');
@@ -1476,7 +786,7 @@ function checkTeil2Exam() {
   }
 }
 
-// ========== نظام Matching القديم (Teil 1) ==========
+// ========== نظام Matching القديم (Teil 1 - Lesen) ==========
 let currentMatchingExamData = null;
 let matchingSelectedAnswers = {};
 let matchingAvailableOptions = [];
@@ -1585,11 +895,58 @@ function renderMatchingQuestions() {
     }
   });
   
+  const buttonContainer = document.createElement("div");
+  buttonContainer.style.display = "flex";
+  buttonContainer.style.justifyContent = "flex-end";
+  buttonContainer.style.alignItems = "center";
+  buttonContainer.style.marginTop = "20px";
+  
+  const buttonsDiv = document.createElement("div");
+  buttonsDiv.style.display = "flex";
+  buttonsDiv.style.gap = "15px";
+  
   const checkBtn = document.createElement("button");
   checkBtn.innerText = "✅ تصحيح";
   checkBtn.className = "check-btn";
   checkBtn.onclick = checkMatchingExam;
-  container.appendChild(checkBtn);
+  buttonsDiv.appendChild(checkBtn);
+  
+  const resetBtn = document.createElement("button");
+  resetBtn.innerText = "↺";
+  resetBtn.style.padding = "8px 12px";
+  resetBtn.style.backgroundColor = "#6c757d";
+  resetBtn.style.color = "white";
+  resetBtn.style.border = "none";
+  resetBtn.style.borderRadius = "6px";
+  resetBtn.style.cursor = "pointer";
+  resetBtn.style.fontSize = "16px";
+  resetBtn.style.fontWeight = "bold";
+  resetBtn.onclick = function() {
+    matchingSelectedAnswers = {};
+    matchingAvailableOptions = [...currentMatchingExamData.sharedOptions];
+    for (let i = 0; i < currentMatchingExamData.questions.length; i++) {
+      const btnSpan = document.querySelector(`#m_btn_${i} span:first-child`);
+      if (btnSpan) {
+        btnSpan.textContent = "-- اختر الإجابة --";
+        btnSpan.style.color = "#999";
+      }
+      updateDropdownList(i);
+    }
+    for (let i = 0; i < currentMatchingExamData.questions.length; i++) {
+      const card = document.getElementById(`m_q_${i}`);
+      if (card) {
+        card.classList.remove("correct-answer-card", "wrong-answer-card");
+        const oldMsg = card.querySelector(".correct-message");
+        if (oldMsg) oldMsg.remove();
+      }
+    }
+    const resultDiv = document.getElementById("matchingResult");
+    if (resultDiv) resultDiv.style.display = "none";
+  };
+  buttonsDiv.appendChild(resetBtn);
+  
+  buttonContainer.appendChild(buttonsDiv);
+  container.appendChild(buttonContainer);
   
   const resultDiv = document.createElement("div");
   resultDiv.id = "matchingResult";
@@ -1750,5 +1107,283 @@ function checkMatchingExam() {
   resultDiv.style.display = "block";
 }
 
+// ========== نظام True/False (Richtig/Falsch) لـ Hören Teil 1, 2, 3 ==========
+window.buildTrueFalseExam = function(container, questions, note) {
+  container.innerHTML = '';
+  
+  let userAnswers = {};
+  let currentQuestions = questions;
+  
+  // عرض الملاحظة إذا وجدت (فقط لـ Hören)
+  if (note) {
+    const noteDiv = document.createElement('div');
+    noteDiv.style.backgroundColor = '#fff3cd';
+    noteDiv.style.color = '#856404';
+    noteDiv.style.padding = '8px 12px';
+    noteDiv.style.borderRadius = '6px';
+    noteDiv.style.marginBottom = '15px';
+    noteDiv.style.fontSize = '13px';
+    noteDiv.innerHTML = `📌 ${note}`;
+    container.appendChild(noteDiv);
+  }
+  
+  questions.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'question-card';
+    div.style.display = 'flex';
+    div.style.alignItems = 'center';
+    div.style.gap = '15px';
+    div.style.marginBottom = '12px';
+    div.style.flexWrap = 'wrap';
+    div.style.padding = '12px';
+    div.style.border = '1px solid #ddd';
+    div.style.borderRadius = '10px';
+    div.style.backgroundColor = '#f9f9f9';
+    div.id = `truefalse_card_${i}`;
+    
+    const labelTrue = document.createElement('label');
+    labelTrue.className = 'option-label';
+    labelTrue.style.display = 'inline-flex';
+    labelTrue.style.alignItems = 'center';
+    labelTrue.style.gap = '5px';
+    labelTrue.style.cursor = 'pointer';
+    labelTrue.style.marginRight = '15px';
+    labelTrue.style.padding = '5px 10px';
+    labelTrue.style.border = '1px solid #ccc';
+    labelTrue.style.borderRadius = '5px';
+    labelTrue.style.backgroundColor = 'white';
+    
+    const radioTrue = document.createElement('input');
+    radioTrue.type = 'radio';
+    radioTrue.name = `q${i}`;
+    radioTrue.value = 'true';
+    radioTrue.id = `q${i}_true`;
+    
+    radioTrue.onchange = () => {
+      userAnswers[i] = true;
+    };
+    
+    labelTrue.appendChild(radioTrue);
+    labelTrue.appendChild(document.createTextNode(' Richtig'));
+    
+    const labelFalse = document.createElement('label');
+    labelFalse.className = 'option-label';
+    labelFalse.style.display = 'inline-flex';
+    labelFalse.style.alignItems = 'center';
+    labelFalse.style.gap = '5px';
+    labelFalse.style.cursor = 'pointer';
+    labelFalse.style.padding = '5px 10px';
+    labelFalse.style.border = '1px solid #ccc';
+    labelFalse.style.borderRadius = '5px';
+    labelFalse.style.backgroundColor = 'white';
+    
+    const radioFalse = document.createElement('input');
+    radioFalse.type = 'radio';
+    radioFalse.name = `q${i}`;
+    radioFalse.value = 'false';
+    radioFalse.id = `q${i}_false`;
+    
+    radioFalse.onchange = () => {
+      userAnswers[i] = false;
+    };
+    
+    labelFalse.appendChild(radioFalse);
+    labelFalse.appendChild(document.createTextNode(' Falsch'));
+    
+    const textSpan = document.createElement('span');
+    textSpan.innerHTML = `<strong>${i + 1}</strong> ${q.text}`;
+    textSpan.style.flex = '1';
+    textSpan.style.minWidth = '200px';
+    
+    div.appendChild(labelTrue);
+    div.appendChild(labelFalse);
+    div.appendChild(textSpan);
+    
+    container.appendChild(div);
+  });
+  
+  const buttonContainer = document.createElement('div');
+  buttonContainer.style.display = 'flex';
+  buttonContainer.style.justifyContent = 'space-between';
+  buttonContainer.style.alignItems = 'center';
+  buttonContainer.style.marginTop = '25px';
+  
+  // مربع الأرقام الصحيحة الأصلية (▸) - يظهر فقط لـ Hören
+  const correctNumbersContainer = document.createElement('div');
+  correctNumbersContainer.id = 'truefalseCorrectNumbers';
+  correctNumbersContainer.style.backgroundColor = '#e3f2fd';
+  correctNumbersContainer.style.color = '#0d47a1';
+  correctNumbersContainer.style.padding = '10px 15px';
+  correctNumbersContainer.style.borderRadius = '8px';
+  correctNumbersContainer.style.fontWeight = 'bold';
+  correctNumbersContainer.style.fontSize = '14px';
+  correctNumbersContainer.style.border = '1px solid #90caf9';
+  
+  // حساب الأرقام الصحيحة الأصلية من ملف JSON
+  let originalCorrectIndices = [];
+  for (let i = 0; i < questions.length; i++) {
+    if (questions[i].correct === true) {
+      originalCorrectIndices.push(i + 1);
+    }
+  }
+  if (originalCorrectIndices.length > 0) {
+    correctNumbersContainer.innerHTML = `▸ : ${originalCorrectIndices.join("")}`;
+  } else {
+    correctNumbersContainer.innerHTML = "▸ : —";
+  }
+  
+  const buttonsDiv = document.createElement('div');
+  buttonsDiv.style.display = 'flex';
+  buttonsDiv.style.gap = '15px';
+  
+  const checkBtn = document.createElement('button');
+  checkBtn.innerText = '📝 Prüfen';
+  checkBtn.className = 'check-btn';
+  checkBtn.style.padding = '12px 24px';
+  checkBtn.style.backgroundColor = '#2c3e66';
+  checkBtn.style.color = 'white';
+  checkBtn.style.border = 'none';
+  checkBtn.style.borderRadius = '8px';
+  checkBtn.style.cursor = 'pointer';
+  checkBtn.style.fontSize = '16px';
+  
+  checkBtn.onclick = () => {
+    checkTrueFalseExam(currentQuestions, userAnswers);
+  };
+  
+  const resetBtn = document.createElement('button');
+  resetBtn.innerText = '↺';
+  resetBtn.className = 'reset-btn';
+  resetBtn.style.padding = "8px 12px";
+  resetBtn.style.backgroundColor = "#6c757d";
+  resetBtn.style.color = "white";
+  resetBtn.style.border = "none";
+  resetBtn.style.borderRadius = "6px";
+  resetBtn.style.cursor = "pointer";
+  resetBtn.style.fontSize = "16px";
+  resetBtn.style.fontWeight = "bold";
+  
+  resetBtn.onclick = function() {
+    for (let key in userAnswers) {
+      delete userAnswers[key];
+    }
+    
+    const allRadios = container.querySelectorAll('input[type="radio"]');
+    allRadios.forEach(radio => {
+      radio.checked = false;
+    });
+    
+    const cards = container.querySelectorAll('.question-card');
+    cards.forEach(card => {
+      card.classList.remove('correct-answer-card', 'wrong-answer-card');
+    });
+    
+    const allMessages = container.querySelectorAll('.correct-message');
+    allMessages.forEach(msg => msg.remove());
+    
+    const optionLabels = container.querySelectorAll('.option-label');
+    optionLabels.forEach(label => {
+      label.style.backgroundColor = 'white';
+      label.style.border = '1px solid #ccc';
+    });
+    
+    const resultDiv = document.getElementById('truefalseResult');
+    if (resultDiv) {
+      resultDiv.style.display = 'none';
+      resultDiv.innerHTML = '';
+    }
+    
+    // ▸ يبقى ظاهراً (لا نخفيه)
+    
+    console.log("✅ تم إعادة تعيين الامتحان");
+  };
+  
+  buttonsDiv.appendChild(checkBtn);
+  buttonsDiv.appendChild(resetBtn);
+  
+  buttonContainer.appendChild(correctNumbersContainer);
+  buttonContainer.appendChild(buttonsDiv);
+  container.appendChild(buttonContainer);
+  
+  const resultDiv = document.createElement('div');
+  resultDiv.id = 'truefalseResult';
+  resultDiv.className = 'result-box';
+  resultDiv.style.display = 'none';
+  container.appendChild(resultDiv);
+};
+
+function checkTrueFalseExam(questions, answers) {
+  let score = 0;
+  const total = questions.length;
+  const pointsPerQuestion = 25 / total;
+  
+  const cards = document.querySelectorAll('#hoeren1 .question-card, #hoeren2 .question-card, #hoeren3 .question-card');
+  
+  for (let i = 0; i < questions.length; i++) {
+    const q = questions[i];
+    const card = cards[i];
+    const userAnswer = answers[i];
+    const isCorrect = (userAnswer === q.correct);
+    
+    if (!card) continue;
+    
+    card.classList.remove('correct-answer-card', 'wrong-answer-card');
+    const oldMsg = card.querySelector('.correct-message');
+    if (oldMsg) oldMsg.remove();
+    
+    if (isCorrect && userAnswer !== undefined) {
+      score++;
+      card.classList.add('correct-answer-card');
+    } else {
+      card.classList.add('wrong-answer-card');
+    }
+    
+    const radios = card.querySelectorAll('input[type="radio"]');
+    for (let r = 0; r < radios.length; r++) {
+      const radio = radios[r];
+      const radioValue = radio.value === 'true';
+      const parentLabel = radio.parentElement;
+      
+      if (isCorrect && userAnswer !== undefined) {
+        if (radio.checked) {
+          parentLabel.style.backgroundColor = '#d4edda';
+          parentLabel.style.borderColor = '#28a745';
+          parentLabel.style.border = '2px solid #28a745';
+        }
+      } else {
+        if (radio.checked) {
+          parentLabel.style.backgroundColor = '#f8d7da';
+          parentLabel.style.borderColor = '#dc3545';
+          parentLabel.style.border = '2px solid #dc3545';
+        }
+        if (radioValue === q.correct) {
+          parentLabel.style.backgroundColor = '#d4edda';
+          parentLabel.style.borderColor = '#28a745';
+          parentLabel.style.border = '2px solid #28a745';
+        }
+      }
+    }
+  }
+  
+  const finalScore = (score * pointsPerQuestion).toFixed(2);
+  const resultDiv = document.getElementById('truefalseResult');
+  if (resultDiv) {
+    resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
+    resultDiv.style.display = 'block';
+    
+    if (finalScore >= 20) {
+      resultDiv.style.backgroundColor = '#28a745';
+      resultDiv.style.color = 'white';
+    } else if (finalScore >= 15) {
+      resultDiv.style.backgroundColor = '#ffc107';
+      resultDiv.style.color = '#333';
+    } else {
+      resultDiv.style.backgroundColor = '#dc3545';
+      resultDiv.style.color = 'white';
+    }
+  }
+}
+
 console.log("✅ engine.js جاهز بالكامل");
-console.log("✅ يدعم: Matching (Teil 1) | True/False (Hören) | Teil 2 | Teil 3 | Sprachbausteine Teil 1");
+console.log("✅ يدعم: Matching (Teil 1) | True/False (Hören 1,2,3) | Teil 2 | Teil 3");
+console.log("✅ ▸ يظهر فقط في Hören Teil 1,2,3 ويعرض الأرقام الصحيحة الأصلية");
