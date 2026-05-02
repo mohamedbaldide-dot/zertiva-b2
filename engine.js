@@ -41,21 +41,6 @@ function renderTeil3Exam() {
   const items = currentTeil3Data.items;
   const situations = currentTeil3Data.situations;
   
-  // عرض الملاحظة إذا وجدت
-  if (currentTeil3Data.note) {
-    const noteDiv = document.createElement("div");
-    noteDiv.style.backgroundColor = "#fff3cd";
-    noteDiv.style.color = "#856404";
-    noteDiv.style.padding = "12px 15px";
-    noteDiv.style.borderRadius = "8px";
-    noteDiv.style.marginBottom = "20px";
-    noteDiv.style.border = "1px solid #ffeeba";
-    noteDiv.style.fontSize = "14px";
-    noteDiv.style.fontWeight = "bold";
-    noteDiv.innerHTML = `📌 <strong>ملاحظة:</strong> ${currentTeil3Data.note}`;
-    container.appendChild(noteDiv);
-  }
-  
   // تقسيم الصفحة إلى عمودين
   const twoColumns = document.createElement("div");
   twoColumns.style.display = "flex";
@@ -68,7 +53,7 @@ function renderTeil3Exam() {
   leftColumn.style.minWidth = "500px";
   
   const leftTitle = document.createElement("h3");
-  leftTitle.innerHTML = "📺 Anzeigen";
+  leftTitle.innerHTML = "Anzeigen";
   leftTitle.style.marginTop = "0";
   leftTitle.style.color = "#2c3e66";
   leftTitle.style.marginBottom = "15px";
@@ -197,7 +182,7 @@ function renderTeil3Exam() {
   rightColumn.style.overflowY = "auto";
   
   const rightTitle = document.createElement("h3");
-  rightTitle.innerHTML = "🎯 Situationen (العناوين)";
+  rightTitle.innerHTML = "Situationen";
   rightTitle.style.marginTop = "0";
   rightTitle.style.color = "#2c3e66";
   rightTitle.style.marginBottom = "15px";
@@ -247,14 +232,17 @@ function renderTeil3Exam() {
   buttonContainer.appendChild(checkBtn);
   
   const resetBtn = document.createElement("button");
-  resetBtn.innerText = "↺ إعادة تعيين الكل";
-  resetBtn.style.padding = "12px 24px";
+  resetBtn.innerText = "↺";
+  resetBtn.style.padding = "12px 18px";
   resetBtn.style.backgroundColor = "#6c757d";
   resetBtn.style.color = "white";
   resetBtn.style.border = "none";
-  resetBtn.style.borderRadius = "8px";
+  resetBtn.style.borderRadius = "50%";
   resetBtn.style.cursor = "pointer";
-  resetBtn.style.fontSize = "16px";
+  resetBtn.style.fontSize = "20px";
+  resetBtn.style.fontWeight = "bold";
+  resetBtn.style.width = "50px";
+  resetBtn.style.height = "50px";
   resetBtn.onclick = resetTeil3Exam;
   buttonContainer.appendChild(resetBtn);
   
@@ -278,10 +266,10 @@ function updateTeil3DropdownList(questionIndex) {
   
   list.innerHTML = "";
   
-  // إضافة خيار "لا شيء مناسب"
+  // إضافة خيار "ليس لها عنوان"
   const noneOption = document.createElement("div");
   noneOption.className = "dropdown-option";
-  noneOption.textContent = "❌ لا شيء مناسب";
+  noneOption.textContent = "❌ ليس لها عنوان";
   noneOption.style.padding = "10px";
   noneOption.style.cursor = "pointer";
   noneOption.style.borderBottom = "1px solid #eee";
@@ -406,10 +394,9 @@ function selectTeil3Option(questionIndex, selectedText) {
 function checkTeil3Exam() {
   const items = currentTeil3Data.items;
   let score = 0;
-  let answeredCount = 0;
-  const total = items.length;
-  const pointsPerQuestion = 25 / total;
+  let total = items.length;
   
+  // إزالة التلوين القديم والرسائل
   for (let i = 0; i < total; i++) {
     const card = document.getElementById(`teil3_item_${i}`);
     if (card) {
@@ -419,6 +406,7 @@ function checkTeil3Exam() {
     }
   }
   
+  // تصحيح الإجابات
   for (let i = 0; i < total; i++) {
     const item = items[i];
     const card = document.getElementById(`teil3_item_${i}`);
@@ -429,7 +417,7 @@ function checkTeil3Exam() {
     
     // فقرة بدون عنوان (correct = null)
     if (correctIndex === null) {
-      // إذا تركها المستخدم فارغة أو اختار "لا شيء مناسب"
+      // إذا تركها المستخدم فارغة أو اختار "ليس لها عنوان"
       if (userAnswer === null || userAnswer === "") {
         isCorrect = true;
         score++;
@@ -437,6 +425,16 @@ function checkTeil3Exam() {
       } else {
         isCorrect = false;
         if (card) card.classList.add("wrong-answer-card");
+        
+        // إضافة رسالة الإجابة الصحيحة
+        const correctMsg = document.createElement("div");
+        correctMsg.className = "correct-message";
+        correctMsg.style.color = "#28a745";
+        correctMsg.style.marginTop = "10px";
+        correctMsg.style.fontSize = "14px";
+        correctMsg.style.fontWeight = "bold";
+        correctMsg.innerHTML = `✅ ليس لها عنوان`;
+        card.appendChild(correctMsg);
       }
     } 
     // فقرة لها عنوان صحيح
@@ -449,39 +447,29 @@ function checkTeil3Exam() {
       } else {
         isCorrect = false;
         if (card) card.classList.add("wrong-answer-card");
-      }
-    }
-    
-    // إضافة رسالة الإجابة الصحيحة للفقرات الخاطئة
-    if (!isCorrect && card) {
-      let correctMsg = card.querySelector(".correct-message");
-      if (!correctMsg) {
-        correctMsg = document.createElement("div");
+        
+        // إضافة رسالة الإجابة الصحيحة
+        const correctMsg = document.createElement("div");
         correctMsg.className = "correct-message";
         correctMsg.style.color = "#28a745";
         correctMsg.style.marginTop = "10px";
         correctMsg.style.fontSize = "14px";
         correctMsg.style.fontWeight = "bold";
+        correctMsg.innerHTML = `✅ ${String.fromCharCode(97 + correctIndex)}. ${correctText}`;
         card.appendChild(correctMsg);
-      }
-      
-      if (item.correct === null) {
-        correctMsg.innerHTML = "✅ هذه الفقرة ليس لها عنوان مناسب (يجب تركها فارغة)";
-      } else {
-        correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${String.fromCharCode(97 + item.correct)}. ${currentTeil3Data.situations[item.correct]}`;
       }
     }
   }
   
-  const finalScore = (score * pointsPerQuestion).toFixed(2);
+  // عرض النتيجة بدون (score من total)
   const resultDiv = document.getElementById("teil3Result");
-  resultDiv.innerHTML = `النتيجة: ${finalScore} / 25 (${score} من ${total} إجابة صحيحة)`;
+  resultDiv.innerHTML = `النتيجة: ${((score * 25) / total).toFixed(2)} / 25`;
   resultDiv.style.display = "block";
   
-  if (finalScore >= 20) {
+  if (((score * 25) / total) >= 20) {
     resultDiv.style.backgroundColor = "#d4edda";
     resultDiv.style.color = "#155724";
-  } else if (finalScore >= 15) {
+  } else if (((score * 25) / total) >= 15) {
     resultDiv.style.backgroundColor = "#fff3cd";
     resultDiv.style.color = "#856404";
   } else {
@@ -523,7 +511,7 @@ function resetTeil3Exam() {
   console.log("✅ تم إعادة تعيين Teil 3");
 }
 
-// ========== نظام Teil 2 (نص طويل + 5 أسئلة) ==========
+// ========== نظام Teil 2 (نص طويل + 5 أسئلة) - يبقى كما هو ==========
 let currentTeil2Data = null;
 let teil2UserAnswers = {};
 
@@ -539,13 +527,11 @@ function renderTeil2Exam() {
   if (!container) return;
   container.innerHTML = "";
   
-  // تقسيم الصفحة إلى عمودين (نص | أسئلة)
   const twoColumns = document.createElement("div");
   twoColumns.style.display = "flex";
   twoColumns.style.gap = "30px";
   twoColumns.style.flexWrap = "wrap";
   
-  // العمود الأيسر: النص
   const textColumn = document.createElement("div");
   textColumn.style.flex = "1";
   textColumn.style.minWidth = "300px";
@@ -557,7 +543,7 @@ function renderTeil2Exam() {
   textColumn.style.overflowY = "auto";
   
   const textTitle = document.createElement("h3");
-  textTitle.innerHTML = "📖 Text";
+  textTitle.innerHTML = "Text";
   textTitle.style.marginTop = "0";
   textTitle.style.color = "#2c3e66";
   textColumn.appendChild(textTitle);
@@ -569,7 +555,6 @@ function renderTeil2Exam() {
   textContent.style.textAlign = "justify";
   textColumn.appendChild(textContent);
   
-  // العمود الأيمن: الأسئلة
   const questionsColumn = document.createElement("div");
   questionsColumn.style.flex = "1";
   questionsColumn.style.minWidth = "300px";
@@ -579,7 +564,7 @@ function renderTeil2Exam() {
   questionsColumn.style.border = "1px solid #ddd";
   
   const questionsTitle = document.createElement("h3");
-  questionsTitle.innerHTML = "📝 Fragen";
+  questionsTitle.innerHTML = "Fragen";
   questionsTitle.style.marginTop = "0";
   questionsTitle.style.color = "#2c3e66";
   questionsColumn.appendChild(questionsTitle);
@@ -587,7 +572,6 @@ function renderTeil2Exam() {
   const questionsContainer = document.createElement("div");
   questionsContainer.id = "teil2_questions_container";
   
-  // بناء الأسئلة
   const questions = currentTeil2Data.questions;
   for (let i = 0; i < questions.length; i++) {
     const q = questions[i];
@@ -662,7 +646,6 @@ function renderTeil2Exam() {
   
   questionsColumn.appendChild(questionsContainer);
   
-  // زر التصحيح
   const checkBtn = document.createElement("button");
   checkBtn.innerText = "✅ تصحيح";
   checkBtn.className = "check-btn";
@@ -678,18 +661,18 @@ function renderTeil2Exam() {
   checkBtn.onclick = checkTeil2Exam;
   questionsColumn.appendChild(checkBtn);
   
-  // زر إعادة تعيين
   const resetBtn = document.createElement("button");
-  resetBtn.innerText = "↺ إعادة تعيين";
-  resetBtn.style.width = "100%";
+  resetBtn.innerText = "↺";
+  resetBtn.style.width = "auto";
   resetBtn.style.marginTop = "10px";
-  resetBtn.style.padding = "10px";
+  resetBtn.style.padding = "10px 18px";
   resetBtn.style.backgroundColor = "#6c757d";
   resetBtn.style.color = "white";
   resetBtn.style.border = "none";
-  resetBtn.style.borderRadius = "8px";
+  resetBtn.style.borderRadius = "50%";
   resetBtn.style.cursor = "pointer";
-  resetBtn.style.fontSize = "14px";
+  resetBtn.style.fontSize = "18px";
+  resetBtn.style.fontWeight = "bold";
   resetBtn.onclick = function() {
     teil2UserAnswers = {};
     const allRadios = questionsColumn.querySelectorAll('input[type="radio"]');
@@ -803,7 +786,7 @@ function checkTeil2Exam() {
   }
 }
 
-// ========== نظام Matching القديم (Custom Dropdown) ==========
+// ========== نظام Matching القديم (Teil 1) ==========
 let currentMatchingExamData = null;
 let matchingSelectedAnswers = {};
 let matchingAvailableOptions = [];
@@ -1066,7 +1049,7 @@ function checkMatchingExam() {
       correctMsg.style.color = "#28a745";
       correctMsg.style.marginTop = "10px";
       correctMsg.style.fontSize = "14px";
-      correctMsg.innerHTML = "✅ الإجابة الصحيحة: " + correctAnswerText;
+      correctMsg.innerHTML = "✅ " + correctAnswerText;
       card.appendChild(correctMsg);
     }
   }
@@ -1083,20 +1066,6 @@ window.buildTrueFalseExam = function(container, questions, note) {
   
   let userAnswers = {};
   let currentQuestions = questions;
-  
-  if (note) {
-    const noteDiv = document.createElement('div');
-    noteDiv.style.backgroundColor = '#fff3cd';
-    noteDiv.style.color = '#856404';
-    noteDiv.style.padding = '12px 15px';
-    noteDiv.style.borderRadius = '8px';
-    noteDiv.style.marginBottom = '20px';
-    noteDiv.style.border = '1px solid #ffeeba';
-    noteDiv.style.fontSize = '14px';
-    noteDiv.style.fontWeight = 'bold';
-    noteDiv.innerHTML = `📌 <strong>ملاحظة:</strong> ${note}`;
-    container.appendChild(noteDiv);
-  }
   
   questions.forEach((q, i) => {
     const div = document.createElement('div');
@@ -1202,7 +1171,7 @@ window.buildTrueFalseExam = function(container, questions, note) {
   resetBtn.style.backgroundColor = '#6c757d';
   resetBtn.style.color = 'white';
   resetBtn.style.border = 'none';
-  resetBtn.style.borderRadius = '8px';
+  resetBtn.style.borderRadius = '50%';
   resetBtn.style.cursor = 'pointer';
   resetBtn.style.fontSize = '18px';
   resetBtn.style.fontWeight = 'bold';
