@@ -2511,3 +2511,4 @@ function renderSchreibenExam() {
     wordCountDiv.innerHTML = `📊 Anzahl der Wörter: ${words.length}`;
   }
 }
+<div id="schreiben" style="display:none;"></div>
