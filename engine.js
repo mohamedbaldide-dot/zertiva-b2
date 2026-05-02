@@ -134,7 +134,7 @@ function renderSchreibenExam() {
   rightColumn.style.maxHeight = "80vh";
   rightColumn.style.overflowY = "auto";
   
-  // ✅ التعديل هنا: إزالة الـ ✦ المكررة
+  // ✅ التعديل: إزالة الـ ✦ المكررة
   const templateTitle = document.createElement("div");
   let cleanTitle = data.template.title;
   cleanTitle = cleanTitle.replace(/✦/g, '').trim();
@@ -158,10 +158,11 @@ function renderSchreibenExam() {
   templateBox.style.lineHeight = "1.6";
   templateBox.style.whiteSpace = "pre-wrap";
   
-  // ✅ التعديل هنا: لا نضيف 🔹 إضافية، فقط نلون النقاط
+  // ✅ التعديل: لا نضيف 🔹 إضافية، فقط نلون النقاط باللون الأزرق
   let templateText = data.template.text;
   const bluePoints = data.template.colors.blue_points || [];
   
+  // تحويل النص إلى HTML مع إضافة اللون الأزرق للنقاط (بدون إضافة 🔹)
   let htmlText = templateText.replace(/\n/g, '<br>');
   for (let i = 0; i < bluePoints.length; i++) {
     const point = bluePoints[i];
