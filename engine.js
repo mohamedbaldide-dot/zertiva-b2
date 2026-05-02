@@ -134,8 +134,11 @@ function renderSchreibenExam() {
   rightColumn.style.maxHeight = "80vh";
   rightColumn.style.overflowY = "auto";
   
+  // ✅ التعديل هنا: إزالة الـ ✦ المكررة
   const templateTitle = document.createElement("div");
-  templateTitle.innerHTML = `✦ ${data.template.title}`;
+  let cleanTitle = data.template.title;
+  cleanTitle = cleanTitle.replace(/✦/g, '').trim();
+  templateTitle.innerHTML = `✦ ${cleanTitle}`;
   templateTitle.style.backgroundColor = "#e3f2fd";
   templateTitle.style.padding = "10px";
   templateTitle.style.borderRadius = "8px";
@@ -155,22 +158,14 @@ function renderSchreibenExam() {
   templateBox.style.lineHeight = "1.6";
   templateBox.style.whiteSpace = "pre-wrap";
   
-  // معالجة النص لتحويل ... إلى 🔹...
+  // ✅ التعديل هنا: لا نضيف 🔹 إضافية، فقط نلون النقاط
   let templateText = data.template.text;
   const bluePoints = data.template.colors.blue_points || [];
   
-  // إضافة 🔹 أمام النقاط الزرقاء
-  for (let i = 0; i < bluePoints.length; i++) {
-    const point = bluePoints[i];
-    const regex = new RegExp(`(${point.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'g');
-    templateText = templateText.replace(regex, `🔹 $1`);
-  }
-  
-  // تحويل النص إلى HTML مع إضافة اللون الأزرق للنقاط
   let htmlText = templateText.replace(/\n/g, '<br>');
   for (let i = 0; i < bluePoints.length; i++) {
     const point = bluePoints[i];
-    const regex = new RegExp(`(🔹 ${point.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'g');
+    const regex = new RegExp(`(${point.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'g');
     htmlText = htmlText.replace(regex, `<span style="color: ${data.template.colors.blue}; font-weight: bold;">$1</span>`);
   }
   
