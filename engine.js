@@ -1114,7 +1114,7 @@ window.buildTrueFalseExam = function(container, questions, note) {
   container.appendChild(resultDiv);
 };
 
-function checkTrueFalseExam(questions, answers, correctNumbersContainer) {
+function checkTrueFalseExam(container, questions, answers, correctNumbersContainer) {
   console.log("🟢 بدء التصحيح...");
   console.log("عدد الأسئلة:", questions.length);
   console.log("الإجابات:", answers);
