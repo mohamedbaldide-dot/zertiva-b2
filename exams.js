@@ -386,75 +386,10 @@ const examsDatabase = {
     { id: 27, title: "Radio Konzert", enabled: true, hasFile: true }
   ],
 
-  schreiben: schreibenExams
+   schreiben: schreibenExams
 };
 
 // ========== باقي الدوال ==========
-
-function renderTeileList() {
-  const container = document.getElementById("teileList");
-  if (!container) return;
-  container.innerHTML = "";
-  
-  for (let i = 0; i < teile.length; i++) {
-    const teil = teile[i];
-    const div = document.createElement("div");
-    div.className = "item teil-item";
-    div.innerHTML = teil.name;
-    div.onclick = (function(skill, teilName) {
-      return function() { 
-        renderExamListForSkill(skill, teilName);
-      };
-    })(teil.skill, teil.name);
-    container.appendChild(div);
-  }
-}
-
-function renderExamListForSkill(skill, teilName) {
-  currentSkill = skill;
-  
-  const container = document.getElementById("examsList");
-  if (!container) return;
-  container.innerHTML = "";
-  
-  const headerDiv = document.createElement("div");
-  headerDiv.className = "teil-header";
-  headerDiv.innerHTML = `<strong>📚 ${teilName || getTeilNameBySkill(skill)}</strong>`;
-  container.appendChild(headerDiv);
-  
-  const exams = examsDatabase[skill] || [];
-  currentExamsList = exams;
-  
-  if (exams.length === 0) {
-    container.innerHTML += '<div class="item" style="text-align:center; color:#999;">⚠️ لا توجد امتحانات متاحة حالياً في هذا الجزء</div>';
-    return;
-  }
-  
-  for (let i = 0; i < exams.length; i++) {
-    const exam = exams[i];
-    const div = document.createElement("div");
-    div.className = "item";
-    
-    if (exam.hasFile) {
-      div.innerHTML = `${exam.id}: ${exam.title}`;
-      div.onclick = (function(id, title, skill) {
-        return function() { openExam(id, title, skill); };
-      })(exam.id, exam.title, skill);
-    } else {
-      div.innerHTML = `${exam.id}: ${exam.title} 🔜`;
-      div.style.opacity = "0.6";
-      div.style.backgroundColor = "#f8f9fa";
-      div.onclick = () => alert(`⚠️ الامتحان رقم ${exam.id} سيتم إضافته قريباً.`);
-    }
-    container.appendChild(div);
-  }
-}
-
-// ... باقي الدوال (getTeilNameBySkill, getActualFileName, openExam, updateExamNavButtons, showTeil, buildTeil1, checkTeil1, goHome, goList, DOMContentLoaded, renderTeileList مرة أخرى? لا، لا تكررها)
-
-function renderExamListForSkill(skill, teilName) {
-  ... // باقي الكود كما هو
-}
 
 function renderTeileList() {
   const container = document.getElementById("teileList");
@@ -551,7 +486,6 @@ async function openExam(examId, examTitle, skill) {
     
     updateExamNavButtons();
     
-    // دعم أنواع الامتحانات المختلفة
     if (currentExamData.type === "matching") {
       if (typeof window.loadMatchingExam === "function") {
         window.loadMatchingExam(currentExamData);
