@@ -6,7 +6,7 @@
     {
       "id": "a",
       "text": "Das Vorstellungsgespräch ist eine wichtige Hürde bei der Suche nach einem Arbeitsplatz. In der Regel fangen sie mit Smalltalk an: Man redet über das Wetter, den Verkehr und Ähnliches. Doch dabei kommt es schon auf das \"Wie?\" an. Wer viel kritisiert, hat schon verloren. Bei der Vorstellung ihrer Person sollten Bewerber darauf achten, dass sie ihre Fähigkeit und den Nutzen, den ihr potentiell zukünftiger Arbeitgeber von ihnen hat, in den Vordergrund stellen. Fragen nach Gesundheit, Familienplanung, Schwangerschaft oder Geld gehören nicht ins Bewerbungsgespräch. Sollten Sie dennoch gestellt werden, ist man nicht verpflichtet, diese wahrheitsgemäß zu beantworten.",
-      "correct": 1
+      "correct": 0
     },
     {
       "id": "b",
@@ -65,7 +65,6 @@
     }
   ],
   "situations": [
-    "لا شيء مناسب لهذا الاعلان",
     "Ihre Schwägerin erwartet ein Kind. Sie ist nicht sicher, ob Sie in einem Vorstellungsgespräch darauf hinweisen muss",
     "Ihr Neffe sucht einen Ausbildungsplatz als Elektriker. Er weiß nicht genau, wie er seine Bewerbung korrekt schreiben soll.",
     "Eine Freundin, 20 Jahre alt, muss oft vor Arbeitskollegen Referate halten. Ihr Hauptproblem ist ihre Nervosität.",
@@ -76,5 +75,5 @@
     "Ein Bekannter ist Bankkaufmann und sucht eine Stelle.",
     "Ein älteres Ehepaar hat Goldene Hochzeit. Die Tochter möchte eine Rede halten und braucht dafür eine Anleitung"
   ],
-  "note": "⚠️ ملاحظة: هناك فقرات ليس لها عنوان مناسب (b, c, e, j). سيتم اعتبارها صحيحة إذا تركت بدون اختيار."
+  "note": "⚠️ ملاحظة: الفقرات التي تحمل قيمة null (b, c, e, j) لا تناسب أي موقف. الفقرتان i و l كلاهما تناسب الموقف 5 (إدمان الإنترنت) لأن الموقف 5 هو رقم 5 في القائمة أعلاه."
 }
