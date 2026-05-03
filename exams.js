@@ -1,5 +1,5 @@
 // ============================================
-// exams.js - نظام الامتحانات المتكامل
+// exams.js - نظام الامتحانات المتكامل (النسخة النهائية الشغالة)
 // يدعم: Lesen Teil 1, Lesen Teil 2, Lesen Teil 3, Hören Teil 1-3, Sprachbausteine Teil 1, Sprachbausteine Teil 2, Schreiben
 // ============================================
 
@@ -71,7 +71,7 @@ const lesenExams = [
   { id: 47, title: "Bäder", enabled: true, hasFile: true }
 ];
 
-// ========== قائمة امتحانات Schreiben (30 امتحاناً) ==========
+// ========== قائمة امتحانات Schreiben (29 امتحاناً) ==========
 const schreibenExams = [
   { id: 1, title: "Fotobuch", enabled: true, hasFile: true },
   { id: 2, title: "Abenteuer TIKKI TAKKA", enabled: true, hasFile: true },
@@ -103,6 +103,47 @@ const schreibenExams = [
   { id: 28, title: "Kursbeschreibung (sich vorstellen)", enabled: true, hasFile: true },
   { id: 29, title: "FITWATCH Smartwatch", enabled: true, hasFile: true }
 ];
+
+// ========== قائمة امتحانات Lesen Teil 3 (36 امتحاناً) ==========
+const lesenExams3 = [
+  { id: 1, title: "Filme - Fernsehprogramme", enabled: true, hasFile: true },
+  { id: 2, title: "Filme - Fernsehprogramme (معدل)", enabled: true, hasFile: true },
+  { id: 3, title: "Im Katalog eines Buchversands", enabled: true, hasFile: true },
+  { id: 4, title: "kein Zeit", enabled: true, hasFile: true },
+  { id: 5, title: "kein Zeit (معدل)", enabled: true, hasFile: true },
+  { id: 6, title: "Musik - spielt Gitarre", enabled: true, hasFile: true },
+  { id: 7, title: "المرأة الحامل", enabled: true, hasFile: true },
+  { id: 8, title: "المرأة الحامل (معدل)", enabled: true, hasFile: true },
+  { id: 9, title: "Unterstützung in Mathematik", enabled: true, hasFile: true },
+  { id: 10, title: "Ganztagesausflug", enabled: true, hasFile: true },
+  { id: 11, title: "Ihren Eltern zur Silberhochzeit", enabled: true, hasFile: true },
+  { id: 12, title: "Rechtsanwalt", enabled: true, hasFile: true },
+  { id: 13, title: "Rechtsanwalt (معدل)", enabled: true, hasFile: true },
+  { id: 14, title: "Au-pair Mädchen", enabled: true, hasFile: true },
+  { id: 15, title: "Hautprobleme", enabled: true, hasFile: true },
+  { id: 16, title: "Eine Bekannte ist schwanger", enabled: true, hasFile: true },
+  { id: 17, title: "Die Tochter einer Bekannten wird vier Jahre alt", enabled: true, hasFile: true },
+  { id: 18, title: "Tierdokumentationen", enabled: true, hasFile: true },
+  { id: 19, title: "Aufräumen", enabled: true, hasFile: true },
+  { id: 20, title: "Erholung und Reisen", enabled: true, hasFile: true },
+  { id: 21, title: "Sport", enabled: true, hasFile: true },
+  { id: 22, title: "Sport (معدل)", enabled: true, hasFile: true },
+  { id: 23, title: "Wein und Insekten", enabled: true, hasFile: true },
+  { id: 24, title: "Reiseführer", enabled: true, hasFile: true },
+  { id: 25, title: "Gartenbau", enabled: true, hasFile: true },
+  { id: 26, title: "Haushaltshilfe", enabled: true, hasFile: true },
+  { id: 27, title: "Einwanderung", enabled: true, hasFile: true },
+  { id: 28, title: "Musikinstrumente", enabled: true, hasFile: true },
+  { id: 29, title: "Musikinstrumente (معدل)", enabled: true, hasFile: true },
+  { id: 30, title: "Arbeitsorganisation", enabled: true, hasFile: true },
+  { id: 31, title: "Hunde", enabled: true, hasFile: true },
+  { id: 32, title: "schnelle Wasserfahrzeuge", enabled: true, hasFile: true },
+  { id: 33, title: "ein paar Tage in Berlin", enabled: true, hasFile: true },
+  { id: 34, title: "ein paar Tage in Berlin (معدل)", enabled: true, hasFile: true },
+  { id: 35, title: "Autos", enabled: true, hasFile: true },
+  { id: 36, title: "Möbel für die neue Wohnung", enabled: true, hasFile: true }
+];
+
 // أسماء الملفات الحقيقية (لجميع الامتحانات)
 const actualFileNames = {
   1: "exam1.json", 2: "exam2.json", 3: "exam3.json",
@@ -116,11 +157,7 @@ const actualFileNames = {
   25: "exam25.json", 26: "exam26.json", 27: "exam27.json",
   28: "exam28.json", 29: "exam29.json", 30: "exam30.json",
   31: "exam31.json", 32: "exam32.json", 33: "exam33.json",
-  34: "exam34.json", 35: "exam35.json", 36: "exam36.json",
-  37: "exam37.json", 38: "exam38.json", 39: "exam39.json",
-  40: "exam40.json", 41: "exam41.json", 42: "exam42.json",
-  43: "exam43.json", 44: "exam44.json", 45: "exam45.json",
-  46: "exam46.json", 47: "exam47.json"
+  34: "exam34.json", 35: "exam35.json", 36: "exam36.json"
 };
 
 // ✅ قائمة الامتحانات لكل جزء
@@ -165,44 +202,7 @@ const examsDatabase = {
     { id: 36, title: "Nachtzug (معدل)", enabled: true, hasFile: true },
     { id: 37, title: "Wie zwei US-Teenager Millionäre wurden", enabled: true, hasFile: true }
   ],
-  lesen3: [
-    { id: 1, title: "Filme - Fernsehprogramme", enabled: true, hasFile: true },
-  { id: 2, title: "Filme - Fernsehprogramme (معدل)", enabled: true, hasFile: true },
-  { id: 3, title: "Im Katalog eines Buchversands", enabled: true, hasFile: true },
-  { id: 4, title: "kein Zeit", enabled: true, hasFile: true },
-  { id: 5, title: "kein Zeit (معدل)", enabled: true, hasFile: true },
-  { id: 6, title: "Musik - spielt Gitarre", enabled: true, hasFile: true },
-  { id: 7, title: "المرأة الحامل", enabled: true, hasFile: true },
-  { id: 8, title: "المرأة الحامل (معدل)", enabled: true, hasFile: true },
-  { id: 9, title: "Unterstützung in Mathematik", enabled: true, hasFile: true },
-  { id: 10, title: "Ganztagesausflug", enabled: true, hasFile: true },
-  { id: 11, title: "Ihren Eltern zur Silberhochzeit", enabled: true, hasFile: true },
-  { id: 12, title: "Rechtsanwalt", enabled: true, hasFile: true },
-  { id: 13, title: "Rechtsanwalt (معدل)", enabled: true, hasFile: true },
-  { id: 14, title: "Au-pair Mädchen", enabled: true, hasFile: true },
-  { id: 15, title: "Hautprobleme", enabled: true, hasFile: true },
-  { id: 16, title: "Eine Bekannte ist schwanger", enabled: true, hasFile: true },
-  { id: 17, title: "Die Tochter einer Bekannten wird vier Jahre alt", enabled: true, hasFile: true },
-  { id: 18, title: "Tierdokumentationen", enabled: true, hasFile: true },
-  { id: 19, title: "Aufräumen", enabled: true, hasFile: true },
-  { id: 20, title: "Erholung und Reisen", enabled: true, hasFile: true },
-  { id: 21, title: "Sport", enabled: true, hasFile: true },
-  { id: 22, title: "Sport (معدل)", enabled: true, hasFile: true },
-  { id: 23, title: "Wein und Insekten", enabled: true, hasFile: true },
-  { id: 24, title: "Reiseführer", enabled: true, hasFile: true },
-  { id: 25, title: "Gartenbau", enabled: true, hasFile: true },
-  { id: 26, title: "Haushaltshilfe", enabled: true, hasFile: true },
-  { id: 27, title: "Einwanderung", enabled: true, hasFile: true },
-  { id: 28, title: "Musikinstrumente", enabled: true, hasFile: true },
-  { id: 29, title: "Musikinstrumente (معدل)", enabled: true, hasFile: true },
-  { id: 30, title: "Arbeitsorganisation", enabled: true, hasFile: true },
-  { id: 31, title: "Hunde", enabled: true, hasFile: true },
-  { id: 32, title: "schnelle Wasserfahrzeuge", enabled: true, hasFile: true },
-  { id: 33, title: "ein paar Tage in Berlin", enabled: true, hasFile: true },
-  { id: 34, title: "ein paar Tage in Berlin (معدل)", enabled: true, hasFile: true },
-  { id: 35, title: "Autos", enabled: true, hasFile: true },
-  { id: 36, title: "Möbel für die neue Wohnung", enabled: true, hasFile: true }
-  ],
+  lesen3: lesenExams3,
   sprach1: [
     { id: 1, title: "Hallo Ferdinand", enabled: true, hasFile: true },
     { id: 2, title: "Hallo Ferdinand (معدل)", enabled: true, hasFile: true },
