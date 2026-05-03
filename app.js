@@ -1,4 +1,4 @@
-app.js : let currentSkill = null;
+let currentSkill = null;
 let currentExam = null;
 let answers = [];
 
