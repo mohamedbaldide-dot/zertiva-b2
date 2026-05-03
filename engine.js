@@ -1558,12 +1558,12 @@ function selectTeil3Option(questionIndex, selectedText) {
     updateTeil3DropdownList(i);
   }
 }
-
 function checkTeil3Exam() {
   const items = currentTeil3Data.items;
   let score = 0;
   let total = items.length;
   
+  // ✅ حذف الألوان والرسائل القديمة
   for (let i = 0; i < total; i++) {
     const card = document.getElementById(`teil3_item_${i}`);
     if (card) {
@@ -1576,45 +1576,102 @@ function checkTeil3Exam() {
   for (let i = 0; i < total; i++) {
     const item = items[i];
     const card = document.getElementById(`teil3_item_${i}`);
-    const userAnswer = teil3UserAnswers[i];
+    let userAnswer = teil3UserAnswers[i];
     const correctIndex = item.correct;
-    const btnSpan = document.querySelector(`teil3_btn_${i} span:first-child`);
+    
+    // ✅ استخراج النص الأصلي من الإجابة
+    let selectedText = null;
+    if (userAnswer && typeof userAnswer === 'object' && userAnswer.selected) {
+      selectedText = userAnswer.selected;
+    } else if (userAnswer && typeof userAnswer === 'string') {
+      selectedText = userAnswer;
+    }
     
     let isCorrect = false;
     let displayText = "";
+    let correctText = "";
     
-    if (correctIndex === null) {
-      if (userAnswer === "— ليس لها عنوان —" || userAnswer === null || userAnswer === "") {
+    // ✅ حالة الفقرة التي ليس لها عنوان صحيح (correct === null)
+    if (correctIndex === null || correctIndex === undefined) {
+      correctText = "ليس لها عنوان";
+      if (!selectedText || selectedText === "— ليس لها عنوان —" || selectedText === "") {
         isCorrect = true;
         score++;
-        if (card) card.classList.add("correct-answer-card");
-        displayText = "✅ ليس لها عنوان";
+        if (card) {
+          card.classList.add("correct-answer-card");
+          card.classList.remove("wrong-answer-card");
+        }
+        displayText = `✅ ${correctText}`;
       } else {
         isCorrect = false;
-        if (card) card.classList.add("wrong-answer-card");
-        displayText = "✅ ليس لها عنوان";
+        if (card) {
+          card.classList.add("wrong-answer-card");
+          card.classList.remove("correct-answer-card");
+        }
+        displayText = `✅ ${correctText}`;
+        // ✅ إضافة رسالة الخطأ داخل البطاقة
+        const correctMsg = document.createElement("div");
+        correctMsg.className = "correct-message";
+        correctMsg.style.color = "#28a745";
+        correctMsg.style.marginTop = "10px";
+        correctMsg.style.fontSize = "14px";
+        correctMsg.style.fontWeight = "bold";
+        correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${correctText}`;
+        if (card) card.appendChild(correctMsg);
       }
     } else {
-      const correctText = currentTeil3Data.situations[correctIndex];
-      if (userAnswer === correctText) {
+      // ✅ حالة الفقرة التي لها عنوان صحيح
+      correctText = currentTeil3Data.situations[correctIndex];
+      if (selectedText === correctText) {
         isCorrect = true;
         score++;
-        if (card) card.classList.add("correct-answer-card");
+        if (card) {
+          card.classList.add("correct-answer-card");
+          card.classList.remove("wrong-answer-card");
+        }
         displayText = `✅ ${String.fromCharCode(97 + correctIndex)}. ${correctText}`;
       } else {
         isCorrect = false;
-        if (card) card.classList.add("wrong-answer-card");
+        if (card) {
+          card.classList.add("wrong-answer-card");
+          card.classList.remove("correct-answer-card");
+        }
         displayText = `✅ ${String.fromCharCode(97 + correctIndex)}. ${correctText}`;
+        // ✅ إضافة رسالة الخطأ داخل البطاقة
+        const correctMsg = document.createElement("div");
+        correctMsg.className = "correct-message";
+        correctMsg.style.color = "#28a745";
+        correctMsg.style.marginTop = "10px";
+        correctMsg.style.fontSize = "14px";
+        correctMsg.style.fontWeight = "bold";
+        correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${String.fromCharCode(97 + correctIndex)}. ${correctText}`;
+        if (card) card.appendChild(correctMsg);
       }
     }
     
-    if (btnSpan) {
-      btnSpan.textContent = displayText;
-      btnSpan.style.color = isCorrect ? "#28a745" : "#dc3545";
+    // ✅ تحديث الزر (زر الاختيار) بلون أخضر أو أحمر
+    const dropdownBtn = document.getElementById(`teil3_btn_${i}`);
+    if (dropdownBtn) {
+      const btnSpan = dropdownBtn.querySelector("span:first-child");
+      if (btnSpan) {
+        btnSpan.textContent = displayText;
+        if (isCorrect) {
+          btnSpan.style.color = "#28a745";
+          btnSpan.style.fontWeight = "bold";
+          dropdownBtn.style.backgroundColor = "#d4edda";
+          dropdownBtn.style.border = "2px solid #28a745";
+        } else {
+          btnSpan.style.color = "#dc3545";
+          btnSpan.style.fontWeight = "bold";
+          dropdownBtn.style.backgroundColor = "#f8d7da";
+          dropdownBtn.style.border = "2px solid #dc3545";
+        }
+      }
     }
     
+    // ✅ حفظ الإجابة ككائن
     teil3UserAnswers[i] = {
-      selected: userAnswer,
+      selected: (correctIndex === null || correctIndex === undefined) ? "— ليس لها عنوان —" : correctText,
       displayText: displayText,
       isCorrect: isCorrect
     };
@@ -1622,47 +1679,31 @@ function checkTeil3Exam() {
   
   const finalScore = (score * 25 / total).toFixed(2);
   const resultDiv = document.getElementById("teil3Result");
-  resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
-  resultDiv.style.display = "block";
-  
-  if (finalScore >= 20) {
-    resultDiv.style.backgroundColor = "#d4edda";
-    resultDiv.style.color = "#155724";
-  } else if (finalScore >= 15) {
-    resultDiv.style.backgroundColor = "#fff3cd";
-    resultDiv.style.color = "#856404";
-  } else {
-    resultDiv.style.backgroundColor = "#f8d7da";
-    resultDiv.style.color = "#721c24";
-  }
-}
-
-function resetTeil3Exam() {
-  teil3UserAnswers = {};
-  teil3AvailableOptions = [...currentTeil3Data.situations];
-  
-  for (let i = 0; i < currentTeil3Data.items.length; i++) {
-    const btnSpan = document.querySelector(`#teil3_btn_${i} span:first-child`);
-    if (btnSpan) {
-      btnSpan.textContent = "-- اختر العنوان --";
-      btnSpan.style.color = "#999";
-    }
-    updateTeil3DropdownList(i);
-  }
-  
-  for (let i = 0; i < currentTeil3Data.items.length; i++) {
-    const card = document.getElementById(`teil3_item_${i}`);
-    if (card) {
-      card.classList.remove("correct-answer-card", "wrong-answer-card");
-      const oldMsg = card.querySelector(".correct-message");
-      if (oldMsg) oldMsg.remove();
+  if (resultDiv) {
+    resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
+    resultDiv.style.display = "block";
+    resultDiv.style.padding = "15px";
+    resultDiv.style.borderRadius = "8px";
+    resultDiv.style.textAlign = "center";
+    resultDiv.style.fontWeight = "bold";
+    resultDiv.style.fontSize = "18px";
+    
+    if (finalScore >= 20) {
+      resultDiv.style.backgroundColor = "#d4edda";
+      resultDiv.style.color = "#155724";
+      resultDiv.style.border = "2px solid #28a745";
+    } else if (finalScore >= 15) {
+      resultDiv.style.backgroundColor = "#fff3cd";
+      resultDiv.style.color = "#856404";
+      resultDiv.style.border = "2px solid #ffc107";
+    } else {
+      resultDiv.style.backgroundColor = "#f8d7da";
+      resultDiv.style.color = "#721c24";
+      resultDiv.style.border = "2px solid #dc3545";
     }
   }
   
-  const resultDiv = document.getElementById("teil3Result");
-  if (resultDiv) resultDiv.style.display = "none";
-  
-  console.log("✅ تم إعادة تعيين Teil 3");
+  console.log(`✅ Teil 3 تصحيح: ${score}/${total} - النتيجة: ${finalScore}/25`);
 }
 
 // ========== نظام Teil 2 (نص طويل + أسئلة) ==========
