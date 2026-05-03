@@ -199,7 +199,6 @@ function isSprach2WordUsed(word) {
   }
   return false;
 }
-
 function renderSprach2Exam() {
   const container = document.getElementById("sprach2");
   if (!container) return;
@@ -238,11 +237,12 @@ function renderSprach2Exam() {
     const btnId = `sprach2_btn_${i}`;
     const currentAnswer = sprach2UserAnswers[i];
     const btnText = currentAnswer || `__( ${i} )__`;
+    // ✅ استخدام زر عادي بدلاً من button في innerHTML
     const btnHtml = `<button id="${btnId}" class="sprach2-gap-btn" style="background-color: #e0e0e0; border: none; padding: 4px 12px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: bold; margin: 0 2px;">${btnText}</button>`;
-    htmlText = htmlText.replace(`__( ${i} )__`, btnHtml);
     htmlText = htmlText.replace(`......(${i})......`, btnHtml);
     htmlText = htmlText.replace(`......(${i})`, btnHtml);
     htmlText = htmlText.replace(`.....( ${i} ).....`, btnHtml);
+    htmlText = htmlText.replace(`__( ${i} )__`, btnHtml);
   }
   
   const textDiv = document.createElement("div");
@@ -251,17 +251,28 @@ function renderSprach2Exam() {
   textDiv.style.fontSize = "14px";
   textDiv.style.textAlign = "justify";
   
-  // ربط الأزرار
-  for (let i = 1; i <= options.length; i++) {
-    const btn = textDiv.querySelector(`#sprach2_btn_${i}`);
-    if (btn) {
-      btn.onclick = (function(qId) {
-        return function() { openSprach2Dropdown(qId); };
-      })(i);
-    }
-  }
-  
+  // ✅ ربط الأزرار بشكل صحيح باستخدام querySelectorAll بعد إضافة العنصر إلى DOM
   leftColumn.appendChild(textDiv);
+  
+  // ✅ بعد إضافة textDiv إلى DOM، نربط الأزرار
+  setTimeout(() => {
+    for (let i = 1; i <= options.length; i++) {
+      const btn = document.getElementById(`sprach2_btn_${i}`);
+      if (btn) {
+        // إزالة أي مستمعات قديمة
+        btn.removeEventListener("click", window[`_sprach2_handler_${i}`]);
+        // إنشاء مستمع جديد
+        const handler = function(qId) {
+          return function() { openSprach2Dropdown(qId); };
+        }(i);
+        window[`_sprach2_handler_${i}`] = handler;
+        btn.addEventListener("click", handler);
+        console.log(`✅ زر ${i} تم ربطه بنجاح`);
+      } else {
+        console.warn(`⚠️ لم يتم العثور على زر ${i}`);
+      }
+    }
+  }, 50);
   
   // ========== العمود الأيمن: الخيارات ==========
   const rightColumn = document.createElement("div");
@@ -280,7 +291,7 @@ function renderSprach2Exam() {
   rightTitle.style.color = "#2c3e66";
   rightColumn.appendChild(rightTitle);
   
-  // عرض الكلمات في شبكة 3x5
+  // عرض الكلمات في شبكة
   const wordsGrid = document.createElement("div");
   wordsGrid.style.display = "grid";
   wordsGrid.style.gridTemplateColumns = "repeat(3, 1fr)";
