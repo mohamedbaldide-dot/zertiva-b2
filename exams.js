@@ -356,7 +356,7 @@ const examsDatabase = {
     { id: 30, title: "Frau Kedar Malta", enabled: true, hasFile: true },
     { id: 31, title: "Frau Keder aus Malta", enabled: true, hasFile: true }
   ],
-    hoeren3: [
+  hoeren3: [
     { id: 1, title: "Telefon", enabled: true, hasFile: true },
     { id: 2, title: "Musikfestivals", enabled: true, hasFile: true },
     { id: 3, title: "Musikfestivals (Mittel)", enabled: true, hasFile: true },
@@ -385,8 +385,7 @@ const examsDatabase = {
     { id: 26, title: "Das Fest (mit Frankfurt)", enabled: true, hasFile: true },
     { id: 27, title: "Radio Konzert", enabled: true, hasFile: true }
   ],
-
-   schreiben: schreibenExams
+  schreiben: schreibenExams
 };
 
 // ========== باقي الدوال ==========
