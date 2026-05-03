@@ -208,13 +208,11 @@ function renderSprach2Exam() {
   const options = currentSprach2Data.options;
   const allOptions = currentSprach2Data.allOptions;
   
-  // تقسيم الصفحة إلى عمودين
   const twoColumns = document.createElement("div");
   twoColumns.style.display = "flex";
   twoColumns.style.gap = "30px";
   twoColumns.style.flexWrap = "wrap";
   
-  // ========== العمود الأيسر: النص ==========
   const leftColumn = document.createElement("div");
   leftColumn.style.flex = "1.5";
   leftColumn.style.minWidth = "400px";
@@ -236,13 +234,22 @@ function renderSprach2Exam() {
   for (let i = 1; i <= options.length; i++) {
     const btnId = `sprach2_btn_${i}`;
     const currentAnswer = sprach2UserAnswers[i];
-    const btnText = currentAnswer || `__( ${i} )__`;
-    // ✅ استخدام زر عادي بدلاً من button في innerHTML
-    const btnHtml = `<button id="${btnId}" class="sprach2-gap-btn" style="background-color: #e0e0e0; border: none; padding: 4px 12px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: bold; margin: 0 2px;">${btnText}</button>`;
+    const btnText = currentAnswer || `___ ${i} ___`;
+    
+    // إنشاء زر جميل
+    const btnHtml = `<button id="${btnId}" class="sprach2-gap-btn" style="background-color: ${currentAnswer ? '#d4edda' : '#007bff'}; border: none; padding: 8px 20px; border-radius: 25px; cursor: pointer; font-size: 14px; font-weight: bold; margin: 0 5px; transition: all 0.2s; color: ${currentAnswer ? '#155724' : 'white'}; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">${btnText}</button>`;
+    
+    // استبدال جميع الأشكال الممكنة للفجوات
+    htmlText = htmlText.replace(`.....(${i}).....`, btnHtml);
     htmlText = htmlText.replace(`......(${i})......`, btnHtml);
     htmlText = htmlText.replace(`......(${i})`, btnHtml);
     htmlText = htmlText.replace(`.....( ${i} ).....`, btnHtml);
     htmlText = htmlText.replace(`__( ${i} )__`, btnHtml);
+    htmlText = htmlText.replace(`___ ${i} ___`, btnHtml);
+    
+    // استبدال النمط الموجود في نصك: .....(1).....
+    const pattern = new RegExp(`\\.{5}\\(\\s*${i}\\s*\\)\\.{5}`, 'g');
+    htmlText = htmlText.replace(pattern, btnHtml);
   }
   
   const textDiv = document.createElement("div");
@@ -251,30 +258,27 @@ function renderSprach2Exam() {
   textDiv.style.fontSize = "14px";
   textDiv.style.textAlign = "justify";
   
-  // ✅ ربط الأزرار بشكل صحيح باستخدام querySelectorAll بعد إضافة العنصر إلى DOM
+  // ربط الأزرار - جعلها قابلة للنقر
+  for (let i = 1; i <= options.length; i++) {
+    const btn = textDiv.querySelector(`#sprach2_btn_${i}`);
+    if (btn && !sprach2UserAnswers[i]) {
+      btn.onclick = (function(qId) {
+        return function(e) {
+          e.stopPropagation();
+          console.log(`✅ تم النقر على الزر رقم ${qId}`);
+          selectSprach2Button(qId);
+        };
+      })(i);
+    } else if (btn && sprach2UserAnswers[i]) {
+      // إذا كانت الإجابة موجودة، نعطل الزر قليلاً
+      btn.style.cursor = "default";
+      btn.style.opacity = "0.8";
+    }
+  }
+  
   leftColumn.appendChild(textDiv);
   
-  // ✅ بعد إضافة textDiv إلى DOM، نربط الأزرار
-  setTimeout(() => {
-    for (let i = 1; i <= options.length; i++) {
-      const btn = document.getElementById(`sprach2_btn_${i}`);
-      if (btn) {
-        // إزالة أي مستمعات قديمة
-        btn.removeEventListener("click", window[`_sprach2_handler_${i}`]);
-        // إنشاء مستمع جديد
-        const handler = function(qId) {
-          return function() { openSprach2Dropdown(qId); };
-        }(i);
-        window[`_sprach2_handler_${i}`] = handler;
-        btn.addEventListener("click", handler);
-        console.log(`✅ زر ${i} تم ربطه بنجاح`);
-      } else {
-        console.warn(`⚠️ لم يتم العثور على زر ${i}`);
-      }
-    }
-  }, 50);
-  
-  // ========== العمود الأيمن: الخيارات ==========
+  // العمود الأيمن: الخيارات
   const rightColumn = document.createElement("div");
   rightColumn.style.flex = "0.8";
   rightColumn.style.minWidth = "250px";
@@ -286,12 +290,12 @@ function renderSprach2Exam() {
   rightColumn.style.overflowY = "auto";
   
   const rightTitle = document.createElement("h3");
-  rightTitle.innerHTML = "📋 Wörter";
+  rightTitle.innerHTML = "📋 Wörter (اضغط على كلمة ثم على الزر)";
   rightTitle.style.marginTop = "0";
   rightTitle.style.color = "#2c3e66";
+  rightTitle.style.fontSize = "14px";
   rightColumn.appendChild(rightTitle);
   
-  // عرض الكلمات في شبكة
   const wordsGrid = document.createElement("div");
   wordsGrid.style.display = "grid";
   wordsGrid.style.gridTemplateColumns = "repeat(3, 1fr)";
@@ -306,14 +310,15 @@ function renderSprach2Exam() {
     wordCard.id = `sprach2_word_${word}`;
     wordCard.textContent = word;
     wordCard.style.backgroundColor = "#ffffff";
-    wordCard.style.border = "1px solid #007bff";
-    wordCard.style.borderRadius = "8px";
-    wordCard.style.padding = "8px 12px";
+    wordCard.style.border = "2px solid #007bff";
+    wordCard.style.borderRadius = "10px";
+    wordCard.style.padding = "10px 12px";
     wordCard.style.textAlign = "center";
     wordCard.style.cursor = "pointer";
     wordCard.style.transition = "all 0.2s";
-    wordCard.style.fontWeight = "500";
+    wordCard.style.fontWeight = "600";
     wordCard.style.color = "#007bff";
+    wordCard.style.fontSize = "14px";
     
     if (isSprach2WordUsed(word)) {
       wordCard.style.backgroundColor = "#d4edda";
@@ -324,14 +329,20 @@ function renderSprach2Exam() {
     } else {
       wordCard.addEventListener("mouseenter", function() {
         this.style.backgroundColor = "#e3f2fd";
-        this.style.transform = "scale(1.02)";
+        this.style.transform = "scale(1.03)";
+        this.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
       });
       wordCard.addEventListener("mouseleave", function() {
         this.style.backgroundColor = "#ffffff";
         this.style.transform = "scale(1)";
+        this.style.boxShadow = "none";
       });
       wordCard.addEventListener("click", (function(w) {
-        return function() { selectSprach2Word(w); };
+        return function(e) {
+          e.stopPropagation();
+          console.log(`✅ تم اختيار الكلمة: ${w}`);
+          selectSprach2Word(w);
+        };
       })(word));
     }
     
@@ -339,6 +350,18 @@ function renderSprach2Exam() {
   }
   
   rightColumn.appendChild(wordsGrid);
+  
+  // إضافة تعليمات صغيرة
+  const instructions = document.createElement("div");
+  instructions.style.marginTop = "15px";
+  instructions.style.padding = "10px";
+  instructions.style.backgroundColor = "#e3f2fd";
+  instructions.style.borderRadius = "8px";
+  instructions.style.fontSize = "12px";
+  instructions.style.color = "#0d47a1";
+  instructions.style.textAlign = "center";
+  instructions.innerHTML = "💡 <strong>طريقة الإجابة:</strong> اضغط على كلمة من اليمين، ثم اضغط على الزر الفارغ في النص";
+  rightColumn.appendChild(instructions);
   
   twoColumns.appendChild(leftColumn);
   twoColumns.appendChild(rightColumn);
@@ -365,8 +388,8 @@ function renderSprach2Exam() {
   buttonContainer.appendChild(checkBtn);
   
   const resetBtn = document.createElement("button");
-  resetBtn.innerText = "↺";
-  resetBtn.style.padding = "8px 12px";
+  resetBtn.innerText = "↺ إعادة تعيين";
+  resetBtn.style.padding = "8px 16px";
   resetBtn.style.backgroundColor = "#6c757d";
   resetBtn.style.color = "white";
   resetBtn.style.border = "none";
@@ -390,34 +413,79 @@ function renderSprach2Exam() {
   resultDiv.style.fontWeight = "bold";
   container.appendChild(resultDiv);
 }
-
 function selectSprach2Word(word) {
   if (isSprach2WordUsed(word)) {
     alert(`⚠️ كلمة "${word}" تم استخدامها بالفعل!`);
     return;
   }
   sprach2SelectedWord = word;
-  const allWords = document.querySelectorAll('.sprach2-word-card');
-  allWords.forEach(card => {
-    if (card.id === `sprach2_word_${word}`) {
-      card.style.backgroundColor = "#ffc107";
-      card.style.border = "2px solid #ff9800";
-    }
+  sprach2SelectedButton = null;
+  
+  // إزالة التمييز عن جميع البطاقات
+  document.querySelectorAll('.sprach2-word-card').forEach(card => {
+    card.classList.remove('selected-word');
+    card.style.backgroundColor = "#ffffff";
+    card.style.border = "2px solid #007bff";
+    card.style.color = "#007bff";
   });
-  console.log(`✅ تم اختيار الكلمة: ${word}`);
+  
+  // تمييز البطاقة المحددة
+  const wordCard = document.getElementById(`sprach2_word_${word}`);
+  if (wordCard) {
+    wordCard.classList.add('selected-word');
+    wordCard.style.backgroundColor = "#ffc107";
+    wordCard.style.border = "2px solid #ff9800";
+    wordCard.style.color = "#333";
+  }
+  
+  console.log(`📌 تم اختيار الكلمة: ${word}`);
+  connectSprach2Match();
 }
 
-function openSprach2Dropdown(questionId) {
-  if (!sprach2SelectedWord) {
-    alert("⚠️ الرجاء اختيار كلمة أولاً من القائمة على اليمين!");
+function selectSprach2Button(questionId) {
+  // التحقق إذا كان السؤال قد تمت إجابته بالفعل
+  if (sprach2UserAnswers[questionId]) {
+    alert(`⚠️ السؤال رقم ${questionId} تمت إجابته بالفعل!`);
     return;
   }
   
-  if (isSprach2WordUsed(sprach2SelectedWord)) {
-    alert(`⚠️ كلمة "${sprach2SelectedWord}" تم استخدامها بالفعل!`);
+  sprach2SelectedButton = questionId;
+  sprach2SelectedWord = null;
+  
+  console.log(`📌 تم اختيار الزر رقم ${questionId}`);
+  connectSprach2Match();
+}
+
+function connectSprach2Match() {
+  if (sprach2SelectedWord !== null && sprach2SelectedButton !== null) {
+    const word = sprach2SelectedWord;
+    const buttonIndex = sprach2SelectedButton;
+    
+    // التحقق مرة أخرى من أن الكلمة لم تُستخدم
+    if (isSprach2WordUsed(word)) {
+      alert(`⚠️ كلمة "${word}" تم استخدامها بالفعل!`);
+      sprach2SelectedWord = null;
+      sprach2SelectedButton = null;
+      // إعادة تعيين التمييز
+      document.querySelectorAll('.sprach2-word-card').forEach(card => {
+        card.style.backgroundColor = "#ffffff";
+        card.style.border = "2px solid #007bff";
+      });
+      return;
+    }
+    
+    // حفظ الإجابة
+    sprach2UserAnswers[buttonIndex] = word;
+    console.log(`✅ تم الربط: الزر ${buttonIndex} = كلمة "${word}"`);
+    
+    // إعادة رسم الواجهة لتحديث الأزرار
+    renderSprach2Exam();
+    
+    // إعادة تعيين المتغيرات
     sprach2SelectedWord = null;
-    return;
+    sprach2SelectedButton = null;
   }
+}
   
   sprach2UserAnswers[questionId] = sprach2SelectedWord;
   
