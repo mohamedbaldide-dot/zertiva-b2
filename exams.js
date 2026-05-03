@@ -164,7 +164,7 @@ const examsDatabase = {
   { id: 35, title: "Nachtzug", enabled: true, hasFile: true },
   { id: 36, title: "Nachtzug (معدل)", enabled: true, hasFile: true },
   { id: 37, title: "Wie zwei US-Teenager Millionäre wurden", enabled: true, hasFile: true }
-]
+],
   lesen3: [
     { id: 1, title: "Filme - Fernsehprogramme", enabled: true, hasFile: true },
     { id: 2, title: "Filme - Fernsehprogramme (معدل)", enabled: true, hasFile: true },
