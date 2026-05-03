@@ -356,7 +356,7 @@ const examsDatabase = {
     { id: 30, title: "Frau Kedar Malta", enabled: true, hasFile: true },
     { id: 31, title: "Frau Keder aus Malta", enabled: true, hasFile: true }
   ],
-  hoeren3: [
+    hoeren3: [
     { id: 1, title: "Telefon", enabled: true, hasFile: true },
     { id: 2, title: "Musikfestivals", enabled: true, hasFile: true },
     { id: 3, title: "Musikfestivals (Mittel)", enabled: true, hasFile: true },
@@ -384,40 +384,77 @@ const examsDatabase = {
     { id: 25, title: "Das Fest (ohne Frankfurt)", enabled: true, hasFile: true },
     { id: 26, title: "Das Fest (mit Frankfurt)", enabled: true, hasFile: true },
     { id: 27, title: "Radio Konzert", enabled: true, hasFile: true }
-],
-  // قائمة امتحانات Schreiben (32 امتحاناً)
-const schreibenExams = [
-  { id: 1, title: "Fotobuch", enabled: true, hasFile: true },
-  { id: 2, title: "Abenteuer TIKKI TAKKA", enabled: true, hasFile: true },
-  { id: 3, title: "Informatik-Shop", enabled: true, hasFile: true },
-  { id: 4, title: "Kosmetik-Shop", enabled: true, hasFile: true },
-  { id: 5, title: "Partyservice", enabled: true, hasFile: true },
-  { id: 6, title: "ESS Firma", enabled: true, hasFile: true },
-  { id: 7, title: "Kursbeschreibung (Wohndesign)", enabled: true, hasFile: true },
-  { id: 8, title: "Renovierungskurs", enabled: true, hasFile: true },
-  { id: 9, title: "Engagement für Jugendliche", enabled: true, hasFile: true },
-  { id: 10, title: "Wohnen auf Zeit in Oranienburg", enabled: true, hasFile: true },
-  { id: 11, title: "Autovermietung Neustadt", enabled: true, hasFile: true },
-  { id: 12, title: "Freizeitverein", enabled: true, hasFile: true },
-  { id: 13, title: "Naturmuseum", enabled: true, hasFile: true },
-  { id: 14, title: "Backstage-Musical-Tour", enabled: true, hasFile: true },
-  { id: 15, title: "KULTUR UND KULINARIK", enabled: true, hasFile: true },
-  { id: 16, title: "Mehr bewegen - aber wie? (Fahrradtour)", enabled: true, hasFile: true },
-  { id: 17, title: "Super Clean-Staubsaugroboter", enabled: true, hasFile: true },
-  { id: 18, title: "Apartment-Haus", enabled: true, hasFile: true },
-  { id: 19, title: "Kostenlose Apps für dein Handy!", enabled: true, hasFile: true },
-  { id: 20, title: "Nie mehr schlaflos in Deutschland - Komfort-Matratze", enabled: true, hasFile: true },
-  { id: 21, title: "Schmelzkäse Alpengeschmack", enabled: true, hasFile: true },
-  { id: 22, title: "Meine Kiste: Obst und Gemüse", enabled: true, hasFile: true },
-  { id: 23, title: "Hotel mit Thermen", enabled: true, hasFile: true },
-  { id: 24, title: "Kopfhörer", enabled: true, hasFile: true },
-  { id: 25, title: "Badezimmer renovieren", enabled: true, hasFile: true },
-  { id: 26, title: "FREIZEITBAD MEERESRAUSCHEN", enabled: true, hasFile: true },
-  { id: 27, title: "Reisebüro Sonnenschein", enabled: true, hasFile: true },
-  { id: 28, title: "Kursbeschreibung (sich vorstellen)", enabled: true, hasFile: true },
-  { id: 29, title: "FITWATCH Smartwatch", enabled: true, hasFile: true },
-  { id: 30, title: "Securvia Reisegepäckversicherung", enabled: true, hasFile: true }
-];
+  ],
+
+  schreiben: schreibenExams
+};
+
+// ========== باقي الدوال ==========
+
+function renderTeileList() {
+  const container = document.getElementById("teileList");
+  if (!container) return;
+  container.innerHTML = "";
+  
+  for (let i = 0; i < teile.length; i++) {
+    const teil = teile[i];
+    const div = document.createElement("div");
+    div.className = "item teil-item";
+    div.innerHTML = teil.name;
+    div.onclick = (function(skill, teilName) {
+      return function() { 
+        renderExamListForSkill(skill, teilName);
+      };
+    })(teil.skill, teil.name);
+    container.appendChild(div);
+  }
+}
+
+function renderExamListForSkill(skill, teilName) {
+  currentSkill = skill;
+  
+  const container = document.getElementById("examsList");
+  if (!container) return;
+  container.innerHTML = "";
+  
+  const headerDiv = document.createElement("div");
+  headerDiv.className = "teil-header";
+  headerDiv.innerHTML = `<strong>📚 ${teilName || getTeilNameBySkill(skill)}</strong>`;
+  container.appendChild(headerDiv);
+  
+  const exams = examsDatabase[skill] || [];
+  currentExamsList = exams;
+  
+  if (exams.length === 0) {
+    container.innerHTML += '<div class="item" style="text-align:center; color:#999;">⚠️ لا توجد امتحانات متاحة حالياً في هذا الجزء</div>';
+    return;
+  }
+  
+  for (let i = 0; i < exams.length; i++) {
+    const exam = exams[i];
+    const div = document.createElement("div");
+    div.className = "item";
+    
+    if (exam.hasFile) {
+      div.innerHTML = `${exam.id}: ${exam.title}`;
+      div.onclick = (function(id, title, skill) {
+        return function() { openExam(id, title, skill); };
+      })(exam.id, exam.title, skill);
+    } else {
+      div.innerHTML = `${exam.id}: ${exam.title} 🔜`;
+      div.style.opacity = "0.6";
+      div.style.backgroundColor = "#f8f9fa";
+      div.onclick = () => alert(`⚠️ الامتحان رقم ${exam.id} سيتم إضافته قريباً.`);
+    }
+    container.appendChild(div);
+  }
+}
+
+// ... باقي الدوال (getTeilNameBySkill, getActualFileName, openExam, updateExamNavButtons, showTeil, buildTeil1, checkTeil1, goHome, goList, DOMContentLoaded, renderTeileList مرة أخرى? لا، لا تكررها)
+
+function renderExamListForSkill(skill, teilName) {
+  ... // باقي الكود كما هو
+}
 
 function renderTeileList() {
   const container = document.getElementById("teileList");
