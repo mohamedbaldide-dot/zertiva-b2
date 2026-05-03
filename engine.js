@@ -34,13 +34,11 @@ function renderSchreibenExam() {
   
   const data = currentSchreibenData;
   
-  // تقسيم الصفحة إلى عمودين
   const twoColumns = document.createElement("div");
   twoColumns.style.display = "flex";
   twoColumns.style.gap = "30px";
   twoColumns.style.flexWrap = "wrap";
   
-  // ========== العمود الأيسر: Situation + Aufgabe ==========
   const leftColumn = document.createElement("div");
   leftColumn.style.flex = "1";
   leftColumn.style.minWidth = "350px";
@@ -51,7 +49,6 @@ function renderSchreibenExam() {
   leftColumn.style.maxHeight = "80vh";
   leftColumn.style.overflowY = "auto";
   
-  // Situation
   const situationTitle = document.createElement("h3");
   situationTitle.innerHTML = "📌 SITUATION";
   situationTitle.style.color = "#2c3e66";
@@ -74,7 +71,6 @@ function renderSchreibenExam() {
   situationDiv.appendChild(situationText);
   leftColumn.appendChild(situationDiv);
   
-  // Aufgabe
   const aufgabeTitle = document.createElement("h3");
   aufgabeTitle.innerHTML = "📝 AUFGABE";
   aufgabeTitle.style.color = "#2c3e66";
@@ -123,7 +119,6 @@ function renderSchreibenExam() {
   
   leftColumn.appendChild(aufgabeDiv);
   
-  // ========== العمود الأيمن: Template ==========
   const rightColumn = document.createElement("div");
   rightColumn.style.flex = "1";
   rightColumn.style.minWidth = "350px";
@@ -134,7 +129,6 @@ function renderSchreibenExam() {
   rightColumn.style.maxHeight = "80vh";
   rightColumn.style.overflowY = "auto";
   
-  // ✅ التعديل: إزالة الـ ✦ المكررة
   const templateTitle = document.createElement("div");
   let cleanTitle = data.template.title;
   cleanTitle = cleanTitle.replace(/✦/g, '').trim();
@@ -158,11 +152,9 @@ function renderSchreibenExam() {
   templateBox.style.lineHeight = "1.6";
   templateBox.style.whiteSpace = "pre-wrap";
   
-  // ✅ التعديل: لا نضيف 🔹 إضافية، فقط نلون النقاط باللون الأزرق
   let templateText = data.template.text;
   const bluePoints = data.template.colors.blue_points || [];
   
-  // تحويل النص إلى HTML مع إضافة اللون الأزرق للنقاط (بدون إضافة 🔹)
   let htmlText = templateText.replace(/\n/g, '<br>');
   for (let i = 0; i < bluePoints.length; i++) {
     const point = bluePoints[i];
@@ -209,13 +201,11 @@ function renderSprach2Exam() {
   const options = currentSprach2Data.options;
   const allOptions = currentSprach2Data.allOptions;
   
-  // تقسيم الصفحة إلى عمودين
   const twoColumns = document.createElement("div");
   twoColumns.style.display = "flex";
   twoColumns.style.gap = "30px";
   twoColumns.style.flexWrap = "wrap";
   
-  // ========== العمود الأيسر: النص ==========
   const leftColumn = document.createElement("div");
   leftColumn.style.flex = "1.5";
   leftColumn.style.minWidth = "400px";
@@ -232,13 +222,11 @@ function renderSprach2Exam() {
   leftTitle.style.color = "#2c3e66";
   leftColumn.appendChild(leftTitle);
   
-  // عرض النص مع تحويل الفجوات إلى أزرار قابلة للنقر
   let htmlText = text;
   for (let i = 1; i <= options.length; i++) {
     const btnId = `sprach2_btn_${i}`;
     const currentAnswer = sprach2UserAnswers[i];
-    const btnText = currentAnswer || `__( ${i} )__`;
-    const btnHtml = `<button id="${btnId}" class="sprach2-gap-btn" style="background-color: #e0e0e0; border: none; padding: 4px 12px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: bold; margin: 0 2px;">${btnText}</button>`;
+    const btnHtml = `<button id="${btnId}" class="sprach2-gap-btn" style="background-color: ${currentAnswer ? '#d4edda' : '#e0e0e0'}; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: bold; margin: 0 4px; transition: all 0.2s; color: ${currentAnswer ? '#155724' : '#333'};">${currentAnswer || `__( ${i} )__`}</button>`;
     htmlText = htmlText.replace(`__( ${i} )__`, btnHtml);
     htmlText = htmlText.replace(`......(${i})......`, btnHtml);
     htmlText = htmlText.replace(`......(${i})`, btnHtml);
@@ -251,19 +239,20 @@ function renderSprach2Exam() {
   textDiv.style.fontSize = "14px";
   textDiv.style.textAlign = "justify";
   
-  // ربط الأزرار
   for (let i = 1; i <= options.length; i++) {
     const btn = textDiv.querySelector(`#sprach2_btn_${i}`);
     if (btn) {
       btn.onclick = (function(qId) {
-        return function() { openSprach2Dropdown(qId); };
+        return function(e) {
+          e.stopPropagation();
+          openSprach2Dropdown(qId);
+        };
       })(i);
     }
   }
   
   leftColumn.appendChild(textDiv);
   
-  // ========== العمود الأيمن: الخيارات ==========
   const rightColumn = document.createElement("div");
   rightColumn.style.flex = "0.8";
   rightColumn.style.minWidth = "250px";
@@ -280,7 +269,6 @@ function renderSprach2Exam() {
   rightTitle.style.color = "#2c3e66";
   rightColumn.appendChild(rightTitle);
   
-  // عرض الكلمات في شبكة 3x5
   const wordsGrid = document.createElement("div");
   wordsGrid.style.display = "grid";
   wordsGrid.style.gridTemplateColumns = "repeat(3, 1fr)";
@@ -333,7 +321,6 @@ function renderSprach2Exam() {
   twoColumns.appendChild(rightColumn);
   container.appendChild(twoColumns);
   
-  // أزرار التحكم
   const buttonContainer = document.createElement("div");
   buttonContainer.style.display = "flex";
   buttonContainer.style.gap = "15px";
@@ -398,7 +385,7 @@ function selectSprach2Word(word) {
 
 function openSprach2Dropdown(questionId) {
   if (!sprach2SelectedWord) {
-    alert("⚠️ الرجاء اختيار كلمة أولاً من القائمة على اليمين!");
+    alert("⚠️ الرجاء اختيار كلمة أولاً من القائمة على اليمين، أو اضغط على كلمة ثم على الزر!");
     return;
   }
   
@@ -493,6 +480,15 @@ function checkSprach2Exam() {
       } else {
         btn.style.backgroundColor = "#ffc107";
         btn.style.color = "#333";
+        const correctSpan = document.createElement("span");
+        correctSpan.textContent = ` ✅ الصحيح: ${opt.correct}`;
+        correctSpan.style.color = "#28a745";
+        correctSpan.style.fontSize = "12px";
+        correctSpan.style.marginLeft = "5px";
+        if (!btn.parentElement.querySelector(".correct-hint")) {
+          correctSpan.className = "correct-hint";
+          btn.parentElement.appendChild(correctSpan);
+        }
       }
     }
   }
@@ -911,7 +907,7 @@ function checkSprach1Exam() {
   }
 }
 
-// ========== نظام True/False مع عرض أرقام الإجابات الصحيحة (فقط لـ Hören) ==========
+// ========== نظام True/False ==========
 window.buildTrueFalseExam = function(container, questions, note) {
   container.innerHTML = '';
   
@@ -1048,7 +1044,6 @@ window.buildTrueFalseExam = function(container, questions, note) {
   checkBtn.style.cursor = 'pointer';
   checkBtn.style.fontSize = '16px';
   
-  // ✅ الآن نمرر container إلى دالة التصحيح
   checkBtn.onclick = () => {
     checkTrueFalseExam(container, questions, window._trueFalseUserAnswers, correctNumbersContainer);
   };
@@ -1111,14 +1106,12 @@ window.buildTrueFalseExam = function(container, questions, note) {
   container.appendChild(resultDiv);
 };
 
-// ✅ الدالة المعدلة التي تقبل container كمعامل
 function checkTrueFalseExam(container, questions, answers, correctNumbersContainer) {
   let score = 0;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
   let correctIndices = [];
   
-  // ✅ استخدم container نفسه للبحث عن البطاقات (بدلاً من document.querySelectorAll)
   const cards = container.querySelectorAll('.question-card');
   
   for (let i = 0; i < questions.length; i++) {
@@ -1262,6 +1255,7 @@ function renderTeil3Exam() {
     card.style.borderRadius = "12px";
     card.style.backgroundColor = "#fafafa";
     card.style.transition = "all 0.3s";
+    card.style.cursor = "pointer";
     
     const itemTitle = document.createElement("div");
     itemTitle.style.fontWeight = "bold";
@@ -1338,6 +1332,21 @@ function renderTeil3Exam() {
     dropdownContainer.appendChild(dropdownBtn);
     dropdownContainer.appendChild(dropdownList);
     card.appendChild(dropdownContainer);
+    
+    // ✅ إضافة خاصية النقر على الفقرة نفسها
+    card.addEventListener("click", function(e) {
+      if (e.target.closest('.dropdown-btn') || e.target.closest('.dropdown-list')) {
+        return;
+      }
+      if (teil3OpenDropdownIndex !== null && teil3OpenDropdownIndex !== i) {
+        closeTeil3Dropdown(teil3OpenDropdownIndex);
+      }
+      if (dropdownList.style.display === "block") {
+        closeTeil3Dropdown(i);
+      } else {
+        openTeil3Dropdown(i);
+      }
+    });
     
     updateTeil3DropdownList(i);
     
@@ -1578,7 +1587,7 @@ function checkTeil3Exam() {
     const card = document.getElementById(`teil3_item_${i}`);
     const userAnswer = teil3UserAnswers[i];
     const correctIndex = item.correct;
-    const btnSpan = document.querySelector(`teil3_btn_${i} span:first-child`);
+    const btnSpan = document.querySelector(`#teil3_btn_${i} span:first-child`);
     
     let isCorrect = false;
     let displayText = "";
@@ -1593,6 +1602,13 @@ function checkTeil3Exam() {
         isCorrect = false;
         if (card) card.classList.add("wrong-answer-card");
         displayText = "✅ ليس لها عنوان";
+        const correctMsg = document.createElement("div");
+        correctMsg.className = "correct-message";
+        correctMsg.style.color = "#28a745";
+        correctMsg.style.marginTop = "10px";
+        correctMsg.style.fontSize = "14px";
+        correctMsg.innerHTML = `✅ الإجابة الصحيحة: ليس لها عنوان`;
+        if (card) card.appendChild(correctMsg);
       }
     } else {
       const correctText = currentTeil3Data.situations[correctIndex];
@@ -1605,6 +1621,13 @@ function checkTeil3Exam() {
         isCorrect = false;
         if (card) card.classList.add("wrong-answer-card");
         displayText = `✅ ${String.fromCharCode(97 + correctIndex)}. ${correctText}`;
+        const correctMsg = document.createElement("div");
+        correctMsg.className = "correct-message";
+        correctMsg.style.color = "#28a745";
+        correctMsg.style.marginTop = "10px";
+        correctMsg.style.fontSize = "14px";
+        correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${String.fromCharCode(97 + correctIndex)}. ${correctText}`;
+        if (card) card.appendChild(correctMsg);
       }
     }
     
@@ -1665,7 +1688,7 @@ function resetTeil3Exam() {
   console.log("✅ تم إعادة تعيين Teil 3");
 }
 
-// ========== نظام Teil 2 (نص طويل + أسئلة) ==========
+// ========== نظام Teil 2 ==========
 let currentTeil2Data = null;
 let teil2UserAnswers = {};
 
