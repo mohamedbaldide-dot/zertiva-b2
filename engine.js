@@ -910,13 +910,15 @@ function checkSprach1Exam() {
     resultDiv.style.color = "#721c24";
   }
 }
-
 // ========== نظام True/False مع عرض أرقام الإجابات الصحيحة (فقط لـ Hören) ==========
 window.buildTrueFalseExam = function(container, questions, note) {
   container.innerHTML = '';
   
-  let userAnswers = {};
-  let currentQuestions = questions;
+  // ✅ التأكد من تنظيف أي متغيرات سابقة
+  if (window._trueFalseUserAnswers) {
+    delete window._trueFalseUserAnswers;
+  }
+  window._trueFalseUserAnswers = {};
   
   if (note) {
     const noteDiv = document.createElement('div');
@@ -932,7 +934,8 @@ window.buildTrueFalseExam = function(container, questions, note) {
     container.appendChild(noteDiv);
   }
   
-  questions.forEach((q, i) => {
+  for (let i = 0; i < questions.length; i++) {
+    const q = questions[i];
     const div = document.createElement('div');
     div.className = 'question-card';
     div.style.display = 'flex';
@@ -964,9 +967,12 @@ window.buildTrueFalseExam = function(container, questions, note) {
     radioTrue.value = 'true';
     radioTrue.id = `q${i}_true`;
     
-    radioTrue.onchange = () => {
-      userAnswers[i] = true;
-    };
+    radioTrue.onchange = (function(idx) {
+      return function() {
+        window._trueFalseUserAnswers[idx] = true;
+        console.log("✅ تم اختيار صحيح للسؤال", idx + 1);
+      };
+    })(i);
     
     labelTrue.appendChild(radioTrue);
     labelTrue.appendChild(document.createTextNode(' Richtig'));
@@ -988,9 +994,12 @@ window.buildTrueFalseExam = function(container, questions, note) {
     radioFalse.value = 'false';
     radioFalse.id = `q${i}_false`;
     
-    radioFalse.onchange = () => {
-      userAnswers[i] = false;
-    };
+    radioFalse.onchange = (function(idx) {
+      return function() {
+        window._trueFalseUserAnswers[idx] = false;
+        console.log("✅ تم اختيار خطأ للسؤال", idx + 1);
+      };
+    })(i);
     
     labelFalse.appendChild(radioFalse);
     labelFalse.appendChild(document.createTextNode(' Falsch'));
@@ -1005,7 +1014,7 @@ window.buildTrueFalseExam = function(container, questions, note) {
     div.appendChild(textSpan);
     
     container.appendChild(div);
-  });
+  }
   
   const buttonContainer = document.createElement('div');
   buttonContainer.style.display = 'flex';
@@ -1042,7 +1051,7 @@ window.buildTrueFalseExam = function(container, questions, note) {
   checkBtn.style.fontSize = '16px';
   
   checkBtn.onclick = () => {
-    checkTrueFalseExam(questions, userAnswers, correctNumbersContainer);
+    checkTrueFalseExam(questions, window._trueFalseUserAnswers, correctNumbersContainer);
   };
   
   const resetBtn = document.createElement('button');
@@ -1057,8 +1066,8 @@ window.buildTrueFalseExam = function(container, questions, note) {
   resetBtn.style.fontWeight = 'bold';
   
   resetBtn.onclick = function() {
-    for (let key in userAnswers) {
-      delete userAnswers[key];
+    for (let key in window._trueFalseUserAnswers) {
+      delete window._trueFalseUserAnswers[key];
     }
     
     const allRadios = container.querySelectorAll('input[type="radio"]');
@@ -1106,12 +1115,17 @@ window.buildTrueFalseExam = function(container, questions, note) {
 };
 
 function checkTrueFalseExam(questions, answers, correctNumbersContainer) {
+  console.log("🟢 بدء التصحيح...");
+  console.log("عدد الأسئلة:", questions.length);
+  console.log("الإجابات:", answers);
+  
   let score = 0;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
   let correctIndices = [];
   
   const cards = document.querySelectorAll('#hoeren1 .question-card, #hoeren2 .question-card, #hoeren3 .question-card');
+  console.log("عدد البطاقات الموجودة:", cards.length);
   
   for (let i = 0; i < questions.length; i++) {
     const q = questions[i];
@@ -1119,7 +1133,12 @@ function checkTrueFalseExam(questions, answers, correctNumbersContainer) {
     const userAnswer = answers[i];
     const isCorrect = (userAnswer === q.correct);
     
-    if (!card) continue;
+    console.log(`السؤال ${i+1}: الإجابة الصحيحة=${q.correct}, إجابة المستخدم=${userAnswer}, صحيح=${isCorrect}`);
+    
+    if (!card) {
+      console.warn(`⚠️ لم يتم العثور على بطاقة للسؤال ${i+1}`);
+      continue;
+    }
     
     card.classList.remove('correct-answer-card', 'wrong-answer-card');
     const oldMsg = card.querySelector('.correct-message');
@@ -1183,7 +1202,7 @@ function checkTrueFalseExam(questions, answers, correctNumbersContainer) {
   if (correctNumbersContainer) {
     correctNumbersContainer.style.display = 'block';
     if (correctIndices.length > 0) {
-      correctNumbersContainer.innerHTML = `▸ : ${correctIndices.join("")}`;
+      correctNumbersContainer.innerHTML = `▸ : ${correctIndices.join(" ")}`;
     } else {
       correctNumbersContainer.innerHTML = "▸ : لا توجد إجابات صحيحة";
     }
@@ -1206,7 +1225,10 @@ function checkTrueFalseExam(questions, answers, correctNumbersContainer) {
       resultDiv.style.color = 'white';
     }
   }
+  
+  console.log(`✅ النتيجة النهائية: ${finalScore} / 25`);
 }
+
 
 // ========== نظام Teil 3 (Matching) ==========
 let currentTeil3Data = null;
