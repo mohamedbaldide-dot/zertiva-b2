@@ -3,7 +3,7 @@
 // يدعم: Matching (Custom Dropdown) + True/False (Hören 1,2,3) + Teil 2 + Teil 3 + Sprachbausteine Teil 1 + Sprachbausteine Teil 2 + Schreiben
 // ============================================
 
-console.log("✅ engine.js تم تحميله (النسخة النهائية)");
+console.log("✅ engine.js تم تحميله (النسخة النهائية المعدلة)");
 
 window.loadExamFromFile = async function(skill, examId) {
   try {
@@ -178,16 +178,18 @@ function renderSchreibenExam() {
   container.appendChild(twoColumns);
 }
 
-// ========== نظام Sprachbausteine Teil 2 ==========
+// ========== نظام Sprachbausteine Teil 2 (محسن بالكامل) ==========
 let currentSprach2Data = null;
 let sprach2UserAnswers = {};
 let sprach2SelectedWord = null;
+let sprach2SelectedGap = null;
 
 window.loadSprach2Exam = function(examData) {
   console.log("🟢 loadSprach2Exam", examData.title);
   currentSprach2Data = examData;
   sprach2UserAnswers = {};
   sprach2SelectedWord = null;
+  sprach2SelectedGap = null;
   renderSprach2Exam();
 };
 
@@ -215,7 +217,7 @@ function renderSprach2Exam() {
   twoColumns.style.gap = "30px";
   twoColumns.style.flexWrap = "wrap";
   
-  // ========== العمود الأيسر: النص ==========
+  // ========== العمود الأيسر: النص مع فجوات قابلة للنقر ==========
   const leftColumn = document.createElement("div");
   leftColumn.style.flex = "1.5";
   leftColumn.style.minWidth = "400px";
@@ -227,22 +229,28 @@ function renderSprach2Exam() {
   leftColumn.style.overflowY = "auto";
   
   const leftTitle = document.createElement("h3");
-  leftTitle.innerHTML = "📝 Text";
+  leftTitle.innerHTML = "📝 Text (اضغط على الرقم ثم الكلمة أو العكس)";
   leftTitle.style.marginTop = "0";
   leftTitle.style.color = "#2c3e66";
+  leftTitle.style.fontSize = "14px";
   leftColumn.appendChild(leftTitle);
   
-  // عرض النص مع تحويل الفجوات إلى أزرار قابلة للنقر
+  // تحويل النص إلى HTML مع تحويل الفجوات إلى عناصر قابلة للنقر
   let htmlText = text;
   for (let i = 1; i <= options.length; i++) {
-    const btnId = `sprach2_btn_${i}`;
     const currentAnswer = sprach2UserAnswers[i];
-    const btnText = currentAnswer || `__( ${i} )__`;
-    const btnHtml = `<button id="${btnId}" class="sprach2-gap-btn" style="background-color: #e0e0e0; border: none; padding: 4px 12px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: bold; margin: 0 2px;">${btnText}</button>`;
-    htmlText = htmlText.replace(`__( ${i} )__`, btnHtml);
-    htmlText = htmlText.replace(`......(${i})......`, btnHtml);
-    htmlText = htmlText.replace(`......(${i})`, btnHtml);
-    htmlText = htmlText.replace(`.....( ${i} ).....`, btnHtml);
+    const displayText = currentAnswer || `__( ${i} )__`;
+    const isFilled = !!currentAnswer;
+    
+    const gapHtml = `<span class="sprach2-gap" data-index="${i}" style="display: inline-block; background-color: ${isFilled ? '#d4edda' : '#e0e0e0'}; border: 1px solid ${isFilled ? '#28a745' : '#ccc'}; border-radius: 20px; padding: 4px 12px; margin: 0 2px; cursor: pointer; font-size: 14px; font-weight: bold; color: ${isFilled ? '#155724' : '#333'};">${displayText}</span>`;
+    
+    // استبدال جميع أشكال الفجوات
+    htmlText = htmlText.replace(`__( ${i} )__`, gapHtml);
+    htmlText = htmlText.replace(`......(${i})......`, gapHtml);
+    htmlText = htmlText.replace(`......(${i})`, gapHtml);
+    htmlText = htmlText.replace(`.....( ${i} ).....`, gapHtml);
+    htmlText = htmlText.replace(new RegExp(`\\.{5}\\(\\s*${i}\\s*\\)\\.{5}`, 'g'), gapHtml);
+    htmlText = htmlText.replace(new RegExp(`\\(\\s*${i}\\s*\\)`, 'g'), gapHtml);
   }
   
   const textDiv = document.createElement("div");
@@ -251,15 +259,14 @@ function renderSprach2Exam() {
   textDiv.style.fontSize = "14px";
   textDiv.style.textAlign = "justify";
   
-  // ربط الأزرار
-  for (let i = 1; i <= options.length; i++) {
-    const btn = textDiv.querySelector(`#sprach2_btn_${i}`);
-    if (btn) {
-      btn.onclick = (function(qId) {
-        return function() { openSprach2Dropdown(qId); };
-      })(i);
-    }
-  }
+  // ربط أحداث النقر على الفجوات
+  textDiv.querySelectorAll('.sprach2-gap').forEach(gap => {
+    const index = parseInt(gap.getAttribute('data-index'));
+    gap.addEventListener('click', (e) => {
+      e.stopPropagation();
+      selectSprach2Gap(index);
+    });
+  });
   
   leftColumn.appendChild(textDiv);
   
@@ -275,16 +282,17 @@ function renderSprach2Exam() {
   rightColumn.style.overflowY = "auto";
   
   const rightTitle = document.createElement("h3");
-  rightTitle.innerHTML = "📋 Wörter";
+  rightTitle.innerHTML = "📋 Wörter (اضغط على كلمة ثم على رقم)";
   rightTitle.style.marginTop = "0";
   rightTitle.style.color = "#2c3e66";
+  rightTitle.style.fontSize = "14px";
   rightColumn.appendChild(rightTitle);
   
-  // عرض الكلمات في شبكة 3x5
-  const wordsGrid = document.createElement("div");
-  wordsGrid.style.display = "grid";
-  wordsGrid.style.gridTemplateColumns = "repeat(3, 1fr)";
-  wordsGrid.style.gap = "12px";
+  const wordsContainer = document.createElement("div");
+  wordsContainer.className = "sprach2-words-container";
+  wordsContainer.style.display = "grid";
+  wordsContainer.style.gridTemplateColumns = "repeat(3, 1fr)";
+  wordsContainer.style.gap = "12px";
   
   const sortedOptions = [...allOptions].sort();
   
@@ -312,22 +320,38 @@ function renderSprach2Exam() {
       wordCard.style.opacity = "0.6";
     } else {
       wordCard.addEventListener("mouseenter", function() {
-        this.style.backgroundColor = "#e3f2fd";
-        this.style.transform = "scale(1.02)";
+        if (!isSprach2WordUsed(this.textContent)) {
+          this.style.backgroundColor = "#e3f2fd";
+          this.style.transform = "scale(1.02)";
+        }
       });
       wordCard.addEventListener("mouseleave", function() {
-        this.style.backgroundColor = "#ffffff";
-        this.style.transform = "scale(1)";
+        if (!isSprach2WordUsed(this.textContent)) {
+          this.style.backgroundColor = "#ffffff";
+          this.style.transform = "scale(1)";
+        }
       });
       wordCard.addEventListener("click", (function(w) {
         return function() { selectSprach2Word(w); };
       })(word));
     }
     
-    wordsGrid.appendChild(wordCard);
+    wordsContainer.appendChild(wordCard);
   }
   
-  rightColumn.appendChild(wordsGrid);
+  rightColumn.appendChild(wordsContainer);
+  
+  // إضافة تعليمات
+  const instructions = document.createElement("div");
+  instructions.style.marginTop = "15px";
+  instructions.style.padding = "10px";
+  instructions.style.backgroundColor = "#e3f2fd";
+  instructions.style.borderRadius = "8px";
+  instructions.style.fontSize = "12px";
+  instructions.style.color = "#0d47a1";
+  instructions.style.textAlign = "center";
+  instructions.innerHTML = "💡 <strong>طريقة الإجابة:</strong><br>اضغط على كلمة (تصفر) ثم على رقم (يزرق)<br>أو اضغط على رقم ثم على كلمة<br>اضغط على إجابة مرة ثانية لإلغائها";
+  rightColumn.appendChild(instructions);
   
   twoColumns.appendChild(leftColumn);
   twoColumns.appendChild(rightColumn);
@@ -354,8 +378,8 @@ function renderSprach2Exam() {
   buttonContainer.appendChild(checkBtn);
   
   const resetBtn = document.createElement("button");
-  resetBtn.innerText = "↺";
-  resetBtn.style.padding = "8px 12px";
+  resetBtn.innerText = "↺ إعادة تعيين";
+  resetBtn.style.padding = "8px 16px";
   resetBtn.style.backgroundColor = "#6c757d";
   resetBtn.style.color = "white";
   resetBtn.style.border = "none";
@@ -380,91 +404,193 @@ function renderSprach2Exam() {
   container.appendChild(resultDiv);
 }
 
+// ========== دوال Sprachbausteine Teil 2 المحسنة ==========
 function selectSprach2Word(word) {
+  const wordCard = document.getElementById(`sprach2_word_${word}`);
+  
+  // إذا كانت الكلمة مستخدمة بالفعل
   if (isSprach2WordUsed(word)) {
     alert(`⚠️ كلمة "${word}" تم استخدامها بالفعل!`);
     return;
   }
-  sprach2SelectedWord = word;
-  const allWords = document.querySelectorAll('.sprach2-word-card');
-  allWords.forEach(card => {
-    if (card.id === `sprach2_word_${word}`) {
-      card.style.backgroundColor = "#ffc107";
-      card.style.border = "2px solid #ff9800";
+  
+  // إذا كان نفس الكلمة محددة مسبقاً -> إلغاء الاختيار
+  if (sprach2SelectedWord === word) {
+    sprach2SelectedWord = null;
+    if (wordCard) {
+      wordCard.style.backgroundColor = "#ffffff";
+      wordCard.style.border = "1px solid #007bff";
+      wordCard.style.color = "#007bff";
     }
+    console.log(`❌ تم إلغاء اختيار الكلمة: ${word}`);
+    return;
+  }
+  
+  // إزالة التحديد عن أي كلمة أخرى
+  document.querySelectorAll('.sprach2-word-card').forEach(card => {
+    card.style.backgroundColor = "#ffffff";
+    card.style.border = "1px solid #007bff";
+    card.style.color = "#007bff";
   });
+  
+  // تحديد الكلمة الجديدة
+  sprach2SelectedWord = word;
+  if (wordCard) {
+    wordCard.style.backgroundColor = "#ffc107";
+    wordCard.style.border = "2px solid #ff9800";
+    wordCard.style.color = "#333";
+  }
+  
   console.log(`✅ تم اختيار الكلمة: ${word}`);
+  
+  // إذا كان هناك فجوة محددة مسبقاً -> قم بالربط فوراً
+  if (sprach2SelectedGap !== null) {
+    assignSprach2Answer(sprach2SelectedGap, word);
+  }
 }
 
-function openSprach2Dropdown(questionId) {
-  if (!sprach2SelectedWord) {
-    alert("⚠️ الرجاء اختيار كلمة أولاً من القائمة على اليمين!");
+function selectSprach2Gap(gapIndex) {
+  // إذا كانت الفجوة قد أجيبت مسبقاً -> إلغاء الإجابة
+  if (sprach2UserAnswers[gapIndex]) {
+    removeSprach2Answer(gapIndex);
     return;
   }
   
-  if (isSprach2WordUsed(sprach2SelectedWord)) {
-    alert(`⚠️ كلمة "${sprach2SelectedWord}" تم استخدامها بالفعل!`);
+  // إذا كان نفس الفجوة محددة مسبقاً -> إلغاء الاختيار
+  if (sprach2SelectedGap === gapIndex) {
+    sprach2SelectedGap = null;
+    // إزالة التمييز عن الفجوة
+    const gapSpan = document.querySelector(`.sprach2-gap[data-index='${gapIndex}']`);
+    if (gapSpan) {
+      gapSpan.style.backgroundColor = "#e0e0e0";
+      gapSpan.style.border = "1px solid #ccc";
+    }
+    console.log(`❌ تم إلغاء اختيار الفجوة رقم ${gapIndex}`);
+    return;
+  }
+  
+  // إزالة التمييز عن الفجوات الأخرى
+  document.querySelectorAll('.sprach2-gap').forEach(gap => {
+    gap.style.backgroundColor = "#e0e0e0";
+    gap.style.border = "1px solid #ccc";
+  });
+  
+  // تحديد الفجوة الجديدة
+  sprach2SelectedGap = gapIndex;
+  const gapSpan = document.querySelector(`.sprach2-gap[data-index='${gapIndex}']`);
+  if (gapSpan) {
+    gapSpan.style.backgroundColor = "#cce5ff";
+    gapSpan.style.border = "2px solid #007bff";
+  }
+  
+  console.log(`✅ تم اختيار الفجوة رقم ${gapIndex}`);
+  
+  // إذا كانت هناك كلمة محددة مسبقاً -> قم بالربط فوراً
+  if (sprach2SelectedWord !== null) {
+    assignSprach2Answer(gapIndex, sprach2SelectedWord);
+  }
+}
+
+function assignSprach2Answer(gapIndex, word) {
+  // التحقق من أن الكلمة لم تُستخدم
+  if (isSprach2WordUsed(word)) {
+    alert(`⚠️ كلمة "${word}" تم استخدامها بالفعل!`);
     sprach2SelectedWord = null;
+    sprach2SelectedGap = null;
     return;
   }
   
-  sprach2UserAnswers[questionId] = sprach2SelectedWord;
+  // حفظ الإجابة
+  sprach2UserAnswers[gapIndex] = word;
   
-  const btn = document.getElementById(`sprach2_btn_${questionId}`);
-  if (btn) {
-    btn.textContent = sprach2SelectedWord;
-    btn.style.backgroundColor = "#d4edda";
-    btn.style.color = "#155724";
+  // تحديث عرض الفجوة
+  const gapSpan = document.querySelector(`.sprach2-gap[data-index='${gapIndex}']`);
+  if (gapSpan) {
+    gapSpan.textContent = word;
+    gapSpan.classList.add("filled");
+    gapSpan.style.backgroundColor = "#d4edda";
+    gapSpan.style.color = "#155724";
+    gapSpan.style.border = "1px solid #28a745";
   }
   
-  const wordCard = document.getElementById(`sprach2_word_${sprach2SelectedWord}`);
+  // تعطيل الكلمة المختارة
+  const wordCard = document.getElementById(`sprach2_word_${word}`);
   if (wordCard) {
     wordCard.style.backgroundColor = "#d4edda";
     wordCard.style.border = "2px solid #28a745";
     wordCard.style.color = "#155724";
     wordCard.style.cursor = "default";
     wordCard.style.opacity = "0.6";
-    const newCard = wordCard.cloneNode(true);
-    wordCard.parentNode.replaceChild(newCard, wordCard);
   }
   
+  // إعادة تعيين الاختيارات
   sprach2SelectedWord = null;
+  sprach2SelectedGap = null;
   
-  const allWords = document.querySelectorAll('.sprach2-word-card');
-  allWords.forEach(card => {
-    if (card.style.backgroundColor === "rgb(255, 193, 7)") {
-      card.style.backgroundColor = "#ffffff";
-      card.style.border = "1px solid #007bff";
-    }
-  });
+  console.log(`✅ تم الربط: الفجوة ${gapIndex} = كلمة "${word}"`);
+}
+
+function removeSprach2Answer(gapIndex) {
+  const word = sprach2UserAnswers[gapIndex];
+  if (!word) return;
+  
+  // حذف الإجابة
+  delete sprach2UserAnswers[gapIndex];
+  
+  // إرجاع الفجوة إلى حالتها الأصلية
+  const gapSpan = document.querySelector(`.sprach2-gap[data-index='${gapIndex}']`);
+  if (gapSpan) {
+    gapSpan.textContent = `__( ${gapIndex} )__`;
+    gapSpan.classList.remove("filled");
+    gapSpan.style.backgroundColor = "#e0e0e0";
+    gapSpan.style.color = "#333";
+    gapSpan.style.border = "1px solid #ccc";
+  }
+  
+  // إعادة الكلمة إلى القائمة
+  const wordsContainer = document.querySelector(".sprach2-words-container");
+  if (wordsContainer && !document.getElementById(`sprach2_word_${word}`)) {
+    const wordCard = document.createElement("div");
+    wordCard.className = "sprach2-word-card";
+    wordCard.id = `sprach2_word_${word}`;
+    wordCard.textContent = word;
+    wordCard.style.backgroundColor = "#ffffff";
+    wordCard.style.border = "1px solid #007bff";
+    wordCard.style.borderRadius = "8px";
+    wordCard.style.padding = "8px 12px";
+    wordCard.style.textAlign = "center";
+    wordCard.style.cursor = "pointer";
+    wordCard.style.transition = "all 0.2s";
+    wordCard.style.fontWeight = "500";
+    wordCard.style.color = "#007bff";
+    
+    wordCard.addEventListener("mouseenter", function() {
+      if (!isSprach2WordUsed(this.textContent)) {
+        this.style.backgroundColor = "#e3f2fd";
+        this.style.transform = "scale(1.02)";
+      }
+    });
+    wordCard.addEventListener("mouseleave", function() {
+      if (!isSprach2WordUsed(this.textContent)) {
+        this.style.backgroundColor = "#ffffff";
+        this.style.transform = "scale(1)";
+      }
+    });
+    wordCard.addEventListener("click", (function(w) {
+      return function() { selectSprach2Word(w); };
+    })(word));
+    
+    wordsContainer.appendChild(wordCard);
+  }
+  
+  console.log(`✅ تم إلغاء الإجابة: الفجوة ${gapIndex} - كلمة "${word}" عادت إلى القائمة`);
 }
 
 function resetSprach2Exam() {
   sprach2UserAnswers = {};
   sprach2SelectedWord = null;
-  
-  for (let i = 1; i <= currentSprach2Data.options.length; i++) {
-    const btn = document.getElementById(`sprach2_btn_${i}`);
-    if (btn) {
-      btn.textContent = `__( ${i} )__`;
-      btn.style.backgroundColor = "#e0e0e0";
-      btn.style.color = "#333";
-    }
-  }
-  
-  const allWords = document.querySelectorAll('.sprach2-word-card');
-  allWords.forEach(card => {
-    card.style.backgroundColor = "#ffffff";
-    card.style.border = "1px solid #007bff";
-    card.style.color = "#007bff";
-    card.style.cursor = "pointer";
-    card.style.opacity = "1";
-  });
-  
-  const resultDiv = document.getElementById("sprach2Result");
-  if (resultDiv) resultDiv.style.display = "none";
-  
-  console.log("✅ تم إعادة تعيين Sprachbausteine Teil 2");
+  sprach2SelectedGap = null;
+  renderSprach2Exam();
 }
 
 function checkSprach2Exam() {
@@ -482,17 +608,40 @@ function checkSprach2Exam() {
       score++;
     }
     
-    const btn = document.getElementById(`sprach2_btn_${opt.id}`);
-    if (btn) {
+    const gapSpan = document.querySelector(`.sprach2-gap[data-index='${opt.id}']`);
+    if (gapSpan) {
       if (isCorrect) {
-        btn.style.backgroundColor = "#28a745";
-        btn.style.color = "white";
+        gapSpan.style.backgroundColor = "#28a745";
+        gapSpan.style.color = "white";
+        gapSpan.style.border = "2px solid #1e7e34";
       } else if (userAnswer) {
-        btn.style.backgroundColor = "#dc3545";
-        btn.style.color = "white";
+        gapSpan.style.backgroundColor = "#dc3545";
+        gapSpan.style.color = "white";
+        gapSpan.style.border = "2px solid #bd2130";
+        // إضافة تلميح الإجابة الصحيحة
+        const hintSpan = document.createElement("span");
+        hintSpan.textContent = ` ✅ الصحيح: ${opt.correct}`;
+        hintSpan.style.color = "#28a745";
+        hintSpan.style.fontSize = "12px";
+        hintSpan.style.marginLeft = "8px";
+        if (!gapSpan.parentElement.querySelector(`.correct-hint-${opt.id}`)) {
+          hintSpan.className = `correct-hint-${opt.id}`;
+          gapSpan.parentElement.appendChild(hintSpan);
+        }
       } else {
-        btn.style.backgroundColor = "#ffc107";
-        btn.style.color = "#333";
+        gapSpan.style.backgroundColor = "#ffc107";
+        gapSpan.style.color = "#333";
+        gapSpan.style.border = "2px solid #e0a800";
+        // إضافة تلميح الإجابة الصحيحة
+        const hintSpan = document.createElement("span");
+        hintSpan.textContent = ` ✅ الصحيح: ${opt.correct}`;
+        hintSpan.style.color = "#28a745";
+        hintSpan.style.fontSize = "12px";
+        hintSpan.style.marginLeft = "8px";
+        if (!gapSpan.parentElement.querySelector(`.correct-hint-${opt.id}`)) {
+          hintSpan.className = `correct-hint-${opt.id}`;
+          gapSpan.parentElement.appendChild(hintSpan);
+        }
       }
     }
   }
@@ -911,7 +1060,7 @@ function checkSprach1Exam() {
   }
 }
 
-// ========== نظام True/False مع عرض أرقام الإجابات الصحيحة (فقط لـ Hören) ==========
+// ========== نظام True/False ==========
 window.buildTrueFalseExam = function(container, questions, note) {
   container.innerHTML = '';
   
@@ -1048,7 +1197,6 @@ window.buildTrueFalseExam = function(container, questions, note) {
   checkBtn.style.cursor = 'pointer';
   checkBtn.style.fontSize = '16px';
   
-  // ✅ الآن نمرر container إلى دالة التصحيح
   checkBtn.onclick = () => {
     checkTrueFalseExam(container, questions, window._trueFalseUserAnswers, correctNumbersContainer);
   };
@@ -1111,14 +1259,12 @@ window.buildTrueFalseExam = function(container, questions, note) {
   container.appendChild(resultDiv);
 };
 
-// ✅ الدالة المعدلة التي تقبل container كمعامل
 function checkTrueFalseExam(container, questions, answers, correctNumbersContainer) {
   let score = 0;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
   let correctIndices = [];
   
-  // ✅ استخدم container نفسه للبحث عن البطاقات (بدلاً من document.querySelectorAll)
   const cards = container.querySelectorAll('.question-card');
   
   for (let i = 0; i < questions.length; i++) {
@@ -1207,7 +1353,6 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
     }
   }
 }
-
 
 // ========== نظام Teil 3 (Matching) ==========
 let currentTeil3Data = null;
@@ -1578,7 +1723,7 @@ function checkTeil3Exam() {
     const card = document.getElementById(`teil3_item_${i}`);
     const userAnswer = teil3UserAnswers[i];
     const correctIndex = item.correct;
-    const btnSpan = document.querySelector(`teil3_btn_${i} span:first-child`);
+    const btnSpan = document.querySelector(`#teil3_btn_${i} span:first-child`);
     
     let isCorrect = false;
     let displayText = "";
@@ -1665,7 +1810,7 @@ function resetTeil3Exam() {
   console.log("✅ تم إعادة تعيين Teil 3");
 }
 
-// ========== نظام Teil 2 (نص طويل + أسئلة) ==========
+// ========== نظام Teil 2 ==========
 let currentTeil2Data = null;
 let teil2UserAnswers = {};
 
@@ -1944,7 +2089,7 @@ function checkTeil2Exam() {
   }
 }
 
-// ========== نظام Matching القديم (Teil 1) ==========
+// ========== نظام Matching (Teil 1) ==========
 let currentMatchingExamData = null;
 let matchingSelectedAnswers = {};
 let matchingAvailableOptions = [];
@@ -2260,5 +2405,5 @@ function checkMatchingExam() {
   resultDiv.style.display = "block";
 }
 
-console.log("✅ engine.js جاهز بالكامل");
-console.log("✅ يدعم: Matching (Teil 1) | True/False (Hören 1,2,3) | Teil 2 | Teil 3 | Sprachbausteine Teil 1 | Sprachbausteine Teil 2 | Schreiben");
+console.log("✅ engine.js جاهز بالكامل - النسخة المحسنة");
+console.log("✅ يدعم: Matching (Teil 1) | True/False (Hören 1,2,3) | Teil 2 | Teil 3 | Sprachbausteine Teil 1 | Sprachbausteine Teil 2 (اختيار مرن + إلغاء) | Schreiben");
