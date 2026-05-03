@@ -229,27 +229,53 @@ function renderSprach2Exam() {
   leftTitle.style.color = "#2c3e66";
   leftColumn.appendChild(leftTitle);
   
-  // عرض النص مع تحويل الفجوات إلى أزرار قابلة للنقر
+  // عرض النص مع تحويل جميع أنواع الفجوات إلى أزرار
   let htmlText = text;
+  
   for (let i = 1; i <= options.length; i++) {
     const btnId = `sprach2_btn_${i}`;
     const currentAnswer = sprach2UserAnswers[i];
-    const btnText = currentAnswer || `___ ${i} ___`;
+    const btnText = currentAnswer || `[ ${i} ]`;
     
-    // إنشاء زر جميل
-    const btnHtml = `<button id="${btnId}" class="sprach2-gap-btn" style="background-color: ${currentAnswer ? '#d4edda' : '#007bff'}; border: none; padding: 8px 20px; border-radius: 25px; cursor: pointer; font-size: 14px; font-weight: bold; margin: 0 5px; transition: all 0.2s; color: ${currentAnswer ? '#155724' : 'white'}; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">${btnText}</button>`;
+    // تصميم الزر
+    let btnColor, btnTextColor;
+    if (currentAnswer) {
+      btnColor = "#d4edda";
+      btnTextColor = "#155724";
+    } else {
+      btnColor = "#007bff";
+      btnTextColor = "white";
+    }
     
-    // استبدال جميع الأشكال الممكنة للفجوات
-    htmlText = htmlText.replace(`.....(${i}).....`, btnHtml);
-    htmlText = htmlText.replace(`......(${i})......`, btnHtml);
-    htmlText = htmlText.replace(`......(${i})`, btnHtml);
-    htmlText = htmlText.replace(`.....( ${i} ).....`, btnHtml);
-    htmlText = htmlText.replace(`__( ${i} )__`, btnHtml);
-    htmlText = htmlText.replace(`___ ${i} ___`, btnHtml);
+    const btnHtml = `<button id="${btnId}" class="sprach2-gap-btn" style="background-color: ${btnColor}; border: none; padding: 6px 16px; border-radius: 20px; cursor: ${currentAnswer ? 'default' : 'pointer'}; font-size: 13px; font-weight: bold; margin: 0 3px; transition: all 0.2s; color: ${btnTextColor}; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">${btnText}</button>`;
     
-    // استبدال النمط الموجود في نصك: .....(1).....
-    const pattern = new RegExp(`\\.{5}\\(\\s*${i}\\s*\\)\\.{5}`, 'g');
-    htmlText = htmlText.replace(pattern, btnHtml);
+    // قائمة بجميع الأنماط الممكنة للفجوات (مرتبة من الأكثر تحديداً إلى الأقل)
+    const patterns = [
+      // النمط: .....(1).....
+      new RegExp(`\\.{5}\\(\\s*${i}\\s*\\)\\.{5}`, 'g'),
+      // النمط: ......(1)......
+      new RegExp(`\\.{6}\\(\\s*${i}\\s*\\)\\.{6}`, 'g'),
+      // النمط: ......(1)
+      new RegExp(`\\.{6}\\(\\s*${i}\\s*\\)`, 'g'),
+      // النمط: .....(1)
+      new RegExp(`\\.{5}\\(\\s*${i}\\s*\\)`, 'g'),
+      // النمط: __ (1) __
+      new RegExp(`__\\s*\\(\\s*${i}\\s*\\)\\s*__`, 'g'),
+      // النمط: __(1)__
+      new RegExp(`__\\(\\s*${i}\\s*\\)__`, 'g'),
+      // النمط: ___ (1) ___
+      new RegExp(`___\\s*\\(\\s*${i}\\s*\\)\\s*___`, 'g'),
+      // النمط: ______ (1) ______
+      new RegExp(`_{4,}\\(\\s*${i}\\s*\\)_{4,}`, 'g'),
+      // النمط: _____ (1) _____
+      new RegExp(`_{5,}\\(\\s*${i}\\s*\\)_{5,}`, 'g'),
+      // النمط: (1) (بدون underscores)
+      new RegExp(`\\(\\s*${i}\\s*\\)`, 'g'),
+    ];
+    
+    for (const pattern of patterns) {
+      htmlText = htmlText.replace(pattern, btnHtml);
+    }
   }
   
   const textDiv = document.createElement("div");
@@ -258,21 +284,22 @@ function renderSprach2Exam() {
   textDiv.style.fontSize = "14px";
   textDiv.style.textAlign = "justify";
   
-  // ربط الأزرار - جعلها قابلة للنقر
+  // ربط الأزرار - جعلها قابلة للنقر فقط إذا لم تكن قد أجيبت
   for (let i = 1; i <= options.length; i++) {
     const btn = textDiv.querySelector(`#sprach2_btn_${i}`);
-    if (btn && !sprach2UserAnswers[i]) {
-      btn.onclick = (function(qId) {
-        return function(e) {
-          e.stopPropagation();
-          console.log(`✅ تم النقر على الزر رقم ${qId}`);
-          selectSprach2Button(qId);
-        };
-      })(i);
-    } else if (btn && sprach2UserAnswers[i]) {
-      // إذا كانت الإجابة موجودة، نعطل الزر قليلاً
-      btn.style.cursor = "default";
-      btn.style.opacity = "0.8";
+    if (btn) {
+      if (!sprach2UserAnswers[i]) {
+        btn.onclick = (function(qId) {
+          return function(e) {
+            e.stopPropagation();
+            console.log(`✅ تم النقر على الزر رقم ${qId}`);
+            selectSprach2Button(qId);
+          };
+        })(i);
+      } else {
+        btn.style.cursor = "default";
+        btn.style.opacity = "0.8";
+      }
     }
   }
   
@@ -290,7 +317,7 @@ function renderSprach2Exam() {
   rightColumn.style.overflowY = "auto";
   
   const rightTitle = document.createElement("h3");
-  rightTitle.innerHTML = "📋 Wörter (اضغط على كلمة ثم على الزر)";
+  rightTitle.innerHTML = "📋 Wörter (اختر كلمة ثم اضغط على الزر)";
   rightTitle.style.marginTop = "0";
   rightTitle.style.color = "#2c3e66";
   rightTitle.style.fontSize = "14px";
@@ -351,7 +378,7 @@ function renderSprach2Exam() {
   
   rightColumn.appendChild(wordsGrid);
   
-  // إضافة تعليمات صغيرة
+  // إضافة تعليمات
   const instructions = document.createElement("div");
   instructions.style.marginTop = "15px";
   instructions.style.padding = "10px";
@@ -360,7 +387,7 @@ function renderSprach2Exam() {
   instructions.style.fontSize = "12px";
   instructions.style.color = "#0d47a1";
   instructions.style.textAlign = "center";
-  instructions.innerHTML = "💡 <strong>طريقة الإجابة:</strong> اضغط على كلمة من اليمين، ثم اضغط على الزر الفارغ في النص";
+  instructions.innerHTML = "💡 <strong>طريقة الإجابة:</strong> اضغط على كلمة من اليمين (تصفر)، ثم اضغط على الزر الفارغ في النص";
   rightColumn.appendChild(instructions);
   
   twoColumns.appendChild(leftColumn);
