@@ -218,7 +218,7 @@ function renderSprach2Exam() {
   leftColumn.style.overflowY = "auto";
   
   const leftTitle = document.createElement("h3");
-  leftTitle.innerHTML = "📝 Text (اضغط على الرقم ثم الكلمة أو العكس)";
+  leftTitle.innerHTML = "📝 Text";
   leftTitle.style.marginTop = "0";
   leftTitle.style.color = "#2c3e66";
   leftTitle.style.fontSize = "14px";
@@ -230,7 +230,7 @@ function renderSprach2Exam() {
     const displayText = currentAnswer || `(${i})`;
     const isFilled = !!currentAnswer;
     
-    const gapHtml = `<span class="sprach2-gap" data-index="${i}" style="display: inline-block; background-color: ${isFilled ? '#d4edda' : '#e0e0e0'}; border: 1px solid ${isFilled ? '#28a745' : '#ccc'}; border-radius: 20px; padding: 4px 12px; margin: 0 2px; cursor: pointer; font-size: 14px; font-weight: bold; color: ${isFilled ? '#155724' : '#333'};">${displayText}</span>`;
+    const gapHtml = `<span class="sprach2-gap" data-index="${i}" style="display: inline-block; background-color: ${isFilled ? '#d4edda' : '#e0e0e0'}; border: 1px solid ${isFilled ? '#28a745' : '#ccc'}; border-radius: 20px; padding: 4px 12px; margin: 0 2px; cursor: pointer; font-size: 14px; font-weight: bold; color: ${isFilled ? '#155724' : '#333'}; transition: none;">${displayText}</span>`;
     
     htmlText = htmlText.replace(`__( ${i} )__`, gapHtml);
     htmlText = htmlText.replace(`......(${i})......`, gapHtml);
@@ -266,7 +266,7 @@ function renderSprach2Exam() {
   rightColumn.style.overflowY = "auto";
   
   const rightTitle = document.createElement("h3");
-  rightTitle.innerHTML = "📋 Wörter (اضغط على كلمة ثم على رقم)";
+  rightTitle.innerHTML = "📋 Wörter";
   rightTitle.style.marginTop = "0";
   rightTitle.style.color = "#2c3e66";
   rightTitle.style.fontSize = "14px";
@@ -292,9 +292,9 @@ function renderSprach2Exam() {
     wordCard.style.padding = "8px 12px";
     wordCard.style.textAlign = "center";
     wordCard.style.cursor = "pointer";
-    wordCard.style.transition = "all 0.2s";
     wordCard.style.fontWeight = "500";
     wordCard.style.color = "#007bff";
+    wordCard.style.transition = "none";
     
     if (isSprach2WordUsed(word)) {
       wordCard.style.backgroundColor = "#d4edda";
@@ -306,13 +306,11 @@ function renderSprach2Exam() {
       wordCard.addEventListener("mouseenter", function() {
         if (!isSprach2WordUsed(this.textContent)) {
           this.style.backgroundColor = "#e3f2fd";
-          this.style.transform = "scale(1.02)";
         }
       });
       wordCard.addEventListener("mouseleave", function() {
         if (!isSprach2WordUsed(this.textContent)) {
           this.style.backgroundColor = "#ffffff";
-          this.style.transform = "scale(1)";
         }
       });
       wordCard.addEventListener("click", (function(w) {
@@ -333,7 +331,7 @@ function renderSprach2Exam() {
   instructions.style.fontSize = "12px";
   instructions.style.color = "#0d47a1";
   instructions.style.textAlign = "center";
-  instructions.innerHTML = "💡 اضغط على كلمة (تصفر) ثم على رقم (يزرق) أو العكس | اضغط على إجابة مرة ثانية لإلغائها";
+  instructions.innerHTML = "💡 اضغط على كلمة ثم على رقم | اضغط على إجابة مرة ثانية لإلغائها";
   rightColumn.appendChild(instructions);
   
   twoColumns.appendChild(leftColumn);
@@ -383,6 +381,9 @@ function renderSprach2Exam() {
   resultDiv.style.borderRadius = "8px";
   resultDiv.style.textAlign = "center";
   resultDiv.style.fontWeight = "bold";
+  resultDiv.style.position = "sticky";
+  resultDiv.style.bottom = "10px";
+  resultDiv.style.zIndex = "999";
   container.appendChild(resultDiv);
 }
 
@@ -510,20 +511,18 @@ function removeSprach2Answer(gapIndex) {
     wordCard.style.padding = "8px 12px";
     wordCard.style.textAlign = "center";
     wordCard.style.cursor = "pointer";
-    wordCard.style.transition = "all 0.2s";
     wordCard.style.fontWeight = "500";
     wordCard.style.color = "#007bff";
+    wordCard.style.transition = "none";
     
     wordCard.addEventListener("mouseenter", function() {
       if (!isSprach2WordUsed(this.textContent)) {
         this.style.backgroundColor = "#e3f2fd";
-        this.style.transform = "scale(1.02)";
       }
     });
     wordCard.addEventListener("mouseleave", function() {
       if (!isSprach2WordUsed(this.textContent)) {
         this.style.backgroundColor = "#ffffff";
-        this.style.transform = "scale(1)";
       }
     });
     wordCard.addEventListener("click", (function(w) {
@@ -1241,7 +1240,7 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
         correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.correct ? 'Richtig' : 'Falsch'}`;
       } else {
         correctMsg.style.color = '#ff9800';
-        correctMsg.innerHTML = `⚠️ لم يتم الإجابة - الصحيح: ${q.correct ? 'Richtig' : 'Falsch'}`;
+        correctMsg.innerHTML = ``;
       }
       card.appendChild(correctMsg);
     }
