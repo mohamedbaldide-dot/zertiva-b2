@@ -617,7 +617,20 @@ function checkSprach2Exam() {
   }
 }
 
-
+function checkSprach2Exam() {
+  const options = currentSprach2Data.options;
+  let score = 0;
+  const total = options.length;
+  const pointsPerQuestion = 25 / total;
+  
+  for (let i = 0; i < options.length; i++) {
+    const opt = options[i];
+    const userAnswer = sprach2UserAnswers[opt.id];
+    const isCorrect = (userAnswer === opt.correct);
+    
+    if (isCorrect) {
+      score++;
+    }
     
     const gapSpan = document.querySelector(`.sprach2-gap[data-index='${opt.id}']`);
     if (gapSpan) {
