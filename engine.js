@@ -1,6 +1,5 @@
 // ============================================
 // engine.js - محرك الامتحانات المتكامل
-// يدعم: Matching (Custom Dropdown) + True/False (Hören 1,2,3) + Teil 2 + Teil 3 + Sprachbausteine Teil 1 + Sprachbausteine Teil 2 + Schreiben
 // ============================================
 
 console.log("✅ engine.js تم تحميله (النسخة النهائية المعدلة)");
@@ -34,13 +33,11 @@ function renderSchreibenExam() {
   
   const data = currentSchreibenData;
   
-  // تقسيم الصفحة إلى عمودين
   const twoColumns = document.createElement("div");
   twoColumns.style.display = "flex";
   twoColumns.style.gap = "30px";
   twoColumns.style.flexWrap = "wrap";
   
-  // ========== العمود الأيسر: Situation + Aufgabe ==========
   const leftColumn = document.createElement("div");
   leftColumn.style.flex = "1";
   leftColumn.style.minWidth = "350px";
@@ -51,7 +48,6 @@ function renderSchreibenExam() {
   leftColumn.style.maxHeight = "80vh";
   leftColumn.style.overflowY = "auto";
   
-  // Situation
   const situationTitle = document.createElement("h3");
   situationTitle.innerHTML = "📌 SITUATION";
   situationTitle.style.color = "#2c3e66";
@@ -74,7 +70,6 @@ function renderSchreibenExam() {
   situationDiv.appendChild(situationText);
   leftColumn.appendChild(situationDiv);
   
-  // Aufgabe
   const aufgabeTitle = document.createElement("h3");
   aufgabeTitle.innerHTML = "📝 AUFGABE";
   aufgabeTitle.style.color = "#2c3e66";
@@ -123,7 +118,6 @@ function renderSchreibenExam() {
   
   leftColumn.appendChild(aufgabeDiv);
   
-  // ========== العمود الأيمن: Template ==========
   const rightColumn = document.createElement("div");
   rightColumn.style.flex = "1";
   rightColumn.style.minWidth = "350px";
@@ -134,7 +128,6 @@ function renderSchreibenExam() {
   rightColumn.style.maxHeight = "80vh";
   rightColumn.style.overflowY = "auto";
   
-  // ✅ التعديل: إزالة الـ ✦ المكررة
   const templateTitle = document.createElement("div");
   let cleanTitle = data.template.title;
   cleanTitle = cleanTitle.replace(/✦/g, '').trim();
@@ -158,11 +151,9 @@ function renderSchreibenExam() {
   templateBox.style.lineHeight = "1.6";
   templateBox.style.whiteSpace = "pre-wrap";
   
-  // ✅ التعديل: لا نضيف 🔹 إضافية، فقط نلون النقاط باللون الأزرق
   let templateText = data.template.text;
   const bluePoints = data.template.colors.blue_points || [];
   
-  // تحويل النص إلى HTML مع إضافة اللون الأزرق للنقاط (بدون إضافة 🔹)
   let htmlText = templateText.replace(/\n/g, '<br>');
   for (let i = 0; i < bluePoints.length; i++) {
     const point = bluePoints[i];
@@ -201,7 +192,6 @@ function isSprach2WordUsed(word) {
   }
   return false;
 }
-// ========== Sprachbausteine Teil 2 المحسن بالكامل ==========
 
 function renderSprach2Exam() {
   const container = document.getElementById("sprach2");
@@ -587,76 +577,6 @@ function checkSprach2Exam() {
         gapSpan.style.backgroundColor = "#ffc107";
         gapSpan.style.color = "#333";
         gapSpan.style.border = "2px solid #e0a800";
-        const hintSpan = document.createElement("span");
-        hintSpan.textContent = ` ✅ الصحيح: ${opt.correct}`;
-        hintSpan.style.color = "#28a745";
-        hintSpan.style.fontSize = "12px";
-        hintSpan.style.marginLeft = "8px";
-        if (!gapSpan.parentElement.querySelector(`.correct-hint-${opt.id}`)) {
-          hintSpan.className = `correct-hint-${opt.id}`;
-          gapSpan.parentElement.appendChild(hintSpan);
-        }
-      }
-    }
-  }
-  
-  const finalScore = (score * pointsPerQuestion).toFixed(2);
-  const resultDiv = document.getElementById("sprach2Result");
-  resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
-  resultDiv.style.display = "block";
-  
-  if (finalScore >= 20) {
-    resultDiv.style.backgroundColor = "#d4edda";
-    resultDiv.style.color = "#155724";
-  } else if (finalScore >= 15) {
-    resultDiv.style.backgroundColor = "#fff3cd";
-    resultDiv.style.color = "#856404";
-  } else {
-    resultDiv.style.backgroundColor = "#f8d7da";
-    resultDiv.style.color = "#721c24";
-  }
-}
-
-function checkSprach2Exam() {
-  const options = currentSprach2Data.options;
-  let score = 0;
-  const total = options.length;
-  const pointsPerQuestion = 25 / total;
-  
-  for (let i = 0; i < options.length; i++) {
-    const opt = options[i];
-    const userAnswer = sprach2UserAnswers[opt.id];
-    const isCorrect = (userAnswer === opt.correct);
-    
-    if (isCorrect) {
-      score++;
-    }
-    
-    const gapSpan = document.querySelector(`.sprach2-gap[data-index='${opt.id}']`);
-    if (gapSpan) {
-      if (isCorrect) {
-        gapSpan.style.backgroundColor = "#28a745";
-        gapSpan.style.color = "white";
-        gapSpan.style.border = "2px solid #1e7e34";
-      } else if (userAnswer) {
-        gapSpan.style.backgroundColor = "#dc3545";
-        gapSpan.style.color = "white";
-        gapSpan.style.border = "2px solid #bd2130";
-        // إضافة تلميح الإجابة الصحيحة
-        const hintSpan = document.createElement("span");
-        hintSpan.textContent = ` ✅ الصحيح: ${opt.correct}`;
-        hintSpan.style.color = "#28a745";
-        hintSpan.style.fontSize = "12px";
-        hintSpan.style.marginLeft = "8px";
-        if (!gapSpan.parentElement.querySelector(`.correct-hint-${opt.id}`)) {
-          hintSpan.className = `correct-hint-${opt.id}`;
-          gapSpan.parentElement.appendChild(hintSpan);
-        }
-      } else {
-        gapSpan.style.backgroundColor = "#ffc107";
-        gapSpan.style.color = "#333";
-        gapSpan.style.border = "2px solid #e0a800";
-        // إضافة تلميح الإجابة الصحيحة
         const hintSpan = document.createElement("span");
         hintSpan.textContent = ` ✅ الصحيح: ${opt.correct}`;
         hintSpan.style.color = "#28a745";
