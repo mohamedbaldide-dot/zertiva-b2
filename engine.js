@@ -231,23 +231,26 @@ function renderSprach2Exam() {
   
   // عرض النص مع تحويل جميع أنواع الفجوات إلى أزرار
   let htmlText = text;
-  
   for (let i = 1; i <= options.length; i++) {
     const btnId = `sprach2_btn_${i}`;
     const currentAnswer = sprach2UserAnswers[i];
     const btnText = currentAnswer || `[ ${i} ]`;
+    const btnHtml = `<button id="${btnId}" class="sprach2-gap-btn" style="background-color: ${currentAnswer ? '#d4edda' : '#007bff'};
+    border: none; padding: 6px 14px; border-radius: 20px; cursor: ${currentAnswer ? 'default' : 'pointer'}; font-size: 13px;
+    font-weight: bold; margin: 0 3px; color: ${currentAnswer ? '#155724' : 'white'};">${btnText}</button>`;
     
-    // تصميم الزر
-    let btnColor, btnTextColor;
-    if (currentAnswer) {
-      btnColor = "#d4edda";
-      btnTextColor = "#155724";
-    } else {
-      btnColor = "#007bff";
-      btnTextColor = "white";
-    }
-    
-    const btnHtml = `<button id="${btnId}" class="sprach2-gap-btn" style="background-color: ${btnColor}; border: none; padding: 6px 16px; border-radius: 20px; cursor: ${currentAnswer ? 'default' : 'pointer'}; font-size: 13px; font-weight: bold; margin: 0 3px; transition: all 0.2s; color: ${btnTextColor}; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">${btnText}</button>`;
+    // استبدال جميع الأنماط
+    htmlText = htmlText.replace(new RegExp(`\\.{5}\\(\\s*${i}\\s*\\)\\.{5}`, 'g'), btnHtml);
+    htmlText = htmlText.replace(new RegExp(`\\.{6}\\(\\s*${i}\\s*\\)\\.{6}`, 'g'), btnHtml);
+    htmlText = htmlText.replace(new RegExp(`\\.{5}\\(\\s*${i}\\s*\\)`, 'g'), btnHtml);
+    htmlText = htmlText.replace(new RegExp(`__\\s*\\(\\s*${i}\\s*\\)\\s*__`, 'g'), btnHtml);
+    htmlText = htmlText.replace(new RegExp(`__\\(\\s*${i}\\s*\\)__`, 'g'), btnHtml);
+    htmlText = htmlText.replace(`__( ${i} )__`, btnHtml);
+    htmlText = htmlText.replace(`......(${i})......`, btnHtml);
+    htmlText = htmlText.replace(`......(${i})`, btnHtml);
+    htmlText = htmlText.replace(`.....( ${i} ).....`, btnHtml);
+    htmlText = htmlText.replace(new RegExp(`\\(\\s*${i}\\s*\\)`, 'g'), btnHtml);
+}
     
     // قائمة بجميع الأنماط الممكنة للفجوات (مرتبة من الأكثر تحديداً إلى الأقل)
     const patterns = [
@@ -440,47 +443,42 @@ function renderSprach2Exam() {
   resultDiv.style.fontWeight = "bold";
   container.appendChild(resultDiv);
 }
+// ========== دوال الربط المرن لـ Sprach2 ==========
 function selectSprach2Word(word) {
   if (isSprach2WordUsed(word)) {
     alert(`⚠️ كلمة "${word}" تم استخدامها بالفعل!`);
     return;
   }
   sprach2SelectedWord = word;
-  sprach2SelectedButton = null;
   
-  // إزالة التمييز عن جميع البطاقات
+  // تمييز الكلمة المختارة
   document.querySelectorAll('.sprach2-word-card').forEach(card => {
-    card.classList.remove('selected-word');
     card.style.backgroundColor = "#ffffff";
     card.style.border = "2px solid #007bff";
-    card.style.color = "#007bff";
   });
-  
-  // تمييز البطاقة المحددة
   const wordCard = document.getElementById(`sprach2_word_${word}`);
   if (wordCard) {
-    wordCard.classList.add('selected-word');
     wordCard.style.backgroundColor = "#ffc107";
     wordCard.style.border = "2px solid #ff9800";
-    wordCard.style.color = "#333";
   }
   
-  console.log(`📌 تم اختيار الكلمة: ${word}`);
-  connectSprach2Match();
+  // إذا كان هناك زر محدد مسبقاً، قم بالربط
+  if (sprach2SelectedButton !== null) {
+    connectSprach2Match();
+  }
 }
 
 function selectSprach2Button(questionId) {
-  // التحقق إذا كان السؤال قد تمت إجابته بالفعل
   if (sprach2UserAnswers[questionId]) {
     alert(`⚠️ السؤال رقم ${questionId} تمت إجابته بالفعل!`);
     return;
   }
-  
   sprach2SelectedButton = questionId;
-  sprach2SelectedWord = null;
   
-  console.log(`📌 تم اختيار الزر رقم ${questionId}`);
-  connectSprach2Match();
+  // إذا كانت هناك كلمة محددة مسبقاً، قم بالربط
+  if (sprach2SelectedWord !== null) {
+    connectSprach2Match();
+  }
 }
 
 function connectSprach2Match() {
@@ -488,25 +486,20 @@ function connectSprach2Match() {
     const word = sprach2SelectedWord;
     const buttonIndex = sprach2SelectedButton;
     
-    // التحقق مرة أخرى من أن الكلمة لم تُستخدم
     if (isSprach2WordUsed(word)) {
       alert(`⚠️ كلمة "${word}" تم استخدامها بالفعل!`);
       sprach2SelectedWord = null;
       sprach2SelectedButton = null;
-      // إعادة تعيين التمييز
-      document.querySelectorAll('.sprach2-word-card').forEach(card => {
-        card.style.backgroundColor = "#ffffff";
-        card.style.border = "2px solid #007bff";
-      });
+      renderSprach2Exam();
       return;
     }
     
-    // حفظ الإجابة
     sprach2UserAnswers[buttonIndex] = word;
-    console.log(`✅ تم الربط: الزر ${buttonIndex} = كلمة "${word}"`);
-    
-    // إعادة رسم الواجهة لتحديث الأزرار
+    sprach2SelectedWord = null;
+    sprach2SelectedButton = null;
     renderSprach2Exam();
+  }
+}
     
     // إعادة تعيين المتغيرات
     sprach2SelectedWord = null;
