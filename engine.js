@@ -910,11 +910,11 @@ function checkSprach1Exam() {
     resultDiv.style.color = "#721c24";
   }
 }
+
 // ========== نظام True/False مع عرض أرقام الإجابات الصحيحة (فقط لـ Hören) ==========
 window.buildTrueFalseExam = function(container, questions, note) {
   container.innerHTML = '';
   
-  // ✅ التأكد من تنظيف أي متغيرات سابقة
   if (window._trueFalseUserAnswers) {
     delete window._trueFalseUserAnswers;
   }
@@ -970,7 +970,6 @@ window.buildTrueFalseExam = function(container, questions, note) {
     radioTrue.onchange = (function(idx) {
       return function() {
         window._trueFalseUserAnswers[idx] = true;
-        console.log("✅ تم اختيار صحيح للسؤال", idx + 1);
       };
     })(i);
     
@@ -997,7 +996,6 @@ window.buildTrueFalseExam = function(container, questions, note) {
     radioFalse.onchange = (function(idx) {
       return function() {
         window._trueFalseUserAnswers[idx] = false;
-        console.log("✅ تم اختيار خطأ للسؤال", idx + 1);
       };
     })(i);
     
@@ -1050,8 +1048,9 @@ window.buildTrueFalseExam = function(container, questions, note) {
   checkBtn.style.cursor = 'pointer';
   checkBtn.style.fontSize = '16px';
   
+  // ✅ الآن نمرر container إلى دالة التصحيح
   checkBtn.onclick = () => {
-    checkTrueFalseExam(questions, window._trueFalseUserAnswers, correctNumbersContainer);
+    checkTrueFalseExam(container, questions, window._trueFalseUserAnswers, correctNumbersContainer);
   };
   
   const resetBtn = document.createElement('button');
@@ -1096,8 +1095,6 @@ window.buildTrueFalseExam = function(container, questions, note) {
       resultDiv.style.display = 'none';
       resultDiv.innerHTML = '';
     }
-    
-    console.log("✅ تم إعادة تعيين الامتحان");
   };
   
   buttonsDiv.appendChild(checkBtn);
@@ -1114,18 +1111,15 @@ window.buildTrueFalseExam = function(container, questions, note) {
   container.appendChild(resultDiv);
 };
 
+// ✅ الدالة المعدلة التي تقبل container كمعامل
 function checkTrueFalseExam(container, questions, answers, correctNumbersContainer) {
-  console.log("🟢 بدء التصحيح...");
-  console.log("عدد الأسئلة:", questions.length);
-  console.log("الإجابات:", answers);
-  
   let score = 0;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
   let correctIndices = [];
   
-  const cards = document.querySelectorAll('#hoeren1 .question-card, #hoeren2 .question-card, #hoeren3 .question-card');
-  console.log("عدد البطاقات الموجودة:", cards.length);
+  // ✅ استخدم container نفسه للبحث عن البطاقات (بدلاً من document.querySelectorAll)
+  const cards = container.querySelectorAll('.question-card');
   
   for (let i = 0; i < questions.length; i++) {
     const q = questions[i];
@@ -1133,12 +1127,7 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
     const userAnswer = answers[i];
     const isCorrect = (userAnswer === q.correct);
     
-    console.log(`السؤال ${i+1}: الإجابة الصحيحة=${q.correct}, إجابة المستخدم=${userAnswer}, صحيح=${isCorrect}`);
-    
-    if (!card) {
-      console.warn(`⚠️ لم يتم العثور على بطاقة للسؤال ${i+1}`);
-      continue;
-    }
+    if (!card) continue;
     
     card.classList.remove('correct-answer-card', 'wrong-answer-card');
     const oldMsg = card.querySelector('.correct-message');
@@ -1151,25 +1140,20 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
     } else {
       card.classList.add('wrong-answer-card');
       
+      const correctMsg = document.createElement('div');
+      correctMsg.className = 'correct-message';
+      correctMsg.style.marginTop = '10px';
+      correctMsg.style.fontSize = '14px';
+      correctMsg.style.fontWeight = 'bold';
+      
       if (userAnswer !== undefined) {
-        const correctMsg = document.createElement('div');
-        correctMsg.className = 'correct-message';
         correctMsg.style.color = '#28a745';
-        correctMsg.style.marginTop = '10px';
-        correctMsg.style.fontSize = '14px';
-        correctMsg.style.fontWeight = 'bold';
         correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.correct ? 'Richtig' : 'Falsch'}`;
-        card.appendChild(correctMsg);
-      } else if (userAnswer === undefined) {
-        const correctMsg = document.createElement('div');
-        correctMsg.className = 'correct-message';
+      } else {
         correctMsg.style.color = '#ff9800';
-        correctMsg.style.marginTop = '10px';
-        correctMsg.style.fontSize = '14px';
-        correctMsg.style.fontWeight = 'bold';
         correctMsg.innerHTML = `⚠️ لم يتم الإجابة - الصحيح: ${q.correct ? 'Richtig' : 'Falsch'}`;
-        card.appendChild(correctMsg);
       }
+      card.appendChild(correctMsg);
     }
     
     const radios = card.querySelectorAll('input[type="radio"]');
@@ -1181,18 +1165,15 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
       if (isCorrect && userAnswer !== undefined) {
         if (radio.checked) {
           parentLabel.style.backgroundColor = '#d4edda';
-          parentLabel.style.borderColor = '#28a745';
           parentLabel.style.border = '2px solid #28a745';
         }
       } else {
         if (radio.checked) {
           parentLabel.style.backgroundColor = '#f8d7da';
-          parentLabel.style.borderColor = '#dc3545';
           parentLabel.style.border = '2px solid #dc3545';
         }
         if (radioValue === q.correct) {
           parentLabel.style.backgroundColor = '#d4edda';
-          parentLabel.style.borderColor = '#28a745';
           parentLabel.style.border = '2px solid #28a745';
         }
       }
@@ -1225,8 +1206,6 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
       resultDiv.style.color = 'white';
     }
   }
-  
-  console.log(`✅ النتيجة النهائية: ${finalScore} / 25`);
 }
 
 
