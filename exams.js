@@ -20,8 +20,59 @@ let currentSkill = "lesen1";
 let currentExamId = null;
 let currentExamsList = [];
 
-// قائمة جميع الامتحانات (30 امتحاناً بعد حذف 24 و 32)
-const allExams = [
+// ========== قائمة امتحانات Lesen Teil 1 (47 امتحاناً) ==========
+const lesenExams = [
+  { id: 1, title: "Jugend Forscher", enabled: true, hasFile: true },
+  { id: 2, title: "sport ist gesund", enabled: true, hasFile: true },
+  { id: 3, title: "sport ist gesund (التعديل 1)", enabled: true, hasFile: true },
+  { id: 4, title: "Tanzkurs", enabled: true, hasFile: true },
+  { id: 5, title: "Tanzkurs (التعديل 1)", enabled: true, hasFile: true },
+  { id: 6, title: "Impfung", enabled: true, hasFile: true },
+  { id: 7, title: "Insel", enabled: true, hasFile: true },
+  { id: 8, title: "Bilder", enabled: true, hasFile: true },
+  { id: 9, title: "Grundschule", enabled: true, hasFile: true },
+  { id: 10, title: "Österreich - Naschmarkt", enabled: true, hasFile: true },
+  { id: 11, title: "Insekten", enabled: true, hasFile: true },
+  { id: 12, title: "Insekten (التعديل 1)", enabled: true, hasFile: true },
+  { id: 13, title: "das Benzin", enabled: true, hasFile: true },
+  { id: 14, title: "Kaffee", enabled: true, hasFile: true },
+  { id: 15, title: "Programmierer", enabled: true, hasFile: true },
+  { id: 16, title: "Programmierer (التعديل 1)", enabled: true, hasFile: true },
+  { id: 17, title: "Programmierer (التعديل 2)", enabled: true, hasFile: true },
+  { id: 18, title: "Trampolin", enabled: true, hasFile: true },
+  { id: 19, title: "Bonbons", enabled: true, hasFile: true },
+  { id: 20, title: "Umwelt", enabled: true, hasFile: true },
+  { id: 21, title: "Licht", enabled: true, hasFile: true },
+  { id: 22, title: "Licht (التعديل 1)", enabled: true, hasFile: true },
+  { id: 23, title: "Kartoffel", enabled: true, hasFile: true },
+  { id: 24, title: "Kartoffel (التعديل 1)", enabled: true, hasFile: true },
+  { id: 25, title: "Bienen", enabled: true, hasFile: true },
+  { id: 26, title: "Spiele", enabled: true, hasFile: true },
+  { id: 27, title: "Geld", enabled: true, hasFile: true },
+  { id: 28, title: "Kinder und Schulen", enabled: true, hasFile: true },
+  { id: 29, title: "Kindertelefon", enabled: true, hasFile: true },
+  { id: 30, title: "Alpen", enabled: true, hasFile: true },
+  { id: 31, title: "Alpen (التعديل 1)", enabled: true, hasFile: true },
+  { id: 32, title: "Alpen (التعديل 2)", enabled: true, hasFile: true },
+  { id: 33, title: "Suchtmittel - Nase", enabled: true, hasFile: true },
+  { id: 34, title: "الانتخابات والمرأة الروسية", enabled: true, hasFile: true },
+  { id: 35, title: "kein Zeit", enabled: true, hasFile: true },
+  { id: 36, title: "kein Zeit (التعديل 1)", enabled: true, hasFile: true },
+  { id: 37, title: "Limonade", enabled: true, hasFile: true },
+  { id: 38, title: "Limonade (التعديل 1)", enabled: true, hasFile: true },
+  { id: 39, title: "Limonade (التعديل 2)", enabled: true, hasFile: true },
+  { id: 40, title: "Auf dem Weg", enabled: true, hasFile: true },
+  { id: 41, title: "Schlafzug", enabled: true, hasFile: true },
+  { id: 42, title: "Schlafzug (التعديل 1)", enabled: true, hasFile: true },
+  { id: 43, title: "Löwen", enabled: true, hasFile: true },
+  { id: 44, title: "Fisch", enabled: true, hasFile: true },
+  { id: 45, title: "Frauen im Arbeitsmarkt", enabled: true, hasFile: true },
+  { id: 46, title: "Baby TV", enabled: true, hasFile: true },
+  { id: 47, title: "Bäder", enabled: true, hasFile: true }
+];
+
+// ========== قائمة امتحانات Schreiben (30 امتحاناً) ==========
+const schreibenExams = [
   { id: 1, title: "Fotobuch", enabled: true, hasFile: true },
   { id: 2, title: "Abenteuer TIKKI TAKKA", enabled: true, hasFile: true },
   { id: 3, title: "Informatik-Shop", enabled: true, hasFile: true },
@@ -45,17 +96,16 @@ const allExams = [
   { id: 21, title: "Schmelzkäse Alpengeschmack", enabled: true, hasFile: true },
   { id: 22, title: "Meine Kiste: Obst und Gemüse", enabled: true, hasFile: true },
   { id: 23, title: "Hotel mit Thermen", enabled: true, hasFile: true },
-  // id 24 محذوف (Antwort an Anne - Laras Geburtstag)
-  { id: 24, title: "Kopfhörer", enabled: true, hasFile: true },      // كان 25
-  { id: 25, title: "Badezimmer renovieren", enabled: true, hasFile: true },  // كان 26
-  { id: 26, title: "FREIZEITBAD MEERESRAUSCHEN", enabled: true, hasFile: true }, // كان 27
-  { id: 27, title: "Reisebüro Sonnenschein", enabled: true, hasFile: true },     // كان 28
-  { id: 28, title: "Kursbeschreibung (sich vorstellen)", enabled: true, hasFile: true }, // كان 29
-  { id: 29, title: "FITWATCH Smartwatch", enabled: true, hasFile: true },         // كان 30
-  { id: 30, title: "Securvia Reisegepäckversicherung", enabled: true, hasFile: true }  // كان 31
-  // id 32 محذوف (DIGIBIKE - Das smarte Hightech-Fahrrad)
+  { id: 24, title: "Kopfhörer", enabled: true, hasFile: true },
+  { id: 25, title: "Badezimmer renovieren", enabled: true, hasFile: true },
+  { id: 26, title: "FREIZEITBAD MEERESRAUSCHEN", enabled: true, hasFile: true },
+  { id: 27, title: "Reisebüro Sonnenschein", enabled: true, hasFile: true },
+  { id: 28, title: "Kursbeschreibung (sich vorstellen)", enabled: true, hasFile: true },
+  { id: 29, title: "FITWATCH Smartwatch", enabled: true, hasFile: true },
+  { id: 30, title: "Securvia Reisegepäckversicherung", enabled: true, hasFile: true }
 ];
 
+// أسماء الملفات الحقيقية (لجميع الامتحانات)
 const actualFileNames = {
   1: "exam1.json", 2: "exam2.json", 3: "exam3.json",
   4: "exam4.json", 5: "exam5.json", 6: "exam6.json",
@@ -66,12 +116,18 @@ const actualFileNames = {
   19: "exam19.json", 20: "exam20.json", 21: "exam21.json",
   22: "exam22.json", 23: "exam23.json", 24: "exam24.json",
   25: "exam25.json", 26: "exam26.json", 27: "exam27.json",
-  28: "exam28.json", 29: "exam29.json", 30: "exam30.json"
+  28: "exam28.json", 29: "exam29.json", 30: "exam30.json",
+  31: "exam31.json", 32: "exam32.json", 33: "exam33.json",
+  34: "exam34.json", 35: "exam35.json", 36: "exam36.json",
+  37: "exam37.json", 38: "exam38.json", 39: "exam39.json",
+  40: "exam40.json", 41: "exam41.json", 42: "exam42.json",
+  43: "exam43.json", 44: "exam44.json", 45: "exam45.json",
+  46: "exam46.json", 47: "exam47.json"
 };
 
 // ✅ قائمة الامتحانات لكل جزء
 const examsDatabase = {
-  lesen1: allExams.filter(exam => exam.enabled === true),
+  lesen1: lesenExams,
   lesen2: [
     { id: 1, title: "Krista", enabled: true, hasFile: true },
     { id: 2, title: "Krista (معدل)", enabled: true, hasFile: true },
@@ -328,9 +384,40 @@ const examsDatabase = {
     { id: 25, title: "Das Fest (ohne Frankfurt)", enabled: true, hasFile: true },
     { id: 26, title: "Das Fest (mit Frankfurt)", enabled: true, hasFile: true },
     { id: 27, title: "Radio Konzert", enabled: true, hasFile: true }
-  ],
-  schreiben: allExams.filter(exam => exam.enabled === true)
-};
+],
+  // قائمة امتحانات Schreiben (32 امتحاناً)
+const schreibenExams = [
+  { id: 1, title: "Fotobuch", enabled: true, hasFile: true },
+  { id: 2, title: "Abenteuer TIKKI TAKKA", enabled: true, hasFile: true },
+  { id: 3, title: "Informatik-Shop", enabled: true, hasFile: true },
+  { id: 4, title: "Kosmetik-Shop", enabled: true, hasFile: true },
+  { id: 5, title: "Partyservice", enabled: true, hasFile: true },
+  { id: 6, title: "ESS Firma", enabled: true, hasFile: true },
+  { id: 7, title: "Kursbeschreibung (Wohndesign)", enabled: true, hasFile: true },
+  { id: 8, title: "Renovierungskurs", enabled: true, hasFile: true },
+  { id: 9, title: "Engagement für Jugendliche", enabled: true, hasFile: true },
+  { id: 10, title: "Wohnen auf Zeit in Oranienburg", enabled: true, hasFile: true },
+  { id: 11, title: "Autovermietung Neustadt", enabled: true, hasFile: true },
+  { id: 12, title: "Freizeitverein", enabled: true, hasFile: true },
+  { id: 13, title: "Naturmuseum", enabled: true, hasFile: true },
+  { id: 14, title: "Backstage-Musical-Tour", enabled: true, hasFile: true },
+  { id: 15, title: "KULTUR UND KULINARIK", enabled: true, hasFile: true },
+  { id: 16, title: "Mehr bewegen - aber wie? (Fahrradtour)", enabled: true, hasFile: true },
+  { id: 17, title: "Super Clean-Staubsaugroboter", enabled: true, hasFile: true },
+  { id: 18, title: "Apartment-Haus", enabled: true, hasFile: true },
+  { id: 19, title: "Kostenlose Apps für dein Handy!", enabled: true, hasFile: true },
+  { id: 20, title: "Nie mehr schlaflos in Deutschland - Komfort-Matratze", enabled: true, hasFile: true },
+  { id: 21, title: "Schmelzkäse Alpengeschmack", enabled: true, hasFile: true },
+  { id: 22, title: "Meine Kiste: Obst und Gemüse", enabled: true, hasFile: true },
+  { id: 23, title: "Hotel mit Thermen", enabled: true, hasFile: true },
+  { id: 24, title: "Kopfhörer", enabled: true, hasFile: true },
+  { id: 25, title: "Badezimmer renovieren", enabled: true, hasFile: true },
+  { id: 26, title: "FREIZEITBAD MEERESRAUSCHEN", enabled: true, hasFile: true },
+  { id: 27, title: "Reisebüro Sonnenschein", enabled: true, hasFile: true },
+  { id: 28, title: "Kursbeschreibung (sich vorstellen)", enabled: true, hasFile: true },
+  { id: 29, title: "FITWATCH Smartwatch", enabled: true, hasFile: true },
+  { id: 30, title: "Securvia Reisegepäckversicherung", enabled: true, hasFile: true }
+];
 
 function renderTeileList() {
   const container = document.getElementById("teileList");
