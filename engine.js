@@ -1558,11 +1558,14 @@ function selectTeil3Option(questionIndex, selectedText) {
     updateTeil3DropdownList(i);
   }
 }
-
 function checkTeil3Exam() {
   const items = currentTeil3Data.items;
   let score = 0;
   let total = items.length;
+  
+  console.log("🟢 بدء تصحيح Teil 3");
+  console.log("عدد العناصر:", total);
+  console.log("البيانات:", currentTeil3Data);
   
   for (let i = 0; i < total; i++) {
     const card = document.getElementById(`teil3_item_${i}`);
@@ -1578,7 +1581,9 @@ function checkTeil3Exam() {
     const card = document.getElementById(`teil3_item_${i}`);
     const userAnswer = teil3UserAnswers[i];
     const correctIndex = item.correct;
-    const btnSpan = document.querySelector(`teil3_btn_${i} span:first-child`);
+    const btnSpan = document.querySelector(`#teil3_btn_${i} span:first-child`);
+    
+    console.log(`السؤال ${i+1}: correctIndex=${correctIndex}, userAnswer=${userAnswer}`);
     
     let isCorrect = false;
     let displayText = "";
@@ -1635,6 +1640,8 @@ function checkTeil3Exam() {
     resultDiv.style.backgroundColor = "#f8d7da";
     resultDiv.style.color = "#721c24";
   }
+  
+  console.log(`✅ النتيجة النهائية: ${finalScore} / 25`);
 }
 
 function resetTeil3Exam() {
