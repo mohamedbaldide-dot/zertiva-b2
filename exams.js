@@ -1,4 +1,4 @@
-// ============================================
+============================================
 // exams.js - نظام الامتحانات المتكامل
 // يدعم: Lesen Teil 1, Lesen Teil 2, Lesen Teil 3, Hören Teil 1-3, Sprachbausteine Teil 1, Sprachbausteine Teil 2, Schreiben
 // ============================================
