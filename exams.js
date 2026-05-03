@@ -101,10 +101,8 @@ const schreibenExams = [
   { id: 26, title: "FREIZEITBAD MEERESRAUSCHEN", enabled: true, hasFile: true },
   { id: 27, title: "Reisebüro Sonnenschein", enabled: true, hasFile: true },
   { id: 28, title: "Kursbeschreibung (sich vorstellen)", enabled: true, hasFile: true },
-  { id: 29, title: "FITWATCH Smartwatch", enabled: true, hasFile: true },
-  { id: 30, title: "Securvia Reisegepäckversicherung", enabled: true, hasFile: true }
+  { id: 29, title: "FITWATCH Smartwatch", enabled: true, hasFile: true }
 ];
-
 // أسماء الملفات الحقيقية (لجميع الامتحانات)
 const actualFileNames = {
   1: "exam1.json", 2: "exam2.json", 3: "exam3.json",
