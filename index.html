@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zertiva B2</title>
+<title>Zertiva B2 - Telc B2 Preparation</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,9 +11,9 @@
 <!-- الصفحة 1: البداية -->
 <div id="home" class="page active home">
   <div class="card">
-    <h1>Zertiva B2</h1>
+    <h1>🎯 Zertiva B2</h1>
     <p>أوثق منصة للتحضير لامتحان Telc B2</p>
-    <button id="startBtn">لنبدأ 🚀</button>
+    <button id="startBtn" class="start-main-btn">لنبدأ 🚀</button>
   </div>
 </div>
 
@@ -66,7 +66,119 @@
 </div>
 </div>
 
-<script src="exams.js"></script>
 <script src="engine.js"></script>
+<script src="enhancements.js"></script>
+<script src="app.js"></script>
+
+<style>
+  /* تحسينات إضافية للعرض */
+  .loading, .no-exams, .error {
+    text-align: center;
+    padding: 40px;
+    font-size: 16px;
+  }
+  .loading { color: #007bff; }
+  .no-exams { color: #ff9800; }
+  .error { color: #dc3545; }
+  
+  .exams-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e0e0e0;
+  }
+  .exams-header h3 {
+    margin: 0 0 5px 0;
+    color: #2c3e66;
+  }
+  .exams-header p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .exams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .exam-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  .exam-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-color: #007bff;
+  }
+  
+  .exam-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  
+  .exam-title {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.4;
+  }
+  
+  .start-exam-btn {
+    background: #2c3e66;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+  }
+  .start-exam-btn:hover {
+    background: #1a2a4a;
+  }
+  
+  .teil-btn {
+    background: #f0f8ff;
+    border: 2px solid #007bff;
+    padding: 12px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s;
+    color: #007bff;
+  }
+  .teil-btn:hover {
+    background: #007bff;
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  .nav-exam-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .nav-exam-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .nav-exam-btn:not(:disabled):hover {
+    background: #5a6268;
+  }
+</style>
+
 </body>
 </html>
