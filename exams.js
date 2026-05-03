@@ -116,11 +116,7 @@ const actualFileNames = {
   25: "exam25.json", 26: "exam26.json", 27: "exam27.json",
   28: "exam28.json", 29: "exam29.json", 30: "exam30.json",
   31: "exam31.json", 32: "exam32.json", 33: "exam33.json",
-  34: "exam34.json", 35: "exam35.json", 36: "exam36.json",
-  37: "exam37.json", 38: "exam38.json", 39: "exam39.json",
-  40: "exam40.json", 41: "exam41.json", 42: "exam42.json",
-  43: "exam43.json", 44: "exam44.json", 45: "exam45.json",
-  46: "exam46.json", 47: "exam47.json"
+  34: "exam34.json", 35: "exam35.json", 36: "exam36.json"
 };
 
 // ✅ قائمة الامتحانات لكل جزء
