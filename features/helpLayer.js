@@ -83,6 +83,7 @@ function createHelpBoxes(count) {
   `;
   
   if (count === 10) {
+    // 10 مستطيلات: 2 في كل سطر (أي 5 صفوف، كل صف 2)
     for (let row = 0; row < 5; row++) {
       const rowDiv = document.createElement('div');
       rowDiv.style.cssText = `display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 20px;`;
@@ -96,6 +97,7 @@ function createHelpBoxes(count) {
     }
   } 
   else if (count === 5) {
+    // 5 مستطيلات: عمود واحد
     const column = document.createElement('div');
     column.style.cssText = `display: flex; flex-direction: column; gap: 20px;`;
     for (let i = 0; i < 5; i++) column.appendChild(createSingleHelpBox(i + 1));
@@ -105,7 +107,7 @@ function createHelpBoxes(count) {
   return container;
 }
 
-// إخفاء محتوى الامتحان
+// إخفاء محتوى الامتحان (الأسئلة والنصوص والفجوات والخيارات)
 function hideExamQuestions() {
   const hidden = [];
   const activeSection = getActiveSection();
@@ -145,6 +147,7 @@ function showHiddenElements(hiddenElements) {
 // إخفاء أزرار التصحيح وإعادة التعيين
 function hideCheckAndResetButtons() {
   const hidden = [];
+  
   const allButtons = document.querySelectorAll('button');
   allButtons.forEach(btn => {
     const btnText = btn.textContent;
@@ -155,6 +158,7 @@ function hideCheckAndResetButtons() {
       }
     }
   });
+  
   return hidden;
 }
 
@@ -165,12 +169,13 @@ function showCheckAndResetButtons(hiddenButtons) {
   });
 }
 
-// تبديل وضع المساعدة
+// تبديل وضع المساعدة (إظهار/إخفاء)
 function toggleHelpLayer() {
   const existingHelpLayer = document.getElementById('helpLayerContainer');
   const activeSection = getActiveSection();
   
   if (helpLayerActive) {
+    // إخفاء وضع المساعدة وإظهار الأسئلة
     if (existingHelpLayer) existingHelpLayer.remove();
     if (originalContentBackup) {
       showHiddenElements(originalContentBackup.hiddenQuestions);
@@ -179,69 +184,69 @@ function toggleHelpLayer() {
     }
     helpLayerActive = false;
   } else {
+    // حفظ العناصر التي سيتم إخفاؤها
     const hiddenQuestions = hideExamQuestions();
     const hiddenButtons = hideCheckAndResetButtons();
+    
     originalContentBackup = { hiddenQuestions, hiddenButtons };
     
+    // إنشاء وعرض المستطيلات
     const boxCount = getHelpBoxCount();
     if (boxCount > 0 && activeSection) {
       const helpLayer = createHelpBoxes(boxCount);
       activeSection.appendChild(helpLayer);
     }
+    
     helpLayerActive = true;
   }
 }
 
-// إضافة زر "مساعدة ذكية للنجاح"
+// إضافة زر "مساعدة ذكية للنجاح" في أعلى صفحة الامتحان
 function addHelpButtonToExam() {
-  const existingButton = document.getElementById('globalHelpButton');
-  if (existingButton) return;
+  if (document.getElementById('globalHelpButton')) return;
   
   // منع إضافة الزر في Schreiben
   const schreiben = document.getElementById('schreiben');
   if (schreiben && schreiben.style.display === 'block') return;
   
   const navButtons = document.getElementById('examNavButtons');
-  if (!navButtons) return;
-  
-  const helpButton = document.createElement('button');
-  helpButton.id = 'globalHelpButton';
-  helpButton.textContent = 'مساعدة ذكية للنجاح';
-  helpButton.style.cssText = `
-    background: linear-gradient(135deg, #3b82f6, #60a5fa);
-    color: white;
-    border: none;
-    border-radius: 30px;
-    padding: 8px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin-left: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  `;
-  
-  helpButton.addEventListener('mouseenter', () => {
-    helpButton.style.transform = 'scale(1.02)';
-    helpButton.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
-  });
-  helpButton.addEventListener('mouseleave', () => {
-    helpButton.style.transform = 'scale(1)';
-    helpButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
-  });
-  
-  // إزالة أي أحداث سابقة وإضافة حدث جديد
-  helpButton.removeEventListener('click', toggleHelpLayer);
-  helpButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    toggleHelpLayer();
-  });
-  
-  navButtons.appendChild(helpButton);
+  if (navButtons) {
+    const helpButton = document.createElement('button');
+    helpButton.id = 'globalHelpButton';
+    helpButton.textContent = 'مساعدة ذكية للنجاح';
+    helpButton.style.cssText = `
+      background: linear-gradient(135deg, #3b82f6, #60a5fa);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-left: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    `;
+    
+    helpButton.addEventListener('mouseenter', () => {
+      helpButton.style.transform = 'scale(1.02)';
+      helpButton.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
+    });
+    helpButton.addEventListener('mouseleave', () => {
+      helpButton.style.transform = 'scale(1)';
+      helpButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+    });
+    
+    helpButton.onclick = (e) => {
+      e.stopPropagation();
+      toggleHelpLayer();
+    };
+    
+    navButtons.appendChild(helpButton);
+  }
 }
 
-// مراقبة تغييرات الصفحة
+// مراقبة تغييرات الصفحة (لأن الامتحانات تُحمّل ديناميكياً)
 function observeForHelpButton() {
   const observer = new MutationObserver(() => {
     addHelpButtonToExam();
