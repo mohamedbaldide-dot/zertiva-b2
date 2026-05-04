@@ -140,6 +140,9 @@ async function startExam() {
     if (window.loadSchreibenExam) {
       window.loadSchreibenExam(currentExamData);
     }
+    // إزالة زر المساعدة إذا وجد (لأنه لا يجب أن يظهر في Schreiben)
+    const existingHelpBtn = document.getElementById('globalHelpButton');
+    if (existingHelpBtn) existingHelpBtn.remove();
     updateExamNavButtons();
     return;
   }
