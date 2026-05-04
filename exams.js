@@ -474,7 +474,7 @@ async function openExam(examId, examTitle, skill) {
       return;
     }
     currentExamData = await response.json();
-    
+    window.currentExamId = examId;
     document.getElementById("home").classList.remove("active");
     document.getElementById("list").classList.remove("active");
     document.getElementById("exam").classList.add("active");
