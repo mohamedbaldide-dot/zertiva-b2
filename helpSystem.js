@@ -3,27 +3,12 @@
 // ============================================
 
 // ============================================
-// البيانات (HELP_DATA)
+// جميع البيانات من helpData.js
 // ============================================
 const HELP_DATA = {};
 
-// ========== Exam 4: Erdbeben (صحيح: 1,5) ==========
-HELP_DATA["hoeren1_exam4_q1"] = {
-    text: "In der Türkei gab es ein schweres Erdbeben.",
-    meaning: "حدث زلزال شديد في تركيا",
-    keywords: ["Türkei = تركيا", "schweres Erdbeben = زلزال شديد"],
-    simplified: "زلزال كبير ضرب تركيا",
-    imagine: "تخيل أرضاً تهتز ومباني تتمايل 🌍💥"
-};
-HELP_DATA["hoeren1_exam4_q5"] = {
-    text: "Experten warnen vor weiteren Nachbeben.",
-    meaning: "خبراء يحذرون من توابع زلزالية إضافية",
-    keywords: ["Experten = خبراء", "warnen = يحذرون", "Nachbeben = توابع زلزالية"],
-    simplified: "قد تحدث هزات أرضية أخرى",
-    imagine: "تخيل علامة تحذير تقول: خطر ⚠️"
-};
-
-// يمكنك إضافة باقي البيانات هنا...
+// هنا الصق كل محتوى helpData.js (باستثناء السطر const HELP_DATA = {};)
+// يعني الصق من بعد HELP_DATA["hoeren1_exam1_q2"] = { ... } إلى نهاية الملف
 
 // ============================================
 // نظام الطبقة المساعدة
@@ -32,11 +17,101 @@ HELP_DATA["hoeren1_exam4_q5"] = {
 let helpLayerActive = false;
 let originalContentBackup = null;
 
+// الأسئلة الصحيحة لكل امتحان
 function getCorrectQuestions(skill, examId) {
     const correctMap = {
-        'hoeren1_exam4': [1, 5]
-        // أضف باقي الامتحانات هنا
+        // Hören Teil 1
+        'hoeren1_exam1': [2, 3],
+        'hoeren1_exam2': [3, 5],
+        'hoeren1_exam3': [2, 3, 5],
+        'hoeren1_exam4': [1, 5],
+        'hoeren1_exam5': [2, 4],
+        'hoeren1_exam6': [2, 4],
+        'hoeren1_exam7': [1, 2, 5],
+        'hoeren1_exam8': [3, 4, 5],
+        'hoeren1_exam9': [1, 2],
+        'hoeren1_exam10': [1, 4],
+        'hoeren1_exam11': [1, 4],
+        'hoeren1_exam12': [1, 4],
+        'hoeren1_exam13': [3, 4, 5],
+        'hoeren1_exam14': [1, 3],
+        'hoeren1_exam15': [2, 3],
+        'hoeren1_exam16': [2, 3, 5],
+        'hoeren1_exam17': [4, 5],
+        'hoeren1_exam18': [1, 3, 5],
+        'hoeren1_exam19': [1, 3, 5],
+        'hoeren1_exam20': [1, 3, 4],
+        'hoeren1_exam21': [3],
+        'hoeren1_exam22': [1, 2, 5],
+        'hoeren1_exam23': [3, 5],
+        'hoeren1_exam24': [1, 3, 5],
+        'hoeren1_exam25': [1, 2, 5],
+        'hoeren1_exam26': [1, 5],
+        'hoeren1_exam27': [1, 2],
+        
+        // Hören Teil 2
+        'hoeren2_exam1': [3, 4, 8, 9, 10],
+        'hoeren2_exam2': [1, 3, 4, 8],
+        'hoeren2_exam3': [1, 3, 4, 7, 8],
+        'hoeren2_exam4': [2, 6, 8, 9, 10],
+        'hoeren2_exam5': [2, 9, 10],
+        'hoeren2_exam6': [3, 4, 7],
+        'hoeren2_exam7': [3, 4, 7],
+        'hoeren2_exam8': [1, 3, 4, 7, 8, 9],
+        'hoeren2_exam9': [1, 3, 4, 5, 8],
+        'hoeren2_exam10': [1, 3, 4, 8, 9, 10],
+        'hoeren2_exam11': [1, 3, 4, 8, 9, 10],
+        'hoeren2_exam12': [1, 4, 6, 7, 8],
+        'hoeren2_exam13': [1, 4, 6, 7, 8],
+        'hoeren2_exam14': [2, 5, 8, 9, 10],
+        'hoeren2_exam15': [2, 3, 5, 6, 8, 10],
+        'hoeren2_exam16': [2, 4, 5, 8, 10],
+        'hoeren2_exam17': [2, 4, 5, 8, 10],
+        'hoeren2_exam18': [2, 3, 4, 7, 9, 10],
+        'hoeren2_exam19': [3, 4, 7, 9],
+        'hoeren2_exam20': [2, 3, 5, 8, 9],
+        'hoeren2_exam21': [3, 5, 9],
+        'hoeren2_exam22': [3, 4, 10],
+        'hoeren2_exam23': [1, 2, 4, 6],
+        'hoeren2_exam24': [2, 3, 4, 6, 8, 10],
+        'hoeren2_exam25': [1, 2, 3, 4, 6, 8, 9],
+        'hoeren2_exam26': [3, 5, 7, 8, 10],
+        'hoeren2_exam27': [2, 3, 4, 6, 8],
+        'hoeren2_exam28': [1, 2, 4, 6, 8, 10],
+        'hoeren2_exam29': [4, 5, 9, 10],
+        'hoeren2_exam30': [2, 3, 6, 7, 10],
+        'hoeren2_exam31': [2, 4, 5, 8, 9],
+        
+        // Hören Teil 3
+        'hoeren3_exam1': [1],
+        'hoeren3_exam2': [1, 3],
+        'hoeren3_exam3': [1, 3],
+        'hoeren3_exam4': [1, 4],
+        'hoeren3_exam5': [1, 4],
+        'hoeren3_exam6': [1, 5],
+        'hoeren3_exam7': [1, 5],
+        'hoeren3_exam8': [1, 5],
+        'hoeren3_exam9': [1, 5],
+        'hoeren3_exam10': [2, 5],
+        'hoeren3_exam11': [1, 2, 3],
+        'hoeren3_exam12': [3, 4],
+        'hoeren3_exam13': [1, 2, 5],
+        'hoeren3_exam14': [1, 4, 5],
+        'hoeren3_exam15': [1, 2, 5],
+        'hoeren3_exam16': [1, 3, 4, 5],
+        'hoeren3_exam17': [1, 3],
+        'hoeren3_exam18': [2, 3, 4],
+        'hoeren3_exam19': [2, 4],
+        'hoeren3_exam20': [1, 3],
+        'hoeren3_exam21': [2],
+        'hoeren3_exam22': [2, 4],
+        'hoeren3_exam23': [1, 5],
+        'hoeren3_exam24': [2],
+        'hoeren3_exam25': [1, 3],
+        'hoeren3_exam26': [1, 3, 5],
+        'hoeren3_exam27': [1, 3]
     };
+    
     const key = `${skill}_exam${examId}`;
     return correctMap[key] || [];
 }
@@ -83,7 +158,7 @@ function createHelpCard(questionNumber) {
     
     if (data) {
         let keywordsHtml = '';
-        if (data.keywords && data.keywords.length > 0) {
+        if (data.keywords && data.keywords.length) {
             keywordsHtml = '<div style="margin:12px 0"><span style="color:#007bff;font-weight:bold">📌 كلمات مهمة:</span><br>';
             data.keywords.forEach(k => {
                 keywordsHtml += `<span style="display:inline-block;background:#e3f2fd;padding:5px 12px;border-radius:20px;font-size:13px;margin:3px">${k}</span>`;
@@ -116,10 +191,8 @@ function createHelpLayer() {
     const examId = getCurrentExamId();
     const correctQuestions = getCorrectQuestions(skill, examId);
     
-    console.log(`📖 تحميل المساعدة: ${skill}_exam${examId}, الأسئلة الصحيحة:`, correctQuestions);
-    
     if (correctQuestions.length === 0) {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">📚 لا توجد أسئلة صحيحة</div>';
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">📚 لا توجد أسئلة صحيحة في هذا الامتحان</div>';
         return container;
     }
     
