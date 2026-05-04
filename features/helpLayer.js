@@ -167,9 +167,8 @@ function showCheckAndResetButtons(hiddenButtons) {
 
 // تبديل وضع المساعدة (إظهار/إخفاء)
 function toggleHelpLayer() {
-  // منع التشغيل في Schreiben نهائياً
   const schreiben = document.getElementById('schreiben');
-  if (schreiben && schreiben.style.display === 'block') {
+  if (schreiben && schreiben.style.display !== 'none') {
     return;
   }
   
@@ -200,9 +199,8 @@ function toggleHelpLayer() {
 
 // إضافة زر "مساعدة ذكية للنجاح"
 function addHelpButtonToExam() {
-  // منع إضافة الزر في Schreiben نهائياً
   const schreiben = document.getElementById('schreiben');
-  if (schreiben && schreiben.style.display === 'block') {
+  if (schreiben && schreiben.style.display !== 'none') {
     return;
   }
   
