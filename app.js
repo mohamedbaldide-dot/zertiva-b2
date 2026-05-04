@@ -99,9 +99,6 @@ async function loadTeilExams(teilId, teilName, teilType) {
         currentExamId = exam.id;
         currentExamData = exam.data;
         startExam();
-        setTimeout(() => {
-  if (window.initHelpLayer) window.initHelpLayer();
-}, 200);
       };
       
       grid.appendChild(examCard);
