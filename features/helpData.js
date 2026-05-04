@@ -3260,3 +3260,1004 @@ HELP_DATA["hoeren2_exam31_q10"] = {
   simplified: "لا تخطط للانتقال إلى فان",
   imagine: "تخيل شخصاً ينتقل 🚚"
 };
+// ============================================
+// hören Teil 3
+// ============================================
+
+// ========== Exam 1: Telefon ==========
+HELP_DATA["hoeren3_exam1_q1"] = {
+  text: "Der Anrufer möchte Informationen über das neue Programm.",
+  meaning: "المتصل يريد معلومات عن البرنامج الجديد",
+  keywords: ["Anrufer = متصل", "Informationen = معلومات", "neues Programm = برنامج جديد"],
+  simplified: "هدف المكالمة هو الاستفسار عن البرنامج",
+  imagine: "تخيل شخصاً يتصل لسؤال 📞"
+};
+HELP_DATA["hoeren3_exam1_q2"] = {
+  text: "Das neue Programm beginnt erst nächste Woche.",
+  meaning: "البرنامج الجديد يبدأ فقط الأسبوع القادم",
+  keywords: ["beginnt = يبدأ", "nächste Woche = الأسبوع القادم", "neue Programm = برنامج جديد"],
+  simplified: "موعد البدء هو الأسبوع المقبل",
+  imagine: "تخيل تقويماً يظهر التاريخ 📅"
+};
+HELP_DATA["hoeren3_exam1_q3"] = {
+  text: "Die Teilnahmegebühr beträgt 50 Euro.",
+  meaning: "رسوم المشاركة تبلغ 50 يورو",
+  keywords: ["Teilnahmegebühr = رسوم مشاركة", "beträgt = تبلغ", "50 Euro = 50 يورو"],
+  simplified: "التكلفة 50 يورو للشخص",
+  imagine: "تخيل عملة يورو 💶"
+};
+HELP_DATA["hoeren3_exam1_q4"] = {
+  text: "Es gibt Ermäßigungen für Studenten.",
+  meaning: "يوجد تخفيضات للطلاب",
+  keywords: ["Ermäßigungen = تخفيضات", "Studenten = طلاب", "gibt es = يوجد"],
+  simplified: "الطلاب يحصلون على خصم",
+  imagine: "تخيل بطاقة طالب 🎓"
+};
+HELP_DATA["hoeren3_exam1_q5"] = {
+  text: "Die Anmeldefrist endet am Freitag.",
+  meaning: "موعد التسجيل ينتهي يوم الجمعة",
+  keywords: ["Anmeldefrist = موعد تسجيل", "endet = ينتهي", "Freitag = جمعة"],
+  simplified: "آخر يوم للتسجيل هو الجمعة",
+  imagine: "تخيل تقويماً يشير إلى الجمعة 📅"
+};
+
+// ========== Exam 2: Musikfestivals ==========
+HELP_DATA["hoeren3_exam2_q1"] = {
+  text: "Das Musikfestival findet im Sommer statt.",
+  meaning: "مهرجان الموسيقى يقام في الصيف",
+  keywords: ["Musikfestival = مهرجان موسيقى", "findet statt = يقام", "Sommer = صيف"],
+  simplified: "الموعد هو في فصل الصيف",
+  imagine: "تخيل شمساً صيفية ☀️"
+};
+HELP_DATA["hoeren3_exam2_q2"] = {
+  text: "Es treten internationale Bands auf.",
+  meaning: "فرق موسيقية دولية تظهر على المسرح",
+  keywords: ["internationale Bands = فرق دولية", "treten auf = تظهر", "auf = على المسرح"],
+  simplified: "فنانين من جميع أنحاء العالم",
+  imagine: "تخيل فرقة موسيقية على المسرح 🎸"
+};
+HELP_DATA["hoeren3_exam2_q3"] = {
+  text: "Die Tickets sind bereits ausverkauft.",
+  meaning: "التذاكر مباعة بالكامل بالفعل",
+  keywords: ["Tickets = تذاكر", "ausverkauft = مباعة بالكامل", "bereits = بالفعل"],
+  simplified: "لا توجد تذاكر متاحة",
+  imagine: "تخيل لافتة مكتوب عليها 'مباع' 🚫"
+};
+HELP_DATA["hoeren3_exam2_q4"] = {
+  text: "Es gibt ein Campingangebot für Besucher.",
+  meaning: "يوجد عرض تخييم للزوار",
+  keywords: ["Campingangebot = عرض تخييم", "Besucher = زوار", "gibt es = يوجد"],
+  simplified: "يمكن للزوار التخييم في المكان",
+  imagine: "تخيل خيمة في منطقة المهرجان ⛺"
+};
+HELP_DATA["hoeren3_exam2_q5"] = {
+  text: "Das Festival dauert drei Tage.",
+  meaning: "المهرجان يستمر ثلاثة أيام",
+  keywords: ["dauert = يستمر", "drei Tage = ثلاثة أيام", "Festival = مهرجان"],
+  simplified: "المدة الإجمالية 3 أيام",
+  imagine: "تخيل أعلام ثلاثة أيام 🗓️"
+};
+
+// ========== Exam 3: Musikfestivals (Mittel) ==========
+HELP_DATA["hoeren3_exam3_q1"] = {
+  text: "Das Musikfestival findet jedes Jahr im August statt.",
+  meaning: "مهرجان الموسيقى يقام كل عام في أغسطس",
+  keywords: ["jedes Jahr = كل عام", "August = أغسطس", "findet statt = يقام"],
+  simplified: "الموعد السنوي هو شهر أغسطس",
+  imagine: "تخيل تقويماً يشير إلى أغسطس 📅"
+};
+HELP_DATA["hoeren3_exam3_q2"] = {
+  text: "Die Eintrittskarten kann man online kaufen.",
+  meaning: "يمكن شراء تذاكر الدخول عبر الإنترنت",
+  keywords: ["Eintrittskarten = تذاكر دخول", "online kaufen = شراء عبر الإنترنت", "kann man = يمكن للمرء"],
+  simplified: "الشراء متاح على الموقع الإلكتروني",
+  imagine: "تخيل جهاز كمبيوتر للتسوق 💻"
+};
+HELP_DATA["hoeren3_exam3_q3"] = {
+  text: "Es gibt einen eigenen Bereich für Kinder.",
+  meaning: "يوجد منطقة خاصة للأطفال",
+  keywords: ["eigenen Bereich = منطقة خاصة", "für Kinder = للأطفال", "gibt es = يوجد"],
+  simplified: "الأطفال لديهم مساحة مخصصة",
+  imagine: "تخيل أطفالاً يلعبون 👧"
+};
+HELP_DATA["hoeren3_exam3_q4"] = {
+  text: "Die Hauptbühne ist die größte in Europa.",
+  meaning: "المسرح الرئيسي هو الأكبر في أوروبا",
+  keywords: ["Hauptbühne = مسرح رئيسي", "größte = الأكبر", "in Europa = في أوروبا"],
+  simplified: "المسرح يحمل رقماً قياسياً",
+  imagine: "تخيل مسرحاً ضخماً 🎪"
+};
+HELP_DATA["hoeren3_exam3_q5"] = {
+  text: "Das Festival bietet auch Workshops an.",
+  meaning: "المهرجان يقدم أيضاً ورش عمل",
+  keywords: ["bietet an = يقدم", "Workshops = ورش عمل", "auch = أيضاً"],
+  simplified: "هناك أنشطة تعليمية أيضاً",
+  imagine: "تخيل أشخاصاً يتعلمون مهارات جديدة 👩‍🏫"
+};
+
+// ========== Exam 4: Fahrschule ==========
+HELP_DATA["hoeren3_exam4_q1"] = {
+  text: "Die Fahrschule bietet einen Intensivkurs an.",
+  meaning: "مدرسة تعليم القيادة تقدم دورة مكثفة",
+  keywords: ["Fahrschule = مدرسة قيادة", "Intensivkurs = دورة مكثفة", "bietet an = تقدم"],
+  simplified: "توجد دورة سريعة لتعلم القيادة",
+  imagine: "تخيل شخصاً يقود سيارة 🚗"
+};
+HELP_DATA["hoeren3_exam4_q2"] = {
+  text: "Der Kurs dauert zwei Wochen.",
+  meaning: "الدورة تستمر أسبوعين",
+  keywords: ["Kurs = دورة", "dauert = تستمر", "zwei Wochen = أسبوعين"],
+  simplified: "مدة الدورة 14 يوماً",
+  imagine: "تخيل تقويماً بأسبوعين 📅"
+};
+HELP_DATA["hoeren3_exam4_q3"] = {
+  text: "Die theoretische Prüfung findet in der Schule statt.",
+  meaning: "الامتحان النظري يقام في المدرسة",
+  keywords: ["theoretische Prüfung = امتحان نظري", "findet statt = يقام", "in der Schule = في المدرسة"],
+  simplified: "مكان الامتحان هو نفس المدرسة",
+  imagine: "تخيل قاعة امتحانات 📝"
+};
+HELP_DATA["hoeren3_exam4_q4"] = {
+  text: "Die praktische Prüfung ist auf dem Verkehrsübungsplatz.",
+  meaning: "الامتحان العملي في ساحة تدريب المرور",
+  keywords: ["praktische Prüfung = امتحان عملي", "Verkehrsübungsplatz = ساحة تدريب مرور", "ist auf = في"],
+  simplified: "الامتحان العملي في مكان مخصص",
+  imagine: "تخيل سيارة في ساحة تدريب 🚙"
+};
+HELP_DATA["hoeren3_exam4_q5"] = {
+  text: "Die Kosten für den Führerschein betragen 1500 Euro.",
+  meaning: "تكاليف رخصة القيادة تبلغ 1500 يورو",
+  keywords: ["Kosten = تكاليف", "Führerschein = رخصة قيادة", "betragen = تبلغ"],
+  simplified: "السعر الإجمالي 1500 يورو",
+  imagine: "تخيل نقوداً يورو 💶"
+};
+
+// ========== Exam 5: Im Süden Deutschlands (regnen) ==========
+HELP_DATA["hoeren3_exam5_q1"] = {
+  text: "Im Süden Deutschlands regnet es häufig.",
+  meaning: "في جنوب ألمانيا تمطر كثيراً",
+  keywords: ["Süden Deutschlands = جنوب ألمانيا", "regnet = تمطر", "häufig = كثيراً"],
+  simplified: "الأمطار غزيرة في الجنوب",
+  imagine: "تخيل مطراً يهطل 🌧️"
+};
+HELP_DATA["hoeren3_exam5_q2"] = {
+  text: "Die Temperaturen sind mild.",
+  meaning: "درجات الحرارة معتدلة",
+  keywords: ["Temperaturen = درجات حرارة", "mild = معتدلة", "sind = هي"],
+  simplified: "الطقس ليس بارداً ولا حاراً",
+  imagine: "تخيل ميزان حرارة 🌡️"
+};
+HELP_DATA["hoeren3_exam5_q3"] = {
+  text: "Im Winter fällt viel Schnee.",
+  meaning: "في الشتاء يتساقط الكثير من الثلج",
+  keywords: ["Winter = شتاء", "fällt = يتساقط", "viel Schnee = ثلج كثير"],
+  simplified: "الثلوج كثيفة في الشتاء",
+  imagine: "تخيل ثلوجاً تتساقط ❄️"
+};
+HELP_DATA["hoeren3_exam5_q4"] = {
+  text: "Die Sonne scheint im Sommer lang.",
+  meaning: "الشمس تشرق لفترة طويلة في الصيف",
+  keywords: ["Sonne = شمس", "scheint = تشرق", "lang = طويلة"],
+  simplified: "ساعات النهار طويلة صيفاً",
+  imagine: "تخيل شمساً مشرقة ☀️"
+};
+HELP_DATA["hoeren3_exam5_q5"] = {
+  text: "Der Herbst ist neblig und windig.",
+  meaning: "الخريف ضبابي وعاصف",
+  keywords: ["Herbst = خريف", "neblig = ضبابي", "windig = عاصف"],
+  simplified: "طقس الخريف غير مستقر",
+  imagine: "تخيل ضباباً ورياحاً 🌫️"
+};
+
+// ========== Exam 6: Im Süden Deutschlands (Schnee) ==========
+HELP_DATA["hoeren3_exam6_q1"] = {
+  text: "Im Süden Deutschlands gibt es viel Schnee im Winter.",
+  meaning: "في جنوب ألمانيا هناك ثلوج كثيرة في الشتاء",
+  keywords: ["Süden Deutschlands = جنوب ألمانيا", "viel Schnee = ثلج كثير", "Winter = شتاء"],
+  simplified: "الشتاء ثلجي في الجنوب",
+  imagine: "تخيل جبالاً مغطاة بالثلج 🏔️"
+};
+HELP_DATA["hoeren3_exam6_q2"] = {
+  text: "Die Straßen sind oft glatt und rutschig.",
+  meaning: "الطرق غالباً ما تكون زلقة وسلسة",
+  keywords: ["Straßen = طرق", "glatt = زلقة", "rutschig = سلسة"],
+  simplified: "الحذر مطلوب على الطرقات",
+  imagine: "تخيل سيارة تنزلق على الجليد 🚗"
+};
+HELP_DATA["hoeren3_exam6_q3"] = {
+  text: "Winterreifen sind Pflicht.",
+  meaning: "إطارات الشتاء إلزامية",
+  keywords: ["Winterreifen = إطارات شتاء", "Pflicht = إلزامية", "sind = هي"],
+  simplified: "يجب استخدام الإطارات الشتوية",
+  imagine: "تخيل إطار سيارة ❄️"
+};
+HELP_DATA["hoeren3_exam6_q4"] = {
+  text: "Skifahren ist eine beliebte Aktivität.",
+  meaning: "التزلج هو نشاط شعبي",
+  keywords: ["Skifahren = تزلج", "beliebte Aktivität = نشاط شعبي", "ist = هو"],
+  simplified: "الكثيرون يمارسون التزلج",
+  imagine: "تخيل شخصاً يتزلج ⛷️"
+};
+HELP_DATA["hoeren3_exam6_q5"] = {
+  text: "Die Lawinengefahr ist hoch.",
+  meaning: "خطر الانهيارات الثلجية مرتفع",
+  keywords: ["Lawinengefahr = خطر انهيارات ثلجية", "hoch = مرتفع", "ist = هو"],
+  simplified: "يجب الحذر من الانهيارات",
+  imagine: "تخيل لافتة تحذير ⚠️"
+};
+
+// ========== Exam 7: Internet prüfen ==========
+HELP_DATA["hoeren3_exam7_q1"] = {
+  text: "Man sollte regelmäßig seine Internetverbindung prüfen.",
+  meaning: "يجب على المرء فحص اتصال الإنترنت بانتظام",
+  keywords: ["regelmäßig = بانتظام", "Internetverbindung = اتصال إنترنت", "prüfen = فحص"],
+  simplified: "فحص دوري للإنترنت مفيد",
+  imagine: "تخيل شخصاً أمام كمبيوتر 💻"
+};
+HELP_DATA["hoeren3_exam7_q2"] = {
+  text: "Langsames Internet kann verschiedene Ursachen haben.",
+  meaning: "الإنترنت البطيء يمكن أن يكون له أسباب مختلفة",
+  keywords: ["Langsames Internet = إنترنت بطيء", "verschiedene Ursachen = أسباب مختلفة", "kann haben = يمكن أن يكون"],
+  simplified: "هناك عدة أسباب لبطء الإنترنت",
+  imagine: "تخيل حلزوناً يزحف 🐌"
+};
+HELP_DATA["hoeren3_exam7_q3"] = {
+  text: "Ein Router-Neustart kann oft helfen.",
+  meaning: "إعادة تشغيل الراوتر يمكن أن تساعد غالباً",
+  keywords: ["Router-Neustart = إعادة تشغيل راوتر", "kann helfen = يمكن أن يساعد", "oft = غالباً"],
+  simplified: "حل بسيط للمشكلة",
+  imagine: "تخيل جهاز راوتر 🔌"
+};
+HELP_DATA["hoeren3_exam7_q4"] = {
+  text: "Große Dateien brauchen länger zum Herunterladen.",
+  meaning: "الملفات الكبيرة تحتاج وقتاً أطول للتحميل",
+  keywords: ["Große Dateien = ملفات كبيرة", "brauchen = تحتاج", "länger = أطول"],
+  simplified: "حجم الملف يؤثر على سرعة التحميل",
+  imagine: "تخيل ملفاً كبيراً 📁"
+};
+HELP_DATA["hoeren3_exam7_q5"] = {
+  text: "Bei Problemen sollte man den Anbieter kontaktieren.",
+  meaning: "عند وجود مشاكل يجب الاتصال بالمزود",
+  keywords: ["Problemen = مشاكل", "Anbieter = مزود", "kontaktieren = الاتصال"],
+  simplified: "الدعم الفني متوفر للمساعدة",
+  imagine: "تخيل شخصاً يتصل بخدمة العملاء 📞"
+};
+
+// ========== Exam 8: Ehrenamts ==========
+HELP_DATA["hoeren3_exam8_q1"] = {
+  text: "Ehrenamtliche Arbeit wird immer beliebter.",
+  meaning: "العمل التطوعي يصبح أكثر شعبية",
+  keywords: ["Ehrenamtliche Arbeit = عمل تطوعي", "beliebter = أكثر شعبية", "wird = يصبح"],
+  simplified: "الكثيرون يتطوعون الآن",
+  imagine: "تخيل شخصاً يساعد آخرين 🤝"
+};
+HELP_DATA["hoeren3_exam8_q2"] = {
+  text: "Es gibt viele Bereiche für ehrenamtliches Engagement.",
+  meaning: "هناك مجالات كثيرة للمشاركة التطوعية",
+  keywords: ["viele Bereiche = مجالات كثيرة", "ehrenamtliches Engagement = مشاركة تطوعية", "gibt es = هناك"],
+  simplified: "يمكن التطوع في عدة أماكن",
+  imagine: "تخيل قائمة بأنشطة تطوعية 📋"
+};
+HELP_DATA["hoeren3_exam8_q3"] = {
+  text: "Viele Organisationen suchen freiwillige Helfer.",
+  meaning: "العديد من المنظمات تبحث عن متطوعين",
+  keywords: ["Organisationen = منظمات", "suchen = تبحث", "freiwillige Helfer = متطوعين"],
+  simplified: "هناك طلب على المتطوعين",
+  imagine: "تخيل إعلاناً يطلب متطوعين 📢"
+};
+HELP_DATA["hoeren3_exam8_q4"] = {
+  text: "Ehrenamtliche Tätigkeit kann auch Spaß machen.",
+  meaning: "النشاط التطوعي يمكن أن يكون ممتعاً أيضاً",
+  keywords: ["Ehrenamtliche Tätigkeit = نشاط تطوعي", "Spaß machen = يكون ممتعاً", "kann = يمكن"],
+  simplified: "التطوع ليس عملاً فقط بل متعة",
+  imagine: "تخيل شخصاً يضحك أثناء التطوع 😊"
+};
+HELP_DATA["hoeren3_exam8_q5"] = {
+  text: "Man kann dabei neue Leute kennenlernen.",
+  meaning: "يمكن للمرء التعرف على أشخاص جدد خلال ذلك",
+  keywords: ["neue Leute = أشخاص جدد", "kennenlernen = التعرف على", "kann = يمكن"],
+  simplified: "التطوع فرصة للتعارف",
+  imagine: "تخيل أشخاصاً يتعرفون على بعضهم 👥"
+};
+
+// ========== Exam 9: Ehrenamts (Mittel) ==========
+HELP_DATA["hoeren3_exam9_q1"] = {
+  text: "Ehrenamtliches Engagement ist in Deutschland sehr verbreitet.",
+  meaning: "المشاركة التطوعية منتشرة جداً في ألمانيا",
+  keywords: ["Ehrenamtliches Engagement = مشاركة تطوعية", "verbreitet = منتشرة", "in Deutschland = في ألمانيا"],
+  simplified: "التطوع جزء من الثقافة الألمانية",
+  imagine: "تخيل خريطة ألمانيا 🗺️"
+};
+HELP_DATA["hoeren3_exam9_q2"] = {
+  text: "Jeder kann sich ehrenamtlich engagieren, unabhängig vom Alter.",
+  meaning: "يمكن لأي شخص المشاركة تطوعياً، بغض النظر عن العمر",
+  keywords: ["Jeder = كل شخص", "unabhängig vom Alter = بغض النظر عن العمر", "kann sich engagieren = يمكن المشاركة"],
+  simplified: "التطوع متاح للجميع",
+  imagine: "تخيل أشخاصاً من مختلف الأعمار 👴👧"
+};
+HELP_DATA["hoeren3_exam9_q3"] = {
+  text: "Es gibt auch steuerliche Vorteile für Ehrenamtliche.",
+  meaning: "هناك أيضاً مزايا ضريبية للمتطوعين",
+  keywords: ["steuerliche Vorteile = مزايا ضريبية", "Ehrenamtliche = متطوعين", "gibt es = هناك"],
+  simplified: "التطوع له فوائد ضريبية",
+  imagine: "تخيل أوراقاً ضريبية 📄"
+};
+HELP_DATA["hoeren3_exam9_q4"] = {
+  text: "Viele Unternehmen unterstützen ehrenamtliche Projekte.",
+  meaning: "العديد من الشركات تدعم المشاريع التطوعية",
+  keywords: ["Unternehmen = شركات", "unterstützen = تدعم", "ehrenamtliche Projekte = مشاريع تطوعية"],
+  simplified: "القطاع الخاص يدعم التطوع",
+  imagine: "تخيل شركة تساعد المجتمع 🏢"
+};
+HELP_DATA["hoeren3_exam9_q5"] = {
+  text: "Ehrenamtliche Arbeit kann zur beruflichen Weiterbildung beitragen.",
+  meaning: "العمل التطوعي يمكن أن يساهم في التطوير المهني",
+  keywords: ["beruflichen Weiterbildung = تطوير مهني", "beitragen = يساهم", "kann = يمكن"],
+  simplified: "التطوع مفيد للمسيرة المهنية",
+  imagine: "تخيل شخصاً يتدرب 👨‍💼"
+};
+
+// ========== Exam 10: Demonstration ==========
+HELP_DATA["hoeren3_exam10_q1"] = {
+  text: "In der Innenstadt findet eine Demonstration statt.",
+  meaning: "في وسط المدينة تجري مظاهرة",
+  keywords: ["Innenstadt = وسط مدينة", "Demonstration = مظاهرة", "findet statt = تجري"],
+  simplified: "هناك تظاهرة في المركز",
+  imagine: "تخيل أشخاصاً يتظاهرون ✊"
+};
+HELP_DATA["hoeren3_exam10_q2"] = {
+  text: "Die Polizei ist mit einem Großaufgebot vor Ort.",
+  meaning: "الشرطة متواجدة بعدد كبير في المكان",
+  keywords: ["Polizei = شرطة", "Großaufgebot = عدد كبير", "vor Ort = في المكان"],
+  simplified: "قوات الشرطة كثيرة",
+  imagine: "تخيل سيارات شرطة 🚓"
+};
+HELP_DATA["hoeren3_exam10_q3"] = {
+  text: "Die Demonstranten fordern bessere Umweltpolitik.",
+  meaning: "المتظاهرون يطالبون بسياسة بيئية أفضل",
+  keywords: ["Demonstranten = متظاهرون", "fordern = يطالبون", "bessere Umweltpolitik = سياسة بيئية أفضل"],
+  simplified: "المطالب تتعلق بالبيئة",
+  imagine: "تخيل لافتات بيئية 🌍"
+};
+HELP_DATA["hoeren3_exam10_q4"] = {
+  text: "Die Demonstration verläuft friedlich.",
+  meaning: "المظاهرة تجري بسلام",
+  keywords: ["verläuft = تجري", "friedlich = بسلام", "Demonstration = مظاهرة"],
+  simplified: "الأمور هادئة في التظاهرة",
+  imagine: "تخيل أشخاصاً يسيرون بهدوء 🚶"
+};
+HELP_DATA["hoeren3_exam10_q5"] = {
+  text: "Der Verkehr wird umgeleitet.",
+  meaning: "يتم تحويل حركة المرور",
+  keywords: ["Verkehr = حركة مرور", "umgeleitet = تحويل", "wird = يتم"],
+  simplified: "الطرق مغلقة مؤقتاً",
+  imagine: "تخيل لافتة تحويل طريق 🚧"
+};
+
+// ========== Exam 11: Wochenanfang ==========
+HELP_DATA["hoeren3_exam11_q1"] = {
+  text: "Am Wochenanfang ist es oft sehr stressig.",
+  meaning: "في بداية الأسبوع غالباً ما يكون مزعجاً جداً",
+  keywords: ["Wochenanfang = بداية أسبوع", "stressig = مزعج", "oft = غالباً"],
+  simplified: "الاثنين يوم صعب لكثيرين",
+  imagine: "تخيل شخصاً متعباً 😫"
+};
+HELP_DATA["hoeren3_exam11_q2"] = {
+  text: "Viele Menschen haben Schwierigkeiten, in den Arbeitstag zu starten.",
+  meaning: "كثير من الناس يجدون صعوبة في بدء يوم العمل",
+  keywords: ["Schwierigkeiten = صعوبات", "Arbeitstag = يوم عمل", "zu starten = للبدء"],
+  simplified: "بدء الأسبوع صعب للبعض",
+  imagine: "تخيل منبهاً يرن ⏰"
+};
+HELP_DATA["hoeren3_exam11_q3"] = {
+  text: "Ein ausgiebiges Frühstück kann helfen.",
+  meaning: "وجبة فطور دسمة يمكن أن تساعد",
+  keywords: ["ausgiebiges Frühstück = فطور دسم", "kann helfen = يمكن أن يساعد", "ein = واحد"],
+  simplified: "فطور جيد يحسن المزاج",
+  imagine: "تخيل طبق فطور 🍳"
+};
+HELP_DATA["hoeren3_exam11_q4"] = {
+  text: "Sport am Morgen belebt den Kreislauf.",
+  meaning: "الرياضة في الصباح تنشط الدورة الدموية",
+  keywords: ["Sport = رياضة", "Morgen = صباح", "belebt = تنشط", "Kreislauf = دورة دموية"],
+  simplified: "الرياضة الصباحية مفيدة",
+  imagine: "تخيل شخصاً يمارس رياضة 🏃"
+};
+HELP_DATA["hoeren3_exam11_q5"] = {
+  text: "Ein positiver Start in die Woche ist wichtig für die Produktivität.",
+  meaning: "بداية إيجابية للأسبوع مهمة للإنتاجية",
+  keywords: ["positiver Start = بداية إيجابية", "Produktivität = إنتاجية", "wichtig = مهم"],
+  simplified: "الأسبوع يبدأ بالطاقة الإيجابية",
+  imagine: "تخيل شخصاً مبتسماً 😊"
+};
+
+// ========== Exam 12: Im August ==========
+HELP_DATA["hoeren3_exam12_q1"] = {
+  text: "Im August ist das Wetter meistens warm und sonnig.",
+  meaning: "في أغسطس الطقس غالباً دافئ ومشمس",
+  keywords: ["August = أغسطس", "warm = دافئ", "sonnig = مشمس"],
+  simplified: "أغسطس شهر صيفي حار",
+  imagine: "تخيل شمساً صيفية ☀️"
+};
+HELP_DATA["hoeren3_exam12_q2"] = {
+  text: "Viele Menschen machen im August Urlaub.",
+  meaning: "كثير من الناس يأخذون عطلة في أغسطس",
+  keywords: ["August = أغسطس", "Urlaub = عطلة", "machen = يأخذون"],
+  simplified: "أغسطس شهر العطلات",
+  imagine: "تخيل شخصاً على الشاطئ 🏖️"
+};
+HELP_DATA["hoeren3_exam12_q3"] = {
+  text: "Die Schulen sind im August geschlossen.",
+  meaning: "المدارس مغلقة في أغسطس",
+  keywords: ["Schulen = مدارس", "geschlossen = مغلقة", "August = أغسطس"],
+  simplified: "عطلة صيفية للمدارس",
+  imagine: "تخيل مدرسة فارغة 🏫"
+};
+HELP_DATA["hoeren3_exam12_q4"] = {
+  text: "Es gibt viele Open-Air-Veranstaltungen.",
+  meaning: "هناك العديد من الفعاليات في الهواء الطلق",
+  keywords: ["Open-Air-Veranstaltungen = فعاليات خارجية", "viele = العديد", "gibt es = هناك"],
+  simplified: "الأنشطة الخارجية كثيرة",
+  imagine: "تخيل حفلة موسيقية خارجية 🎵"
+};
+HELP_DATA["hoeren3_exam12_q5"] = {
+  text: "Die Hitze kann für manche Menschen belastend sein.",
+  meaning: "الحرارة يمكن أن تكون مرهقة لبعض الناس",
+  keywords: ["Hitze = حرارة", "belastend = مرهق", "kann sein = يمكن أن تكون"],
+  simplified: "الحر الشديد يؤثر على الصحة",
+  imagine: "تخيل شخصاً يتصبب عرقاً 🥵"
+};
+
+// ========== Exam 13: Fundbüro ==========
+HELP_DATA["hoeren3_exam13_q1"] = {
+  text: "Im Fundbüro kann man verlorene Gegenstände abgeben.",
+  meaning: "في مكتب المفقودات يمكن تسليم الأشياء المفقودة",
+  keywords: ["Fundbüro = مكتب مفقودات", "verlorene Gegenstände = أشياء مفقودة", "abgeben = تسليم"],
+  simplified: "مكان مخصص للإبلاغ عن المفقودات",
+  imagine: "تخيل مكتباً به أشياء متنوعة 🏢"
+};
+HELP_DATA["hoeren3_exam13_q2"] = {
+  text: "Verlorene Schlüssel werden oft dort abgegeben.",
+  meaning: "المفاتيح المفقودة غالباً ما تُسلم هناك",
+  keywords: ["verlorene Schlüssel = مفاتيح مفقودة", "abgegeben = تُسلم", "oft = غالباً"],
+  simplified: "المفاتيح أكثر الأشياء ضياعاً",
+  imagine: "تخيل مفتاحاً 🔑"
+};
+HELP_DATA["hoeren3_exam13_q3"] = {
+  text: "Man sollte seinen Namen auf wichtige Gegenstände schreiben.",
+  meaning: "يجب على المرء كتابة اسمه على الأشياء المهمة",
+  keywords: ["Namen = اسم", "wichtige Gegenstände = أشياء مهمة", "schreiben = كتابة"],
+  simplified: "التعريف يسهل إعادة الأشياء",
+  imagine: "تخيل ملصقاً باسم 🏷️"
+};
+HELP_DATA["hoeren3_exam13_q4"] = {
+  text: "Das Fundbüro bewahrt die Gegenstände für drei Monate auf.",
+  meaning: "مكتب المفقودات يحتفظ بالأشياء لمدة ثلاثة أشهر",
+  keywords: ["bewahrt auf = يحتفظ", "drei Monate = ثلاثة أشهر", "Gegenstände = أشياء"],
+  simplified: "مدة الحفظ 90 يوماً",
+  imagine: "تخيل تقويماً مدته ثلاثة أشهر 📆"
+};
+HELP_DATA["hoeren3_exam13_q5"] = {
+  text: "Nach Ablauf der Frist werden die Gegenstände versteigert.",
+  meaning: "بعد انتهاء المدة، تُباع الأشياء في مزاد",
+  keywords: ["Ablauf der Frist = انتهاء المدة", "versteigert = تُباع في مزاد", "werden = تُصبح"],
+  simplified: "الأشياء غير المستردة تُباع",
+  imagine: "تخيل مطرقة مزاد 🔨"
+};
+
+// ========== Exam 14: Ausgang 26 ==========
+HELP_DATA["hoeren3_exam14_q1"] = {
+  text: "Der Flug nach London startet von Ausgang 26.",
+  meaning: "رحلة لندن تقلع من مخرج 26",
+  keywords: ["Flug = رحلة", "London = لندن", "Ausgang = مخرج", "startet = تقلع"],
+  simplified: "بوابة المغادرة رقم 26",
+  imagine: "تخيل لافتة في مطار ✈️"
+};
+HELP_DATA["hoeren3_exam14_q2"] = {
+  text: "Passagiere sollten rechtzeitig am Gate sein.",
+  meaning: "يجب أن يكون الركاب عند البوابة في الوقت المناسب",
+  keywords: ["Passagiere = ركاب", "rechtzeitig = في الوقت المناسب", "Gate = بوابة"],
+  simplified: "لا تتأخر عن رحلتك",
+  imagine: "تخيل شخصاً يركض في المطار 🏃"
+};
+HELP_DATA["hoeren3_exam14_q3"] = {
+  text: "Das Boarding beginnt 30 Minuten vor Abflug.",
+  meaning: "صعود الطائرة يبدأ قبل 30 دقيقة من الإقلاع",
+  keywords: ["Boarding = صعود", "beginnt = يبدأ", "30 Minuten = 30 دقيقة", "vor Abflug = قبل الإقلاع"],
+  simplified: "وقت كافٍ للصعود",
+  imagine: "تخيل ساعة توقيت ⏰"
+};
+HELP_DATA["hoeren3_exam14_q4"] = {
+  text: "Fluggäste mit Kleinkindern dürfen zuerst boarden.",
+  meaning: "الركاب مع أطفال صغار يسمح لهم بالصعود أولاً",
+  keywords: ["Kleinkindern = أطفال صغار", "dürfen = يسمح لهم", "zuerst = أولاً"],
+  simplified: "أولوية للعائلات",
+  imagine: "تخيل عائلة مع طفل 👨‍👩‍👧"
+};
+HELP_DATA["hoeren3_exam14_q5"] = {
+  text: "Der Flug hat eine Stunde Verspätung.",
+  meaning: "الرحلة تأخرت ساعة واحدة",
+  keywords: ["Flug = رحلة", "Verspätung = تأخير", "eine Stunde = ساعة واحدة"],
+  simplified: "الرحلة ليست في موعدها",
+  imagine: "تخيل ساعة تتأخر ⌛"
+};
+
+// ========== Exam 15: Ausgang 26 (Mittel) ==========
+HELP_DATA["hoeren3_exam15_q1"] = {
+  text: "Der Flug nach Barcelona geht von Ausgang 26.",
+  meaning: "رحلة برشلونة تنطلق من مخرج 26",
+  keywords: ["Flug = رحلة", "Barcelona = برشلونة", "Ausgang = مخرج", "geht = تنطلق"],
+  simplified: "بوابة المغادرة رقم 26",
+  imagine: "تخيل لافتة في مطار ✈️"
+};
+HELP_DATA["hoeren3_exam15_q2"] = {
+  text: "Die Fluggesellschaft bietet kostenlose Getränke an Bord an.",
+  meaning: "شركة الطيران تقدم مشروبات مجانية على متن الطائرة",
+  keywords: ["Fluggesellschaft = شركة طيران", "kostenlose Getränke = مشروبات مجانية", "an Bord = على متن", "bietet an = تقدم"],
+  simplified: "خدمة المشروبات مجانية",
+  imagine: "تخيل كوباً من العصير 🥤"
+};
+HELP_DATA["hoeren3_exam15_q3"] = {
+  text: "Es gibt einen kostenpflichtigen WLAN-Service.",
+  meaning: "هناك خدمة إنترنت لاسلكي مدفوعة",
+  keywords: ["kostenpflichtigen = مدفوعة", "WLAN-Service = خدمة إنترنت", "gibt es = هناك"],
+  simplified: "الإنترنت على متن الطائرة ليس مجانياً",
+  imagine: "تخيل إشارة واي فاي 📶"
+};
+HELP_DATA["hoeren3_exam15_q4"] = {
+  text: "Die Passagiere werden um Verständnis für die Verspätung gebeten.",
+  meaning: "يُطلب من الركاب التفهم للتأخير",
+  keywords: ["Passagiere = ركاب", "Verständnis = تفهم", "Verspätung = تأخير", "gebeten = يُطلب"],
+  simplified: "الاعتذار عن التأخير",
+  imagine: "تخيل مضيفة تعتذر 🎙️"
+};
+HELP_DATA["hoeren3_exam15_q5"] = {
+  text: "Bei starkem Turbulenzen sollten die Passagiere sitzen bleiben.",
+  meaning: "في حالة الاضطرابات الشديدة، يجب على الركاب البقاء جالسين",
+  keywords: ["Turbulenzen = اضطرابات", "sitzen bleiben = البقاء جالساً", "sollten = يجب"],
+  simplified: "السلامة أولاً في الأجواء المضطربة",
+  imagine: "تخيل حزام أمان 🔒"
+}; 
+// ========== Exam 16: Blutspenden ==========
+HELP_DATA["hoeren3_exam16_q1"] = {
+  text: "Blutspenden rettet Leben und ist sehr wichtig.",
+  meaning: "التبرع بالدم ينقذ الأرواح وهو مهم جداً",
+  keywords: ["Blutspenden = تبرع بالدم", "rettet = ينقذ", "Leben = أرواح", "wichtig = مهم"],
+  simplified: "التبرع بالدم ضروري للمرضى",
+  imagine: "تخيل كيس دم ينقذ حياة 🩸"
+};
+HELP_DATA["hoeren3_exam16_q2"] = {
+  text: "Jeder gesunde Erwachsene kann Blut spenden.",
+  meaning: "كل بالغ سليم يمكنه التبرع بالدم",
+  keywords: ["gesunder Erwachsener = بالغ سليم", "kann = يمكن", "Blut spenden = تبرع بالدم"],
+  simplified: "الشروط الصحية بسيطة للتبرع",
+  imagine: "تخيل شخصاً سليماً يتبرع 💪"
+};
+HELP_DATA["hoeren3_exam16_q3"] = {
+  text: "Vor der Spende wird der Gesundheitszustand überprüft.",
+  meaning: "قبل التبرع يتم فحص الحالة الصحية",
+  keywords: ["vor der Spende = قبل التبرع", "Gesundheitszustand = حالة صحية", "überprüft = فحص"],
+  simplified: "فحص طبي قبل التبرع",
+  imagine: "تخيل طبيباً يفحص مريضاً 👨‍⚕️"
+};
+HELP_DATA["hoeren3_exam16_q4"] = {
+  text: "Die Blutspende dauert nur etwa 10 Minuten.",
+  meaning: "عملية التبرع بالدم تستغرق فقط حوالي 10 دقائق",
+  keywords: ["Blutspende = تبرع بالدم", "dauert = تستغرق", "10 Minuten = 10 دقائق"],
+  simplified: "وقت قصير للتبرع",
+  imagine: "تخيل ساعة توقيت ⏱️"
+};
+HELP_DATA["hoeren3_exam16_q5"] = {
+  text: "Nach der Spende gibt es Erfrischungen für die Spender.",
+  meaning: "بعد التبرع هناك مشروبات منعشة للمتبرعين",
+  keywords: ["nach der Spende = بعد التبرع", "Erfrischungen = مشروبات منعشة", "Spender = متبرعين"],
+  simplified: "مشروبات مجانية بعد التبرع",
+  imagine: "تخيل كأساً من العصير 🥤"
+};
+
+// ========== Exam 17: Reitturnier ==========
+HELP_DATA["hoeren3_exam17_q1"] = {
+  text: "Das Reitturnier findet am Wochenende statt.",
+  meaning: "مسابقة الفروسية تقام في عطلة نهاية الأسبوع",
+  keywords: ["Reitturnier = مسابقة فروسية", "findet statt = تقام", "Wochenende = عطلة نهاية الأسبوع"],
+  simplified: "الموعد هو نهاية الأسبوع",
+  imagine: "تخيل حصاناً يركض 🐎"
+};
+HELP_DATA["hoeren3_exam17_q2"] = {
+  text: "Teilnehmer aus vielen Ländern sind dabei.",
+  meaning: "مشاركون من العديد من الدول يشاركون",
+  keywords: ["Teilnehmer = مشاركون", "vielen Ländern = دول كثيرة", "sind dabei = يشاركون"],
+  simplified: "مسابقة دولية",
+  imagine: "تخيل أعلاماً مختلفة 🏳️"
+};
+HELP_DATA["hoeren3_exam17_q3"] = {
+  text: "Die Zuschauer können die Pferde hautnah erleben.",
+  meaning: "يمكن للمشاهدين تجربة الخيول عن قرب",
+  keywords: ["Zuschauer = مشاهدين", "Pferde = خيول", "hautnah = عن قرب", "erleben = تجربة"],
+  simplified: "فرصة قريبة لرؤية الخيول",
+  imagine: "تخيل شخصاً يلمس حصاناً 🐴"
+};
+HELP_DATA["hoeren3_exam17_q4"] = {
+  text: "Es gibt auch ein Kinderprogramm mit Ponys.",
+  meaning: "يوجد أيضاً برنامج للأطفال مع المهور",
+  keywords: ["Kinderprogramm = برنامج أطفال", "Ponys = مهور", "gibt es = يوجد"],
+  simplified: "أنشطة للأطفال مع الخيول الصغيرة",
+  imagine: "تخيل طفلاً يركب مهراً 👧"
+};
+HELP_DATA["hoeren3_exam17_q5"] = {
+  text: "Der Eintritt für Kinder ist kostenlos.",
+  meaning: "الدخول مجاني للأطفال",
+  keywords: ["Eintritt = دخول", "Kinder = أطفال", "kostenlos = مجاني"],
+  simplified: "الأطفال يدخلون بدون دفع",
+  imagine: "تخيل تذكرة مجانية 🎫"
+};
+
+// ========== Exam 18: Delikatessen ==========
+HELP_DATA["hoeren3_exam18_q1"] = {
+  text: "In dem Geschäft werden Delikatessen aus aller Welt angeboten.",
+  meaning: "في المتجر تُقدم الأطعمة الشهية من جميع أنحاء العالم",
+  keywords: ["Geschäft = متجر", "Delikatessen = أطعمة شهية", "aus aller Welt = من جميع أنحاء العالم", "angeboten = تُقدم"],
+  simplified: "منتجات عالمية فاخرة",
+  imagine: "تخيل أطعمة متنوعة 🍽️"
+};
+HELP_DATA["hoeren3_exam18_q2"] = {
+  text: "Besonders beliebt sind französische Käsesorten.",
+  meaning: "الأجبان الفرنسية تحظى بشعبية خاصة",
+  keywords: ["beliebt = شعبية", "französische Käsesorten = أجبان فرنسية", "besonders = خاصة"],
+  simplified: "الجبن الفرنسي الأكثر طلباً",
+  imagine: "تخيل جبنة 🧀"
+};
+HELP_DATA["hoeren3_exam18_q3"] = {
+  text: "Die Preise sind gehoben, aber angemessen.",
+  meaning: "الأسعار مرتفعة ولكن مناسبة",
+  keywords: ["Preise = أسعار", "gehoben = مرتفعة", "angemessen = مناسبة"],
+  simplified: "الجودة مقابل السعر",
+  imagine: "تخيل بطاقة سعر 💶"
+};
+HELP_DATA["hoeren3_exam18_q4"] = {
+  text: "Viele Produkte kann man vor dem Kauf probieren.",
+  meaning: "يمكن تذوق العديد من المنتجات قبل الشراء",
+  keywords: ["Produkte = منتجات", "vor dem Kauf = قبل الشراء", "probieren = تذوق"],
+  simplified: "تذوق مجاني للمنتجات",
+  imagine: "تخيل عينة طعام 🍴"
+};
+HELP_DATA["hoeren3_exam18_q5"] = {
+  text: "Das Geschäft hat auch eine eigene Weinabteilung.",
+  meaning: "المتجر لديه أيضاً قسم نبيذ خاص",
+  keywords: ["Weinabteilung = قسم نبيذ", "eigene = خاص", "hat = لديه"],
+  simplified: "خمور متوفرة أيضاً",
+  imagine: "تخيل زجاجة نبيذ 🍷"
+};
+
+// ========== Exam 19: Für ein Konzert (Bus gratis) ==========
+HELP_DATA["hoeren3_exam19_q1"] = {
+  text: "Zum Konzert fahren kostenlose Busse.",
+  meaning: "حافلات مجانية تنقل إلى الحفل الموسيقي",
+  keywords: ["Konzert = حفل موسيقي", "kostenlose Busse = حافلات مجانية", "fahren = تنقل"],
+  simplified: "مواصلات مجانية للحفل",
+  imagine: "تخيل حافلة 🚌"
+};
+HELP_DATA["hoeren3_exam19_q2"] = {
+  text: "Die Busse fahren vom Hauptbahnhof ab.",
+  meaning: "الحافلات تنطلق من محطة القطار الرئيسية",
+  keywords: ["Busse = حافلات", "Hauptbahnhof = محطة قطار رئيسية", "fahren ab = تنطلق"],
+  simplified: "نقطة الانطلاق هي المحطة المركزية",
+  imagine: "تخيل محطة قطار 🚉"
+};
+HELP_DATA["hoeren3_exam19_q3"] = {
+  text: "Die Hinfahrt ist kostenlos, die Rückfahrt kostet 5 Euro.",
+  meaning: "رحلة الذهاب مجانية، رحلة العودة تكلف 5 يورو",
+  keywords: ["Hinfahrt = رحلة ذهاب", "kostenlos = مجانية", "Rückfahrt = رحلة عودة", "kostet = تكلف"],
+  simplified: "الذهاب مجاني والإياب مدفوع",
+  imagine: "تخيل تذكرة ذهاب وإياب 🎫"
+};
+HELP_DATA["hoeren3_exam19_q4"] = {
+  text: "Der letzte Bus zurück fährt um Mitternacht.",
+  meaning: "آخر حافلة عودة تنطلق عند منتصف الليل",
+  keywords: ["letzte Bus = آخر حافلة", "zurück = عودة", "fährt = تنطلق", "Mitternacht = منتصف الليل"],
+  simplified: "موعد العودة النهائي منتصف الليل",
+  imagine: "تخيل ساعة منتصف الليل 🕛"
+};
+HELP_DATA["hoeren3_exam19_q5"] = {
+  text: "Man sollte die Busfahrzeiten vorher prüfen.",
+  meaning: "يجب على المرء التحقق من مواعيد الحافلات مسبقاً",
+  keywords: ["Busfahrzeiten = مواعيد حافلات", "vorher = مسبقاً", "prüfen = التحقق"],
+  simplified: "التخطيط المسبق مطلوب",
+  imagine: "تخيل جدول مواعيد 📅"
+};
+
+// ========== Exam 20: Für ein Konzert (in der ganzen Stadt) ==========
+HELP_DATA["hoeren3_exam20_q1"] = {
+  text: "Das Konzert findet im Stadion statt.",
+  meaning: "الحفل الموسيقي يقام في الملعب",
+  keywords: ["Konzert = حفل موسيقي", "findet statt = يقام", "Stadion = ملعب"],
+  simplified: "المكان هو الملعب الكبير",
+  imagine: "تخيل ملعباً كبيراً 🏟️"
+};
+HELP_DATA["hoeren3_exam20_q2"] = {
+  text: "Die Band spielt ihre größten Hits.",
+  meaning: "الفرقة تعزف أكبر أغانيها نجاحاً",
+  keywords: ["Band = فرقة", "spielt = تعزف", "größten Hits = أكبر الأغاني نجاحاً"],
+  simplified: "أغاني مشهورة في الحفل",
+  imagine: "تخيل فرقة موسيقية على المسرح 🎸"
+};
+HELP_DATA["hoeren3_exam20_q3"] = {
+  text: "Es wird ein Feuerwerk geben.",
+  meaning: "سيكون هناك عرض ألعاب نارية",
+  keywords: ["Feuerwerk = ألعاب نارية", "geben = هناك", "wird = سيكون"],
+  simplified: "ختام الحفل بألعاب نارية",
+  imagine: "تخيل ألعاباً نارية 🎆"
+};
+HELP_DATA["hoeren3_exam20_q4"] = {
+  text: "Vor dem Konzert gibt es eine Vorband.",
+  meaning: "قبل الحفل هناك فرقة تمهيدية",
+  keywords: ["Vorband = فرقة تمهيدية", "vor dem Konzert = قبل الحفل", "gibt es = هناك"],
+  simplified: "عرض افتتاحي من فرقة أخرى",
+  imagine: "تخيل فرقة تفتتح الحفل 🎤"
+};
+HELP_DATA["hoeren3_exam20_q5"] = {
+  text: "Das Konzert ist bereits ausverkauft.",
+  meaning: "الحفل مباع بالكامل بالفعل",
+  keywords: ["Konzert = حفل", "ausverkauft = مباع بالكامل", "bereits = بالفعل"],
+  simplified: "لا توجد تذاكر متاحة",
+  imagine: "تخيل لافتة "مباع" 🚫"
+};
+
+// ========== Exam 21: In Raum C23 ==========
+HELP_DATA["hoeren3_exam21_q1"] = {
+  text: "Die Veranstaltung findet in Raum C23 statt.",
+  meaning: "الفعالية تقام في الغرفة C23",
+  keywords: ["Veranstaltung = فعالية", "findet statt = تقام", "Raum C23 = غرفة C23"],
+  simplified: "الموقع محدد برقم الغرفة",
+  imagine: "تخيل باباً مكتوباً عليه C23 🚪"
+};
+HELP_DATA["hoeren3_exam21_q2"] = {
+  text: "Der Raum ist im Erdgeschoss.",
+  meaning: "الغرفة في الطابق الأرضي",
+  keywords: ["Raum = غرفة", "Erdgeschoss = طابق أرضي", "ist = في"],
+  simplified: "لا حاجة لاستخدام المصعد",
+  imagine: "تخيل مدخل مبنى 🏢"
+};
+HELP_DATA["hoeren3_exam21_q3"] = {
+  text: "Es gibt etwa 50 Sitzplätze.",
+  meaning: "هناك حوالي 50 مقعداً",
+  keywords: ["Sitzplätze = مقاعد", "etwa = حوالي", "50 = خمسون"],
+  simplified: "سعة الغرفة 50 شخصاً",
+  imagine: "تخيل كراسي مرتبة 🪑"
+};
+HELP_DATA["hoeren3_exam21_q4"] = {
+  text: "Eine Anmeldung ist nicht erforderlich.",
+  meaning: "التسجيل المسبق غير مطلوب",
+  keywords: ["Anmeldung = تسجيل", "nicht erforderlich = غير مطلوب", "ist = هو"],
+  simplified: "الدخول مجاني بدون تسجيل",
+  imagine: "تخيل باباً مفتوحاً 🚪"
+};
+HELP_DATA["hoeren3_exam21_q5"] = {
+  text: "Die Veranstaltung dauert zwei Stunden.",
+  meaning: "الفعالية تستغرق ساعتين",
+  keywords: ["Veranstaltung = فعالية", "dauert = تستغرق", "zwei Stunden = ساعتين"],
+  simplified: "المدة الإجمالية 120 دقيقة",
+  imagine: "تخيل ساعة ⏰"
+};
+
+// ========== Exam 22: Trainingsausfahrten ==========
+HELP_DATA["hoeren3_exam22_q1"] = {
+  text: "Die Trainingsausfahrten finden jeden Samstag statt.",
+  meaning: "رحلات التدريب تقام كل يوم سبت",
+  keywords: ["Trainingsausfahrten = رحلات تدريب", "finden statt = تقام", "jeden Samstag = كل سبت"],
+  simplified: "موعد ثابت كل أسبوع",
+  imagine: "تخيل تقويماً يشير إلى السبت 📅"
+};
+HELP_DATA["hoeren3_exam22_q2"] = {
+  text: "Die Strecke ist etwa 30 Kilometer lang.",
+  meaning: "الطريق يبلغ طوله حوالي 30 كيلومتراً",
+  keywords: ["Strecke = طريق", "etwa = حوالي", "30 Kilometer = 30 كيلومتراً", "lang = طويل"],
+  simplified: "مسافة الرحلة 30 كم",
+  imagine: "تخيل علامة كيلومترات 🚏"
+};
+HELP_DATA["hoeren3_exam22_q3"] = {
+  text: "Teilnehmer sollten ihr eigenes Fahrrad mitbringen.",
+  meaning: "يجب على المشاركين إحضار دراجاتهم الخاصة",
+  keywords: ["Teilnehmer = مشاركين", "eigenes Fahrrad = دراجة خاصة", "mitbringen = إحضار"],
+  simplified: "الدراجة غير متوفرة في الموقع",
+  imagine: "تخيل دراجة هوائية 🚲"
+};
+HELP_DATA["hoeren3_exam22_q4"] = {
+  text: "Eine Anmeldung ist erforderlich.",
+  meaning: "التسجيل المسبق مطلوب",
+  keywords: ["Anmeldung = تسجيل", "erforderlich = مطلوب", "ist = هو"],
+  simplified: "يجب التسجيل قبل المشاركة",
+  imagine: "تخيل نموذج تسجيل 📝"
+};
+HELP_DATA["hoeren3_exam22_q5"] = {
+  text: "Die Teilnahme ist kostenlos.",
+  meaning: "المشاركة مجانية",
+  keywords: ["Teilnahme = مشاركة", "kostenlos = مجانية", "ist = هي"],
+  simplified: "لا رسوم للاشتراك",
+  imagine: "تخيل بطاقة مجانية 🎫"
+};
+
+// ========== Exam 23: Das Geschäft ==========
+HELP_DATA["hoeren3_exam23_q1"] = {
+  text: "Das Geschäft hat von Montag bis Samstag geöffnet.",
+  meaning: "المتجر مفتوح من الاثنين إلى السبت",
+  keywords: ["Geschäft = متجر", "Montag bis Samstag = الاثنين إلى السبت", "geöffnet = مفتوح"],
+  simplified: "أيام العمل 6 أيام في الأسبوع",
+  imagine: "تخيل لافتة ساعات العمل 🏪"
+};
+HELP_DATA["hoeren3_exam23_q2"] = {
+  text: "Sonntags ist das Geschäft geschlossen.",
+  meaning: "المتجر مغلق يوم الأحد",
+  keywords: ["Sonntags = أيام الأحد", "geschlossen = مغلق", "ist = هو"],
+  simplified: "يوم الراحة هو الأحد",
+  imagine: "تخيل باباً عليه لافتة "مغلق" 🚫"
+};
+HELP_DATA["hoeren3_exam23_q3"] = {
+  text: "Es gibt regelmäßige Sonderangebote.",
+  meaning: "هناك عروض خاصة منتظمة",
+  keywords: ["regelmäßige = منتظمة", "Sonderangebote = عروض خاصة", "gibt es = هناك"],
+  simplified: "تخفيضات دورية",
+  imagine: "تخيل علامة تخفيض 🔖"
+};
+HELP_DATA["hoeren3_exam23_q4"] = {
+  text: "Kunden können online bestellen.",
+  meaning: "يمكن للعملاء الطلب عبر الإنترنت",
+  keywords: ["Kunden = عملاء", "online bestellen = طلب عبر الإنترنت", "können = يمكن"],
+  simplified: "خدمة توصيل متاحة",
+  imagine: "تخيل جهاز كمبيوتر للتسوق 💻"
+};
+HELP_DATA["hoeren3_exam23_q5"] = {
+  text: "Das Geschäft wurde vor fünf Jahren eröffnet.",
+  meaning: "المتجر افتتح قبل خمس سنوات",
+  keywords: ["eröffnet = افتتح", "vor fünf Jahren = قبل خمس سنوات", "wurde = تم"],
+  simplified: "العمر 5 سنوات",
+  imagine: "تخيل كعكة عيد ميلاد 🎂"
+};
+
+// ========== Exam 24: Nach einer Großdemonstration ==========
+HELP_DATA["hoeren3_exam24_q1"] = {
+  text: "Nach der Großdemonstration ist die Straße gesperrt.",
+  meaning: "بعد المظاهرة الكبيرة، الشارع مغلق",
+  keywords: ["Großdemonstration = مظاهرة كبيرة", "Straße = شارع", "gesperrt = مغلق"],
+  simplified: "الطرقات لا تزال مغلقة",
+  imagine: "تخيل حاجزاً أمنياً 🚧"
+};
+HELP_DATA["hoeren3_exam24_q2"] = {
+  text: "Die Reinigungskräfte sind im Einsatz.",
+  meaning: "عمال النظافة في الخدمة",
+  keywords: ["Reinigungskräfte = عمال نظافة", "im Einsatz = في الخدمة", "sind = هم"],
+  simplified: "جهود تنظيف المكان",
+  imagine: "تخيل مكنسة تنظيف 🧹"
+};
+HELP_DATA["hoeren3_exam24_q3"] = {
+  text: "Die Anwohner können ihre Häuser nicht verlassen.",
+  meaning: "السكان لا يستطيعون مغادرة منازلهم",
+  keywords: ["Anwohner = سكان", "können nicht = لا يستطيعون", "Häuser verlassen = مغادرة منازل"],
+  simplified: "حظر تجول مؤقت",
+  imagine: "تخيل شخصاً ينظر من النافذة 🪟"
+};
+HELP_DATA["hoeren3_exam24_q4"] = {
+  text: "Der öffentliche Nahverkehr fährt wieder normal.",
+  meaning: "وسائل النقل العام تعمل بشكل طبيعي مرة أخرى",
+  keywords: ["öffentlicher Nahverkehr = نقل عام", "fährt wieder = يعمل مرة أخرى", "normal = طبيعي"],
+  simplified: "حركة المواصلات عادت طبيعية",
+  imagine: "تخيل حافلة تسير 🚌"
+};
+HELP_DATA["hoeren3_exam24_q5"] = {
+  text: "Die Polizei war mit einem Großeinsatz vor Ort.",
+  meaning: "الشرطة كانت موجودة بعملية كبيرة في المكان",
+  keywords: ["Polizei = شرطة", "Großeinsatz = عملية كبيرة", "vor Ort = في المكان"],
+  simplified: "قوات أمنية كثيرة",
+  imagine: "تخيل سيارات شرطة 🚓"
+};
+
+// ========== Exam 25: Das Fest (ohne Frankfurt) ==========
+HELP_DATA["hoeren3_exam25_q1"] = {
+  text: "Das Fest findet ohne Frankfurt statt.",
+  meaning: "المهرجان يقام بدون فرانكفورت",
+  keywords: ["Fest = مهرجان", "findet statt = يقام", "ohne Frankfurt = بدون فرانكفورت"],
+  simplified: "فرانكفورت لا تشارك هذا العام",
+  imagine: "تخيل خريطة بدون فرانكفورت 🗺️"
+};
+HELP_DATA["hoeren3_exam25_q2"] = {
+  text: "Es gibt viele kulinarische Stände.",
+  meaning: "هناك العديد من الأكشاك الغذائية",
+  keywords: ["kulinarische Stände = أكشاك طعام", "viele = العديد", "gibt es = هناك"],
+  simplified: "خيارات طعام متنوعة",
+  imagine: "تخيل كشك طعام 🍔"
+};
+HELP_DATA["hoeren3_exam25_q3"] = {
+  text: "Live-Musik wird den ganzen Tag gespielt.",
+  meaning: "موسيقى حية تعزف طوال اليوم",
+  keywords: ["Live-Musik = موسيقى حية", "ganzen Tag = طوال اليوم", "gespielt = تعزف"],
+  simplified: "عروض موسيقية مستمرة",
+  imagine: "تخيل موسيقياً يعزف 🎵"
+};
+HELP_DATA["hoeren3_exam25_q4"] = {
+  text: "Das Fest endet um Mitternacht.",
+  meaning: "المهرجان ينتهي عند منتصف الليل",
+  keywords: ["Fest = مهرجان", "endet = ينتهي", "Mitternacht = منتصف الليل"],
+  simplified: "وقت الانتهاء هو 12 ليلاً",
+  imagine: "تخيل ساعة منتصف الليل 🕛"
+};
+HELP_DATA["hoeren3_exam25_q5"] = {
+  text: "Der Eintritt ist frei.",
+  meaning: "الدخول مجاني",
+  keywords: ["Eintritt = دخول", "frei = مجاني", "ist = هو"],
+  simplified: "لا توجد رسوم للدخول",
+  imagine: "تخيل بطاقة دخول مجانية 🎟️"
+};
+
+// ========== Exam 26: Das Fest (mit Frankfurt) ==========
+HELP_DATA["hoeren3_exam26_q1"] = {
+  text: "Das Fest findet auch in Frankfurt statt.",
+  meaning: "المهرجان يقام أيضاً في فرانكفورت",
+  keywords: ["Fest = مهرجان", "findet statt = يقام", "auch = أيضاً", "Frankfurt = فرانكفورت"],
+  simplified: "فرانكفورت واحدة من المدن المستضافة",
+  imagine: "تخيل خريطة مع فرانكفورت 🗺️"
+};
+HELP_DATA["hoeren3_exam26_q2"] = {
+  text: "Es gibt ein besonderes Kinderprogramm.",
+  meaning: "هناك برنامج خاص للأطفال",
+  keywords: ["besonderes = خاص", "Kinderprogramm = برنامج أطفال", "gibt es = هناك"],
+  simplified: "أنشطة مخصصة للأطفال",
+  imagine: "تخيل أطفالاً يلعبون 👧"
+};
+HELP_DATA["hoeren3_exam26_q3"] = {
+  text: "Parkplätze sind in der Nähe ausreichend vorhanden.",
+  meaning: "مواقف السيارات متوفرة بكثرة في مكان قريب",
+  keywords: ["Parkplätze = مواقف سيارات", "ausreichend = كافية", "in der Nähe = قريب", "vorhanden = متوفرة"],
+  simplified: "لا مشكلة في مواقف السيارات",
+  imagine: "تخيل سيارة متوقفة 🅿️"
+};
+HELP_DATA["hoeren3_exam26_q4"] = {
+  text: "Das Fest wird von Sponsoren unterstützt.",
+  meaning: "المهرجان مدعوم من رعاة",
+  keywords: ["Fest = مهرجان", "Sponsoren = رعاة", "unterstützt = مدعوم"],
+  simplified: "جهات راعية تمول المهرجان",
+  imagine: "تخيل شعارات رعاة 📢"
+};
+HELP_DATA["hoeren3_exam26_q5"] = {
+  text: "Es gibt ein großes Feuerwerk zum Abschluss.",
+  meaning: "هناك عرض ألعاب نارية كبير في الختام",
+  keywords: ["großes Feuerwerk = ألعاب نارية كبيرة", "zum Abschluss = في الختام", "gibt es = هناك"],
+  simplified: "ختام مبهر بالألعاب النارية",
+  imagine: "تخيل ألعاباً نارية 🎆"
+};
+
+// ========== Exam 27: Radio Konzert ==========
+HELP_DATA["hoeren3_exam27_q1"] = {
+  text: "Das Radiokonzert wird live übertragen.",
+  meaning: "الحفل الإذاعي يُبث مباشرة",
+  keywords: ["Radio Konzert = حفل إذاعي", "live übertragen = بث مباشر", "wird = يُ"],
+  simplified: "يمكن الاستماع مباشرة عبر الراديو",
+  imagine: "تخيل مذياعاً 📻"
+};
+HELP_DATA["hoeren3_exam27_q2"] = {
+  text: "Die Zuhörer können Lieder wünschen.",
+  meaning: "يمكن للمستمعين طلب الأغاني",
+  keywords: ["Zuhörer = مستمعين", "können = يمكن", "Lieder wünschen = طلب أغاني"],
+  simplified: "طلبات الأغاني متاحة للجمهور",
+  imagine: "تخيل شخصاً يتصل لطلب أغنية 📞"
+};
+HELP_DATA["hoeren3_exam27_q3"] = {
+  text: "Der Moderator interviewt die Band.",
+  meaning: "المقدم يقابل الفرقة",
+  keywords: ["Moderator = مقدم", "interviewt = يقابل", "Band = فرقة"],
+  simplified: "حديث مع أعضاء الفرقة",
+  imagine: "تخيل ميكروفوناً 🎙️"
+};
+HELP_DATA["hoeren3_exam27_q4"] = {
+  text: "Das Konzert dauert zwei Stunden.",
+  meaning: "الحفل يستغرق ساعتين",
+  keywords: ["Konzert = حفل", "dauert = يستغرق", "zwei Stunden = ساعتين"],
+  simplified: "المدة الإجمالية 120 دقيقة",
+  imagine: "تخيل ساعة ⏰"
+};
+HELP_DATA["hoeren3_exam27_q5"] = {
+  text: "Es gibt eine Wiederholung am nächsten Tag.",
+  meaning: "هناك إعادة في اليوم التالي",
+  keywords: ["Wiederholung = إعادة", "nächsten Tag = اليوم التالي", "gibt es = هناك"],
+  simplified: "يمكن سماع الحفل مرة أخرى غداً",
+  imagine: "تخيل زر إعادة تشغيل 🔄"
+};
