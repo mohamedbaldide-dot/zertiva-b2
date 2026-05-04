@@ -428,7 +428,7 @@ HELP_DATA["hoeren1_exam12_q2"] = {
   meaning: "المتظاهرون طالبوا بحماية مناخ أكثر",
   keywords: ["Demonstranten = متظاهرون", "forderten = طالبوا", "Klimaschutz = حماية مناخ"],
   simplified: "الناس خرجوا من أجل البيئة",
-  imagine: "تخيل لافتات مكتوب عليها 'احموا الأرض' 🌍✊"
+  imagine: "تخيل لافتات مكتوب عليها احموا الأرض 🌍✊"
 };
 HELP_DATA["hoeren1_exam12_q3"] = {
   text: "Die Polizei war mit einem Großaufgebot vor Ort.",
@@ -936,17 +936,17 @@ HELP_DATA["hoeren1_exam25_q5"] = {
 // ========== Exam 26: Bio-Siegels ==========
 HELP_DATA["hoeren1_exam26_q1"] = {
   text: "Immer mehr Lebensmittel tragen ein Bio-Siegel.",
-  meaning: "المزيد من المواد الغذائية تحمل ختم "بيو" (عضوي)",
+  meaning: "المزيد من المواد الغذائية تحمل ختم عضوي",
   keywords: ["Lebensmittel = مواد غذائية", "Bio-Siegel = ختم عضوي", "tragen = تحمل"],
   simplified: "منتجات عضوية أكثر في الأسواق",
-  imagine: "تخيل ختماً أخضر مكتوباً عليه 'بيو' 🟢"
+  imagine: "تخيل ختما اخضر مكتوب عليه بيو 🟢"
 };
 HELP_DATA["hoeren1_exam26_q2"] = {
   text: "Verbraucher vertrauen auf die Siegel.",
   meaning: "المستهلكون يثقون بالأختام",
   keywords: ["Verbraucher = مستهلكون", "vertrauen = يثقون", "Siegel = أختام"],
   simplified: "الناس تشتري المنتجات العضوية بثقة",
-  imagine: "تخيل إبهاماً لأعلى 👍"
+  imagine: "تخيل إبهاما لأعلى 👍"
 };
 HELP_DATA["hoeren1_exam26_q3"] = {
   text: "Die Produkte werden ohne chemische Pestizide hergestellt.",
@@ -957,17 +957,17 @@ HELP_DATA["hoeren1_exam26_q3"] = {
 };
 HELP_DATA["hoeren1_exam26_q4"] = {
   text: "Bio-Lebensmittel sind oft teurer als konventionelle.",
-  meaning: "الأطعمة العضوية غالباً أغلى من التقليدية",
+  meaning: "الأطعمة العضوية غالبا أغلى من التقليدية",
   keywords: ["Bio-Lebensmittel = أطعمة عضوية", "teurer = أغلى", "konventionelle = تقليدية"],
   simplified: "الجودة العالية تكلف أكثر",
-  imagine: "تخيل سعراً أكبر على ملصق منتج 💶"
+  imagine: "تخيل سعرا أكبر على ملصق منتج 💶"
 };
 HELP_DATA["hoeren1_exam26_q5"] = {
   text: "Die Nachfrage nach Bio-Produkten steigt stetig.",
   meaning: "الطلب على المنتجات العضوية يرتفع باستمرار",
   keywords: ["Nachfrage = طلب", "steigt = يرتفع", "stetig = باستمرار"],
-  simplified: "الناس تريد طعاماً صحياً أكثر فأكثر",
-  imagine: "تخيل رسماً بيانياً يرتفع لأعلى 📈"
+  simplified: "الناس تريد طعاما صحيا أكثر فأكثر",
+  imagine: "تخيل رسما بيانيا يرتفع لأعلى 📈"
 };
 
 // ========== Exam 27: Berufen (bonbon) ==========
