@@ -3987,7 +3987,7 @@ HELP_DATA["hoeren3_exam20_q5"] = {
   text: "Das Konzert ist bereits ausverkauft.",
   meaning: "الحفل مباع بالكامل بالفعل",
   keywords: ["Konzert = حفل", "ausverkauft = مباع بالكامل", "bereits = بالفعل"],
-  simplified: "لا توجد تذاكر متاحة",
+  simplified: 'لا توجد تذاكر "متاحة"'
   imagine: 'تخيل لافتة "مباع" 🚫'   // ✅ هكذا يكون صحيحاً
 };
 
@@ -4078,7 +4078,7 @@ HELP_DATA["hoeren3_exam23_q2"] = {
   meaning: "المتجر مغلق يوم الأحد",
   keywords: ["Sonntags = أيام الأحد", "geschlossen = مغلق", "ist = هو"],
   simplified: "يوم الراحة هو الأحد",
-  imagine: "تخيل باباً عليه لافتة "مغلق" 🚫"
+  imagine: 'تخيل باباً عليه لافتة "مغلق" 🚫'   // ✅ صحيح
 };
 HELP_DATA["hoeren3_exam23_q3"] = {
   text: "Es gibt regelmäßige Sonderangebote.",
