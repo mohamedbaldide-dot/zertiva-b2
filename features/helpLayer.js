@@ -1,12 +1,11 @@
 // ============================================
-// helpLayer.js - نظام الطبقة المساعدة (FIXED)
+// helpLayer.js - نظام الطبقة المساعدة
 // ============================================
 
 let helpLayerActive = false;
 let originalContentBackup = null;
-let buttonInjected = false;
 
-// تحديد عدد المستطيلات حسب القسم
+// تحديد عدد المستطيلات حسب نوع الامتحان
 function getHelpBoxCount() {
   if (document.getElementById('hoeren1')?.style.display === 'block') return 5;
   if (document.getElementById('hoeren2')?.style.display === 'block') return 10;
@@ -19,196 +18,252 @@ function getHelpBoxCount() {
   return 0;
 }
 
-// إنشاء مستطيل
+// إنشاء مستطيل شرح واحد فارغ
 function createSingleHelpBox(index) {
   const box = document.createElement('div');
   box.className = 'help-box';
+  box.id = `helpBox_${index}`;
   box.style.cssText = `
-    background:#f8f9fa;
-    border:2px solid #6c757d;
-    border-radius:12px;
-    padding:20px;
-    min-height:100px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px solid #6c757d;
+    border-radius: 12px;
+    padding: 20px;
+    min-height: 100px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `;
-
+  
   const number = document.createElement('div');
-  number.textContent = index;
+  number.textContent = `${index}`;
   number.style.cssText = `
-    width:40px;height:40px;
-    background:#6c757d;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:8px;
-    font-weight:bold;
+    display: inline-block;
+    background-color: #6c757d;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 18px;
+    font-weight: bold;
   `;
-
+  
   box.appendChild(number);
+  
+  box.addEventListener('mouseenter', () => {
+    box.style.transform = 'translateY(-3px)';
+    box.style.boxShadow = '0 8px 20px rgba(0,0,0,0.1)';
+    box.style.borderColor = '#28a745';
+  });
+  box.addEventListener('mouseleave', () => {
+    box.style.transform = 'translateY(0)';
+    box.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+    box.style.borderColor = '#6c757d';
+  });
+  
   return box;
 }
 
-// إنشاء الشبكة
+// إنشاء شبكة المستطيلات
 function createHelpBoxes(count) {
   const container = document.createElement('div');
   container.id = 'helpLayerContainer';
-
   container.style.cssText = `
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-    padding:20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 16px;
+    margin: 15px 0;
   `;
-
+  
   if (count === 10) {
-    for (let i = 0; i < 5; i++) {
-      const row = document.createElement('div');
-      row.style.display = 'grid';
-      row.style.gridTemplateColumns = 'repeat(2,1fr)';
-      row.style.gap = '20px';
-
-      row.appendChild(createSingleHelpBox(i * 2 + 1));
-      row.appendChild(createSingleHelpBox(i * 2 + 2));
-      container.appendChild(row);
+    for (let row = 0; row < 5; row++) {
+      const rowDiv = document.createElement('div');
+      rowDiv.style.cssText = `display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 20px;`;
+      for (let col = 0; col < 2; col++) {
+        const index = row * 2 + col + 1;
+        if (index <= 10) {
+          rowDiv.appendChild(createSingleHelpBox(index));
+        }
+      }
+      container.appendChild(rowDiv);
     }
-  } else if (count === 5) {
-    for (let i = 0; i < 5; i++) {
-      container.appendChild(createSingleHelpBox(i + 1));
-    }
+  } 
+  else if (count === 5) {
+    const column = document.createElement('div');
+    column.style.cssText = `display: flex; flex-direction: column; gap: 20px;`;
+    for (let i = 0; i < 5; i++) column.appendChild(createSingleHelpBox(i + 1));
+    container.appendChild(column);
   }
-
+  
   return container;
 }
 
-// إخفاء فقط المحتوى الداخلي (بدون تدمير الصفحة)
+// إخفاء محتوى الامتحان
 function hideExamQuestions() {
   const hidden = [];
-  const section = getActiveSection();
-  if (!section) return hidden;
-
-  const items = section.querySelectorAll('.question-card, .itemsGrid');
-
-  items.forEach(el => {
-    el.style.display = 'none';
-    hidden.push(el);
-  });
-
+  const activeSection = getActiveSection();
+  if (!activeSection) return hidden;
+  
+  const allChildren = activeSection.children;
+  for (let i = 0; i < allChildren.length; i++) {
+    const child = allChildren[i];
+    if (child.id !== 'helpLayerContainer' && child.style.display !== 'none') {
+      child.style.display = 'none';
+      hidden.push(child);
+    }
+  }
+  
   return hidden;
 }
 
-// إظهار
-function showHiddenElements(elements) {
-  elements.forEach(el => el.style.display = '');
-}
-
-// القسم الحالي
+// الحصول على القسم النشط
 function getActiveSection() {
-  const ids = ['hoeren1','hoeren2','hoeren3','teil1','teil2','teil3','sprach1','sprach2','schreiben'];
-  return ids.map(id => document.getElementById(id))
-            .find(el => el && el.style.display === 'block');
+  const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'teil1', 'teil2', 'teil3', 'sprach1', 'sprach2'];
+  for (const section of sections) {
+    const el = document.getElementById(section);
+    if (el && el.style.display === 'block') {
+      return el;
+    }
+  }
+  return null;
 }
 
-// إخفاء الأزرار
-function hideButtons() {
-  const hidden = [];
-  document.querySelectorAll('button').forEach(btn => {
-    const t = btn.textContent;
+// إظهار المحتوى المخفي
+function showHiddenElements(hiddenElements) {
+  hiddenElements.forEach(el => {
+    el.style.display = '';
+  });
+}
 
-    if (
-      t.includes('تصحيح') ||
-      t.includes('Prüfen') ||
-      t.includes('↺')
-    ) {
-      btn.style.display = 'none';
-      hidden.push(btn);
+// إخفاء أزرار التصحيح وإعادة التعيين
+function hideCheckAndResetButtons() {
+  const hidden = [];
+  const allButtons = document.querySelectorAll('button');
+  allButtons.forEach(btn => {
+    const btnText = btn.textContent;
+    if (btnText.includes('✅') || btnText.includes('تصحيح') || btnText.includes('Prüfen') || btnText.includes('↺') || btnText.includes('إعادة تعيين')) {
+      if (btn.style.display !== 'none') {
+        btn.style.display = 'none';
+        hidden.push(btn);
+      }
     }
   });
   return hidden;
 }
 
-function showButtons(list) {
-  list.forEach(b => b.style.display = '');
+// إظهار الأزرار المخفية
+function showCheckAndResetButtons(hiddenButtons) {
+  hiddenButtons.forEach(btn => {
+    btn.style.display = '';
+  });
 }
 
-// تشغيل / إيقاف
+// تبديل وضع المساعدة (إظهار/إخفاء)
 function toggleHelpLayer() {
-
   const schreiben = document.getElementById('schreiben');
-  if (schreiben?.style.display === 'block') return; // ❌ منع كامل
-
-  const existing = document.getElementById('helpLayerContainer');
-
-  if (helpLayerActive) {
-    existing?.remove();
-
-    if (originalContentBackup) {
-      showHiddenElements(originalContentBackup.questions);
-      showButtons(originalContentBackup.buttons);
-    }
-
-    helpLayerActive = false;
-    originalContentBackup = null;
+  if (schreiben && schreiben.style.display !== 'none') {
     return;
   }
-
-  const questions = hideExamQuestions();
-  const buttons = hideButtons();
-
-  originalContentBackup = { questions, buttons };
-
-  const boxCount = getHelpBoxCount();
-  const section = getActiveSection();
-
-  if (section && boxCount > 0) {
-    section.appendChild(createHelpBoxes(boxCount));
+  
+  const existingHelpLayer = document.getElementById('helpLayerContainer');
+  const activeSection = getActiveSection();
+  
+  if (helpLayerActive) {
+    if (existingHelpLayer) existingHelpLayer.remove();
+    if (originalContentBackup) {
+      showHiddenElements(originalContentBackup.hiddenQuestions);
+      showCheckAndResetButtons(originalContentBackup.hiddenButtons);
+      originalContentBackup = null;
+    }
+    helpLayerActive = false;
+  } else {
+    const hiddenQuestions = hideExamQuestions();
+    const hiddenButtons = hideCheckAndResetButtons();
+    originalContentBackup = { hiddenQuestions, hiddenButtons };
+    
+    const boxCount = getHelpBoxCount();
+    if (boxCount > 0 && activeSection) {
+      const helpLayer = createHelpBoxes(boxCount);
+      activeSection.appendChild(helpLayer);
+    }
+    helpLayerActive = true;
   }
-
-  helpLayerActive = true;
 }
 
-// زر المساعدة
+// إضافة زر "مساعدة ذكية للنجاح"
 function addHelpButtonToExam() {
-
-  if (buttonInjected) return;
-
   const schreiben = document.getElementById('schreiben');
-  if (schreiben?.style.display === 'block') return;
-
-  const nav = document.getElementById('examNavButtons');
-  if (!nav) return;
-
-  const btn = document.createElement('button');
-  btn.textContent = 'مساعدة ذكية للنجاح';
-  btn.style.cssText = `
-    background:#3b82f6;
-    color:white;
-    border:none;
-    border-radius:30px;
-    padding:8px 16px;
-    cursor:pointer;
+  if (schreiben && schreiben.style.display !== 'none') {
+    return;
+  }
+  
+  const existingButton = document.getElementById('globalHelpButton');
+  if (existingButton) return;
+  
+  const navButtons = document.getElementById('examNavButtons');
+  if (!navButtons) return;
+  
+  const helpButton = document.createElement('button');
+  helpButton.id = 'globalHelpButton';
+  helpButton.textContent = 'مساعدة ذكية للنجاح';
+  helpButton.style.cssText = `
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-left: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   `;
-
-  btn.onclick = (e) => {
+  
+  helpButton.addEventListener('mouseenter', () => {
+    helpButton.style.transform = 'scale(1.02)';
+    helpButton.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
+  });
+  helpButton.addEventListener('mouseleave', () => {
+    helpButton.style.transform = 'scale(1)';
+    helpButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+  });
+  
+  helpButton.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
     toggleHelpLayer();
-  };
-
-  nav.appendChild(btn);
-  buttonInjected = true;
+  });
+  
+  navButtons.appendChild(helpButton);
 }
 
-// مراقبة مرة واحدة فقط
-function initHelpLayer() {
+// مراقبة تغييرات الصفحة
+function observeForHelpButton() {
+  const observer = new MutationObserver(() => {
+    addHelpButtonToExam();
+  });
+  
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+  
   addHelpButtonToExam();
 }
 
+// بدء النظام
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initHelpLayer);
+  document.addEventListener('DOMContentLoaded', () => {
+    observeForHelpButton();
+  });
 } else {
-  initHelpLayer();
+  observeForHelpButton();
 }
