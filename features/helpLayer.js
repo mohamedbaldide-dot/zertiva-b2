@@ -4,6 +4,8 @@
 
 let helpLayerActive = false;
 let originalContentBackup = null;
+let currentHelpExamId = null;
+let currentHelpSkill = null;
 
 // تحديد عدد المستطيلات حسب نوع الامتحان
 function getHelpBoxCount() {
@@ -18,41 +20,93 @@ function getHelpBoxCount() {
   return 0;
 }
 
-// إنشاء مستطيل شرح واحد فارغ
-function createSingleHelpBox(index) {
+// الحصول على معرف الامتحان الحالي
+function getCurrentExamId() {
+  // محاولة الحصول على معرف الامتحان من عنوان الصفحة أو من المتغيرات العامة
+  if (window.currentExamId) return window.currentExamId;
+  
+  const titleEl = document.getElementById('examTitle');
+  if (titleEl) {
+    const title = titleEl.textContent;
+    const match = title.match(/Exam\s+(\d+)/i);
+    if (match) return parseInt(match[1]);
+  }
+  return 1;
+}
+
+// الحصول على نوع المهارة الحالي
+function getCurrentSkill() {
+  const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'teil1', 'teil2', 'teil3', 'sprach1', 'sprach2'];
+  for (const section of sections) {
+    const el = document.getElementById(section);
+    if (el && el.style.display === 'block') {
+      return section;
+    }
+  }
+  return 'hoeren1';
+}
+
+// إنشاء مستطيل شرح مع محتوى من HELP_DATA
+function createHelpBoxWithContent(index, totalQuestions) {
   const box = document.createElement('div');
   box.className = 'help-box';
   box.id = `helpBox_${index}`;
+  
+  // الحصول على البيانات
+  const examId = getCurrentExamId();
+  const skill = getCurrentSkill();
+  const helpKey = `${skill}_exam${examId}_q${index}`;
+  const helpContent = window.HELP_DATA ? window.HELP_DATA[helpKey] : null;
+  
+  let contentHtml = '';
+  
+  if (helpContent) {
+    contentHtml = `
+      <div style="padding: 5px;">
+        <div style="font-weight: bold; color: #2c3e66; margin-bottom: 12px; font-size: 14px; border-bottom: 1px solid #dee2e6; padding-bottom: 8px;">
+          📖 ${helpContent.text || ''}
+        </div>
+        <div style="margin-bottom: 10px;">
+          <span style="color: #007bff; font-weight: bold;">📘 المعنى:</span>
+          <span style="color: #333; font-size: 13px;"> ${helpContent.meaning || 'لا يوجد'}</span>
+        </div>
+        <div style="margin-bottom: 10px;">
+          <span style="color: #28a745; font-weight: bold;">⚡ كلمات مهمة:</span>
+          <div style="margin-top: 5px; display: flex; flex-wrap: wrap; gap: 5px;">
+            ${helpContent.keywords ? helpContent.keywords.map(k => `<span style="background: #e9ecef; padding: 3px 10px; border-radius: 15px; font-size: 12px;">${k}</span>`).join('') : '<span style="color: #999; font-size: 12px;">لا توجد</span>'}
+          </div>
+        </div>
+        <div style="margin-bottom: 10px;">
+          <span style="color: #17a2b8; font-weight: bold;">🧠 تبسيط:</span>
+          <span style="color: #333; font-size: 13px;"> ${helpContent.simplified || 'لا يوجد'}</span>
+        </div>
+        <div>
+          <span style="color: #dc3545; font-weight: bold;">🔥 تخيل:</span>
+          <span style="color: #333; font-size: 13px;"> ${helpContent.imagine || 'لا يوجد'}</span>
+        </div>
+      </div>
+    `;
+  } else {
+    contentHtml = `
+      <div style="display: flex; align-items: center; justify-content: center; min-height: 150px; color: #999; text-align: center;">
+        ❓ لا يوجد شرح متاح حالياً<br>
+        <span style="font-size: 12px;">سؤال ${index} من ${totalQuestions}</span>
+      </div>
+    `;
+  }
+  
+  box.innerHTML = contentHtml;
   box.style.cssText = `
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border: 2px solid #6c757d;
     border-radius: 12px;
-    padding: 20px;
-    min-height: 100px;
+    padding: 15px;
     transition: all 0.3s ease;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    max-height: 300px;
+    overflow-y: auto;
   `;
-  
-  const number = document.createElement('div');
-  number.textContent = `${index}`;
-  number.style.cssText = `
-    display: inline-block;
-    background-color: #6c757d;
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    text-align: center;
-    line-height: 40px;
-    font-size: 18px;
-    font-weight: bold;
-  `;
-  
-  box.appendChild(number);
   
   box.addEventListener('mouseenter', () => {
     box.style.transform = 'translateY(-3px)';
@@ -68,8 +122,8 @@ function createSingleHelpBox(index) {
   return box;
 }
 
-// إنشاء شبكة المستطيلات
-function createHelpBoxes(count) {
+// إنشاء شبكة المستطيلات مع محتوى
+function createHelpBoxesWithContent(count) {
   const container = document.createElement('div');
   container.id = 'helpLayerContainer';
   container.style.cssText = `
@@ -77,37 +131,37 @@ function createHelpBoxes(count) {
     flex-direction: column;
     gap: 20px;
     padding: 20px;
-    background-color: transparent;
+    background-color: #f0f8ff;
     border-radius: 16px;
     margin: 15px 0;
   `;
   
   if (count === 10) {
-    // 10 مستطيلات: 2 في كل سطر (أي 5 صفوف، كل صف 2)
     for (let row = 0; row < 5; row++) {
       const rowDiv = document.createElement('div');
       rowDiv.style.cssText = `display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 20px;`;
       for (let col = 0; col < 2; col++) {
         const index = row * 2 + col + 1;
         if (index <= 10) {
-          rowDiv.appendChild(createSingleHelpBox(index));
+          rowDiv.appendChild(createHelpBoxWithContent(index, count));
         }
       }
       container.appendChild(rowDiv);
     }
   } 
   else if (count === 5) {
-    // 5 مستطيلات: عمود واحد
     const column = document.createElement('div');
     column.style.cssText = `display: flex; flex-direction: column; gap: 20px;`;
-    for (let i = 0; i < 5; i++) column.appendChild(createSingleHelpBox(i + 1));
+    for (let i = 0; i < 5; i++) {
+      column.appendChild(createHelpBoxWithContent(i + 1, count));
+    }
     container.appendChild(column);
   }
   
   return container;
 }
 
-// إخفاء محتوى الامتحان (الأسئلة والنصوص والفجوات والخيارات)
+// إخفاء محتوى الامتحان
 function hideExamQuestions() {
   const hidden = [];
   const activeSection = getActiveSection();
@@ -147,7 +201,6 @@ function showHiddenElements(hiddenElements) {
 // إخفاء أزرار التصحيح وإعادة التعيين
 function hideCheckAndResetButtons() {
   const hidden = [];
-  
   const allButtons = document.querySelectorAll('button');
   allButtons.forEach(btn => {
     const btnText = btn.textContent;
@@ -158,7 +211,6 @@ function hideCheckAndResetButtons() {
       }
     }
   });
-  
   return hidden;
 }
 
@@ -175,7 +227,6 @@ function toggleHelpLayer() {
   const activeSection = getActiveSection();
   
   if (helpLayerActive) {
-    // إخفاء وضع المساعدة وإظهار الأسئلة
     if (existingHelpLayer) existingHelpLayer.remove();
     if (originalContentBackup) {
       showHiddenElements(originalContentBackup.hiddenQuestions);
@@ -184,19 +235,15 @@ function toggleHelpLayer() {
     }
     helpLayerActive = false;
   } else {
-    // حفظ العناصر التي سيتم إخفاؤها
     const hiddenQuestions = hideExamQuestions();
     const hiddenButtons = hideCheckAndResetButtons();
-    
     originalContentBackup = { hiddenQuestions, hiddenButtons };
     
-    // إنشاء وعرض المستطيلات
     const boxCount = getHelpBoxCount();
     if (boxCount > 0 && activeSection) {
-      const helpLayer = createHelpBoxes(boxCount);
+      const helpLayer = createHelpBoxesWithContent(boxCount);
       activeSection.appendChild(helpLayer);
     }
-    
     helpLayerActive = true;
   }
 }
@@ -205,7 +252,6 @@ function toggleHelpLayer() {
 function addHelpButtonToExam() {
   if (document.getElementById('globalHelpButton')) return;
   
-  // منع إضافة الزر في Schreiben
   const schreiben = document.getElementById('schreiben');
   if (schreiben && schreiben.style.display === 'block') return;
   
@@ -246,7 +292,7 @@ function addHelpButtonToExam() {
   }
 }
 
-// مراقبة تغييرات الصفحة (لأن الامتحانات تُحمّل ديناميكياً)
+// مراقبة تغييرات الصفحة
 function observeForHelpButton() {
   const observer = new MutationObserver(() => {
     addHelpButtonToExam();
