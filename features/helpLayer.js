@@ -4,8 +4,6 @@
 
 let helpLayerActive = false;
 let originalContentBackup = null;
-let currentHelpExamId = null;
-let currentHelpSkill = null;
 
 // تحديد عدد المستطيلات حسب نوع الامتحان
 function getHelpBoxCount() {
@@ -22,7 +20,6 @@ function getHelpBoxCount() {
 
 // الحصول على معرف الامتحان الحالي
 function getCurrentExamId() {
-  // محاولة الحصول على معرف الامتحان من عنوان الصفحة أو من المتغيرات العامة
   if (window.currentExamId) return window.currentExamId;
   
   const titleEl = document.getElementById('examTitle');
@@ -30,6 +27,8 @@ function getCurrentExamId() {
     const title = titleEl.textContent;
     const match = title.match(/Exam\s+(\d+)/i);
     if (match) return parseInt(match[1]);
+    const numMatch = title.match(/(\d+)$/);
+    if (numMatch) return parseInt(numMatch[1]);
   }
   return 1;
 }
@@ -52,7 +51,6 @@ function createHelpBoxWithContent(index, totalQuestions) {
   box.className = 'help-box';
   box.id = `helpBox_${index}`;
   
-  // الحصول على البيانات
   const examId = getCurrentExamId();
   const skill = getCurrentSkill();
   const helpKey = `${skill}_exam${examId}_q${index}`;
@@ -88,9 +86,9 @@ function createHelpBoxWithContent(index, totalQuestions) {
     `;
   } else {
     contentHtml = `
-      <div style="display: flex; align-items: center; justify-content: center; min-height: 150px; color: #999; text-align: center;">
-        ❓ لا يوجد شرح متاح حالياً<br>
-        <span style="font-size: 12px;">سؤال ${index} من ${totalQuestions}</span>
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 150px; color: #999; text-align: center;">
+        <div>❓ لا يوجد شرح متاح حالياً</div>
+        <div style="font-size: 11px; margin-top: 8px;">${helpKey}</div>
       </div>
     `;
   }
@@ -104,7 +102,7 @@ function createHelpBoxWithContent(index, totalQuestions) {
     transition: all 0.3s ease;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    max-height: 300px;
+    max-height: 320px;
     overflow-y: auto;
   `;
   
@@ -175,7 +173,6 @@ function hideExamQuestions() {
       hidden.push(child);
     }
   }
-  
   return hidden;
 }
 
@@ -221,7 +218,7 @@ function showCheckAndResetButtons(hiddenButtons) {
   });
 }
 
-// تبديل وضع المساعدة (إظهار/إخفاء)
+// تبديل وضع المساعدة
 function toggleHelpLayer() {
   const existingHelpLayer = document.getElementById('helpLayerContainer');
   const activeSection = getActiveSection();
@@ -248,7 +245,7 @@ function toggleHelpLayer() {
   }
 }
 
-// إضافة زر "مساعدة ذكية للنجاح" في أعلى صفحة الامتحان
+// إضافة زر "مساعدة ذكية للنجاح"
 function addHelpButtonToExam() {
   if (document.getElementById('globalHelpButton')) return;
   
@@ -295,12 +292,23 @@ function addHelpButtonToExam() {
 // مراقبة تغييرات الصفحة
 function observeForHelpButton() {
   const observer = new MutationObserver(() => {
-    addHelpButtonToExam();
+    const helpBtn = document.getElementById('globalHelpButton');
+    const schreiben = document.getElementById('schreiben');
+    
+    if (schreiben && schreiben.style.display !== 'none') {
+      if (helpBtn) helpBtn.remove();
+      return;
+    }
+    
+    if (!helpBtn) {
+      addHelpButtonToExam();
+    }
   });
   
   observer.observe(document.body, {
     childList: true,
-    subtree: true
+    subtree: true,
+    attributes: true
   });
   
   addHelpButtonToExam();
