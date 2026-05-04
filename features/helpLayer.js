@@ -5,6 +5,10 @@
 let helpLayerActive = false;
 let originalContentBackup = null;
 
+// تخزين بيانات الامتحان الحالي
+let currentHoerenExamId = 1;
+let currentHoerenSkill = 'hoeren1';
+
 // تحديد عدد المستطيلات حسب نوع الامتحان
 function getHelpBoxCount() {
   if (document.getElementById('hoeren1')?.style.display === 'block') return 5;
@@ -18,37 +22,41 @@ function getHelpBoxCount() {
   return 0;
 }
 
-// الحصول على معرف الامتحان الحالي مباشرة من window.currentExamId
-function getCurrentExamId() {
-  // الطريقة الصحيحة: window.currentExamId من exams.js
-  if (window.currentExamId && window.currentExamId > 0) {
-    return window.currentExamId;
-  }
-  
-  // محاولة استخراج من عنوان الصفحة
+// دالة لتحديث بيانات الامتحان من عنوان الصفحة
+function updateCurrentExamInfo() {
   const titleEl = document.getElementById('examTitle');
   if (titleEl) {
     const title = titleEl.textContent;
-    // البحث عن "Exam 1" أو "Exam 2" إلخ
-    const match = title.match(/Exam[_\s]+(\d+)/i);
-    if (match) return parseInt(match[1]);
-    // البحث عن رقم في نهاية النص
-    const numMatch = title.match(/(\d+)$/);
-    if (numMatch) return parseInt(numMatch[1]);
+    const match = title.match(/Exam\s+(\d+)/i);
+    if (match) {
+      currentHoerenExamId = parseInt(match[1]);
+    } else {
+      const numMatch = title.match(/\d+/);
+      if (numMatch) {
+        currentHoerenExamId = parseInt(numMatch[0]);
+      }
+    }
   }
-  return 1;
-}
-
-// الحصول على نوع المهارة الحالي
-function getCurrentSkill() {
+  
   const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'teil1', 'teil2', 'teil3', 'sprach1', 'sprach2'];
   for (const section of sections) {
     const el = document.getElementById(section);
     if (el && el.style.display === 'block') {
-      return section;
+      currentHoerenSkill = section;
+      break;
     }
   }
-  return 'hoeren1';
+}
+
+// دالة للحصول على الشرح
+function getHelpContent(questionIndex) {
+  updateCurrentExamInfo();
+  const helpKey = `${currentHoerenSkill}_exam${currentHoerenExamId}_q${questionIndex}`;
+  console.log("🔍 البحث عن:", helpKey);
+  if (window.HELP_DATA && window.HELP_DATA[helpKey]) {
+    return window.HELP_DATA[helpKey];
+  }
+  return null;
 }
 
 // إنشاء مستطيل شرح مع محتوى من HELP_DATA
@@ -57,14 +65,7 @@ function createHelpBoxWithContent(index, totalQuestions) {
   box.className = 'help-box';
   box.id = `helpBox_${index}`;
   
-  const examId = getCurrentExamId();
-  const skill = getCurrentSkill();
-  const helpKey = `${skill}_exam${examId}_q${index}`;
-  
-  console.log("🔍 البحث عن:", helpKey);
-  console.log("📌 رقم الامتحان:", examId, "المهارة:", skill);
-  
-  const helpContent = window.HELP_DATA ? window.HELP_DATA[helpKey] : null;
+  const helpContent = getHelpContent(index);
   
   let contentHtml = '';
   
@@ -98,7 +99,7 @@ function createHelpBoxWithContent(index, totalQuestions) {
     contentHtml = `
       <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 150px; color: #999; text-align: center;">
         <div>❓ لا يوجد شرح متاح حالياً</div>
-        <div style="font-size: 11px; margin-top: 8px;">${helpKey}</div>
+        <div style="font-size: 11px; margin-top: 8px;">${currentHoerenSkill}_exam${currentHoerenExamId}_q${index}</div>
       </div>
     `;
   }
@@ -299,13 +300,6 @@ function addHelpButtonToExam() {
   }
 }
 
-// تحديث معلومات الامتحان عند تغيير الصفحة
-function updateExamInfo() {
-  if (window.currentExamId) {
-    console.log("📌 تحديث: رقم الامتحان =", window.currentExamId);
-  }
-}
-
 // مراقبة تغييرات الصفحة
 function observeForHelpButton() {
   const observer = new MutationObserver(() => {
@@ -320,7 +314,6 @@ function observeForHelpButton() {
     if (!helpBtn) {
       addHelpButtonToExam();
     }
-    updateExamInfo();
   });
   
   observer.observe(document.body, {
@@ -330,7 +323,6 @@ function observeForHelpButton() {
   });
   
   addHelpButtonToExam();
-  updateExamInfo();
 }
 
 // بدء النظام
