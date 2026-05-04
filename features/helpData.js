@@ -1006,14 +1006,10 @@ HELP_DATA["hoeren1_exam27_q5"] = {
   simplified: "الأطفال يحبونها",
   imagine: "تخيل طفلاً يبتسم وهو يحمل كيس حلوى 🍭"
 };
-// تأكد من أن HELP_DATA متاحة عالمياً
-window.HELP_DATA = HELP_DATA;
+
 // تصدير للاستخدام
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = HELP_DATA;
-}
-console.log("✅ helpData.js تم تحميله، عدد الشروحات:", Object.keys(HELP_DATA).length);
-console.log("🔑 مثال على مفتاح:", Object.keys(HELP_DATA)[0]);
+
+
 // ============================================
 // helpData.js - جميع شروحات المساعدة
 // ============================================
