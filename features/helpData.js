@@ -412,7 +412,7 @@ HELP_DATA["hoeren1_exam11_q5"] = {
   meaning: "شركات الطيران ألغت رحلاتها إلى المنطقة",
   keywords: ["Fluggesellschaften = شركات طيران", "gestrichen = ألغت"],
   simplified: "لا توجد رحلات إلى هناك حالياً",
-  imagine: "تخيل شاشة مطار مكتوب عليها "ألغيت" 🛫❌"
+  imagine: "تخيل شاشة مطار مكتوب عليها 'ألغيت' 🛫❌"
 };
 
 // ========== Exam 12: Nicht sicher 2 ==========
