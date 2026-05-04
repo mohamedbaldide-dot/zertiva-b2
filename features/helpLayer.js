@@ -18,15 +18,21 @@ function getHelpBoxCount() {
   return 0;
 }
 
-// الحصول على معرف الامتحان الحالي
+// الحصول على معرف الامتحان الحالي مباشرة من window.currentExamId
 function getCurrentExamId() {
-  if (window.currentExamId) return window.currentExamId;
+  // الطريقة الصحيحة: window.currentExamId من exams.js
+  if (window.currentExamId && window.currentExamId > 0) {
+    return window.currentExamId;
+  }
   
+  // محاولة استخراج من عنوان الصفحة
   const titleEl = document.getElementById('examTitle');
   if (titleEl) {
     const title = titleEl.textContent;
-    const match = title.match(/Exam\s+(\d+)/i);
+    // البحث عن "Exam 1" أو "Exam 2" إلخ
+    const match = title.match(/Exam[_\s]+(\d+)/i);
     if (match) return parseInt(match[1]);
+    // البحث عن رقم في نهاية النص
     const numMatch = title.match(/(\d+)$/);
     if (numMatch) return parseInt(numMatch[1]);
   }
@@ -54,6 +60,10 @@ function createHelpBoxWithContent(index, totalQuestions) {
   const examId = getCurrentExamId();
   const skill = getCurrentSkill();
   const helpKey = `${skill}_exam${examId}_q${index}`;
+  
+  console.log("🔍 البحث عن:", helpKey);
+  console.log("📌 رقم الامتحان:", examId, "المهارة:", skill);
+  
   const helpContent = window.HELP_DATA ? window.HELP_DATA[helpKey] : null;
   
   let contentHtml = '';
@@ -289,6 +299,13 @@ function addHelpButtonToExam() {
   }
 }
 
+// تحديث معلومات الامتحان عند تغيير الصفحة
+function updateExamInfo() {
+  if (window.currentExamId) {
+    console.log("📌 تحديث: رقم الامتحان =", window.currentExamId);
+  }
+}
+
 // مراقبة تغييرات الصفحة
 function observeForHelpButton() {
   const observer = new MutationObserver(() => {
@@ -303,6 +320,7 @@ function observeForHelpButton() {
     if (!helpBtn) {
       addHelpButtonToExam();
     }
+    updateExamInfo();
   });
   
   observer.observe(document.body, {
@@ -312,6 +330,7 @@ function observeForHelpButton() {
   });
   
   addHelpButtonToExam();
+  updateExamInfo();
 }
 
 // بدء النظام
