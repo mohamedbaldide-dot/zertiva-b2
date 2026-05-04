@@ -3988,8 +3988,7 @@ HELP_DATA["hoeren3_exam20_q5"] = {
   meaning: "الحفل مباع بالكامل بالفعل",
   keywords: ["Konzert = حفل", "ausverkauft = مباع بالكامل", "bereits = بالفعل"],
   simplified: "لا توجد تذاكر متاحة",
-  imagine: "تخيل لافتة "مباع"  🚫 
-"
+  imagine: 'تخيل لافتة "مباع" 🚫'   // ✅ هكذا يكون صحيحاً
 };
 
 // ========== Exam 21: In Raum C23 ==========
