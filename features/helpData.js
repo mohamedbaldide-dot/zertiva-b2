@@ -428,7 +428,7 @@ HELP_DATA["hoeren1_exam12_q2"] = {
   meaning: "المتظاهرون طالبوا بحماية مناخ أكثر",
   keywords: ["Demonstranten = متظاهرون", "forderten = طالبوا", "Klimaschutz = حماية مناخ"],
   simplified: "الناس خرجوا من أجل البيئة",
-  imagine: "تخيل لافتات مكتوب عليها "احموا الأرض" 🌍✊"
+  imagine: "تخيل لافتات مكتوب عليها 'احموا الأرض' 🌍✊"
 };
 HELP_DATA["hoeren1_exam12_q3"] = {
   text: "Die Polizei war mit einem Großaufgebot vor Ort.",
@@ -643,7 +643,7 @@ HELP_DATA["hoeren1_exam18_q1"] = {
   meaning: "شركة الطيران إير برلين اضطرت للإعلان عن إفلاسها",
   keywords: ["Fluggesellschaft = شركة طيران", "Air Berlin = إير برلين", "Insolvenz = إفلاس", "anmelden = الإعلان"],
   simplified: "أير برلين أعلنت إفلاسها",
-  imagine: "تخيل طائرة تعلق عليها لافتة "مغلق" ✈️🚫"
+  imagine: "تخيل طائرة تعلق عليها لافتة 'مغلق' ✈️🚫"
 };
 HELP_DATA["hoeren1_exam18_q2"] = {
   text: "Tausende Arbeitsplätze sind dadurch in Gefahr.",
@@ -886,7 +886,7 @@ HELP_DATA["hoeren1_exam24_q4"] = {
   meaning: "كثير من المواطنين صوتوا للأحزاب الصغيرة احتجاجاً",
   keywords: ["Bürger = مواطنين", "Protest = احتجاج", "kleinen Parteien = أحزاب صغيرة"],
   simplified: "الاحتجاج على الحكومة دفع الناس لخيارات أخرى",
-  imagine: "تخيل صندوق اقتراع مكتوب عليه "تغيير" 📦"
+  imagine: "تخيل صندوق اقتراع مكتوب عليه 'تغيير' 📦"
 };
 HELP_DATA["hoeren1_exam24_q5"] = {
   text: "Die Wahlbeteiligung lag im europäischen Durchschnitt.",
