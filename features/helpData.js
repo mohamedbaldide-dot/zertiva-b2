@@ -939,7 +939,7 @@ HELP_DATA["hoeren1_exam26_q1"] = {
   meaning: "المزيد من المواد الغذائية تحمل ختم "بيو" (عضوي)",
   keywords: ["Lebensmittel = مواد غذائية", "Bio-Siegel = ختم عضوي", "tragen = تحمل"],
   simplified: "منتجات عضوية أكثر في الأسواق",
-  imagine: "تخيل ختماً أخضر مكتوباً عليه "بيو" 🟢"
+  imagine: "تخيل ختماً أخضر مكتوباً عليه 'بيو' 🟢"
 };
 HELP_DATA["hoeren1_exam26_q2"] = {
   text: "Verbraucher vertrauen auf die Siegel.",
