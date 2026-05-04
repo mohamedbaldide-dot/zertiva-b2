@@ -18,14 +18,11 @@ function getHelpBoxCount() {
   return 0;
 }
 
-// الحصول على معرف الامتحان الحالي مباشرة من window.currentExamId
+// الحصول على معرف الامتحان الحالي
 function getCurrentExamId() {
-  // ✅ استخدام window.currentExamId من exams.js
   if (window.currentExamId && window.currentExamId > 0) {
     return window.currentExamId;
   }
-  
-  // محاولة استخراج من عنوان الصفحة كحل احتياطي
   const titleEl = document.getElementById('examTitle');
   if (titleEl) {
     const title = titleEl.textContent;
@@ -58,71 +55,71 @@ function createHelpBoxWithContent(index, totalQuestions) {
   const examId = getCurrentExamId();
   const skill = getCurrentSkill();
   const helpKey = `${skill}_exam${examId}_q${index}`;
-  
-  console.log("🔍 البحث عن:", helpKey);
-  console.log("📌 رقم الامتحان:", examId, "المهارة:", skill);
-  
   const helpContent = window.HELP_DATA ? window.HELP_DATA[helpKey] : null;
   
   let contentHtml = '';
   
   if (helpContent) {
+    // تنسيق الكلمات المهمة
+    let keywordsHtml = '';
+    if (helpContent.keywords && helpContent.keywords.length > 0) {
+      keywordsHtml = '<div style="margin: 10px 0;"><span style="color: #007bff; font-weight: bold; font-size: 15px;">كلمات مهمة :</span><br>';
+      for (let i = 0; i < helpContent.keywords.length; i++) {
+        keywordsHtml += `<span style="display: inline-block; background: #e3f2fd; padding: 4px 12px; border-radius: 20px; font-size: 14px; margin: 3px;">${helpContent.keywords[i]}</span>`;
+      }
+      keywordsHtml += '</div>';
+    }
+    
     contentHtml = `
-      <div style="padding: 5px;">
-        <div style="font-weight: bold; color: #2c3e66; margin-bottom: 12px; font-size: 14px; border-bottom: 1px solid #dee2e6; padding-bottom: 8px;">
-          📖 ${helpContent.text || ''}
+      <div style="padding: 15px;">
+        <div style="font-weight: bold; color: #2c3e66; margin-bottom: 15px; font-size: 18px; border-right: 4px solid #007bff; padding-right: 12px;">
+          ${index}️⃣ ${helpContent.text || ''}
         </div>
-        <div style="margin-bottom: 10px;">
-          <span style="color: #007bff; font-weight: bold;">📘 المعنى:</span>
-          <span style="color: #333; font-size: 13px;"> ${helpContent.meaning || 'لا يوجد'}</span>
+        <div style="margin-bottom: 12px;">
+          <span style="color: #0056b3; font-weight: bold; font-size: 15px;">المعنى :</span>
+          <span style="color: #333; font-size: 15px; line-height: 1.6;"> ${helpContent.meaning || 'لا يوجد'}</span>
         </div>
-        <div style="margin-bottom: 10px;">
-          <span style="color: #28a745; font-weight: bold;">⚡ كلمات مهمة:</span>
-          <div style="margin-top: 5px; display: flex; flex-wrap: wrap; gap: 5px;">
-            ${helpContent.keywords ? helpContent.keywords.map(k => `<span style="background: #e9ecef; padding: 3px 10px; border-radius: 15px; font-size: 12px;">${k}</span>`).join('') : '<span style="color: #999; font-size: 12px;">لا توجد</span>'}
-          </div>
-        </div>
-        <div style="margin-bottom: 10px;">
-          <span style="color: #17a2b8; font-weight: bold;">🧠 تبسيط:</span>
-          <span style="color: #333; font-size: 13px;"> ${helpContent.simplified || 'لا يوجد'}</span>
+        ${keywordsHtml}
+        <div style="margin-bottom: 12px;">
+          <span style="color: #0056b3; font-weight: bold; font-size: 15px;">تبسيط :</span>
+          <span style="color: #333; font-size: 15px; line-height: 1.6;"> ${helpContent.simplified || 'لا يوجد'}</span>
         </div>
         <div>
-          <span style="color: #dc3545; font-weight: bold;">🔥 تخيل:</span>
-          <span style="color: #333; font-size: 13px;"> ${helpContent.imagine || 'لا يوجد'}</span>
+          <span style="color: #0056b3; font-weight: bold; font-size: 15px;">تخيل :</span>
+          <span style="color: #333; font-size: 15px; line-height: 1.6;"> ${helpContent.imagine || 'لا يوجد'}</span>
         </div>
       </div>
     `;
   } else {
     contentHtml = `
       <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 150px; color: #999; text-align: center;">
-        <div>❓ لا يوجد شرح متاح حالياً</div>
-        <div style="font-size: 11px; margin-top: 8px;">${helpKey}</div>
+        <div style="font-size: 16px;">❓ لا يوجد شرح متاح حالياً</div>
+        <div style="font-size: 12px; margin-top: 8px;">${helpKey}</div>
       </div>
     `;
   }
   
   box.innerHTML = contentHtml;
   box.style.cssText = `
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border: 2px solid #6c757d;
+    background: #ffffff;
+    border: 1px solid #dee2e6;
     border-radius: 12px;
     padding: 15px;
     transition: all 0.3s ease;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    max-height: 320px;
-    overflow-y: auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 15px;
   `;
   
   box.addEventListener('mouseenter', () => {
-    box.style.transform = 'translateY(-3px)';
-    box.style.boxShadow = '0 8px 20px rgba(0,0,0,0.1)';
-    box.style.borderColor = '#28a745';
+    box.style.transform = 'translateY(-2px)';
+    box.style.boxShadow = '0 6px 16px rgba(0,0,0,0.1)';
+    box.style.borderColor = '#007bff';
   });
   box.addEventListener('mouseleave', () => {
     box.style.transform = 'translateY(0)';
-    box.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
-    box.style.borderColor = '#6c757d';
+    box.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
+    box.style.borderColor = '#dee2e6';
   });
   
   return box;
@@ -135,9 +132,9 @@ function createHelpBoxesWithContent(count) {
   container.style.cssText = `
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    background-color: #f0f8ff;
+    gap: 15px;
+    padding: 10px;
+    background-color: #f5f7fa;
     border-radius: 16px;
     margin: 15px 0;
   `;
@@ -145,7 +142,7 @@ function createHelpBoxesWithContent(count) {
   if (count === 10) {
     for (let row = 0; row < 5; row++) {
       const rowDiv = document.createElement('div');
-      rowDiv.style.cssText = `display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 20px;`;
+      rowDiv.style.cssText = `display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 5px;`;
       for (let col = 0; col < 2; col++) {
         const index = row * 2 + col + 1;
         if (index <= 10) {
@@ -157,7 +154,7 @@ function createHelpBoxesWithContent(count) {
   } 
   else if (count === 5) {
     const column = document.createElement('div');
-    column.style.cssText = `display: flex; flex-direction: column; gap: 20px;`;
+    column.style.cssText = `display: flex; flex-direction: column; gap: 15px;`;
     for (let i = 0; i < 5; i++) {
       column.appendChild(createHelpBoxWithContent(i + 1, count));
     }
@@ -266,7 +263,7 @@ function addHelpButtonToExam() {
     helpButton.id = 'globalHelpButton';
     helpButton.textContent = 'مساعدة ذكية للنجاح';
     helpButton.style.cssText = `
-      background: linear-gradient(135deg, #3b82f6, #60a5fa);
+      background: linear-gradient(135deg, #007bff, #0056b3);
       color: white;
       border: none;
       border-radius: 30px;
