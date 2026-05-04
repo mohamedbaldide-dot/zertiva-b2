@@ -165,8 +165,14 @@ function showCheckAndResetButtons(hiddenButtons) {
   });
 }
 
-// تبديل وضع المساعدة
+// تبديل وضع المساعدة (إظهار/إخفاء)
 function toggleHelpLayer() {
+  // منع التشغيل في Schreiben نهائياً
+  const schreiben = document.getElementById('schreiben');
+  if (schreiben && schreiben.style.display === 'block') {
+    return;
+  }
+  
   const existingHelpLayer = document.getElementById('helpLayerContainer');
   const activeSection = getActiveSection();
   
@@ -194,12 +200,14 @@ function toggleHelpLayer() {
 
 // إضافة زر "مساعدة ذكية للنجاح"
 function addHelpButtonToExam() {
+  // منع إضافة الزر في Schreiben نهائياً
+  const schreiben = document.getElementById('schreiben');
+  if (schreiben && schreiben.style.display === 'block') {
+    return;
+  }
+  
   const existingButton = document.getElementById('globalHelpButton');
   if (existingButton) return;
-  
-  // منع إضافة الزر في Schreiben
-  const schreiben = document.getElementById('schreiben');
-  if (schreiben && schreiben.style.display === 'block') return;
   
   const navButtons = document.getElementById('examNavButtons');
   if (!navButtons) return;
@@ -230,8 +238,6 @@ function addHelpButtonToExam() {
     helpButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
   });
   
-  // إزالة أي أحداث سابقة وإضافة حدث جديد
-  helpButton.removeEventListener('click', toggleHelpLayer);
   helpButton.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
