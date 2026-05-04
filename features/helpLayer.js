@@ -24,8 +24,8 @@ function createSingleHelpBox(index) {
   box.className = 'help-box';
   box.id = `helpBox_${index}`;
   box.style.cssText = `
-    background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
-    border: 2px solid #9333ea;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px solid #6c757d;
     border-radius: 12px;
     padding: 20px;
     min-height: 100px;
@@ -41,7 +41,7 @@ function createSingleHelpBox(index) {
   number.textContent = `${index}`;
   number.style.cssText = `
     display: inline-block;
-    background-color: #9333ea;
+    background-color: #6c757d;
     color: white;
     width: 40px;
     height: 40px;
@@ -56,13 +56,13 @@ function createSingleHelpBox(index) {
   
   box.addEventListener('mouseenter', () => {
     box.style.transform = 'translateY(-3px)';
-    box.style.boxShadow = '0 8px 20px rgba(147,51,234,0.2)';
-    box.style.borderColor = '#a855f7';
+    box.style.boxShadow = '0 8px 20px rgba(0,0,0,0.1)';
+    box.style.borderColor = '#28a745';
   });
   box.addEventListener('mouseleave', () => {
     box.style.transform = 'translateY(0)';
     box.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
-    box.style.borderColor = '#9333ea';
+    box.style.borderColor = '#6c757d';
   });
   
   return box;
@@ -77,23 +77,24 @@ function createHelpBoxes(count) {
     flex-direction: column;
     gap: 20px;
     padding: 20px;
-    background-color: #faf5ff;
+    background-color: transparent;
     border-radius: 16px;
     margin: 15px 0;
   `;
   
   if (count === 10) {
-    // 10 مستطيلات: 2 أسفل 2 (أي 5 في كل صف)
-    const row1 = document.createElement('div');
-    row1.style.cssText = `display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;`;
-    const row2 = document.createElement('div');
-    row2.style.cssText = `display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-top: 5px;`;
-    
-    for (let i = 0; i < 5; i++) row1.appendChild(createSingleHelpBox(i + 1));
-    for (let i = 0; i < 5; i++) row2.appendChild(createSingleHelpBox(i + 6));
-    
-    container.appendChild(row1);
-    container.appendChild(row2);
+    // 10 مستطيلات: 2 في كل سطر (أي 5 صفوف، كل صف 2)
+    for (let row = 0; row < 5; row++) {
+      const rowDiv = document.createElement('div');
+      rowDiv.style.cssText = `display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 20px;`;
+      for (let col = 0; col < 2; col++) {
+        const index = row * 2 + col + 1;
+        if (index <= 10) {
+          rowDiv.appendChild(createSingleHelpBox(index));
+        }
+      }
+      container.appendChild(rowDiv);
+    }
   } 
   else if (count === 5) {
     // 5 مستطيلات: عمود واحد
@@ -204,7 +205,7 @@ function toggleHelpLayer() {
 function addHelpButtonToExam() {
   if (document.getElementById('globalHelpButton')) return;
   
-  // لا نضيف الزر في Schreiben
+  // منع إضافة الزر في Schreiben
   const schreiben = document.getElementById('schreiben');
   if (schreiben && schreiben.style.display === 'block') return;
   
@@ -233,7 +234,7 @@ function addHelpButtonToExam() {
     });
     helpButton.addEventListener('mouseleave', () => {
       helpButton.style.transform = 'scale(1)';
-      helpButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+      helpButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
     });
     
     helpButton.onclick = (e) => {
@@ -245,7 +246,7 @@ function addHelpButtonToExam() {
   }
 }
 
-// مراقبة تغييرات الصفحة
+// مراقبة تغييرات الصفحة (لأن الامتحانات تُحمّل ديناميكياً)
 function observeForHelpButton() {
   const observer = new MutationObserver(() => {
     addHelpButtonToExam();
