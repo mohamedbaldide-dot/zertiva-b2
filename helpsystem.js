@@ -15018,24 +15018,20 @@ function getCurrentSkill() {
     if (document.getElementById('hoeren1')?.style.display === 'block') return 'hoeren1';
     if (document.getElementById('hoeren2')?.style.display === 'block') return 'hoeren2';
     if (document.getElementById('hoeren3')?.style.display === 'block') return 'hoeren3';
-
+    
     if (document.getElementById('lesen1')?.style.display === 'block') return 'lesen1';
     if (document.getElementById('lesen2')?.style.display === 'block') return 'lesen2';
     if (document.getElementById('lesen3')?.style.display === 'block') return 'lesen3';
-
+    
     if (document.getElementById('sprach1')?.style.display === 'block') return 'sprach1';
     if (document.getElementById('sprach2')?.style.display === 'block') return 'sprach2';
-
+    
     return 'hoeren1';
 }
 
 function getActiveSection() {
-    const sections = [
-        'hoeren1','hoeren2','hoeren3',
-        'lesen1','lesen2','lesen3',
-        'sprach1','sprach2'
-    ];
-
+    const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'lesen1', 'lesen2', 'lesen3', 'sprach1', 'sprach2'];
+    
     for (let id of sections) {
         const el = document.getElementById(id);
         if (el && el.style.display === 'block') {
