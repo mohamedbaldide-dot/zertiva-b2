@@ -10,9 +10,9 @@ function getHelpBoxCount() {
   if (document.getElementById('hoeren1')?.style.display === 'block') return 5;
   if (document.getElementById('hoeren2')?.style.display === 'block') return 10;
   if (document.getElementById('hoeren3')?.style.display === 'block') return 5;
-  if (document.getElementById('teil1')?.style.display === 'block') return 5;
-  if (document.getElementById('teil2')?.style.display === 'block') return 5;
-  if (document.getElementById('teil3')?.style.display === 'block') return 10;
+  if (document.getElementById('lesen1')?.style.display === 'block') return 5;
+if (document.getElementById('lesen2')?.style.display === 'block') return 5;
+if (document.getElementById('lesen3')?.style.display === 'block') return 10;
   if (document.getElementById('sprach1')?.style.display === 'block') return 10;
   if (document.getElementById('sprach2')?.style.display === 'block') return 10;
   return 0;
@@ -36,7 +36,7 @@ function getCurrentExamId() {
 
 // الحصول على نوع المهارة الحالي
 function getCurrentSkill() {
-  const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'teil1', 'teil2', 'teil3', 'sprach1', 'sprach2'];
+  const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'lesen1', 'lesen2', 'lesen3', 'sprach1', 'sprach2'];
   for (const section of sections) {
     const el = document.getElementById(section);
     if (el && el.style.display === 'block') {
@@ -183,7 +183,7 @@ function hideExamQuestions() {
 
 // الحصول على القسم النشط
 function getActiveSection() {
-  const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'teil1', 'teil2', 'teil3', 'sprach1', 'sprach2'];
+  const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'lesen1', 'lesen2', 'lesen3', 'sprach1', 'sprach2'];
   for (const section of sections) {
     const el = document.getElementById(section);
     if (el && el.style.display === 'block') {
