@@ -15068,7 +15068,7 @@ function createHelpCard(questionNumber) {
     }
     return card;
 }
- function createHelpBoxesWithContent(count) {
+function createHelpBoxesWithContent(count) {
   const container = document.createElement('div');
   container.id = 'helpLayerContainer';
   container.style.cssText = `
@@ -15094,12 +15094,12 @@ function createHelpCard(questionNumber) {
     }
   }
 
-  // 🚫 إذا لا يوجد أي شرح
+  // ❌ لا يوجد أي شرح
   if (availableIndexes.length === 0) {
-    const emptyMsg = document.createElement('div');
-    emptyMsg.textContent = "❌ لا يوجد شرح متاح لهذا الامتحان حالياً";
-    emptyMsg.style.cssText = "text-align:center; color:#888; padding:20px;";
-    container.appendChild(emptyMsg);
+    const msg = document.createElement('div');
+    msg.textContent = "❌ لا يوجد شرح متاح لهذا الامتحان حالياً";
+    msg.style.cssText = "text-align:center; color:#888; padding:20px;";
+    container.appendChild(msg);
     return container;
   }
 
