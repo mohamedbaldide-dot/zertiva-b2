@@ -8678,7 +8678,7 @@ HELP_DATA["sprach1_exam11_3"] = {
 };
 
 HELP_DATA["sprach1_exam11_4"] = {
-    text = "schließlich habe ich schon im Alltag genug Stress",
+    text: "schließlich habe ich schon im Alltag genug Stress",  // ← استخدم : بدلاً من =
     meaning = "ففي النهاية لدي ما يكفي من التوتر في حياتي اليومية",
     keywords = ["schließlich = في النهاية", "Alltag = الحياة اليومية", "Stress = إجهاد"],
     simplified = "لدي ما يكفي من المشاكل في روتيني اليومي",
