@@ -1,11 +1,7 @@
-// ============================================
-// helpLayer.js - نظام الطبقة المساعدة
-// ============================================
-
+// helpLayer.js - نظام الطبقة المساعدة الذكي
 let helpLayerActive = false;
 let originalContentBackup = null;
 
-// الأسئلة الصحيحة لكل امتحان
 function getCorrectQuestions(skill, examId) {
     const correctMap = {
         'hoeren1_exam1': [2,3], 'hoeren1_exam2': [3,5], 'hoeren1_exam3': [2,3,5],
@@ -27,13 +23,16 @@ function getCorrectQuestions(skill, examId) {
         'hoeren2_exam22': [3,4,10], 'hoeren2_exam23': [1,2,4,6], 'hoeren2_exam24': [2,3,4,6,8,10],
         'hoeren2_exam25': [1,2,3,4,6,8,9], 'hoeren2_exam26': [3,5,7,8,10], 'hoeren2_exam27': [2,3,4,6,8],
         'hoeren2_exam28': [1,2,4,6,8,10], 'hoeren2_exam29': [4,5,9,10], 'hoeren2_exam30': [2,3,6,7,10],
-        'hoeren2_exam31': [2,4,5,8,9], 'hoeren3_exam1': [1], 'hoeren3_exam2': [1,3], 'hoeren3_exam3': [1,3],
-        'hoeren3_exam4': [1,4], 'hoeren3_exam5': [1,4], 'hoeren3_exam6': [1,5], 'hoeren3_exam7': [1,5],
-        'hoeren3_exam8': [1,5], 'hoeren3_exam9': [1,5], 'hoeren3_exam10': [2,5], 'hoeren3_exam11': [1,2,3],
-        'hoeren3_exam12': [3,4], 'hoeren3_exam13': [1,2,5], 'hoeren3_exam14': [1,4,5], 'hoeren3_exam15': [1,2,5],
-        'hoeren3_exam16': [1,3,4,5], 'hoeren3_exam17': [1,3], 'hoeren3_exam18': [2,3,4], 'hoeren3_exam19': [2,4],
-        'hoeren3_exam20': [1,3], 'hoeren3_exam21': [2], 'hoeren3_exam22': [2,4], 'hoeren3_exam23': [1,5],
-        'hoeren3_exam24': [2], 'hoeren3_exam25': [1,3], 'hoeren3_exam26': [1,3,5], 'hoeren3_exam27': [1,3]
+        'hoeren2_exam31': [2,4,5,8,9],
+        'hoeren3_exam1': [1], 'hoeren3_exam2': [1,3], 'hoeren3_exam3': [1,3],
+        'hoeren3_exam4': [1,4], 'hoeren3_exam5': [1,4], 'hoeren3_exam6': [1,5],
+        'hoeren3_exam7': [1,5], 'hoeren3_exam8': [1,5], 'hoeren3_exam9': [1,5],
+        'hoeren3_exam10': [2,5], 'hoeren3_exam11': [1,2,3], 'hoeren3_exam12': [3,4],
+        'hoeren3_exam13': [1,2,5], 'hoeren3_exam14': [1,4,5], 'hoeren3_exam15': [1,2,5],
+        'hoeren3_exam16': [1,3,4,5], 'hoeren3_exam17': [1,3], 'hoeren3_exam18': [2,3,4],
+        'hoeren3_exam19': [2,4], 'hoeren3_exam20': [1,3], 'hoeren3_exam21': [2],
+        'hoeren3_exam22': [2,4], 'hoeren3_exam23': [1,5], 'hoeren3_exam24': [2],
+        'hoeren3_exam25': [1,3], 'hoeren3_exam26': [1,3,5], 'hoeren3_exam27': [1,3]
     };
     return correctMap[`${skill}_exam${examId}`] || [];
 }
@@ -46,17 +45,14 @@ function getCurrentExamId() {
 }
 
 function getCurrentSkill() {
-    if (document.getElementById('hoeren1')?.style.display === 'block') return 'hoeren1';
-    if (document.getElementById('hoeren2')?.style.display === 'block') return 'hoeren2';
-    if (document.getElementById('hoeren3')?.style.display === 'block') return 'hoeren3';
+    const activeTab = document.querySelector('.skill-tab.active');
+    if (activeTab) return activeTab.dataset.skill;
     return 'hoeren1';
 }
 
 function getActiveSection() {
-    if (document.getElementById('hoeren1')?.style.display === 'block') return document.getElementById('hoeren1');
-    if (document.getElementById('hoeren2')?.style.display === 'block') return document.getElementById('hoeren2');
-    if (document.getElementById('hoeren3')?.style.display === 'block') return document.getElementById('hoeren3');
-    return null;
+    const activeSkill = getCurrentSkill();
+    return document.getElementById(activeSkill);
 }
 
 function createHelpCard(questionNumber) {
@@ -66,6 +62,7 @@ function createHelpCard(questionNumber) {
     const data = window.HELP_DATA ? window.HELP_DATA[helpKey] : null;
     
     const card = document.createElement('div');
+    card.className = 'help-card';
     card.style.cssText = 'background:white;border-radius:12px;padding:20px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border:1px solid #e0e0e0';
     
     if (data) {
@@ -104,6 +101,11 @@ function createHelpLayer() {
         return container;
     }
     
+    const title = document.createElement('div');
+    title.style.cssText = 'font-size:20px;font-weight:bold;margin-bottom:20px;color:#2c3e66;text-align:center';
+    title.innerHTML = '🧠 الأسئلة الصحيحة في هذا الامتحان';
+    container.appendChild(title);
+    
     correctQuestions.forEach(q => container.appendChild(createHelpCard(q)));
     return container;
 }
@@ -112,10 +114,12 @@ function hideExamContent() {
     const hidden = [];
     const section = getActiveSection();
     if (!section) return hidden;
+    
     for (let child of section.children) {
         if (child.id !== 'helpLayerContainer' && child.style.display !== 'none') {
+            const originalDisplay = child.style.display;
             child.style.display = 'none';
-            hidden.push(child);
+            hidden.push({ element: child, originalDisplay: originalDisplay });
         }
     }
     return hidden;
@@ -123,13 +127,14 @@ function hideExamContent() {
 
 function hideButtons() {
     const hidden = [];
-    document.querySelectorAll('button').forEach(btn => {
-        const text = btn.textContent;
-        if (text.includes('✅') || text.includes('تصحيح') || text.includes('Prüfen') || text.includes('↺') || text.includes('إعادة')) {
-            if (btn.style.display !== 'none') {
-                btn.style.display = 'none';
-                hidden.push(btn);
-            }
+    const buttonsToHide = ['checkBtn', 'resetBtn', 'prevExamBtn', 'nextExamBtn'];
+    
+    buttonsToHide.forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn && btn.style.display !== 'none') {
+            const originalDisplay = btn.style.display;
+            btn.style.display = 'none';
+            hidden.push({ element: btn, originalDisplay: originalDisplay });
         }
     });
     return hidden;
@@ -137,7 +142,11 @@ function hideButtons() {
 
 function showElements(elements) {
     if (!elements) return;
-    elements.forEach(el => { if (el) el.style.display = ''; });
+    elements.forEach(item => {
+        if (item && item.element) {
+            item.element.style.display = item.originalDisplay || '';
+        }
+    });
 }
 
 function toggleHelp() {
@@ -157,27 +166,40 @@ function toggleHelp() {
         const hiddenButtons = hideButtons();
         originalContentBackup = { questions: hiddenQuestions, buttons: hiddenButtons };
         const helpLayer = createHelpLayer();
-        if (section && helpLayer.children.length > 0) section.appendChild(helpLayer);
+        if (section && helpLayer.children.length > 0) {
+            section.appendChild(helpLayer);
+        }
         helpLayerActive = true;
     }
 }
 
 function addHelpButton() {
     if (document.getElementById('globalHelpButton')) return;
+    
     const nav = document.getElementById('examNavButtons');
     if (!nav) return;
+    
     const btn = document.createElement('button');
     btn.id = 'globalHelpButton';
     btn.textContent = '🧠 مساعدة ذكية للنجاح';
     btn.style.cssText = 'background:linear-gradient(135deg,#007bff,#0056b3);color:white;border:none;border-radius:30px;padding:8px 20px;font-size:14px;font-weight:bold;cursor:pointer;margin-left:10px;box-shadow:0 2px 5px rgba(0,0,0,0.2)';
     btn.onclick = (e) => { e.stopPropagation(); toggleHelp(); };
-    nav.appendChild(btn);
+    
+    const navButtons = nav.querySelector('.nav-buttons');
+    if (navButtons) {
+        navButtons.appendChild(btn);
+    } else {
+        nav.appendChild(btn);
+    }
 }
 
-// بدء التشغيل
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addHelpButton);
-} else {
+function initHelpLayer() {
     addHelpButton();
+    console.log('✅ helpLayer.js تم تحميله وتفعيله');
 }
-console.log('✅ helpLayer.js جاهز');
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHelpLayer);
+} else {
+    initHelpLayer();
+}
