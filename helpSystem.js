@@ -15068,107 +15068,66 @@ function createHelpCard(questionNumber) {
     }
     return card;
 }
+ function createHelpBoxesWithContent(count) {
+  const container = document.createElement('div');
+  container.id = 'helpLayerContainer';
+  container.style.cssText = `
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+    background-color: #f5f7fa;
+    border-radius: 16px;
+    margin: 15px 0;
+  `;
 
-// إنشاء طبقة المساعدة
-function createHelpLayer() {
-    const container = document.createElement('div');
-    container.id = 'helpLayerContainer';
-    container.style.cssText = 'background:#f8f9fa;border-radius:16px;padding:20px;margin:20px 0';
-    
-    const skill = getCurrentSkill();
-    const examId = getCurrentExamId();
-    const allQuestions = getAllQuestions(skill, examId);
-    
-    allQuestions.forEach(questionNumber => {
-        container.appendChild(createHelpCard(questionNumber));
-    });
+  const examId = getCurrentExamId();
+  const skill = getCurrentSkill();
+
+  // 🧠 جمع الأسئلة الموجودة فقط
+  const availableIndexes = [];
+
+  for (let i = 1; i <= count; i++) {
+    const key = `${skill}_exam${examId}_q${i}`;
+    if (window.HELP_DATA && window.HELP_DATA[key]) {
+      availableIndexes.push(i);
+    }
+  }
+
+  // 🚫 إذا لا يوجد أي شرح
+  if (availableIndexes.length === 0) {
+    const emptyMsg = document.createElement('div');
+    emptyMsg.textContent = "❌ لا يوجد شرح متاح لهذا الامتحان حالياً";
+    emptyMsg.style.cssText = "text-align:center; color:#888; padding:20px;";
+    container.appendChild(emptyMsg);
     return container;
-}
+  }
 
-// دوال التحكم
-function getActiveSection() {
-    const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'lesen1', 'lesen2', 'lesen3', 'sprach1', 'sprach2'];
-    for (let id of sections) {
-        const el = document.getElementById(id);
-        if (el && window.getComputedStyle(el).display !== 'none') return el;
-    }
-    return null;
-}
+  // 🎯 عرض فقط الموجود
+  if (availableIndexes.length <= 5) {
+    const column = document.createElement('div');
+    column.style.cssText = `display: flex; flex-direction: column; gap: 15px;`;
 
-function hideExamContent() {
-    const hidden = [];
-    const section = getActiveSection();
-    if (!section) return hidden;
-    for (let child of section.children) {
-        if (child.id !== 'helpLayerContainer' && child.style.display !== 'none') {
-            child.style.display = 'none';
-            hidden.push(child);
-        }
-    }
-    return hidden;
-}
-
-function hideButtons() {
-    const hidden = [];
-    document.querySelectorAll('button').forEach(btn => {
-        const text = btn.textContent;
-        if (text.includes('✅') || text.includes('تصحيح') || text.includes('Prüfen') || text.includes('↺') || text.includes('إعادة')) {
-            if (btn.style.display !== 'none') {
-                btn.style.display = 'none';
-                hidden.push(btn);
-            }
-        }
+    availableIndexes.forEach(i => {
+      column.appendChild(createHelpBoxWithContent(i, count));
     });
-    return hidden;
-}
 
-function showElements(elements) {
-    if (!elements) return;
-    elements.forEach(el => { if (el) el.style.display = ''; });
-}
+    container.appendChild(column);
+  } else {
+    for (let row = 0; row < Math.ceil(availableIndexes.length / 2); row++) {
+      const rowDiv = document.createElement('div');
+      rowDiv.style.cssText = `display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;`;
 
-// تبديل وضع المساعدة
-function toggleHelp() {
-    const existing = document.getElementById('helpLayerContainer');
-    const section = getActiveSection();
-    
-    if (helpLayerActive) {
-        if (existing) existing.remove();
-        if (originalContentBackup) {
-            showElements(originalContentBackup.questions);
-            showElements(originalContentBackup.buttons);
-            originalContentBackup = null;
+      for (let col = 0; col < 2; col++) {
+        const index = availableIndexes[row * 2 + col];
+        if (index) {
+          rowDiv.appendChild(createHelpBoxWithContent(index, count));
         }
-        helpLayerActive = false;
-    } else {
-        const hiddenQuestions = hideExamContent();
-        const hiddenButtons = hideButtons();
-        originalContentBackup = { questions: hiddenQuestions, buttons: hiddenButtons };
-        const helpLayer = createHelpLayer();
-        if (section) section.appendChild(helpLayer);
-        helpLayerActive = true;
+      }
+
+      container.appendChild(rowDiv);
     }
-}
+  }
 
-// إضافة زر المساعدة
-function addHelpButton() {
-    if (document.getElementById('globalHelpButton')) return;
-    const nav = document.getElementById('examNavButtons');
-    if (!nav) return;
-    
-    const btn = document.createElement('button');
-    btn.id = 'globalHelpButton';
-    btn.textContent = '🧠 مساعدة ذكية للنجاح';
-    btn.style.cssText = 'background:linear-gradient(135deg,#007bff,#0056b3);color:white;border:none;border-radius:30px;padding:8px 20px;font-size:14px;font-weight:bold;cursor:pointer;margin-left:10px;box-shadow:0 2px 5px rgba(0,0,0,0.2)';
-    btn.onclick = (e) => { e.stopPropagation(); toggleHelp(); };
-    nav.appendChild(btn);
+  return container;
 }
-
-// بدء التشغيل
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addHelpButton);
-} else {
-    addHelpButton();
-}
-
-console.log('✅ helpSystem.js تم التحميل بنجاح');
