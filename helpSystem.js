@@ -8685,20 +8685,20 @@ HELP_DATA["sprach1_exam11_4"] = {
     imagine: "😩💆‍♂️ رجل يضع يديه على وجهه تحت ضغط"
 };
 
-HELP_DATA["sprach1_exam11_5"] = {
-    text = "die Firma sogar noch weiter entfernt als deine alte?",
-    meaning = "الشركة أبعد حتى من شركتك القديمة؟",
-    keywords = ["entfernt = بعيدة", "weiter = أكثر", "Firma = شركة"],
-    simplified = "هل مكان العمل الجديد أبعد من القديم؟",
-    imagine = "📍🗺️ رجل يقيس على خريطة مسافة طويلة"
+HELP_DATA["sprach1_exam11_q5"] = {
+    text: "die Firma sogar noch weiter entfernt als deine alte?",
+    meaning: "الشركة أبعد حتى من شركتك القديمة؟",
+    keywords: ["entfernt = بعيدة", "weiter = أكثر", "Firma = شركة"],
+    simplified: "هل مكان العمل الجديد أبعد من القديم؟",
+    imagine: "📍🗺️ رجل يقيس على خريطة مسافة طويلة"
 };
 
-HELP_DATA["sprach1_exam11_6"] = {
-    text = "Ich denke im Moment auch darüber nach, die Stelle zu wechseln",
-    meaning = "أفكر حالياً أيضاً في تغيير وظيفتي",
-    keywords = ["wechseln = تغيير", "Stelle = وظيفة", "denke nach = أفكر"],
-    simplified = "أفكر أيضاً في تغيير وظيفتي الحالية",
-    imagine = "👔🤔 مستندات ووظيفة جديدة على مكتب"
+HELP_DATA["sprach1_exam11_q6"] = {
+    text: "Ich denke im Moment auch darüber nach, die Stelle zu wechseln",
+    meaning: "أفكر حالياً أيضاً في تغيير وظيفتي",
+    keywords: ["wechseln = تغيير", "Stelle = وظيفة", "denke nach = أفكر"],
+    simplified: "أفكر أيضاً في تغيير وظيفتي الحالية",
+    imagine: "👔🤔 مستندات ووظيفة جديدة على مكتب"
 };
 
 HELP_DATA["sprach1_exam11_7"] = {
