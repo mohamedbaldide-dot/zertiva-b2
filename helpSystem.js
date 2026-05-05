@@ -15156,7 +15156,7 @@ function createHelpCard(questionNumber) {
     const data = window.HELP_DATA ? HELP_DATA[helpKey] : null;
     
     const card = document.createElement('div');
-    card.style.csstext: 'background:white;border-radius:12px;padding:20px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border:1px solid #e0e0e0';
+    card.style.cssText = 'background:white;border-radius:12px;padding:20px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border:1px solid #e0e0e0';
     
     if (data) {
         let keywordsHtml = '';
@@ -15167,7 +15167,6 @@ function createHelpCard(questionNumber) {
             });
             keywordsHtml += '</div>';
         }
-
         card.innerHTML = `
             <div style="font-weight:bold;color:#2c3e66;border-right:4px solid #007bff;padding-right:12px;margin-bottom:15px;font-size:17px">
                 ${questionNumber}️⃣ ${data.text}
@@ -15180,14 +15179,13 @@ function createHelpCard(questionNumber) {
     } else {
         card.innerHTML = `<div style="text-align:center;padding:20px;color:#999">❓ لا يوجد شرح للسؤال ${questionNumber}</div>`;
     }
-
     return card;
 }
 
 function createHelpLayer() {
     const container = document.createElement('div');
     container.id = 'helpLayerContainer';
-    container.style.csstext: 'background:#f8f9fa;border-radius:16px;padding:20px;margin:20px 0';
+    container.style.cssText = 'background:#f8f9fa;border-radius:16px;padding:20px;margin:20px 0';
     
     const skill = getCurrentSkill();
     const examId = getCurrentExamId();
@@ -15201,14 +15199,13 @@ function createHelpLayer() {
     correctQuestions.forEach(questionNumber => {
         container.appendChild(createHelpCard(questionNumber));
     });
-    
     return container;
 }
+
 function hideExamContent() {
     const hidden = [];
     const section = getActiveSection();
     if (!section) return hidden;
-
     for (let child of section.children) {
         if (child.id !== 'helpLayerContainer' && child.style.display !== 'none') {
             child.style.display = 'none';
@@ -15221,7 +15218,7 @@ function hideExamContent() {
 function hideButtons() {
     const hidden = [];
     document.querySelectorAll('button').forEach(btn => {
-        const text: btn.textContent;
+        const text = btn.textContent;
         if (text.includes('✅') || text.includes('تصحيح') || text.includes('Prüfen') || text.includes('↺') || text.includes('إعادة')) {
             if (btn.style.display !== 'none') {
                 btn.style.display = 'none';
@@ -15253,46 +15250,39 @@ function toggleHelp() {
         const hiddenQuestions = hideExamContent();
         const hiddenButtons = hideButtons();
         originalContentBackup = { questions: hiddenQuestions, buttons: hiddenButtons };
-
         const helpLayer = createHelpLayer();
         if (section && helpLayer.children.length > 0) {
             section.appendChild(helpLayer);
         }
-
         helpLayerActive = true;
     }
 }
 
 function addHelpButton() {
     if (document.getElementById('globalHelpButton')) return;
-
     const nav = document.getElementById('examNavButtons');
     if (!nav) return;
     
     const btn = document.createElement('button');
     btn.id = 'globalHelpButton';
     btn.textContent = '🧠 مساعدة ذكية للنجاح';
-    btn.style.csstext: 'background:linear-gradient(135deg,#007bff,#0056b3);color:white;border:none;border-radius:30px;padding:8px 20px;font-size:14px;font-weight:bold;cursor:pointer;margin-left:10px;box-shadow:0 2px 5px rgba(0,0,0,0.2);transition:all 0.3s';
-
+    btn.style.cssText = 'background:linear-gradient(135deg,#007bff,#0056b3);color:white;border:none;border-radius:30px;padding:8px 20px;font-size:14px;font-weight:bold;cursor:pointer;margin-left:10px;box-shadow:0 2px 5px rgba(0,0,0,0.2);transition:all 0.3s';
+    
     btn.onmouseenter = () => {
         btn.style.transform = 'scale(1.02)';
         btn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
     };
-
     btn.onmouseleave = () => {
         btn.style.transform = 'scale(1)';
         btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
     };
-
     btn.onclick = (e) => {
         e.stopPropagation();
         toggleHelp();
     };
-
     nav.appendChild(btn);
 }
 
-// تشغيل
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', addHelpButton);
 } else {
