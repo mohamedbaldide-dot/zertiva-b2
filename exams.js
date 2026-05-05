@@ -7,7 +7,7 @@ const teile = [
   { id: 1, name: "Hören Teil 1", container: "hoeren1", skill: "hoeren1" },
   { id: 2, name: "Hören Teil 2", container: "hoeren2", skill: "hoeren2" },
   { id: 3, name: "Hören Teil 3", container: "hoeren3", skill: "hoeren3" },
-  { id: 4, name: "Lesen Teil 1", container: "teil1", skill: "lesen1" },
+  { id: 4, name: "Lesen Teil 1", container: "lesen1", skill: "lesen1" },
   { id: 5, name: "Lesen Teil 2", container: "teil2", skill: "lesen2" },
   { id: 6, name: "Lesen Teil 3", container: "teil3", skill: "lesen3" },
   { id: 7, name: "Sprachbausteine Teil 1", container: "sprach1", skill: "sprach1" },
@@ -495,7 +495,7 @@ async function openExam(examId, examTitle, skill) {
         window.buildTrueFalseExam(container, currentExamData.questions, currentExamData.note);
       } else {
         console.error("❌ buildTrueFalseExam غير موجود");
-        buildTeil1(currentExamData.questions);
+        buildlesen1(currentExamData.questions);
       }
     } else if (currentExamData.type === "teil2") {
       if (typeof window.loadTeil2Exam === "function") {
@@ -533,7 +533,7 @@ async function openExam(examId, examTitle, skill) {
         alert("نظام Schreiben غير متوفر حالياً");
       }
     } else {
-      buildTeil1(currentExamData.questions);
+      buildlesen1(currentExamData.questions);
     }
     
     const teilIndex = teile.findIndex(t => t.skill === skill);
@@ -582,8 +582,8 @@ function showTeil(teilNumber) {
   });
 }
 
-function buildTeil1(questions) {
-  const container = document.getElementById("teil1");
+function buildlesen1(questions) {
+  const container = document.getElementById("lesen1");
   if (!container) return;
   container.innerHTML = "";
   
@@ -622,18 +622,18 @@ function buildTeil1(questions) {
   checkBtn.innerText = "✅ تصحيح";
   checkBtn.className = "check-btn";
   checkBtn.onclick = function() {
-    checkTeil1(questions, userAnswers);
+    checklesen1(questions, userAnswers);
   };
   container.appendChild(checkBtn);
   
   const resultDiv = document.createElement("div");
-  resultDiv.id = "teil1Result";
+  resultDiv.id = "lesen1Result";
   resultDiv.className = "result-box";
   resultDiv.style.display = "none";
   container.appendChild(resultDiv);
 }
 
-function checkTeil1(questions, answers) {
+function checklesen1(questions, answers) {
   let score = 0;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
@@ -665,7 +665,7 @@ function checkTeil1(questions, answers) {
   }
   
   const finalScore = (score * pointsPerQuestion).toFixed(2);
-  const resultDiv = document.getElementById("teil1Result");
+  const resultDiv = document.getElementById("lesen1Result");
   resultDiv.innerHTML = "النتيجة: " + finalScore + " / 25";
   resultDiv.style.display = "block";
 }
