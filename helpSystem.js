@@ -15121,8 +15121,13 @@ function getCurrentExamId() {
     const match = title.match(/Exam\s+(\d+)/i);
     return match ? parseInt(match[1]) : 1;
 }
+// ============================================
+// دوال محسنة للتعامل مع HELP_DATA
+// ============================================
 
+// دالة محسنة لمعرفة القسم الحالي - تعيد اسم المفتاح الصحيح
 function getCurrentSkill() {
+    // التحقق من visibility لكل قسم
     if (document.getElementById('hoeren1')?.style.display === 'block') return 'hoeren1';
     if (document.getElementById('hoeren2')?.style.display === 'block') return 'hoeren2';
     if (document.getElementById('hoeren3')?.style.display === 'block') return 'hoeren3';
@@ -15134,31 +15139,84 @@ function getCurrentSkill() {
     if (document.getElementById('sprach1')?.style.display === 'block') return 'sprach1';
     if (document.getElementById('sprach2')?.style.display === 'block') return 'sprach2';
     
+    // محاولة ثانية: البحث عن القسم النشط بطريقة أخرى
+    const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'lesen1', 'lesen2', 'lesen3', 'sprach1', 'sprach2'];
+    for (let id of sections) {
+        const el = document.getElementById(id);
+        if (el && window.getComputedStyle(el).display !== 'none') {
+            return id;
+        }
+    }
+    
     return 'hoeren1';
 }
 
-function getActiveSection() {
-    const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'lesen1', 'lesen2', 'lesen3', 'sprach1', 'sprach2'];
+// دالة محسنة لجلب رقم الامتحان الحالي
+function getCurrentExamId() {
+    if (window.currentExamId) return window.currentExamId;
     
-    for (let id of sections) {
-        const el = document.getElementById(id);
-        if (el && el.style.display === 'block') {
-            return el;
-        }
+    // البحث عن title الامتحان
+    const title = document.getElementById('examTitle')?.textContent || '';
+    let match = title.match(/Exam\s+(\d+)/i);
+    if (match) return parseInt(match[1]);
+    
+    // البحث عن رقم الامتحان في URL
+    if (window.location.search) {
+        match = window.location.search.match(/exam=(\d+)/i);
+        if (match) return parseInt(match[1]);
     }
-    return null;
+    
+    // البحث في النص العام للصفحة
+    const bodyText = document.body.innerText;
+    match = bodyText.match(/Exam\s+(\d+)/i);
+    if (match) return parseInt(match[1]);
+    
+    return 1;
 }
 
+// دالة محسنة لإنشاء بطاقة المساعدة مع دعم جميع الأقسام
 function createHelpCard(questionNumber) {
     const examId = getCurrentExamId();
     const skill = getCurrentSkill();
-    const helpKey = `${skill}_exam${examId}_q${questionNumber}`;
-    const data = window.HELP_DATA ? HELP_DATA[helpKey] : null;
     
+    // بناء المفتاح بالشكل الصحيح
+    const helpKey = `${skill}_exam${examId}_q${questionNumber}`;
+    
+    console.log("البحث عن مفتاح:", helpKey); // للمساعدة في التصحيح
+    
+    // البحث عن البيانات
+    let data = null;
+    if (window.HELP_DATA) {
+        data = HELP_DATA[helpKey];
+        
+        // إذا لم يجد، حاول البحث بالمفتاح بدون رقم السؤال (لبعض الأقسام)
+        if (!data && (skill === 'lesen1' || skill === 'lesen2' || skill === 'lesen3')) {
+            const altKey = `${skill}_exam${examId}_q${questionNumber}`;
+            data = HELP_DATA[altKey];
+        }
+        
+        // محاولة البحث بالمفتاح مع underscore مختلف
+        if (!data) {
+            const possibleKeys = [
+                `${skill}_exam${examId}_q${questionNumber}`,
+                `${skill}_exam${examId}_${questionNumber}`,
+                `${skill}_exam${examId}_question${questionNumber}`
+            ];
+            for (const key of possibleKeys) {
+                if (HELP_DATA[key]) {
+                    data = HELP_DATA[key];
+                    console.log("وجدت البيانات تحت مفتاح بديل:", key);
+                    break;
+                }
+            }
+        }
+    }
+    
+    // إنشاء البطاقة
     const card = document.createElement('div');
     card.style.cssText = 'background:white;border-radius:12px;padding:20px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border:1px solid #e0e0e0';
     
-    if (data) {
+    if (data && data.text) {
         let keywordsHtml = '';
         if (data.keywords && data.keywords.length) {
             keywordsHtml = '<div style="margin:12px 0"><span style="color:#007bff;font-weight:bold">📌 كلمات مهمة :</span><br>';
@@ -15167,126 +15225,24 @@ function createHelpCard(questionNumber) {
             });
             keywordsHtml += '</div>';
         }
+        
         card.innerHTML = `
             <div style="font-weight:bold;color:#2c3e66;border-right:4px solid #007bff;padding-right:12px;margin-bottom:15px;font-size:17px">
                 ${questionNumber}️⃣ ${data.text}
             </div>
-            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">📖 المعنى :</span> <span style="color:#333">${data.meaning}</span></div>
+            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">📖 المعنى :</span> <span style="color:#333">${data.meaning || 'لا توجد ترجمة'}</span></div>
             ${keywordsHtml}
-            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">✨ تبسيط :</span> <span style="color:#333">${data.simplified}</span></div>
-            <div><span style="color:#0056b3;font-weight:bold">🎭 تخيل :</span> <span style="color:#333">${data.imagine}</span></div>
+            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">✨ تبسيط :</span> <span style="color:#333">${data.simplified || data.meaning || 'لا يوجد تبسيط'}</span></div>
+            <div><span style="color:#0056b3;font-weight:bold">🎭 تخيل :</span> <span style="color:#333">${data.imagine || 'تخيل الجملة في سياقها'}</span></div>
         `;
     } else {
-        card.innerHTML = `<div style="text-align:center;padding:20px;color:#999">❓ لا يوجد شرح للسؤال ${questionNumber}</div>`;
+        console.warn(`لم يتم العثور على بيانات للمفتاح: ${helpKey}`);
+        card.innerHTML = `
+            <div style="text-align:center;padding:20px;color:#999">
+                ❓ لا يوجد شرح للسؤال ${questionNumber}<br>
+                <small style="color:#ccc">المفتاح المطلوب: ${helpKey}</small>
+            </div>
+        `;
     }
     return card;
 }
-
-function createHelpLayer() {
-    const container = document.createElement('div');
-    container.id = 'helpLayerContainer';
-    container.style.cssText = 'background:#f8f9fa;border-radius:16px;padding:20px;margin:20px 0';
-    
-    const skill = getCurrentSkill();
-    const examId = getCurrentExamId();
-    const correctQuestions = getCorrectQuestions(skill, examId);
-    
-    if (correctQuestions.length === 0) {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">📚 لا توجد أسئلة صحيحة في هذا الامتحان</div>';
-        return container;
-    }
-    
-    correctQuestions.forEach(questionNumber => {
-        container.appendChild(createHelpCard(questionNumber));
-    });
-    return container;
-}
-
-function hideExamContent() {
-    const hidden = [];
-    const section = getActiveSection();
-    if (!section) return hidden;
-    for (let child of section.children) {
-        if (child.id !== 'helpLayerContainer' && child.style.display !== 'none') {
-            child.style.display = 'none';
-            hidden.push(child);
-        }
-    }
-    return hidden;
-}
-
-function hideButtons() {
-    const hidden = [];
-    document.querySelectorAll('button').forEach(btn => {
-        const text = btn.textContent;
-        if (text.includes('✅') || text.includes('تصحيح') || text.includes('Prüfen') || text.includes('↺') || text.includes('إعادة')) {
-            if (btn.style.display !== 'none') {
-                btn.style.display = 'none';
-                hidden.push(btn);
-            }
-        }
-    });
-    return hidden;
-}
-
-function showElements(elements) {
-    if (!elements) return;
-    elements.forEach(el => { if (el) el.style.display = ''; });
-}
-
-function toggleHelp() {
-    const existing = document.getElementById('helpLayerContainer');
-    const section = getActiveSection();
-    
-    if (helpLayerActive) {
-        if (existing) existing.remove();
-        if (originalContentBackup) {
-            showElements(originalContentBackup.questions);
-            showElements(originalContentBackup.buttons);
-            originalContentBackup = null;
-        }
-        helpLayerActive = false;
-    } else {
-        const hiddenQuestions = hideExamContent();
-        const hiddenButtons = hideButtons();
-        originalContentBackup = { questions: hiddenQuestions, buttons: hiddenButtons };
-        const helpLayer = createHelpLayer();
-        if (section && helpLayer.children.length > 0) {
-            section.appendChild(helpLayer);
-        }
-        helpLayerActive = true;
-    }
-}
-
-function addHelpButton() {
-    if (document.getElementById('globalHelpButton')) return;
-    const nav = document.getElementById('examNavButtons');
-    if (!nav) return;
-    
-    const btn = document.createElement('button');
-    btn.id = 'globalHelpButton';
-    btn.textContent = '🧠 مساعدة ذكية للنجاح';
-    btn.style.cssText = 'background:linear-gradient(135deg,#007bff,#0056b3);color:white;border:none;border-radius:30px;padding:8px 20px;font-size:14px;font-weight:bold;cursor:pointer;margin-left:10px;box-shadow:0 2px 5px rgba(0,0,0,0.2);transition:all 0.3s';
-    
-    btn.onmouseenter = () => {
-        btn.style.transform = 'scale(1.02)';
-        btn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
-    };
-    btn.onmouseleave = () => {
-        btn.style.transform = 'scale(1)';
-        btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
-    };
-    btn.onclick = (e) => {
-        e.stopPropagation();
-        toggleHelp();
-    };
-    nav.appendChild(btn);
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addHelpButton);
-} else {
-    addHelpButton();
-}
-
-console.log('✅ helpSystem.js يعمل بدون مشاكل');
