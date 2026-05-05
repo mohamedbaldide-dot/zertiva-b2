@@ -8678,59 +8678,59 @@ HELP_DATA["sprach1_exam11_3"] = {
 };
 
 HELP_DATA["sprach1_exam11_4"] = {
-    text = "schließlich habe ich schon im Alltag genug Stress",
-    meaning = "ففي النهاية لدي ما يكفي من التوتر في حياتي اليومية",
-    keywords = ["schließlich = في النهاية", "Alltag = الحياة اليومية", "Stress = إجهاد"],
-    simplified = "لدي ما يكفي من المشاكل في روتيني اليومي",
-    imagine = "😩💆‍♂️ رجل يضع يديه على وجهه تحت ضغط"
+    text: "schließlich habe ich schon im Alltag genug Stress",
+    meaning: "ففي النهاية لدي ما يكفي من التوتر في حياتي اليومية",
+    keywords: ["schließlich = في النهاية", "Alltag = الحياة اليومية", "Stress = إجهاد"],
+    simplified: "لدي ما يكفي من المشاكل في روتيني اليومي",
+    imagine: "😩💆‍♂️ رجل يضع يديه على وجهه تحت ضغط"
 };
 
-HELP_DATA["sprach1_exam11_5"] = {
-    text = "die Firma sogar noch weiter entfernt als deine alte?",
-    meaning = "الشركة أبعد حتى من شركتك القديمة؟",
-    keywords = ["entfernt = بعيدة", "weiter = أكثر", "Firma = شركة"],
-    simplified = "هل مكان العمل الجديد أبعد من القديم؟",
-    imagine = "📍🗺️ رجل يقيس على خريطة مسافة طويلة"
+HELP_DATA["sprach1_exam11_q5"] = {
+    text: "die Firma sogar noch weiter entfernt als deine alte?",
+    meaning: "الشركة أبعد حتى من شركتك القديمة؟",
+    keywords: ["entfernt = بعيدة", "weiter = أكثر", "Firma = شركة"],
+    simplified: "هل مكان العمل الجديد أبعد من القديم؟",
+    imagine: "📍🗺️ رجل يقيس على خريطة مسافة طويلة"
 };
 
-HELP_DATA["sprach1_exam11_6"] = {
-    text = "Ich denke im Moment auch darüber nach, die Stelle zu wechseln",
-    meaning = "أفكر حالياً أيضاً في تغيير وظيفتي",
-    keywords = ["wechseln = تغيير", "Stelle = وظيفة", "denke nach = أفكر"],
-    simplified = "أفكر أيضاً في تغيير وظيفتي الحالية",
-    imagine = "👔🤔 مستندات ووظيفة جديدة على مكتب"
+HELP_DATA["sprach1_exam11_q6"] = {
+    text: "Ich denke im Moment auch darüber nach, die Stelle zu wechseln",
+    meaning: "أفكر حالياً أيضاً في تغيير وظيفتي",
+    keywords: ["wechseln = تغيير", "Stelle = وظيفة", "denke nach = أفكر"],
+    simplified: "أفكر أيضاً في تغيير وظيفتي الحالية",
+    imagine: "👔🤔 مستندات ووظيفة جديدة على مكتب"
 };
 
 HELP_DATA["sprach1_exam11_7"] = {
-    text = "Ehrlich gesagt langweile ich mich in den letzten Monaten immer häufiger",
-    meaning = "بصراحة، أشعر بالملل بشكل متكرر في الأشهر الأخيرة",
-    keywords = ["Ehrlich gesagt = بصراحة", "langweile = أشعر بالملل", "immer häufiger = بشكل متكرر"],
-    simplified = "بصراحة، أشعر بالملل أكثر فأكثر مؤخراً",
-    imagine = "😑⏱️ شخص ينظر إلى الساعة وهو يشعر بالملل في العمل"
+    text: "Ehrlich gesagt langweile ich mich in den letzten Monaten immer häufiger",
+    meaning: "بصراحة، أشعر بالملل بشكل متكرر في الأشهر الأخيرة",
+    keywords: ["Ehrlich gesagt = بصراحة", "langweile = أشعر بالملل", "immer häufiger = بشكل متكرر"],
+    simplified: "بصراحة، أشعر بالملل أكثر فأكثر مؤخراً",
+    imagine: "😑⏱️ شخص ينظر إلى الساعة وهو يشعر بالملل في العمل"
 };
 
 HELP_DATA["sprach1_exam11_8"] = {
-    text = "Deshalb mache ich ab dem kommenden Monat erst mal eine Weiterbildung",
-    meaning = "لذلك سأبدأ دورة تدريبية بدءاً من الشهر القادم أولاً",
-    keywords = ["kommenden = القادم", "Weiterbildung = دورة تدريبية", "ab = بدءاً من"],
-    simplified = "سأبدأ برنامجاً تدريبياً الشهر القادم أولاً",
-    imagine = "📚🖊️ رجل يكتب بصورة ملهمة وكومة كتب أمامه"
+    text: "Deshalb mache ich ab dem kommenden Monat erst mal eine Weiterbildung",
+    meaning: "لذلك سأبدأ دورة تدريبية بدءاً من الشهر القادم أولاً",
+    keywords: ["kommenden = القادم", "Weiterbildung = دورة تدريبية", "ab = بدءاً من"],
+    simplified: "سأبدأ برنامجاً تدريبياً الشهر القادم أولاً",
+    imagine: "📚🖊️ رجل يكتب بصورة ملهمة وكومة كتب أمامه"
 };
 
 HELP_DATA["sprach1_exam11_9"] = {
-    text = "Schließlich wird es auch immer schwieriger, je älter man ist",
-    meaning = "ففي النهاية، الأمر يصبح أصعب كلما تقدمنا في السن",
-    keywords = ["Schließlich = في النهاية", "schwieriger = أصعب", "je älter = كلما تقدم السن"],
-    simplified = "من الأصعب العثور على عمل عندما يتقدم المرء في السن",
-    imagine = "📉👴 رسم بياني يظهر انخفاضاً مع تقدم العمر"
+    text: "Schließlich wird es auch immer schwieriger, je älter man ist",
+    meaning: "ففي النهاية، الأمر يصبح أصعب كلما تقدمنا في السن",
+    keywords: ["Schließlich = في النهاية", "schwieriger = أصعب", "je älter = كلما تقدم السن"],
+    simplified: "من الأصعب العثور على عمل عندما يتقدم المرء في السن",
+    imagine: "📉👴 رسم بياني يظهر انخفاضاً مع تقدم العمر"
 };
 
 HELP_DATA["sprach1_exam11_10"] = {
-    text = "Wie wäre es, wenn wir uns demnächst treffen würden?",
-    meaning = "ما رأيك أن نلتقي قريباً؟",
-    keywords = ["Wie wäre es = ما رأيك", "demnächst = قريباً", "treffen = نلتقي"],
-    simplified = "هل لديك رغبة في لقاء قريباً؟",
-    imagine = "🤝👋 شخصان يصافحان بعضهما البعض ويبتسمان"
+    text: "Wie wäre es, wenn wir uns demnächst treffen würden?",
+    meaning: "ما رأيك أن نلتقي قريباً؟",
+    keywords: ["Wie wäre es = ما رأيك", "demnächst = قريباً", "treffen = نلتقي"],
+    simplified: "هل لديك رغبة في لقاء قريباً؟",
+    imagine: "🤝👋 شخصان يصافحان بعضهما البعض ويبتسمان"
 };
 
 // ============================================
@@ -8762,59 +8762,59 @@ HELP_DATA["sprach1_exam12_3"] = {
 };
 
 HELP_DATA["sprach1_exam12_4"] = {
-    text = "schließen habe ich schon im Alltag genug Stress",
-    meaning = "ففي النهاية لدي ما يكفي من التوتر في حياتي اليومية",
-    keywords = ["schließen = في النهاية", "Alltag = الحياة اليومية", "Stress = إجهاد"],
-    simplified = "لدي ما يكفي من المشاكل في روتيني اليومي",
-    imagine = "😩💆‍♂️ رجل يضع يديه على وجهه تحت ضغط"
+    text: "schließen habe ich schon im Alltag genug Stress",
+    meaning: "ففي النهاية لدي ما يكفي من التوتر في حياتي اليومية",
+    keywords: ["schließen = في النهاية", "Alltag = الحياة اليومية", "Stress = إجهاد"],
+    simplified: "لدي ما يكفي من المشاكل في روتيني اليومي",
+    imagine: "😩💆‍♂️ رجل يضع يديه على وجهه تحت ضغط"
 };
 
 HELP_DATA["sprach1_exam12_5"] = {
-    text = "die Firma sogar noch weiter entfernt als deine alte?",
-    meaning = "الشركة أبعد حتى من شركتك القديمة؟",
-    keywords = ["entfernt = بعيدة", "weiter = أكثر", "Firma = شركة"],
-    simplified = "هل مكان العمل الجديد أبعد من القديم؟",
-    imagine = "📍🗺️ رجل يقيس على خريطة مسافة طويلة"
+    text: "die Firma sogar noch weiter entfernt als deine alte?",
+    meaning: "الشركة أبعد حتى من شركتك القديمة؟",
+    keywords: ["entfernt = بعيدة", "weiter = أكثر", "Firma = شركة"],
+    simplified: "هل مكان العمل الجديد أبعد من القديم؟",
+    imagine: "📍🗺️ رجل يقيس على خريطة مسافة طويلة"
 };
 
 HELP_DATA["sprach1_exam12_6"] = {
-    text = "Ich denke im Moment auch darüber nach, die Stelle zu wechseln",
-    meaning = "أفكر حالياً أيضاً في تغيير وظيفتي",
-    keywords = ["wechseln = تغيير", "Stelle = وظيفة", "denke nach = أفكر"],
-    simplified = "أفكر أيضاً في تغيير وظيفتي الحالية",
-    imagine = "👔🤔 مستندات ووظيفة جديدة على مكتب"
+    text: "Ich denke im Moment auch darüber nach, die Stelle zu wechseln",
+    meaning: "أفكر حالياً أيضاً في تغيير وظيفتي",
+    keywords: ["wechseln = تغيير", "Stelle = وظيفة", "denke nach = أفكر"],
+    simplified: "أفكر أيضاً في تغيير وظيفتي الحالية",
+    imagine: "👔🤔 مستندات ووظيفة جديدة على مكتب"
 };
 
 HELP_DATA["sprach1_exam12_7"] = {
-    text = "Ehrlich zu sagen langweile ich mich in den letzten Monaten immer häufiger",
-    meaning = "بصراحة، أشعر بالملل بشكل متكرر في الأشهر الأخيرة",
-    keywords = ["zu sagen = القول", "langweile = أشعر بالملل", "immer häufiger = بشكل متكرر"],
-    simplified = "بصراحة، أشعر بالملل أكثر فأكثر مؤخراً",
-    imagine = "😑⏱️ شخص ينظر إلى الساعة وهو يشعر بالملل في العمل"
+    text: "Ehrlich zu sagen langweile ich mich in den letzten Monaten immer häufiger",
+    meaning: "بصراحة، أشعر بالملل بشكل متكرر في الأشهر الأخيرة",
+    keywords: ["zu sagen = القول", "langweile = أشعر بالملل", "immer häufiger = بشكل متكرر"],
+    simplified: "بصراحة، أشعر بالملل أكثر فأكثر مؤخراً",
+    imagine: "😑⏱️ شخص ينظر إلى الساعة وهو يشعر بالملل في العمل"
 };
 
 HELP_DATA["sprach1_exam12_8"] = {
-    text = "ab dem kommenden Monat eine Weiterbildung",
-    meaning = "ابتداء من الشهر القادم دورة تدريبية",
-    keywords = ["kommenden = القادم", "Weiterbildung = دورة تدريبية", "ab = ابتداء من"],
-    simplified = "سأبدأ برنامجاً تدريبياً الشهر القادم",
-    imagine = "📚🖊️ رجل يكتب بصورة ملهمة وكومة كتب أمامه"
+    text: "ab dem kommenden Monat eine Weiterbildung",
+    meaning: "ابتداء من الشهر القادم دورة تدريبية",
+    keywords: ["kommenden = القادم", "Weiterbildung = دورة تدريبية", "ab = ابتداء من"],
+    simplified: "سأبدأ برنامجاً تدريبياً الشهر القادم",
+    imagine: "📚🖊️ رجل يكتب بصورة ملهمة وكومة كتب أمامه"
 };
 
 HELP_DATA["sprach1_exam12_9"] = {
-    text = "je älter man ist, desto schwieriger wird es",
-    meaning = "كلما تقدم المرء في السن، زادت الصعوبة",
-    keywords = ["je älter = كلما تقدم السن", "schwieriger = أكثر صعوبة", "desto = كلما"],
-    simplified = "من الأصعب العثور على عمل كلما تقدم المرء في السن",
-    imagine = "📉👴 رسم بياني يظهر انخفاضاً مع تقدم العمر"
+    text: "je älter man ist, desto schwieriger wird es",
+    meaning: "كلما تقدم المرء في السن، زادت الصعوبة",
+    keywords: ["je älter = كلما تقدم السن", "schwieriger = أكثر صعوبة", "desto = كلما"],
+    simplified: "من الأصعب العثور على عمل كلما تقدم المرء في السن",
+    imagine: "📉👴 رسم بياني يظهر انخفاضاً مع تقدم العمر"
 };
 
 HELP_DATA["sprach1_exam12_10"] = {
-    text = "Wie wäre es, wenn wir uns demnächst treffen würden?",
-    meaning = "ما رأيك أن نلتقي قريباً؟",
-    keywords = ["Wie wäre es = ما رأيك", "demnächst = قريباً", "treffen = نلتقي"],
-    simplified = "هل لديك رغبة في لقاء قريباً؟",
-    imagine = "🤝👋 شخصان يصافحان بعضهما البعض ويبتسمان"
+    text: "Wie wäre es, wenn wir uns demnächst treffen würden?",
+    meaning: "ما رأيك أن نلتقي قريباً؟",
+    keywords: ["Wie wäre es = ما رأيك", "demnächst = قريباً", "treffen = نلتقي"],
+    simplified: "هل لديك رغبة في لقاء قريباً؟",
+    imagine: "🤝👋 شخصان يصافحان بعضهما البعض ويبتسمان"
 };
 
 // ============================================
@@ -8822,83 +8822,83 @@ HELP_DATA["sprach1_exam12_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam13_1"] = {
-    text = "obwohl ich mir das bisher nie zugetraut hatte",
-    meaning = "على الرغم من أنني لم أجرؤ على ذلك أبداً من قبل",
-    keywords = ["obwohl = على الرغم من", "nie = أبداً", "zugetraut = تجرأت"],
-    simplified = "بالرغم من أنني لم أعتقد أنني سأفعل هذا أبداً",
-    imagine = "🎿😰 شخص خائف على قمة جبل ثلجي"
+    text: "obwohl ich mir das bisher nie zugetraut hatte",
+    meaning: "على الرغم من أنني لم أجرؤ على ذلك أبداً من قبل",
+    keywords: ["obwohl = على الرغم من", "nie = أبداً", "zugetraut = تجرأت"],
+    simplified: "بالرغم من أنني لم أعتقد أنني سأفعل هذا أبداً",
+    imagine: "🎿😰 شخص خائف على قمة جبل ثلجي"
 };
 
 HELP_DATA["sprach1_exam13_2"] = {
-    text = "hatte sie schon einen individuellen Skikurs für mich gebucht",
-    meaning = "كانت قد حجزت دورة تزلج خاصة لي",
-    keywords = ["hatte gebucht = كانت قد حجزت", "individuellen = خاصة", "Skikurs = دورة تزلج"],
-    simplified = "لقد حجزت دروس تزلج خاصة بي",
-    imagine = "📅📞 فتاة تتحدث على الهاتف وتكتب في دفتر ملاحظات"
+    text: "hatte sie schon einen individuellen Skikurs für mich gebucht",
+    meaning: "كانت قد حجزت دورة تزلج خاصة لي",
+    keywords: ["hatte gebucht = كانت قد حجزت", "individuellen = خاصة", "Skikurs = دورة تزلج"],
+    simplified: "لقد حجزت دروس تزلج خاصة بي",
+    imagine: "📅📞 فتاة تتحدث على الهاتف وتكتب في دفتر ملاحظات"
 };
 
 HELP_DATA["sprach1_exam13_3"] = {
-    text = "Ich wollte es mir schon anders überlegen",
-    meaning = "كنت أرغب بالفعل في تغيير رأيي",
-    keywords = ["wollte = أردت", "anders überlegen = تغيير رأيي", "schon = بالفعل"],
-    simplified = "كنت أرغب بالفعل في العدول عن الفكرة",
-    imagine = "🤔😬 رجل يضع يده على ذقنه وهو ينظر إلى الأسفل"
+    text: "Ich wollte es mir schon anders überlegen",
+    meaning: "كنت أرغب بالفعل في تغيير رأيي",
+    keywords: ["wollte = أردت", "anders überlegen = تغيير رأيي", "schon = بالفعل"],
+    simplified: "كنت أرغب بالفعل في العدول عن الفكرة",
+    imagine: "🤔😬 رجل يضع يده على ذقنه وهو ينظر إلى الأسفل"
 };
 
 HELP_DATA["sprach1_exam13_4"] = {
-    text = "aber Lisa wollte nichts davon hören",
-    meaning = "لكن ليزا لم ترغب في سماع أي شيء عن ذلك",
-    keywords = ["davon = عن ذلك", "hören = تسمع", "nichts = لا شيء"],
-    simplified = "لكن ليزا رفضت الاستماع عن التفكير في التخلي عن الأمر",
-    imagine = "🙉💪 ليزا تضع أصابعها في أذنيها بقوة"
+    text: "aber Lisa wollte nichts davon hören",
+    meaning: "لكن ليزا لم ترغب في سماع أي شيء عن ذلك",
+    keywords: ["davon = عن ذلك", "hören = تسمع", "nichts = لا شيء"],
+    simplified: "لكن ليزا رفضت الاستماع عن التفكير في التخلي عن الأمر",
+    imagine: "🙉💪 ليزا تضع أصابعها في أذنيها بقوة"
 };
 
 HELP_DATA["sprach1_exam13_5"] = {
-    text = "Einerseits war ich ziemlich aufgeregt",
-    meaning = "من جهة كنت متوترة بعض الشيء",
-    keywords = ["Einerseits = من جهة", "ziemlich = بعض الشيء", "aufgeregt = متوترة"],
-    simplified = "من ناحية كنت متوترة جداً",
-    imagine = "😰⛷️ فتاة ترتدي معدات التزلج ووجهها متوتر"
+    text: "Einerseits war ich ziemlich aufgeregt",
+    meaning: "من جهة كنت متوترة بعض الشيء",
+    keywords: ["Einerseits = من جهة", "ziemlich = بعض الشيء", "aufgeregt = متوترة"],
+    simplified: "من ناحية كنت متوترة جداً",
+    imagine: "😰⛷️ فتاة ترتدي معدات التزلج ووجهها متوتر"
 };
 
 HELP_DATA["sprach1_exam13_6"] = {
-    text = "Sie hat mich abgeholt und mir dabei geholfen",
-    meaning = "جاءت لاصطحابي وساعدتني في ذلك",
-    keywords = ["dabei = في ذلك", "abgeholt = اصطحبت", "geholfen = ساعدت"],
-    simplified = "لقد أتت لاصطحابي وساعدتني في هذا الأمر",
-    imagine = "🤝👩‍🏫 امرأة تمد يدها لتساعد صديقتها"
+    text: "Sie hat mich abgeholt und mir dabei geholfen",
+    meaning: "جاءت لاصطحابي وساعدتني في ذلك",
+    keywords: ["dabei = في ذلك", "abgeholt = اصطحبت", "geholfen = ساعدت"],
+    simplified: "لقد أتت لاصطحابي وساعدتني في هذا الأمر",
+    imagine: "🤝👩‍🏫 امرأة تمد يدها لتساعد صديقتها"
 };
 
 HELP_DATA["sprach1_exam13_7"] = {
-    text = "Schuhe, Skier, Stöcke und einen Helm für mich auszusuchen",
-    meaning = "لاختيار أحذية وزلاجات وعصي وخوذة لي",
-    keywords = ["auszusuchen = لاختيار", "Schuhe = أحذية", "Skier = زلاجات"],
-    simplified = "لمساعدتي في اختيار كافة المعدات التي أحتاجها",
-    imagine = "🎿👢👟 مجموعة من معدات التزلج موضوعة على الرف"
+    text: "Schuhe, Skier, Stöcke und einen Helm für mich auszusuchen",
+    meaning: "لاختيار أحذية وزلاجات وعصي وخوذة لي",
+    keywords: ["auszusuchen = لاختيار", "Schuhe = أحذية", "Skier = زلاجات"],
+    simplified: "لمساعدتي في اختيار كافة المعدات التي أحتاجها",
+    imagine: "🎿👢👟 مجموعة من معدات التزلج موضوعة على الرف"
 };
 
 HELP_DATA["sprach1_exam13_8"] = {
-    text = "grundlegende Dinge erklärt",
-    meaning = "شرحت لي الأمور الأساسية",
-    keywords = ["grundlegende = أساسية", "Dinge = أمور", "erklärt = شرحت"],
-    simplified = "شرحت لي أساسيات التزلج",
-    imagine = "📋🗣️ امرأة تشرح صورة لشخص يتزلج"
+    text: "grundlegende Dinge erklärt",
+    meaning: "شرحت لي الأمور الأساسية",
+    keywords: ["grundlegende = أساسية", "Dinge = أمور", "erklärt = شرحت"],
+    simplified: "شرحت لي أساسيات التزلج",
+    imagine: "📋🗣️ امرأة تشرح صورة لشخص يتزلج"
 };
 
 HELP_DATA["sprach1_exam13_9"] = {
-    text = "Die Kinder im Zwergerlkurs scheinen im Gegensatz zu mir überhaupt keine Angst zu haben",
-    meaning = "يبدو أن الأطفال في دورة الأقزام على عكس مني لا يخافون إطلاقاً",
-    keywords = ["im Gegensatz zu = على عكس", "überhaupt = إطلاقاً", "Angst = خوف"],
-    simplified = "يبدو أن الأطفال الصغار في دورة تعليم التزلج لا يشعرون بالخوف أبداً على عكسي",
-    imagine = "👧🎿 طفلة تبتعد وهي تنزلق بسهولة على المنحدر"
+    text: "Die Kinder im Zwergerlkurs scheinen im Gegensatz zu mir überhaupt keine Angst zu haben",
+    meaning: "يبدو أن الأطفال في دورة الأقزام على عكس مني لا يخافون إطلاقاً",
+    keywords: ["im Gegensatz zu = على عكس", "überhaupt = إطلاقاً", "Angst = خوف"],
+    simplified: "يبدو أن الأطفال الصغار في دورة تعليم التزلج لا يشعرون بالخوف أبداً على عكسي",
+    imagine: "👧🎿 طفلة تبتعد وهي تنزلق بسهولة على المنحدر"
 };
 
 HELP_DATA["sprach1_exam13_10"] = {
-    text = "Ich weiß gar nicht, wie ich das schaffen soll",
-    meaning = "لا أعرف مطلقاً كيف سأتمكن من فعل هذا",
-    keywords = ["wie = كيف", "schaffen = أتمكن", "gar nicht = مطلقاً"],
-    simplified = "أنا لا أفهم كيف سأتمكن من فعل هذا أصلاً",
-    imagine = "😩🤷‍♀️ فتاة تنظر إلى منحدر ثلجي مرتفع وقد استسلمت"
+    text: "Ich weiß gar nicht, wie ich das schaffen soll",
+    meaning: "لا أعرف مطلقاً كيف سأتمكن من فعل هذا",
+    keywords: ["wie = كيف", "schaffen = أتمكن", "gar nicht = مطلقاً"],
+    simplified: "أنا لا أفهم كيف سأتمكن من فعل هذا أصلاً",
+    imagine: "😩🤷‍♀️ فتاة تنظر إلى منحدر ثلجي مرتفع وقد استسلمت"
 };
 
 // ============================================
@@ -8906,83 +8906,83 @@ HELP_DATA["sprach1_exam13_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam14_1"] = {
-    text = "davon in Deutschland und zwei in Österreich",
-    meaning = "منها في ألمانيا واثنتان في النمسا",
-    keywords = ["davon = منها", "Deutschland = ألمانيا", "Österreich = النمسا"],
-    simplified = "ثماني مدارس في ألمانيا واثنتان في النمسا",
-    imagine = "🏫🇩🇪🏫🇦🇹 مدارس على خريطة بين دولتين"
+    text: "davon in Deutschland und zwei in Österreich",
+    meaning: "منها في ألمانيا واثنتان في النمسا",
+    keywords: ["davon = منها", "Deutschland = ألمانيا", "Österreich = النمسا"],
+    simplified: "ثماني مدارس في ألمانيا واثنتان في النمسا",
+    imagine: "🏫🇩🇪🏫🇦🇹 مدارس على خريطة بين دولتين"
 };
 
 HELP_DATA["sprach1_exam14_2"] = {
-    text = "an denen Sie ausnahmslos sowohl Ihr Deutsch verbessern als auch an einem anspruchsvollen Kultur- und Freizeitprogramm teilnehmen können",
-    meaning = "حيث يمكنك دون استثناء تحسين لغتك الألمانية وكذلك المشاركة في برنامج ثقافي وترفيهي مكثف",
-    keywords = ["denen = حيث", "ausnahmslos = دون استثناء", "sowohl...als auch = سواء...أو"],
-    simplified = "حيث يمكنكم تحسين لغتكم الألمانية والمشاركة في الأنشطة الثقافية في نفس الوقت",
-    imagine = "📚🎭 طالب في فصل دراسي ومرحلة مسرح في الخلف"
+    text: "an denen Sie ausnahmslos sowohl Ihr Deutsch verbessern als auch an einem anspruchsvollen Kultur- und Freizeitprogramm teilnehmen können",
+    meaning: "حيث يمكنك دون استثناء تحسين لغتك الألمانية وكذلك المشاركة في برنامج ثقافي وترفيهي مكثف",
+    keywords: ["denen = حيث", "ausnahmslos = دون استثناء", "sowohl...als auch = سواء...أو"],
+    simplified: "حيث يمكنكم تحسين لغتكم الألمانية والمشاركة في الأنشطة الثقافية في نفس الوقت",
+    imagine: "📚🎭 طالب في فصل دراسي ومرحلة مسرح في الخلف"
 };
 
 HELP_DATA["sprach1_exam14_3"] = {
-    text = "an fünf Tagen pro Woche statt",
-    meaning = "تقام خمسة أيام في الأسبوع",
-    keywords = ["an = في", "fünf Tagen = خمسة أيام", "statt = تقام"],
-    simplified = "تقام حصص اللغة خمسة أيام أسبوعياً",
-    imagine = "📅⏰ تقويم به خمسة أيام مميزة"
+    text: "an fünf Tagen pro Woche statt",
+    meaning: "تقام خمسة أيام في الأسبوع",
+    keywords: ["an = في", "fünf Tagen = خمسة أيام", "statt = تقام"],
+    simplified: "تقام حصص اللغة خمسة أيام أسبوعياً",
+    imagine: "📅⏰ تقويم به خمسة أيام مميزة"
 };
 
 HELP_DATA["sprach1_exam14_4"] = {
-    text = "Mittwochs ist kein Nachmittagsunterricht",
-    meaning = "لا توجد حصص بعد الظهر يوم الأربعاء",
-    keywords = ["Mittwochs = أيام الأربعاء", "kein = لا يوجد", "Nachmittagsunterricht = حصص بعد الظهر"],
-    simplified = "لا توجد دروس بعد الظهر يوم الأربعاء",
-    imagine = "📅😴 تقويم عليه علامة إجازة يوم الأربعاء"
+    text: "Mittwochs ist kein Nachmittagsunterricht",
+    meaning: "لا توجد حصص بعد الظهر يوم الأربعاء",
+    keywords: ["Mittwochs = أيام الأربعاء", "kein = لا يوجد", "Nachmittagsunterricht = حصص بعد الظهر"],
+    simplified: "لا توجد دروس بعد الظهر يوم الأربعاء",
+    imagine: "📅😴 تقويم عليه علامة إجازة يوم الأربعاء"
 };
 
 HELP_DATA["sprach1_exam14_5"] = {
-    text = "Zu Beginn jedes Kurses wird ein Einstufungstest durchgeführt",
-    meaning = "في بداية كل دورة يتم إجراء اختبار تحديد مستوى",
-    keywords = ["jedes Kurses = كل دورة", "Einstufungstest = اختبار تحديد مستوى", "durchgeführt = يتم إجراؤه"],
-    simplified = "في بداية كل صف، سنجري اختباراً لتحديد مستواك",
-    imagine = "📝✍️ شخص يكتب في اختبار وأستاذ ينظر إليه"
+    text: "Zu Beginn jedes Kurses wird ein Einstufungstest durchgeführt",
+    meaning: "في بداية كل دورة يتم إجراء اختبار تحديد مستوى",
+    keywords: ["jedes Kurses = كل دورة", "Einstufungstest = اختبار تحديد مستوى", "durchgeführt = يتم إجراؤه"],
+    simplified: "في بداية كل صف، سنجري اختباراً لتحديد مستواك",
+    imagine: "📝✍️ شخص يكتب في اختبار وأستاذ ينظر إليه"
 };
 
 HELP_DATA["sprach1_exam14_6"] = {
-    text = "mit dessen Hilfe wir herausfinden, welcher Kurs für Sie der geeignete ist",
-    meaning = "بمساعدة هذا (الاختبار) نكتشف الدورة المناسبة لك",
-    keywords = ["dessen = هذا", "herausfinden = نكتشف", "geeignete = المناسبة"],
-    simplified = "هذا سيساعدنا في معرفة الصف المناسب لمستواك",
-    imagine = "📈📝 ورق اختبار وعلامة استفهام"
+    text: "mit dessen Hilfe wir herausfinden, welcher Kurs für Sie der geeignete ist",
+    meaning: "بمساعدة هذا (الاختبار) نكتشف الدورة المناسبة لك",
+    keywords: ["dessen = هذا", "herausfinden = نكتشف", "geeignete = المناسبة"],
+    simplified: "هذا سيساعدنا في معرفة الصف المناسب لمستواك",
+    imagine: "📈📝 ورق اختبار وعلامة استفهام"
 };
 
 HELP_DATA["sprach1_exam14_7"] = {
-    text = "wenn Sie den Test bestehen",
-    meaning = "إذا نجحت في الامتحان",
-    keywords = ["wenn = إذا", "bestehen = نجحت", "Test = امتحان"],
-    simplified = "ستحصل على شهادة معتمدة دولياً إذا نجحت في الاختبار",
-    imagine = "📜🎓 يد تحمل شهادة واختام براقة"
+    text: "wenn Sie den Test bestehen",
+    meaning: "إذا نجحت في الامتحان",
+    keywords: ["wenn = إذا", "bestehen = نجحت", "Test = امتحان"],
+    simplified: "ستحصل على شهادة معتمدة دولياً إذا نجحت في الاختبار",
+    imagine: "📜🎓 يد تحمل شهادة واختام براقة"
 };
 
 HELP_DATA["sprach1_exam14_8"] = {
-    text = "Ihnen vor Ort angeboten werden",
-    meaning = "تُعرض لك في المكان نفسه",
-    keywords = ["Ihnen = لك", "vor Ort = في المكان نفسه", "angeboten = معروضة"],
-    simplified = "سيتم شرح الخيارات المتاحة لك عند وصولك",
-    imagine = "📍🗣️ امرأة تشرح شيئاً لسائحين"
+    text: "Ihnen vor Ort angeboten werden",
+    meaning: "تُعرض لك في المكان نفسه",
+    keywords: ["Ihnen = لك", "vor Ort = في المكان نفسه", "angeboten = معروضة"],
+    simplified: "سيتم شرح الخيارات المتاحة لك عند وصولك",
+    imagine: "📍🗣️ امرأة تشرح شيئاً لسائحين"
 };
 
 HELP_DATA["sprach1_exam14_9"] = {
-    text = "Im Unterkunftspreis ist jeweils Halbpension eingeschlossen",
-    meaning = "سعر الإقامة يشمل نصف إقامة في كل حالة",
-    keywords = ["ist eingeschlossen = مشمول", "Halbpension = نصف إقامة", "Unterkunftspreis = سعر الإقامة"],
-    simplified = "سعر الغرفة يشمل وجبتين في اليوم",
-    imagine = "🍽️🛏️ سرير مع طاولة عليها طبق فطور ومائدة عشاء صغيرة"
+    text: "Im Unterkunftspreis ist jeweils Halbpension eingeschlossen",
+    meaning: "سعر الإقامة يشمل نصف إقامة في كل حالة",
+    keywords: ["ist eingeschlossen = مشمول", "Halbpension = نصف إقامة", "Unterkunftspreis = سعر الإقامة"],
+    simplified: "سعر الغرفة يشمل وجبتين في اليوم",
+    imagine: "🍽️🛏️ سرير مع طاولة عليها طبق فطور ومائدة عشاء صغيرة"
 };
 
 HELP_DATA["sprach1_exam14_10"] = {
-    text = "eine Diät halten müssen",
-    meaning = "يجب أن تتبع نظاماً غذائياً خاصاً",
-    keywords = ["eine Diät = نظاماً غذائياً", "halten = تتبع", "müssen = يجب أن"],
-    simplified = "يرجى إخبارنا إذا كنتم بحاجة لنظام غذائي خاص",
-    imagine = "🥗🍚 طبق طعام صحي مع خضروات وحبوب"
+    text: "eine Diät halten müssen",
+    meaning: "يجب أن تتبع نظاماً غذائياً خاصاً",
+    keywords: ["eine Diät = نظاماً غذائياً", "halten = تتبع", "müssen = يجب أن"],
+    simplified: "يرجى إخبارنا إذا كنتم بحاجة لنظام غذائي خاص",
+    imagine: "🥗🍚 طبق طعام صحي مع خضروات وحبوب"
 };
 
 // ============================================
@@ -8990,82 +8990,82 @@ HELP_DATA["sprach1_exam14_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam15_1"] = {
-    text = "dass ich dir das letzte Mal geschrieben habe",
-    meaning = "أنني كتبت لك آخر مرة",
-    keywords = ["her = الأن", "geschrieben = كتبت", "letzte Mal = آخر مرة"],
-    simplified = "منذ أن كتبت لك آخر مرة",
+    text: "dass ich dir das letzte Mal geschrieben habe",
+    meaning: "أنني كتبت لك آخر مرة",
+    keywords: ["her = الأن", "geschrieben = كتبت", "letzte Mal = آخر مرة"],
+    simplified: "منذ أن كتبت لك آخر مرة",
     imagine: "📅✍️ ماضٍ منذ نصف عام"
 };
 
 HELP_DATA["sprach1_exam15_2"] = {
-    text = "ist unsere Lehrerin, Frau Reuter, erkrankt",
-    meaning = "معلمتنا، السيدة روتر، مرضت",
+    text: "ist unsere Lehrerin, Frau Reuter, erkrankt",
+    meaning: "معلمتنا، السيدة روتر، مرضت",
     keywords: ["erkrankt = مرضت", "Lehrerin = معلمة", "Reuter = روتر"],
-    simplified = "لقد مرضت معلمتنا فجأة",
+    simplified: "لقد مرضت معلمتنا فجأة",
     imagine: "🤒👩‍🏫 معلمة ترتدي منديلاً حول رقبتها"
 };
 
 HELP_DATA["sprach1_exam15_3"] = {
-    text = "als unsere Prüfung schon längst vorbei ist",
-    meaning = "بينما تنتهي امتحاناتنا منذ وقت طويل",
+    text: "als unsere Prüfung schon längst vorbei ist",
+    meaning: "بينما تنتهي امتحاناتنا منذ وقت طويل",
     keywords: ["als = بينما", "längst = منذ وقت طويل", "vorbei = منتهية"],
-    simplified = "وسوف تعود فقط بعد أن ننتهي من الامتحانات",
+    simplified: "وسوف تعود فقط بعد أن ننتهي من الامتحانات",
     imagine: "📅🎓 تقويم به علامة اكتمال وانتهاء"
 };
 
 HELP_DATA["sprach1_exam15_4"] = {
-    text = "ist zwar sehr nett",
-    meaning = "هي لطيفة جداً بالفعل",
+    text: "ist zwar sehr nett",
+    meaning: "هي لطيفة جداً بالفعل",
     keywords: ["zwar = بالفعل", "sehr nett = لطيفة جداً", "ist = هي"],
-    simplified = "بديلة المعلمة لطيفة",
+    simplified: "بديلة المعلمة لطيفة",
     imagine: "😊👩‍🏫 معلمة جديدة تبتعد قليلاً"
 };
 
 HELP_DATA["sprach1_exam15_5"] = {
-    text = "Und dann werde ich alle Bücher und Hefte in die Ecke legen",
-    meaning = "وبعد ذلك سأضع جميع الكتب والدفاتر في الزاوية",
+    text: "Und dann werde ich alle Bücher und Hefte in die Ecke legen",
+    meaning: "وبعد ذلك سأضع جميع الكتب والدفاتر في الزاوية",
     keywords: ["werde = سأ", "alle Bücher = جميع الكتب", "in die Ecke = في الزاوية"],
-    simplified = "سأضع كل كتبي في زاوية",
+    simplified: "سأضع كل كتبي في زاوية",
     imagine: "📚🗑️ شخص يرمي كتباً في الزاوية"
 };
 
 HELP_DATA["sprach1_exam15_6"] = {
-    text = "Darauf freue ich mich schon riesig",
-    meaning = "أنا متحمسة جداً لذلك بالفعل",
+    text: "Darauf freue ich mich schon riesig",
+    meaning: "أنا متحمسة جداً لذلك بالفعل",
     keywords: ["Darauf = لذلك", "freue ich mich = أنا متحمسة", "riesig = جداً"],
-    simplified = "أنا متحمسة حقاً لذلك بالفعل",
+    simplified: "أنا متحمسة حقاً لذلك بالفعل",
     imagine: "🎉💃 امرأة تقفز فرحاً"
 };
 
 HELP_DATA["sprach1_exam15_7"] = {
-    text = "Was hältst du dazu?",
-    meaning = "ما رأيك في ذلك؟",
+    text: "Was hältst du dazu?",
+    meaning: "ما رأيك في ذلك؟",
     keywords: ["hältst du = رأيك", "dazu = في ذلك", "Was = ما"],
-    simplified = "ما رأيك في رأيي؟",
+    simplified: "ما رأيك في رأيي؟",
     imagine: "🤔❓ رأس يدور وعلامة استفهام"
 };
 
 HELP_DATA["sprach1_exam15_8"] = {
-    text = "oder tanzen sie dir noch immer auf der Nase herum",
-    meaning = "أم لا يزالون يستغلونك/يتلاعبون بك",
+    text: "oder tanzen sie dir noch immer auf der Nase herum",
+    meaning: "أم لا يزالون يستغلونك/يتلاعبون بك",
     keywords: ["dir = بك", "herumtanzen = يتلاعبون", "noch immer = لا يزالون"],
-    simplified = "هل ما زالوا يعصون أوامرك",
+    simplified: "هل ما زالوا يعصون أوامرك",
     imagine: "🤹‍♀️👶 طفل صغير يقفز على شخص بالغ"
 };
 
 HELP_DATA["sprach1_exam15_9"] = {
-    text = "Es ist bestimmt nicht so leicht, einen zweijährigen Jungen und ein vierjähriges Mädchen den ganzen Tag zu beschäftigen",
-    meaning = "ليس من السهل بالتأكيد إبقاء طفل عمره سنتان وفتاة عمرها أربع سنوات مشغولين طوال اليوم",
+    text: "Es ist bestimmt nicht so leicht, einen zweijährigen Jungen und ein vierjähriges Mädchen den ganzen Tag zu beschäftigen",
+    meaning: "ليس من السهل بالتأكيد إبقاء طفل عمره سنتان وفتاة عمرها أربع سنوات مشغولين طوال اليوم",
     keywords: ["zu beschäftigen = إبقاء مشغولين", "den ganzen Tag = طوال اليوم", "nicht so leicht = ليس سهلاً"],
-    simplified = "من الصعب جداً رعاية طفلين صغيرين طوال اليوم",
+    simplified: "من الصعب جداً رعاية طفلين صغيرين طوال اليوم",
     imagine: "👶🧒 اثنان من الأطفال يتجولان حول امرأة مرهقة"
 };
 
 HELP_DATA["sprach1_exam15_10"] = {
-    text = "wie du mit den Kindern zurechtkommst",
-    meaning = "كيف تتعاملين مع الأطفال بنجاح",
+    text: "wie du mit den Kindern zurechtkommst",
+    meaning: "كيف تتعاملين مع الأطفال بنجاح",
     keywords: ["wie = كيف", "zurechtkommst = تتعاملين بنجاح", "Kindern = أطفال"],
-    simplified = "لقد اكتشفت كيفية التعامل مع الأطفال",
+    simplified: "لقد اكتشفت كيفية التعامل مع الأطفال",
     imagine: "🤝🧸 امرأة تلعب بهدوء مع طفل صغير"
 };
 
@@ -9074,82 +9074,82 @@ HELP_DATA["sprach1_exam15_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam16_1"] = {
-    text = "Jetzt ist schon bald ein halbes Jahr vergangen",
-    meaning = "لقد مر الآن ما يقرب من نصف عام",
+    text: "Jetzt ist schon bald ein halbes Jahr vergangen",
+    meaning: "لقد مر الآن ما يقرب من نصف عام",
     keywords: ["vergangen = مر", "halb = نصف", "bald = قريباً"],
-    simplified = "لقد مضى الآن حوالي ستة أشهر",
+    simplified: "لقد مضى الآن حوالي ستة أشهر",
     imagine: "📅 مع مرور الوقت"
 };
 
 HELP_DATA["sprach1_exam16_2"] = {
-    text = "ist unsere Lehrerin, Frau Reuter, plötzlich erkrankt",
-    meaning = "مرضت معلمتنا، السيدة روتر، فجأة",
+    text: "ist unsere Lehrerin, Frau Reuter, plötzlich erkrankt",
+    meaning: "مرضت معلمتنا، السيدة روتر، فجأة",
     keywords: ["plötzlich = فجأة", "erkrankt = مرضت", "Lehrerin = معلمة"],
-    simplified = "مرضت معلمتنا فجأة",
+    simplified: "مرضت معلمتنا فجأة",
     imagine: "🤒👩‍🏫 معلمة تسعل"
 };
 
 HELP_DATA["sprach1_exam16_3"] = {
-    text = "wenn unsere Prüfung schon längst vorbei ist",
-    meaning = "عندما تنتهي امتحاناتنا منذ فترة طويلة",
+    text: "wenn unsere Prüfung schon längst vorbei ist",
+    meaning: "عندما تنتهي امتحاناتنا منذ فترة طويلة",
     keywords: ["wenn = عندما", "längst = منذ فترة طويلة", "vorbei = منتهية"],
-    simplified = "لن تعود حتى انتهاء الامتحانات",
+    simplified: "لن تعود حتى انتهاء الامتحانات",
     imagine: "📅🎓 تقويم يشير إلى الانتهاء"
 };
 
 HELP_DATA["sprach1_exam16_4"] = {
-    text = "ist zwar sehr nett",
-    meaning = "لطيفة جداً بالفعل",
+    text: "ist zwar sehr nett",
+    meaning: "لطيفة جداً بالفعل",
     keywords: ["zwar = بالفعل", "sehr nett = لطيفة جداً", "ist = هي"],
-    simplified = "معلمتنا البديلة لطيفة جداً",
+    simplified: "معلمتنا البديلة لطيفة جداً",
     imagine: "😊👩‍🏫 معلمة لطيفة"
 };
 
 HELP_DATA["sprach1_exam16_5"] = {
-    text = "werde ich alle Bücher und Hefte in die Ecke legen",
-    meaning = "كنت سأضع كل الكتب والدفاتر في الزاوية",
+    text: "werde ich alle Bücher und Hefte in die Ecke legen",
+    meaning: "كنت سأضع كل الكتب والدفاتر في الزاوية",
     keywords: ["werde = سأ", "alle Bücher = كل الكتب", "in die Ecke = في الزاوية"],
-    simplified = "سأضع كل كتبي في الزاوية بعد الامتحان",
+    simplified: "سأضع كل كتبي في الزاوية بعد الامتحان",
     imagine: "📚🗑️ كتب ترمى جانباً"
 };
 
 HELP_DATA["sprach1_exam16_6"] = {
-    text = "Darauf freue ich mich schon riesig",
-    meaning = "أنا متحمسة جداً لذلك بالفعل",
+    text: "Darauf freue ich mich schon riesig",
+    meaning: "أنا متحمسة جداً لذلك بالفعل",
     keywords: ["Darauf = لذلك", "freue ich mich = أنا متحمسة", "riesig = جداً"],
-    simplified = "أتطلع لذلك بشدة بالفعل",
+    simplified: "أتطلع لذلك بشدة بالفعل",
     imagine: "🎉💃 امرأة تقفز فرحاً"
 };
 
 HELP_DATA["sprach1_exam16_7"] = {
-    text = "Was hältst du davon?",
-    meaning = "ما رأيك في ذلك؟",
+    text: "Was hältst du davon?",
+    meaning: "ما رأيك في ذلك؟",
     keywords: ["davon = في ذلك", "hältst du = رأيك", "Was = ما"],
-    simplified = "ما هو رأيك؟",
+    simplified: "ما هو رأيك؟",
     imagine: "🤔❓ شخص يفكر"
 };
 
 HELP_DATA["sprach1_exam16_8"] = {
-    text = "tanzen sie dir immer noch auf der Nase herum",
-    meaning = "هل ما زالوا يستغلونك",
+    text: "tanzen sie dir immer noch auf der Nase herum",
+    meaning: "هل ما زالوا يستغلونك",
     keywords: ["auf = على", "herumtanzen = يتلاعبون", "dir = بك"],
-    simplified = "هل ما زالوا يعصونك",
+    simplified: "هل ما زالوا يعصونك",
     imagine: "🤹‍♀️👶 طفل يلعب"
 };
 
 HELP_DATA["sprach1_exam16_9"] = {
-    text = "einen zweijährigen Jungen und ein vierjähriges Mädchen den ganzen Tag zu beschäftigen",
-    meaning = "إبقاء طفل عمره سنتان وفتاة عمرها أربع سنوات مشغولين طوال اليوم",
+    text: "einen zweijährigen Jungen und ein vierjähriges Mädchen den ganzen Tag zu beschäftigen",
+    meaning: "إبقاء طفل عمره سنتان وفتاة عمرها أربع سنوات مشغولين طوال اليوم",
     keywords: ["zu beschäftigen = إبقاء مشغولين", "den ganzen Tag = طوال اليوم", "nicht so leicht = ليس سهلاً"],
-    simplified = "رعاية طفلين صغيرين صعب جداً",
+    simplified: "رعاية طفلين صغيرين صعب جداً",
     imagine: "👶🧒 أطفال مشاغبون"
 };
 
 HELP_DATA["sprach1_exam16_10"] = {
-    text = "wie du mit den Kindern zurechtkommst",
-    meaning = "كيف تتعاملين مع الأطفال بنجاح",
+    text: "wie du mit den Kindern zurechtkommst",
+    meaning: "كيف تتعاملين مع الأطفال بنجاح",
     keywords: ["wie = كيف", "zurechtkommst = تتعاملين بنجاح", "Kindern = أطفال"],
-    simplified = "لقد اكتشفت كيفية التعامل معهم",
+    simplified: "لقد اكتشفت كيفية التعامل معهم",
     imagine: "🤝🧸 تتعامل بشكل جيد مع الأطفال"
 };
 
@@ -9158,7 +9158,7 @@ HELP_DATA["sprach1_exam16_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam17_1"] = {
-    text = "Mit allergrößtem Interesse",
+    text: "Mit allergrößtem Interesse",
     meaning: "باهتمام بالغ للغاية",
     keywords: ["allergrößtem = بالغ", "Interesse = اهتمام", "Mit = بـ"],
     simplified: "باهتمام كبير جداً قرأت إعلانك",
@@ -9166,15 +9166,15 @@ HELP_DATA["sprach1_exam17_1"] = {
 };
 
 HELP_DATA["sprach1_exam17_2"] = {
-    text = "in dem Sie eine Teilzeit-Mitarbeiterin suchen",
-    meaning = "الذي تبحث فيه عن موظفة بدوام جزئي",
+    text: "in dem Sie eine Teilzeit-Mitarbeiterin suchen",
+    meaning: "الذي تبحث فيه عن موظفة بدوام جزئي",
     keywords: ["in dem = الذي", "Teilzeit-Mitarbeiterin = موظفة بدوام جزئي", "suchen = تبحث"],
     simplified: "بحثك عن موظفة بدوام جزئي",
     imagine: "📋✍️ إعلان وظيفة يقرأ على جهاز لوحي"
 };
 
 HELP_DATA["sprach1_exam17_3"] = {
-    text = "in einem so renommierten Geschäft wie dem Ihren",
+    text: "in einem so renommierten Geschäft wie dem Ihren",
     meaning: "في متجر مرموق مثل متجركم",
     keywords: ["so = مثل هذا", "renommierten = مرموق", "Geschäft = متجر"],
     simplified: "فرصة عمل في متجر عريق مثلكم",
@@ -9182,7 +9182,7 @@ HELP_DATA["sprach1_exam17_3"] = {
 };
 
 HELP_DATA["sprach1_exam17_4"] = {
-    text = "eine verantwortungsvolle Aufgabe übernehmen zu können",
+    text: "eine verantwortungsvolle Aufgabe übernehmen zu können",
     meaning: "أن أتمكن من تولي مهمة تتطلب مسؤولية عالية",
     keywords: ["übernehmen = تولي", "verantwortungsvolle Aufgabe = مهمة تتطلب مسؤولية", "zu können = القدرة على"],
     simplified: "القبول بمهمة تتطلب مهارات عالية",
@@ -9190,7 +9190,7 @@ HELP_DATA["sprach1_exam17_4"] = {
 };
 
 HELP_DATA["sprach1_exam17_5"] = {
-    text = "begann ich eine dreijährige Schreinerlehre",
+    text: "begann ich eine dreijährige Schreinerlehre",
     meaning: "بدأت تدريباً مهنياً لمدة ثلاث سنوات كنجار",
     keywords: ["begann = بدأت", "dreijährige = لمدة ثلاث سنوات", "Schreinerlehre = تدريب نجارة"],
     simplified: "التحقت بدورة تدريب مهني في النجارة",
@@ -9198,7 +9198,7 @@ HELP_DATA["sprach1_exam17_5"] = {
 };
 
 HELP_DATA["sprach1_exam17_6"] = {
-    text = "arbeitete ich ein Jahr lang bei Stutz & Partner",
+    text: "arbeitete ich ein Jahr lang bei Stutz & Partner",
     meaning: "عملت لمدة عام في شركة شتوتز وشركاه",
     keywords: ["ein Jahr lang = لمدة عام", "arbeitete = عملت", "Stutz & Partner = شتوتز وشركاه"],
     simplified: "عملت في شركة تصميم أثاث لمدة سنة",
@@ -9206,7 +9206,7 @@ HELP_DATA["sprach1_exam17_6"] = {
 };
 
 HELP_DATA["sprach1_exam17_7"] = {
-    text = "und entdeckte meine Liebe zu antiquarischen Möbelstücken",
+    text: "und entdeckte meine Liebe zu antiquarischen Möbelstücken",
     meaning: "واكتشفت حبي للأثاث العتيق",
     keywords: ["entdeckte = اكتشفت", "Liebe = حب", "antiquarischen = عتيق"],
     simplified: "هناك تعرفت على شغفي بالأثاث القديم",
@@ -9214,7 +9214,7 @@ HELP_DATA["sprach1_exam17_7"] = {
 };
 
 HELP_DATA["sprach1_exam17_8"] = {
-    text = "Während meiner Berufstätigkeit und meines Studiums",
+    text: "Während meiner Berufstätigkeit und meines Studiums",
     meaning: "خلال فترة عملي ودراستي",
     keywords: ["Während = خلال", "Berufstätigkeit = عملي", "Studiums = دراستي"],
     simplified: "أثناء مسيرتي العملية ودراستي",
@@ -9222,7 +9222,7 @@ HELP_DATA["sprach1_exam17_8"] = {
 };
 
 HELP_DATA["sprach1_exam17_9"] = {
-    text = "sowohl in Nord- als auch in Südeuropa",
+    text: "sowohl in Nord- als auch in Südeuropa",
     meaning: "سواء في شمال أو جنوب أوروبا",
     keywords: ["sowohl...als auch = سواء...أو", "Nord = شمال", "Südeuropa = جنوب أوروبا",],
     simplified: "في جميع أنحاء أوروبا من الشمال إلى الجنوب",
@@ -9230,7 +9230,7 @@ HELP_DATA["sprach1_exam17_9"] = {
 };
 
 HELP_DATA["sprach1_exam17_10"] = {
-    text = "auf Ihre Anzeige zu antworten",
+    text: "auf Ihre Anzeige zu antworten",
     meaning: "للاعلان على إعلانكم",
     keywords: ["antworten = الإعلان", "Anzeige = إعلان", "auf = على"],
     simplified: "أرد الرد على إعلان فرصة العمل",
@@ -9250,75 +9250,75 @@ HELP_DATA["sprach1_exam18_1"] = {
 };
 
 HELP_DATA["sprach1_exam18_2"] = {
-    text = "an dem Sie eine Teilzeit-Mitarbeiterin suchen",
-    meaning = "الذي تبحث فيه عن موظفة بدوام جزئي",
-    keywords = ["an dem = الذي", "Teilzeit-Mitarbeiterin = موظفة بدوام جزئي", "suchen = تبحث"],
-    simplified = "إعلانك عن وظيفة بدوام جزئي",
-    imagine = "📋✍️ إعلان وظيفة"
+    text: "an dem Sie eine Teilzeit-Mitarbeiterin suchen",
+    meaning: "الذي تبحث فيه عن موظفة بدوام جزئي",
+    keywords: ["an dem = الذي", "Teilzeit-Mitarbeiterin = موظفة بدوام جزئي", "suchen = تبحث"],
+    simplified: "إعلانك عن وظيفة بدوام جزئي",
+    imagine: "📋✍️ إعلان وظيفة"
 };
 
 HELP_DATA["sprach1_exam18_3"] = {
-    text = "den Ihren",
+    text: "den Ihren",
     meaning: "متجركم",
     keywords: ["Ihren = متجركم", "den = متجر", "Ihren = لكم"],
-    simplified = "متجركم العريق",
-    imagine = "🏛️✨ واجهة متجر كلاسيكية"
+    simplified: "متجركم العريق",
+    imagine: "🏛️✨ واجهة متجر كلاسيكية"
 };
 
 HELP_DATA["sprach1_exam18_4"] = {
-    text = "eine verantwortungsvolle Aufgabe übernehmen zu können",
+    text: "eine verantwortungsvolle Aufgabe übernehmen zu können",
     meaning: "أن أتمكن من تولي مهمة تتطلب مسؤولية",
     keywords: ["übernehmen = تولي", "verantwortungsvolle Aufgabe = مهمة تتطلب مسؤولية", "zu können = القدرة على"],
-    simplified = "تولي منصب صعب",
-    imagine = "📁👔 حقيبة أعمال"
+    simplified: "تولي منصب صعب",
+    imagine: "📁👔 حقيبة أعمال"
 };
 
 HELP_DATA["sprach1_exam18_5"] = {
-    text = "bei der Firma Eichelbohrer & Co",
+    text: "bei der Firma Eichelbohrer & Co",
     meaning: "في شركة آيخلبورير وشركاه",
     keywords: ["bei = في", "Firma = شركة", "Eichelbohrer & Co = آيخلبورير وشركاه"],
-    simplified = "بدأت تدريب النجارة في شركة متخصصة",
-    imagine = "🏢🔨 شركة بها نجارين وحرفيين"
+    simplified: "بدأت تدريب النجارة في شركة متخصصة",
+    imagine: "🏢🔨 شركة بها نجارين وحرفيين"
 };
 
 HELP_DATA["sprach1_exam18_6"] = {
-    text = "ein Jahr lang",
+    text: "ein Jahr lang",
     meaning: "لمدة عام",
     keywords: ["Jahr = عام", "lang = لمدة", "ein = واحد"],
-    simplified = "عملت لمدة اثني عشر شهراً متصلة",
-    imagine = "📅🔄 عقارب الساعة تدور"
+    simplified: "عملت لمدة اثني عشر شهراً متصلة",
+    imagine: "📅🔄 عقارب الساعة تدور"
 };
 
 HELP_DATA["sprach1_exam18_7"] = {
-    text = "entdeckte meine Liebe zu antiquarischen Möbelstücken",
+    text: "entdeckte meine Liebe zu antiquarischen Möbelstücken",
     meaning: "اكتشفت حبي للأثاث العتيق",
     keywords: ["entdeckte = اكتشفت", "Liebe = حب", "antiquarischen = عتيق"],
-    simplified = "هناك تعرفت على شغفي بالأثاث القديم",
-    imagine = "🔍🪑 غرفة بها كراسي عتيقة"
+    simplified: "هناك تعرفت على شغفي بالأثاث القديم",
+    imagine: "🔍🪑 غرفة بها كراسي عتيقة"
 };
 
 HELP_DATA["sprach1_exam18_8"] = {
-    text = "was Möbelstile und die Herstellungskunst",
+    text: "was Möbelstile und die Herstellungskunst",
     meaning: "ما يتعلق بأساليب الأثاث وفن الصناعة",
     keywords: ["was = ما", "Möbelstile = أساليب الأثاث", "Herstellungskunst = فن الصناعة"],
-    simplified = "المتعلقة بأنماط الأثاث والحرف اليدوية",
-    imagine = "🖼️📜 رسم تفصيلي لمقعد كلاسيكي"
+    simplified: "المتعلقة بأنماط الأثاث والحرف اليدوية",
+    imagine: "🖼️📜 رسم تفصيلي لمقعد كلاسيكي"
 };
 
 HELP_DATA["sprach1_exam18_9"] = {
-    text = "sowohl in Nord- und in Südeuropa",
+    text: "sowohl in Nord- und in Südeuropa",
     meaning: "سواء في شمال أو جنوب أوروبا",
     keywords: ["sowohl = سواء", "Nord = شمال", "Südeuropa = جنوب أوروبا"],
-    simplified = "في جميع أنحاء أوروبا",
-    imagine = "🗺️✨ خريطة أوروبا"
+    simplified: "في جميع أنحاء أوروبا",
+    imagine: "🗺️✨ خريطة أوروبا"
 };
 
 HELP_DATA["sprach1_exam18_10"] = {
-    text = "auf Ihre Anzeige zu antworten",
+    text: "auf Ihre Anzeige zu antworten",
     meaning: "للرد على إعلانكم",
     keywords: ["antworten = الرد", "Anzeige = إعلان", "auf = على"],
-    simplified = "الرد على فرصة العمل",
-    imagine = "📨✍️ ظرف به ختم شمعي أحمر"
+    simplified: "الرد على فرصة العمل",
+    imagine: "📨✍️ ظرف به ختم شمعي أحمر"
 };
 
 // ============================================
@@ -9326,7 +9326,7 @@ HELP_DATA["sprach1_exam18_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam19_1"] = {
-    text = "Ihr sollt doch endlich unser neues Heim kennenlernen",
+    text: "Ihr sollt doch endlich unser neues Heim kennenlernen",
     meaning: "يجب أن تروا منزلنا الجديد أخيراً",
     keywords: ["sollt = يجب", "endlich = أخيراً", "kennenlernen = تتعرفون"],
     simplified: "حان وقت رؤية منزلنا الجديد",
@@ -9334,75 +9334,75 @@ HELP_DATA["sprach1_exam19_1"] = {
 };
 
 HELP_DATA["sprach1_exam19_2"] = {
-    text = "euch für das verlängerte Wochenende Anfang Juni einladen",
+    text: "euch für das verlängerte Wochenende Anfang Juni einladen",
     meaning: "ندعوكم لعطلة نهاية الأسبوع الممتدة في بداية يونيو",
     keywords: ["euch = لكم", "einladen = ندعو", "verlängerte Wochenende = عطلة نهاية أسبوع ممتدة"],
-    simplified = "نود أن تأتوا عندنا في عطلة نهاية الأسبوع الطويلة",
-    imagine = "📅🎉 تقويم مميز في بداية يونيو"
+    simplified: "نود أن تأتوا عندنا في عطلة نهاية الأسبوع الطويلة",
+    imagine: "📅🎉 تقويم مميز في بداية يونيو"
 };
 
 HELP_DATA["sprach1_exam19_3"] = {
-    text = "bei uns",
+    text: "bei uns",
     meaning: "عندنا",
     keywords: ["bei = عند", "uns = نحن", "bei uns = عندنا"],
-    simplified = "يمكنكم المبيت في منزلنا بالطبع",
-    imagine = "🛌🏠 سرير مريح وأضواء دافئة"
+    simplified: "يمكنكم المبيت في منزلنا بالطبع",
+    imagine: "🛌🏠 سرير مريح وأضواء دافئة"
 };
 
 HELP_DATA["sprach1_exam19_4"] = {
-    text = "einiges zu bieten",
+    text: "einiges zu bieten",
     meaning: "لديها الكثير لتقدمه",
     keywords: ["einiges = الكثير", "zu bieten = لتقدمه", "hat = لديها"],
-    simplified = "المدينة لديها العديد من المعالم",
-    imagine = "🏰🎨 برج قديم ومتحف"
+    simplified: "المدينة لديها العديد من المعالم",
+    imagine: "🏰🎨 برج قديم ومتحف"
 };
 
 HELP_DATA["sprach1_exam19_5"] = {
-    text = "auf den Turm der Stadtpfarrkirche steigen",
+    text: "auf den Turm der Stadtpfarrkirche steigen",
     meaning: "لصعود برج كنيسة الرعية",
     keywords: ["Turm = برج", "steigen = صعود", "Stadtpfarrkirche = كنيسة الرعية"],
-    simplified = "يمكننا صعود برج الكنيسة الرئيسي",
-    imagine = "🔔⛪ برج كنيسة مرتفع"
+    simplified: "يمكننا صعود برج الكنيسة الرئيسي",
+    imagine: "🔔⛪ برج كنيسة مرتفع"
 };
 
 HELP_DATA["sprach1_exam19_6"] = {
-    text = "sind auch die wunderbare Schlossbibliothek zu besichtigen",
+    text: "sind auch die wunderbare Schlossbibliothek zu besichtigen",
     meaning: "يمكن أيضاً زيارة مكتبة القصر الرائعة",
     keywords: ["sind = هناك", "wunderbare = رائعة", "Schlossbibliothek = مكتبة قصر"],
-    simplified = "كما يمكننا أيضاً مشاهدة مكتبة القصر",
-    imagine = "📚🏰 مكتبة مليئة بالكتب عند مدخل قصر"
+    simplified: "كما يمكننا أيضاً مشاهدة مكتبة القصر",
+    imagine: "📚🏰 مكتبة مليئة بالكتب عند مدخل قصر"
 };
 
 HELP_DATA["sprach1_exam19_7"] = {
-    text = "wo man an den alten Bauten den Wandel der Industrie nachvollziehen kann",
+    text: "wo man an den alten Bauten den Wandel der Industrie nachvollziehen kann",
     meaning: "حيث يمكن للمرء تتبع التغير الصناعي من خلال المباني القديمة",
     keywords: ["wo = حيث", "alten Bauten = المباني القديمة", "Wandel = التغير"],
-    simplified = "المباني القديمة تحكي قصة التحول الصناعي",
-    imagine = "🏭📜 مصنع قديم مع لافتات تاريخية"
+    simplified: "المباني القديمة تحكي قصة التحول الصناعي",
+    imagine: "🏭📜 مصنع قديم مع لافتات تاريخية"
 };
 
 HELP_DATA["sprach1_exam19_8"] = {
-    text = "Dabei erfährt man alles über die Eisenindustrie",
+    text: "Dabei erfährt man alles über die Eisenindustrie",
     meaning: "في ذلك نتعلم كل شيء عن صناعة الحديد",
     keywords: ["Dabei = في ذلك", "erfährt = نتعلم", "Eisenindustrie = صناعة الحديد"],
-    simplified = "سنكتشف كيف ازدهرت المدينة بفضل صناعة الحديد",
-    imagine = "⚙️🏭 عجلات مسننة وسندان"
+    simplified: "سنكتشف كيف ازدهرت المدينة بفضل صناعة الحديد",
+    imagine: "⚙️🏭 عجلات مسننة وسندان"
 };
 
 HELP_DATA["sprach1_exam19_9"] = {
-    text = "an diesem Wochenende",
+    text: "an diesem Wochenende",
     meaning: "في عطلة نهاية الأسبوع هذه",
     keywords: ["diesem = هذه", "Wochenende = عطلة نهاية الأسبوع", "an = في"],
-    simplified = "ستقام أيام الأدب السنوية في ذلك الوقت",
-    imagine = "📚🗓️ تقويم مميز بكومة كتب"
+    simplified: "ستقام أيام الأدب السنوية في ذلك الوقت",
+    imagine: "📚🗓️ تقويم مميز بكومة كتب"
 };
 
 HELP_DATA["sprach1_exam19_10"] = {
-    text = "Auch die Umgebung kann sich sehen lassen",
-    meaning = "المنطقة المحيطة رائعة أيضاً",
+    text: "Auch die Umgebung kann sich sehen lassen",
+    meaning: "المنطقة المحيطة رائعة أيضاً",
     keywords: ["kann = يمكن", "sehen lassen = تتفاخر", "Umgebung = المنطقة المحيطة"],
-    simplified = "المناطق الطبيعية من حولكم جميلة جداً",
-    imagine = "🏞️🌳 غابة كثيفة وسماء زرقاء صافية"
+    simplified: "المناطق الطبيعية من حولكم جميلة جداً",
+    imagine: "🏞️🌳 غابة كثيفة وسماء زرقاء صافية"
 };
 
 // ============================================
@@ -9410,7 +9410,7 @@ HELP_DATA["sprach1_exam19_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam20_1"] = {
-    text = "konntest dich gut erholen",
+    text: "konntest dich gut erholen",
     meaning: "يمكن أن تسترخي جيداً",
     keywords: ["konntest = يمكن أن", "dich erholen = تسترخي", "gut = جيداً"],
     simplified: "لقد استطعت الراحة والاستجمام",
@@ -9418,7 +9418,7 @@ HELP_DATA["sprach1_exam20_1"] = {
 };
 
 HELP_DATA["sprach1_exam20_2"] = {
-    text = "Ich würde ja auch gerne mal wieder ans Meer fahren",
+    text: "Ich würde ja auch gerne mal wieder ans Meer fahren",
     meaning: "أود أيضاً الذهاب إلى البحر مرة أخرى",
     keywords: ["würde = أود", "gerne = من دواعي سروري", "ans Meer = إلى البحر"],
     simplified: "أنا أيضاً أحلم يوماً برحلة بحرية",
@@ -9426,7 +9426,7 @@ HELP_DATA["sprach1_exam20_2"] = {
 };
 
 HELP_DATA["sprach1_exam20_3"] = {
-    text = "Zeit für Urlaub",
+    text: "Zeit für Urlaub",
     meaning: "وقت للإجازة",
     keywords: ["Zeit = وقت", "für = لـ", "Urlaub = إجازة"],
     simplified: "ليس لدي الوقت الكافي لأخذ إجازة الآن",
@@ -9434,7 +9434,7 @@ HELP_DATA["sprach1_exam20_3"] = {
 };
 
 HELP_DATA["sprach1_exam20_4"] = {
-    text = "Nach so vielen Jahren",
+    text: "Nach so vielen Jahren",
     meaning: "بعد كل هذه السنوات",
     keywords: ["vielen = العديد", "Jahren = سنوات", "nach = بعد"],
     simplified: "بعد كل هذا الوقت الذي قضيته في برلين",
@@ -9442,7 +9442,7 @@ HELP_DATA["sprach1_exam20_4"] = {
 };
 
 HELP_DATA["sprach1_exam20_5"] = {
-    text = "gefallen mir besonders die schönen Fachwerkhäuser",
+    text: "gefallen mir besonders die schönen Fachwerkhäuser",
     meaning: "تعجبني بشكل خاص المنازل نصف الخشبية الجميلة",
     keywords: ["gefallen = تعجبني", "besonders = بشكل خاص", "Fachwerkhäuser = منازل نصف خشبية"],
     simplified: "ما يلفت انتباهي كثيراً هو جمال وأصالة البيوت الخشبية",
@@ -9450,7 +9450,7 @@ HELP_DATA["sprach1_exam20_5"] = {
 };
 
 HELP_DATA["sprach1_exam20_6"] = {
-    text = "denn dort gibt es viele kleine Läden",
+    text: "denn dort gibt es viele kleine Läden",
     meaning: "لأن هناك العديد من المحلات الصغيرة",
     keywords: ["denn = لأن", "dort = هناك", "kleine Läden = محلات صغيرة"],
     simplified: "منطقة المشاة مليئة بالمتاجر والمقاهي الصغيرة اللطيفة",
@@ -9458,7 +9458,7 @@ HELP_DATA["sprach1_exam20_6"] = {
 };
 
 HELP_DATA["sprach1_exam20_7"] = {
-    text = "Wenn du willst",
+    text: "Wenn du willst",
     meaning: "إذا أردت",
     keywords: ["Wenn = إذا", "du = أنت", "willst = تريد"],
     simplified: "يمكنني إرشادك في جولة بالمدينة إذا أحببت",
@@ -9466,27 +9466,27 @@ HELP_DATA["sprach1_exam20_7"] = {
 };
 
 HELP_DATA["sprach1_exam20_8"] = {
-    text = "Wann ist bei mir der Umzugsstress vorbei",
-    meaning = "متى سينتهي وقت الانتقال المزدحم بالنسبة لي؟",
-    keywords = ["Umzugsstress = وقت الانتقال المزدحم", "vorbei = منتهي", "bei mir = بالنسبة لي"],
-    simplified = "لقد انتهى معظم ضغط الانتقال الآن",
-    imagine = "📦🏠 صناديق فارغة وزوجان مرتاحان يجلسان على أريكة"
+    text: "Wann ist bei mir der Umzugsstress vorbei",
+    meaning: "متى سينتهي وقت الانتقال المزدحم بالنسبة لي؟",
+    keywords: ["Umzugsstress = وقت الانتقال المزدحم", "vorbei = منتهي", "bei mir = بالنسبة لي"],
+    simplified: "لقد انتهى معظم ضغط الانتقال الآن",
+    imagine: "📦🏠 صناديق فارغة وزوجان مرتاحان يجلسان على أريكة"
 };
 
 HELP_DATA["sprach1_exam20_9"] = {
-    text = "eine große Anzahl nicht ausgeräumter Kisten",
-    meaning = "عدد كبير من الصناديق غير المرتبة",
-    keywords = ["große Anzahl = عدد كبير", "nicht ausgeräumter = غير مرتبة", "Kisten = صناديق"],
-    simplified = "العديد من الصناديق التي لم تُفرغ بعد في غرفة المعيشة",
-    imagine = "📦📦 غرفة معيشة مليئة بالصناديق"
+    text: "eine große Anzahl nicht ausgeräumter Kisten",
+    meaning: "عدد كبير من الصناديق غير المرتبة",
+    keywords: ["große Anzahl = عدد كبير", "nicht ausgeräumter = غير مرتبة", "Kisten = صناديق"],
+    simplified: "العديد من الصناديق التي لم تُفرغ بعد في غرفة المعيشة",
+    imagine: "📦📦 غرفة معيشة مليئة بالصناديق"
 };
 
 HELP_DATA["sprach1_exam20_10"] = {
-    text = "weil sie geräumig und zentral gelegen ist",
-    meaning = "لأنها فسيحة وتقع في موقع مركزي",
+    text: "weil sie geräumig und zentral gelegen ist",
+    meaning: "لأنها فسيحة وتقع في موقع مركزي",
     keywords: ["weil = لأن", "geräumig = فسيحة", "zentral gelegen = موقع مركزي"],
-    simplified = "لقد كنت محظوظاً بشقتي الجديدة لأنها واسعة وقريبة من كل شيء",
-    imagine = "🏠🔑 زوجان يفتحان باب شقة واسعة ومشرقة"
+    simplified: "لقد كنت محظوظاً بشقتي الجديدة لأنها واسعة وقريبة من كل شيء",
+    imagine: "🏠🔑 زوجان يفتحان باب شقة واسعة ومشرقة"
 };
 
 
@@ -9556,27 +9556,27 @@ HELP_DATA["sprach1_exam21_7"] = {
 };
 
 HELP_DATA["sprach1_exam21_8"] = {
-    text = "wie viel Zeit die Vorbereitungen in Anspruch nehmen",
-    meaning = "كم من الوقت تستغرقه التحضيرات",
-    keywords = ["nehmen = تستغرق", "Vorbereitungen = تحضيرات", "Zeit = وقت"],
-    simplified = "لقد قللت من تقدير الوقت اللازم للتحضير",
-    imagine = "⏰😲 شخص ينظر إلى الساعة مندهشاً"
+    text: "wie viel Zeit die Vorbereitungen in Anspruch nehmen",
+    meaning: "كم من الوقت تستغرقه التحضيرات",
+    keywords: ["nehmen = تستغرق", "Vorbereitungen = تحضيرات", "Zeit = وقت"],
+    simplified: "لقد قللت من تقدير الوقت اللازم للتحضير",
+    imagine: "⏰😲 شخص ينظر إلى الساعة مندهشاً"
 };
 
 HELP_DATA["sprach1_exam21_9"] = {
-    text = "Für mich ist es aber eine große Hilfe",
+    text: "Für mich ist es aber eine große Hilfe",
     meaning: "لكن بالنسبة لي إنها مساعدة كبيرة",
     keywords: ["mich = لي", "große Hilfe = مساعدة كبيرة", "ist = هي"],
     simplified: "بالنسبة لي إنه لمساعدة عظيمة",
-    imagine = "🤝🙏 شخص يشكر آخر"
+    imagine: "🤝🙏 شخص يشكر آخر"
 };
 
 HELP_DATA["sprach1_exam21_10"] = {
-    text = "in denen man rund um die Uhr Fragen stellen kann",
+    text: "in denen man rund um die Uhr Fragen stellen kann",
     meaning: "حيث يمكن للمرء طرح الأسئلة على مدار الساعة",
     keywords: ["denen = حيث", "rund um die Uhr = على مدار الساعة", "Fragen stellen = طرح أسئلة"],
-    simplified = "مجموعات المحادثة متاحة للاستفسارات في أي وقت",
-    imagine = "💬🕒 فقاعات دردشة وساعة في كل مكان"
+    simplified: "مجموعات المحادثة متاحة للاستفسارات في أي وقت",
+    imagine: "💬🕒 فقاعات دردشة وساعة في كل مكان"
 };
 
 // ============================================
@@ -9595,72 +9595,72 @@ HELP_DATA["sprach1_exam22_2"] = {
     text: "mich mit etwas Anderem zu beschäftigen als mit der neuen Arbeit",
     meaning: "لأنشغل بأي شيء آخر غير العمل الجديد",
     keywords: ["beschäftigen = أنشغل", "Anderem = شيء آخر", "neuen Arbeit = العمل الجديد"],
-    simplified = "الانشغال بأي شيء آخر غير الوظيفة الجديدة",
-    imagine = "📋🚫 شخص يرفض ملفات ويشير إلى ساعته"
+    simplified: "الانشغال بأي شيء آخر غير الوظيفة الجديدة",
+    imagine: "📋🚫 شخص يرفض ملفات ويشير إلى ساعته"
 };
 
 HELP_DATA["sprach1_exam22_3"] = {
     text: "Die gibt es doch wie Sand am Meer",
     meaning: "إنهم موجودون مثل الرمل على البحر",
     keywords: ["doch = في الواقع", "Sand am Meer = الرمل على البحر", "wie = مثل"],
-    simplified = "هناك عدد لا يحصى منهم",
-    imagine = "🏖️🌊 شاطئ به رمل لا يُعد"
+    simplified: "هناك عدد لا يحصى منهم",
+    imagine: "🏖️🌊 شاطئ به رمل لا يُعد"
 };
 
 HELP_DATA["sprach1_exam22_4"] = {
     text: "insbesondere an die Obstbauern der näheren Umgebung",
-    meaning = "خاصة لمزارعي الفاكهة في المنطقة المجاورة",
-    keywords = ["insbesondere = خاصة", "Obstbauern = مزارعي فاكهة", "näheren Umgebung = المنطقة المجاورة"],
-    simplified = "خاصة للمزارعين المحليين",
-    imagine = "🌳🍎 بستان تفاح يقطف ثماره"
+    meaning: "خاصة لمزارعي الفاكهة في المنطقة المجاورة",
+    keywords: ["insbesondere = خاصة", "Obstbauern = مزارعي فاكهة", "näheren Umgebung = المنطقة المجاورة"],
+    simplified: "خاصة للمزارعين المحليين",
+    imagine: "🌳🍎 بستان تفاح يقطف ثماره"
 };
 
 HELP_DATA["sprach1_exam22_5"] = {
-    text = "acht Stunden am Tag überwiegend im Freien zu arbeiten",
-    meaning = "العمل في الهواء الطلق معظم اليوم لمدة ثماني ساعات",
-    keywords = ["überwiegend = معظم", "im Freien = في الهواء الطلق", "acht Stunden = ثماني ساعات"],
-    simplified = "العمل في الخارج لمدة ثماني ساعات كاملة",
-    imagine = "☀️👒 شخص يعمل في الحديقة تحت الشمس"
+    text: "acht Stunden am Tag überwiegend im Freien zu arbeiten",
+    meaning: "العمل في الهواء الطلق معظم اليوم لمدة ثماني ساعات",
+    keywords: ["überwiegend = معظم", "im Freien = في الهواء الطلق", "acht Stunden = ثماني ساعات"],
+    simplified: "العمل في الخارج لمدة ثماني ساعات كاملة",
+    imagine: "☀️👒 شخص يعمل في الحديقة تحت الشمس"
 };
 
 HELP_DATA["sprach1_exam22_6"] = {
-    text = "fast eine dreiviertel Stunde",
-    meaning = "حوالي خمسة وأربعين دقيقة",
+    text: "fast eine dreiviertel Stunde",
+    meaning: "حوالي خمسة وأربعين دقيقة",
     keywords: ["fast = حوالي", "dreiviertel Stunde = ثلاثة أرباع الساعة"],
-    simplified = "ما يقرب من خمسة وأربعين دقيقة",
-    imagine = "⏰🚆 ساعة محطة قطار"
+    simplified: "ما يقرب من خمسة وأربعين دقيقة",
+    imagine: "⏰🚆 ساعة محطة قطار"
 };
 
 HELP_DATA["sprach1_exam22_7"] = {
-    text = "nur wenig Lust, etwas zu unternehmen",
-    meaning = "لا رغبة لدي للقيام بأي شيء",
+    text: "nur wenig Lust, etwas zu unternehmen",
+    meaning: "لا رغبة لدي للقيام بأي شيء",
     keywords: ["wenig = قليل", "Lust = رغبة", "zu unternehmen = للقيام به"],
-    simplified = "لا أملك أي رغبة في فعل أي شيء",
-    imagine = "🛋️😐 شخص مستلقٍ على أريكته يشعر بالملل"
+    simplified: "لا أملك أي رغبة في فعل أي شيء",
+    imagine: "🛋️😐 شخص مستلقٍ على أريكته يشعر بالملل"
 };
 
 HELP_DATA["sprach1_exam22_8"] = {
-    text = "Sie kommt wieder",
-    meaning = "سوف تعود",
+    text: "Sie kommt wieder",
+    meaning: "سوف تعود",
     keywords: ["kommt = تعود", "wieder = مجدداً", "Sie = هي"],
-    simplified = "ستعود رغبتي مجدداً",
-    imagine = "🔄😊 دائرة من الأسهم تشير إلى العودة"
+    simplified: "ستعود رغبتي مجدداً",
+    imagine: "🔄😊 دائرة من الأسهم تشير إلى العودة"
 };
 
 HELP_DATA["sprach1_exam22_9"] = {
-    text = "Oder lässt du dir noch ein bisschen Zeit damit?",
-    meaning = "أم أنك ستمنح نفسك بعض الوقت للقيام بذلك؟",
+    text: "Oder lässt du dir noch ein bisschen Zeit damit?",
+    meaning: "أم أنك ستمنح نفسك بعض الوقت للقيام بذلك؟",
     keywords: ["lässt = تمنح", "Zeit = وقت", "bisschen = بعض"],
-    simplified = "هل تمنح نفسك قسطاً من الوقت؟",
-    imagine = "⏳🙋 شخص ينتظر"
+    simplified: "هل تمنح نفسك قسطاً من الوقت؟",
+    imagine: "⏳🙋 شخص ينتظر"
 };
 
 HELP_DATA["sprach1_exam22_10"] = {
-    text = "Fang so früh wie möglich mit den Bewerbungen an",
-    meaning = "ابدأ بتقديم الطلبات في أقرب وقت ممكن",
+    text: "Fang so früh wie möglich mit den Bewerbungen an",
+    meaning: "ابدأ بتقديم الطلبات في أقرب وقت ممكن",
     keywords: ["möglich = ممكن", "früh = مبكراً", "Bewerbungen = طلبات"],
-    simplified = "قدم طلباتك في أقرب فرصة",
-    imagine = "📝✍️ شخص يكتب في نموذج بسرعة"
+    simplified: "قدم طلباتك في أقرب فرصة",
+    imagine: "📝✍️ شخص يكتب في نموذج بسرعة"
 };
 
 // ============================================
@@ -9679,72 +9679,72 @@ HELP_DATA["sprach1_exam23_2"] = {
     text: "mich mit etwas Anderem zu beschäftigen als mit der neuen Arbeit",
     meaning: "لأنشغل بأي شيء آخر غير العمل الجديد",
     keywords: ["beschäftigen = أنشغل", "Anderem = شيء آخر", "neuen Arbeit = العمل الجديد"],
-    simplified = "الانشغال بأي شيء آخر غير الوظيفة الجديدة",
-    imagine = "📋🚫 شخص يرفض ملفات ويشير إلى ساعته"
+    simplified: "الانشغال بأي شيء آخر غير الوظيفة الجديدة",
+    imagine: "📋🚫 شخص يرفض ملفات ويشير إلى ساعته"
 };
 
 HELP_DATA["sprach1_exam23_3"] = {
     text: "Die gibt es doch wie Sand am Meer",
     meaning: "إنهم موجودون مثل الرمل على البحر",
     keywords: ["doch = في الواقع", "Sand am Meer = الرمل على البحر", "wie = مثل"],
-    simplified = "هناك عدد لا يحصى منهم",
-    imagine = "🏖️🌊 شاطئ به رمل لا يُعد"
+    simplified: "هناك عدد لا يحصى منهم",
+    imagine: "🏖️🌊 شاطئ به رمل لا يُعد"
 };
 
 HELP_DATA["sprach1_exam23_4"] = {
-    text = "insbesondere an die Obstbauern der näheren Umgebung",
-    meaning = "خاصة لمزارعي الفاكهة في المنطقة المجاورة",
-    keywords = ["insbesondere = خاصة", "Obstbauern = مزارعي فاكهة", "näheren Umgebung = المنطقة المجاورة"],
-    simplified = "خاصة للمزارعين المحليين",
-    imagine = "🌳🍎 بستان تفاح يقطف ثماره"
+    text: "insbesondere an die Obstbauern der näheren Umgebung",
+    meaning: "خاصة لمزارعي الفاكهة في المنطقة المجاورة",
+    keywords: ["insbesondere = خاصة", "Obstbauern = مزارعي فاكهة", "näheren Umgebung = المنطقة المجاورة"],
+    simplified: "خاصة للمزارعين المحليين",
+    imagine: "🌳🍎 بستان تفاح يقطف ثماره"
 };
 
 HELP_DATA["sprach1_exam23_5"] = {
-    text = "acht Stunden am Tag überwiegend im Freien zu arbeiten",
-    meaning = "العمل في الهواء الطلق معظم اليوم لمدة ثماني ساعات",
-    keywords = ["überwiegend = معظم", "im Freien = في الهواء الطلق", "acht Stunden = ثماني ساعات"],
-    simplified = "العمل في الخارج لمدة ثماني ساعات كاملة",
-    imagine = "☀️👒 شخص يعمل في الحديقة تحت الشمس"
+    text: "acht Stunden am Tag überwiegend im Freien zu arbeiten",
+    meaning: "العمل في الهواء الطلق معظم اليوم لمدة ثماني ساعات",
+    keywords: ["überwiegend = معظم", "im Freien = في الهواء الطلق", "acht Stunden = ثماني ساعات"],
+    simplified: "العمل في الخارج لمدة ثماني ساعات كاملة",
+    imagine: "☀️👒 شخص يعمل في الحديقة تحت الشمس"
 };
 
 HELP_DATA["sprach1_exam23_6"] = {
-    text = "muss ich fast eine dreiviertel Stunde mit dem Zug fahren",
-    meaning = "يجب أن أستقل القطار لمدة حوالي خمسة وأربعين دقيقة",
+    text: "muss ich fast eine dreiviertel Stunde mit dem Zug fahren",
+    meaning: "يجب أن أستقل القطار لمدة حوالي خمسة وأربعين دقيقة",
     keywords: ["muss = يجب", "Zug = قطار", "dreiviertel Stunde = ثلاثة أرباع الساعة"],
-    simplified = "أحتاج إلى الساعة بالقطار كل يوم",
-    imagine = "🚆😪 شخص متعب يستقل القطار"
+    simplified: "أحتاج إلى الساعة بالقطار كل يوم",
+    imagine: "🚆😪 شخص متعب يستقل القطار"
 };
 
 HELP_DATA["sprach1_exam23_7"] = {
-    text = "nur wenig Lust, etwas zu unternehmen",
-    meaning = "لا رغبة لدي للقيام بأي شيء",
+    text: "nur wenig Lust, etwas zu unternehmen",
+    meaning: "لا رغبة لدي للقيام بأي شيء",
     keywords: ["wenig = قليل", "Lust = رغبة", "zu unternehmen = للقيام به"],
-    simplified = "لا أملك أي رغبة في فعل أي شيء",
-    imagine = "🛋️😐 شخص مستلقٍ على أريكته يشعر بالملل"
+    simplified: "لا أملك أي رغبة في فعل أي شيء",
+    imagine: "🛋️😐 شخص مستلقٍ على أريكته يشعر بالملل"
 };
 
 HELP_DATA["sprach1_exam23_8"] = {
-    text = "Sie kommt wieder",
-    meaning = "سوف تعود",
+    text: "Sie kommt wieder",
+    meaning: "سوف تعود",
     keywords: ["kommt = تعود", "wieder = مجدداً", "Sie = هي"],
-    simplified = "ستعود رغبتي مجدداً",
-    imagine = "🔄😊 دائرة من الأسهم تشير إلى العودة"
+    simplified: "ستعود رغبتي مجدداً",
+    imagine: "🔄😊 دائرة من الأسهم تشير إلى العودة"
 };
 
 HELP_DATA["sprach1_exam23_9"] = {
-    text = "Oder lässt du dir noch ein bisschen Zeit damit?",
-    meaning = "أم أنك ستمنح نفسك بعض الوقت للقيام بذلك؟",
+    text: "Oder lässt du dir noch ein bisschen Zeit damit?",
+    meaning: "أم أنك ستمنح نفسك بعض الوقت للقيام بذلك؟",
     keywords: ["lässt = تمنح", "Zeit = وقت", "bisschen = بعض"],
-    simplified = "هل تمنح نفسك قسطاً من الوقت؟",
-    imagine = "⏳🙋 شخص ينتظر"
+    simplified: "هل تمنح نفسك قسطاً من الوقت؟",
+    imagine: "⏳🙋 شخص ينتظر"
 };
 
 HELP_DATA["sprach1_exam23_10"] = {
-    text = "Fang so früh wie möglich mit den Bewerbungen an",
-    meaning = "ابدأ بتقديم الطلبات في أقرب وقت ممكن",
+    text: "Fang so früh wie möglich mit den Bewerbungen an",
+    meaning: "ابدأ بتقديم الطلبات في أقرب وقت ممكن",
     keywords: ["möglich = ممكن", "früh = مبكراً", "Bewerbungen = طلبات"],
-    simplified = "قدم طلباتك في أقرب فرصة",
-    imagine = "📝✍️ شخص يكتب في نموذج بسرعة"
+    simplified: "قدم طلباتك في أقرب فرصة",
+    imagine: "📝✍️ شخص يكتب في نموذج بسرعة"
 };
 
 // ============================================
@@ -9755,80 +9755,80 @@ HELP_DATA["sprach1_exam24_1"] = {
     text: "auf die neue Stelle und das Leben in der Stadt gefreut",
     meaning: "سعيدة بالوظيفة الجديدة والحياة في المدينة",
     keywords: ["auf = على", "neue Stelle = وظيفة جديدة", "gefreut = سعيدة"],
-    simplified = "لم أكن متحمسة للوظيفة والحياة الجديدة في البداية",
-    imagine = "🏢😕 امرأة تنظر إلى مبنى جديد بقلق"
+    simplified: "لم أكن متحمسة للوظيفة والحياة الجديدة في البداية",
+    imagine: "🏢😕 امرأة تنظر إلى مبنى جديد بقلق"
 };
 
 HELP_DATA["sprach1_exam24_2"] = {
-    text = "Ich hätte ja auch täglich mit dem Zug fahren können",
-    meaning = "كان بإمكاني أيضاً ركوب القطار يومياً",
-    keywords = ["hätte = كان بإمكاني", "Zug = قطار", "täglich = يومياً"],
-    simplified = "كان ممكناً أن أستقل القطار يومياً بدلاً من ذلك",
-    imagine = "🚆🤔 شخص ينظر إلى قطار"
+    text: "Ich hätte ja auch täglich mit dem Zug fahren können",
+    meaning: "كان بإمكاني أيضاً ركوب القطار يومياً",
+    keywords: ["hätte = كان بإمكاني", "Zug = قطار", "täglich = يومياً"],
+    simplified: "كان ممكناً أن أستقل القطار يومياً بدلاً من ذلك",
+    imagine: "🚆🤔 شخص ينظر إلى قطار"
 };
 
 HELP_DATA["sprach1_exam24_3"] = {
-    text = "mich in meiner neuen Wohnung auch gar nicht richtig wohlgefühlt",
-    meaning = "لم أشعر بالراحة في شقتي الجديدة على الإطلاق",
+    text: "mich in meiner neuen Wohnung auch gar nicht richtig wohlgefühlt",
+    meaning: "لم أشعر بالراحة في شقتي الجديدة على الإطلاق",
     keywords: ["mich = نفسي", "wohlgefühlt = شعرت بالراحة", "gar nicht = على الإطلاق"],
-    simplified = "لم أشعر بالارتياح في المكان الجديد",
-    imagine = "🏠😞 امرأة تجلس على أريكة فارغة"
+    simplified: "لم أشعر بالارتياح في المكان الجديد",
+    imagine: "🏠😞 امرأة تجلس على أريكة فارغة"
 };
 
 HELP_DATA["sprach1_exam24_4"] = {
-    text = "Nachdem ich meine Umzugskartons ausgepackt hatte",
-    meaning = "بعد أن فتحت صناديق الانتقال الخاصة بي",
+    text: "Nachdem ich meine Umzugskartons ausgepackt hatte",
+    meaning: "بعد أن فتحت صناديق الانتقال الخاصة بي",
     keywords: ["ausgepackt hatte = كنت قد فتحت", "Umzugskartons = صناديق الانتقال"],
-    simplified = "بعد أن أنهيت تفريغ الصناديق أخيراً",
-    imagine = "📦🔓 شخص يفتح صندوقاً"
+    simplified: "بعد أن أنهيت تفريغ الصناديق أخيراً",
+    imagine: "📦🔓 شخص يفتح صندوقاً"
 };
 
 HELP_DATA["sprach1_exam24_5"] = {
-    text = "Das liegt vor allem daran, dass ich eine neue Freundin gefunden habe",
+    text: "Das liegt vor allem daran, dass ich eine neue Freundin gefunden habe",
     meaning: "السبب الرئيسي يعود إلى أنني وجدت صديقة جديدة",
     keywords: ["daran = في ذلك", "neue Freundin = صديقة جديدة", "gefunden = وجدت"],
-    simplified = "أصبحت أستمتع بفرانكفورت بفضل صديقتي الجديدة",
-    imagine = "👭😊 اثنتان من النساء تحتضنان بعضهما"
+    simplified: "أصبحت أستمتع بفرانكفورت بفضل صديقتي الجديدة",
+    imagine: "👭😊 اثنتان من النساء تحتضنان بعضهما"
 };
 
 HELP_DATA["sprach1_exam24_6"] = {
-    text = "Als wir miteinander ins Gespräch kamen",
+    text: "Als wir miteinander ins Gespräch kamen",
     meaning: "عندما بدأنا التحدث مع بعضنا البعض",
     keywords: ["miteinander = معاً", "ins Gespräch = في الحديث", "kamen = بدأنا"],
-    simplified = "ذات يوم بدأنا نتحدث بشكل عفوي",
-    imagine = "💬👥 شخصان يتحدثان والفقاعات تملأ الشاشة"
+    simplified: "ذات يوم بدأنا نتحدث بشكل عفوي",
+    imagine: "💬👥 شخصان يتحدثان والفقاعات تملأ الشاشة"
 };
 
 HELP_DATA["sprach1_exam24_7"] = {
-    text = "Mein Leben sieht nun also ganz anders aus als noch vor drei Monaten",
-    meaning = "لذا تبدو حياتي الآن مختلفة تماماً عما كانت عليه قبل ثلاثة أشهر",
+    text: "Mein Leben sieht nun also ganz anders aus als noch vor drei Monaten",
+    meaning: "لذا تبدو حياتي الآن مختلفة تماماً عما كانت عليه قبل ثلاثة أشهر",
     keywords: ["als = مقارنة بـ", "ganz anders = مختلفة تماماً", "drei Monaten = ثلاثة أشهر"],
-    simplified = "الأمور تغيرت بشكل كبير عن ما كانت عليه في السابق",
-    imagine = "📅➡️📅 تقويم قديم وآخر جديد بوجه مبتسم"
+    simplified: "الأمور تغيرت بشكل كبير عن ما كانت عليه في السابق",
+    imagine: "📅➡️📅 تقويم قديم وآخر جديد بوجه مبتسم"
 };
 
 HELP_DATA["sprach1_exam24_8"] = {
-    text = "obwohl ich oft Überstunden machen muss",
-    meaning = "على الرغم من أنني غالباً ما أضطر للعمل الإضافي",
+    text: "obwohl ich oft Überstunden machen muss",
+    meaning: "على الرغم من أنني غالباً ما أضطر للعمل الإضافي",
     keywords: ["obwohl = على الرغم من", "Überstunden = ساعات عمل إضافية", "oft = غالباً"],
-    simplified = "أنا سعيدة حتى لو اضطررت للبقاء لساعات متأخرة",
-    imagine = "🕘😅 امرأة تعمل لوقت متأخر"
+    simplified: "أنا سعيدة حتى لو اضطررت للبقاء لساعات متأخرة",
+    imagine: "🕘😅 امرأة تعمل لوقت متأخر"
 };
 
 HELP_DATA["sprach1_exam24_9"] = {
-    text = "bei uns in der Abteilung",
+    text: "bei uns in der Abteilung",
     meaning: "في قسمنا",
     keywords: ["bei = في", "uns = قسمنا", "Abteilung = قسم"],
-    simplified = "الجو العام لطيف بين زملاء العمل الذين أعمل معهم",
-    imagine = "👥🏢 فريق عمل يبدو سعيداً ومرتاحاً"
+    simplified: "الجو العام لطيف بين زملاء العمل الذين أعمل معهم",
+    imagine: "👥🏢 فريق عمل يبدو سعيداً ومرتاحاً"
 };
 
 HELP_DATA["sprach1_exam24_10"] = {
-    text = "wie es Dir eigentlich geht",
+    text: "wie es Dir eigentlich geht",
     meaning: "كيف حالك حقاً",
     keywords: ["eigentlich = حقاً", "geht = حالك", "Dir = لك"],
-    simplified = "ولكن لم أسألك بعد عن أحوالك أنتِ",
-    imagine = "📱❓ شخص يقرأ رسالة ويبدو فضولياً"
+    simplified: "ولكن لم أسألك بعد عن أحوالك أنتِ",
+    imagine: "📱❓ شخص يقرأ رسالة ويبدو فضولياً"
 };
 
 // ============================================
@@ -9836,83 +9836,83 @@ HELP_DATA["sprach1_exam24_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam25_1"] = {
-    text = "dass wir sie bald kennenlernen",
-    meaning = "أن نتعرف عليها قريباً",
+    text: "dass wir sie bald kennenlernen",
+    meaning: "أن نتعرف عليها قريباً",
     keywords: ["sie = لها", "bald = قريباً", "kennenlernen = نتعرف"],
-    simplified = "لا نطاق رؤية الصغيرة قريباً",
-    imagine = "👶💕 قلب يخرج من صورة طفل"
+    simplified: "لا نطاق رؤية الصغيرة قريباً",
+    imagine: "👶💕 قلب يخرج من صورة طفل"
 };
 
 HELP_DATA["sprach1_exam25_2"] = {
-    text = "Deshalb warten wir lieber noch etwas",
-    meaning = "لذلك سننتظر قليلاً بدلاً من ذلك",
+    text: "Deshalb warten wir lieber noch etwas",
+    meaning: "لذلك سننتظر قليلاً بدلاً من ذلك",
     keywords: ["Deshalb = لذلك", "warten = ننتظر", "lieber = بدلاً من ذلك"],
-    simplified = "من الأفضل لنا أن نمنحكم بعض الوقت أولاً",
-    imagine = "⏰🤱 أيدي تشير إلى عدم التسرع مع طفل ينام"
+    simplified: "من الأفضل لنا أن نمنحكم بعض الوقت أولاً",
+    imagine: "⏰🤱 أيدي تشير إلى عدم التسرع مع طفل ينام"
 };
 
 HELP_DATA["sprach1_exam25_3"] = {
-    text = "wann euch ein Treffen lieb wäre",
-    meaning = "متى ترغبون في اللقاء",
+    text: "wann euch ein Treffen lieb wäre",
+    meaning: "متى ترغبون في اللقاء",
     keywords: ["wann = متى", "Treffen = لقاء", "lieb wäre = ترغبون"],
-    simplified = "أخبرونا بالوقت المناسب لزيارتكم",
-    imagine = "📅✉️ تقويم وظرف بريد"
+    simplified: "أخبرونا بالوقت المناسب لزيارتكم",
+    imagine: "📅✉️ تقويم وظرف بريد"
 };
 
 HELP_DATA["sprach1_exam25_4"] = {
-    text = "auf jeden Fall bereit",
+    text: "auf jeden Fall bereit",
     meaning: "جاهزة بالتأكيد",
     keywords: ["auf = على", "jeden Fall = كل الأحوال", "bereit = جاهزة"],
-    simplified = "لقد جهزنا شيئاً صغيراً لها بالفعل",
-    imagine = "🎁👶 صندوق هدايا عليه شريط"
+    simplified: "لقد جهزنا شيئاً صغيراً لها بالفعل",
+    imagine: "🎁👶 صندوق هدايا عليه شريط"
 };
 
 HELP_DATA["sprach1_exam25_5"] = {
-    text = "Seit diesem Jahr sind hier im Ort Grundschule und Kindergarten in demselben Gebäudekomplex untergebracht",
+    text: "Seit diesem Jahr sind hier im Ort Grundschule und Kindergarten in demselben Gebäudekomplex untergebracht",
     meaning: "منذ هذا العام، تقع المدرسة الابتدائية ورياض الأطفال في نفس المجمع",
     keywords: ["Seit = منذ", "diesem Jahr = هذا العام", "Grundschule = مدرسة ابتدائية"],
-    simplified = "المدرسة ورياض الأطفال أصبحتا الآن في مبنى واحد موحد",
-    imagine = "🏫🏢 مبنى كبير به أطفال في الخارج"
+    simplified: "المدرسة ورياض الأطفال أصبحتا الآن في مبنى واحد موحد",
+    imagine: "🏫🏢 مبنى كبير به أطفال في الخارج"
 };
 
 HELP_DATA["sprach1_exam25_6"] = {
-    text = "ob ich nicht wieder anfangen soll, halbtags zu arbeiten",
-    meaning = "ما إذا كان ينبغي لي أن أعمل بدوام جزئي مرة أخرى",
+    text: "ob ich nicht wieder anfangen soll, halbtags zu arbeiten",
+    meaning: "ما إذا كان ينبغي لي أن أعمل بدوام جزئي مرة أخرى",
     keywords: ["ob = ما إذا", "anfangen = أبدأ", "halbtags = دوام جزئي"],
-    simplified = "أفكر في العودة إلى العمل",
-    imagine = "💼🤔 امرأة تنظر إلى حاسوب محمول"
+    simplified: "أفكر في العودة إلى العمل",
+    imagine: "💼🤔 امرأة تنظر إلى حاسوب محمول"
 };
 
 HELP_DATA["sprach1_exam25_7"] = {
-    text = "ich kann mir gar nicht vorstellen",
-    meaning = "لا أستطيع أن أتخيل ذلك على الإطلاق",
+    text: "ich kann mir gar nicht vorstellen",
+    meaning: "لا أستطيع أن أتخيل ذلك على الإطلاق",
     keywords: ["vorstellen = أتخيل", "gar nicht = على الإطلاق", "kann = أستطيع"],
-    simplified = "من الصعب جداً بالنسبة لي أن أتخيل كيف سأفعل ذلك",
-    imagine = "🤷‍♀️💭 امرأة ترفع يديها بإحباط"
+    simplified: "من الصعب جداً بالنسبة لي أن أتخيل كيف سأفعل ذلك",
+    imagine: "🤷‍♀️💭 امرأة ترفع يديها بإحباط"
 };
 
 HELP_DATA["sprach1_exam25_8"] = {
-    text = "Was hältst du davon?",
-    meaning = "ما رأيك في ذلك؟",
+    text: "Was hältst du davon?",
+    meaning: "ما رأيك في ذلك؟",
     keywords: ["davon = في ذلك", "hältst du = رأيكِ", "Was = ما"],
-    simplified = "ما رأيكِ؟",
-    imagine = "❓🤔 فتاتان تتحدثان وعلامة استفهام بينهما"
+    simplified: "ما رأيكِ؟",
+    imagine: "❓🤔 فتاتان تتحدثان وعلامة استفهام بينهما"
 };
 
 HELP_DATA["sprach1_exam25_9"] = {
-    text = "bei der meine Ausbildung als Krankenschwester von Vorteil wäre",
-    meaning = "حيث يكون تدريبي كممرضة مفيداً",
+    text: "bei der meine Ausbildung als Krankenschwester von Vorteil wäre",
+    meaning: "حيث يكون تدريبي كممرضة مفيداً",
     keywords: ["als = كـ", "Krankenschwester = ممرضة", "von Vorteil = مفيد"],
-    simplified = "وظيفة تستفيد من خبرتي ومهاراتي",
-    imagine = "🩺💼 سماعة طبيب وحقيبة"
+    simplified: "وظيفة تستفيد من خبرتي ومهاراتي",
+    imagine: "🩺💼 سماعة طبيب وحقيبة"
 };
 
 HELP_DATA["sprach1_exam25_10"] = {
-    text = "Wie dem auch sei",
-    meaning = "مهما يكن الأمر",
+    text: "Wie dem auch sei",
+    meaning: "مهما يكن الأمر",
     keywords: ["sei = يكن", "auch = أيضاً", "Wie dem = مهما"],
-    simplified = "على أية حال",
-    imagine = "🤷‍♀️✨ امرأة ترفع يديها كعلامة على القبول"
+    simplified: "على أية حال",
+    imagine: "🤷‍♀️✨ امرأة ترفع يديها كعلامة على القبول"
 };
 
 // ============================================
@@ -9920,83 +9920,83 @@ HELP_DATA["sprach1_exam25_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam26_1"] = {
-    text = "ich hatte aber dafür einen triftigen Grund",
+    text: "ich hatte aber dafür einen triftigen Grund",
     meaning: "لكن كان لدي سبب وجيه لذلك",
     keywords: ["dafür = لذلك", "triftigen Grund = سبب وجيه", "hatte = كان لدي"],
-    simplified = "كان لدي عذر مقبول تماماً",
-    imagine = "📋✅ قائمة مكتوب عليها أسباب وجيهة"
+    simplified: "كان لدي عذر مقبول تماماً",
+    imagine: "📋✅ قائمة مكتوب عليها أسباب وجيهة"
 };
 
 HELP_DATA["sprach1_exam26_2"] = {
-    text = "Ich habe das Schreiben wegen meiner Krankheit vernachlässigt",
+    text: "Ich habe das Schreiben wegen meiner Krankheit vernachlässigt",
     meaning: "لقد أهملت الكتابة بسبب مرضي",
     keywords: ["wegen = بسبب", "Krankheit = مرض", "vernachlässigt = أهملت"],
-    simplified = "لم أتمكن من الكتابة لأنني لم أكن بصحة جيدة",
-    imagine = "🤒✍️ شخص مريض يحاول الكتابة"
+    simplified: "لم أتمكن من الكتابة لأنني لم أكن بصحة جيدة",
+    imagine: "🤒✍️ شخص مريض يحاول الكتابة"
 };
 
 HELP_DATA["sprach1_exam26_3"] = {
-    text = "ich habe die richtige Untersuchung immer wieder verschoben",
+    text: "ich habe die richtige Untersuchung immer wieder verschoben",
     meaning: "لقد أجلت إجراء الفحص المناسب مراراً وتكراراً",
     keywords: ["verschoben = أجلت", "Untersuchung = فحص", "richtige = المناسب"],
-    simplified = "ظللت أؤجل الذهاب لإجراء الفحوصات اللازمة",
-    imagine = "📅🏥 تقويم ومستشفى"
+    simplified: "ظللت أؤجل الذهاب لإجراء الفحوصات اللازمة",
+    imagine: "📅🏥 تقويم ومستشفى"
 };
 
 HELP_DATA["sprach1_exam26_4"] = {
-    text = "Schließlich konnte ich nicht mehr richtig schlafen",
+    text: "Schließlich konnte ich nicht mehr richtig schlafen",
     meaning: "في النهاية لم أعد أستطيع النوم جيداً",
     keywords: ["nicht mehr = لم أعد", "schlafen = أنام", "richtig = جيداً"],
-    simplified = "أصبحت الأرق رفيق الليالي بالنسبة لي",
-    imagine = "🛌😖 شخص مستلقٍ على السرير وعيناه مفتوحتان"
+    simplified: "أصبحت الأرق رفيق الليالي بالنسبة لي",
+    imagine: "🛌😖 شخص مستلقٍ على السرير وعيناه مفتوحتان"
 };
 
 HELP_DATA["sprach1_exam26_5"] = {
-    text = "Mein Arzt hat mich ins Krankenhaus zu einigen Untersuchungen eingewiesen",
-    meaning = "أحالني طبيبي إلى المستشفى لإجراء بعض الفحوصات",
+    text: "Mein Arzt hat mich ins Krankenhaus zu einigen Untersuchungen eingewiesen",
+    meaning: "أحالني طبيبي إلى المستشفى لإجراء بعض الفحوصات",
     keywords: ["eingewiesen = أحال", "Arzt = طبيب", "Krankenhaus = مستشفى"],
-    simplified = "نصحني الطبيب بالذهاب إلى المستشفى لإجراء أشعة وفحوصات",
-    imagine = "👨‍⚕️🏨 طبيب يكتب تقريراً"
+    simplified: "نصحني الطبيب بالذهاب إلى المستشفى لإجراء أشعة وفحوصات",
+    imagine: "👨‍⚕️🏨 طبيب يكتب تقريراً"
 };
 
 HELP_DATA["sprach1_exam26_6"] = {
-    text = "ein paar Kilo Übergewicht habe",
+    text: "ein paar Kilo Übergewicht habe",
     meaning: "لدي بضعة كيلوغرامات من الوزن الزائد",
     keywords: ["Übergewicht = وزن زائد", "Kilo = كيلوغرامات", "paar = بضعة"],
-    simplified = "الوزن الزائد يضغط على العمود الفقري",
-    imagine = "⚖️📈 موازين تشير إلى رقم مرتفع"
+    simplified: "الوزن الزائد يضغط على العمود الفقري",
+    imagine: "⚖️📈 موازين تشير إلى رقم مرتفع"
 };
 
 HELP_DATA["sprach1_exam26_7"] = {
-    text = "Ich gehe jetzt einige Monate lang zur Behandlung",
+    text: "Ich gehe jetzt einige Monate lang zur Behandlung",
     meaning: "سأذهب لتلقي العلاج لعدة أشهر الآن",
     keywords: ["zur = إلى", "Behandlung = علاج", "Monate = أشهر"],
-    simplified = "أخطط للعلاج الطبيعي للأشهر المقبلة",
-    imagine = "🏥💆‍♀️ امرأة في مركز علاج طبيعي"
+    simplified: "أخطط للعلاج الطبيعي للأشهر المقبلة",
+    imagine: "🏥💆‍♀️ امرأة في مركز علاج طبيعي"
 };
 
 HELP_DATA["sprach1_exam26_8"] = {
-    text = "Einige Behandlungen sind schon hinter mir",
+    text: "Einige Behandlungen sind schon hinter mir",
     meaning: "لقد أكملت بالفعل بعض جلسات العلاج",
     keywords: ["hinter = خلف", "mir = لي", "sind = هي"],
-    simplified = "لقد خضعت لبعض العلاجات بالفعل",
-    imagine = "📋☑️ قائمة مهام"
+    simplified: "لقد خضعت لبعض العلاجات بالفعل",
+    imagine: "📋☑️ قائمة مهام"
 };
 
 HELP_DATA["sprach1_exam26_9"] = {
-    text = "der mir unter anderem auch geraten hat, mich mehr zu bewegen",
-    meaning = "والذي نصحني أيضاً، من بين أمور أخرى، بممارسة المزيد من الحركة",
+    text: "der mir unter anderem auch geraten hat, mich mehr zu bewegen",
+    meaning: "والذي نصحني أيضاً، من بين أمور أخرى، بممارسة المزيد من الحركة",
     keywords: ["unter anderem = من بين أمور أخرى", "geraten = نصح", "bewegen = أتحرك"],
-    simplified = "أوصاني خبير طبي بأن أصبح أكثر نشاطاً",
-    imagine = "🏃‍♀️🗣️ طبيب ينصح امرأة"
+    simplified: "أوصاني خبير طبي بأن أصبح أكثر نشاطاً",
+    imagine: "🏃‍♀️🗣️ طبيب ينصح امرأة"
 };
 
 HELP_DATA["sprach1_exam26_10"] = {
-    text = "was mir gar nicht schaden würde",
-    meaning = "وهو أمر لن يضرني بالتأكيد",
+    text: "was mir gar nicht schaden würde",
+    meaning: "وهو أمر لن يضرني بالتأكيد",
     keywords: ["gar nicht = بالتأكيد لا", "schaden = يضر", "würde = سيكون"],
-    simplified = "لن يؤثر ذلك سلباً على صحتي على الإطلاق",
-    imagine = "💪✅ شخص يرفع عضلة وعلامة صح"
+    simplified: "لن يؤثر ذلك سلباً على صحتي على الإطلاق",
+    imagine: "💪✅ شخص يرفع عضلة وعلامة صح"
 };
 
 // ============================================
@@ -10004,83 +10004,83 @@ HELP_DATA["sprach1_exam26_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam27_1"] = {
-    text = "auf meine Bewerbung als Au-pair-Mädchen",
-    meaning = "على طلبي كفتاة أوبير",
+    text: "auf meine Bewerbung als Au-pair-Mädchen",
+    meaning: "على طلبي كفتاة أوبير",
     keywords: ["auf = على", "Bewerbung = طلب", "Au-pair-Mädchen = فتاة أوبير"],
-    simplified = "ردكم على طلبي للعمل كفتاة أوبير",
-    imagine = "📄✉️ رسالة مكتوب عليها Au-pair"
+    simplified: "ردكم على طلبي للعمل كفتاة أوبير",
+    imagine: "📄✉️ رسالة مكتوب عليها Au-pair"
 };
 
 HELP_DATA["sprach1_exam27_2"] = {
-    text = "schließe ich meine Schulausbildung ab",
-    meaning = "أنهي تعليمي المدرسي",
+    text: "schließe ich meine Schulausbildung ab",
+    meaning: "أنهي تعليمي المدرسي",
     keywords: ["schließe...ab = أنهي", "Schulausbildung = تعليم مدرسي", "ich = أنا"],
-    simplified = "سأتخرج من المدرسة قريباً",
-    imagine = "🎓📜 يد تحمل شهادة"
+    simplified: "سأتخرج من المدرسة قريباً",
+    imagine: "🎓📜 يد تحمل شهادة"
 };
 
 HELP_DATA["sprach1_exam27_3"] = {
-    text = "möchte auch noch mein Deutsch ein bisschen verbessern",
-    meaning = "أريد أيضاً تحسين لغتي الألمانية قليلاً",
+    text: "möchte auch noch mein Deutsch ein bisschen verbessern",
+    meaning: "أريد أيضاً تحسين لغتي الألمانية قليلاً",
     keywords: ["ein bisschen = قليلاً", "verbessern = تحسين", "Deutsch = الألمانية"],
-    simplified = "أخطط لتحسين مهاراتي في اللغة الألمانية",
-    imagine = "🇩🇪📚 علم ألمانيا وكتاب"
+    simplified: "أخطط لتحسين مهاراتي في اللغة الألمانية",
+    imagine: "🇩🇪📚 علم ألمانيا وكتاب"
 };
 
 HELP_DATA["sprach1_exam27_4"] = {
-    text = "einen Sprachkurs an einer Sommerschule in meiner Heimat machen",
-    meaning = "القيام بدورة لغة في مدرسة صيفية في بلدي",
+    text: "einen Sprachkurs an einer Sommerschule in meiner Heimat machen",
+    meaning: "القيام بدورة لغة في مدرسة صيفية في بلدي",
     keywords: ["machen = القيام", "Sprachkurs = دورة لغة", "Sommerschule = مدرسة صيفية"],
-    simplified = "سألتحق بدورة لغة في الصيف",
-    imagine = "🏖️📝 كراسة شاطئية"
+    simplified: "سألتحق بدورة لغة في الصيف",
+    imagine: "🏖️📝 كراسة شاطئية"
 };
 
 HELP_DATA["sprach1_exam27_5"] = {
-    text = "Ich habe noch eine Frage an Sie",
-    meaning = "لدي سؤال لكم",
+    text: "Ich habe noch eine Frage an Sie",
+    meaning: "لدي سؤال لكم",
     keywords: ["an = إلى", "Frage = سؤال", "Sie = لكم"],
-    simplified = "أود أن أستفسر عن شيء ما",
-    imagine = "❓👪 عائلة تنتظر السؤال"
+    simplified: "أود أن أستفسر عن شيء ما",
+    imagine: "❓👪 عائلة تنتظر السؤال"
 };
 
 HELP_DATA["sprach1_exam27_6"] = {
-    text = "Kann ich mir diese Sachen bei irgendjemandem ausleihen?",
-    meaning = "هل يمكنني استعارة هذه الأشياء من شخص ما؟",
+    text: "Kann ich mir diese Sachen bei irgendjemandem ausleihen?",
+    meaning: "هل يمكنني استعارة هذه الأشياء من شخص ما؟",
     keywords: ["irgendjemandem = شخص ما", "ausleihen = استعارة", "Sachen = أشياء"],
-    simplified = "هل من الممكن استئجار المعدات؟",
-    imagine = "🎿❓ زلاجات وعلامة استفهام"
+    simplified: "هل من الممكن استئجار المعدات؟",
+    imagine: "🎿❓ زلاجات وعلامة استفهام"
 };
 
 HELP_DATA["sprach1_exam27_7"] = {
-    text = "dass Sie mich am Flughafen abholen kommen",
-    meaning = "أنكم ستأتون لاستقبالي من المطار",
+    text: "dass Sie mich am Flughafen abholen kommen",
+    meaning: "أنكم ستأتون لاستقبالي من المطار",
     keywords: ["dass = أن", "abholen = استقبال", "Flughafen = مطار"],
-    simplified = "شكراً لاستعدادكم لاستقبالي عند وصولي",
-    imagine = "🛬👋 طائرة تهبط"
+    simplified: "شكراً لاستعدادكم لاستقبالي عند وصولي",
+    imagine: "🛬👋 طائرة تهبط"
 };
 
 HELP_DATA["sprach1_exam27_8"] = {
-    text = "Ich habe meinen Flug nach Frankfurt schon gebucht",
+    text: "Ich habe meinen Flug nach Frankfurt schon gebucht",
     meaning: "لقد قمت بالفعل بحجز رحلتي إلى فرانكفورت",
     keywords: ["schon = بالفعل", "gebucht = حجزت", "Flug = رحلة"],
-    simplified = "رحلة الطائرة محجوزة بالفعل",
-    imagine = "🛫🎟️ بطاقة طيران"
+    simplified: "رحلة الطائرة محجوزة بالفعل",
+    imagine: "🛫🎟️ بطاقة طيران"
 };
 
 HELP_DATA["sprach1_exam27_9"] = {
-    text = "Ich schlage vor, dass wir uns erst gegen 7:30 Uhr in einem Café treffen",
+    text: "Ich schlage vor, dass wir uns erst gegen 7:30 Uhr in einem Café treffen",
     meaning: "أقترح أن نلتقي في مقهى حوالي الساعة 7:30 صباحاً",
     keywords: ["vor = قبل", "Café = مقهى", "treffen = نلتقي"],
-    simplified = "يمكننا اللقاء في وقت لاحق لتجنب الانتظار الطويل",
-    imagine = "☕🕢 فنجان قهوة وساعة"
+    simplified: "يمكننا اللقاء في وقت لاحق لتجنب الانتظار الطويل",
+    imagine: "☕🕢 فنجان قهوة وساعة"
 };
 
 HELP_DATA["sprach1_exam27_10"] = {
-    text = "damit die Kinder schon ein bisschen mehr von mir sehen",
-    meaning = "حتى يرى الأطفال المزيد عني قليلاً",
+    text: "damit die Kinder schon ein bisschen mehr von mir sehen",
+    meaning: "حتى يرى الأطفال المزيد عني قليلاً",
     keywords: ["mehr = المزيد", "sehen = يرى", "Kinder = أطفال"],
-    simplified = "أرفق بعض الصور ليعرفني أطفالكم أكثر",
-    imagine = "📸👧 صورة فتاة"
+    simplified: "أرفق بعض الصور ليعرفني أطفالكم أكثر",
+    imagine: "📸👧 صورة فتاة"
 };
 
 // ============================================
@@ -10088,83 +10088,83 @@ HELP_DATA["sprach1_exam27_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam28_1"] = {
-    text = "dass ich erst jetzt antworte",
+    text: "dass ich erst jetzt antworte",
     meaning: "أنني أجيب الآن فقط",
     keywords: ["erst = فقط", "jetzt = الآن", "antworte = أجيب"],
-    simplified = "تأخر ردي بسبب عطل فني",
-    imagine = "⏰💻 ساعة ومشكلة تقنية"
+    simplified: "تأخر ردي بسبب عطل فني",
+    imagine: "⏰💻 ساعة ومشكلة تقنية"
 };
 
 HELP_DATA["sprach1_exam28_2"] = {
-    text = "Jetzt funktioniert alles bestens",
+    text: "Jetzt funktioniert alles bestens",
     meaning: "الآن كل شيء يعمل بشكل ممتاز",
     keywords: ["bestens = ممتاز", "funktioniert = يعمل", "alles = كل شيء"],
-    simplified = "لقد عاد الكمبيوتر للعمل بكفاءة كاملة",
-    imagine = "💻✅ كمبيوتر سعيد"
+    simplified: "لقد عاد الكمبيوتر للعمل بكفاءة كاملة",
+    imagine: "💻✅ كمبيوتر سعيد"
 };
 
 HELP_DATA["sprach1_exam28_3"] = {
-    text = "du musst bald wieder mal bei uns kommen",
+    text: "du musst bald wieder mal bei uns kommen",
     meaning: "يجب أن تأتي إلى منزلنا مرة أخرى قريباً",
     keywords: ["bei = في منزل", "uns = نحن", "kommen = تأتي"],
-    simplified = "تفضلي بزيارتنا مجدداً",
-    imagine = "🏠👭 أصدقاء أمام منزل"
+    simplified: "تفضلي بزيارتنا مجدداً",
+    imagine: "🏠👭 أصدقاء أمام منزل"
 };
 
 HELP_DATA["sprach1_exam28_4"] = {
-    text = "aber du bist ziemlich spät dran mit deiner Suche",
+    text: "aber du bist ziemlich spät dran mit deiner Suche",
     meaning: "لكنك متأخرة جداً في بحثك",
     keywords: ["aber = لكن", "ziemlich = جداً", "spät = متأخرة"],
-    simplified = "بدأتِ البحث في وقت متأخر بعض الشيء",
-    imagine = "⏰🏃‍♀️ سباق مع الوقت"
+    simplified: "بدأتِ البحث في وقت متأخر بعض الشيء",
+    imagine: "⏰🏃‍♀️ سباق مع الوقت"
 };
 
 HELP_DATA["sprach1_exam28_5"] = {
-    text = "Man braucht keine besondere Berufserfahrung",
+    text: "Man braucht keine besondere Berufserfahrung",
     meaning: "لا حاجة لخبرة مهنية خاصة",
     keywords: ["besondere = خاصة", "Berufserfahrung = خبرة مهنية", "keine = لا حاجة"],
-    simplified = "المؤهلات المطلوبة بسيطة جداً",
-    imagine = "📜🆓 شهادة وختم مجاني"
+    simplified: "المؤهلات المطلوبة بسيطة جداً",
+    imagine: "📜🆓 شهادة وختم مجاني"
 };
 
 HELP_DATA["sprach1_exam28_6"] = {
-    text = "eine weitere Fremdsprache wäre noch besser",
+    text: "eine weitere Fremdsprache wäre noch besser",
     meaning: "لغة أجنبية إضافية ستكون أفضل",
     keywords: ["weitere = إضافية", "Fremdsprache = لغة أجنبية", "besser = أفضل"],
-    simplified = "إتقان لغة أخرى يُعتبر ميزة إضافية",
-    imagine = "🌍💬 الأرض والكلمات"
+    simplified: "إتقان لغة أخرى يُعتبر ميزة إضافية",
+    imagine: "🌍💬 الأرض والكلمات"
 };
 
 HELP_DATA["sprach1_exam28_7"] = {
-    text = "Du musst dich allerdings sehr bald bewerben",
+    text: "Du musst dich allerdings sehr bald bewerben",
     meaning: "لكن يجب عليك تقديم طلبك قريباً جداً",
     keywords: ["bewerben = تقديم طلب", "sehr bald = قريباً جداً", "musst = يجب عليك"],
-    simplified = "الموعد النهائي لتقديم الطلبات يقترب",
-    imagine = "📝⏰ قلم وساعة"
+    simplified: "الموعد النهائي لتقديم الطلبات يقترب",
+    imagine: "📝⏰ قلم وساعة"
 };
 
 HELP_DATA["sprach1_exam28_8"] = {
-    text = "Leider kenne ich die Hotelbesitzer nicht persönlich",
+    text: "Leider kenne ich die Hotelbesitzer nicht persönlich",
     meaning: "لسوء الحظ، لا أعرف أصحاب الفندق شخصياً",
     keywords: ["Leider = لسوء الحظ", "persönlich = شخصياً", "kenne = أعرف"],
-    simplified = "لا توجد علاقة شخصية يمكن أن تساعدني في التوصية بك",
-    imagine = "🏨😔 فندق ووجه حزين"
+    simplified: "لا توجد علاقة شخصية يمكن أن تساعدني في التوصية بك",
+    imagine: "🏨😔 فندق ووجه حزين"
 };
 
 HELP_DATA["sprach1_exam28_9"] = {
-    text = "Ich werde übrigens wieder im Kinder-Feriencamp arbeiten",
-    meaning = "بالمناسبة، سأعمل مرة أخرى في مخيم العطلات الصيفي للأطفال",
+    text: "Ich werde übrigens wieder im Kinder-Feriencamp arbeiten",
+    meaning: "بالمناسبة، سأعمل مرة أخرى في مخيم العطلات الصيفي للأطفال",
     keywords: ["übrigens = بالمناسبة", "wieder = مرة أخرى", "Kinder-Feriencamp = مخيم عطلات أطفال"],
-    simplified = "لم أغير خطتي لهذا الصيف وسأعمل في نفس المخيم",
-    imagine = "🏕️👦 مخيم أطفال"
+    simplified: "لم أغير خطتي لهذا الصيف وسأعمل في نفس المخيم",
+    imagine: "🏕️👦 مخيم أطفال"
 };
 
 HELP_DATA["sprach1_exam28_10"] = {
-    text = "aber dann habe ich mich doch entschieden hier zu bleiben",
+    text: "aber dann habe ich mich doch entschieden hier zu bleiben",
     meaning: "لكنني في النهاية قررت البقاء هنا",
     keywords: ["entschieden = قررت", "hier = هنا", "bleiben = البقاء"],
-    simplified = "لقد غيرت رأيي وفضلت البقاء",
-    imagine = "🤷‍♀️🗺️ اختيار"
+    simplified: "لقد غيرت رأيي وفضلت البقاء",
+    imagine: "🤷‍♀️🗺️ اختيار"
 };
 
 // ============================================
@@ -10172,83 +10172,83 @@ HELP_DATA["sprach1_exam28_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam29_1"] = {
-    text = "dass ich erst jetzt antworte",
+    text: "dass ich erst jetzt antworte",
     meaning: "أنني أجيب الآن فقط",
     keywords: ["erst = فقط", "jetzt = الآن", "antworte = أجيب"],
-    simplified = "تأخر ردي بسبب عطل فني",
-    imagine = "⏰💻 ساعة ومشكلة تقنية"
+    simplified: "تأخر ردي بسبب عطل فني",
+    imagine: "⏰💻 ساعة ومشكلة تقنية"
 };
 
 HELP_DATA["sprach1_exam29_2"] = {
-    text = "Jetzt funktioniert alles bestens",
+    text: "Jetzt funktioniert alles bestens",
     meaning: "الآن كل شيء يعمل بشكل ممتاز",
     keywords: ["bestens = ممتاز", "funktioniert = يعمل", "alles = كل شيء"],
-    simplified = "لقد عاد الكمبيوتر للعمل بكفاءة كاملة",
-    imagine = "💻✅ كمبيوتر سعيد"
+    simplified: "لقد عاد الكمبيوتر للعمل بكفاءة كاملة",
+    imagine: "💻✅ كمبيوتر سعيد"
 };
 
 HELP_DATA["sprach1_exam29_3"] = {
-    text = "du musst bald wieder mal bei uns kommen",
+    text: "du musst bald wieder mal bei uns kommen",
     meaning: "يجب أن تأتي إلى منزلنا مرة أخرى قريباً",
     keywords: ["bei = في منزل", "uns = نحن", "kommen = تأتي"],
-    simplified = "تفضلي بزيارتنا مجدداً",
-    imagine = "🏠👭 أصدقاء أمام منزل"
+    simplified: "تفضلي بزيارتنا مجدداً",
+    imagine: "🏠👭 أصدقاء أمام منزل"
 };
 
 HELP_DATA["sprach1_exam29_4"] = {
-    text = "aber du bist ziemlich spät dran mit deiner Suche",
+    text: "aber du bist ziemlich spät dran mit deiner Suche",
     meaning: "لكنك متأخرة جداً في بحثك",
     keywords: ["ziemlich = جداً", "spät = متأخرة", "Suche = بحث"],
-    simplified = "بدأتِ البحث في وقت متأخر بعض الشيء",
-    imagine = "⏰🏃‍♀️ سباق مع الوقت"
+    simplified: "بدأتِ البحث في وقت متأخر بعض الشيء",
+    imagine: "⏰🏃‍♀️ سباق مع الوقت"
 };
 
 HELP_DATA["sprach1_exam29_5"] = {
-    text = "Man braucht keine besondere Berufserfahrung",
+    text: "Man braucht keine besondere Berufserfahrung",
     meaning: "لا حاجة لخبرة مهنية خاصة",
     keywords: ["besondere = خاصة", "Berufserfahrung = خبرة مهنية", "keine = لا حاجة"],
-    simplified = "المؤهلات المطلوبة بسيطة جداً",
-    imagine = "📜🆓 شهادة وختم مجاني"
+    simplified: "المؤهلات المطلوبة بسيطة جداً",
+    imagine: "📜🆓 شهادة وختم مجاني"
 };
 
 HELP_DATA["sprach1_exam29_6"] = {
-    text = "eine weitere Fremdsprache wäre noch besser",
+    text: "eine weitere Fremdsprache wäre noch besser",
     meaning: "لغة أجنبية إضافية ستكون أفضل",
     keywords: ["weitere = إضافية", "Fremdsprache = لغة أجنبية", "besser = أفضل"],
-    simplified = "إتقان لغة أخرى يُعتبر ميزة إضافية",
-    imagine = "🌍💬 الأرض والكلمات"
+    simplified: "إتقان لغة أخرى يُعتبر ميزة إضافية",
+    imagine: "🌍💬 الأرض والكلمات"
 };
 
 HELP_DATA["sprach1_exam29_7"] = {
-    text = "Du musst dich allerdings sehr bald bewerben",
+    text: "Du musst dich allerdings sehr bald bewerben",
     meaning: "لكن يجب عليك تقديم طلبك قريباً جداً",
     keywords: ["bewerben = تقديم طلب", "sehr bald = قريباً جداً", "musst = يجب عليك"],
-    simplified = "الموعد النهائي لتقديم الطلبات يقترب",
-    imagine = "📝⏰ قلم وساعة"
+    simplified: "الموعد النهائي لتقديم الطلبات يقترب",
+    imagine: "📝⏰ قلم وساعة"
 };
 
 HELP_DATA["sprach1_exam29_8"] = {
-    text = "sonst hätte ich mich natürlich sofort für dich eingesetzt",
+    text: "sonst hätte ich mich natürlich sofort für dich eingesetzt",
     meaning: "وإلا لكنت دعمتك فوراً",
     keywords: ["sonst = وإلا", "eingesetzt = دعمت", "sofort = فوراً"],
-    simplified = "لولا ذلك، لساعدتك بكل تأكيد",
-    imagine = "🤝💪 يد تدعم"
+    simplified: "لولا ذلك، لساعدتك بكل تأكيد",
+    imagine: "🤝💪 يد تدعم"
 };
 
 HELP_DATA["sprach1_exam29_9"] = {
-    text = "Ich werde übrigens wieder im Kinder-Feriencamp arbeiten",
-    meaning = "بالمناسبة، سأعمل مرة أخرى في مخيم العطلات الصيفي للأطفال",
+    text: "Ich werde übrigens wieder im Kinder-Feriencamp arbeiten",
+    meaning: "بالمناسبة، سأعمل مرة أخرى في مخيم العطلات الصيفي للأطفال",
     keywords: ["übrigens = بالمناسبة", "wieder = مرة أخرى", "Kinder-Feriencamp = مخيم عطلات أطفال"],
-    simplified = "لم أغير خطتي لهذا الصيف وسأعمل في نفس المخيم",
-    imagine = "🏕️👦 مخيم أطفال"
+    simplified: "لم أغير خطتي لهذا الصيف وسأعمل في نفس المخيم",
+    imagine: "🏕️👦 مخيم أطفال"
 };
 
 HELP_DATA["sprach1_exam29_10"] = {
-    text = "aber dann habe ich mich doch entschieden hier zu bleiben",
+    text: "aber dann habe ich mich doch entschieden hier zu bleiben",
     meaning: "لكنني في النهاية قررت البقاء هنا",
     keywords: ["entschieden = قررت", "hier = هنا", "bleiben = البقاء"],
-    simplified = "لقد غيرت رأيي وفضلت البقاء",
-    imagine = "🤷‍♀️🗺️ اختيار"
+    simplified: "لقد غيرت رأيي وفضلت البقاء",
+    imagine: "🤷‍♀️🗺️ اختيار"
 };
 
 // ============================================
@@ -10256,83 +10256,83 @@ HELP_DATA["sprach1_exam29_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam30_1"] = {
-    text = "schicke ich dir noch rasch einige Zeilen",
+    text: "schicke ich dir noch rasch einige Zeilen",
     meaning: "سأرسل لك بضعة أسطر بسرعة",
     keywords: ["rasch = بسرعة", "Zeilen = أسطر", "schicke = سأرسل"],
-    simplified = "فكرت أن أكتب لك قبل العودة للروتين",
-    imagine = "✍️📨 يكتب"
+    simplified: "فكرت أن أكتب لك قبل العودة للروتين",
+    imagine: "✍️📨 يكتب"
 };
 
 HELP_DATA["sprach1_exam30_2"] = {
-    text = "wegen deiner Grippe nicht dabei sein konntest",
+    text: "wegen deiner Grippe nicht dabei sein konntest",
     meaning: "بسبب إصابتك بالإنفلونزا لم تستطيعي الحضور",
     keywords: ["wegen = بسبب", "Grippe = إنفلونزا", "dabei sein = الحضور"],
-    simplified = "كنا نفتقدك حقاً خاصة عندما علمنا أنك مريضة",
-    imagine = "🤧💊 أنسجة وأدوية"
+    simplified: "كنا نفتقدك حقاً خاصة عندما علمنا أنك مريضة",
+    imagine: "🤧💊 أنسجة وأدوية"
 };
 
 HELP_DATA["sprach1_exam30_3"] = {
-    text = "Außer auf Michael sind alle mit dem Zug angereist",
-    meaning = "باستثناء مايكل، سافر الجميع بالقطار",
+    text: "Außer auf Michael sind alle mit dem Zug angereist",
+    meaning: "باستثناء مايكل، سافر الجميع بالقطار",
     keywords: ["Außer = باستثناء", "Zug = قطار", "angereist = سافر"],
-    simplified = "لقد سافرنا جميعاً بالقطار ما عدا هو",
-    imagine = "🚆👋 قطار يسير"
+    simplified: "لقد سافرنا جميعاً بالقطار ما عدا هو",
+    imagine: "🚆👋 قطار يسير"
 };
 
 HELP_DATA["sprach1_exam30_4"] = {
-    text = "Nachdem wir unser Gepäck abgestellt hatten",
-    meaning = "بعد أن وضعنا أمتعتنا جانباً",
+    text: "Nachdem wir unser Gepäck abgestellt hatten",
+    meaning: "بعد أن وضعنا أمتعتنا جانباً",
     keywords: ["abgestellt hatten = كنا قد وضعنا جانباً", "Gepäck = أمتعة", "Nachdem = بعد أن"],
-    simplified = "بمجرد وضع الحقائب قمنا بجولة",
-    imagine = "🧳🚪 حقائب عند الباب"
+    simplified: "بمجرد وضع الحقائب قمنا بجولة",
+    imagine: "🧳🚪 حقائب عند الباب"
 };
 
 HELP_DATA["sprach1_exam30_5"] = {
-    text = "hat sich als ausgezeichnete Fremdenführerin erwiesen",
-    meaning = "أثبتت أنها مرشدة سياحية ممتازة",
+    text: "hat sich als ausgezeichnete Fremdenführerin erwiesen",
+    meaning: "أثبتت أنها مرشدة سياحية ممتازة",
     keywords: ["als = كـ", "ausgezeichnete = ممتازة", "Fremdenführerin = مرشدة سياحية"],
-    simplified = "عرفت ليلو كل شيء عن المنطقة وأرشدتنا بمهارة",
-    imagine = "🗺️👩‍🏫 مرشدة سياحية"
+    simplified: "عرفت ليلو كل شيء عن المنطقة وأرشدتنا بمهارة",
+    imagine: "🗺️👩‍🏫 مرشدة سياحية"
 };
 
 HELP_DATA["sprach1_exam30_6"] = {
-    text = "Am Abend stand dann die Felsenbühne auf dem Programm",
-    meaning = "في المساء كانت المسرح الصخري ضمن جدول الأعمال",
+    text: "Am Abend stand dann die Felsenbühne auf dem Programm",
+    meaning: "في المساء كانت المسرح الصخري ضمن جدول الأعمال",
     keywords: ["auf = على", "Programm = جدول أعمال", "Felsenbühne = مسرح صخري"],
-    simplified = "لقد شاهدنا عرضاً مسرحياً مميزاً في المساء",
-    imagine = "⛰️🎭 مسرح في الجبال"
+    simplified: "لقد شاهدنا عرضاً مسرحياً مميزاً في المساء",
+    imagine: "⛰️🎭 مسرح في الجبال"
 };
 
 HELP_DATA["sprach1_exam30_7"] = {
-    text = "Die Wanderung am nächsten Tag war ganz schön anstrengend",
+    text: "Die Wanderung am nächsten Tag war ganz schön anstrengend",
     meaning: "كانت رحلة اليوم التالي مرهقة حقاً",
     keywords: ["ganz schön = حقاً", "anstrengend = مرهقة", "Wanderung = رحلة"],
-    simplified = "التسلق كان متعباً ولكنه يستحق العناء",
-    imagine = "🥾😓 حذاء المشي"
+    simplified: "التسلق كان متعباً ولكنه يستحق العناء",
+    imagine: "🥾😓 حذاء المشي"
 };
 
 HELP_DATA["sprach1_exam30_8"] = {
-    text = "Obwohl alle ziemlich erschöpft waren",
-    meaning = "على الرغم من أن الجميع كانوا مرهقين جداً",
+    text: "Obwohl alle ziemlich erschöpft waren",
+    meaning: "على الرغم من أن الجميع كانوا مرهقين جداً",
     keywords: ["Obwohl = على الرغم من", "erschöpft = مرهقين", "ziemlich = جداً"],
-    simplified = "لم نستطع النوم مبكراً رغم التعب الشديد",
-    imagine = "😴💬 شخص نائم بجانب آخر"
+    simplified: "لم نستطع النوم مبكراً رغم التعب الشديد",
+    imagine: "😴💬 شخص نائم بجانب آخر"
 };
 
 HELP_DATA["sprach1_exam30_9"] = {
-    text = "waren wir uns einig, dass wir bald wieder zusammen einen Ausflug machen sollten",
-    meaning = "اتفقنا على أن ننظم رحلة أخرى معاً قريباً",
+    text: "waren wir uns einig, dass wir bald wieder zusammen einen Ausflug machen sollten",
+    meaning: "اتفقنا على أن ننظم رحلة أخرى معاً قريباً",
     keywords: ["sollten = يجب أن", "Ausflug = رحلة", "zusammen = معاً"],
-    simplified = "لقد خططنا لاجتماع قادم بالفعل",
-    imagine = "🗓️🤝 أيادي مصافحة"
+    simplified: "لقد خططنا لاجتماع قادم بالفعل",
+    imagine: "🗓️🤝 أيادي مصافحة"
 };
 
 HELP_DATA["sprach1_exam30_10"] = {
-    text = "Ich hoffe, dass es dir inzwischen schon wieder besser geht",
-    meaning = "آمل أن تكوني قد تعافيتِ الآن",
+    text: "Ich hoffe, dass es dir inzwischen schon wieder besser geht",
+    meaning: "آمل أن تكوني قد تعافيتِ الآن",
     keywords: ["inzwischen = الآن", "besser = أفضل", "geht = تشعرين"],
-    simplified = "أتمنى أن تكوني قد استعدت عافيتك تماماً",
-    imagine = "💪😊 يد تعرض عضلة ووجه مبتسم"
+    simplified: "أتمنى أن تكوني قد استعدت عافيتك تماماً",
+    imagine: "💪😊 يد تعرض عضلة ووجه مبتسم"
 };
 
 // ============================================
@@ -10344,79 +10344,79 @@ HELP_DATA["sprach1_exam31_1"] = {
     meaning: "بدوراتنا الألمانية",
     keywords: ["an = بدورات", "Deutschkursen = دورات ألمانية", "unseren = دوراتنا"],
     simplified: "اهتمامكم بدوراتنا الألمانية",
-    imagine = "🇩🇪📚 علم ألماني وكتاب"
+    imagine: "🇩🇪📚 علم ألماني وكتاب"
 };
 
 HELP_DATA["sprach1_exam31_2"] = {
-    text = "in Höhe von € 200,-",
-    meaning = "بقيمة 200 يورو",
-    keywords = ["Höhe = قيمة", "von = بقيمة", "€ 200,- = 200 يورو"],
-    simplified = "دفعة أولى قدرها 200 يورو",
-    imagine = "💰📄 ورقة نقدية يورو"
+    text: "in Höhe von € 200,-",
+    meaning: "بقيمة 200 يورو",
+    keywords: ["Höhe = قيمة", "von = بقيمة", "€ 200,- = 200 يورو"],
+    simplified: "دفعة أولى قدرها 200 يورو",
+    imagine: "💰📄 ورقة نقدية يورو"
 };
 
 HELP_DATA["sprach1_exam31_3"] = {
-    text = "Zwecks besserer Einschätzung Ihrer Vorkenntnisse",
-    meaning = "لغرض تقدير أفضل لمعرفتك المسبقة",
-    keywords = ["Zwecks = لغرض", "Einschätzung = تقدير", "Vorkenntnisse = معرفة مسبقة"],
-    simplified = "لتقييم مستواك بشكل أفضل",
-    imagine = "📝🔍 ورقة امتحان وعدسة مكبرة"
+    text: "Zwecks besserer Einschätzung Ihrer Vorkenntnisse",
+    meaning: "لغرض تقدير أفضل لمعرفتك المسبقة",
+    keywords: ["Zwecks = لغرض", "Einschätzung = تقدير", "Vorkenntnisse = معرفة مسبقة"],
+    simplified: "لتقييم مستواك بشكل أفضل",
+    imagine: "📝🔍 ورقة امتحان وعدسة مكبرة"
 };
 
 HELP_DATA["sprach1_exam31_4"] = {
-    text = "anschließen",
-    meaning = "يُلحق",
-    keywords = ["anschließen = يلحق", "mündlicher Test = اختبار شفوي", "wird sich = سيكون"],
-    simplified = "سيتم إجراء اختبار شفوي",
-    imagine = "🗣️📝 فقاعة كلام وورقة"
+    text: "anschließen",
+    meaning: "يُلحق",
+    keywords: ["anschließen = يلحق", "mündlicher Test = اختبار شفوي", "wird sich = سيكون"],
+    simplified: "سيتم إجراء اختبار شفوي",
+    imagine: "🗣️📝 فقاعة كلام وورقة"
 };
 
 HELP_DATA["sprach1_exam31_5"] = {
-    text = "bezüglich Ihrer Freizeitinteressen",
-    meaning = "بخصوص اهتماماتك في أوقات الفراغ",
-    keywords = ["bezüglich = بخصوص", "Freizeitinteressen = اهتمامات أوقات الفراغ", "Ihrer = اهتماماتك"],
-    simplified = "استبيان حول هواياتك",
-    imagine = "🎨⚽ رسم وكرات قدم"
+    text: "bezüglich Ihrer Freizeitinteressen",
+    meaning: "بخصوص اهتماماتك في أوقات الفراغ",
+    keywords: ["bezüglich = بخصوص", "Freizeitinteressen = اهتمامات أوقات الفراغ", "Ihrer = اهتماماتك"],
+    simplified: "استبيان حول هواياتك",
+    imagine: "🎨⚽ رسم وكرات قدم"
 };
 
 HELP_DATA["sprach1_exam31_6"] = {
-    text = "so angenehm wie möglich",
-    meaning = "بأكثر شكل مريح قدر الإمكان",
-    keywords = ["angenehm = مريح", "möglich = ممكن", "wie = قدر"],
-    simplified = "نجعل إقامتك ممتعة قدر الإمكان",
-    imagine = "😊🏨 وجه مبتسم وفندق"
+    text: "so angenehm wie möglich",
+    meaning: "بأكثر شكل مريح قدر الإمكان",
+    keywords: ["angenehm = مريح", "möglich = ممكن", "wie = قدر"],
+    simplified: "نجعل إقامتك ممتعة قدر الإمكان",
+    imagine: "😊🏨 وجه مبتسم وفندق"
 };
 
 HELP_DATA["sprach1_exam31_7"] = {
-    text = "einer Privatunterkunft",
-    meaning = "سكن خاص",
-    keywords = ["einer = سكن", "Privatunterkunft = سكن خاص", "deutschen Gastfamilie = عائلة مضيفة ألمانية"],
-    simplified = "الإقامة مع عائلة ألمانية",
-    imagine = "🏠👨‍👩‍👧👦 منزل وعائلة"
+    text: "einer Privatunterkunft",
+    meaning: "سكن خاص",
+    keywords: ["einer = سكن", "Privatunterkunft = سكن خاص", "deutschen Gastfamilie = عائلة مضيفة ألمانية"],
+    simplified: "الإقامة مع عائلة ألمانية",
+    imagine: "🏠👨‍👩‍👧👦 منزل وعائلة"
 };
 
 HELP_DATA["sprach1_exam31_8"] = {
-    text = "Sobald Ihre Anmeldung bei uns eingegangen ist",
-    meaning = "بمجرد استلام طلب التسجيل الخاص بك",
-    keywords = ["Sobald = بمجرد", "Anmeldung = طلب تسجيل", "eingegangen = مستلم"],
-    simplified = "عند وصول طلبك إلينا",
-    imagine = "📬✉️ صندوق بريد ورسالة"
+    text: "Sobald Ihre Anmeldung bei uns eingegangen ist",
+    meaning: "بمجرد استلام طلب التسجيل الخاص بك",
+    keywords: ["Sobald = بمجرد", "Anmeldung = طلب تسجيل", "eingegangen = مستلم"],
+    simplified: "عند وصول طلبك إلينا",
+    imagine: "📬✉️ صندوق بريد ورسالة"
 };
 
 HELP_DATA["sprach1_exam31_9"] = {
-    text = "damit Sie den Weg zu uns ohne Umstände finden",
-    meaning = "لتجد الطريق إلينا بسهولة",
-    keywords = ["damit = لكي", "ohne Umstände = بسهولة", "finden = تجد"],
-    simplified = "لتعثر على طريقك بدون متاعب",
-    imagine = "🗺️📍 خريطة وعلامة موقع"
+    text: "damit Sie den Weg zu uns ohne Umstände finden",
+    meaning: "لتجد الطريق إلينا بسهولة",
+    keywords: ["damit = لكي", "ohne Umstände = بسهولة", "finden = تجد"],
+    simplified: "لتعثر على طريقك بدون متاعب",
+    imagine: "🗺️📍 خريطة وعلامة موقع"
 };
 
 HELP_DATA["sprach1_exam31_10"] = {
-    text = "Für weitere Fragen",
-    meaning = "للاستفسارات الأخرى",
-    keywords = ["Für = لـ", "weitere = أخرى", "Fragen = استفسارات"],
-    simplified = "لأي استفسارات إضافية",
-    imagine = "❓☎️ علامة استفهام وسماعة هاتف"
+    text: "Für weitere Fragen",
+    meaning: "للاستفسارات الأخرى",
+    keywords: ["Für = لـ", "weitere = أخرى", "Fragen = استفسارات"],
+    simplified: "لأي استفسارات إضافية",
+    imagine: "❓☎️ علامة استفهام وسماعة هاتف"
 };
 
 // ============================================
@@ -10424,15 +10424,15 @@ HELP_DATA["sprach1_exam31_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam32_1"] = {
-    text = "anbei erhalten Sie das angeforderte Anmeldeformular",
-    meaning = "مرفق تجدون نموذج التسجيل المطلوب",
+    text: "anbei erhalten Sie das angeforderte Anmeldeformular",
+    meaning: "مرفق تجدون نموذج التسجيل المطلوب",
     keywords: ["anbei = مرفق", "erhalten = تجدون", "Anmeldeformular = نموذج تسجيل"],
-    simplified = "نموذج التسجيل مرفق بهذه الرسالة",
+    simplified: "نموذج التسجيل مرفق بهذه الرسالة",
     imagine: "📎📄 مشبك ورق مع ورقة"
 };
 
 HELP_DATA["sprach1_exam32_2"] = {
-    text = "in Höhe von € 200,-",
+    text: "in Höhe von € 200,-",
     meaning: "بقيمة 200 يورو",
     keywords: ["Höhe = قيمة", "von = بقيمة", "€ 200,- = 200 يورو"],
     simplified: "دفعة أولى قدرها 200 يورو",
@@ -10440,67 +10440,67 @@ HELP_DATA["sprach1_exam32_2"] = {
 };
 
 HELP_DATA["sprach1_exam32_3"] = {
-    text = "Zur genaueren Einschätzung Ihrer Vorkenntnisse",
+    text: "Zur genaueren Einschätzung Ihrer Vorkenntnisse",
     meaning: "لتقييم أكثر دقة لمعرفتك المسبقة",
     keywords: ["Zur = لـ", "genaueren = أكثر دقة", "Einschätzung = تقييم"],
-    simplified = "لتحديد مستواك بدقة",
-    imagine = "📊📝 رسم بياني وورقة"
+    simplified: "لتحديد مستواك بدقة",
+    imagine: "📊📝 رسم بياني وورقة"
 };
 
 HELP_DATA["sprach1_exam32_4"] = {
-    text = "wird sich ... ein mündlicher Test stattfinden",
+    text: "wird sich ... ein mündlicher Test stattfinden",
     meaning: "سيتم إجراء اختبار شفوي",
     keywords: ["stattfinden = يتم إجراء", "mündlicher Test = اختبار شفوي", "wird sich = سيكون"],
-    simplified = "سيكون هناك اختبار تحدث",
-    imagine = "🗣️👂 شخص يتحدث وآخر يستمع"
+    simplified: "سيكون هناك اختبار تحدث",
+    imagine: "🗣️👂 شخص يتحدث وآخر يستمع"
 };
 
 HELP_DATA["sprach1_exam32_5"] = {
-    text = "bezüglich Ihrer Freizeitinteressen",
+    text: "bezüglich Ihrer Freizeitinteressen",
     meaning: "بخصوص اهتماماتك في أوقات الفراغ",
     keywords: ["bezüglich = بخصوص", "Freizeitinteressen = اهتمامات أوقات الفراغ", "Ihrer = اهتماماتك"],
-    simplified = "استبيان حول هواياتك",
-    imagine = "🎨⚽ رسم وكرات قدم"
+    simplified: "استبيان حول هواياتك",
+    imagine: "🎨⚽ رسم وكرات قدم"
 };
 
 HELP_DATA["sprach1_exam32_6"] = {
-    text = "möglichst angenehm zu gestalten",
+    text: "möglichst angenehm zu gestalten",
     meaning: "لجعلها مريحة قدر الإمكان",
     keywords: ["möglichst = قدر الإمكان", "angenehm = مريحة", "zu gestalten = لجعل"],
-    simplified = "نسعى لتوفير إقامة ممتعة",
-    imagine = "😊🏨 وجه مبتسم وفندق"
+    simplified: "نسعى لتوفير إقامة ممتعة",
+    imagine: "😊🏨 وجه مبتسم وفندق"
 };
 
 HELP_DATA["sprach1_exam32_7"] = {
-    text = "einer Privatunterkunft",
+    text: "einer Privatunterkunft",
     meaning: "سكن خاص",
     keywords: ["einer = سكن", "Privatunterkunft = سكن خاص", "deutschen Gastfamilie = عائلة مضيفة ألمانية"],
-    simplified = "الإقامة مع عائلة ألمانية",
-    imagine = "🏠👨‍👩‍👧‍👦 منزل وعائلة"
+    simplified: "الإقامة مع عائلة ألمانية",
+    imagine: "🏠👨‍👩‍👧‍👦 منزل وعائلة"
 };
 
 HELP_DATA["sprach1_exam32_8"] = {
-    text = "Sobald Ihre Anmeldung bei uns eingegangen ist",
+    text: "Sobald Ihre Anmeldung bei uns eingegangen ist",
     meaning: "بمجرد استلام طلب التسجيل الخاص بك",
     keywords: ["Sobald = بمجرد", "Anmeldung = طلب تسجيل", "eingegangen = مستلم"],
-    simplified = "عند وصول طلبك إلينا",
-    imagine = "📬✉️ صندوق بريد ورسالة"
+    simplified: "عند وصول طلبك إلينا",
+    imagine: "📬✉️ صندوق بريد ورسالة"
 };
 
 HELP_DATA["sprach1_exam32_9"] = {
-    text = "damit Sie den Weg zu uns ohne Umstände finden",
+    text: "damit Sie den Weg zu uns ohne Umstände finden",
     meaning: "لتجد الطريق إلينا بسهولة",
     keywords: ["damit = لكي", "ohne Umstände = بسهولة", "finden = تجد"],
-    simplified = "لتعثر على طريقك بدون متاعب",
-    imagine = "🗺️📍 خريطة وعلامة موقع"
+    simplified: "لتعثر على طريقك بدون متاعب",
+    imagine: "🗺️📍 خريطة وعلامة موقع"
 };
 
 HELP_DATA["sprach1_exam32_10"] = {
-    text = "Für weitere Fragen",
+    text: "Für weitere Fragen",
     meaning: "للاستفسارات الأخرى",
     keywords: ["Für = لـ", "weitere = أخرى", "Fragen = استفسارات"],
-    simplified = "لأي استفسارات إضافية",
-    imagine = "❓☎️ علامة استفهام وسماعة هاتف"
+    simplified: "لأي استفسارات إضافية",
+    imagine: "❓☎️ علامة استفهام وسماعة هاتف"
 };
 
 // ============================================
@@ -10508,83 +10508,83 @@ HELP_DATA["sprach1_exam32_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam33_1"] = {
-    text = "über die ich mich sehr gefreut habe",
+    text: "über die ich mich sehr gefreut habe",
     meaning: "التي سررت بها كثيراً",
     keywords: ["über = التي", "mich gefreut = سررت", "sehr = كثيراً"],
-    simplified = "التي أسعدتني كثيراً",
+    simplified: "التي أسعدتني كثيراً",
     imagine: "💌😊 رسالة ووجه مبتسم"
 };
 
 HELP_DATA["sprach1_exam33_2"] = {
-    text = "außerdem noch billiger",
+    text: "außerdem noch billiger",
     meaning: "وأيضاً أرخص",
     keywords: ["außerdem = أيضاً", "billiger = أرخص", "noch = أيضاً"],
-    simplified = "والقطار أكثر اقتصاداً أيضاً",
+    simplified: "والقطار أكثر اقتصاداً أيضاً",
     imagine: "🚆💰 قطار وعلامة توفير"
 };
 
 HELP_DATA["sprach1_exam33_3"] = {
-    text = "können wir ... Zug fahren",
+    text: "können wir ... Zug fahren",
     meaning: "يمكننا ركوب القطار",
     keywords: ["fahren = ركوب", "Zug = قطار", "können = يمكننا"],
-    simplified = "السفر بالقطار في 30 دولة أوروبية",
-    imagine = "🚆🗺️ قطار وخريطة أوروبا"
+    simplified: "السفر بالقطار في 30 دولة أوروبية",
+    imagine: "🚆🗺️ قطار وخريطة أوروبا"
 };
 
 HELP_DATA["sprach1_exam33_4"] = {
-    text = "Da wir noch keine 26 Jahre alt sind",
+    text: "Da wir noch keine 26 Jahre alt sind",
     meaning: "بما أننا لم نبلغ 26 عاماً بعد",
     keywords: ["Da = بما أن", "noch = بعد", "26 Jahre alt = 26 عاماً"],
-    simplified = "لأننا دون سن 26 عاماً، التذكرة ستكون رخيصة",
-    imagine = "🎫👦 تذكرة وشخص شاب"
+    simplified: "لأننا دون سن 26 عاماً، التذكرة ستكون رخيصة",
+    imagine: "🎫👦 تذكرة وشخص شاب"
 };
 
 HELP_DATA["sprach1_exam33_5"] = {
-    text = "Der Preis hängt davon ab",
+    text: "Der Preis hängt davon ab",
     meaning: "السعر يعتمد على ذلك",
     keywords: ["hängt ab = يعتمد", "davon = على ذلك", "Preis = سعر"],
-    simplified = "السعر يتوقف على مدة الرحلة",
-    imagine = "💰⏳ نقود وساعة"
+    simplified: "السعر يتوقف على مدة الرحلة",
+    imagine: "💰⏳ نقود وساعة"
 };
 
 HELP_DATA["sprach1_exam33_6"] = {
-    text = "Ich habe auch schon mit meiner Tante in Marseille gesprochen",
+    text: "Ich habe auch schon mit meiner Tante in Marseille gesprochen",
     meaning: "لقد تحدثت أيضاً مع عمتي في مرسيليا",
     keywords: ["gesprochen = تحدثت", "Tante = عمة", "Marseille = مرسيليا"],
-    simplified = "اتصلت بعمتي التي تقيم في مرسيليا",
-    imagine = "📞👩‍🦳 مكالمة هاتفية وامرأة"
+    simplified: "اتصلت بعمتي التي تقيم في مرسيليا",
+    imagine: "📞👩‍🦳 مكالمة هاتفية وامرأة"
 };
 
 HELP_DATA["sprach1_exam33_7"] = {
-    text = "dass wir einige Tage bei ihr verbringen",
+    text: "dass wir einige Tage bei ihr verbringen",
     meaning: "أن نقضي بضعة أيام عندها",
     keywords: ["dass = أن", "verbringen = نقضي", "einige Tage = بضعة أيام"],
-    simplified = "اقترحت عمتي أن نزورها لبضعة أيام",
-    imagine = "🏠💕 منزل وقلب"
+    simplified: "اقترحت عمتي أن نزورها لبضعة أيام",
+    imagine: "🏠💕 منزل وقلب"
 };
 
 HELP_DATA["sprach1_exam33_8"] = {
-    text = "sich freuen, mit uns um die Häuser zu ziehen",
+    text: "sich freuen, mit uns um die Häuser zu ziehen",
     meaning: "يسعدون بالخروج معنا",
     keywords: ["sich freuen = يسعدون", "um die Häuser ziehen = الخروج", "mit uns = معنا"],
-    simplified = "سيكون ابن عمي سعيداً برفقتنا",
-    imagine = "🎉👬 احتفال وصديقان"
+    simplified: "سيكون ابن عمي سعيداً برفقتنا",
+    imagine: "🎉👬 احتفال وصديقان"
 };
 
 HELP_DATA["sprach1_exam33_9"] = {
-    text = "deine Sprachkenntnisse",
+    text: "deine Sprachkenntnisse",
     meaning: "مهاراتك اللغوية",
     keywords: ["deine = مهاراتك", "Sprachkenntnisse = مهارات لغوية", "der = الـ"],
-    simplified = "لا تقلق بشأن الحاجز اللغوي",
-    imagine = "🗣️💬 فقاعات كلام"
+    simplified: "لا تقلق بشأن الحاجز اللغوي",
+    imagine: "🗣️💬 فقاعات كلام"
 };
 
 HELP_DATA["sprach1_exam33_10"] = {
-    text = "jedenfalls schon sehr auf unsere gemeinsame Reise",
+    text: "jedenfalls schon sehr auf unsere gemeinsame Reise",
     meaning: "على أية حال على رحلتنا المشتركة",
     keywords: ["jedenfalls = على أية حال", "gemeinsame = مشتركة", "Reise = رحلة"],
-    simplified = "أتطلع لرحلتنا سوياً بكل تأكيد",
-    imagine = "✈️😊 طائرة ووجه مبتسم"
+    simplified: "أتطلع لرحلتنا سوياً بكل تأكيد",
+    imagine: "✈️😊 طائرة ووجه مبتسم"
 };
 
 // ============================================
@@ -10592,83 +10592,83 @@ HELP_DATA["sprach1_exam33_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam34_1"] = {
-    text = "deinen Brief antworte",
+    text: "deinen Brief antworte",
     meaning: "أرد على رسالتك",
     keywords: ["deinen Brief = رسالتك", "antworte = أرد", "auf = على"],
-    simplified = "تأخرت في الرد على رسالتك",
+    simplified: "تأخرت في الرد على رسالتك",
     imagine: "✉️⏰ رسالة وساعة"
 };
 
 HELP_DATA["sprach1_exam34_2"] = {
-    text = "weil du wirklich tolle Neuigkeiten mitzuteilen hast",
+    text: "weil du wirklich tolle Neuigkeiten mitzuteilen hast",
     meaning: "لأن لديك أخبار رائعة لتخبريها",
     keywords: ["weil = لأن", "tolle Neuigkeiten = أخبار رائعة", "mitzuteilen = لتخبريها"],
-    simplified = "لأن لديك أخباراً سعيدة تودين مشاركتها",
-    imagine = "📢🎉 مكبر صوت وزينة احتفال"
+    simplified: "لأن لديك أخباراً سعيدة تودين مشاركتها",
+    imagine: "📢🎉 مكبر صوت وزينة احتفال"
 };
 
 HELP_DATA["sprach1_exam34_3"] = {
-    text = "Ich weiß noch gut",
+    text: "Ich weiß noch gut",
     meaning: "ما زلت أذكر جيداً",
     keywords: ["noch = ما زلت", "gut = جيداً", "weiß = أذكر"],
-    simplified = "ما زلت أذكر كيف كنا نحلم بالسفر",
-    imagine = "💭🌍 حلم وخريطة"
+    simplified: "ما زلت أذكر كيف كنا نحلم بالسفر",
+    imagine: "💭🌍 حلم وخريطة"
 };
 
 HELP_DATA["sprach1_exam34_4"] = {
-    text = "Für deinen Neubeginn wünschen Peter und ich dir alles Gute",
+    text: "Für deinen Neubeginn wünschen Peter und ich dir alles Gute",
     meaning: "بمناسبة بدايتك الجديدة، نتمنى لك كل التوفيق أنا وبيتر",
     keywords: ["Für = بمناسبة", "Neubeginn = بداية جديدة", "alles Gute = كل التوفيق"],
-    simplified = "نتمنى لك التوفيق في فصلك الجديد",
-    imagine = "🍀✨ برسيم رباعي ونجوم"
+    simplified: "نتمنى لك التوفيق في فصلك الجديد",
+    imagine: "🍀✨ برسيم رباعي ونجوم"
 };
 
 HELP_DATA["sprach1_exam34_5"] = {
-    text = "auf seiner neuen Stelle",
+    text: "auf seiner neuen Stelle",
     meaning: "في منصبه الجديد",
     keywords: ["neuen = الجديد", "Stelle = منصب", "seiner = منصبه"],
-    simplified = "روبرت سعيد بعمله الجديد",
-    imagine = "👔💼 ربطة عنق وحقيبة"
+    simplified: "روبرت سعيد بعمله الجديد",
+    imagine: "👔💼 ربطة عنق وحقيبة"
 };
 
 HELP_DATA["sprach1_exam34_6"] = {
-    text = "Du weißt ja, was das heißt",
+    text: "Du weißt ja, was das heißt",
     meaning: "أنت تعلمين ماذا يعني ذلك",
     keywords: ["ja = بالطبع", "weißt = تعلمين", "das heißt = يعني ذلك"],
-    simplified = "أنت تعرفين كيف يكون المراهقون في هذا العمر",
-    imagine = "🙄😏 تعبير وجه ساخر"
+    simplified: "أنت تعرفين كيف يكون المراهقون في هذا العمر",
+    imagine: "🙄😏 تعبير وجه ساخر"
 };
 
 HELP_DATA["sprach1_exam34_7"] = {
-    text = "Darauf sind wir natürlich stolz",
+    text: "Darauf sind wir natürlich stolz",
     meaning: "نحن فخورون بذلك طبعاً",
     keywords: ["Darauf = بذلك", "stolz = فخورون", "natürlich = طبعاً"],
-    simplified = "بالطبع هذا يجعلنا فخورين جداً",
-    imagine = "🏆😊 كأس ووجه مبتسم"
+    simplified: "بالطبع هذا يجعلنا فخورين جداً",
+    imagine: "🏆😊 كأس ووجه مبتسم"
 };
 
 HELP_DATA["sprach1_exam34_8"] = {
-    text = "Es wäre schön, wenn wir uns vor deiner Abreise noch einmal treffen würden",
+    text: "Es wäre schön, wenn wir uns vor deiner Abreise noch einmal treffen würden",
     meaning: "سيكون من الرائع لو نلتقي مرة أخرى قبل مغادرتك",
     keywords: ["wäre = سيكون", "schön = رائعاً", "treffen = نلتقي"],
-    simplified = "أتمنى لو نستطيع الاجتماع قبل رحيلك",
-    imagine = "🤝😊 مصافحة ووجه مبتسم"
+    simplified: "أتمنى لو نستطيع الاجتماع قبل رحيلك",
+    imagine: "🤝😊 مصافحة ووجه مبتسم"
 };
 
 HELP_DATA["sprach1_exam34_9"] = {
-    text = "trotz der Umzugsvorbereitungen noch Zeit",
+    text: "trotz der Umzugsvorbereitungen noch Zeit",
     meaning: "بالرغم من تحضيرات الانتقال بعض الوقت",
     keywords: ["trotz = بالرغم من", "Umzugsvorbereitungen = تحضيرات انتقال", "Zeit = وقت"],
-    simplified = "أتمنى أن تجدي وقتاً رغم انشغالك بالتجهيز",
-    imagine = "📦⚡ صناديق وبرق"
+    simplified: "أتمنى أن تجدي وقتاً رغم انشغالك بالتجهيز",
+    imagine: "📦⚡ صناديق وبرق"
 };
 
 HELP_DATA["sprach1_exam34_10"] = {
-    text = "damit wir etwas abmachen können",
+    text: "damit wir etwas abmachen können",
     meaning: "لكي نتمكن من ترتيب شيء",
     keywords: ["damit = لكي", "abmachen = نرتب", "können = نتمكن"],
-    simplified = "لنتمكن من تحديد موعد اللقاء",
-    imagine = "📅🗓️ تقويم وموعد"
+    simplified: "لنتمكن من تحديد موعد اللقاء",
+    imagine: "📅🗓️ تقويم وموعد"
 };
 
 // ============================================
@@ -10676,83 +10676,83 @@ HELP_DATA["sprach1_exam34_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam35_1"] = {
-    text = "noch schöner ist es",
+    text: "noch schöner ist es",
     meaning: "الأجمل أيضاً أنه",
     keywords: ["noch = أيضاً", "schöner = أجمل", "ist es = أنه"],
-    simplified = "الجميل جداً أنك تريد زيارتنا رغم المسافة",
-    imagine = "🚗❤️ سيارة وقلب"
+    simplified: "الجميل جداً أنك تريد زيارتنا رغم المسافة",
+    imagine: "🚗❤️ سيارة وقلب"
 };
 
 HELP_DATA["sprach1_exam35_2"] = {
-    text = "obwohl Du in München zu tun hast und wir in Köln wohnen",
+    text: "obwohl Du in München zu tun hast und wir in Köln wohnen",
     meaning: "على الرغم من أن لديك ما تفعله في ميونخ ونحن نعيش في كولونيا",
     keywords: ["obwohl = على الرغم من", "München = ميونخ", "Köln = كولونيا"],
-    simplified = "رغم أن عملك في ميونخ ونحن بعيدون في كولونيا",
-    imagine = "📍🗺️ علامتا موقع بعيدتان على خريطة ألمانيا"
+    simplified: "رغم أن عملك في ميونخ ونحن بعيدون في كولونيا",
+    imagine: "📍🗺️ علامتا موقع بعيدتان على خريطة ألمانيا"
 };
 
 HELP_DATA["sprach1_exam35_3"] = {
-    text = "anschauen",
+    text: "anschauen",
     meaning: "نشاهد",
     keywords: ["anschauen = نشاهد", "Kölner Dom = كاتدرائية كولونيا", "kannst = يمكنك"],
-    simplified = "يمكنك زيارة الكاتدرائية الشهيرة والمعالم السياحية الأخرى",
-    imagine = "⛪👀 كاتدرائية وعينان"
+    simplified: "يمكنك زيارة الكاتدرائية الشهيرة والمعالم السياحية الأخرى",
+    imagine: "⛪👀 كاتدرائية وعينان"
 };
 
 HELP_DATA["sprach1_exam35_4"] = {
-    text = "sollten wir genug Zeit für Gespräche haben",
+    text: "sollten wir genug Zeit für Gespräche haben",
     meaning: "يجب أن يكون لدينا وقت كافٍ للحديث",
     keywords: ["sollten = يجب", "Zeit = وقت", "Gespräche = للحديث"],
-    simplified = "نتأكد من تخصيص وقت كافٍ للدردشة",
-    imagine = "💬🕰️ فقاعات كلام وساعة"
+    simplified: "نتأكد من تخصيص وقت كافٍ للدردشة",
+    imagine: "💬🕰️ فقاعات كلام وساعة"
 };
 
 HELP_DATA["sprach1_exam35_5"] = {
-    text = "ankommen wirst",
+    text: "ankommen wirst",
     meaning: "ستصل",
     keywords: ["ankommen = تصل", "wirst = سوف", "Hauptbahnhof = محطة القطار الرئيسية"],
-    simplified = "أخبرنا بموعد وصولك إلى المحطة الرئيسية",
-    imagine = "🚆🕞 قطار وثلاثة أرباع ساعة"
+    simplified: "أخبرنا بموعد وصولك إلى المحطة الرئيسية",
+    imagine: "🚆🕞 قطار وثلاثة أرباع ساعة"
 };
 
 HELP_DATA["sprach1_exam35_6"] = {
-    text = "falls wir uns verspäten sollten",
+    text: "falls wir uns verspäten sollten",
     meaning: "في حال تأخرنا",
     keywords: ["falls = في حال", "uns verspäten = نتأخر", "sollten = قد"],
-    simplified = "انتظرنا في الرصيف في حال وصلنا متأخرين قليلاً",
-    imagine = "⏰🏃‍♂️ ساعة وشخص يجري"
+    simplified: "انتظرنا في الرصيف في حال وصلنا متأخرين قليلاً",
+    imagine: "⏰🏃‍♂️ ساعة وشخص يجري"
 };
 
 HELP_DATA["sprach1_exam35_7"] = {
-    text = "seitdem für ihn, wenn er zu Besuch kommt",
+    text: "seitdem für ihn, wenn er zu Besuch kommt",
     meaning: "منذ ذلك الحين نستخدمه لزياراته",
     keywords: ["seitdem = منذ ذلك الحين", "für ihn = لزياراته", "zu Besuch = ضيفاً"],
-    simplified = "الغرفة أصبحت جاهزة لاستقبال الضيوف",
-    imagine = "🛏️🚪 سرير وباب مفتوح"
+    simplified: "الغرفة أصبحت جاهزة لاستقبال الضيوف",
+    imagine: "🛏️🚪 سرير وباب مفتوح"
 };
 
 HELP_DATA["sprach1_exam35_8"] = {
-    text = "Erinnerungen auffrischen",
+    text: "Erinnerungen auffrischen",
     meaning: "نتذكر الأيام الخوالي",
     keywords: ["auffrischen = نستعيد", "Erinnerungen = ذكريات", "alte = قديمة"],
-    simplified = "لنحضر ذكرياتنا الجميلة معاً",
-    imagine = "📸🤝 ألبوم صور وأيدي متشابكة"
+    simplified: "لنحضر ذكرياتنا الجميلة معاً",
+    imagine: "📸🤝 ألبوم صور وأيدي متشابكة"
 };
 
 HELP_DATA["sprach1_exam35_9"] = {
-    text = "als wir bei Dir zu Besuch waren",
+    text: "als wir bei Dir zu Besuch waren",
     meaning: "عندما زرناك",
     keywords: ["als = عندما", "bei Dir = عندك", "zu Besuch = للزيارة"],
-    simplified = "التقطنا الكثير من الصور في آخر زيارة لنا",
-    imagine = "📸👨‍👩‍👧 كاميرا وعائلة"
+    simplified: "التقطنا الكثير من الصور في آخر زيارة لنا",
+    imagine: "📸👨‍👩‍👧 كاميرا وعائلة"
 };
 
 HELP_DATA["sprach1_exam35_10"] = {
-    text = "lass Dich überraschen...",
+    text: "lass Dich überraschen...",
     meaning: "دع نفسك تفاجأ...",
     keywords: ["lass = دع", "Dich = نفسك", "überraschen = تفاجأ"],
-    simplified = "لن نخبرك بكل شيء الآن وسنترك لك المفاجأة",
-    imagine = "🎁🤫 هدية وإصبع على الفم"
+    simplified: "لن نخبرك بكل شيء الآن وسنترك لك المفاجأة",
+    imagine: "🎁🤫 هدية وإصبع على الفم"
 };
 
 // ============================================
@@ -10760,83 +10760,83 @@ HELP_DATA["sprach1_exam35_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam36_1"] = {
-    text = "für Ihre Anfrage",
+    text: "für Ihre Anfrage",
     meaning: "على استفساركم",
     keywords: ["für = على", "Ihre Anfrage = استفساركم", "Dank = شكر"],
-    simplified = "شكراً لاهتمامكم",
+    simplified: "شكراً لاهتمامكم",
     imagine: "🙏📨 أيادٍ مضمومة ورسالة"
 };
 
 HELP_DATA["sprach1_exam36_2"] = {
-    text = "jeweils am ersten Montag",
+    text: "jeweils am ersten Montag",
     meaning: "في أول اثنين من كل شهر",
     keywords: ["jeweils = في", "ersten Montag = أول اثنين", "am = من"],
-    simplified = "تقام الأمسيات الثقافية كل يوم اثنين أول الشهر",
-    imagine = "📅🗓️ تقويم يشير إلى يوم اثنين"
+    simplified: "تقام الأمسيات الثقافية كل يوم اثنين أول الشهر",
+    imagine: "📅🗓️ تقويم يشير إلى يوم اثنين"
 };
 
 HELP_DATA["sprach1_exam36_3"] = {
-    text = "gewidmet",
+    text: "gewidmet",
     meaning: "مخصص",
     keywords: ["gewidmet = مخصص", "kulturellen Aspekt = موضوع ثقافي", "ist = يكون"],
-    simplified = "يتم تخصيص كل أمسية لموضوع ثقافي معين",
-    imagine = "🎭📖 أقنعة وكتب"
+    simplified: "يتم تخصيص كل أمسية لموضوع ثقافي معين",
+    imagine: "🎭📖 أقنعة وكتب"
 };
 
 HELP_DATA["sprach1_exam36_4"] = {
-    text = "vorbereitende Treffen",
+    text: "vorbereitende Treffen",
     meaning: "لقاءات تحضيرية",
     keywords: ["vorbereitende = تحضيرية", "Treffen = لقاءات", "mehrere = عدة"],
-    simplified = "لدينا عدة لقاءات تمهيدية قبل العروض المسرحية",
-    imagine = "🤝📋 مصافحة وقائمة مهام"
+    simplified: "لدينا عدة لقاءات تمهيدية قبل العروض المسرحية",
+    imagine: "🤝📋 مصافحة وقائمة مهام"
 };
 
 HELP_DATA["sprach1_exam36_5"] = {
-    text = "die meisten unserer Mitglieder",
+    text: "die meisten unserer Mitglieder",
     meaning: "معظم أعضائنا",
     keywords: ["die meisten = معظم", "Mitglieder = أعضاء", "unserer = أعضائنا"],
-    simplified = "رحلاتنا الدراسية تحظى باهتمام الكثيرين",
-    imagine = "🚌👥 حافلة ومجموعة أشخاص"
+    simplified: "رحلاتنا الدراسية تحظى باهتمام الكثيرين",
+    imagine: "🚌👥 حافلة ومجموعة أشخاص"
 };
 
 HELP_DATA["sprach1_exam36_6"] = {
-    text = "entlang der Route deutscher Dichter",
+    text: "entlang der Route deutscher Dichter",
     meaning: "على طول طريق الشعراء الألمان",
     keywords: ["entlang = على طول", "Route = طريق", "deutscher Dichter = شعراء ألمان"],
-    simplified = "رحلات تمتد من فرانكفورت إلى فايمر",
-    imagine = "🗺️✍️ خريطة وقلم"
+    simplified: "رحلات تمتد من فرانكفورت إلى فايمر",
+    imagine: "🗺️✍️ خريطة وقلم"
 };
 
 HELP_DATA["sprach1_exam36_7"] = {
-    text = "Auf den Spuren Tschaikowskis nach Russland",
+    text: "Auf den Spuren Tschaikowskis nach Russland",
     meaning: "على خطى تشايكوفسكي إلى روسيا",
     keywords: ["Auf den Spuren = على خطى", "Tschaikowskis = تشايكوفسكي", "Russland = روسيا"],
-    simplified = "رحلة استثنائية هذا العام على خطى الملحن العظيم",
-    imagine = "🎵🇷🇺 روسيا وموسيقى تشايكوفسكي"
+    simplified: "رحلة استثنائية هذا العام على خطى الملحن العظيم",
+    imagine: "🎵🇷🇺 روسيا وموسيقى تشايكوفسكي"
 };
 
 HELP_DATA["sprach1_exam36_8"] = {
-    text = "mit deren Hilfe Sie Ihr kulturelles Wissen erweitern können",
-    meaning = "يمكنكم توسيع معرفتكم الثقافية بمساعدتهم",
+    text: "mit deren Hilfe Sie Ihr kulturelles Wissen erweitern können",
+    meaning: "يمكنكم توسيع معرفتكم الثقافية بمساعدتهم",
     keywords: ["deren = بمساعدتهم", "erweitern = توسيع", "kulturelles Wissen = معرفة ثقافية"],
-    simplified = "مرشدونا الخبراء سيساعدونكم على فهم الثقافة المحلية",
-    imagine = "🎓🧠 قبعة تخرج ودماغ"
+    simplified: "مرشدونا الخبراء سيساعدونكم على فهم الثقافة المحلية",
+    imagine: "🎓🧠 قبعة تخرج ودماغ"
 };
 
 HELP_DATA["sprach1_exam36_9"] = {
-    text = "sofern dies organisatorisch möglich ist",
-    meaning = "إذا كان ذلك ممكناً تنظيمياً",
+    text: "sofern dies organisatorisch möglich ist",
+    meaning: "إذا كان ذلك ممكناً تنظيمياً",
     keywords: ["sofern = إذا", "organisatorisch = تنظيمياً", "möglich = ممكناً"],
-    simplified = "بإمكانكم استبدال التذاكر بشرط توفر البدائل",
-    imagine = "🎟️🔄 تذكرتان وكلمة تبادل"
+    simplified: "بإمكانكم استبدال التذاكر بشرط توفر البدائل",
+    imagine: "🎟️🔄 تذكرتان وكلمة تبادل"
 };
 
 HELP_DATA["sprach1_exam36_10"] = {
-    text = "erreichbar",
+    text: "erreichbar",
     meaning: "يمكن الوصول إليها",
     keywords: ["erreichbar = يمكن الوصول إليها", "Geschäftsstelle = مقر المكتب", "ist = يكون"],
-    simplified = "مكتبنا متاح للجميع طوال أيام الأسبوع",
-    imagine = "🏢☎️ مبنى وسماعة هاتف"
+    simplified: "مكتبنا متاح للجميع طوال أيام الأسبوع",
+    imagine: "🏢☎️ مبنى وسماعة هاتف"
 };
 
 // ============================================
@@ -10844,83 +10844,83 @@ HELP_DATA["sprach1_exam36_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam37_1"] = {
-    text = "Wie ihr alle wisst",
+    text: "Wie ihr alle wisst",
     meaning: "كما تعلمون جميعاً",
     keywords: ["Wie = كما", "ihr = أنتم", "wisst = تعلمون"],
-    simplified = "وكما تعلمون جميعاً",
+    simplified: "وكما تعلمون جميعاً",
     imagine: "👥📢 مجموعة تتحدث ومكبر صوت"
 };
 
 HELP_DATA["sprach1_exam37_2"] = {
-    text = "alle Texte und Bilder vorliegen",
+    text: "alle Texte und Bilder vorliegen",
     meaning: "كل النصوص والصور تكون متوفرة",
     keywords: ["vorliegen = متوفرة", "Texte = نصوص", "Bilder = صور"],
-    simplified = "لن تتمكن كلوديا من البدء بالتصميم قبل استلام كامل المواد",
-    imagine = "📄🖼️ ورقة وصورة"
+    simplified: "لن تتمكن كلوديا من البدء بالتصميم قبل استلام كامل المواد",
+    imagine: "📄🖼️ ورقة وصورة"
 };
 
 HELP_DATA["sprach1_exam37_3"] = {
-    text = "im Interesse der Autorinnen und Autoren",
+    text: "im Interesse der Autorinnen und Autoren",
     meaning: "بمصلحة الكاتبات والكتاب أنفسهم",
     keywords: ["im Interesse = بمصلحة", "Autorinnen = كاتبات", "Autoren = كتاب"],
-    simplified = "الجميع يستفيد من التصميم الجيد",
-    imagine = "🎨✍️ لوحة فنية وقلم"
+    simplified: "الجميع يستفيد من التصميم الجيد",
+    imagine: "🎨✍️ لوحة فنية وقلم"
 };
 
 HELP_DATA["sprach1_exam37_4"] = {
-    text = "Liefert also bitte eure Beiträge rechtzeitig ab",
+    text: "Liefert also bitte eure Beiträge rechtzeitig ab",
     meaning: "لذا يرجى تسليم مساهماتكم في الوقت المحدد",
     keywords: ["abliefern = تسليم", "Beiträge = مساهمات", "rechtzeitig = في الوقت المحدد"],
-    simplified = "لذا، نرجو منكم تسليم موادكم في الموعد المحدد",
-    imagine = "🗓️✍️ تقويم وقلم"
+    simplified: "لذا، نرجو منكم تسليم موادكم في الموعد المحدد",
+    imagine: "🗓️✍️ تقويم وقلم"
 };
 
 HELP_DATA["sprach1_exam37_5"] = {
-    text = "bei euch",
+    text: "bei euch",
     meaning: "لديكم",
     keywords: ["bei = لدى", "euch = أنتم", "Copyright = حقوق النشر"],
-    simplified = "حقوق الطبع والنشر تبقى ملكاً لكم بالطبع",
-    imagine = "©️🖼️ رمز حقوق الطبع وصورة"
+    simplified: "حقوق الطبع والنشر تبقى ملكاً لكم بالطبع",
+    imagine: "©️🖼️ رمز حقوق الطبع وصورة"
 };
 
 HELP_DATA["sprach1_exam37_6"] = {
-    text = "stark zurückgegangen",
+    text: "stark zurückgegangen",
     meaning: "انخفضت بشكل كبير",
     keywords: ["stark = بشكل كبير", "zurückgegangen = انخفضت", "Verkaufszahlen = أرقام المبيعات"],
-    simplified = "مبيعات الجريدة تراجعت هذا العام",
-    imagine = "📉📰 رسم بياني ينخفض وجريدة"
+    simplified: "مبيعات الجريدة تراجعت هذا العام",
+    imagine: "📉📰 رسم بياني ينخفض وجريدة"
 };
 
 HELP_DATA["sprach1_exam37_7"] = {
-    text = "euch alle noch einmal herzlich darum bitten",
+    text: "euch alle noch einmal herzlich darum bitten",
     meaning: "نطلب منكم جميعاً مرة أخرى بإخلاص",
     keywords: ["darum = بذلك", "bitten = نطلب", "herzlich = بإخلاص"],
-    simplified = "نرجو منكم مرة أخرى تركيز جهودكم",
-    imagine = "🙏✨ أيادٍ مضمومة ونجوم"
+    simplified: "نرجو منكم مرة أخرى تركيز جهودكم",
+    imagine: "🙏✨ أيادٍ مضمومة ونجوم"
 };
 
 HELP_DATA["sprach1_exam37_8"] = {
-    text = "ansprechen",
+    text: "ansprechen",
     meaning: "تخاطبهم وتهمهم",
     keywords: ["ansprechen = تخاطب", "Mitglieder = أعضاء", "unsere = القارئين"],
-    simplified = "اختيار مواضيع تعني حقاً أعضاء النادي",
-    imagine = "🎯👥 هدف ومجموعة أشخاص"
+    simplified: "اختيار مواضيع تعني حقاً أعضاء النادي",
+    imagine: "🎯👥 هدف ومجموعة أشخاص"
 };
 
 HELP_DATA["sprach1_exam37_9"] = {
-    text = "dass man große Themen wie Politik oder Gesellschaft nicht behandeln kann",
-    meaning = "لا يمكن معالجة مواضيع كبيرة مثل السياسة أو المجتمع",
+    text: "dass man große Themen wie Politik oder Gesellschaft nicht behandeln kann",
+    meaning: "لا يمكن معالجة مواضيع كبيرة مثل السياسة أو المجتمع",
     keywords: ["dass = أن", "behandeln = معالجة", "große Themen = مواضيع كبيرة"],
-    simplified = "لا نعني أنه يجب تجنب القضايا الكبرى تماماً،",
-    imagine = "🗳️🌍 صناديق اقتراع وكرة أرضية"
+    simplified: "لا نعني أنه يجب تجنب القضايا الكبرى تماماً،",
+    imagine: "🗳️🌍 صناديق اقتراع وكرة أرضية"
 };
 
 HELP_DATA["sprach1_exam37_10"] = {
-    text = "als unabhängige Zeitung",
+    text: "als unabhängige Zeitung",
     meaning: "كصحيفة مستقلة",
     keywords: ["als = كـ", "unabhängige = مستقلة", "Zeitung = صحيفة"],
-    simplified = "نحن فخورون بكوننا صحيفة ناطقة باسم قرائنا",
-    imagine = "🗞️✊ جريدة وقبضة مرفوعة"
+    simplified: "نحن فخورون بكوننا صحيفة ناطقة باسم قرائنا",
+    imagine: "🗞️✊ جريدة وقبضة مرفوعة"
 };
 
 // ============================================
@@ -10928,83 +10928,83 @@ HELP_DATA["sprach1_exam37_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam38_1"] = {
-    text = "voneinander gehört haben",
+    text: "voneinander gehört haben",
     meaning: "سمعنا بعضنا عن بعض",
     keywords: ["voneinander = بعضنا عن بعض", "gehört = سمع", "haben = سمعنا"],
-    simplified = "مضى وقت طويل منذ آخر مرة سمعنا فيها أخبار بعضنا البعض",
-    imagine = "📞🕰️ سماعة هاتف وساعة قديمة"
+    simplified: "مضى وقت طويل منذ آخر مرة سمعنا فيها أخبار بعضنا البعض",
+    imagine: "📞🕰️ سماعة هاتف وساعة قديمة"
 };
 
 HELP_DATA["sprach1_exam38_2"] = {
-    text = "durch Europa",
+    text: "durch Europa",
     meaning: "عبر أوروبا",
     keywords: ["durch = عبر", "Europa = أوروبا", "Rundreise = جولة"],
-    simplified = "أجوب أوروبا في رحلة واسعة",
-    imagine = "🗺️🚂 خريطة وقطار"
+    simplified: "أجوب أوروبا في رحلة واسعة",
+    imagine: "🗺️🚂 خريطة وقطار"
 };
 
 HELP_DATA["sprach1_exam38_3"] = {
-    text = "wie du weißt",
+    text: "wie du weißt",
     meaning: "كما تعلمين",
     keywords: ["wie = كما", "du = أنت", "weißt = تعلمين"],
-    simplified = "وكما تعرفين",
-    imagine = "🤷‍♀️❓ امرأة ترفع حاجبيها"
+    simplified: "وكما تعرفين",
+    imagine: "🤷‍♀️❓ امرأة ترفع حاجبيها"
 };
 
 HELP_DATA["sprach1_exam38_4"] = {
-    text = "war zuerst nicht gerade von dieser Idee begeistert",
+    text: "war zuerst nicht gerade von dieser Idee begeistert",
     meaning: "لم يكن متحمساً لهذه الفكرة تماماً في البداية",
     keywords: ["war = كان", "begeistert = متحمساً", "nicht gerade = لم يكن"],
-    simplified = "لم يرق لمديري الأمر في البداية حقاً",
-    imagine = "👨‍💼😒 رجل أعمال معبس الوجه"
+    simplified: "لم يرق لمديري الأمر في البداية حقاً",
+    imagine: "👨‍💼😒 رجل أعمال معبس الوجه"
 };
 
 HELP_DATA["sprach1_exam38_5"] = {
-    text = "es in der Firma ohnehin etwas ruhiger",
+    text: "es in der Firma ohnehin etwas ruhiger",
     meaning: "إن الأمور في الشركة هادئة نوعاً ما على أية حال",
     keywords: ["es = الأمور", "ruhiger = هادئة", "ohnehin = على أية حال"],
-    simplified = "أشهر الصيف هادئة نسبياً في العمل أصلاً",
-    imagine = "☀️🏢 مكتب هادئ ورجل أعمال متعب"
+    simplified: "أشهر الصيف هادئة نسبياً في العمل أصلاً",
+    imagine: "☀️🏢 مكتب هادئ ورجل أعمال متعب"
 };
 
 HELP_DATA["sprach1_exam38_6"] = {
-    text = "erste Station",
+    text: "erste Station",
     meaning: "المحطة الأولى",
     keywords: ["erste = الأولى", "Station = محطة", "war = كانت"],
-    simplified = "أمستردام كانت المحطة الأولى للرحلة",
-    imagine = "🚉🟢 محطة قطار ورمز البداية"
+    simplified: "أمستردام كانت المحطة الأولى للرحلة",
+    imagine: "🚉🟢 محطة قطار ورمز البداية"
 };
 
 HELP_DATA["sprach1_exam38_7"] = {
-    text = "daran denken",
+    text: "daran denken",
     meaning: "أفكر في العودة إلى العمل",
     keywords: ["daran = في ذلك", "denken = أفكر", "zurück = العودة"],
-    simplified = "أكره حتى التفكير في العودة إلى العمل يوماً ما",
-    imagine = "💼😖 حقيبة ووجه متألم"
+    simplified: "أكره حتى التفكير في العودة إلى العمل يوماً ما",
+    imagine: "💼😖 حقيبة ووجه متألم"
 };
 
 HELP_DATA["sprach1_exam38_8"] = {
-    text = "muss",
+    text: "muss",
     meaning: "يجب أن أعود",
     keywords: ["muss = يجب", "zurück = أعود", "irgendwann = يوماً ما"],
-    simplified = "أدري أنني مضطرة للعودة إلى العمل في النهاية",
-    imagine = "🏢🔗 مكتب وسلسلة"
+    simplified: "أدري أنني مضطرة للعودة إلى العمل في النهاية",
+    imagine: "🏢🔗 مكتب وسلسلة"
 };
 
 HELP_DATA["sprach1_exam38_9"] = {
-    text = "mir der Gedanke gekommen",
+    text: "mir der Gedanke gekommen",
     meaning: "خطرت لي الفكرة",
     keywords: ["mir = لي", "Gedanke = فكرة", "gekommen = خطرت"],
-    simplified = "فكرت في تغيير حياتي بالكامل",
-    imagine = "💡🤔 مصباح وشخص يفكر"
+    simplified: "فكرت في تغيير حياتي بالكامل",
+    imagine: "💡🤔 مصباح وشخص يفكر"
 };
 
 HELP_DATA["sprach1_exam38_10"] = {
-    text = "auch etwas ganz Neues anfangen könnte",
+    text: "auch etwas ganz Neues anfangen könnte",
     meaning: "يمكنني البدء بشيء جديد تماماً",
     keywords: ["könnte = يمكنني", "Neues = شيء جديد", "anfangen = البدء"],
-    simplified = "لربما حان الوقت لتغيير مساري المهني",
-    imagine = "🔄💼 تغيير وحقيبة"
+    simplified: "لربما حان الوقت لتغيير مساري المهني",
+    imagine: "🔄💼 تغيير وحقيبة"
 };
 
 // ============================================
@@ -11012,83 +11012,83 @@ HELP_DATA["sprach1_exam38_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam39_1"] = {
-    text = "in dem Sie um nähere Informationen zu der geplanten Dresden-Reise gebeten haben",
-    meaning = "الذي طلبت فيه معلومات مفصلة عن رحلة دريسدن المخطط لها",
+    text: "in dem Sie um nähere Informationen zu der geplanten Dresden-Reise gebeten haben",
+    meaning: "الذي طلبت فيه معلومات مفصلة عن رحلة دريسدن المخطط لها",
     keywords: ["in dem = الذي", "gebeten = طلبت", "nähere Informationen = معلومات مفصلة"],
-    simplified = "شكراً لاستفساركم عن رحلة دريسدن",
-    imagine = "✉️❓ رسالة وعلامة استفهام"
+    simplified: "شكراً لاستفساركم عن رحلة دريسدن",
+    imagine: "✉️❓ رسالة وعلامة استفهام"
 };
 
 HELP_DATA["sprach1_exam39_2"] = {
-    text = "Da unser Programmheft erst in zwei Wochen fertig ist",
-    meaning = "بما أن كتيب البرنامج الخاص بنا لن يكتمل إلا بعد أسبوعين",
+    text: "Da unser Programmheft erst in zwei Wochen fertig ist",
+    meaning: "بما أن كتيب البرنامج الخاص بنا لن يكتمل إلا بعد أسبوعين",
     keywords: ["Da = بما أن", "Programmheft = كتيب برنامج", "fertig = كامل"],
-    simplified = "كتيب الرحلة سيكون جاهزاً خلال أسبوعين، لكن إليكم ملخص مسبق",
-    imagine = "📖⏰ كتاب وساعة"
+    simplified: "كتيب الرحلة سيكون جاهزاً خلال أسبوعين، لكن إليكم ملخص مسبق",
+    imagine: "📖⏰ كتاب وساعة"
 };
 
 HELP_DATA["sprach1_exam39_3"] = {
-    text = "Untergebracht sind Sie im Hotel Corona",
+    text: "Untergebracht sind Sie im Hotel Corona",
     meaning: "ستقيمون في فندق كورونا",
     keywords: ["Untergebracht = مقيمون", "Hotel Corona = فندق كورونا", "sind = ستكون"],
-    simplified = "الفندق الذي ستقيمون فيه يقع في وسط المدينة",
-    imagine = "🏨📍 فندق وعلامة موقع"
+    simplified: "الفندق الذي ستقيمون فيه يقع في وسط المدينة",
+    imagine: "🏨📍 فندق وعلامة موقع"
 };
 
 HELP_DATA["sprach1_exam39_4"] = {
-    text = "sich in der Stadtmitte befindet",
+    text: "sich in der Stadtmitte befindet",
     meaning: "يقع في وسط المدينة",
     keywords: ["sich befindet = يقع", "Stadtmitte = وسط المدينة", "in der = في"],
-    simplified = "موقعه ممتاز بالقرب من كل المعالم السياحية",
-    imagine = "🗺️📍 خريطة وعلامة موقع"
+    simplified: "موقعه ممتاز بالقرب من كل المعالم السياحية",
+    imagine: "🗺️📍 خريطة وعلامة موقع"
 };
 
 HELP_DATA["sprach1_exam39_5"] = {
-    text = "gezeigt werden",
+    text: "gezeigt werden",
     meaning: "سيتم عرضها",
     keywords: ["gezeigt = عرض", "werden = سيتم", "Sehenswürdigkeiten = معالم سياحية"],
-    simplified = "سترون أجمل معالم دريسدن",
-    imagine = "🏛️👀 مبنى تاريخي وعينان"
+    simplified: "سترون أجمل معالم دريسدن",
+    imagine: "🏛️👀 مبنى تاريخي وعينان"
 };
 
 HELP_DATA["sprach1_exam39_6"] = {
-    text = "der Semper-Oper",
+    text: "der Semper-Oper",
     meaning: "أوبرا سمبر",
     keywords: ["der = أوبرا", "Semper-Oper = أوبرا سمبر", "Besuch = زيارة"],
-    simplified = "المسرح المخطط له في الليلة نفسها",
-    imagine = "🎭✨ مسرح ونجوم"
+    simplified: "المسرح المخطط له في الليلة نفسها",
+    imagine: "🎭✨ مسرح ونجوم"
 };
 
 HELP_DATA["sprach1_exam39_7"] = {
-    text = "für seine exotischen Pflanzen berühmt ist",
+    text: "für seine exotischen Pflanzen berühmt ist",
     meaning: "تشتهر بنباتاتها الغريبة",
     keywords: ["für = بنباتاتها", "exotischen Pflanzen = نباتات غريبة", "berühmt = مشهورة"],
-    simplified = "الحديقة مشهورة عالمياً بأزهارها وأنواعها النادرة",
-    imagine = "🌺🏞️ زهرة جميلة ومنظر طبيعي"
+    simplified: "الحديقة مشهورة عالمياً بأزهارها وأنواعها النادرة",
+    imagine: "🌺🏞️ زهرة جميلة ومنظر طبيعي"
 };
 
 HELP_DATA["sprach1_exam39_8"] = {
-    text = "steht zu Ihrer freien Verfügung",
+    text: "steht zu Ihrer freien Verfügung",
     meaning: "يكون تحت تصرفكم الحر",
     keywords: ["steht = يكون", "freien Verfügung = تصرف حر", "Ihrer = تحت تصرفكم"],
-    simplified = "اليوم الأخير من الرحلة سيكون مخصصاً لاستكشاف المدينة بأنفسكم",
-    imagine = "🗓️🙌 تقويم وأيادي مفتوحة"
+    simplified: "اليوم الأخير من الرحلة سيكون مخصصاً لاستكشاف المدينة بأنفسكم",
+    imagine: "🗓️🙌 تقويم وأيادي مفتوحة"
 };
 
 HELP_DATA["sprach1_exam39_9"] = {
-    text = "teilnehmen",
+    text: "teilnehmen",
     meaning: "المشاركة",
     keywords: ["teilnehmen = المشاركة", "Fahrt = رحلة", "möchten = ترغبون"],
-    simplified = "قد تفضلون استكشاف المناطق الطبيعية بدلاً من التسوق",
-    imagine = "🏞️🚗 منظر طبيعي وسيارة"
+    simplified: "قد تفضلون استكشاف المناطق الطبيعية بدلاً من التسوق",
+    imagine: "🏞️🚗 منظر طبيعي وسيارة"
 };
 
 HELP_DATA["sprach1_exam39_10"] = {
-    text = "verschaffen",
+    text: "verschaffen",
     meaning: "تعطيكم لمحة عامة",
     keywords: ["verschaffen = تعطيكم", "Überblick = لمحة عامة", "Reise = الرحلة"],
-    simplified = "آمل أن تكون هذه المعلومات كافية لمساعدتكم على التخطيط",
-    imagine = "📋👀 قائمة وعينان"
+    simplified: "آمل أن تكون هذه المعلومات كافية لمساعدتكم على التخطيط",
+    imagine: "📋👀 قائمة وعينان"
 };
 
 // ============================================
@@ -11096,83 +11096,83 @@ HELP_DATA["sprach1_exam39_10"] = {
 // ============================================
 
 HELP_DATA["sprach1_exam40_1"] = {
-    text = "dass ich Urlaub auf einer Nordseeinsel mache",
+    text: "dass ich Urlaub auf einer Nordseeinsel mache",
     meaning: "أنني أقضي عطلتي في جزيرة بحر الشمال",
     keywords: ["Urlaub = عطلة", "Nordseeinsel = جزيرة بحر الشمال", "mache = أقضي"],
-    simplified = "قد تتفاجئين لأنني اخترت الشمال بدلاً من الجنوب",
-    imagine = "🏝️🤔 جزيرة وعلامة استفهام"
+    simplified: "قد تتفاجئين لأنني اخترت الشمال بدلاً من الجنوب",
+    imagine: "🏝️🤔 جزيرة وعلامة استفهام"
 };
 
 HELP_DATA["sprach1_exam40_2"] = {
-    text = "das Richtige für mich sein könnte",
+    text: "das Richtige für mich sein könnte",
     meaning: "قد يكون الشيء المناسب لي",
     keywords: ["könnte = قد يكون", "Richtige = المناسب", "für mich = لي"],
-    simplified = "صدقاً، لم أتوقع أن أحب إجازة هادئة بهذا الشكل",
-    imagine = "😊🏖️ وجه مبتسم وشاطئ"
+    simplified: "صدقاً، لم أتوقع أن أحب إجازة هادئة بهذا الشكل",
+    imagine: "😊🏖️ وجه مبتسم وشاطئ"
 };
 
 HELP_DATA["sprach1_exam40_3"] = {
-    text = "von der Hektik des Alltags erholen möchte",
+    text: "von der Hektik des Alltags erholen möchte",
     meaning: "أريد أن أسترد عافيتي من صخب الحياة اليومية",
     keywords: ["erholen = أسترد عافيتي", "Hektik = صخب", "Alltags = الحياة اليومية"],
-    simplified = "إذا أردت الهروب من ضغوط الروتين، فهذا هو المكان المناسب",
-    imagine = "😤➡️😌 وجه متوتر يتحول إلى آخر مرتاح"
+    simplified: "إذا أردت الهروب من ضغوط الروتين، فهذا هو المكان المناسب",
+    imagine: "😤➡️😌 وجه متوتر يتحول إلى آخر مرتاح"
 };
 
 HELP_DATA["sprach1_exam40_4"] = {
-    text = "als sehr angenehm empfinde",
+    text: "als sehr angenehm empfinde",
     meaning: "أشعر أنه مريح جداً",
     keywords: ["als = أنه", "angenehm = مريح", "empfinde = أشعر"],
-    simplified = "أحب الطقس هنا لأنه لطيف وليس حاراً أبداً",
-    imagine = "🌡️😊 ميزان حرارة ووجه مبتسم"
+    simplified: "أحب الطقس هنا لأنه لطيف وليس حاراً أبداً",
+    imagine: "🌡️😊 ميزان حرارة ووجه مبتسم"
 };
 
 HELP_DATA["sprach1_exam40_5"] = {
-    text = "aus zwei Inseln",
+    text: "aus zwei Inseln",
     meaning: "من جزيرتين",
     keywords: ["aus = من", "zwei Inseln = جزيرتين", "besteht = تتكون"],
-    simplified = "هيلغولاند ليست جزيرة واحدة بل جزيرتان منفصلتان",
-    imagine = "🏝️🏝️ جزيرتان"
+    simplified: "هيلغولاند ليست جزيرة واحدة بل جزيرتان منفصلتان",
+    imagine: "🏝️🏝️ جزيرتان"
 };
 
 HELP_DATA["sprach1_exam40_6"] = {
-    text = "die per Fähre zu erreichen ist",
+    text: "die per Fähre zu erreichen ist",
     meaning: "يمكن الوصول إليها بالعبّارة",
     keywords: ["ist = يمكن", "erreichen = الوصول", "Fähre = عبارة"],
-    simplified = "تربط العبارات بين الجزيرة الرئيسية والجزيرة الرملية الصغيرة",
-    imagine = "⛴️🏝️ عبارة وجزيرة"
+    simplified: "تربط العبارات بين الجزيرة الرئيسية والجزيرة الرملية الصغيرة",
+    imagine: "⛴️🏝️ عبارة وجزيرة"
 };
 
 HELP_DATA["sprach1_exam40_7"] = {
-    text = "lebenden Tiere",
+    text: "lebenden Tiere",
     meaning: "الحيوانات الحية",
     keywords: ["lebenden = الحية", "Tiere = حيوانات", "wild = برية"],
-    simplified = "ترى الفقمات وهي تسبح بحرية في مياهها الصافية",
-    imagine = "🦭🌊 فقمة وماء"
+    simplified: "ترى الفقمات وهي تسبح بحرية في مياهها الصافية",
+    imagine: "🦭🌊 فقمة وماء"
 };
 
 HELP_DATA["sprach1_exam40_8"] = {
-    text = "wenige Stunden auf der Insel",
+    text: "wenige Stunden auf der Insel",
     meaning: "بضع ساعات على الجزيرة",
     keywords: ["wenige = بضع", "Stunden = ساعات", "Insel = جزيرة"],
-    simplified = "معظم الزوار يقضون بضع ساعات فقط ثم يغادرون",
-    imagine = "🕒🏝️ ساعة وجزيرة"
+    simplified: "معظم الزوار يقضون بضع ساعات فقط ثم يغادرون",
+    imagine: "🕒🏝️ ساعة وجزيرة"
 };
 
 HELP_DATA["sprach1_exam40_9"] = {
-    text = "Sobald die Tagesausflügler wieder abgefahren sind",
-    meaning = "بمجرد مغادرة زوار اليوم الواحد",
-    keywords = ["Sobald = بمجرد", "Tagesausflügler = زوار اليوم الواحد", "abgefahren = مغادرة"],
-    simplified = "بمجرد رحيل الحشود، يصبح كل شيء هادئاً وساحراً",
-    imagine = "🚤🌅 قارب وغروب شمس"
+    text: "Sobald die Tagesausflügler wieder abgefahren sind",
+    meaning: "بمجرد مغادرة زوار اليوم الواحد",
+    keywords: ["Sobald = بمجرد", "Tagesausflügler = زوار اليوم الواحد", "abgefahren = مغادرة"],
+    simplified: "بمجرد رحيل الحشود، يصبح كل شيء هادئاً وساحراً",
+    imagine: "🚤🌅 قارب وغروب شمس"
 };
 
 HELP_DATA["sprach1_exam40_10"] = {
-    text = "dass du gern umziehen würdest",
-    meaning = "أنك ترغبين في الانتقال",
+    text: "dass du gern umziehen würdest",
+    meaning: "أنك ترغبين في الانتقال",
     keywords: ["würdest = ترغبين", "umziehen = الانتقال", "gern = بكل سرور"],
-    simplified = "هل فكرتِ أكثر في السكن الجديد الذي تحدثتِ عنه؟",
-    imagine = "🏠❓ منزل وعلامة استفهام"
+    simplified: "هل فكرتِ أكثر في السكن الجديد الذي تحدثتِ عنه؟",
+    imagine: "🏠❓ منزل وعلامة استفهام"
 };
 
 // ============================================
@@ -11210,59 +11210,59 @@ HELP_DATA["sprach2_exam1_3"] = {
 };
 
 HELP_DATA["sprach2_exam1_4"] = {
-    text = "Wer Fahrrad fährt statt zu sitzen",
-    meaning = "من يركب دراجة بدلاً من الجلوس",
-    keywords = ["statt = بدلاً من", "Fahrrad fährt = يركب دراجة", "zu sitzen = من الجلوس"],
-    simplified = "ركوب الدراجة أفضل من الجلوس خلف المقود",
-    imagine = "🚴‍♂️🪑 دراجة ومقعد سيارة"
+    text: "Wer Fahrrad fährt statt zu sitzen",
+    meaning: "من يركب دراجة بدلاً من الجلوس",
+    keywords: ["statt = بدلاً من", "Fahrrad fährt = يركب دراجة", "zu sitzen = من الجلوس"],
+    simplified: "ركوب الدراجة أفضل من الجلوس خلف المقود",
+    imagine: "🚴‍♂️🪑 دراجة ومقعد سيارة"
 };
 
 HELP_DATA["sprach2_exam1_5"] = {
-    text = "innerhalb geschlossener Räume aufhalten",
-    meaning = "يتواجدون داخل أماكن مغلقة",
+    text: "innerhalb geschlossener Räume aufhalten",
+    meaning: "يتواجدون داخل أماكن مغلقة",
     keywords: ["innerhalb = داخل", "geschlossener Räume = أماكن مغلقة", "aufhalten = يتواجدون"],
-    simplified = "يقضون معظم وقتهم في مكاتب و مصانع مغلقة",
-    imagine = "🏢🚪 مبنى به أبواب ونوافذ مغلقة"
+    simplified: "يقضون معظم وقتهم في مكاتب و مصانع مغلقة",
+    imagine: "🏢🚪 مبنى به أبواب ونوافذ مغلقة"
 };
 
 HELP_DATA["sprach2_exam1_6"] = {
-    text = "sich die meiste Zeit innerhalb geschlossener Räume aufhalten müssen",
-    meaning = "يضطرون لقضاء معظم وقتهم في أماكن مغلقة",
+    text: "sich die meiste Zeit innerhalb geschlossener Räume aufhalten müssen",
+    meaning: "يضطرون لقضاء معظم وقتهم في أماكن مغلقة",
     keywords: ["müssen = يضطرون", "meiste Zeit = معظم الوقت", "aufhalten = قضاء"],
-    simplified = "ممن يضطرون لقضاء وقتهم بالداخل",
-    imagine = "💼😞 عامل مجبر على البقاء في مكتب ضيق"
+    simplified: "ممن يضطرون لقضاء وقتهم بالداخل",
+    imagine: "💼😞 عامل مجبر على البقاء في مكتب ضيق"
 };
 
 HELP_DATA["sprach2_exam1_7"] = {
-    text = "Ein breites Angebot an Zubehör",
+    text: "Ein breites Angebot an Zubehör",
     meaning: "عرض واسع من الإكسسوارات",
     keywords: ["Angebot = عرض", "an = من", "Zubehör = إكسسوارات"],
-    simplified = "متاجر تبيع إكسسوارات الدراجات",
-    imagine = "🚲🔧 دراجة وأدوات جانبية"
+    simplified: "متاجر تبيع إكسسوارات الدراجات",
+    imagine: "🚲🔧 دراجة وأدوات جانبية"
 };
 
 HELP_DATA["sprach2_exam1_8"] = {
-    text = "die das Fahrrad fast so sicher wie einen Panzer machen sollen",
-    meaning = "يجب أن تجعل الدراجة آمنة مثل الدبابة",
+    text: "die das Fahrrad fast so sicher wie einen Panzer machen sollen",
+    meaning: "يجب أن تجعل الدراجة آمنة مثل الدبابة",
     keywords: ["sollen = يجب أن", "sicher = آمنة", "Panzer = دبابة"],
-    simplified = "معدات مصممة لتوفير حماية قصوى للدراج",
-    imagine = "🛡️🚲 دراجة ودرع"
+    simplified: "معدات مصممة لتوفير حماية قصوى للدراج",
+    imagine: "🛡️🚲 دراجة ودرع"
 };
 
 HELP_DATA["sprach2_exam1_9"] = {
-    text = "dann sind die Autoschlangen wieder länger",
-    meaning = "عندها تصبح طوابير السيارات أطول",
+    text: "dann sind die Autoschlangen wieder länger",
+    meaning: "عندها تصبح طوابير السيارات أطول",
     keywords: ["dann = عندها", "Autoschlangen = طوابير سيارات", "länger = أطول"],
-    simplified = "حينها ستعود الاختناقات المرورية",
-    imagine = "🚗🚗🚗طابور سيارات طويل تحت المطر"
+    simplified: "حينها ستعود الاختناقات المرورية",
+    imagine: "🚗🚗🚗طابور سيارات طويل تحت المطر"
 };
 
 HELP_DATA["sprach2_exam1_10"] = {
-    text = "denn einen praktischen Wetterschutz für Radfahrer haben die Geschäfte noch nicht im Angebot",
-    meaning = "فالمتاجر لا تقدم بعد حماية عملية من الطقس لراكبي الدراجات",
+    text: "denn einen praktischen Wetterschutz für Radfahrer haben die Geschäfte noch nicht im Angebot",
+    meaning: "فالمتاجر لا تقدم بعد حماية عملية من الطقس لراكبي الدراجات",
     keywords: ["denn = لأن", "Wetterschutz = حماية من الطقس", "Angebot = متوفرة"],
-    simplified = "لأنه لا توجد معاطف مطر جيدة لركوب الدراجة بعد",
-    imagine = "☔🚲 مطر ودراجة بدون مظلة"
+    simplified: "لأنه لا توجد معاطف مطر جيدة لركوب الدراجة بعد",
+    imagine: "☔🚲 مطر ودراجة بدون مظلة"
 };
 
 // ============================================
@@ -11294,59 +11294,59 @@ HELP_DATA["sprach2_exam2_3"] = {
 };
 
 HELP_DATA["sprach2_exam2_4"] = {
-    text = "Wer Fahrrad fährt statt zu sitzen",
-    meaning = "من يركب دراجة بدلاً من الجلوس",
-    keywords = ["statt = بدلاً من", "Fahrrad fährt = يركب دراجة", "zu sitzen = من الجلوس"],
-    simplified = "ركوب الدراجة أفضل من الجلوس خلف المقود",
-    imagine = "🚴‍♂️🪑 دراجة ومقعد سيارة"
+    text: "Wer Fahrrad fährt statt zu sitzen",
+    meaning: "من يركب دراجة بدلاً من الجلوس",
+    keywords: ["statt = بدلاً من", "Fahrrad fährt = يركب دراجة", "zu sitzen = من الجلوس"],
+    simplified: "ركوب الدراجة أفضل من الجلوس خلف المقود",
+    imagine: "🚴‍♂️🪑 دراجة ومقعد سيارة"
 };
 
 HELP_DATA["sprach2_exam2_5"] = {
-    text = "innerhalb geschlossener Räume aufhalten",
-    meaning = "يتواجدون داخل أماكن مغلقة",
+    text: "innerhalb geschlossener Räume aufhalten",
+    meaning: "يتواجدون داخل أماكن مغلقة",
     keywords: ["innerhalb = داخل", "geschlossener Räume = أماكن مغلقة", "aufhalten = يتواجدون"],
-    simplified = "يقضون معظم وقتهم في مكاتب و مصانع مغلقة",
-    imagine = "🏢🚪 مبنى به أبواب ونوافذ مغلقة"
+    simplified: "يقضون معظم وقتهم في مكاتب و مصانع مغلقة",
+    imagine: "🏢🚪 مبنى به أبواب ونوافذ مغلقة"
 };
 
 HELP_DATA["sprach2_exam2_6"] = {
-    text = "sich die meiste Zeit innerhalb geschlossener Räume aufhalten müssen",
-    meaning = "يضطرون لقضاء معظم وقتهم في أماكن مغلقة",
+    text: "sich die meiste Zeit innerhalb geschlossener Räume aufhalten müssen",
+    meaning: "يضطرون لقضاء معظم وقتهم في أماكن مغلقة",
     keywords: ["müssen = يضطرون", "meiste Zeit = معظم الوقت", "aufhalten = قضاء"],
-    simplified = "ممن يضطرون لقضاء وقتهم بالداخل",
-    imagine = "💼😞 عامل مجبر على البقاء في مكتب ضيق"
+    simplified: "ممن يضطرون لقضاء وقتهم بالداخل",
+    imagine: "💼😞 عامل مجبر على البقاء في مكتب ضيق"
 };
 
 HELP_DATA["sprach2_exam2_7"] = {
-    text = "Ein breites Angebot an Zubehör",
+    text: "Ein breites Angebot an Zubehör",
     meaning: "عرض واسع من الإكسسوارات",
     keywords: ["Angebot = عرض", "an = من", "Zubehör = إكسسوارات"],
-    simplified = "متاجر تبيع إكسسوارات الدراجات",
-    imagine = "🚲🔧 دراجة وأدوات جانبية"
+    simplified: "متاجر تبيع إكسسوارات الدراجات",
+    imagine: "🚲🔧 دراجة وأدوات جانبية"
 };
 
 HELP_DATA["sprach2_exam2_8"] = {
-    text = "die das Fahrrad fast so sicher wie einen Panzer machen sollen",
-    meaning = "يجب أن تجعل الدراجة آمنة مثل الدبابة",
+    text: "die das Fahrrad fast so sicher wie einen Panzer machen sollen",
+    meaning: "يجب أن تجعل الدراجة آمنة مثل الدبابة",
     keywords: ["sollen = يجب أن", "sicher = آمنة", "Panzer = دبابة"],
-    simplified = "معدات مصممة لتوفير حماية قصوى للدراج",
-    imagine = "🛡️🚲 دراجة ودرع"
+    simplified: "معدات مصممة لتوفير حماية قصوى للدراج",
+    imagine: "🛡️🚲 دراجة ودرع"
 };
 
 HELP_DATA["sprach2_exam2_9"] = {
-    text = "dann sind die Autoschlangen wieder länger",
+    text: "dann sind die Autoschlangen wieder länger",
     meaning: "عندها تصبح طوابير السيارات أطول",
     keywords: ["dann = عندها", "Autoschlangen = طوابير سيارات", "länger = أطول"],
-    simplified = "حينها ستعود الاختناقات المرورية",
-    imagine = "🚗🚗🚗طابور سيارات طويل تحت المطر"
+    simplified: "حينها ستعود الاختناقات المرورية",
+    imagine: "🚗🚗🚗طابور سيارات طويل تحت المطر"
 };
 
 HELP_DATA["sprach2_exam2_10"] = {
-    text = "denn einen praktischen Wetterschutz für Radfahrer haben die Geschäfte noch nicht im Angebot",
+    text: "denn einen praktischen Wetterschutz für Radfahrer haben die Geschäfte noch nicht im Angebot",
     meaning: "فالمتاجر لا تقدم بعد حماية عملية من الطقس لراكبي الدراجات",
     keywords: ["denn = لأن", "Wetterschutz = حماية من الطقس", "Angebot = متوفرة"],
-    simplified = "لأنه لا توجد معاطف مطر جيدة لركوب الدراجة بعد",
-    imagine = "☔🚲 مطر ودراجة بدون مظلة"
+    simplified: "لأنه لا توجد معاطف مطر جيدة لركوب الدراجة بعد",
+    imagine: "☔🚲 مطر ودراجة بدون مظلة"
 };
 
 // ============================================
@@ -11354,83 +11354,83 @@ HELP_DATA["sprach2_exam2_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam3_1"] = {
-    text = "Denn immer mehr Männer in Deutschland greifen jetzt selbst zum Kochtopf",
-    meaning = "لأن المزيد من الرجال في ألمانيا يستخدمون قدر الطبخ بأنفسهم الآن",
-    keywords = ["Denn = لأن", "Kochtopf = قدر طبخ", "greifen = يستخدمون"],
-    simplified = "الرجال الآن يطبخون بأنفسهم أكثر من السابق",
-    imagine = "👨‍🍳🍳 رجل يرتدي مئزراً ويقف أمام الموقد"
+    text: "Denn immer mehr Männer in Deutschland greifen jetzt selbst zum Kochtopf",
+    meaning: "لأن المزيد من الرجال في ألمانيا يستخدمون قدر الطبخ بأنفسهم الآن",
+    keywords: ["Denn = لأن", "Kochtopf = قدر طبخ", "greifen = يستخدمون"],
+    simplified: "الرجال الآن يطبخون بأنفسهم أكثر من السابق",
+    imagine: "👨‍🍳🍳 رجل يرتدي مئزراً ويقف أمام الموقد"
 };
 
 HELP_DATA["sprach2_exam3_2"] = {
-    text = "Ein Grund für diese Entwicklung",
-    meaning = "سبب لهذا التطور",
-    keywords = ["Grund = سبب", "für = لـ", "Entwicklung = تطور"],
-    simplified = "أحد أسباب هذا التحول",
-    imagine = "📈❓ سؤال وعلامة استفهام"
+    text: "Ein Grund für diese Entwicklung",
+    meaning: "سبب لهذا التطور",
+    keywords: ["Grund = سبب", "für = لـ", "Entwicklung = تطور"],
+    simplified: "أحد أسباب هذا التحول",
+    imagine: "📈❓ سؤال وعلامة استفهام"
 };
 
 HELP_DATA["sprach2_exam3_3"] = {
-    text = "welch ein Unterschied besteht zwischen den Ansprüchen",
-    meaning = "يا له من فرق بين المتطلبات",
-    keywords = ["zwischen = بين", "Ansprüchen = متطلبات", "Unterschied = فرق"],
-    simplified = "الفرق كبير جداً بين ما تتطلبه ربة المنزل والطاهي المنزلي",
-    imagine = "⚖️👩‍🍳👨‍🍳 ميزان بين امرأة ورجل تطبخ في المطبخ"
+    text: "welch ein Unterschied besteht zwischen den Ansprüchen",
+    meaning: "يا له من فرق بين المتطلبات",
+    keywords: ["zwischen = بين", "Ansprüchen = متطلبات", "Unterschied = فرق"],
+    simplified: "الفرق كبير جداً بين ما تتطلبه ربة المنزل والطاهي المنزلي",
+    imagine: "⚖️👩‍🍳👨‍🍳 ميزان بين امرأة ورجل تطبخ في المطبخ"
 };
 
 HELP_DATA["sprach2_exam3_4"] = {
-    text = "Nicht irgendein Topf darf es für den selbsternannten Drei-Sterne-Küchenchef sein",
-    meaning = "ليس أي قدر مناسب لطاهي النجوم الثلاثة المزعوم",
-    keywords = ["irgendein = أي", "Topf = قدر", "Drei-Sterne-Küchenchef = طاهي ثلاث نجوم"],
-    simplified = "طباخو المنازل يطلبون أواني طبخ فاخرة",
-    imagine = "🍲✨ قدر لامع ومكلف"
+    text: "Nicht irgendein Topf darf es für den selbsternannten Drei-Sterne-Küchenchef sein",
+    meaning: "ليس أي قدر مناسب لطاهي النجوم الثلاثة المزعوم",
+    keywords: ["irgendein = أي", "Topf = قدر", "Drei-Sterne-Küchenchef = طاهي ثلاث نجوم"],
+    simplified: "طباخو المنازل يطلبون أواني طبخ فاخرة",
+    imagine: "🍲✨ قدر لامع ومكلف"
 };
 
 HELP_DATA["sprach2_exam3_5"] = {
-    text = "Die zweite Voraussetzung dafür, dass die Gerichte auch gelingen",
-    meaning = "الشرط الثاني لذلك، أن تنجح الأطباق",
-    keywords = ["dafür = لذلك", "Voraussetzung = شرط", "gelingen = تنجح"],
-    simplified = "لكي تنجح الوصفة يجب توفر شرطين",
-    imagine = "📋✅ لائحة مكتوب عليها شرط 1, شرط 2"
+    text: "Die zweite Voraussetzung dafür, dass die Gerichte auch gelingen",
+    meaning: "الشرط الثاني لذلك، أن تنجح الأطباق",
+    keywords: ["dafür = لذلك", "Voraussetzung = شرط", "gelingen = تنجح"],
+    simplified: "لكي تنجح الوصفة يجب توفر شرطين",
+    imagine: "📋✅ لائحة مكتوب عليها شرط 1, شرط 2"
 };
 
 HELP_DATA["sprach2_exam3_6"] = {
-    text = "Jetzt hängt es nur noch davon ab, was der Hobbykoch aus den Kochideen der Buchautoren macht",
-    meaning = "الأمر يعتمد الآن فقط على ما يفعله الطباخ المنزلي بأفكار الطبخ لدى الكتاب",
-    keywords = ["davon = على ذلك", "hängt ab = يعتمد", "Hobbykoch = طباخ منزلي"],
-    simplified = "الأمر يعتمد على مهارة الطباخ باستخدام الوصفات",
-    imagine = "👩‍🍳📖 طباخ ينظر إلى كتاب طبخ"
+    text: "Jetzt hängt es nur noch davon ab, was der Hobbykoch aus den Kochideen der Buchautoren macht",
+    meaning: "الأمر يعتمد الآن فقط على ما يفعله الطباخ المنزلي بأفكار الطبخ لدى الكتاب",
+    keywords: ["davon = على ذلك", "hängt ab = يعتمد", "Hobbykoch = طباخ منزلي"],
+    simplified: "الأمر يعتمد على مهارة الطباخ باستخدام الوصفات",
+    imagine: "👩‍🍳📖 طباخ ينظر إلى كتاب طبخ"
 };
 
 HELP_DATA["sprach2_exam3_7"] = {
-    text = "Helfen die Bücher nicht weiter",
-    meaning = "إن لم تكن الكتب كافية",
-    keywords = ["weiter = أكثر", "helfen = تساعد", "Bücher = كتب"],
-    simplified = "إذا لم تنجح الكتب في مساعدتك",
-    imagine = "📚🤷 شخص أمام كومة كتب يشعر بالضياع"
+    text: "Helfen die Bücher nicht weiter",
+    meaning: "إن لم تكن الكتب كافية",
+    keywords: ["weiter = أكثر", "helfen = تساعد", "Bücher = كتب"],
+    simplified: "إذا لم تنجح الكتب في مساعدتك",
+    imagine: "📚🤷 شخص أمام كومة كتب يشعر بالضياع"
 };
 
 HELP_DATA["sprach2_exam3_8"] = {
-    text = "Das führt dazu, dass man(n) zu Hause immer öfter international kocht",
-    meaning = "هذا يؤدي إلى أن المرء يطبخ بشكل دولي في المنزل غالباً",
-    keywords = ["dazu = إلى ذلك", "führt = يؤدي", "international kocht = يطبخ دولياً"],
-    simplified = "هذا يجعل الطهاة الهواة يجربون وصفات من مختلف المطابخ العالمية",
-    imagine = "🌍🍲 أطباق من حول العالم"
+    text: "Das führt dazu, dass man(n) zu Hause immer öfter international kocht",
+    meaning: "هذا يؤدي إلى أن المرء يطبخ بشكل دولي في المنزل غالباً",
+    keywords: ["dazu = إلى ذلك", "führt = يؤدي", "international kocht = يطبخ دولياً"],
+    simplified: "هذا يجعل الطهاة الهواة يجربون وصفات من مختلف المطابخ العالمية",
+    imagine: "🌍🍲 أطباق من حول العالم"
 };
 
 HELP_DATA["sprach2_exam3_9"] = {
-    text = "dass es viel zu aufwändig ist, für sich alleine zu kochen",
-    meaning = "أنه من المعقد جداً الطبخ بمفردك",
-    keywords = ["dass = أن", "aufwändig = معقد", "alleine = بمفردك"],
-    simplified = "الطبخ لشخص واحد معقد للغاية",
-    imagine = "🍲😓 طباخ يواجه صعوبة في تحضير وجبة لشخص واحد"
+    text: "dass es viel zu aufwändig ist, für sich alleine zu kochen",
+    meaning: "أنه من المعقد جداً الطبخ بمفردك",
+    keywords: ["dass = أن", "aufwändig = معقد", "alleine = بمفردك"],
+    simplified: "الطبخ لشخص واحد معقد للغاية",
+    imagine: "🍲😓 طباخ يواجه صعوبة في تحضير وجبة لشخص واحد"
 };
 
 HELP_DATA["sprach2_exam3_10"] = {
-    text = "Das Interessante daran ist, dass dabei unsere männlichen Chefköche feststellen müssen",
-    meaning = "المثير للاهتمام في ذلك هو أن طهاةنا الذكور يجب أن يدركوا",
-    keywords = ["daran = في ذلك", "Interessante = مثير للاهتمام", "feststellen = يدركوا"],
-    simplified = "والجزء المضحك أن الرجال يكتشفون أن النساء طهاة ماهرات أيضاً",
-    imagine = "👩‍🍳😊👨‍🍳 امرأة تطبخ والرجل مندهش"
+    text: "Das Interessante daran ist, dass dabei unsere männlichen Chefköche feststellen müssen",
+    meaning: "المثير للاهتمام في ذلك هو أن طهاةنا الذكور يجب أن يدركوا",
+    keywords: ["daran = في ذلك", "Interessante = مثير للاهتمام", "feststellen = يدركوا"],
+    simplified: "والجزء المضحك أن الرجال يكتشفون أن النساء طهاة ماهرات أيضاً",
+    imagine: "👩‍🍳😊👨‍🍳 امرأة تطبخ والرجل مندهش"
 };
 
 // ============================================
@@ -11438,83 +11438,83 @@ HELP_DATA["sprach2_exam3_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam4_1"] = {
-    text = "Den Wettbewerb 'Jugend diskutiert' gibt es bereits seit Herbst 2002",
-    meaning = "مسابقة 'شباب يناقشون' موجودة منذ خريف 2002",
+    text: "Den Wettbewerb 'Jugend diskutiert' gibt es bereits seit Herbst 2002",
+    meaning: "مسابقة 'شباب يناقشون' موجودة منذ خريف 2002",
     keywords: ["seit = منذ", "Wettbewerb = مسابقة", "Herbst = خريف"],
-    simplified = "المسابقة مستمرة منذ عدة سنوات",
-    imagine = "📅🏆 تقويم وكأس"
+    simplified: "المسابقة مستمرة منذ عدة سنوات",
+    imagine: "📅🏆 تقويم وكأس"
 };
 
 HELP_DATA["sprach2_exam4_2"] = {
-    text = "Wie immer bereiten sich die Teilnehmer dann im Unterricht auf 'Jugend diskutiert' vor",
-    meaning = "كالعادة، يستعد المشاركون في الفصل للمسابقة",
+    text: "Wie immer bereiten sich die Teilnehmer dann im Unterricht auf 'Jugend diskutiert' vor",
+    meaning: "كالعادة، يستعد المشاركون في الفصل للمسابقة",
     keywords: ["Wie = كما", "immer = دائماً", "bereiten vor = يستعدون"],
-    simplified = "المشاركون يستعدون في المدرسة كالعادة",
-    imagine = "🏫📚 مدرسة وكتب"
+    simplified: "المشاركون يستعدون في المدرسة كالعادة",
+    imagine: "🏫📚 مدرسة وكتب"
 };
 
 HELP_DATA["sprach2_exam4_3"] = {
-    text = "Du fragst dich, warum du teilnehmen solltest?",
-    meaning = "تتساءل لماذا يجب أن تشارك؟",
+    text: "Du fragst dich, warum du teilnehmen solltest?",
+    meaning: "تتساءل لماذا يجب أن تشارك؟",
     keywords: ["warum = لماذا", "teilnehmen = تشارك", "fragst dich = تتساءل"],
-    simplified = "قد تتساءل عن فائدة مشاركتك",
-    imagine = "❓🤔 علامة استفهام وشخص يفكر"
+    simplified: "قد تتساءل عن فائدة مشاركتك",
+    imagine: "❓🤔 علامة استفهام وشخص يفكر"
 };
 
 HELP_DATA["sprach2_exam4_4"] = {
-    text = "Außerdem bietet dir 'Jugend diskutiert' die Chance, im Wettstreit mit anderen weiterzukommen",
-    meaning = "بالإضافة إلى ذلك، تمنحك المسابقة فرصة التقدم بالتنافس مع الآخرين",
+    text: "Außerdem bietet dir 'Jugend diskutiert' die Chance, im Wettstreit mit anderen weiterzukommen",
+    meaning: "بالإضافة إلى ذلك، تمنحك المسابقة فرصة التقدم بالتنافس مع الآخرين",
     keywords: ["Außerdem = بالإضافة إلى ذلك", "Chance = فرصة", "Wettstreit = تنافس"],
-    simplified = "المنافسة نفسها تمنحك فرصة ثمينة للتطور",
-    imagine = "🏃‍♂️🏆 سباق وشارة فوز"
+    simplified: "المنافسة نفسها تمنحك فرصة ثمينة للتطور",
+    imagine: "🏃‍♂️🏆 سباق وشارة فوز"
 };
 
 HELP_DATA["sprach2_exam4_5"] = {
-    text = "die dann an Regionalwettbewerben teilnehmen",
-    meaning = "الذين سيشاركون بعدها في مسابقات المناطق",
+    text: "die dann an Regionalwettbewerben teilnehmen",
+    meaning: "الذين سيشاركون بعدها في مسابقات المناطق",
     keywords: ["an = في", "Regionalwettbewerben = مسابقات مناطقية", "teilnehmen = يشاركون"],
-    simplified = "الطلاب الفائزون يتأهلون للمرحلة التالية",
-    imagine = "🗺️📍 مراحل على خريطة"
+    simplified: "الطلاب الفائزون يتأهلون للمرحلة التالية",
+    imagine: "🗺️📍 مراحل على خريطة"
 };
 
 HELP_DATA["sprach2_exam4_6"] = {
-    text = "Als Preise kann man professionelle Trainings gewinnen",
-    meaning = "يمكن الفوز بتدريبات احترافية كجوائز",
+    text: "Als Preise kann man professionelle Trainings gewinnen",
+    meaning: "يمكن الفوز بتدريبات احترافية كجوائز",
     keywords: ["Als = مثل", "Preise = جوائز", "Trainings = تدريبات"],
-    simplified = "الجوائز هي فرص تدريبية احترافية",
-    imagine = "🎁🏋️ هدية وحقيبة رياضية"
+    simplified: "الجوائز هي فرص تدريبية احترافية",
+    imagine: "🎁🏋️ هدية وحقيبة رياضية"
 };
 
 HELP_DATA["sprach2_exam4_7"] = {
-    text = "Bei 'Jugend diskutiert' kannst du viel lernen",
-    meaning = "في 'شباب يناقشون' يمكنك تعلم الكثير",
+    text: "Bei 'Jugend diskutiert' kannst du viel lernen",
+    meaning: "في 'شباب يناقشون' يمكنك تعلم الكثير",
     keywords: ["Bei = في", "lernen = تعلم", "viel = الكثير"],
-    simplified = "المشاركة في المسابقة تعلمك العديد من المهارات",
-    imagine = "🧠📖 عقل وكتاب"
+    simplified: "المشاركة في المسابقة تعلمك العديد من المهارات",
+    imagine: "🧠📖 عقل وكتاب"
 };
 
 HELP_DATA["sprach2_exam4_8"] = {
-    text = "Du gewinnst mehr Selbstbewusstsein, weil du lernst, wie man das Wort ergreift",
-    meaning = "تكتسب ثقة أكبر بالنفس لأنك تتعلم كيف تأخذ الكلمة",
+    text: "Du gewinnst mehr Selbstbewusstsein, weil du lernst, wie man das Wort ergreift",
+    meaning: "تكتسب ثقة أكبر بالنفس لأنك تتعلم كيف تأخذ الكلمة",
     keywords: ["weil = لأن", "Selbstbewusstsein = ثقة بالنفس", "Wort ergreift = تأخذ الكلمة"],
-    simplified = "ممارسة النقاشات تزيد من ثقتك بنفسك",
-    imagine = "💪🗣️ شخص يتحدث بثقة وذراع قوية"
+    simplified: "ممارسة النقاشات تزيد من ثقتك بنفسك",
+    imagine: "💪🗣️ شخص يتحدث بثقة وذراع قوية"
 };
 
 HELP_DATA["sprach2_exam4_9"] = {
-    text = "Die Sichtweisen der anderen zeigen dir darüber hinaus, was du vielleicht selbst noch nicht gesehen hast",
-    meaning = "وجهات نظر الآخرين تريك أيضاً ما قد لا تكون قد لاحظته بنفسك",
+    text: "Die Sichtweisen der anderen zeigen dir darüber hinaus, was du vielleicht selbst noch nicht gesehen hast",
+    meaning: "وجهات نظر الآخرين تريك أيضاً ما قد لا تكون قد لاحظته بنفسك",
     keywords: ["was = ما", "Sichtweisen = وجهات نظر", "gesehen = لاحظته"],
-    simplified = "الاستماع لزملائك يمنحك أفكاراً جديدة",
-    imagine = "👥🔭 شخصان ينظران من منظار"
+    simplified: "الاستماع لزملائك يمنحك أفكاراً جديدة",
+    imagine: "👥🔭 شخصان ينظران من منظار"
 };
 
 HELP_DATA["sprach2_exam4_10"] = {
-    text = "Wer das alles im Unterricht gelernt hat, kann gemeinsam mit anderen viel bewegen!",
-    meaning = "من تعلم كل هذا في الفصل، يمكنه تحقيق الكثير مع الآخرين!",
+    text: "Wer das alles im Unterricht gelernt hat, kann gemeinsam mit anderen viel bewegen!",
+    meaning: "من تعلم كل هذا في الفصل، يمكنه تحقيق الكثير مع الآخرين!",
     keywords: ["Wer = من", "gelernt = تعلم", "bewegen = يحقق"],
-    simplified = "المهارات المكتسبة تمنحك القدرة على إحداث تغيير",
-    imagine = "🤝🌍 أيادٍ متشابكة وكوكب أرض"
+    simplified: "المهارات المكتسبة تمنحك القدرة على إحداث تغيير",
+    imagine: "🤝🌍 أيادٍ متشابكة وكوكب أرض"
 };
 
 // ============================================
@@ -11522,83 +11522,83 @@ HELP_DATA["sprach2_exam4_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam5_1"] = {
-    text = "sondern auch die Körpererfahrung von Kindern",
-    meaning = "بل أيضاً التجربة الجسدية للأطفال",
+    text: "sondern auch die Körpererfahrung von Kindern",
+    meaning: "بل أيضاً التجربة الجسدية للأطفال",
     keywords: ["sondern = بل", "Körpererfahrung = تجربة جسدية", "Kindern = أطفال"],
-    simplified = "المسرح يطور الإبداع والوعي الجسدي للأطفال",
-    imagine = "🎭💪 أقنعة وعضلات"
+    simplified: "المسرح يطور الإبداع والوعي الجسدي للأطفال",
+    imagine: "🎭💪 أقنعة وعضلات"
 };
 
 HELP_DATA["sprach2_exam5_2"] = {
-    text = "arbeitet seit vielen Jahren in der Jugendförderung",
+    text: "arbeitet seit vielen Jahren in der Jugendförderung",
     meaning: "يعمل منذ سنوات عديدة في تعزيز الشباب",
     keywords: ["seit = منذ", "Jugendförderung = تعزيز الشباب", "arbeitet = يعمل"],
-    simplified = "النادي الخيري له تاريخ في دعم الشباب",
-    imagine = "🧒📅 سنوات ووجه طفل"
+    simplified: "النادي الخيري له تاريخ في دعم الشباب",
+    imagine: "🧒📅 سنوات ووجه طفل"
 };
 
 HELP_DATA["sprach2_exam5_3"] = {
-    text = "die wegen familiärer und anderer Probleme Hilfe benötigen",
+    text: "die wegen familiärer und anderer Probleme Hilfe benötigen",
     meaning: "الذين يحتاجون مساعدة بسبب مشاكل عائلية وأخرى",
     keywords: ["wegen = بسبب", "familiärer = عائلية", "Hilfe = مساعدة"],
-    simplified = "الأطفال الذين يعانون من مشاكل في المنزل يجدون مساعدتهم هنا",
-    imagine = "🏠💔 منزل وقلب حزين"
+    simplified: "الأطفال الذين يعانون من مشاكل في المنزل يجدون مساعدتهم هنا",
+    imagine: "🏠💔 منزل وقلب حزين"
 };
 
 HELP_DATA["sprach2_exam5_4"] = {
-    text = "ab dem kommenden Jahr die Welt des Theaters kennenlernen",
+    text: "ab dem kommenden Jahr die Welt des Theaters kennenlernen",
     meaning: "ابتداءً من العام القادم سيتعرفون على عالم المسرح",
     keywords: ["ab = ابتداءً من", "kommenden Jahr = العام القادم", "kennenlernen = يتعرفون"],
-    simplified = "بدءاً من العام الجديد سيتعلمون عن المسرح",
-    imagine = "📅🎭 تقويم وأقنعة مسرحية"
+    simplified: "بدءاً من العام الجديد سيتعلمون عن المسرح",
+    imagine: "📅🎭 تقويم وأقنعة مسرحية"
 };
 
 HELP_DATA["sprach2_exam5_5"] = {
-    text = "Am Ende des Projekts werden die Nachwuchsschauspieler bei einem Theaterfestival auftreten",
-    meaning = "في نهاية المشروع، سوف يمثل الممثلون الشباب في مهرجان مسرحي",
+    text: "Am Ende des Projekts werden die Nachwuchsschauspieler bei einem Theaterfestival auftreten",
+    meaning: "في نهاية المشروع، سوف يمثل الممثلون الشباب في مهرجان مسرحي",
     keywords: ["Am = في", "Ende = نهاية", "auftreten = يمثلون"],
-    simplified = "سيظهر الأطفال على خشبة المسرح في مهرجان",
-    imagine = "🎭🌟 مسرح وأضواء"
+    simplified: "سيظهر الأطفال على خشبة المسرح في مهرجان",
+    imagine: "🎭🌟 مسرح وأضواء"
 };
 
 HELP_DATA["sprach2_exam5_6"] = {
-    text = "Allen Mitarbeitern ist es wichtig, dass die Kinder auf der Bühne Anerkennung für ihre Leistung bekommen",
-    meaning = "كل الموظفين يعتبرون من المهم أن يحصل الأطفال على تقدير لعملهم على المسرح",
+    text: "Allen Mitarbeitern ist es wichtig, dass die Kinder auf der Bühne Anerkennung für ihre Leistung bekommen",
+    meaning: "كل الموظفين يعتبرون من المهم أن يحصل الأطفال على تقدير لعملهم على المسرح",
     keywords: ["es = ذلك", "wichtig = مهم", "Anerkennung = تقدير"],
-    simplified = "فريق العمل يؤمن بأن التقدير المستحق للأطفال أمر حيوي",
-    imagine = "👏🎭 تصفيق ووجه سعيد"
+    simplified: "فريق العمل يؤمن بأن التقدير المستحق للأطفال أمر حيوي",
+    imagine: "👏🎭 تصفيق ووجه سعيد"
 };
 
 HELP_DATA["sprach2_exam5_7"] = {
-    text = "da bei der Stadt keine Gelder vorhanden waren",
-    meaning = "لأنه لم تكن هناك أموال متوفرة في المدينة",
+    text: "da bei der Stadt keine Gelder vorhanden waren",
+    meaning: "لأنه لم تكن هناك أموال متوفرة في المدينة",
     keywords: ["da = لأن", "Gelder = أموال", "vorhanden = متوفرة"],
-    simplified = "كان هذا مستحيلاً لولا الدعم المالي لأن المدينة لم تقدم أي تمويل",
-    imagine = "💰🚫 نقود وعلامة ممنوع"
+    simplified: "كان هذا مستحيلاً لولا الدعم المالي لأن المدينة لم تقدم أي تمويل",
+    imagine: "💰🚫 نقود وعلامة ممنوع"
 };
 
 HELP_DATA["sprach2_exam5_8"] = {
-    text = "Der Verein kümmert sich auch darum, die Projekte bekannt zu machen",
-    meaning = "النادي يهتم أيضاً بنشر المشاريع",
+    text: "Der Verein kümmert sich auch darum, die Projekte bekannt zu machen",
+    meaning: "النادي يهتم أيضاً بنشر المشاريع",
     keywords: ["darum = بذلك", "bekannt zu machen = بنشر", "kümmert sich = يهتم"],
-    simplified = "النادي مسؤول عن الترويج للمشاريع",
-    imagine = "📢🎭 مكبر صوت ومسرح"
+    simplified: "النادي مسؤول عن الترويج للمشاريع",
+    imagine: "📢🎭 مكبر صوت ومسرح"
 };
 
 HELP_DATA["sprach2_exam5_9"] = {
-    text = "Man hofft, auf diese Weise noch mehr Unterstützer zu finden",
-    meaning = "يأملون بهذه الطريقة إيجاد المزيد من الداعمين",
+    text: "Man hofft, auf diese Weise noch mehr Unterstützer zu finden",
+    meaning: "يأملون بهذه الطريقة إيجاد المزيد من الداعمين",
     keywords: ["auf = بهذه", "Weise = طريقة", "Unterstützer = داعمين"],
-    simplified = "آملين كسب دعم أكبر من المجتمع عبر الإعلانات",
-    imagine = "🤝👥 أيدي متشابكة ومجموعة أشخاص"
+    simplified: "آملين كسب دعم أكبر من المجتمع عبر الإعلانات",
+    imagine: "🤝👥 أيدي متشابكة ومجموعة أشخاص"
 };
 
 HELP_DATA["sprach2_exam5_10"] = {
-    text = "Aktuell sammelt das Jugendzentrum Spenden, um weitere Projekte finanzieren zu können",
-    meaning = "المركز الشبابي يجمع تبرعات حالياً لتمويل مشاريع أخرى",
+    text: "Aktuell sammelt das Jugendzentrum Spenden, um weitere Projekte finanzieren zu können",
+    meaning: "المركز الشبابي يجمع تبرعات حالياً لتمويل مشاريع أخرى",
     keywords: ["um = لـ", "zu finanzieren = لتمويل", "Projekte = مشاريع"],
-    simplified = "تبرعاتنا الآن تستخدم لدعم مشاريع مستقبلية",
-    imagine = "💰🎭 نقود وأقنعة مسرح"
+    simplified: "تبرعاتنا الآن تستخدم لدعم مشاريع مستقبلية",
+    imagine: "💰🎭 نقود وأقنعة مسرح"
 };
 
 // ============================================
@@ -11606,83 +11606,83 @@ HELP_DATA["sprach2_exam5_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam6_1"] = {
-    text = "seltener krank als Kinder in Haushalten ohne Tiere",
-    meaning = "يمرضون أقل من الأطفال في بيوت بلا حيوانات",
+    text: "seltener krank als Kinder in Haushalten ohne Tiere",
+    meaning: "يمرضون أقل من الأطفال في بيوت بلا حيوانات",
     keywords: ["als = من", "seltener = أقل", "krank = يمرضون"],
-    simplified = "وجود حيوان أليف يرتبط بمرض أقل للطفل",
-    imagine = "🐱👶 طفل وقطة"
+    simplified: "وجود حيوان أليف يرتبط بمرض أقل للطفل",
+    imagine: "🐱👶 طفل وقطة"
 };
 
 HELP_DATA["sprach2_exam6_2"] = {
-    text = "Die Studie wurde in der vergangenen Woche veröffentlicht",
-    meaning = "الدراسة نُشرت في الأسبوع الماضي",
+    text: "Die Studie wurde in der vergangenen Woche veröffentlicht",
+    meaning: "الدراسة نُشرت في الأسبوع الماضي",
     keywords: ["vergangenen = الماضي", "Woche = أسبوع", "veröffentlicht = نُشرت"],
-    simplified = "النتائج نُشرت مؤخراً",
-    imagine = "📰🗓️ جريدة وتقويم"
+    simplified: "النتائج نُشرت مؤخراً",
+    imagine: "📰🗓️ جريدة وتقويم"
 };
 
 HELP_DATA["sprach2_exam6_3"] = {
-    text = "Es wurden zwar keine Erklärungen geliefert",
-    meaning = "لم يتم تقديم تفسيرات ومع ذلك...",
+    text: "Es wurden zwar keine Erklärungen geliefert",
+    meaning: "لم يتم تقديم تفسيرات ومع ذلك...",
     keywords: ["zwar = ومع ذلك", "Erklärungen = تفسيرات", "geliefert = تقديم"],
-    simplified = "لن يقدم البحث سبباً علمياً محدداً",
-    imagine = "❓🔍 تجربة وعلامة استفهام"
+    simplified: "لن يقدم البحث سبباً علمياً محدداً",
+    imagine: "❓🔍 تجربة وعلامة استفهام"
 };
 
 HELP_DATA["sprach2_exam6_4"] = {
-    text = "Hunde haben nämlich durch die täglichen Spaziergänge draußen viel Kontakt zu möglichen Krankheitserregern",
-    meaning = "الكلاب تحديداً لديها اتصال كثير بمسببات الأمراض المحتملة أثناء المشي اليومي في الخارج",
+    text: "Hunde haben nämlich durch die täglichen Spaziergänge draußen viel Kontakt zu möglichen Krankheitserregern",
+    meaning: "الكلاب تحديداً لديها اتصال كثير بمسببات الأمراض المحتملة أثناء المشي اليومي في الخارج",
     keywords: ["durch = عبر", "Spaziergänge = نزهات", "Kontakt = اتصال"],
-    simplified = "خلال نزهاتهم اليومية، تتعرض الكلاب للجراثيم",
-    imagine = "🐕🌿 كلب في الخارج بجانب نباتات"
+    simplified: "خلال نزهاتهم اليومية، تتعرض الكلاب للجراثيم",
+    imagine: "🐕🌿 كلب في الخارج بجانب نباتات"
 };
 
 HELP_DATA["sprach2_exam6_5"] = {
-    text = "haben demnach dieselbe Wirkung auf die Gesundheit der Kinder",
-    meaning = "وبالتالي لديهم نفس التأثير على صحة الأطفال",
+    text: "haben demnach dieselbe Wirkung auf die Gesundheit der Kinder",
+    meaning: "وبالتالي لديهم نفس التأثير على صحة الأطفال",
     keywords: ["dieselbe = نفس", "Wirkung = تأثير", "Gesundheit = صحة"],
-    simplified = "القطط التي تخرج للخارج لها فائدة مماثلة",
-    imagine = "🐈🍃 قطة تختبئ في الأدغال"
+    simplified: "القطط التي تخرج للخارج لها فائدة مماثلة",
+    imagine: "🐈🍃 قطة تختبئ في الأدغال"
 };
 
 HELP_DATA["sprach2_exam6_6"] = {
-    text = "wurden in Finnland 397 Babys über den Zeitraum beobachtet",
+    text: "wurden in Finnland 397 Babys über den Zeitraum beobachtet",
     meaning: "تمت مراقبة 397 طفلاً في فنلندا على مدى فترة زمنية",
     keywords: ["wurden = تم", "beobachtet = مراقبة", "Zeitraum = فترة زمنية"],
-    simplified = "شملت الدراسة 397 طفلاً فنلندياً",
-    imagine = "👶📋 أطفال وأوراق"
+    simplified: "شملت الدراسة 397 طفلاً فنلندياً",
+    imagine: "👶📋 أطفال وأوراق"
 };
 
 HELP_DATA["sprach2_exam6_7"] = {
-    text = "ein um 30 % geringeres Risiko für Erkrankungen der Atemwege",
-    meaning = "خطر أقل بنسبة 30٪ لأمراض الجهاز التنفسي",
+    text: "ein um 30 % geringeres Risiko für Erkrankungen der Atemwege",
+    meaning: "خطر أقل بنسبة 30٪ لأمراض الجهاز التنفسي",
     keywords: ["geringeres = أقل", "Risiko = خطر", "Atemwege = تنفسي"],
-    simplified = "انخفاض خطر إصابة الأطفال بالربو والتهاب الشعب الهوائية",
-    imagine = "📉😷 رسم بياني ينخفض وقناع"
+    simplified: "انخفاض خطر إصابة الأطفال بالربو والتهاب الشعب الهوائية",
+    imagine: "📉😷 رسم بياني ينخفض وقناع"
 };
 
 HELP_DATA["sprach2_exam6_8"] = {
-    text = "Ohrenentzündungen weniger auftraten",
-    meaning = "التهابات الأذن حدثت بشكل أقل",
+    text: "Ohrenentzündungen weniger auftraten",
+    meaning: "التهابات الأذن حدثت بشكل أقل",
     keywords: ["weniger = أقل", "auftraten = حدثت", "Ohrenentzündungen = التهابات أذن"],
-    simplified = "أظهرت الدراسة نتائج مفاجئة حول التهابات الأذن",
-    imagine = "👂🦷 أذن وأسنان"
+    simplified: "أظهرت الدراسة نتائج مفاجئة حول التهابات الأذن",
+    imagine: "👂🦷 أذن وأسنان"
 };
 
 HELP_DATA["sprach2_exam6_9"] = {
-    text = "dass die Gesundheit von Kindern in Gesellschaft von Tieren deutlich besser sei",
-    meaning = "صحة الأطفال بصحبة الحيوانات أفضل بكثير",
+    text: "dass die Gesundheit von Kindern in Gesellschaft von Tieren deutlich besser sei",
+    meaning: "صحة الأطفال بصحبة الحيوانات أفضل بكثير",
     keywords: ["deutlich = بكثير", "besser = أفضل", "Gesellschaft = صحبة"],
-    simplified = "العلاقة بين الحيوانات الأليفة وصحة الطفل قوية جداً",
-    imagine = "🐕❤️👶 كلب وقلب وطفل"
+    simplified: "العلاقة بين الحيوانات الأليفة وصحة الطفل قوية جداً",
+    imagine: "🐕❤️👶 كلب وقلب وطفل"
 };
 
 HELP_DATA["sprach2_exam6_10"] = {
-    text = "Frühere Untersuchungen hatten das genaue Gegenteil ergeben",
-    meaning = "دراسات سابقة أظهرت العكس تماماً",
+    text: "Frühere Untersuchungen hatten das genaue Gegenteil ergeben",
+    meaning: "دراسات سابقة أظهرت العكس تماماً",
     keywords: ["Gegenteil = عكس", "genaue = تماماً", "früheren = سابقة"],
-    simplified = "نتائج اليوم معاكسة تماماً للدراسات السابقة الأمريكية",
-    imagine = "🔄❌ سهم معاكس وعلامة منع"
+    simplified: "نتائج اليوم معاكسة تماماً للدراسات السابقة الأمريكية",
+    imagine: "🔄❌ سهم معاكس وعلامة منع"
 };
 
 // ============================================
@@ -11690,83 +11690,83 @@ HELP_DATA["sprach2_exam6_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam7_1"] = {
-    text = "Anhand des Inhalts des Tiefkühlfachs den Charakter seines Besitzers erkennen",
-    meaning = "من خلال محتويات الفريزر يمكن التعرف على شخصية صاحبها",
+    text: "Anhand des Inhalts des Tiefkühlfachs den Charakter seines Besitzers erkennen",
+    meaning: "من خلال محتويات الفريزر يمكن التعرف على شخصية صاحبها",
     keywords: ["Anhand = من خلال", "Inhalts = محتويات", "Tiefkühlfachs = فريزر"],
-    simplified = "ماذا يخبرك محتوى ثلاجة الرجل عن شخصيته؟",
-    imagine = "🧊❄️ فريزر مفتوح وطعام مجمد"
+    simplified: "ماذا يخبرك محتوى ثلاجة الرجل عن شخصيته؟",
+    imagine: "🧊❄️ فريزر مفتوح وطعام مجمد"
 };
 
 HELP_DATA["sprach2_exam7_2"] = {
-    text = "unterscheiden fünf Kategorien von Single-Männern",
-    meaning = "يميزون خمس فئات من الرجال العزاب",
+    text: "unterscheiden fünf Kategorien von Single-Männern",
+    meaning: "يميزون خمس فئات من الرجال العزاب",
     keywords: ["von = من", "Kategorien = فئات", "Single-Männern = رجال عزاب"],
-    simplified = "العلماء يصنفون الرجال حسب نوع وجباتهم المجمدة",
-    imagine = "🧑‍🤝‍🧑📋 رجال وأوراق تصنيف"
+    simplified: "العلماء يصنفون الرجال حسب نوع وجباتهم المجمدة",
+    imagine: "🧑‍🤝‍🧑📋 رجال وأوراق تصنيف"
 };
 
 HELP_DATA["sprach2_exam7_3"] = {
-    text = "den spontanen Typ, den Bequemen, den Kreativen, sowie den Cocktail- und den Gourmet-Typen",
-    meaning = "النوع العفوي، المريح، المبدع، بالإضافة إلى الكوكتيل والذواقة",
+    text: "den spontanen Typ, den Bequemen, den Kreativen, sowie den Cocktail- und den Gourmet-Typen",
+    meaning: "النوع العفوي، المريح، المبدع، بالإضافة إلى الكوكتيل والذواقة",
     keywords: ["sowie = وكذلك", "spontanen = عفوي", "Gourmet = ذواقة"],
-    simplified = "الأنواع الخمسة للرجال تشمل الذواقة والمبدع والعفوي وغيرهم",
-    imagine = "👨‍🍳👨‍💼🍸 رجال مع كوكتيل وطعام"
+    simplified: "الأنواع الخمسة للرجال تشمل الذواقة والمبدع والعفوي وغيرهم",
+    imagine: "👨‍🍳👨‍💼🍸 رجال مع كوكتيل وطعام"
 };
 
 HELP_DATA["sprach2_exam7_4"] = {
-    text = "aus denen er eine Mahlzeit zusammenstellen kann",
-    meaning = "يمكنه من خلالها تحضير وجبة",
+    text: "aus denen er eine Mahlzeit zusammenstellen kann",
+    meaning: "يمكنه من خلالها تحضير وجبة",
     keywords: ["aus = من خلالها", "denen = التي", "zusammenstellen = تحضير"],
-    simplified = "يخلطون الخضار واللحوم المجمدة لصنع وجبات بسيطة",
-    imagine = "🍲🥦🥩 قدر به خضار و لحم"
+    simplified: "يخلطون الخضار واللحوم المجمدة لصنع وجبات بسيطة",
+    imagine: "🍲🥦🥩 قدر به خضار و لحم"
 };
 
 HELP_DATA["sprach2_exam7_5"] = {
-    text = "Der Nachteil liegt auf der Hand",
-    meaning = "العيب واضح للجميع",
+    text: "Der Nachteil liegt auf der Hand",
+    meaning: "العيب واضح للجميع",
     keywords: ["auf = على", "Hand = يد", "liegt = يقع"],
-    simplified = "عيبه أنه نادر الوجود",
-    imagine = "🤲👀 يد مفتوحة وعينان"
+    simplified: "عيبه أنه نادر الوجود",
+    imagine: "🤲👀 يد مفتوحة وعينان"
 };
 
 HELP_DATA["sprach2_exam7_6"] = {
-    text = "Ihnen ist es sogar zu anstrengend, zwei Tüten zu öffnen statt nur einer",
-    meaning = "حتى فتح كيسين بدلاً من واحد مرهق جداً بالنسبة لهم",
+    text: "Ihnen ist es sogar zu anstrengend, zwei Tüten zu öffnen statt nur einer",
+    meaning: "حتى فتح كيسين بدلاً من واحد مرهق جداً بالنسبة لهم",
     keywords: ["anstrengend = مرهق", "Tüten = أكياس", "öffnen = فتح"],
-    simplified = "حتى رفع أكياس متعددة من الفريزر يتطلب مجهوداً كبيراً بالنسبة لهم",
-    imagine = "🛍️😓 أكياس بقالة ووجه متعب"
+    simplified: "حتى رفع أكياس متعددة من الفريزر يتطلب مجهوداً كبيراً بالنسبة لهم",
+    imagine: "🛍️😓 أكياس بقالة ووجه متعب"
 };
 
 HELP_DATA["sprach2_exam7_7"] = {
-    text = "Folglich kaufen diese Männer am häufigsten komplette Gerichte",
-    meaning = "وبالتالي يشتري هؤلاء الرجال الأطباق الكاملة غالباً",
+    text: "Folglich kaufen diese Männer am häufigsten komplette Gerichte",
+    meaning: "وبالتالي يشتري هؤلاء الرجال الأطباق الكاملة غالباً",
     keywords: ["Folglich = وبالتالي", "komplette Gerichte = أطباق كاملة", "kaufen = يشترون"],
-    simplified = "يختارون الوجبات الجاهزة الكاملة توفيراً للوقت",
-    imagine = "🍽️📺 طبق جاهز وتلفاز"
+    simplified: "يختارون الوجبات الجاهزة الكاملة توفيراً للوقت",
+    imagine: "🍽️📺 طبق جاهز وتلفاز"
 };
 
 HELP_DATA["sprach2_exam7_8"] = {
-    text = "Zumindest Frauen sehen das wohl eher skeptisch",
-    meaning = "على الأقل النساء ينظرن إلى ذلك بتشكك إلى حد ما",
+    text: "Zumindest Frauen sehen das wohl eher skeptisch",
+    meaning: "على الأقل النساء ينظرن إلى ذلك بتشكك إلى حد ما",
     keywords: ["eher = إلى حد ما", "skeptisch = بتشكك", "Frauen = نساء"],
-    simplified = "النساء متشككات نوعاً ما في هذه الفكرة",
-    imagine = "🤨👩 امرأة ترفع حاجبها بتشكك"
+    simplified: "النساء متشككات نوعاً ما في هذه الفكرة",
+    imagine: "🤨👩 امرأة ترفع حاجبها بتشكك"
 };
 
 HELP_DATA["sprach2_exam7_9"] = {
-    text = "Doch egal, zu welcher Kategorie ein Mann gehört",
-    meaning = "ولكن بغض النظر عن الفئة التي ينتمي إليها الرجل",
+    text: "Doch egal, zu welcher Kategorie ein Mann gehört",
+    meaning: "ولكن بغض النظر عن الفئة التي ينتمي إليها الرجل",
     keywords: ["zu = إلى", "Kategorie = فئة", "gehört = ينتمي"],
-    simplified = "بغض النظر عن النوع",
-    imagine = "🧑‍🤝‍🧑🤷 أشخاص لا يهم تصنيفهم"
+    simplified: "بغض النظر عن النوع",
+    imagine: "🧑‍🤝‍🧑🤷 أشخاص لا يهم تصنيفهم"
 };
 
 HELP_DATA["sprach2_exam7_10"] = {
-    text = "andere wohl eher keine Lust",
-    meaning = "والبعض الآخر ربما ليس لديه رغبة",
+    text: "andere wohl eher keine Lust",
+    meaning: "والبعض الآخر ربما ليس لديه رغبة",
     keywords: ["wohl = ربما", "eher = إلى حد ما", "Lust = رغبة"],
-    simplified = "ينقصهم الحافز للطهي",
-    imagine = "🍳🤷 طباخ ومطبخ نائم"
+    simplified: "ينقصهم الحافز للطهي",
+    imagine: "🍳🤷 طباخ ومطبخ نائم"
 };
 
 // ============================================
@@ -11774,83 +11774,83 @@ HELP_DATA["sprach2_exam7_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam8_1"] = {
-    text = "Einer Studie zufolge kann man anhand des Inhalts den Charakter erkennen",
-    meaning = "وفقاً لدراسة، يمكن من خلال المحتوى التعرف على الشخصية",
+    text: "Einer Studie zufolge kann man anhand des Inhalts den Charakter erkennen",
+    meaning: "وفقاً لدراسة، يمكن من خلال المحتوى التعرف على الشخصية",
     keywords: ["zufolge = وفقاً لـ", "Studie = دراسة", "anhand = من خلال"],
-    simplified = "نوع الطعام المجمد يفضح شخصيتك",
-    imagine = "🧊🔬 فريزر ومجهر"
+    simplified: "نوع الطعام المجمد يفضح شخصيتك",
+    imagine: "🧊🔬 فريزر ومجهر"
 };
 
 HELP_DATA["sprach2_exam8_2"] = {
-    text = "unterscheiden fünf Kategorien von Single-Männern",
-    meaning = "يميزون خمس فئات من الرجال العزاب",
+    text: "unterscheiden fünf Kategorien von Single-Männern",
+    meaning: "يميزون خمس فئات من الرجال العزاب",
     keywords: ["von = من", "Kategorien = فئات", "Single-Männern = رجال عزاب"],
-    simplified = "العلماء يصنفون الرجال حسب نوع وجباتهم المجمدة",
-    imagine = "🧑‍🤝‍🧑📋 رجال وأوراق تصنيف"
+    simplified: "العلماء يصنفون الرجال حسب نوع وجباتهم المجمدة",
+    imagine: "🧑‍🤝‍🧑📋 رجال وأوراق تصنيف"
 };
 
 HELP_DATA["sprach2_exam8_3"] = {
-    text = "den spontanen Typ, den Bequemen, den Kreativen, sowie den Cocktail- und den Gourmet-Typen",
-    meaning = "النوع العفوي، المريح، المبدع، بالإضافة إلى الكوكتيل والذواقة",
+    text: "den spontanen Typ, den Bequemen, den Kreativen, sowie den Cocktail- und den Gourmet-Typen",
+    meaning: "النوع العفوي، المريح، المبدع، بالإضافة إلى الكوكتيل والذواقة",
     keywords: ["sowie = وكذلك", "spontanen = عفوي", "Gourmet = ذواقة"],
-    simplified = "الأنواع الخمسة للرجال تشمل الذواقة والمبدع والعفوي وغيرهم",
-    imagine = "👨‍🍳👨‍💼🍸 رجال مع كوكتيل وطعام"
+    simplified: "الأنواع الخمسة للرجال تشمل الذواقة والمبدع والعفوي وغيرهم",
+    imagine: "👨‍🍳👨‍💼🍸 رجال مع كوكتيل وطعام"
 };
 
 HELP_DATA["sprach2_exam8_4"] = {
-    text = "aus denen er eine Mahlzeit zusammenstellen kann",
-    meaning = "يمكنه من خلالها تحضير وجبة",
+    text: "aus denen er eine Mahlzeit zusammenstellen kann",
+    meaning: "يمكنه من خلالها تحضير وجبة",
     keywords: ["denen = التي", "zusammenstellen = تحضير", "Mahlzeit = وجبة"],
-    simplified = "يخلطون الخضار واللحوم المجمدة لصنع وجبات بسيطة",
-    imagine = "🍲🥦🥩 قدر به خضار و لحم"
+    simplified: "يخلطون الخضار واللحوم المجمدة لصنع وجبات بسيطة",
+    imagine: "🍲🥦🥩 قدر به خضار و لحم"
 };
 
 HELP_DATA["sprach2_exam8_5"] = {
-    text = "Hauptgewinn für jede Frau ist aber der Gourmet-Typ",
-    meaning = "لكن الجائزة الكبرى لكل امرأة هو نوع الذواقة",
+    text: "Hauptgewinn für jede Frau ist aber der Gourmet-Typ",
+    meaning: "لكن الجائزة الكبرى لكل امرأة هو نوع الذواقة",
     keywords: ["jede = كل", "Frau = امرأة", "Gourmet-Typ = نوع الذواقة"],
-    simplified = "وبالنسبة للمرأة، صائد الجوائز الكبرى هو الشيف المنزلي",
-    imagine = "👩‍🍳🏆 طباخة وكأس"
+    simplified: "وبالنسبة للمرأة، صائد الجوائز الكبرى هو الشيف المنزلي",
+    imagine: "👩‍🍳🏆 طباخة وكأس"
 };
 
 HELP_DATA["sprach2_exam8_6"] = {
-    text = "Ihnen ist es sogar zu anstrengend, zwei Tüten zu öffnen statt nur einer",
-    meaning = "حتى فتح كيسين بدلاً من واحد مرهق جداً بالنسبة لهم",
+    text: "Ihnen ist es sogar zu anstrengend, zwei Tüten zu öffnen statt nur einer",
+    meaning: "حتى فتح كيسين بدلاً من واحد مرهق جداً بالنسبة لهم",
     keywords: ["anstrengend = مرهق", "Tüten = أكياس", "öffnen = فتح"],
-    simplified = "حتى رفع أكياس متعددة من الفريزر يتطلب مجهوداً كبيراً بالنسبة لهم",
-    imagine = "🛍️😓 أكياس بقالة ووجه متعب"
+    simplified: "حتى رفع أكياس متعددة من الفريزر يتطلب مجهوداً كبيراً بالنسبة لهم",
+    imagine: "🛍️😓 أكياس بقالة ووجه متعب"
 };
 
 HELP_DATA["sprach2_exam8_7"] = {
-    text = "folglich kaufen diese Männer am häufigsten komplette Gerichte",
-    meaning = "وبالتالي يشتري هؤلاء الرجال الأطباق الكاملة غالباً",
+    text: "folglich kaufen diese Männer am häufigsten komplette Gerichte",
+    meaning: "وبالتالي يشتري هؤلاء الرجال الأطباق الكاملة غالباً",
     keywords: ["folglich = وبالتالي", "komplette Gerichte = أطباق كاملة", "kaufen = يشترون"],
-    simplified = "يختارون الوجبات الجاهزة الكاملة توفيراً للوقت",
-    imagine = "🍽️📺 طبق جاهز وتلفاز"
+    simplified: "يختارون الوجبات الجاهزة الكاملة توفيراً للوقت",
+    imagine: "🍽️📺 طبق جاهز وتلفاز"
 };
 
 HELP_DATA["sprach2_exam8_8"] = {
-    text = "ob sie so das Herz einer Frau erobern können?",
-    meaning = "هل يمكنهم بهذه الطريقة كسب قلب امرأة؟",
+    text: "ob sie so das Herz einer Frau erobern können?",
+    meaning: "هل يمكنهم بهذه الطريقة كسب قلب امرأة؟",
     keywords: ["ob = هل", "Herz = قلب", "erobern = يكسبون"],
-    simplified = "هذا التساؤل يراود الجميع: هل هذه هي الطريقة للسعادة؟",
-    imagine = "💭❤️ فقاعة تفكير وقلب"
+    simplified: "هذا التساؤل يراود الجميع: هل هذه هي الطريقة للسعادة؟",
+    imagine: "💭❤️ فقاعة تفكير وقلب"
 };
 
 HELP_DATA["sprach2_exam8_9"] = {
-    text = "zu welcher Kategorie ein Mann gehört",
-    meaning = "إلى أي فئة ينتمي الرجل",
+    text: "zu welcher Kategorie ein Mann gehört",
+    meaning: "إلى أي فئة ينتمي الرجل",
     keywords: ["zu = إلى", "Kategorie = فئة", "gehört = ينتمي"],
-    simplified = "لا يهم النوع، فالجميع متفق على شيء واحد",
-    imagine = "🧑‍🤝‍🤝🏻 رجال بجميع أنواعهم"
+    simplified: "لا يهم النوع، فالجميع متفق على شيء واحد",
+    imagine: "🧑‍🤝‍🤝🏻 رجال بجميع أنواعهم"
 };
 
 HELP_DATA["sprach2_exam8_10"] = {
-    text = "Einige haben vermutlich wenig Zeit zum Kochen",
-    meaning = "البعض ربما يملك وقتاً قليلاً للطهي",
+    text: "Einige haben vermutlich wenig Zeit zum Kochen",
+    meaning: "البعض ربما يملك وقتاً قليلاً للطهي",
     keywords: ["vermutlich = ربما", "wenig = قليلاً", "Kochen = للطهي"],
-    simplified = "قد تكون ضغوط العمل سبباً لشراء الأغذية المجمدة",
-    imagine = "💼⏰ حقيبة عمل وساعة تدور"
+    simplified: "قد تكون ضغوط العمل سبباً لشراء الأغذية المجمدة",
+    imagine: "💼⏰ حقيبة عمل وساعة تدور"
 };
 
 // ============================================
@@ -11858,83 +11858,83 @@ HELP_DATA["sprach2_exam8_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam9_1"] = {
-    text = "und sogar mit Smartphones kann man Sprachen lernen",
-    meaning = "وحتى بالهواتف الذكية يمكن تعلم اللغات",
+    text: "und sogar mit Smartphones kann man Sprachen lernen",
+    meaning: "وحتى بالهواتف الذكية يمكن تعلم اللغات",
     keywords: ["sogar = حتى", "Smartphones = هواتف ذكية", "Sprachen = لغات"],
-    simplified = "التكنولوجيا وسّعت خيارات تعلم اللغة",
-    imagine = "📱🌍 هاتف وكرة أرضية"
+    simplified: "التكنولوجيا وسّعت خيارات تعلم اللغة",
+    imagine: "📱🌍 هاتف وكرة أرضية"
 };
 
 HELP_DATA["sprach2_exam9_2"] = {
-    text = "eine Tandem-Partnerschaft mit einem Muttersprachler",
-    meaning = "شراكة تبادل لغوي مع متحدث أصلي",
+    text: "eine Tandem-Partnerschaft mit einem Muttersprachler",
+    meaning: "شراكة تبادل لغوي مع متحدث أصلي",
     keywords: ["mit = مع", "Tandem-Partnerschaft = شراكة تبادل لغوي", "Muttersprachler = متحدث أصلي"],
-    simplified = "التعلم الثنائي يتطلب متحدثاً باللغة الأم",
-    imagine = "🗣️👥 شخصان يتحدثان"
+    simplified: "التعلم الثنائي يتطلب متحدثاً باللغة الأم",
+    imagine: "🗣️👥 شخصان يتحدثان"
 };
 
 HELP_DATA["sprach2_exam9_3"] = {
-    text = "nicht nur lesen, sondern gleichzeitig auch hören",
-    meaning = "ليس فقط القراءة، بل الاستماع في نفس الوقت",
+    text: "nicht nur lesen, sondern gleichzeitig auch hören",
+    meaning: "ليس فقط القراءة، بل الاستماع في نفس الوقت",
     keywords: ["sondern = بل", "gleichzeitig = في نفس الوقت", "hören = الاستماع"],
-    simplified = "تطبيقات تعلم اللغة تجمع بين البصر والسمع",
-    imagine = "👂👀 أذن وعين"
+    simplified: "تطبيقات تعلم اللغة تجمع بين البصر والسمع",
+    imagine: "👂👀 أذن وعين"
 };
 
 HELP_DATA["sprach2_exam9_4"] = {
-    text = "ohne dass ein ganzer Kurs zuhört",
-    meaning = "بدون أن يستمع فصل كامل",
+    text: "ohne dass ein ganzer Kurs zuhört",
+    meaning: "بدون أن يستمع فصل كامل",
     keywords: ["ohne = بدون", "Kurs = فصل", "zuhört = يستمع"],
-    simplified = "التطبيقات توفر مساحة للتدريب دون خجل",
-    imagine = "🎧😶 سماعات وصوت هادئ"
+    simplified: "التطبيقات توفر مساحة للتدريب دون خجل",
+    imagine: "🎧😶 سماعات وصوت هادئ"
 };
 
 HELP_DATA["sprach2_exam9_5"] = {
-    text = "lieber mehrmals täglich in Fünf-Minuten-Blöcken wiederholen, anstatt sie in einer Stunde alle auf einmal zu lernen",
-    meaning = "من الأفضل التكرار عدة مرات يومياً على فترات خمس دقائق بدلاً من تعلمها كلها دفعة واحدة في ساعة",
+    text: "lieber mehrmals täglich in Fünf-Minuten-Blöcken wiederholen, anstatt sie in einer Stunde alle auf einmal zu lernen",
+    meaning: "من الأفضل التكرار عدة مرات يومياً على فترات خمس دقائق بدلاً من تعلمها كلها دفعة واحدة في ساعة",
     keywords: ["anstatt = بدلاً من", "wiederholen = تكرار", "Fünf-Minuten-Blöcken = فترات خمس دقائق"],
-    simplified = "التكرار القصير والمنتظم أفضل من المذاكرة الطويلة",
-    imagine = "⏲️📖 ساعة رمل وكتاب"
+    simplified: "التكرار القصير والمنتظم أفضل من المذاكرة الطويلة",
+    imagine: "⏲️📖 ساعة رمل وكتاب"
 };
 
 HELP_DATA["sprach2_exam9_6"] = {
-    text = "sind besonders gut zum Vokabellernen geeignet",
-    meaning = "مناسبة بشكل خاص لتعلم المفردات",
+    text: "sind besonders gut zum Vokabellernen geeignet",
+    meaning: "مناسبة بشكل خاص لتعلم المفردات",
     keywords: ["besonders = بشكل خاص", "Vokabellernen = تعلم مفردات", "geeignet = مناسبة"],
-    simplified = "تطبيقات الهاتف رائعة لتكرار الكلمات الجديدة",
-    imagine = "📱🔤 هاتف وحروف"
+    simplified: "تطبيقات الهاتف رائعة لتكرار الكلمات الجديدة",
+    imagine: "📱🔤 هاتف وحروف"
 };
 
 HELP_DATA["sprach2_exam9_7"] = {
-    text = "aber Satzbau oder andere Grammatikthemen werden allenfalls kurz angesprochen",
-    meaning = "لكن بناء الجملة وموضوعات النحو الأخرى بالكاد يتم التطرق إليها",
+    text: "aber Satzbau oder andere Grammatikthemen werden allenfalls kurz angesprochen",
+    meaning: "لكن بناء الجملة وموضوعات النحو الأخرى بالكاد يتم التطرق إليها",
     keywords: ["aber = لكن", "Satzbau = بناء جملة", "kurz angesprochen = التطرق إليها"],
-    simplified = "الجانب العملي مثل تركيب الجمل مهمل في هذه التطبيقات",
-    imagine = "🏗️❌ بناء وهدم"
+    simplified: "الجانب العملي مثل تركيب الجمل مهمل في هذه التطبيقات",
+    imagine: "🏗️❌ بناء وهدم"
 };
 
 HELP_DATA["sprach2_exam9_8"] = {
-    text = "Dafür sollte man besser in einen Kurs gehen oder einen Tandem-Partner suchen",
-    meaning = "بدلاً من ذلك، من الأفضل الذهاب إلى دورة تدريبية أو البحث عن شريك تبادل لغوي",
+    text: "Dafür sollte man besser in einen Kurs gehen oder einen Tandem-Partner suchen",
+    meaning: "بدلاً من ذلك، من الأفضل الذهاب إلى دورة تدريبية أو البحث عن شريك تبادل لغوي",
     keywords: ["sollte = يجب", "Kurs = دورة", "Tandem-Partner = شريك تبادل لغوي"],
-    simplified = "للوصول لمستوى متقدم، النصيحة هي الانضمام لفصل أو البحث عن شريك",
-    imagine = "👩‍🏫🤝 معلمة ومصافحة"
+    simplified: "للوصول لمستوى متقدم، النصيحة هي الانضمام لفصل أو البحث عن شريك",
+    imagine: "👩‍🏫🤝 معلمة ومصافحة"
 };
 
 HELP_DATA["sprach2_exam9_9"] = {
-    text = "um einen passenden Tandem-Partner zu finden",
-    meaning = "للعثور على شريك تبادل لغوي مناسب",
+    text: "um einen passenden Tandem-Partner zu finden",
+    meaning: "للعثور على شريك تبادل لغوي مناسب",
     keywords: ["um = لـ", "zu finden = للعثور على", "passenden Tandem-Partner = شريك تبادل لغوي مناسب"],
-    simplified = "الإنترنت هو أسرع طريق للعثور على شريك",
-    imagine = "🌐💻 إنترنت وحاسوب"
+    simplified: "الإنترنت هو أسرع طريق للعثور على شريك",
+    imagine: "🌐💻 إنترنت وحاسوب"
 };
 
 HELP_DATA["sprach2_exam9_10"] = {
-    text = "schon werden alle Treffer angezeigt",
-    meaning = "سيتم عرض جميع النتائج على الفور",
+    text: "schon werden alle Treffer angezeigt",
+    meaning: "سيتم عرض جميع النتائج على الفور",
     keywords: ["schon = على الفور", "Treffer = نتائج", "angezeigt = عرض"],
-    simplified = "فقط بضع نقرات ستحصل على قائمة بالمرشحين",
-    imagine = "🔍✅ بحث وعلامة صح"
+    simplified: "فقط بضع نقرات ستحصل على قائمة بالمرشحين",
+    imagine: "🔍✅ بحث وعلامة صح"
 };
 
 // ============================================
@@ -11942,83 +11942,83 @@ HELP_DATA["sprach2_exam9_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam10_1"] = {
-    text = "Verglichen mit der Bevölkerungszahl von ungefähr 80 Millionen",
-    meaning = "مقارنة بعدد السكان البالغ حوالي 80 مليوناً",
+    text: "Verglichen mit der Bevölkerungszahl von ungefähr 80 Millionen",
+    meaning: "مقارنة بعدد السكان البالغ حوالي 80 مليوناً",
     keywords: ["mit = مع", "Bevölkerungszahl = عدد السكان", "verglichen = مقارنة"],
-    simplified = "ما يقرب من طفل لكل أربعة أشخاص",
-    imagine = "👶🧑🧑🧑 أربعة أشخاص وطفل"
+    simplified: "ما يقرب من طفل لكل أربعة أشخاص",
+    imagine: "👶🧑🧑🧑 أربعة أشخاص وطفل"
 };
 
 HELP_DATA["sprach2_exam10_2"] = {
-    text = "drei Jahre bei dem Kind zu Hause zu bleiben",
-    meaning = "البقاء مع الطفل في المنزل لمدة ثلاث سنوات",
+    text: "drei Jahre bei dem Kind zu Hause zu bleiben",
+    meaning: "البقاء مع الطفل في المنزل لمدة ثلاث سنوات",
     keywords: ["bei = مع", "Kind = طفل", "zu Hause = في المنزل"],
-    simplified = "يبقى الأبوان مع المولود لمدة تصل إلى ثلاث سنوات",
-    imagine = "👨‍👩‍👧🏠 عائلة في المنزل"
+    simplified: "يبقى الأبوان مع المولود لمدة تصل إلى ثلاث سنوات",
+    imagine: "👨‍👩‍👧🏠 عائلة في المنزل"
 };
 
 HELP_DATA["sprach2_exam10_3"] = {
-    text = "Das hat den Vorteil, dass der zu Hause bleibende Elternteil seinen Arbeitsplatz nicht verliert",
-    meaning = "هذا له ميزة أن الوالد الذي يبقى في المنزل لا يفقد وظيفته",
+    text: "Das hat den Vorteil, dass der zu Hause bleibende Elternteil seinen Arbeitsplatz nicht verliert",
+    meaning: "هذا له ميزة أن الوالد الذي يبقى في المنزل لا يفقد وظيفته",
     keywords: ["Das = هذا", "Vorteil = ميزة", "Arbeitsplatz = وظيفة"],
-    simplified = "يتم حماية الوظيفة أثناء الإجازة الوالدية",
-    imagine = "🛡️💼 درع وشنطة عمل"
+    simplified: "يتم حماية الوظيفة أثناء الإجازة الوالدية",
+    imagine: "🛡️💼 درع وشنطة عمل"
 };
 
 HELP_DATA["sprach2_exam10_4"] = {
-    text = "Dies scheinen die Hauptgründe dafür zu sein",
-    meaning = "هذه تبدو الأسباب الرئيسية لذلك",
+    text: "Dies scheinen die Hauptgründe dafür zu sein",
+    meaning: "هذه تبدو الأسباب الرئيسية لذلك",
     keywords: ["dafür = لذلك", "Hauptgründe = أسباب رئيسية", "scheinen = تبدو"],
-    simplified = "وهذا يفسر أسباب تراجع معدلات المواليد",
-    imagine = "📉👶 رسم بياني يهبط وطفل"
+    simplified: "وهذا يفسر أسباب تراجع معدلات المواليد",
+    imagine: "📉👶 رسم بياني يهبط وطفل"
 };
 
 HELP_DATA["sprach2_exam10_5"] = {
-    text = "sondern stören mit ihrem Lachen und lauten Sprechen die anderen (kinderlosen) Gäste",
-    meaning = "بل يزعجون الضيوف الآخرين (بدون أطفال) بضحكاتهم وكلامهم العالي",
+    text: "sondern stören mit ihrem Lachen und lauten Sprechen die anderen (kinderlosen) Gäste",
+    meaning: "بل يزعجون الضيوف الآخرين (بدون أطفال) بضحكاتهم وكلامهم العالي",
     keywords: ["sondern = بل", "stören = يزعجون", "kinderlosen = بدون أطفال"],
-    simplified = "الآباء مهمشون في المطاعم لأن أطفالهم يُنظر إليهم على أنهم مصدر إزعاج",
-    imagine = "🍽️😠👶 أطفال يصدرون ضوضاء ورواد غاضبون"
+    simplified: "الآباء مهمشون في المطاعم لأن أطفالهم يُنظر إليهم على أنهم مصدر إزعاج",
+    imagine: "🍽️😠👶 أطفال يصدرون ضوضاء ورواد غاضبون"
 };
 
 HELP_DATA["sprach2_exam10_6"] = {
-    text = "Obwohl diese selbst häufig lautstark telefonieren, stört das niemanden",
-    meaning = "على الرغم من أنهم أنفسهم يتحدثون بصوت عالٍ على الهاتف، لا أحد يزعجهم ذلك",
+    text: "Obwohl diese selbst häufig lautstark telefonieren, stört das niemanden",
+    meaning: "على الرغم من أنهم أنفسهم يتحدثون بصوت عالٍ على الهاتف، لا أحد يزعجهم ذلك",
     keywords: ["Obwohl = على الرغم من", "lautstark = بصوت عالٍ", "niemanden = لا أحد"],
-    simplified = "الكبار يمارسون سلوكاً مشابهاً دون توبيخ",
-    imagine = "📱🗣️ شخص يتحدث بهاتفه بصوت عالٍ"
+    simplified: "الكبار يمارسون سلوكاً مشابهاً دون توبيخ",
+    imagine: "📱🗣️ شخص يتحدث بهاتفه بصوت عالٍ"
 };
 
 HELP_DATA["sprach2_exam10_7"] = {
-    text = "weil die Kinder die Ruhe der benachbarten (kinderlosen) Hausbewohner stören",
-    meaning = "لأن الأطفال يزعجون هدوء سكان المنازل المجاورة (بدون أطفال)",
+    text: "weil die Kinder die Ruhe der benachbarten (kinderlosen) Hausbewohner stören",
+    meaning: "لأن الأطفال يزعجون هدوء سكان المنازل المجاورة (بدون أطفال)",
     keywords: ["weil = لأن", "Kinder = أطفال", "Ruhe = هدوء"],
-    simplified = "الجيران يتذمرون من ضجيج الأطفال ويقاضون الحضانة",
-    imagine = "⚖️🏢 محكمة ومبنى"
+    simplified: "الجيران يتذمرون من ضجيج الأطفال ويقاضون الحضانة",
+    imagine: "⚖️🏢 محكمة ومبنى"
 };
 
 HELP_DATA["sprach2_exam10_8"] = {
-    text = "dass mit einem Kinderwagen kein Durchkommen ist",
-    meaning = "أنه لا يمكن المرور بعربة الأطفال",
+    text: "dass mit einem Kinderwagen kein Durchkommen ist",
+    meaning: "أنه لا يمكن المرور بعربة الأطفال",
     keywords: ["dass = أن", "Kinderwagen = عربة أطفال", "Durchkommen = مرور"],
-    simplified = "ممرات القطار لا تستوعب عربات الأطفال",
-    imagine = "🚆🚫 قطار وعربة أطفال"
+    simplified: "ممرات القطار لا تستوعب عربات الأطفال",
+    imagine: "🚆🚫 قطار وعربة أطفال"
 };
 
 HELP_DATA["sprach2_exam10_9"] = {
-    text = "Anspruch auf einen Platz",
-    meaning = "الحق في مقعد",
+    text: "Anspruch auf einen Platz",
+    meaning: "الحق في مقعد",
     keywords: ["auf = في", "Platz = مقعد", "Anspruch = حق"],
-    simplified = "الركاب البالغون يطالبون بمقاعدهم بحجة التعب",
-    imagine = "🪑👩 أم واقفة"
+    simplified: "الركاب البالغون يطالبون بمقاعدهم بحجة التعب",
+    imagine: "🪑👩 أم واقفة"
 };
 
 HELP_DATA["sprach2_exam10_10"] = {
-    text = "spricht man in Deutschland gerne von 'Problemen'",
-    meaning = "يتحدث المرء في ألمانيا بسهولة عن 'مشاكل'",
+    text: "spricht man in Deutschland gerne von 'Problemen'",
+    meaning: "يتحدث المرء في ألمانيا بسهولة عن 'مشاكل'",
     keywords: ["von = عن", "Problemen = مشاكل", "spricht = يتحدث"],
-    simplified = "الإعلام يصف الأطفال بأنهم مشكلة",
-    imagine = "📺😟 تلفاز ووجه قلق"
+    simplified: "الإعلام يصف الأطفال بأنهم مشكلة",
+    imagine: "📺😟 تلفاز ووجه قلق"
 };
 
 // ============================================
@@ -12026,83 +12026,83 @@ HELP_DATA["sprach2_exam10_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam11_1"] = {
-    text = "steht ein Betreuungsplatz in einer Kindertagesstätte zur Verfügung",
-    meaning = "يتوفر مكان رعاية في روضة أطفال",
+    text: "steht ein Betreuungsplatz in einer Kindertagesstätte zur Verfügung",
+    meaning: "يتوفر مكان رعاية في روضة أطفال",
     keywords: ["zur = لـ", "Verfügung = التوفر", "Betreuungsplatz = مكان رعاية"],
-    simplified = "أماكن الحضانة لا تكفي سوى عُشر الأطفال",
-    imagine = "🏫👶 روضة أطفال وطفل صغير"
+    simplified: "أماكن الحضانة لا تكفي سوى عُشر الأطفال",
+    imagine: "🏫👶 روضة أطفال وطفل صغير"
 };
 
 HELP_DATA["sprach2_exam11_2"] = {
-    text = "drei Jahre bei dem Kind zu Hause zu bleiben",
-    meaning = "البقاء مع الطفل في المنزل لمدة ثلاث سنوات",
+    text: "drei Jahre bei dem Kind zu Hause zu bleiben",
+    meaning: "البقاء مع الطفل في المنزل لمدة ثلاث سنوات",
     keywords: ["bei = مع", "Kind = طفل", "zu Hause = في المنزل"],
-    simplified = "يبقى الأبوان مع المولود لمدة تصل إلى ثلاث سنوات",
-    imagine = "👨‍👩‍👧🏠 عائلة في المنزل"
+    simplified: "يبقى الأبوان مع المولود لمدة تصل إلى ثلاث سنوات",
+    imagine: "👨‍👩‍👧🏠 عائلة في المنزل"
 };
 
 HELP_DATA["sprach2_exam11_3"] = {
-    text = "Das hat den Vorteil, dass der zu Hause bleibende Elternteil seinen Arbeitsplatz nicht verliert",
-    meaning = "هذا له ميزة أن الوالد الذي يبقى في المنزل لا يفقد وظيفته",
+    text: "Das hat den Vorteil, dass der zu Hause bleibende Elternteil seinen Arbeitsplatz nicht verliert",
+    meaning: "هذا له ميزة أن الوالد الذي يبقى في المنزل لا يفقد وظيفته",
     keywords: ["Das = هذا", "Vorteil = ميزة", "Arbeitsplatz = وظيفة"],
-    simplified = "يتم حماية الوظيفة أثناء الإجازة الوالدية",
-    imagine = "🛡️💼 درع وشنطة عمل"
+    simplified: "يتم حماية الوظيفة أثناء الإجازة الوالدية",
+    imagine: "🛡️💼 درع وشنطة عمل"
 };
 
 HELP_DATA["sprach2_exam11_4"] = {
-    text = "Dennoch wird die Elternzeit für viele Eltern in finanzieller Hinsicht zu einem gravierenden Problem",
-    meaning = "ومع ذلك، تصبح إجازة الأبوة مشكلة خطيرة لكثير من الآباء من الناحية المالية",
+    text: "Dennoch wird die Elternzeit für viele Eltern in finanzieller Hinsicht zu einem gravierenden Problem",
+    meaning: "ومع ذلك، تصبح إجازة الأبوة مشكلة خطيرة لكثير من الآباء من الناحية المالية",
     keywords: ["Dennoch = ومع ذلك", "Elternzeit = إجازة أبوة", "Problem = مشكلة"],
-    simplified = "اقتصادياً، قد تكون الإجازة الوالدية مرهقة للعائلات",
-    imagine = "💰😟 نقود ووجه قلق"
+    simplified: "اقتصادياً، قد تكون الإجازة الوالدية مرهقة للعائلات",
+    imagine: "💰😟 نقود ووجه قلق"
 };
 
 HELP_DATA["sprach2_exam11_5"] = {
-    text = "Dies scheinen die Hauptgründe dafür zu sein",
-    meaning = "هذه تبدو الأسباب الرئيسية لذلك",
+    text: "Dies scheinen die Hauptgründe dafür zu sein",
+    meaning: "هذه تبدو الأسباب الرئيسية لذلك",
     keywords: ["dafür = لذلك", "Hauptgründe = أسباب رئيسية", "scheinen = تبدو"],
-    simplified = "وهذا يفسر أسباب تراجع معدلات المواليد",
-    imagine = "📉👶 رسم بياني يهبط وطفل"
+    simplified: "وهذا يفسر أسباب تراجع معدلات المواليد",
+    imagine: "📉👶 رسم بياني يهبط وطفل"
 };
 
 HELP_DATA["sprach2_exam11_6"] = {
-    text = "sondern stören mit ihrem Lachen und lauten Sprechen die anderen (kinderlosen) Gäste",
-    meaning = "بل يزعجون الضيوف الآخرين (بدون أطفال) بضحكاتهم وكلامهم العالي",
+    text: "sondern stören mit ihrem Lachen und lauten Sprechen die anderen (kinderlosen) Gäste",
+    meaning: "بل يزعجون الضيوف الآخرين (بدون أطفال) بضحكاتهم وكلامهم العالي",
     keywords: ["sondern = بل", "stören = يزعجون", "kinderlosen = بدون أطفال"],
-    simplified = "الآباء مهمشون في المطاعم لأن أطفالهم يُنظر إليهم على أنهم مصدر إزعاج",
-    imagine = "🍽️😠👶 أطفال يصدرون ضوضاء ورواد غاضبون"
+    simplified: "الآباء مهمشون في المطاعم لأن أطفالهم يُنظر إليهم على أنهم مصدر إزعاج",
+    imagine: "🍽️😠👶 أطفال يصدرون ضوضاء ورواد غاضبون"
 };
 
 HELP_DATA["sprach2_exam11_7"] = {
-    text = "stört das niemanden",
-    meaning = "لا يزعج ذلك أحداً",
+    text: "stört das niemanden",
+    meaning: "لا يزعج ذلك أحداً",
     keywords: ["niemanden = لا أحد", "stört = يزعج", "das = ذلك"],
-    simplified = "الكبار يمارسون سلوكاً مشابهاً دون توبيخ",
-    imagine = "📱🗣️ شخص يتحدث بهاتفه بصوت عالٍ"
+    simplified: "الكبار يمارسون سلوكاً مشابهاً دون توبيخ",
+    imagine: "📱🗣️ شخص يتحدث بهاتفه بصوت عالٍ"
 };
 
 HELP_DATA["sprach2_exam11_8"] = {
-    text = "weil die Kinder die Ruhe der benachbarten (kinderlosen) Hausbewohner stören",
-    meaning = "لأن الأطفال يزعجون هدوء سكان المنازل المجاورة (بدون أطفال)",
+    text: "weil die Kinder die Ruhe der benachbarten (kinderlosen) Hausbewohner stören",
+    meaning: "لأن الأطفال يزعجون هدوء سكان المنازل المجاورة (بدون أطفال)",
     keywords: ["weil = لأن", "Kinder = أطفال", "Ruhe = هدوء"],
-    simplified = "الجيران يتذمرون من ضجيج الأطفال ويقاضون الحضانة",
-    imagine = "⚖️🏢 محكمة ومبنى"
+    simplified: "الجيران يتذمرون من ضجيج الأطفال ويقاضون الحضانة",
+    imagine: "⚖️🏢 محكمة ومبنى"
 };
 
 HELP_DATA["sprach2_exam11_9"] = {
-    text = "dass mit einem Kinderwagen kein Durchkommen ist",
-    meaning = "أنه لا يمكن المرور بعربة الأطفال",
+    text: "dass mit einem Kinderwagen kein Durchkommen ist",
+    meaning: "أنه لا يمكن المرور بعربة الأطفال",
     keywords: ["dass = أن", "Kinderwagen = عربة أطفال", "Durchkommen = مرور"],
-    simplified = "ممرات القطار لا تستوعب عربات الأطفال",
-    imagine = "🚆🚫 قطار وعربة أطفال"
+    simplified: "ممرات القطار لا تستوعب عربات الأطفال",
+    imagine: "🚆🚫 قطار وعربة أطفال"
 };
 
 HELP_DATA["sprach2_exam11_10"] = {
-    text = "Anspruch auf einen Platz",
-    meaning = "الحق في مقعد",
+    text: "Anspruch auf einen Platz",
+    meaning: "الحق في مقعد",
     keywords: ["auf = في", "Platz = مقعد", "Anspruch = حق"],
-    simplified = "الركاب البالغون يطالبون بمقاعدهم بحجة التعب",
-    imagine = "🪑👩 أم واقفة"
+    simplified: "الركاب البالغون يطالبون بمقاعدهم بحجة التعب",
+    imagine: "🪑👩 أم واقفة"
 };
 
 // ============================================
@@ -12110,83 +12110,83 @@ HELP_DATA["sprach2_exam11_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam12_1"] = {
-    text = "steht ein Betreuungsplatz in einer Kindertagesstätte zur Verfügung",
-    meaning = "يتوفر مكان رعاية في روضة أطفال",
+    text: "steht ein Betreuungsplatz in einer Kindertagesstätte zur Verfügung",
+    meaning: "يتوفر مكان رعاية في روضة أطفال",
     keywords: ["zur = لـ", "Verfügung = التوفر", "Betreuungsplatz = مكان رعاية"],
-    simplified = "أماكن الحضانة لا تكفي سوى عُشر الأطفال",
-    imagine = "🏫👶 روضة أطفال وطفل صغير"
+    simplified: "أماكن الحضانة لا تكفي سوى عُشر الأطفال",
+    imagine: "🏫👶 روضة أطفال وطفل صغير"
 };
 
 HELP_DATA["sprach2_exam12_2"] = {
-    text = "Dennoch wird die Elternzeit für viele Eltern in finanzieller Hinsicht zu einem gravierenden Problem",
-    meaning = "ومع ذلك، تصبح إجازة الأبوة مشكلة خطيرة لكثير من الآباء من الناحية المالية",
+    text: "Dennoch wird die Elternzeit für viele Eltern in finanzieller Hinsicht zu einem gravierenden Problem",
+    meaning: "ومع ذلك، تصبح إجازة الأبوة مشكلة خطيرة لكثير من الآباء من الناحية المالية",
     keywords: ["Dennoch = ومع ذلك", "Elternzeit = إجازة أبوة", "Problem = مشكلة"],
-    simplified = "اقتصادياً، قد تكون الإجازة الوالدية مرهقة للعائلات",
-    imagine = "💰😟 نقود ووجه قلق"
+    simplified: "اقتصادياً، قد تكون الإجازة الوالدية مرهقة للعائلات",
+    imagine: "💰😟 نقود ووجه قلق"
 };
 
 HELP_DATA["sprach2_exam12_3"] = {
-    text = "Kind und Karriere zu vereinbaren ist daher für die meisten Mütter so gut wie unmöglich",
-    meaning = "لذلك يكاد يكون من المستحيل التوفيق بين الطفل والمهنة بالنسبة لمعظم الأمهات",
+    text: "Kind und Karriere zu vereinbaren ist daher für die meisten Mütter so gut wie unmöglich",
+    meaning: "لذلك يكاد يكون من المستحيل التوفيق بين الطفل والمهنة بالنسبة لمعظم الأمهات",
     keywords: ["vereinbaren = التوفيق", "Karriere = مهنة", "unmöglich = مستحيل"],
-    simplified = "المرأة الألمانية تواجه صعوبة بالغة في الجمع بين العمل والأمومة",
-    imagine = "👩‍💼👶 امرأة عاملة وطفل"
+    simplified: "المرأة الألمانية تواجه صعوبة بالغة في الجمع بين العمل والأمومة",
+    imagine: "👩‍💼👶 امرأة عاملة وطفل"
 };
 
 HELP_DATA["sprach2_exam12_4"] = {
-    text = "stört das niemanden",
-    meaning = "لا يزعج ذلك أحداً",
+    text: "stört das niemanden",
+    meaning: "لا يزعج ذلك أحداً",
     keywords: ["niemanden = لا أحد", "stört = يزعج", "das = ذلك"],
-    simplified = "الكبار يمارسون سلوكاً مشابهاً دون توبيخ",
-    imagine = "📱🗣️ شخص يتحدث بهاتفه بصوت عالٍ"
+    simplified: "الكبار يمارسون سلوكاً مشابهاً دون توبيخ",
+    imagine: "📱🗣️ شخص يتحدث بهاتفه بصوت عالٍ"
 };
 
 HELP_DATA["sprach2_exam12_5"] = {
-    text = "weil die Kinder die Ruhe der benachbarten (kinderlosen) Hausbewohner stören",
-    meaning = "لأن الأطفال يزعجون هدوء سكان المنازل المجاورة (بدون أطفال)",
+    text: "weil die Kinder die Ruhe der benachbarten (kinderlosen) Hausbewohner stören",
+    meaning: "لأن الأطفال يزعجون هدوء سكان المنازل المجاورة (بدون أطفال)",
     keywords: ["weil = لأن", "Kinder = أطفال", "Ruhe = هدوء"],
-    simplified = "الجيران يتذمرون من ضجيج الأطفال ويقاضون الحضانة",
-    imagine = "⚖️🏢 محكمة ومبنى"
+    simplified: "الجيران يتذمرون من ضجيج الأطفال ويقاضون الحضانة",
+    imagine: "⚖️🏢 محكمة ومبنى"
 };
 
 HELP_DATA["sprach2_exam12_6"] = {
-    text = "Spielplätze werden von Gerichts wegen geschlossen",
-    meaning = "يتم إغلاق الملاعب بأمر من المحكمة",
+    text: "Spielplätze werden von Gerichts wegen geschlossen",
+    meaning: "يتم إغلاق الملاعب بأمر من المحكمة",
     keywords: ["werden = يتم", "geschlossen = إغلاق", "Gerichts = محكمة"],
-    simplified = "الأنشطة الترفيهية للأطفال محظورة الآن في بعض المناطق",
-    imagine = "🚫🛝 لافتة ممنوع وأرجوحة"
+    simplified: "الأنشطة الترفيهية للأطفال محظورة الآن في بعض المناطق",
+    imagine: "🚫🛝 لافتة ممنوع وأرجوحة"
 };
 
 HELP_DATA["sprach2_exam12_7"] = {
-    text = "dass mit einem Kinderwagen kein Durchkommen ist",
-    meaning = "أنه لا يمكن المرور بعربة الأطفال",
+    text: "dass mit einem Kinderwagen kein Durchkommen ist",
+    meaning: "أنه لا يمكن المرور بعربة الأطفال",
     keywords: ["dass = أن", "Kinderwagen = عربة أطفال", "Durchkommen = مرور"],
-    simplified = "ممرات القطار لا تستوعب عربات الأطفال",
-    imagine = "🚆🚫 قطار وعربة أطفال"
+    simplified: "ممرات القطار لا تستوعب عربات الأطفال",
+    imagine: "🚆🚫 قطار وعربة أطفال"
 };
 
 HELP_DATA["sprach2_exam12_8"] = {
-    text = "haben sich schon andere Reisende breitgemacht",
-    meaning = "مسافرون آخرون استولوا بالفعل على المكان",
+    text: "haben sich schon andere Reisende breitgemacht",
+    meaning: "مسافرون آخرون استولوا بالفعل على المكان",
     keywords: ["sich = أنفسهم", "breitgemacht = استولوا", "Reisende = مسافرون"],
-    simplified = "المقاعد المخصصة للأمهات تحتلها شخصيات أخرى",
-    imagine = "👤🪑 رجل جالس في مقعد مخصص للأم"
+    simplified: "المقاعد المخصصة للأمهات تحتلها شخصيات أخرى",
+    imagine: "👤🪑 رجل جالس في مقعد مخصص للأم"
 };
 
 HELP_DATA["sprach2_exam12_9"] = {
-    text = "Anspruch auf einen Platz",
-    meaning = "الحق في مقعد",
+    text: "Anspruch auf einen Platz",
+    meaning: "الحق في مقعد",
     keywords: ["auf = في", "Platz = مقعد", "Anspruch = حق"],
-    simplified = "الركاب البالغون يطالبون بمقاعدهم بحجة التعب",
-    imagine = "🪑👩 أم واقفة"
+    simplified: "الركاب البالغون يطالبون بمقاعدهم بحجة التعب",
+    imagine: "🪑👩 أم واقفة"
 };
 
 HELP_DATA["sprach2_exam12_10"] = {
-    text = "Man meint dabei die Kinder",
-    meaning = "بذلك يقصدون الأطفال",
+    text: "Man meint dabei die Kinder",
+    meaning: "بذلك يقصدون الأطفال",
     keywords: ["dabei = بذلك", "meint = يقصدون", "Kinder = أطفال"],
-    simplified = "وسائل الإعلام تصف الأطفال في سياق المشاكل",
-    imagine = "📺👶 تلفاز وطفل"
+    simplified: "وسائل الإعلام تصف الأطفال في سياق المشاكل",
+    imagine: "📺👶 تلفاز وطفل"
 };
 
 // ============================================
@@ -12194,83 +12194,83 @@ HELP_DATA["sprach2_exam12_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam13_1"] = {
-    text = "während der vergangen 12000 Jahre",
-    meaning = "خلال الـ 12000 سنة الماضية",
+    text: "während der vergangen 12000 Jahre",
+    meaning: "خلال الـ 12000 سنة الماضية",
     keywords: ["während = خلال", "vergangen = الماضية", "Jahre = سنوات"],
-    simplified = "التغير المناخي على مدى 12 ألف سنة أثر على الدببة",
-    imagine = "🐻📆 دب وتقويم"
+    simplified: "التغير المناخي على مدى 12 ألف سنة أثر على الدببة",
+    imagine: "🐻📆 دب وتقويم"
 };
 
 HELP_DATA["sprach2_exam13_2"] = {
-    text = "Dadurch wurde der Lebensraum der Tiere verkleinert",
-    meaning = "وبذلك تضاءلت مساحة موطن الحيوانات",
+    text: "Dadurch wurde der Lebensraum der Tiere verkleinert",
+    meaning: "وبذلك تضاءلت مساحة موطن الحيوانات",
     keywords: ["Dadurch = وبذلك", "Lebensraum = موطن", "verkleinert = تضاءلت"],
-    simplified = "تقلص موطن الدببة البنية مع ارتفاع درجات الحرارة",
-    imagine = "🗺️📉 خريطة منطقتها تتناقص"
+    simplified: "تقلص موطن الدببة البنية مع ارتفاع درجات الحرارة",
+    imagine: "🗺️📉 خريطة منطقتها تتناقص"
 };
 
 HELP_DATA["sprach2_exam13_3"] = {
-    text = "dass das Verschwinden der Braunbären mit der Landnutzung durch den Menschen zusammenhängt",
-    meaning = "اختفاء الدببة البنية مرتبط باستخدام الأراضي من قبل البشر",
+    text: "dass das Verschwinden der Braunbären mit der Landnutzung durch den Menschen zusammenhängt",
+    meaning: "اختفاء الدببة البنية مرتبط باستخدام الأراضي من قبل البشر",
     keywords: ["dass = أن", "Verschwinden = اختفاء", "Landnutzung = استخدام الأراضي"],
-    simplified = "من الثابت علمياً أن الزراعة أثرت على الدببة",
-    imagine = "🚜🐻 جرار ودب"
+    simplified: "من الثابت علمياً أن الزراعة أثرت على الدببة",
+    imagine: "🚜🐻 جرار ودب"
 };
 
 HELP_DATA["sprach2_exam13_4"] = {
-    text = "Wintertemperatur ist in weiten Teilen Europas um zwei bis vier Grad angestiegen",
-    meaning = "ارتفعت درجة حرارة الشتاء في معظم أنحاء أوروبا بمقدار درجتين إلى أربع درجات",
+    text: "Wintertemperatur ist in weiten Teilen Europas um zwei bis vier Grad angestiegen",
+    meaning: "ارتفعت درجة حرارة الشتاء في معظم أنحاء أوروبا بمقدار درجتين إلى أربع درجات",
     keywords: ["um = بمقدار", "angestiegen = ارتفعت", "Wintertemperatur = درجة حرارة الشتاء"],
-    simplified = "الشتاء الأكثر دفئاً يقلل من سبات الدببة",
-    imagine = "🌡️📈 ميزان حرارة مرتفع"
+    simplified: "الشتاء الأكثر دفئاً يقلل من سبات الدببة",
+    imagine: "🌡️📈 ميزان حرارة مرتفع"
 };
 
 HELP_DATA["sprach2_exam13_5"] = {
-    text = "bekamen die Braunbären weniger Nachkommen",
-    meaning = "أنجبت الدببة البنية عدداً أقل من الأشبال",
+    text: "bekamen die Braunbären weniger Nachkommen",
+    meaning: "أنجبت الدببة البنية عدداً أقل من الأشبال",
     keywords: ["Nachkommen = ذرية", "weniger = أقل", "bekamen = أنجبت"],
-    simplified = "ضعف التكاثر أدى إلى تقلص أعدادها",
-    imagine = "🐻❌🐻‍❄️ دبان مع خط متقاطع"
+    simplified: "ضعف التكاثر أدى إلى تقلص أعدادها",
+    imagine: "🐻❌🐻‍❄️ دبان مع خط متقاطع"
 };
 
 HELP_DATA["sprach2_exam13_6"] = {
-    text = "Der Grund dafür ist",
-    meaning = "السبب في ذلك هو",
+    text: "Der Grund dafür ist",
+    meaning: "السبب في ذلك هو",
     keywords: ["dafür = في ذلك", "Grund = سبب", "ist = هو"],
-    simplified = "الإجابة تكمن في علم وظائف الأعضاء وعلاقته بالطقس",
-    imagine = "🔍🐻 بحث ودب"
+    simplified: "الإجابة تكمن في علم وظائف الأعضاء وعلاقته بالطقس",
+    imagine: "🔍🐻 بحث ودب"
 };
 
 HELP_DATA["sprach2_exam13_7"] = {
-    text = "denn sie bringen im Winter ihre Jungen zur Welt",
-    meaning = "لأنها تلد صغارها في الشتاء",
+    text: "denn sie bringen im Winter ihre Jungen zur Welt",
+    meaning: "لأنها تلد صغارها في الشتاء",
     keywords: ["denn = لأن", "Winter = شتاء", "Jungen = صغارها"],
-    simplified = "الدببة تحتاج لطاقة إضافية للولادة في الشتاء",
-    imagine = "🥶🐻 والدة دب في عرين ثلجي"
+    simplified: "الدببة تحتاج لطاقة إضافية للولادة في الشتاء",
+    imagine: "🥶🐻 والدة دب في عرين ثلجي"
 };
 
 HELP_DATA["sprach2_exam13_8"] = {
-    text = "begünstigten auch die menschlichen Eingriffe",
-    meaning = "شجعت أيضاً التدخلات البشرية",
+    text: "begünstigten auch die menschlichen Eingriffe",
+    meaning: "شجعت أيضاً التدخلات البشرية",
     keywords: ["Eingriffe = تدخلات", "menschlichen = بشرية", "begünstigten = شجعت"],
-    simplified = "الطقس الأكثر دفئاً ساعد المزارعين على التوسع في موطن الدببة",
-    imagine = "🚜🌲 جرار وأشجار مقطوعة"
+    simplified: "الطقس الأكثر دفئاً ساعد المزارعين على التوسع في موطن الدببة",
+    imagine: "🚜🌲 جرار وأشجار مقطوعة"
 };
 
 HELP_DATA["sprach2_exam13_9"] = {
-    text = "Am Ende der letzten Eiszeit war der Braunbär noch überall in Europa heimisch",
-    meaning = "في نهاية العصر الجليدي الأخير، كان الدب البني لا يزال موطنه في كل مكان في أوروبا",
+    text: "Am Ende der letzten Eiszeit war der Braunbär noch überall in Europa heimisch",
+    meaning: "في نهاية العصر الجليدي الأخير، كان الدب البني لا يزال موطنه في كل مكان في أوروبا",
     keywords: ["noch = لا يزال", "Eiszeit = عصر جليدي", "heimisch = موطنه"],
-    simplified = "الدببة كانت منتشرة في كل أوروبا ذات يوم",
-    imagine = "🗺️🐻 خريطة بأوروبا مملوءة بدببة"
+    simplified: "الدببة كانت منتشرة في كل أوروبا ذات يوم",
+    imagine: "🗺️🐻 خريطة بأوروبا مملوءة بدببة"
 };
 
 HELP_DATA["sprach2_exam13_10"] = {
-    text = "ging es mit dem Braunbären aber vor etwa 2000 Jahren bergab",
-    meaning = "لكن أوضاع الدب البني تدهورت منذ حوالي 2000 عام",
+    text: "ging es mit dem Braunbären aber vor etwa 2000 Jahren bergab",
+    meaning: "لكن أوضاع الدب البني تدهورت منذ حوالي 2000 عام",
     keywords: ["ging = تدهورت", "bergab = إلى الأسفل", "Braunbären = دب بني"],
-    simplified = "منذ ألفي عام، بدأ عدد الدببة في التناقص السريع",
-    imagine = "📉🐻 رسم بياني هابط مع دب"
+    simplified: "منذ ألفي عام، بدأ عدد الدببة في التناقص السريع",
+    imagine: "📉🐻 رسم بياني هابط مع دب"
 };
 
 // ============================================
@@ -12278,83 +12278,83 @@ HELP_DATA["sprach2_exam13_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam14_1"] = {
-    text = "während der vergangen 12000 Jahre",
-    meaning = "خلال الـ 12000 سنة الماضية",
+    text: "während der vergangen 12000 Jahre",
+    meaning: "خلال الـ 12000 سنة الماضية",
     keywords: ["während = خلال", "vergangen = الماضية", "Jahre = سنوات"],
-    simplified = "التغير المناخي على مدى 12 ألف سنة أثر على الدببة",
-    imagine = "🐻📆 دب وتقويم"
+    simplified: "التغير المناخي على مدى 12 ألف سنة أثر على الدببة",
+    imagine: "🐻📆 دب وتقويم"
 };
 
 HELP_DATA["sprach2_exam14_2"] = {
-    text = "Dadurch wurde der Lebensraum der Tiere verkleinert",
-    meaning = "وبذلك تضاءلت مساحة موطن الحيوانات",
+    text: "Dadurch wurde der Lebensraum der Tiere verkleinert",
+    meaning: "وبذلك تضاءلت مساحة موطن الحيوانات",
     keywords: ["Dadurch = وبذلك", "Lebensraum = موطن", "verkleinert = تضاءلت"],
-    simplified = "تقلص موطن الدببة البنية مع ارتفاع درجات الحرارة",
-    imagine = "🗺️📉 خريطة منطقتها تتناقص"
+    simplified: "تقلص موطن الدببة البنية مع ارتفاع درجات الحرارة",
+    imagine: "🗺️📉 خريطة منطقتها تتناقص"
 };
 
 HELP_DATA["sprach2_exam14_3"] = {
-    text = "dass das Verschwinden der Braunbären mit der Landnutzung durch den Menschen zusammenhängt",
-    meaning = "اختفاء الدببة البنية مرتبط باستخدام الأراضي من قبل البشر",
+    text: "dass das Verschwinden der Braunbären mit der Landnutzung durch den Menschen zusammenhängt",
+    meaning: "اختفاء الدببة البنية مرتبط باستخدام الأراضي من قبل البشر",
     keywords: ["dass = أن", "Verschwinden = اختفاء", "Landnutzung = استخدام الأراضي"],
-    simplified = "من الثابت علمياً أن الزراعة أثرت على الدببة",
-    imagine = "🚜🐻 جرار ودب"
+    simplified: "من الثابت علمياً أن الزراعة أثرت على الدببة",
+    imagine: "🚜🐻 جرار ودب"
 };
 
 HELP_DATA["sprach2_exam14_4"] = {
-    text = "Wintertemperatur ist in weiten Teilen Europas um zwei bis vier Grad angestiegen",
-    meaning = "ارتفعت درجة حرارة الشتاء في معظم أنحاء أوروبا بمقدار درجتين إلى أربع درجات",
+    text: "Wintertemperatur ist in weiten Teilen Europas um zwei bis vier Grad angestiegen",
+    meaning: "ارتفعت درجة حرارة الشتاء في معظم أنحاء أوروبا بمقدار درجتين إلى أربع درجات",
     keywords: ["um = بمقدار", "angestiegen = ارتفعت", "Wintertemperatur = درجة حرارة الشتاء"],
-    simplified = "الشتاء الأكثر دفئاً يقلل من سبات الدببة",
-    imagine = "🌡️📈 ميزان حرارة مرتفع"
+    simplified: "الشتاء الأكثر دفئاً يقلل من سبات الدببة",
+    imagine: "🌡️📈 ميزان حرارة مرتفع"
 };
 
 HELP_DATA["sprach2_exam14_5"] = {
-    text = "bekamen die Braunbären weniger Nachkommen",
-    meaning = "أنجبت الدببة البنية عدداً أقل من الأشبال",
+    text: "bekamen die Braunbären weniger Nachkommen",
+    meaning: "أنجبت الدببة البنية عدداً أقل من الأشبال",
     keywords: ["Nachkommen = ذرية", "weniger = أقل", "bekamen = أنجبت"],
-    simplified = "ضعف التكاثر أدى إلى تقلص أعدادها",
-    imagine = "🐻❌🐻‍❄️ دبان مع خط متقاطع"
+    simplified: "ضعف التكاثر أدى إلى تقلص أعدادها",
+    imagine: "🐻❌🐻‍❄️ دبان مع خط متقاطع"
 };
 
 HELP_DATA["sprach2_exam14_6"] = {
-    text = "Der Grund dafür ist",
-    meaning = "السبب في ذلك هو",
+    text: "Der Grund dafür ist",
+    meaning: "السبب في ذلك هو",
     keywords: ["dafür = في ذلك", "Grund = سبب", "ist = هو"],
-    simplified = "الإجابة تكمن في علم وظائف الأعضاء وعلاقته بالطقس",
-    imagine = "🔍🐻 بحث ودب"
+    simplified: "الإجابة تكمن في علم وظائف الأعضاء وعلاقته بالطقس",
+    imagine: "🔍🐻 بحث ودب"
 };
 
 HELP_DATA["sprach2_exam14_7"] = {
-    text = "denn sie bringen im Winter ihre Jungen zur Welt",
-    meaning = "لأنها تلد صغارها في الشتاء",
+    text: "denn sie bringen im Winter ihre Jungen zur Welt",
+    meaning: "لأنها تلد صغارها في الشتاء",
     keywords: ["denn = لأن", "Winter = شتاء", "Jungen = صغارها"],
-    simplified = "الدببة تحتاج لطاقة إضافية للولادة في الشتاء",
-    imagine = "🥶🐻 والدة دب في عرين ثلجي"
+    simplified: "الدببة تحتاج لطاقة إضافية للولادة في الشتاء",
+    imagine: "🥶🐻 والدة دب في عرين ثلجي"
 };
 
 HELP_DATA["sprach2_exam14_8"] = {
-    text = "begünstigten auch die menschlichen Eingriffe",
-    meaning = "شجعت أيضاً التدخلات البشرية",
+    text: "begünstigten auch die menschlichen Eingriffe",
+    meaning: "شجعت أيضاً التدخلات البشرية",
     keywords: ["Eingriffe = تدخلات", "menschlichen = بشرية", "begünstigten = شجعت"],
-    simplified = "الطقس الأكثر دفئاً ساعد المزارعين على التوسع في موطن الدببة",
-    imagine = "🚜🌲 جرار وأشجار مقطوعة"
+    simplified: "الطقس الأكثر دفئاً ساعد المزارعين على التوسع في موطن الدببة",
+    imagine: "🚜🌲 جرار وأشجار مقطوعة"
 };
 
 HELP_DATA["sprach2_exam14_9"] = {
-    text = "Am Ende der letzten Eiszeit war der Braunbär noch überall in Europa heimisch",
-    meaning = "في نهاية العصر الجليدي الأخير، كان الدب البني لا يزال موطنه في كل مكان في أوروبا",
+    text: "Am Ende der letzten Eiszeit war der Braunbär noch überall in Europa heimisch",
+    meaning: "في نهاية العصر الجليدي الأخير، كان الدب البني لا يزال موطنه في كل مكان في أوروبا",
     keywords: ["noch = لا يزال", "Eiszeit = عصر جليدي", "heimisch = موطنه"],
-    simplified = "الدببة كانت منتشرة في كل أوروبا ذات يوم",
-    imagine = "🗺️🐻 خريطة بأوروبا مملوءة بدببة"
+    simplified: "الدببة كانت منتشرة في كل أوروبا ذات يوم",
+    imagine: "🗺️🐻 خريطة بأوروبا مملوءة بدببة"
 };
 
 HELP_DATA["sprach2_exam14_10"] = {
-    text = "ging es mit dem Braunbären aber vor etwa 2000 Jahren bergab",
-    meaning = "لكن أوضاع الدب البني تدهورت منذ حوالي 2000 عام",
+    text: "ging es mit dem Braunbären aber vor etwa 2000 Jahren bergab",
+    meaning: "لكن أوضاع الدب البني تدهورت منذ حوالي 2000 عام",
     keywords: ["ging = تدهورت", "bergab = إلى الأسفل", "Braunbären = دب بني"],
-    simplified = "منذ ألفي عام، بدأ عدد الدببة في التناقص السريع",
-    imagine = "📉🐻 رسم بياني هابط مع دب"
+    simplified: "منذ ألفي عام، بدأ عدد الدببة في التناقص السريع",
+    imagine: "📉🐻 رسم بياني هابط مع دب"
 };
 
 // ============================================
@@ -12362,166 +12362,166 @@ HELP_DATA["sprach2_exam14_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam15_1"] = {
-    text = "ob Bio-Produkte nun auch wirklich die gesünderen sind",
-    meaning = "هل المنتجات العضوية هي حقاً الأكثر صحة",
+    text: "ob Bio-Produkte nun auch wirklich die gesünderen sind",
+    meaning: "هل المنتجات العضوية هي حقاً الأكثر صحة",
     keywords: ["ob = هل", "Bio-Produkte = منتجات عضوية", "gesünderen = أكثر صحة"],
-    simplified = "هل الأطعمة العضوية تستحق السعر الأعلى؟",
-    imagine = "❓🥦 علامة استفهام وبروكلي"
+    simplified: "هل الأطعمة العضوية تستحق السعر الأعلى؟",
+    imagine: "❓🥦 علامة استفهام وبروكلي"
 };
 
 HELP_DATA["sprach2_exam15_2"] = {
-    text = "Außerdem sind Bio-Produkte teurer",
-    meaning = "بالإضافة إلى ذلك، المنتجات العضوية أغلى ثمناً",
+    text: "Außerdem sind Bio-Produkte teurer",
+    meaning: "بالإضافة إلى ذلك، المنتجات العضوية أغلى ثمناً",
     keywords: ["Außerdem = بالإضافة إلى ذلك", "teurer = أغلى ثمناً", "Bio-Produkte = منتجات عضوية"],
-    simplified = "التكلفة الأعلى تثير الشكوك حول الجودة",
-    imagine = "💰❓ نقود وعلامة استفهام"
+    simplified: "التكلفة الأعلى تثير الشكوك حول الجودة",
+    imagine: "💰❓ نقود وعلامة استفهام"
 };
 
 HELP_DATA["sprach2_exam15_3"] = {
-    text = "Sie enthalten weniger Nitrat, mehr Nährstoffe",
-    meaning = "تحتوي على نترات أقل ومغذيات أكثر",
+    text: "Sie enthalten weniger Nitrat, mehr Nährstoffe",
+    meaning: "تحتوي على نترات أقل ومغذيات أكثر",
     keywords: ["enthalten = تحتوي", "Nitrat = نترات", "Nährstoffe = مغذيات"],
-    simplified = "الخضروات العضوية أكثر فائدة غنائية",
-    imagine = "🥬💪 خضار وعضلات"
+    simplified: "الخضروات العضوية أكثر فائدة غنائية",
+    imagine: "🥬💪 خضار وعضلات"
 };
 
 HELP_DATA["sprach2_exam15_4"] = {
-    text = "Bei vielen Verbrauchern steht hinter ihrem Einkaufsverhalten ein ökologisches Bewusstsein",
-    meaning = "خلف سلوك الشراء لدى العديد من المستهلكين وعي بيئي",
+    text: "Bei vielen Verbrauchern steht hinter ihrem Einkaufsverhalten ein ökologisches Bewusstsein",
+    meaning: "خلف سلوك الشراء لدى العديد من المستهلكين وعي بيئي",
     keywords: ["hinter = خلف", "Einkaufsverhalten = سلوك شراء", "ökologisches Bewusstsein = وعي بيئي"],
-    simplified = "العديد من العملاء يشترون عضوياً لدافع بيئي",
-    imagine = "🛒🌍 سلة تسوق وكوكب أرض"
+    simplified: "العديد من العملاء يشترون عضوياً لدافع بيئي",
+    imagine: "🛒🌍 سلة تسوق وكوكب أرض"
 };
 
 HELP_DATA["sprach2_exam15_5"] = {
-    text = "Sie entlastet unsere Umwelt",
-    meaning = "إنها تخفف العبء على بيئتنا",
+    text: "Sie entlastet unsere Umwelt",
+    meaning: "إنها تخفف العبء على بيئتنا",
     keywords: ["entlastet = تخفف العبء", "Umwelt = بيئة", "unsere = بيئتنا"],
-    simplified = "المنتج العضوي يعني كوكباً أكثر صحة",
-    imagine = "🌿❤️ نبات قلب"
+    simplified: "المنتج العضوي يعني كوكباً أكثر صحة",
+    imagine: "🌿❤️ نبات قلب"
 };
 
 HELP_DATA["sprach2_exam15_6"] = {
-    text = "kommen aus ökologischer Landwirtschaft",
-    meaning = "تأتي من الزراعة العضوية",
+    text: "kommen aus ökologischer Landwirtschaft",
+    meaning: "تأتي من الزراعة العضوية",
     keywords: ["aus = من", "ökologischer Landwirtschaft = زراعة عضوية", "kommen = تأتي"],
-    simplified = "الأطعمة العضوية تُزرع بنظام بيئي متوازن",
-    imagine = "🌱🚜 مزرعة عضوية"
+    simplified: "الأطعمة العضوية تُزرع بنظام بيئي متوازن",
+    imagine: "🌱🚜 مزرعة عضوية"
 };
 
 HELP_DATA["sprach2_exam15_7"] = {
-    text = "auf Wochenmärkten oder in Bio-Supermärkten",
-    meaning = "في أسواق الأسبوع أو متاجر الأغذية العضوية الكبرى",
+    text: "auf Wochenmärkten oder in Bio-Supermärkten",
+    meaning: "في أسواق الأسبوع أو متاجر الأغذية العضوية الكبرى",
     keywords: ["auf = في", "Wochenmärkten = أسواق أسبوعية", "Bio-Supermärkten = متاجر عضوية"],
-    simplified = "يمكن العثور على المنتجات العضوية في الأسواق الخارجية ومتاجر التجزئة المتخصصة",
-    imagine = "🏪🥬 متجر وخضار"
+    simplified: "يمكن العثور على المنتجات العضوية في الأسواق الخارجية ومتاجر التجزئة المتخصصة",
+    imagine: "🏪🥬 متجر وخضار"
 };
 
 HELP_DATA["sprach2_exam15_8"] = {
-    text = "dürfen weder Kunstdünger noch chemische Schädlingsbekämpfungsmittel verwendet werden",
-    meaning = "لا يجوز استخدام الأسمدة الاصطناعية ولا مبيدات الآفات الكيميائية",
+    text: "dürfen weder Kunstdünger noch chemische Schädlingsbekämpfungsmittel verwendet werden",
+    meaning: "لا يجوز استخدام الأسمدة الاصطناعية ولا مبيدات الآفات الكيميائية",
     keywords: ["verwendet = استخدام", "Kunstdünger = أسمدة اصطناعية", "Schädlingsbekämpfungsmittel = مبيدات آفات"],
-    simplified = "الزراعة العضوية تمنع استخدام المواد الكيميائية الصناعية",
-    imagine = "🚫🧪 علامة منع وأنبوب اختبار"
+    simplified: "الزراعة العضوية تمنع استخدام المواد الكيميائية الصناعية",
+    imagine: "🚫🧪 علامة منع وأنبوب اختبار"
 };
 
 HELP_DATA["sprach2_exam15_9"] = {
-    text = "dürfen wirklich nur Bio-Lebensmittel benutzt werden",
-    meaning = "يُسمح باستخدام الأطعمة العضوية فقط حقاً",
+    text: "dürfen wirklich nur Bio-Lebensmittel benutzt werden",
+    meaning: "يُسمح باستخدام الأطعمة العضوية فقط حقاً",
     keywords: ["wirklich = حقاً", "Bio-Lebensmittel = أطعمة عضوية", "benutzt = استخدام"],
-    simplified = "الوصفة العضوية الحقيقية تتطلب مكونات عضوية معتمدة",
-    imagine = "✅🍪 كعكة وعلامة صح"
+    simplified: "الوصفة العضوية الحقيقية تتطلب مكونات عضوية معتمدة",
+    imagine: "✅🍪 كعكة وعلامة صح"
 };
 
 HELP_DATA["sprach2_exam15_10"] = {
-    text = "die garantieren, dass die Produkte wirklich 'bio' sind",
-    meaning = "التي تضمن أن المنتجات عضوية حقاً",
+    text: "die garantieren, dass die Produkte wirklich 'bio' sind",
+    meaning: "التي تضمن أن المنتجات عضوية حقاً",
     keywords: ["dass = أن", "garantieren = تضمن", "Produkte = منتجات"],
-    simplified = "العلامات تمنح المستهلك الثقة بأن المنتج يتبع معايير صارمة",
-    imagine = "🔖✅ ملصق وعلامة صح"
+    simplified: "العلامات تمنح المستهلك الثقة بأن المنتج يتبع معايير صارمة",
+    imagine: "🔖✅ ملصق وعلامة صح"
 };
 // ============================================
 // Exam 16 (exam16.json) - Was genau sind eigentlich Bio-Lebensmittel (معدل)
 // ============================================
 
 HELP_DATA["sprach2_exam16_1"] = {
-    text = "ob Bio-Produkte denn wirklich gesünder sind als herkömmliche Produkte",
-    meaning = "هل المنتجات العضوية حقاً أكثر صحة من المنتجات التقليدية",
-    keywords = ["ob = هل", "wirklich = حقاً", "gesünder = أكثر صحة"],
-    simplified = "يتساءل الناس إذا كانت الأغذية العضوية تستحق السعر الأعلى",
-    imagine = "❓🥦 علامة استفهام مع بروكلي عضوي"
+    text: "ob Bio-Produkte denn wirklich gesünder sind als herkömmliche Produkte",
+    meaning: "هل المنتجات العضوية حقاً أكثر صحة من المنتجات التقليدية",
+    keywords: ["ob = هل", "wirklich = حقاً", "gesünder = أكثر صحة"],
+    simplified: "يتساءل الناس إذا كانت الأغذية العضوية تستحق السعر الأعلى",
+    imagine: "❓🥦 علامة استفهام مع بروكلي عضوي"
 };
 
 HELP_DATA["sprach2_exam16_2"] = {
-    text = "Außerdem sind Bio-Produkte teurer",
-    meaning = "بالإضافة إلى ذلك، المنتجات العضوية أغلى ثمناً",
-    keywords = ["Außerdem = بالإضافة إلى ذلك", "teurer = أغلى", "Bio-Produkte = منتجات عضوية"],
-    simplified = "التكلفة المرتفعة تجعل المستهلكين يفكرون مرتين",
-    imagine = "💰❓ نقود مع علامة استفهام"
+    text: "Außerdem sind Bio-Produkte teurer",
+    meaning: "بالإضافة إلى ذلك، المنتجات العضوية أغلى ثمناً",
+    keywords: ["Außerdem = بالإضافة إلى ذلك", "teurer = أغلى", "Bio-Produkte = منتجات عضوية"],
+    simplified: "التكلفة المرتفعة تجعل المستهلكين يفكرون مرتين",
+    imagine: "💰❓ نقود مع علامة استفهام"
 };
 
 HELP_DATA["sprach2_exam16_3"] = {
-    text = "Sie enthalten weniger Nitrat, mehr Nährstoffe",
-    meaning = "تحتوي على نترات أقل ومغذيات أكثر",
-    keywords = ["enthalten = تحتوي", "Nitrat = نترات", "Nährstoffe = مغذيات"],
-    simplified = "المنتجات العضوية أكثر فائدة وغنى بالعناصر الغذائية",
-    imagine = "🥬📈 خضار مع رسم بياني مرتفع"
+    text: "Sie enthalten weniger Nitrat, mehr Nährstoffe",
+    meaning: "تحتوي على نترات أقل ومغذيات أكثر",
+    keywords: ["enthalten = تحتوي", "Nitrat = نترات", "Nährstoffe = مغذيات"],
+    simplified: "المنتجات العضوية أكثر فائدة وغنى بالعناصر الغذائية",
+    imagine: "🥬📈 خضار مع رسم بياني مرتفع"
 };
 
 HELP_DATA["sprach2_exam16_4"] = {
-    text = "steht ein ökologisches Bewusstsein hinter ihrem Einkaufsverhalten",
-    meaning = "يوجد وعي بيئي وراء سلوكهم الشرائي",
-    keywords = ["hinter = خلف", "ökologisches Bewusstsein = وعي بيئي", "Einkaufsverhalten = سلوك شرائي"],
-    simplified = "الكثير من الناس يشترون عضوياً بدافع حماية الطبيعة",
-    imagine = "🛒🌍 عربة تسوق مع كرة أرضية"
+    text: "steht ein ökologisches Bewusstsein hinter ihrem Einkaufsverhalten",
+    meaning: "يوجد وعي بيئي وراء سلوكهم الشرائي",
+    keywords: ["hinter = خلف", "ökologisches Bewusstsein = وعي بيئي", "Einkaufsverhalten = سلوك شرائي"],
+    simplified: "الكثير من الناس يشترون عضوياً بدافع حماية الطبيعة",
+    imagine: "🛒🌍 عربة تسوق مع كرة أرضية"
 };
 
 HELP_DATA["sprach2_exam16_5"] = {
-    text = "weil sie unsere Umwelt entlastet",
-    meaning = "لأنها تخفف العبء على بيئتنا",
-    keywords = ["entlastet = تخفف العبء", "Umwelt = بيئة", "unsere = بيئتنا"],
-    simplified = "الزراعة العضوية أفضل للبيئة",
-    imagine = "🌿💚 نبات مع قلب أخضر"
+    text: "weil sie unsere Umwelt entlastet",
+    meaning: "لأنها تخفف العبء على بيئتنا",
+    keywords: ["entlastet = تخفف العبء", "Umwelt = بيئة", "unsere = بيئتنا"],
+    simplified: "الزراعة العضوية أفضل للبيئة",
+    imagine: "🌿💚 نبات مع قلب أخضر"
 };
 
 HELP_DATA["sprach2_exam16_6"] = {
-    text = "kommen aus ökologischer Landwirtschaft",
-    meaning = "تأتي من الزراعة العضوية",
-    keywords = ["aus = من", "ökologischer Landwirtschaft = زراعة عضوية", "kommen = تأتي"],
-    simplified = "المنتج العضوي مصدره مزارع مستدامة",
-    imagine = "🚜🌾 جرار زراعي مع حقل أخضر"
+    text: "kommen aus ökologischer Landwirtschaft",
+    meaning: "تأتي من الزراعة العضوية",
+    keywords: ["aus = من", "ökologischer Landwirtschaft = زراعة عضوية", "kommen = تأتي"],
+    simplified: "المنتج العضوي مصدره مزارع مستدامة",
+    imagine: "🚜🌾 جرار زراعي مع حقل أخضر"
 };
 
 HELP_DATA["sprach2_exam16_7"] = {
-    text = "auf Wochenmärkten oder in Bio-Supermärkten",
-    meaning = "في أسواق الأسبوع أو متاجر الأغذية العضوية",
-    keywords = ["auf = في", "Wochenmärkten = أسواق أسبوعية", "Bio-Supermärkten = متاجر عضوية"],
-    simplified = "تتوفر المنتجات العضوية في أماكن متعددة",
-    imagine = "🏪🥬 متجر صغير مع خضار"
+    text: "auf Wochenmärkten oder in Bio-Supermärkten",
+    meaning: "في أسواق الأسبوع أو متاجر الأغذية العضوية",
+    keywords: ["auf = في", "Wochenmärkten = أسواق أسبوعية", "Bio-Supermärkten = متاجر عضوية"],
+    simplified: "تتوفر المنتجات العضوية في أماكن متعددة",
+    imagine: "🏪🥬 متجر صغير مع خضار"
 };
 
 HELP_DATA["sprach2_exam16_8"] = {
-    text = "dürfen weder Kunstdünger noch chemische Schädlingsbekämpfungsmittel verwendet werden",
-    meaning = "لا يجوز استخدام الأسمدة الاصطناعية ولا مبيدات الآفات الكيميائية",
-    keywords = ["verwendet = استخدام", "Kunstdünger = أسمدة اصطناعية", "Schädlingsbekämpfungsmittel = مبيدات آفات"],
-    simplified = "الزراعة العضوية تحظر الكيماويات الضارة",
-    imagine = "🚫🧪 علامة منع مع أنبوب اختبار"
+    text: "dürfen weder Kunstdünger noch chemische Schädlingsbekämpfungsmittel verwendet werden",
+    meaning: "لا يجوز استخدام الأسمدة الاصطناعية ولا مبيدات الآفات الكيميائية",
+    keywords: ["verwendet = استخدام", "Kunstdünger = أسمدة اصطناعية", "Schädlingsbekämpfungsmittel = مبيدات آفات"],
+    simplified: "الزراعة العضوية تحظر الكيماويات الضارة",
+    imagine: "🚫🧪 علامة منع مع أنبوب اختبار"
 };
 
 HELP_DATA["sprach2_exam16_9"] = {
-    text = "dürfen wirklich nur Bio-Lebensmittel benutzt werden",
-    meaning = "يُسمح باستخدام الأطعمة العضوية فقط حقاً",
-    keywords = ["wirklich = حقاً", "Bio-Lebensmittel = أطعمة عضوية", "benutzt = استخدام"],
-    simplified = "الكعكة العضوية تتطلب مكونات عضوية معتمدة",
-    imagine = "✅🍰 كعكة مع علامة صح"
+    text: "dürfen wirklich nur Bio-Lebensmittel benutzt werden",
+    meaning: "يُسمح باستخدام الأطعمة العضوية فقط حقاً",
+    keywords: ["wirklich = حقاً", "Bio-Lebensmittel = أطعمة عضوية", "benutzt = استخدام"],
+    simplified: "الكعكة العضوية تتطلب مكونات عضوية معتمدة",
+    imagine: "✅🍰 كعكة مع علامة صح"
 };
 
 HELP_DATA["sprach2_exam16_10"] = {
-    text = "dass die Produkte wirklich 'bio' sind",
-    meaning = "أن المنتجات عضوية حقاً",
-    keywords = ["dass = أن", "wirklich = حقاً", "bio = عضوية"],
-    simplified = "الختم الرسمي يضمن لك الجودة العضوية",
-    imagine = "🔖✅ ملصق مع علامة صح"
+    text: "dass die Produkte wirklich 'bio' sind",
+    meaning: "أن المنتجات عضوية حقاً",
+    keywords: ["dass = أن", "wirklich = حقاً", "bio = عضوية"],
+    simplified: "الختم الرسمي يضمن لك الجودة العضوية",
+    imagine: "🔖✅ ملصق مع علامة صح"
 };
 
 // ============================================
@@ -12529,83 +12529,83 @@ HELP_DATA["sprach2_exam16_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam17_1"] = {
-    text = "deshalb ist es wichtig, dass Eltern sich den besten Schulweg überlegen",
-    meaning = "لذلك من المهم أن يفكر الآباء في أفضل طريق للمدرسة",
-    keywords = ["deshalb = لذلك", "wichtig = مهم", "Schulweg = طريق المدرسة"],
-    simplified = "لذلك يجب على الآباء مساعدة أطفالهم في اختيار الطريق الآمن",
-    imagine = "👩‍👧‍👦🗺️ أم مع طفل وخريطة"
+    text: "deshalb ist es wichtig, dass Eltern sich den besten Schulweg überlegen",
+    meaning: "لذلك من المهم أن يفكر الآباء في أفضل طريق للمدرسة",
+    keywords: ["deshalb = لذلك", "wichtig = مهم", "Schulweg = طريق المدرسة"],
+    simplified: "لذلك يجب على الآباء مساعدة أطفالهم في اختيار الطريق الآمن",
+    imagine: "👩‍👧‍👦🗺️ أم مع طفل وخريطة"
 };
 
 HELP_DATA["sprach2_exam17_2"] = {
-    text = "Nicht immer ist der kürzeste Weg auch der ungefährlichste",
-    meaning = "ليس دائماً أقصر طريق هو الأكثر أماناً",
-    keywords = ["Nicht = ليس", "kürzeste = أقصر", "ungefährlichste = أآمن"],
-    simplified = "الطريق القصير قد لا يكون الخيار الأكثر أماناً للأطفال",
-    imagine = "⚠️🗺️ طريق قصير مع علامة خطر"
+    text: "Nicht immer ist der kürzeste Weg auch der ungefährlichste",
+    meaning: "ليس دائماً أقصر طريق هو الأكثر أماناً",
+    keywords: ["Nicht = ليس", "kürzeste = أقصر", "ungefährlichste = أآمن"],
+    simplified: "الطريق القصير قد لا يكون الخيار الأكثر أماناً للأطفال",
+    imagine: "⚠️🗺️ طريق قصير مع علامة خطر"
 };
 
 HELP_DATA["sprach2_exam17_3"] = {
-    text = "sich voll auf das Kind konzentrieren",
-    meaning = "التركيز بشكل كامل على الطفل",
-    keywords = ["konzentrieren = التركيز", "voll = كامل", "Kind = طفل"],
-    simplified = "يجب أن يكرس الآباء وقتهم الكامل للتدريب",
-    imagine = "🧠👧 عقل مع طفلة صغيرة"
+    text: "sich voll auf das Kind konzentrieren",
+    meaning: "التركيز بشكل كامل على الطفل",
+    keywords: ["konzentrieren = التركيز", "voll = كامل", "Kind = طفل"],
+    simplified: "يجب أن يكرس الآباء وقتهم الكامل للتدريب",
+    imagine: "🧠👧 عقل مع طفلة صغيرة"
 };
 
 HELP_DATA["sprach2_exam17_4"] = {
-    text = "sich auch selbst daran halten",
-    meaning = "الالتزام بها بأنفسهم أيضاً",
-    keywords = ["selbst = بأنفسهم", "halten = الالتزام", "daran = بها"],
-    simplified = "يجب أن يكون الآباء قدوة حسنة لأطفالهم",
-    imagine = "👨‍👦✨ أب مع طفل ونجوم"
+    text: "sich auch selbst daran halten",
+    meaning: "الالتزام بها بأنفسهم أيضاً",
+    keywords: ["selbst = بأنفسهم", "halten = الالتزام", "daran = بها"],
+    simplified: "يجب أن يكون الآباء قدوة حسنة لأطفالهم",
+    imagine: "👨‍👦✨ أب مع طفل ونجوم"
 };
 
 HELP_DATA["sprach2_exam17_5"] = {
-    text = "Manchmal ist es hilfreich, wenn die Großen sich von ihren Kindern erzählen lassen",
-    meaning = "أحياناً من المفيد أن يستمع الكبار لأطفالهم",
-    keywords = ["hilfreich = مفيد", "Großen = كبار", "erzählen = يروي"],
-    simplified = "الأطفال يرون الشارع بشكل مختلف، لذا من المفيد الاستماع لهم",
-    imagine = "👧🗣️👩 طفلة تتحدث وأم تستمع"
+    text: "Manchmal ist es hilfreich, wenn die Großen sich von ihren Kindern erzählen lassen",
+    meaning: "أحياناً من المفيد أن يستمع الكبار لأطفالهم",
+    keywords: ["hilfreich = مفيد", "Großen = كبار", "erzählen = يروي"],
+    simplified: "الأطفال يرون الشارع بشكل مختلف، لذا من المفيد الاستماع لهم",
+    imagine: "👧🗣️👩 طفلة تتحدث وأم تستمع"
 };
 
 HELP_DATA["sprach2_exam17_6"] = {
-    text = "Schritt für Schritt verlängern",
-    meaning = "تمديدها خطوة بخطوة",
-    keywords = ["Schritt = خطوة", "für = بخطوة", "verlängern = تمديد"],
-    simplified = "تدريجياً يمكن زيادة المسافة التي يقطعها الطفل بمفرده",
-    imagine = "➡️➡️ أسهم متتالية"
+    text: "Schritt für Schritt verlängern",
+    meaning: "تمديدها خطوة بخطوة",
+    keywords: ["Schritt = خطوة", "für = بخطوة", "verlängern = تمديد"],
+    simplified: "تدريجياً يمكن زيادة المسافة التي يقطعها الطفل بمفرده",
+    imagine: "➡️➡️ أسهم متتالية"
 };
 
 HELP_DATA["sprach2_exam17_7"] = {
-    text = "die wichtigsten Regeln für das Verhalten im Straßenverkehr",
-    meaning = "أهم القواعد للسلوك في حركة المرور",
-    keywords = ["Verhalten = سلوك", "Straßenverkehr = حركة المرور", "Regeln = قواعد"],
-    simplified = "مراجعة قواعد السلامة على الطريق مع الأطفال",
-    imagine = "🚦📋 إشارة مرور مع قائمة"
+    text: "die wichtigsten Regeln für das Verhalten im Straßenverkehr",
+    meaning: "أهم القواعد للسلوك في حركة المرور",
+    keywords: ["Verhalten = سلوك", "Straßenverkehr = حركة المرور", "Regeln = قواعد"],
+    simplified: "مراجعة قواعد السلامة على الطريق مع الأطفال",
+    imagine: "🚦📋 إشارة مرور مع قائمة"
 };
 
 HELP_DATA["sprach2_exam17_8"] = {
-    text = "kritische Situationen besprechen",
-    meaning = "مناقشة المواقف الحرجة",
-    keywords = ["kritische = حرجة", "Situationen = مواقف", "besprechen = مناقشة"],
-    simplified = "التحدث عن أسوأ السيناريوهات المحتملة",
-    imagine = "⚠️💭 خطر مع فقاعة تفكير"
+    text: "kritische Situationen besprechen",
+    meaning: "مناقشة المواقف الحرجة",
+    keywords: ["kritische = حرجة", "Situationen = مواقف", "besprechen = مناقشة"],
+    simplified: "التحدث عن أسوأ السيناريوهات المحتملة",
+    imagine: "⚠️💭 خطر مع فقاعة تفكير"
 };
 
 HELP_DATA["sprach2_exam17_9"] = {
-    text = "lernt das Kind, sich selbstbewusst im Straßenverkehr zu verhalten",
-    meaning = "يتعلم الطفل التصرف بثقة في حركة المرور",
-    keywords = ["selbstbewusst = بثقة", "verhalten = التصرف", "Straßenverkehr = حركة المرور"],
-    simplified = "الممارسة تبني ثقة الطفل بنفسه على الطريق",
-    imagine = "🧒💪 طفل يظهر عضلاته"
+    text: "lernt das Kind, sich selbstbewusst im Straßenverkehr zu verhalten",
+    meaning: "يتعلم الطفل التصرف بثقة في حركة المرور",
+    keywords: ["selbstbewusst = بثقة", "verhalten = التصرف", "Straßenverkehr = حركة المرور"],
+    simplified: "الممارسة تبني ثقة الطفل بنفسه على الطريق",
+    imagine: "🧒💪 طفل يظهر عضلاته"
 };
 
 HELP_DATA["sprach2_exam17_10"] = {
-    text = "selbstständig Lösungen zu finden",
-    meaning = "إيجاد حلول بشكل مستقل",
-    keywords = ["selbstständig = بشكل مستقل", "Lösungen = حلول", "finden = إيجاد"],
-    simplified = "الهدف النهائي هو تعليم الطفل كيف يحل مشاكله بنفسه",
-    imagine = "🧒🔍 طفل يبحث في خريطة"
+    text: "selbstständig Lösungen zu finden",
+    meaning: "إيجاد حلول بشكل مستقل",
+    keywords: ["selbstständig = بشكل مستقل", "Lösungen = حلول", "finden = إيجاد"],
+    simplified: "الهدف النهائي هو تعليم الطفل كيف يحل مشاكله بنفسه",
+    imagine: "🧒🔍 طفل يبحث في خريطة"
 };
 
 // ============================================
@@ -12613,83 +12613,83 @@ HELP_DATA["sprach2_exam17_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam18_1"] = {
-    text = "was ihre Intelligenz betrifft",
-    meaning = "فيما يتعلق بذكائهم",
-    keywords = ["was = ما", "Intelligenz = ذكاء", "betrifft = يتعلق"],
-    simplified = "كان يُعتقد أن الكلاب ذكاءها محدود",
-    imagine = "🐕❓ كلب وعلامة استفهام"
+    text: "was ihre Intelligenz betrifft",
+    meaning: "فيما يتعلق بذكائهم",
+    keywords: ["was = ما", "Intelligenz = ذكاء", "betrifft = يتعلق"],
+    simplified: "كان يُعتقد أن الكلاب ذكاءها محدود",
+    imagine: "🐕❓ كلب وعلامة استفهام"
 };
 
 HELP_DATA["sprach2_exam18_2"] = {
-    text = "jetzt haben wissenschaftliche Experimente die Hundeehre gerettet",
-    meaning = "الآن الأنشطة العلمية أنقذت سمعة الكلاب",
-    keywords = ["jetzt = الآن", "Experimente = تجارب", "gerettet = أنقذت"],
-    simplified = "أثبتت التجارب أن الكلاب أذكى مما كنا نظن",
-    imagine = "🔬🐕 مختبر وكلب"
+    text: "jetzt haben wissenschaftliche Experimente die Hundeehre gerettet",
+    meaning: "الآن الأنشطة العلمية أنقذت سمعة الكلاب",
+    keywords: ["jetzt = الآن", "Experimente = تجارب", "gerettet = أنقذت"],
+    simplified: "أثبتت التجارب أن الكلاب أذكى مما كنا نظن",
+    imagine: "🔬🐕 مختبر وكلب"
 };
 
 HELP_DATA["sprach2_exam18_3"] = {
-    text = "an der Universität Wien",
-    meaning = "في جامعة فيينا",
-    keywords = ["an = في", "Universität = جامعة", "Wien = فيينا"],
-    simplified = "العلماء في جامعات النمسا درسوا قدرات الكلاب",
-    imagine = "🏛️🎓 مبنى جامعي وقبعة تخرج"
+    text: "an der Universität Wien",
+    meaning: "في جامعة فيينا",
+    keywords: ["an = في", "Universität = جامعة", "Wien = فيينا"],
+    simplified: "العلماء في جامعات النمسا درسوا قدرات الكلاب",
+    imagine: "🏛️🎓 مبنى جامعي وقبعة تخرج"
 };
 
 HELP_DATA["sprach2_exam18_4"] = {
-    text = "aus verschiedenen Bildern das richtige auswählen",
-    meaning = "اختيار الصورة الصحيحة من بين صور مختلفة",
-    keywords = ["aus = من", "verschiedenen = مختلفة", "richtige = الصحيحة"],
-    simplified = "تم تدريب الكلب على التمييز بين الصور",
-    imagine = "🖼️🐕 كلب ينظر إلى صور"
+    text: "aus verschiedenen Bildern das richtige auswählen",
+    meaning: "اختيار الصورة الصحيحة من بين صور مختلفة",
+    keywords: ["aus = من", "verschiedenen = مختلفة", "richtige = الصحيحة"],
+    simplified: "تم تدريب الكلب على التمييز بين الصور",
+    imagine: "🖼️🐕 كلب ينظر إلى صور"
 };
 
 HELP_DATA["sprach2_exam18_5"] = {
-    text = "darauf entweder einen Menschen oder eine Landschaft erkennen",
-    meaning = "عليها التعرف إما على شخص أو منظر طبيعي",
-    keywords = ["darauf = عليها", "entweder = إما", "erkennen = التعرف"],
-    simplified = "الكلب يتعلم الفرق بين صورة إنسان وصورة طبيعة",
-    imagine = "👤🖼️🐕 شخص وصورة وكلب"
+    text: "darauf entweder einen Menschen oder eine Landschaft erkennen",
+    meaning: "عليها التعرف إما على شخص أو منظر طبيعي",
+    keywords: ["darauf = عليها", "entweder = إما", "erkennen = التعرف"],
+    simplified: "الكلب يتعلم الفرق بين صورة إنسان وصورة طبيعة",
+    imagine: "👤🖼️🐕 شخص وصورة وكلب"
 };
 
 HELP_DATA["sprach2_exam18_6"] = {
-    text = "so dass der Hund mit der Schnauze auf das jeweils richtige Bild tippen konnte",
-    meaning = "بحيث يمكن للكلب النقر بخطمه على الصورة الصحيحة",
-    keywords = ["so dass = بحيث", "Schnauze = خطم", "tippen = النقر"],
-    simplified = "الشاشة تعمل باللمس لتسجيل اختيارات الكلب",
-    imagine = "🐕👆 كلب يضغط على شاشة بخطمه"
+    text: "so dass der Hund mit der Schnauze auf das jeweils richtige Bild tippen konnte",
+    meaning: "بحيث يمكن للكلب النقر بخطمه على الصورة الصحيحة",
+    keywords: ["so dass = بحيث", "Schnauze = خطم", "tippen = النقر"],
+    simplified: "الشاشة تعمل باللمس لتسجيل اختيارات الكلب",
+    imagine: "🐕👆 كلب يضغط على شاشة بخطمه"
 };
 
 HELP_DATA["sprach2_exam18_7"] = {
-    text = "nicht nur mit einer ähnlichen Begeisterung am Bildschirm hing",
-    meaning = "لم يكن فقط بحماس مماثل أمام الشاشة",
-    keywords = ["nicht nur = ليس فقط", "Begeisterung = حماس", "hing = التصق"],
-    simplified = "الكلب تفاعل بحماس كبير أثناء التجربة",
-    imagine = "🐕🖥️ كلب متحمس أمام الكمبيوتر"
+    text: "nicht nur mit einer ähnlichen Begeisterung am Bildschirm hing",
+    meaning: "لم يكن فقط بحماس مماثل أمام الشاشة",
+    keywords: ["nicht nur = ليس فقط", "Begeisterung = حماس", "hing = التصق"],
+    simplified: "الكلب تفاعل بحماس كبير أثناء التجربة",
+    imagine: "🐕🖥️ كلب متحمس أمام الكمبيوتر"
 };
 
 HELP_DATA["sprach2_exam18_8"] = {
-    text = "von denen eins Futter enthielt",
-    meaning = "أحدهما يحتوي على طعام",
+    text: "von denen eins Futter enthielt",
+    meaning: "أحدهما يحتوي على طعام",
     keywords: ["denen = أحدهما", "eins = واحد", "Futter = طعام"],
-    simplified = "وعاءان، واحد فقط به طعام مخفي",
-    imagine = "🥣❓ وعاء وعلامة استفهام"
+    simplified: "وعاءان، واحد فقط به طعام مخفي",
+    imagine: "🥣❓ وعاء وعلامة استفهام"
 };
 
 HELP_DATA["sprach2_exam18_9"] = {
-    text = "dass bestimmte Muster menschlicher Gestik und Mimik von den Hunden sehr treffsicher interpretiert werden können",
-    meaning = "أن الكلاب تستطيع تفسير أنماط معينة من الإيماءات وتعبيرات الوجه البشرية بدقة عالية",
+    text: "dass bestimmte Muster menschlicher Gestik und Mimik von den Hunden sehr treffsicher interpretiert werden können",
+    meaning: "أن الكلاب تستطيع تفسير أنماط معينة من الإيماءات وتعبيرات الوجه البشرية بدقة عالية",
     keywords: ["dass = أن", "Gestik = إيماءات", "Mimik = تعابير وجه"],
-    simplified = "الكلب يفهم الإشارات البشرية دون تدريب",
-    imagine = "🐕👀 كلب ينظر إلى شخص يشير"
+    simplified: "الكلب يفهم الإشارات البشرية دون تدريب",
+    imagine: "🐕👀 كلب ينظر إلى شخص يشير"
 };
 
 HELP_DATA["sprach2_exam18_10"] = {
-    text = "brachten keine vergleichbaren Resultate",
-    meaning = "لم تحقق نتائج مماثلة",
+    text: "brachten keine vergleichbaren Resultate",
+    meaning: "لم تحقق نتائج مماثلة",
     keywords: ["keine = لا", "vergleichbaren = مماثلة", "Resultate = نتائج"],
-    simplified = "الذئاب لم تظهر نفس المستوى من الفهم",
-    imagine = "🐺❌ ذئب وعلامة منع"
+    simplified: "الذئاب لم تظهر نفس المستوى من الفهم",
+    imagine: "🐺❌ ذئب وعلامة منع"
 };
 
 // ============================================
@@ -12697,83 +12697,83 @@ HELP_DATA["sprach2_exam18_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam19_1"] = {
-    text = "muss auch mit rechtlichen Folgen rechnen",
-    meaning = "يجب أن يتوقع عواقب قانونية أيضاً",
+    text: "muss auch mit rechtlichen Folgen rechnen",
+    meaning: "يجب أن يتوقع عواقب قانونية أيضاً",
     keywords: ["rechnen = يتوقع", "rechtlichen Folgen = عواقب قانونية", "mit = مع"],
-    simplified = "الإهمال على المنحدرات قد يؤدي إلى عقوبات",
-    imagine = "⚖️⛷️ ميزان عدالة مع زلاجات"
+    simplified: "الإهمال على المنحدرات قد يؤدي إلى عقوبات",
+    imagine: "⚖️⛷️ ميزان عدالة مع زلاجات"
 };
 
 HELP_DATA["sprach2_exam19_2"] = {
-    text = "gültig",
-    meaning = "ساري المفعول",
+    text: "gültig",
+    meaning: "ساري المفعول",
     keywords: ["gültig = ساري المفعول", "Strafgesetzbuch = قانون العقوبات", "ist = هو"],
-    simplified = "القانون يطبق على الطرقات والمنحدرات الثلجية على حد سواء",
-    imagine = "📜✅ مستند قانوني مع علامة صح"
+    simplified: "القانون يطبق على الطرقات والمنحدرات الثلجية على حد سواء",
+    imagine: "📜✅ مستند قانوني مع علامة صح"
 };
 
 HELP_DATA["sprach2_exam19_3"] = {
-    text = "sieht das Gesetz Freiheitsstrafen bis zu 6 Monaten vor",
-    meaning = "ينص القانون على عقوبات سجن تصل إلى 6 أشهر",
+    text: "sieht das Gesetz Freiheitsstrafen bis zu 6 Monaten vor",
+    meaning: "ينص القانون على عقوبات سجن تصل إلى 6 أشهر",
     keywords: ["vor = ينص", "Freiheitsstrafen = عقوبات سجن", "Gesetz = قانون"],
-    simplified = "الإصابات الخطيرة قد تؤدي إلى السجن",
-    imagine = "⚖️🔒 ميزان عدالة مع قفل"
+    simplified: "الإصابات الخطيرة قد تؤدي إلى السجن",
+    imagine: "⚖️🔒 ميزان عدالة مع قفل"
 };
 
 HELP_DATA["sprach2_exam19_4"] = {
-    text = "sollte diese Regeln kennen",
-    meaning = "يجب أن يعرف هذه القواعد",
+    text: "sollte diese Regeln kennen",
+    meaning: "يجب أن يعرف هذه القواعد",
     keywords: ["sollte = يجب", "kennen = يعرف", "Regeln = قواعد"],
-    simplified = "كل متزلج مطالب بمعرفة قانون المنحدرات",
-    imagine = "📋⛷️ لائحة مع زلاجة"
+    simplified: "كل متزلج مطالب بمعرفة قانون المنحدرات",
+    imagine: "📋⛷️ لائحة مع زلاجة"
 };
 
 HELP_DATA["sprach2_exam19_5"] = {
-    text = "so verhalten, dass er keinen anderen gefährdet",
-    meaning = "يتصرف بحيث لا يعرض الآخرين للخطر",
+    text: "so verhalten, dass er keinen anderen gefährdet",
+    meaning: "يتصرف بحيث لا يعرض الآخرين للخطر",
     keywords: ["so = بحيث", "verhalten = يتصرف", "gefährdet = يعرض للخطر"],
-    simplified = "السلوك الآمن يمنع الحوادث على المنحدر",
-    imagine = "⚠️🚫 علامة خطر وعلامة ممنوع"
+    simplified: "السلوك الآمن يمنع الحوادث على المنحدر",
+    imagine: "⚠️🚫 علامة خطر وعلامة ممنوع"
 };
 
 HELP_DATA["sprach2_exam19_6"] = {
-    text = "der eigenen Geschwindigkeit dem Gelände anpassen",
-    meaning = "تكييف السرعة مع地形 (التضاريس)",
+    text: "der eigenen Geschwindigkeit dem Gelände anpassen",
+    meaning: "تكييف السرعة مع地形 (التضاريس)",
     keywords: ["anpassen = تكييف", "Geschwindigkeit = سرعة", "Gelände = تضاريس"],
-    simplified = "يجب أن تتناسب سرعتك مع مستوى مهارتك والطقس",
-    imagine = "🏔️📉 جبل ومقياس سرعة"
+    simplified: "يجب أن تتناسب سرعتك مع مستوى مهارتك والطقس",
+    imagine: "🏔️📉 جبل ومقياس سرعة"
 };
 
 HELP_DATA["sprach2_exam19_7"] = {
-    text = "allerdings immer in einem Abstand",
-    meaning = "لكن دائماً بمسافة",
+    text: "allerdings immer in einem Abstand",
+    meaning: "لكن دائماً بمسافة",
     keywords: ["allerdings = لكن", "immer = دائماً", "Abstand = مسافة"],
-    simplified = "التجاوز مسموح به لكن بحذر وبمسافة كافية",
-    imagine = "➡️⬅️ سهمان متقابلان"
+    simplified: "التجاوز مسموح به لكن بحذر وبمسافة كافية",
+    imagine: "➡️⬅️ سهمان متقابلان"
 };
 
 HELP_DATA["sprach2_exam19_8"] = {
-    text = "dürfen nur den Rand der Abfahrtstrecke benutzen",
-    meaning = "يُسمح لهم باستخدام حافة مسار النزول فقط",
+    text: "dürfen nur den Rand der Abfahrtstrecke benutzen",
+    meaning: "يُسمح لهم باستخدام حافة مسار النزول فقط",
     keywords: ["Rand = حافة", "Abfahrtstrecke = مسار نزول", "benutzen = استخدام"],
-    simplified = "المشي صعوداً على حافة المنحدر فقط",
-    imagine = "⬆️⛷️ سهم لأعلى مع زلاجة"
+    simplified: "المشي صعوداً على حافة المنحدر فقط",
+    imagine: "⬆️⛷️ سهم لأعلى مع زلاجة"
 };
 
 HELP_DATA["sprach2_exam19_9"] = {
-    text = "müssen eine solche Stelle so schnell wie möglich freimachen",
-    meaning = "يجب إخلاء مثل هذا المكان في أسرع وقت ممكن",
+    text: "müssen eine solche Stelle so schnell wie möglich freimachen",
+    meaning: "يجب إخلاء مثل هذا المكان في أسرع وقت ممكن",
     keywords: ["Stelle = مكان", "freimachen = إخلاء", "schnell = بسرعة"],
-    simplified = "المناطق الخطرة يجب إخلاؤها فوراً لتجنب الاصطدامات",
-    imagine = "⚠️🏔️ علامة خطر مع جبل"
+    simplified: "المناطق الخطرة يجب إخلاؤها فوراً لتجنب الاصطدامات",
+    imagine: "⚠️🏔️ علامة خطر مع جبل"
 };
 
 HELP_DATA["sprach2_exam19_10"] = {
-    text = "seine Personalien angeben",
-    meaning = "تقديم بياناته الشخصية",
+    text: "seine Personalien angeben",
+    meaning: "تقديم بياناته الشخصية",
     keywords: ["angeben = تقديم", "Personalien = بيانات شخصية", "seine = بياناته"],
-    simplified = "جميع المتزلجين مطالبون بتبادل المعلومات بعد حادث",
-    imagine = "📝🆔 نموذج مع هوية شخصية"
+    simplified: "جميع المتزلجين مطالبون بتبادل المعلومات بعد حادث",
+    imagine: "📝🆔 نموذج مع هوية شخصية"
 };
 
 // ============================================
@@ -12781,83 +12781,83 @@ HELP_DATA["sprach2_exam19_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam20_1"] = {
-    text = "trifft man sich am Sonntagnachmittag zu Kaffee und Kuchen",
-    meaning = "يجتمع الناس بعد ظهر الأحد لتناول القهوة والكعك",
+    text: "trifft man sich am Sonntagnachmittag zu Kaffee und Kuchen",
+    meaning: "يجتمع الناس بعد ظهر الأحد لتناول القهوة والكعك",
     keywords: ["zu = لتناول", "Kaffee = قهوة", "Kuchen = كعك"],
-    simplified = "طقس ألماني أصيل: القهوة والكعك يوم الأحد",
-    imagine = "☕🍰 كوب قهوة مع قطعة كعكة"
+    simplified: "طقس ألماني أصيل: القهوة والكعك يوم الأحد",
+    imagine: "☕🍰 كوب قهوة مع قطعة كعكة"
 };
 
 HELP_DATA["sprach2_exam20_2"] = {
-    text = "Wie lange es den Brauch gibt, ist jedoch nicht bekannt",
-    meaning = "لكن ليس معروفاً منذ متى يوجد هذا التقليد",
+    text: "Wie lange es den Brauch gibt, ist jedoch nicht bekannt",
+    meaning: "لكن ليس معروفاً منذ متى يوجد هذا التقليد",
     keywords: ["Wie = منذ متى", "lange = طويلاً", "Brauch = تقليد"],
-    simplified = "التقليد قديم جداً لدرجة أن تاريخ بدايته غير معروف",
-    imagine = "❓📅 علامة استفهام مع تقويم"
+    simplified: "التقليد قديم جداً لدرجة أن تاريخ بدايته غير معروف",
+    imagine: "❓📅 علامة استفهام مع تقويم"
 };
 
 HELP_DATA["sprach2_exam20_3"] = {
-    text = "Sicher ist nur, dass sich dieses Getränk im 17. Jahrhundert in Europa verbreitete",
-    meaning = "المؤكد فقط أن هذا المشروب انتشر في أوروبا في القرن السابع عشر",
+    text: "Sicher ist nur, dass sich dieses Getränk im 17. Jahrhundert in Europa verbreitete",
+    meaning: "المؤكد فقط أن هذا المشروب انتشر في أوروبا في القرن السابع عشر",
     keywords: ["Sicher = مؤكد", "Getränk = مشروب", "verbreitete = انتشر"],
-    simplified = "القهوة وصلت إلى أوروبا في القرن السابع عشر",
-    imagine = "☕🚢 فنجان قهوة مع سفينة"
+    simplified: "القهوة وصلت إلى أوروبا في القرن السابع عشر",
+    imagine: "☕🚢 فنجان قهوة مع سفينة"
 };
 
 HELP_DATA["sprach2_exam20_4"] = {
-    text = "Damals entstanden zahlreiche Kaffeehäuser",
-    meaning = "في ذلك الوقت ظهرت العديد من المقاهي",
+    text: "Damals entstanden zahlreiche Kaffeehäuser",
+    meaning: "في ذلك الوقت ظهرت العديد من المقاهي",
     keywords: ["Damals = في ذلك الوقت", "entstanden = ظهرت", "Kaffeehäuser = مقاهي"],
-    simplified = "انتشرت ثقافة المقاهي في أوروبا",
-    imagine = "🏛️☕ مقهى تاريخي مع فنجان قهوة"
+    simplified: "انتشرت ثقافة المقاهي في أوروبا",
+    imagine: "🏛️☕ مقهى تاريخي مع فنجان قهوة"
 };
 
 HELP_DATA["sprach2_exam20_5"] = {
-    text = "sondern man konnte in Gesellschaft sein",
-    meaning = "بل كان المرء برفقة الآخرين",
+    text: "sondern man konnte in Gesellschaft sein",
+    meaning: "بل كان المرء برفقة الآخرين",
     keywords: ["sondern = بل", "Gesellschaft = برفقة", "konnte = كان"],
-    simplified = "المقهى لم يكن للطعام فقط، بل للتجمعات الاجتماعية",
-    imagine = "👥☕ مجموعة من الناس في مقهى"
+    simplified: "المقهى لم يكن للطعام فقط، بل للتجمعات الاجتماعية",
+    imagine: "👥☕ مجموعة من الناس في مقهى"
 };
 
 HELP_DATA["sprach2_exam20_6"] = {
-    text = "wurde 1732 die berühmte Kaffeekantate von Johann Sebastian Bach uraufgeführt",
-    meaning = "في عام 1732 تم عرض كانتاتا القهوة الشهيرة ليوهان سيباستيان باخ لأول مرة",
+    text: "wurde 1732 die berühmte Kaffeekantate von Johann Sebastian Bach uraufgeführt",
+    meaning: "في عام 1732 تم عرض كانتاتا القهوة الشهيرة ليوهان سيباستيان باخ لأول مرة",
     keywords: ["von = بواسطة", "uraufgeführt = عرض لأول مرة", "Kaffeekantate = كانتاتا القهوة"],
-    simplified = "باخ نفسه كرم القهوة بالموسيقى",
-    imagine = "🎵☕ موسيقى مع فنجان قهوة"
+    simplified: "باخ نفسه كرم القهوة بالموسيقى",
+    imagine: "🎵☕ موسيقى مع فنجان قهوة"
 };
 
 HELP_DATA["sprach2_exam20_7"] = {
-    text = "das sich nur Adelige und wohlhabende Bürger leisten konnten",
-    meaning = "الذي لم يستطع تحمله سوى النبلاء والمواطنين الأثرياء",
+    text: "das sich nur Adelige und wohlhabende Bürger leisten konnten",
+    meaning: "الذي لم يستطع تحمله سوى النبلاء والمواطنين الأثرياء",
     keywords: ["konnten = استطاعوا", "leisten = تحمل", "Adelige = نبلاء"],
-    simplified = "القهوة كانت يوماً سلعة فاخرة للأغنياء",
-    imagine = "👑☕ تاج مع فنجان قهوة"
+    simplified: "القهوة كانت يوماً سلعة فاخرة للأغنياء",
+    imagine: "👑☕ تاج مع فنجان قهوة"
 };
 
 HELP_DATA["sprach2_exam20_8"] = {
-    text = "und ist es bis heute geblieben",
-    meaning = "وبقي كذلك حتى اليوم",
+    text: "und ist es bis heute geblieben",
+    meaning: "وبقي كذلك حتى اليوم",
     keywords: ["bis = حتى", "heute = اليوم", "geblieben = بقي"],
-    simplified = "حافظت القهوة على مكانتها كمشروب مفضل",
-    imagine = "🥇☕ ميدالية ذهبية مع فنجان قهوة"
+    simplified: "حافظت القهوة على مكانتها كمشروب مفضل",
+    imagine: "🥇☕ ميدالية ذهبية مع فنجان قهوة"
 };
 
 HELP_DATA["sprach2_exam20_9"] = {
-    text = "Spezialitäten aus aller Welt",
-    meaning = "أطباق خاصة من جميع أنحاء العالم",
+    text: "Spezialitäten aus aller Welt",
+    meaning: "أطباق خاصة من جميع أنحاء العالم",
     keywords: ["aus = من", "aller Welt = جميع أنحاء العالم", "Spezialitäten = أطباق خاصة"],
-    simplified = "تنوع القهوة العالمية يزين القوائم الآن",
-    imagine = "🌍☕ كرة أرضية مع فنجان قهوة"
+    simplified: "تنوع القهوة العالمية يزين القوائم الآن",
+    imagine: "🌍☕ كرة أرضية مع فنجان قهوة"
 };
 
 HELP_DATA["sprach2_exam20_10"] = {
-    text = "setzten ihm immer häufiger Konkurrenz",
-    meaning = "قدمت له منافسة بشكل متزايد",
+    text: "setzten ihm immer häufiger Konkurrenz",
+    meaning: "قدمت له منافسة بشكل متزايد",
     keywords: ["immer = بشكل متزايد", "häufiger = أكثر", "Konkurrenz = منافسة"],
-    simplified = "أجهزة صنع القهوة الحديثة تنافس الآلة التقليدية",
-    imagine = "☕⚙️ فنجان قهوة مع تروس"
+    simplified: "أجهزة صنع القهوة الحديثة تنافس الآلة التقليدية",
+    imagine: "☕⚙️ فنجان قهوة مع تروس"
 };
 
 // ============================================
@@ -12865,83 +12865,83 @@ HELP_DATA["sprach2_exam20_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam21_1"] = {
-    text = "genau das Gegenteil ist der Fall",
-    meaning = "العكس تماماً هو الصحيح",
+    text: "genau das Gegenteil ist der Fall",
+    meaning: "العكس تماماً هو الصحيح",
     keywords: ["genau = تماماً", "Gegenteil = عكس", "Fall = حالة"],
-    simplified = "الحقيقة المعاكسة تماماً هي الصحيحة",
-    imagine = "🐟❌ سمكة وعلامة منع"
+    simplified: "الحقيقة المعاكسة تماماً هي الصحيحة",
+    imagine: "🐟❌ سمكة وعلامة منع"
 };
 
 HELP_DATA["sprach2_exam21_2"] = {
-    text = "sie sind zu erstaunlichen kognitiven Leistungen fähig",
-    meaning = "هم قادرون على قدرات إدراكية مذهلة",
+    text: "sie sind zu erstaunlichen kognitiven Leistungen fähig",
+    meaning: "هم قادرون على قدرات إدراكية مذهلة",
     keywords: ["fähig = قادرون", "erstaunlichen = مذهلة", "kognitiven Leistungen = قدرات إدراكية"],
-    simplified = "الأسماك تظهر مهارات عقلية مدهشة",
-    imagine = "🧠🐟 دماغ مع سمكة"
+    simplified: "الأسماك تظهر مهارات عقلية مدهشة",
+    imagine: "🧠🐟 دماغ مع سمكة"
 };
 
 HELP_DATA["sprach2_exam21_3"] = {
-    text = "entwickelten sie hochspezialisierte Sinnesfähigkeiten",
-    meaning = "طوروا قدرات حسية عالية التخصص",
+    text: "entwickelten sie hochspezialisierte Sinnesfähigkeiten",
+    meaning: "طوروا قدرات حسية عالية التخصص",
     keywords: ["entwickelten = طوروا", "hochspezialisierte = عالية التخصص", "Sinnesfähigkeiten = قدرات حسية"],
-    simplified = "مرور الوقت ساعد الأسماك على تطوير حواس فريدة",
-    imagine = "👂🐟 أذن مع سمكة"
+    simplified: "مرور الوقت ساعد الأسماك على تطوير حواس فريدة",
+    imagine: "👂🐟 أذن مع سمكة"
 };
 
 HELP_DATA["sprach2_exam21_4"] = {
-    text = "lernen durch Beobachtung",
-    meaning = "التعلم عن طريق الملاحظة",
+    text: "lernen durch Beobachtung",
+    meaning: "التعلم عن طريق الملاحظة",
     keywords: ["Beobachtung = ملاحظة", "lernen = تعلم", "durch = عن طريق"],
-    simplified = "بعض أنواع الأسماك تتعلم بمشاهدة الآخرين",
-    imagine = "👀🐟 عينان مع سمكة"
+    simplified: "بعض أنواع الأسماك تتعلم بمشاهدة الآخرين",
+    imagine: "👀🐟 عينان مع سمكة"
 };
 
 HELP_DATA["sprach2_exam21_5"] = {
-    text = "wurde Fischen noch nicht einmal zugetraut, dass sie hören können",
-    meaning = "لم يكن يُعتقد حتى أن الأسماك قادرة على السمع",
+    text: "wurde Fischen noch nicht einmal zugetraut, dass sie hören können",
+    meaning: "لم يكن يُعتقد حتى أن الأسماك قادرة على السمع",
     keywords: ["noch nicht einmal = حتى لم", "zugetraut = يُعتقد", "hören = السمع"],
-    simplified = "حتى الثلاثينيات، ظن الباحثون أن السمكة لا تسمع",
-    imagine = "🔇🐟 سمكة وعلامة كتم صوت"
+    simplified: "حتى الثلاثينيات، ظن الباحثون أن السمكة لا تسمع",
+    imagine: "🔇🐟 سمكة وعلامة كتم صوت"
 };
 
 HELP_DATA["sprach2_exam21_6"] = {
-    text = "bewies er übrigens auch als Erster",
-    meaning = "أثبت بالمناسبة أيضاً أنه الأول",
+    text: "bewies er übrigens auch als Erster",
+    meaning: "أثبت بالمناسبة أيضاً أنه الأول",
     keywords: ["übrigens = بالمناسبة", "bewies = أثبت", "Erster = الأول"],
-    simplified = "العالم نفسه اكتشف قدرة الأسماك على رؤية الألوان",
-    imagine = "🔬🐟 عالم مع سمكة"
+    simplified: "العالم نفسه اكتشف قدرة الأسماك على رؤية الألوان",
+    imagine: "🔬🐟 عالم مع سمكة"
 };
 
 HELP_DATA["sprach2_exam21_7"] = {
-    text = "Doch warum wurden die Fähigkeiten der Fische so lange unterschätzt?",
-    meaning = "لكن لماذا تم الاستهانة بقدرات الأسماك كل هذه المدة؟",
+    text: "Doch warum wurden die Fähigkeiten der Fische so lange unterschätzt?",
+    meaning: "لكن لماذا تم الاستهانة بقدرات الأسماك كل هذه المدة؟",
     keywords: ["Doch = لكن", "unterschätzt = الاستهانة", "Fähigkeiten = قدرات"],
-    simplified = "هل نحن متحيزون ضد الأسماك لمجرد أنها تعيش في الماء؟",
-    imagine = "❓🐟 علامة استفهام مع سمكة"
+    simplified: "هل نحن متحيزون ضد الأسماك لمجرد أنها تعيش في الماء؟",
+    imagine: "❓🐟 علامة استفهام مع سمكة"
 };
 
 HELP_DATA["sprach2_exam21_8"] = {
-    text = "Für intelligent halten wir oft nur Tiere, die uns ähnlich sind",
-    meaning = "نعتبر غالباً الحيوانات التي تشبهنا فقط ذكية",
+    text: "Für intelligent halten wir oft nur Tiere, die uns ähnlich sind",
+    meaning: "نعتبر غالباً الحيوانات التي تشبهنا فقط ذكية",
     keywords: ["Für = نعتبر", "intelligent = ذكية", "ähnlich = تشبهنا"],
-    simplified = "نحن البشر نميل للاعتقاد بأن ذكاء الكائنات يقاس بمدى قربها منا",
-    imagine = "🧬🐕 دبل helix"
+    simplified: "نحن البشر نميل للاعتقاد بأن ذكاء الكائنات يقاس بمدى قربها منا",
+    imagine: "🧬🐕 دبل helix"
 };
 
 HELP_DATA["sprach2_exam21_9"] = {
-    text = "als Tiere an Land",
-    meaning = "من الحيوانات على اليابسة",
+    text: "als Tiere an Land",
+    meaning: "من الحيوانات على اليابسة",
     keywords: ["als = من", "Tiere = حيوانات", "Land = يابسة"],
-    simplified = "الأسماك تعيش في بيئة مختلفة تماماً عن الحيوانات البرية",
-    imagine = "🌊🐟 ماء مع سمكة"
+    simplified: "الأسماك تعيش في بيئة مختلفة تماماً عن الحيوانات البرية",
+    imagine: "🌊🐟 ماء مع سمكة"
 };
 
 HELP_DATA["sprach2_exam21_10"] = {
-    text = "wer mehr über Fische herausfinden wolle",
-    meaning = "من يريد معرفة المزيد عن الأسماك",
+    text: "wer mehr über Fische herausfinden wolle",
+    meaning: "من يريد معرفة المزيد عن الأسماك",
     keywords: ["wer = من", "herausfinden = معرفة", "mehr = المزيد"],
-    simplified = "نصيحة العالم: راقب سمكة واحدة في حوض للتعرف على شخصيتها",
-    imagine = "🐟🔍 سمكة وعدسة مكبرة"
+    simplified: "نصيحة العالم: راقب سمكة واحدة في حوض للتعرف على شخصيتها",
+    imagine: "🐟🔍 سمكة وعدسة مكبرة"
 };
 
 // ============================================
@@ -12949,83 +12949,83 @@ HELP_DATA["sprach2_exam21_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam22_1"] = {
-    text = "anstatt – wie durch das illegale Arbeitsverhältnis erhofft – Geld zu sparen",
-    meaning = "بدلاً من توفير المال كما كان مأمولاً من خلال علاقة العمل غير القانونية",
+    text: "anstatt – wie durch das illegale Arbeitsverhältnis erhofft – Geld zu sparen",
+    meaning: "بدلاً من توفير المال كما كان مأمولاً من خلال علاقة العمل غير القانونية",
     keywords: ["anstatt = بدلاً من", "sparen = توفير", "illegale = غير قانونية"],
-    simplified = "بدلاً من التوفير، قد يدفع العميل ثمناً باهظاً",
-    imagine = "💰🚫 نقود وعلامة منع"
+    simplified: "بدلاً من التوفير، قد يدفع العميل ثمناً باهظاً",
+    imagine: "💰🚫 نقود وعلامة منع"
 };
 
 HELP_DATA["sprach2_exam22_2"] = {
-    text = "ist nicht jede Gelegenheit so günstig, wie sie anfangs scheint",
-    meaning = "ليست كل فرصة رخيصة كما تبدو في البداية",
+    text: "ist nicht jede Gelegenheit so günstig, wie sie anfangs scheint",
+    meaning: "ليست كل فرصة رخيصة كما تبدو في البداية",
     keywords: ["jede = كل", "Gelegenheit = فرصة", "günstig = رخيصة"],
-    simplified = "الصفقات الرخيصة قد تأتي بنتائج عكسية",
-    imagine = "🏷️⚠️ بطاقة سعر مع علامة خطر"
+    simplified: "الصفقات الرخيصة قد تأتي بنتائج عكسية",
+    imagine: "🏷️⚠️ بطاقة سعر مع علامة خطر"
 };
 
 HELP_DATA["sprach2_exam22_3"] = {
-    text = "ein finanzielles Argument gegen illegale Arbeiter",
-    meaning = "حجة مالية ضد العمال غير القانونيين",
+    text: "ein finanzielles Argument gegen illegale Arbeiter",
+    meaning: "حجة مالية ضد العمال غير القانونيين",
     keywords: ["gegen = ضد", "finanzielles Argument = حجة مالية", "illegale Arbeiter = عمال غير قانونيين"],
-    simplified = "توظيف عامل غير قانوني قد يحرمك من خصومات ضريبية",
-    imagine = "💸⚖️ نقود مع ميزان عدالة"
+    simplified: "توظيف عامل غير قانوني قد يحرمك من خصومات ضريبية",
+    imagine: "💸⚖️ نقود مع ميزان عدالة"
 };
 
 HELP_DATA["sprach2_exam22_4"] = {
-    text = "Abgesehen davon, dass es strafbar ist",
-    meaning = "بصرف النظر عن كونه يعاقب عليه القانون",
+    text: "Abgesehen davon, dass es strafbar ist",
+    meaning: "بصرف النظر عن كونه يعاقب عليه القانون",
     keywords: ["Abgesehen = بصرف النظر", "davon = عن ذلك", "strafbar = يعاقب عليه"],
-    simplified = "العمل تحت الطاولة له عواقب أسوأ من مجرد الغرامات",
-    imagine = "🚫👷 علامة منع مع عامل بناء"
+    simplified: "العمل تحت الطاولة له عواقب أسوأ من مجرد الغرامات",
+    imagine: "🚫👷 علامة منع مع عامل بناء"
 };
 
 HELP_DATA["sprach2_exam22_5"] = {
-    text = "Das Finanzamt will eine ordentliche Rechnung sehen",
-    meaning = "مكتب الضرائب يريد أن يرى فاتورة منظمة",
+    text: "Das Finanzamt will eine ordentliche Rechnung sehen",
+    meaning: "مكتب الضرائب يريد أن يرى فاتورة منظمة",
     keywords: ["will = يريد", "ordentliche Rechnung = فاتورة منظمة", "Finanzamt = مكتب الضرائب"],
-    simplified = "بدون فاتورة، لا خصم ضريبي",
-    imagine = "📄🏢 ورقة مع مبنى"
+    simplified: "بدون فاتورة، لا خصم ضريبي",
+    imagine: "📄🏢 ورقة مع مبنى"
 };
 
 HELP_DATA["sprach2_exam22_6"] = {
-    text = "mängelfreie Bauten bilden eher die Ausnahme",
-    meaning = "الأبنية الخالية من العيوب تشكل الاستثناء إلى حد ما",
+    text: "mängelfreie Bauten bilden eher die Ausnahme",
+    meaning: "الأبنية الخالية من العيوب تشكل الاستثناء إلى حد ما",
     keywords: ["bilden = تشكل", "Ausnahme = استثناء", "eher = إلى حد ما"],
-    simplified = "العمل غير الرسمي غالباً ما يكون دون المستوى المطلوب",
-    imagine = "🏚️🔨 منزل متداعٍ مع مطرقة"
+    simplified: "العمل غير الرسمي غالباً ما يكون دون المستوى المطلوب",
+    imagine: "🏚️🔨 منزل متداعٍ مع مطرقة"
 };
 
 HELP_DATA["sprach2_exam22_7"] = {
-    text = "Verbraucher leer ausgehen",
-    meaning = "يخسر المستهلكون",
+    text: "Verbraucher leer ausgehen",
+    meaning: "يخسر المستهلكون",
     keywords: ["ausgehen = يخسرون", "leer = خاليين", "Verbraucher = مستهلكون"],
-    simplified = "إذا انكسر شيء ما، لن تتمكن من استرداد أموالك",
-    imagine = "💸😞 نقود مع وجه حزين"
+    simplified: "إذا انكسر شيء ما، لن تتمكن من استرداد أموالك",
+    imagine: "💸😞 نقود مع وجه حزين"
 };
 
 HELP_DATA["sprach2_exam22_8"] = {
-    text = "hat für solche Fälle eine Haftpflichtversicherung",
-    meaning = "لديه تأمين ضد المسؤولية لمثل هذه الحالات",
+    text: "hat für solche Fälle eine Haftpflichtversicherung",
+    meaning: "لديه تأمين ضد المسؤولية لمثل هذه الحالات",
     keywords: ["solche = مثل هذه", "Fälle = حالات", "Haftpflichtversicherung = تأمين مسؤولية"],
-    simplified = "الحرفي القانوني مؤمن ضد الحوادث",
-    imagine = "🛡️🔧 درع مع أداة"
+    simplified: "الحرفي القانوني مؤمن ضد الحوادث",
+    imagine: "🛡️🔧 درع مع أداة"
 };
 
 HELP_DATA["sprach2_exam22_9"] = {
-    text = "bekommen es gleich mehrere Behörden mit",
-    meaning = "تتعامل معه عدة جهات حكومية مرة واحدة",
+    text: "bekommen es gleich mehrere Behörden mit",
+    meaning: "تتعامل معه عدة جهات حكومية مرة واحدة",
     keywords: ["bekommen = تتعامل", "mehrere = عدة", "Behörden = جهات حكومية"],
-    simplified = "بمجرد اكتشاف الأمر، سيكون لديك مشاكل مع عدة هيئات",
-    imagine = "🏛️🏛️🏛️ ثلاثة مبان حكومية"
+    simplified: "بمجرد اكتشاف الأمر، سيكون لديك مشاكل مع عدة هيئات",
+    imagine: "🏛️🏛️🏛️ ثلاثة مبان حكومية"
 };
 
 HELP_DATA["sprach2_exam22_10"] = {
-    text = "braucht der Auftraggeber höchstens einen Anwalt",
-    meaning = "يحتاج العميل على الأكثر إلى محامٍ",
+    text: "braucht der Auftraggeber höchstens einen Anwalt",
+    meaning: "يحتاج العميل على الأكثر إلى محامٍ",
     keywords: ["höchstens = على الأكثر", "Anwalt = محامٍ", "braucht = يحتاج"],
-    simplified = "ستحتاج إلى مساعدة قانونية، وهذا سيكلفك أكثر",
-    imagine = "⚖️👨‍⚖️ ميزان عدالة مع قاضي"
+    simplified: "ستحتاج إلى مساعدة قانونية، وهذا سيكلفك أكثر",
+    imagine: "⚖️👨‍⚖️ ميزان عدالة مع قاضي"
 };
 
 // ============================================
@@ -13033,83 +13033,83 @@ HELP_DATA["sprach2_exam22_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam23_1"] = {
-    text = "anstatt – wie durch das illegale Arbeitsverhältnis erhofft – Geld zu sparen",
-    meaning = "بدلاً من توفير المال كما كان مأمولاً من خلال علاقة العمل غير القانونية",
+    text: "anstatt – wie durch das illegale Arbeitsverhältnis erhofft – Geld zu sparen",
+    meaning: "بدلاً من توفير المال كما كان مأمولاً من خلال علاقة العمل غير القانونية",
     keywords: ["anstatt = بدلاً من", "sparen = توفير", "illegale = غير قانونية"],
-    simplified = "بدلاً من التوفير، قد يدفع العميل ثمناً باهظاً",
-    imagine = "💰🚫 نقود وعلامة منع"
+    simplified: "بدلاً من التوفير، قد يدفع العميل ثمناً باهظاً",
+    imagine: "💰🚫 نقود وعلامة منع"
 };
 
 HELP_DATA["sprach2_exam23_2"] = {
-    text = "ist nicht jede Gelegenheit so günstig, wie sie anfangs scheint",
-    meaning = "ليست كل فرصة رخيصة كما تبدو في البداية",
+    text: "ist nicht jede Gelegenheit so günstig, wie sie anfangs scheint",
+    meaning: "ليست كل فرصة رخيصة كما تبدو في البداية",
     keywords: ["jede = كل", "Gelegenheit = فرصة", "günstig = رخيصة"],
-    simplified = "الصفقات الرخيصة قد تأتي بنتائج عكسية",
-    imagine = "🏷️⚠️ بطاقة سعر مع علامة خطر"
+    simplified: "الصفقات الرخيصة قد تأتي بنتائج عكسية",
+    imagine: "🏷️⚠️ بطاقة سعر مع علامة خطر"
 };
 
 HELP_DATA["sprach2_exam23_3"] = {
-    text = "ein finanzielles Argument gegen illegale Arbeiter",
-    meaning = "حجة مالية ضد العمال غير القانونيين",
+    text: "ein finanzielles Argument gegen illegale Arbeiter",
+    meaning: "حجة مالية ضد العمال غير القانونيين",
     keywords: ["gegen = ضد", "finanzielles Argument = حجة مالية", "illegale Arbeiter = عمال غير قانونيين"],
-    simplified = "توظيف عامل غير قانوني قد يحرمك من خصومات ضريبية",
-    imagine = "💸⚖️ نقود مع ميزان عدالة"
+    simplified: "توظيف عامل غير قانوني قد يحرمك من خصومات ضريبية",
+    imagine: "💸⚖️ نقود مع ميزان عدالة"
 };
 
 HELP_DATA["sprach2_exam23_4"] = {
-    text = "Abgesehen davon, dass es strafbar ist",
-    meaning = "بصرف النظر عن كونه يعاقب عليه القانون",
+    text: "Abgesehen davon, dass es strafbar ist",
+    meaning: "بصرف النظر عن كونه يعاقب عليه القانون",
     keywords: ["Abgesehen = بصرف النظر", "davon = عن ذلك", "strafbar = يعاقب عليه"],
-    simplified = "العمل تحت الطاولة له عواقب أسوأ من مجرد الغرامات",
-    imagine = "🚫👷 علامة منع مع عامل بناء"
+    simplified: "العمل تحت الطاولة له عواقب أسوأ من مجرد الغرامات",
+    imagine: "🚫👷 علامة منع مع عامل بناء"
 };
 
 HELP_DATA["sprach2_exam23_5"] = {
-    text = "Das Finanzamt will eine ordentliche Rechnung sehen",
-    meaning = "مكتب الضرائب يريد أن يرى فاتورة منظمة",
+    text: "Das Finanzamt will eine ordentliche Rechnung sehen",
+    meaning: "مكتب الضرائب يريد أن يرى فاتورة منظمة",
     keywords: ["will = يريد", "ordentliche Rechnung = فاتورة منظمة", "Finanzamt = مكتب الضرائب"],
-    simplified = "بدون فاتورة، لا خصم ضريبي",
-    imagine = "📄🏢 ورقة مع مبنى"
+    simplified: "بدون فاتورة، لا خصم ضريبي",
+    imagine: "📄🏢 ورقة مع مبنى"
 };
 
 HELP_DATA["sprach2_exam23_6"] = {
-    text = "mängelfreie Bauten wechseln eher die Ausnahme",
-    meaning = "الأبنية الخالية من العيوب تشكل الاستثناء إلى حد ما",
+    text: "mängelfreie Bauten wechseln eher die Ausnahme",
+    meaning: "الأبنية الخالية من العيوب تشكل الاستثناء إلى حد ما",
     keywords: ["wechseln = تشكل", "Ausnahme = استثناء", "eher = إلى حد ما"],
-    simplified = "العمل غير الرسمي غالباً ما يكون دون المستوى المطلوب",
-    imagine = "🏚️🔨 منزل متداعٍ مع مطرقة"
+    simplified: "العمل غير الرسمي غالباً ما يكون دون المستوى المطلوب",
+    imagine: "🏚️🔨 منزل متداعٍ مع مطرقة"
 };
 
 HELP_DATA["sprach2_exam23_7"] = {
-    text = "Verbraucher leer ausgehen",
-    meaning = "يخسر المستهلكون",
+    text: "Verbraucher leer ausgehen",
+    meaning: "يخسر المستهلكون",
     keywords: ["ausgehen = يخسرون", "leer = خاليين", "Verbraucher = مستهلكون"],
-    simplified = "إذا انكسر شيء ما، لن تتمكن من استرداد أموالك",
-    imagine = "💸😞 نقود مع وجه حزين"
+    simplified: "إذا انكسر شيء ما، لن تتمكن من استرداد أموالك",
+    imagine: "💸😞 نقود مع وجه حزين"
 };
 
 HELP_DATA["sprach2_exam23_8"] = {
-    text = "hat für solche Fälle eine Haftpflichtversicherung",
-    meaning = "لديه تأمين ضد المسؤولية لمثل هذه الحالات",
+    text: "hat für solche Fälle eine Haftpflichtversicherung",
+    meaning: "لديه تأمين ضد المسؤولية لمثل هذه الحالات",
     keywords: ["solche = مثل هذه", "Fälle = حالات", "Haftpflichtversicherung = تأمين مسؤولية"],
-    simplified = "الحرفي القانوني مؤمن ضد الحوادث",
-    imagine = "🛡️🔧 درع مع أداة"
+    simplified: "الحرفي القانوني مؤمن ضد الحوادث",
+    imagine: "🛡️🔧 درع مع أداة"
 };
 
 HELP_DATA["sprach2_exam23_9"] = {
-    text = "bekommen es gleich mehrere Behörden mit",
-    meaning = "تتعامل معه عدة جهات حكومية مرة واحدة",
+    text: "bekommen es gleich mehrere Behörden mit",
+    meaning: "تتعامل معه عدة جهات حكومية مرة واحدة",
     keywords: ["bekommen = تتعامل", "mehrere = عدة", "Behörden = جهات حكومية"],
-    simplified = "بمجرد اكتشاف الأمر، سيكون لديك مشاكل مع عدة هيئات",
-    imagine = "🏛️🏛️🏛️ ثلاثة مبان حكومية"
+    simplified: "بمجرد اكتشاف الأمر، سيكون لديك مشاكل مع عدة هيئات",
+    imagine: "🏛️🏛️🏛️ ثلاثة مبان حكومية"
 };
 
 HELP_DATA["sprach2_exam23_10"] = {
-    text = "braucht der Auftraggeber höchstens einen Anwalt",
-    meaning = "يحتاج العميل على الأكثر إلى محامٍ",
+    text: "braucht der Auftraggeber höchstens einen Anwalt",
+    meaning: "يحتاج العميل على الأكثر إلى محامٍ",
     keywords: ["höchstens = على الأكثر", "Anwalt = محامٍ", "braucht = يحتاج"],
-    simplified = "ستحتاج إلى مساعدة قانونية، وهذا سيكلفك أكثر",
-    imagine = "⚖️👨‍⚖️ ميزان عدالة مع قاضي"
+    simplified: "ستحتاج إلى مساعدة قانونية، وهذا سيكلفك أكثر",
+    imagine: "⚖️👨‍⚖️ ميزان عدالة مع قاضي"
 };
 
 // ============================================
@@ -13117,83 +13117,83 @@ HELP_DATA["sprach2_exam23_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam24_1"] = {
-    text = "anstatt – wie durch das illegale Arbeitsverhältnis erhofft – Geld zu sparen",
-    meaning = "بدلاً من توفير المال كما كان مأمولاً من خلال علاقة العمل غير القانونية",
+    text: "anstatt – wie durch das illegale Arbeitsverhältnis erhofft – Geld zu sparen",
+    meaning: "بدلاً من توفير المال كما كان مأمولاً من خلال علاقة العمل غير القانونية",
     keywords: ["anstatt = بدلاً من", "sparen = توفير", "illegale = غير قانونية"],
-    simplified = "بدلاً من التوفير، قد يدفع العميل ثمناً باهظاً",
-    imagine = "💰🚫 نقود وعلامة منع"
+    simplified: "بدلاً من التوفير، قد يدفع العميل ثمناً باهظاً",
+    imagine: "💰🚫 نقود وعلامة منع"
 };
 
 HELP_DATA["sprach2_exam24_2"] = {
-    text = "ist nicht jede Gelegenheit so günstig, wie sie anfangs scheint",
-    meaning = "ليست كل فرصة رخيصة كما تبدو في البداية",
+    text: "ist nicht jede Gelegenheit so günstig, wie sie anfangs scheint",
+    meaning: "ليست كل فرصة رخيصة كما تبدو في البداية",
     keywords: ["jede = كل", "Gelegenheit = فرصة", "günstig = رخيصة"],
-    simplified = "الصفقات الرخيصة قد تأتي بنتائج عكسية",
-    imagine = "🏷️⚠️ بطاقة سعر مع علامة خطر"
+    simplified: "الصفقات الرخيصة قد تأتي بنتائج عكسية",
+    imagine: "🏷️⚠️ بطاقة سعر مع علامة خطر"
 };
 
 HELP_DATA["sprach2_exam24_3"] = {
-    text = "ein finanzielles Argument gegen illegale Arbeiter",
-    meaning = "حجة مالية ضد العمال غير القانونيين",
+    text: "ein finanzielles Argument gegen illegale Arbeiter",
+    meaning: "حجة مالية ضد العمال غير القانونيين",
     keywords: ["gegen = ضد", "finanzielles Argument = حجة مالية", "illegale Arbeiter = عمال غير قانونيين"],
-    simplified = "توظيف عامل غير قانوني قد يحرمك من خصومات ضريبية",
-    imagine = "💸⚖️ نقود مع ميزان عدالة"
+    simplified: "توظيف عامل غير قانوني قد يحرمك من خصومات ضريبية",
+    imagine: "💸⚖️ نقود مع ميزان عدالة"
 };
 
 HELP_DATA["sprach2_exam24_4"] = {
-    text = "Abgesehen davon, dass es strafbar ist",
-    meaning = "بصرف النظر عن كونه يعاقب عليه القانون",
+    text: "Abgesehen davon, dass es strafbar ist",
+    meaning: "بصرف النظر عن كونه يعاقب عليه القانون",
     keywords: ["Abgesehen = بصرف النظر", "davon = عن ذلك", "strafbar = يعاقب عليه"],
-    simplified = "العمل تحت الطاولة له عواقب أسوأ من مجرد الغرامات",
-    imagine = "🚫👷 علامة منع مع عامل بناء"
+    simplified: "العمل تحت الطاولة له عواقب أسوأ من مجرد الغرامات",
+    imagine: "🚫👷 علامة منع مع عامل بناء"
 };
 
 HELP_DATA["sprach2_exam24_5"] = {
-    text = "Das Finanzamt will eine ordentliche Rechnung sehen",
-    meaning = "مكتب الضرائب يريد أن يرى فاتورة منظمة",
+    text: "Das Finanzamt will eine ordentliche Rechnung sehen",
+    meaning: "مكتب الضرائب يريد أن يرى فاتورة منظمة",
     keywords: ["will = يريد", "ordentliche Rechnung = فاتورة منظمة", "Finanzamt = مكتب الضرائب"],
-    simplified = "بدون فاتورة، لا خصم ضريبي",
-    imagine = "📄🏢 ورقة مع مبنى"
+    simplified: "بدون فاتورة، لا خصم ضريبي",
+    imagine: "📄🏢 ورقة مع مبنى"
 };
 
 HELP_DATA["sprach2_exam24_6"] = {
-    text = "mängelfreie Bauten wechseln eher die Ausnahme",
-    meaning = "الأبنية الخالية من العيوب تشكل الاستثناء إلى حد ما",
+    text: "mängelfreie Bauten wechseln eher die Ausnahme",
+    meaning: "الأبنية الخالية من العيوب تشكل الاستثناء إلى حد ما",
     keywords: ["wechseln = تشكل", "Ausnahme = استثناء", "eher = إلى حد ما"],
-    simplified = "العمل غير الرسمي غالباً ما يكون دون المستوى المطلوب",
-    imagine = "🏚️🔨 منزل متداعٍ مع مطرقة"
+    simplified: "العمل غير الرسمي غالباً ما يكون دون المستوى المطلوب",
+    imagine: "🏚️🔨 منزل متداعٍ مع مطرقة"
 };
 
 HELP_DATA["sprach2_exam24_7"] = {
-    text = "Verbraucher leer ausgehen",
-    meaning = "يخسر المستهلكون",
+    text: "Verbraucher leer ausgehen",
+    meaning: "يخسر المستهلكون",
     keywords: ["ausgehen = يخسرون", "leer = خاليين", "Verbraucher = مستهلكون"],
-    simplified = "إذا انكسر شيء ما، لن تتمكن من استرداد أموالك",
-    imagine = "💸😞 نقود مع وجه حزين"
+    simplified: "إذا انكسر شيء ما، لن تتمكن من استرداد أموالك",
+    imagine: "💸😞 نقود مع وجه حزين"
 };
 
 HELP_DATA["sprach2_exam24_8"] = {
-    text = "hat für solche Fälle eine Haftpflichtversicherung",
-    meaning = "لديه تأمين ضد المسؤولية لمثل هذه الحالات",
+    text: "hat für solche Fälle eine Haftpflichtversicherung",
+    meaning: "لديه تأمين ضد المسؤولية لمثل هذه الحالات",
     keywords: ["solche = مثل هذه", "Fälle = حالات", "Haftpflichtversicherung = تأمين مسؤولية"],
-    simplified = "الحرفي القانوني مؤمن ضد الحوادث",
-    imagine = "🛡️🔧 درع مع أداة"
+    simplified: "الحرفي القانوني مؤمن ضد الحوادث",
+    imagine: "🛡️🔧 درع مع أداة"
 };
 
 HELP_DATA["sprach2_exam24_9"] = {
-    text = "bekommen es gleich mehrere Behörden mit",
-    meaning = "تتعامل معه عدة جهات حكومية مرة واحدة",
+    text: "bekommen es gleich mehrere Behörden mit",
+    meaning: "تتعامل معه عدة جهات حكومية مرة واحدة",
     keywords: ["bekommen = تتعامل", "mehrere = عدة", "Behörden = جهات حكومية"],
-    simplified = "بمجرد اكتشاف الأمر، سيكون لديك مشاكل مع عدة هيئات",
-    imagine = "🏛️🏛️🏛️ ثلاثة مبان حكومية"
+    simplified: "بمجرد اكتشاف الأمر، سيكون لديك مشاكل مع عدة هيئات",
+    imagine: "🏛️🏛️🏛️ ثلاثة مبان حكومية"
 };
 
 HELP_DATA["sprach2_exam24_10"] = {
-    text = "braucht der Auftraggeber höchstens einen Anwalt",
-    meaning = "يحتاج العميل على الأكثر إلى محامٍ",
+    text: "braucht der Auftraggeber höchstens einen Anwalt",
+    meaning: "يحتاج العميل على الأكثر إلى محامٍ",
     keywords: ["höchstens = على الأكثر", "Anwalt = محامٍ", "braucht = يحتاج"],
-    simplified = "ستحتاج إلى مساعدة قانونية، وهذا سيكلفك أكثر",
-    imagine = "⚖️👨‍⚖️ ميزان عدالة مع قاضي"
+    simplified: "ستحتاج إلى مساعدة قانونية، وهذا سيكلفك أكثر",
+    imagine: "⚖️👨‍⚖️ ميزان عدالة مع قاضي"
 };
 
 // ============================================
@@ -13201,83 +13201,83 @@ HELP_DATA["sprach2_exam24_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam25_1"] = {
-    text = "konnte eindrücklich nachweisen",
-    meaning = "تمكن من إثبات بشكل مقنع",
+    text: "konnte eindrücklich nachweisen",
+    meaning: "تمكن من إثبات بشكل مقنع",
     keywords: ["nachweisen = إثبات", "eindrücklich = بشكل مقنع", "konnte = تمكن"],
-    simplified = "الباحثون أثبتوا أن الشمبانزي يعمل ضمن فريق",
-    imagine = "🐒🤝 قرد يصافح"
+    simplified: "الباحثون أثبتوا أن الشمبانزي يعمل ضمن فريق",
+    imagine: "🐒🤝 قرد يصافح"
 };
 
 HELP_DATA["sprach2_exam25_2"] = {
-    text = "dass auch Schimpansen zu echter Teamarbeit fähig sind",
-    meaning = "أن الشمبانزي أيضاً قادر على العمل الجماعي الحقيقي",
+    text: "dass auch Schimpansen zu echter Teamarbeit fähig sind",
+    meaning: "أن الشمبانزي أيضاً قادر على العمل الجماعي الحقيقي",
     keywords: ["zu = قادر على", "echter Teamarbeit = عمل جماعي حقيقي", "fähig = قادر"],
-    simplified = "الشمبانزي يفهم أهمية التعاون لحل المشاكل",
-    imagine = "🐒🔧 قرد يحل مشكلة"
+    simplified: "الشمبانزي يفهم أهمية التعاون لحل المشاكل",
+    imagine: "🐒🔧 قرد يحل مشكلة"
 };
 
 HELP_DATA["sprach2_exam25_3"] = {
-    text = "Dazu bekam einer der beiden Affen zwei Werkzeuge",
-    meaning = "لهذا الغرض، حصل أحد القردين على أداتين",
+    text: "Dazu bekam einer der beiden Affen zwei Werkzeuge",
+    meaning: "لهذا الغرض، حصل أحد القردين على أداتين",
     keywords: ["Dazu = لهذا الغرض", "bekam = حصل", "Werkzeuge = أدوات"],
-    simplified = "التجربة صممت لاختبار التعاون",
-    imagine = "🔧🔧 أداتان"
+    simplified: "التجربة صممت لاختبار التعاون",
+    imagine: "🔧🔧 أداتان"
 };
 
 HELP_DATA["sprach2_exam25_4"] = {
-    text = "musste er aber eines davon an seine Artgenossen weitergeben",
-    meaning = "لكنه كان عليه أن يعطي واحدة منهما لأفراد جنسه",
+    text: "musste er aber eines davon an seine Artgenossen weitergeben",
+    meaning: "لكنه كان عليه أن يعطي واحدة منهما لأفراد جنسه",
     keywords: ["davon = منهما", "weitergeben = يعطي", "Artgenossen = أفراد جنسه"],
-    simplified = "لا يمكنه الحصول على الطعام دون مساعدة شريكه",
-    imagine = "🤲🍇 يد تعطي عنباً"
+    simplified: "لا يمكنه الحصول على الطعام دون مساعدة شريكه",
+    imagine: "🤲🍇 يد تعطي عنباً"
 };
 
 HELP_DATA["sprach2_exam25_5"] = {
-    text = "sei es sogar das richtige Werkzeug gewesen",
-    meaning = "تبين أنها كانت الأداة الصحيحة",
+    text: "sei es sogar das richtige Werkzeug gewesen",
+    meaning: "تبين أنها كانت الأداة الصحيحة",
     keywords: ["sei = كانت", "richtige = الصحيحة", "Werkzeug = أداة"],
-    simplified = "في معظم الأوقات، اختار القرد الأداة المناسبة للمهمة",
-    imagine = "✅🔧 علامة صح مع أداة"
+    simplified: "في معظم الأوقات، اختار القرد الأداة المناسبة للمهمة",
+    imagine: "✅🔧 علامة صح مع أداة"
 };
 
 HELP_DATA["sprach2_exam25_6"] = {
-    text = "ob diese Eigenschaft nur beim Menschen vorhanden ist",
-    meaning = "ما إذا كانت هذه الخاصية موجودة فقط لدى البشر",
+    text: "ob diese Eigenschaft nur beim Menschen vorhanden ist",
+    meaning: "ما إذا كانت هذه الخاصية موجودة فقط لدى البشر",
     keywords: ["nur = فقط", "Eigenschaft = خاصية", "vorhanden = موجودة"],
-    simplified = "هل التعاون الاستراتيجي حكر على البشر؟",
-    imagine = "🧬❓ حمض نووي مع علامة استفهام"
+    simplified: "هل التعاون الاستراتيجي حكر على البشر؟",
+    imagine: "🧬❓ حمض نووي مع علامة استفهام"
 };
 
 HELP_DATA["sprach2_exam25_7"] = {
-    text = "damit die Trauben auf den Boden fielen und die Affen sie fressen konnten",
-    meaning = "لكي يسقط العنب على الأرض وتتمكن القرود من أكله",
+    text: "damit die Trauben auf den Boden fielen und die Affen sie fressen konnten",
+    meaning: "لكي يسقط العنب على الأرض وتتمكن القرود من أكله",
     keywords: ["konnten = تمكنت", "fressen = أكل", "fielen = سقط"],
-    simplified = "الهدف النهائي هو الحصول على العنب",
-    imagine = "🍇🐒 عنب مع قرد"
+    simplified: "الهدف النهائي هو الحصول على العنب",
+    imagine: "🍇🐒 عنب مع قرد"
 };
 
 HELP_DATA["sprach2_exam25_8"] = {
-    text = "liefert erste Hinweise darauf",
-    meaning = "يقدم أولى الدلائل على ذلك",
+    text: "liefert erste Hinweise darauf",
+    meaning: "يقدم أولى الدلائل على ذلك",
     keywords: ["liefert = يقدم", "erste = أولى", "Hinweise = دلائل"],
-    simplified = "الدراسة تقدم دليلاً جديداً على مهارات الشمبانزي الاجتماعية",
-    imagine = "📊🐒 رسم بياني مع قرد"
+    simplified: "الدراسة تقدم دليلاً جديداً على مهارات الشمبانزي الاجتماعية",
+    imagine: "📊🐒 رسم بياني مع قرد"
 };
 
 HELP_DATA["sprach2_exam25_9"] = {
-    text = "auf die Handlungen ihres Partners Acht geben können",
-    meaning = "يمكنهم الانتباه إلى تصرفات شريكهم",
+    text: "auf die Handlungen ihres Partners Acht geben können",
+    meaning: "يمكنهم الانتباه إلى تصرفات شريكهم",
     keywords: ["Acht geben = الانتباه", "Handlungen = تصرفات", "Partners = شريكهم"],
-    simplified = "الشمبانزي يراقب ما يفعله الآخر",
-    imagine = "👀🐒 قرد يراقب"
+    simplified: "الشمبانزي يراقب ما يفعله الآخر",
+    imagine: "👀🐒 قرد يراقب"
 };
 
 HELP_DATA["sprach2_exam25_10"] = {
-    text = "Genau wie den Menschen sei es den Affen möglich",
-    meaning = "تماماً مثل البشر، القردة قادرة",
+    text: "Genau wie den Menschen sei es den Affen möglich",
+    meaning: "تماماً مثل البشر، القردة قادرة",
     keywords: ["wie = مثل", "Menschen = البشر", "möglich = قادرة"],
-    simplified = "التعاون الاستراتيجي ليس حكراً على البشر",
-    imagine = "🔄🐒 استنساخ مع قرد"
+    simplified: "التعاون الاستراتيجي ليس حكراً على البشر",
+    imagine: "🔄🐒 استنساخ مع قرد"
 };
 
 // ============================================
@@ -13285,83 +13285,83 @@ HELP_DATA["sprach2_exam25_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam26_1"] = {
-    text = "konnte eindrücklich nachweisen",
-    meaning = "تمكن من إثبات بشكل مقنع",
+    text: "konnte eindrücklich nachweisen",
+    meaning: "تمكن من إثبات بشكل مقنع",
     keywords: ["nachweisen = إثبات", "eindrücklich = بشكل مقنع", "konnte = تمكن"],
-    simplified = "الباحثون أثبتوا أن الشمبانزي يعمل ضمن فريق",
-    imagine = "🐒🤝 قرد يصافح"
+    simplified: "الباحثون أثبتوا أن الشمبانزي يعمل ضمن فريق",
+    imagine: "🐒🤝 قرد يصافح"
 };
 
 HELP_DATA["sprach2_exam26_2"] = {
-    text = "dass auch Schimpansen zu echter Teamarbeit fähig sind",
-    meaning = "أن الشمبانزي أيضاً قادر على العمل الجماعي الحقيقي",
+    text: "dass auch Schimpansen zu echter Teamarbeit fähig sind",
+    meaning: "أن الشمبانزي أيضاً قادر على العمل الجماعي الحقيقي",
     keywords: ["zu = قادر على", "echter Teamarbeit = عمل جماعي حقيقي", "fähig = قادر"],
-    simplified = "الشمبانزي يفهم أهمية التعاون لحل المشاكل",
-    imagine = "🐒🔧 قرد يحل مشكلة"
+    simplified: "الشمبانزي يفهم أهمية التعاون لحل المشاكل",
+    imagine: "🐒🔧 قرد يحل مشكلة"
 };
 
 HELP_DATA["sprach2_exam26_3"] = {
-    text = "Dazu bekam einer der beiden Affen zwei Werkzeuge",
-    meaning = "لهذا الغرض، حصل أحد القردين على أداتين",
+    text: "Dazu bekam einer der beiden Affen zwei Werkzeuge",
+    meaning: "لهذا الغرض، حصل أحد القردين على أداتين",
     keywords: ["Dazu = لهذا الغرض", "bekam = حصل", "Werkzeuge = أدوات"],
-    simplified = "التجربة صممت لاختبار التعاون",
-    imagine = "🔧🔧 أداتان"
+    simplified: "التجربة صممت لاختبار التعاون",
+    imagine: "🔧🔧 أداتان"
 };
 
 HELP_DATA["sprach2_exam26_4"] = {
-    text = "musste er aber eines davon an seine Artgenossen weitergeben",
-    meaning = "لكنه كان عليه أن يعطي واحدة منهما لأفراد جنسه",
+    text: "musste er aber eines davon an seine Artgenossen weitergeben",
+    meaning: "لكنه كان عليه أن يعطي واحدة منهما لأفراد جنسه",
     keywords: ["davon = منهما", "weitergeben = يعطي", "Artgenossen = أفراد جنسه"],
-    simplified = "لا يمكنه الحصول على الطعام دون مساعدة شريكه",
-    imagine = "🤲🍇 يد تعطي عنباً"
+    simplified: "لا يمكنه الحصول على الطعام دون مساعدة شريكه",
+    imagine: "🤲🍇 يد تعطي عنباً"
 };
 
 HELP_DATA["sprach2_exam26_5"] = {
-    text = "sei es sogar das richtige Werkzeug gewesen",
-    meaning = "تبين أنها كانت الأداة الصحيحة",
+    text: "sei es sogar das richtige Werkzeug gewesen",
+    meaning: "تبين أنها كانت الأداة الصحيحة",
     keywords: ["sei = كانت", "richtige = الصحيحة", "Werkzeug = أداة"],
-    simplified = "في معظم الأوقات، اختار القرد الأداة المناسبة للمهمة",
-    imagine = "✅🔧 علامة صح مع أداة"
+    simplified: "في معظم الأوقات، اختار القرد الأداة المناسبة للمهمة",
+    imagine: "✅🔧 علامة صح مع أداة"
 };
 
 HELP_DATA["sprach2_exam26_6"] = {
-    text = "ob diese Eigenschaft nur beim Menschen vorhanden ist",
-    meaning = "ما إذا كانت هذه الخاصية موجودة فقط لدى البشر",
+    text: "ob diese Eigenschaft nur beim Menschen vorhanden ist",
+    meaning: "ما إذا كانت هذه الخاصية موجودة فقط لدى البشر",
     keywords: ["nur = فقط", "Eigenschaft = خاصية", "vorhanden = موجودة"],
-    simplified = "هل التعاون الاستراتيجي حكر على البشر؟",
-    imagine = "🧬❓ حمض نووي مع علامة استفهام"
+    simplified: "هل التعاون الاستراتيجي حكر على البشر؟",
+    imagine: "🧬❓ حمض نووي مع علامة استفهام"
 };
 
 HELP_DATA["sprach2_exam26_7"] = {
-    text = "damit die Trauben auf den Boden fielen und die Affen sie fressen konnten",
-    meaning = "لكي يسقط العنب على الأرض وتتمكن القرود من أكله",
+    text: "damit die Trauben auf den Boden fielen und die Affen sie fressen konnten",
+    meaning: "لكي يسقط العنب على الأرض وتتمكن القرود من أكله",
     keywords: ["konnten = تمكنت", "fressen = أكل", "fielen = سقط"],
-    simplified = "الهدف النهائي هو الحصول على العنب",
-    imagine = "🍇🐒 عنب مع قرد"
+    simplified: "الهدف النهائي هو الحصول على العنب",
+    imagine: "🍇🐒 عنب مع قرد"
 };
 
 HELP_DATA["sprach2_exam26_8"] = {
-    text = "liefert erste Hinweise darauf",
-    meaning = "يقدم أولى الدلائل على ذلك",
+    text: "liefert erste Hinweise darauf",
+    meaning: "يقدم أولى الدلائل على ذلك",
     keywords: ["liefert = يقدم", "erste = أولى", "Hinweise = دلائل"],
-    simplified = "الدراسة تقدم دليلاً جديداً على مهارات الشمبانزي الاجتماعية",
-    imagine = "📊🐒 رسم بياني مع قرد"
+    simplified: "الدراسة تقدم دليلاً جديداً على مهارات الشمبانزي الاجتماعية",
+    imagine: "📊🐒 رسم بياني مع قرد"
 };
 
 HELP_DATA["sprach2_exam26_9"] = {
-    text = "auf die Handlungen ihres Partners Acht geben können",
-    meaning = "يمكنهم الانتباه إلى تصرفات شريكهم",
+    text: "auf die Handlungen ihres Partners Acht geben können",
+    meaning: "يمكنهم الانتباه إلى تصرفات شريكهم",
     keywords: ["Acht geben = الانتباه", "Handlungen = تصرفات", "Partners = شريكهم"],
-    simplified = "الشمبانزي يراقب ما يفعله الآخر",
-    imagine = "👀🐒 قرد يراقب"
+    simplified: "الشمبانزي يراقب ما يفعله الآخر",
+    imagine: "👀🐒 قرد يراقب"
 };
 
 HELP_DATA["sprach2_exam26_10"] = {
-    text = "Genau wie den Menschen sei es den Affen möglich",
-    meaning = "تماماً مثل البشر، القردة قادرة",
+    text: "Genau wie den Menschen sei es den Affen möglich",
+    meaning: "تماماً مثل البشر، القردة قادرة",
     keywords: ["wie = مثل", "Menschen = البشر", "möglich = قادرة"],
-    simplified = "التعاون الاستراتيجي ليس حكراً على البشر",
-    imagine = "🔄🐒 استنساخ مع قرد"
+    simplified: "التعاون الاستراتيجي ليس حكراً على البشر",
+    imagine: "🔄🐒 استنساخ مع قرد"
 };
 
 // ============================================
@@ -13369,83 +13369,83 @@ HELP_DATA["sprach2_exam26_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam27_1"] = {
-    text = "weil Schreiben mit der Hand ungewohnt ist",
-    meaning = "لأن الكتابة باليد غير معتادة",
+    text: "weil Schreiben mit der Hand ungewohnt ist",
+    meaning: "لأن الكتابة باليد غير معتادة",
     keywords: ["weil = لأن", "ungewohnt = غير معتادة", "Schreiben = الكتابة"],
-    simplified = "نادراً ما يستخدم الأطفال أيديهم للكتابة، فيصابون بالتعب بسرعة",
-    imagine = "✍️😖 كتابة ووجه متألم"
+    simplified: "نادراً ما يستخدم الأطفال أيديهم للكتابة، فيصابون بالتعب بسرعة",
+    imagine: "✍️😖 كتابة ووجه متألم"
 };
 
 HELP_DATA["sprach2_exam27_2"] = {
-    text = "haben damit in der Schule immer mehr Probleme",
-    meaning = "يعانون من مشاكل متزايدة في المدرسة",
+    text: "haben damit in der Schule immer mehr Probleme",
+    meaning: "يعانون من مشاكل متزايدة في المدرسة",
     keywords: ["immer = متزايدة", "mehr = أكثر", "Probleme = مشاكل"],
-    simplified = "ضعف قوة اليد يسبب صعوبات في أداء الواجبات المدرسية",
-    imagine = "📝😞 قلم ووجه حزين"
+    simplified: "ضعف قوة اليد يسبب صعوبات في أداء الواجبات المدرسية",
+    imagine: "📝😞 قلم ووجه حزين"
 };
 
 HELP_DATA["sprach2_exam27_3"] = {
-    text = "der mit Handschrift zu tun hat",
-    meaning = "الذي له علاقة بالكتابة اليدوية",
+    text: "der mit Handschrift zu tun hat",
+    meaning: "الذي له علاقة بالكتابة اليدوية",
     keywords: ["tun = علاقة", "Handschrift = كتابة يدوية", "hat = له"],
-    simplified = "هناك اتجاه جديد يركز على الرسم بالحروف",
-    imagine = "🖌️✨ فرشاة ونجوم"
+    simplified: "هناك اتجاه جديد يركز على الرسم بالحروف",
+    imagine: "🖌️✨ فرشاة ونجوم"
 };
 
 HELP_DATA["sprach2_exam27_4"] = {
-    text = "wie es früher unterrichtet und von einigen auch gefürchtet wurde",
-    meaning = "كما تم تدريسه قديماً وكان يخشاه البعض أيضاً",
+    text: "wie es früher unterrichtet und von einigen auch gefürchtet wurde",
+    meaning: "كما تم تدريسه قديماً وكان يخشاه البعض أيضاً",
     keywords: ["wurde = كان", "unterrichtet = مدروساً", "gefürchtet = يخشاه"],
-    simplified = "الخط الكلاسيكي الجميل لم يعد يُمارس أو يُدرس",
-    imagine = "✒️😟 قلم حبر قديم ووجه قلق"
+    simplified: "الخط الكلاسيكي الجميل لم يعد يُمارس أو يُدرس",
+    imagine: "✒️😟 قلم حبر قديم ووجه قلق"
 };
 
 HELP_DATA["sprach2_exam27_5"] = {
-    text = "Die Verbindung von Schrift und Bild",
-    meaning = "الربط بين الكتابة والصورة",
+    text: "Die Verbindung von Schrift und Bild",
+    meaning: "الربط بين الكتابة والصورة",
     keywords: ["von = بين", "Schrift = كتابة", "Bild = صورة"],
-    simplified = "تقنية Lettering تدمج بين الرسم والكتابة",
-    imagine = "🖼️✍️ صورة وقلم"
+    simplified: "تقنية Lettering تدمج بين الرسم والكتابة",
+    imagine: "🖼️✍️ صورة وقلم"
 };
 
 HELP_DATA["sprach2_exam27_6"] = {
-    text = "Erfahrungen damit hat auch die Wiener Designerin gemacht",
-    meaning = "لديها خبرة بذلك أيضاً مصممة فيينا",
+    text: "Erfahrungen damit hat auch die Wiener Designerin gemacht",
+    meaning: "لديها خبرة بذلك أيضاً مصممة فيينا",
     keywords: ["damit = بذلك", "Erfahrungen = خبرة", "gemacht = لديها"],
-    simplified = "مصممة محترفة تقدم ورشاً لتعليم Lettering للأطفال والكبار",
-    imagine = "👩‍🎨🎨 فنانة ولوحة"
+    simplified: "مصممة محترفة تقدم ورشاً لتعليم Lettering للأطفال والكبار",
+    imagine: "👩‍🎨🎨 فنانة ولوحة"
 };
 
 HELP_DATA["sprach2_exam27_7"] = {
-    text = "Auf spielerische Weise vermittelt die Künstlerin das Thema Schrift",
-    meaning = "بطريقة مرحة تنقل الفنانة موضوع الكتابة",
+    text: "Auf spielerische Weise vermittelt die Künstlerin das Thema Schrift",
+    meaning: "بطريقة مرحة تنقل الفنانة موضوع الكتابة",
     keywords: ["spielerische = مرحة", "vermittelt = تنقل", "Künstlerin = فنانة"],
-    simplified = "التعلم عبر اللعب يجعل الكتابة اليدوية ممتعة مرة أخرى",
-    imagine = "🎨🧸 لوحة وألعاب"
+    simplified: "التعلم عبر اللعب يجعل الكتابة اليدوية ممتعة مرة أخرى",
+    imagine: "🎨🧸 لوحة وألعاب"
 };
 
 HELP_DATA["sprach2_exam27_8"] = {
-    text = "dass Kinder die Freude am Schreiben wieder entdecken",
-    meaning = "أن يعيد الأطفال اكتشاف متعة الكتابة",
+    text: "dass Kinder die Freude am Schreiben wieder entdecken",
+    meaning: "أن يعيد الأطفال اكتشاف متعة الكتابة",
     keywords: ["dass = أن", "entdecken = اكتشاف", "Freude = متعة"],
-    simplified = "شغف الفنانة هو إعادة الحماس للكتابة لدى الصغار",
-    imagine = "😊✍️ وجه مبتسم مع قلم"
+    simplified: "شغف الفنانة هو إعادة الحماس للكتابة لدى الصغار",
+    imagine: "😊✍️ وجه مبتسم مع قلم"
 };
 
 HELP_DATA["sprach2_exam27_9"] = {
-    text = "coole Einladungen und Logos zu gestalten",
-    meaning = "تصميم دعوات وشعارات رائعة",
+    text: "coole Einladungen und Logos zu gestalten",
+    meaning: "تصميم دعوات وشعارات رائعة",
     keywords: ["gestalten = تصميم", "Einladungen = دعوات", "Logos = شعارات"],
-    simplified = "التطبيق العملي للـ Lettering مفيد للحفلات والعلامات التجارية",
-    imagine = "💌🎨 بطاقة دعوة وفرشاة"
+    simplified: "التطبيق العملي للـ Lettering مفيد للحفلات والعلامات التجارية",
+    imagine: "💌🎨 بطاقة دعوة وفرشاة"
 };
 
 HELP_DATA["sprach2_exam27_10"] = {
-    text = "bis ihnen das flüssig von der Hand geht",
-    meaning = "حتى يصبح الأمر طليقاً لديهم",
+    text: "bis ihnen das flüssig von der Hand geht",
+    meaning: "حتى يصبح الأمر طليقاً لديهم",
     keywords: ["geht = يصبح", "flüssig = طليقاً", "Hand = يد"],
-    simplified = "التدريب على أجزاء الحرف يبني الطلاقة أولاً",
-    imagine = "✍️💧 قلم وقطرة ماء"
+    simplified: "التدريب على أجزاء الحرف يبني الطلاقة أولاً",
+    imagine: "✍️💧 قلم وقطرة ماء"
 };
 
 // ============================================
@@ -13453,83 +13453,83 @@ HELP_DATA["sprach2_exam27_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam28_1"] = {
-    text = "weil Handschrift ungewohnt ist",
-    meaning = "لأن الكتابة اليدوية غير معتادة",
+    text: "weil Handschrift ungewohnt ist",
+    meaning: "لأن الكتابة اليدوية غير معتادة",
     keywords: ["weil = لأن", "ungewohnt = غير معتادة", "Handschrift = كتابة يدوية"],
-    simplified = "نادراً ما يستخدم الأطفال أيديهم للكتابة، فيصابون بالتعب بسرعة",
-    imagine = "✍️😖 كتابة ووجه متألم"
+    simplified: "نادراً ما يستخدم الأطفال أيديهم للكتابة، فيصابون بالتعب بسرعة",
+    imagine: "✍️😖 كتابة ووجه متألم"
 };
 
 HELP_DATA["sprach2_exam28_2"] = {
-    text = "haben mit dem Schreiben in der Schule immer mehr Probleme",
-    meaning = "يعانون من مشاكل متزايدة في الكتابة بالمدرسة",
+    text: "haben mit dem Schreiben in der Schule immer mehr Probleme",
+    meaning: "يعانون من مشاكل متزايدة في الكتابة بالمدرسة",
     keywords: ["immer = متزايدة", "mehr = أكثر", "Probleme = مشاكل"],
-    simplified = "ضعف قوة اليد يسبب صعوبات في أداء الواجبات المدرسية",
-    imagine = "📝😞 قلم ووجه حزين"
+    simplified: "ضعف قوة اليد يسبب صعوبات في أداء الواجبات المدرسية",
+    imagine: "📝😞 قلم ووجه حزين"
 };
 
 HELP_DATA["sprach2_exam28_3"] = {
-    text = "der mit Handschrift zu tun hat",
-    meaning = "الذي له علاقة بالكتابة اليدوية",
+    text: "der mit Handschrift zu tun hat",
+    meaning: "الذي له علاقة بالكتابة اليدوية",
     keywords: ["tun = علاقة", "Handschrift = كتابة يدوية", "hat = له"],
-    simplified = "هناك اتجاه جديد يركز على الرسم بالحروف",
-    imagine = "🖌️✨ فرشاة ونجوم"
+    simplified: "هناك اتجاه جديد يركز على الرسم بالحروف",
+    imagine: "🖌️✨ فرشاة ونجوم"
 };
 
 HELP_DATA["sprach2_exam28_4"] = {
-    text = "Erfahrungen damit hat die Wiener Designerin gemacht",
-    meaning = "لديها خبرة بذلك مصممة فيينا",
+    text: "Erfahrungen damit hat die Wiener Designerin gemacht",
+    meaning: "لديها خبرة بذلك مصممة فيينا",
     keywords: ["damit = بذلك", "Erfahrungen = خبرة", "gemacht = لديها"],
-    simplified = "مصممة محترفة تقدم ورشاً لتعليم الكتابة الجميلة",
-    imagine = "👩‍🎨🖌️ فنانة وفرشاة"
+    simplified: "مصممة محترفة تقدم ورشاً لتعليم الكتابة الجميلة",
+    imagine: "👩‍🎨🖌️ فنانة وفرشاة"
 };
 
 HELP_DATA["sprach2_exam28_5"] = {
-    text = "Auf spielerische Weise vermittelt die Künstlerin das Thema Schrift",
-    meaning = "بطريقة مرحة تنقل الفنانة موضوع الكتابة",
+    text: "Auf spielerische Weise vermittelt die Künstlerin das Thema Schrift",
+    meaning: "بطريقة مرحة تنقل الفنانة موضوع الكتابة",
     keywords: ["spielerische = مرحة", "vermittelt = تنقل", "Künstlerin = فنانة"],
-    simplified = "التعلم عبر اللعب يجعل الكتابة اليدوية ممتعة مرة أخرى",
-    imagine = "🎨🧸 لوحة وألعاب"
+    simplified: "التعلم عبر اللعب يجعل الكتابة اليدوية ممتعة مرة أخرى",
+    imagine: "🎨🧸 لوحة وألعاب"
 };
 
 HELP_DATA["sprach2_exam28_6"] = {
-    text = "dass Kinder die Freude am Schreiben wiederentdecken",
-    meaning = "أن يعيد الأطفال اكتشاف متعة الكتابة",
+    text: "dass Kinder die Freude am Schreiben wiederentdecken",
+    meaning: "أن يعيد الأطفال اكتشاف متعة الكتابة",
     keywords: ["dass = أن", "wiederentdecken = إعادة اكتشاف", "Freude = متعة"],
-    simplified = "شغف الفنانة هو إعادة الحماس للكتابة لدى الصغار",
-    imagine = "😊✍️ وجه مبتسم مع قلم"
+    simplified: "شغف الفنانة هو إعادة الحماس للكتابة لدى الصغار",
+    imagine: "😊✍️ وجه مبتسم مع قلم"
 };
 
 HELP_DATA["sprach2_exam28_7"] = {
-    text = "die eigene Handschrift zu beurteilen und zu gestalten",
-    meaning = "تقييم وتصميم خط اليد الخاص بهم",
+    text: "die eigene Handschrift zu beurteilen und zu gestalten",
+    meaning: "تقييم وتصميم خط اليد الخاص بهم",
     keywords: ["gestalten = تصميم", "beurteilen = تقييم", "eigene Handschrift = خط يدهم الخاص"],
-    simplified = "المراهقون يمكنهم تحسين وتطوير خطهم",
-    imagine = "📝🔍 قلم وعدسة مكبرة"
+    simplified: "المراهقون يمكنهم تحسين وتطوير خطهم",
+    imagine: "📝🔍 قلم وعدسة مكبرة"
 };
 
 HELP_DATA["sprach2_exam28_8"] = {
-    text = "bis ihnen das flüssig von der Hand geht",
-    meaning = "حتى يصبح الأمر طليقاً لديهم",
+    text: "bis ihnen das flüssig von der Hand geht",
+    meaning: "حتى يصبح الأمر طليقاً لديهم",
     keywords: ["geht = يصبح", "flüssig = طليقاً", "Hand = يد"],
-    simplified = "التدريب على أجزاء الحرف يبني الطلاقة أولاً",
-    imagine = "✍️💧 قلم وقطرة ماء"
+    simplified: "التدريب على أجزاء الحرف يبني الطلاقة أولاً",
+    imagine: "✍️💧 قلم وقطرة ماء"
 };
 
 HELP_DATA["sprach2_exam28_9"] = {
-    text = "Die Verbindung von Schrift und Bild",
-    meaning = "الربط بين الكتابة والصورة",
+    text: "Die Verbindung von Schrift und Bild",
+    meaning: "الربط بين الكتابة والصورة",
     keywords: ["von = بين", "Schrift = كتابة", "Bild = صورة"],
-    simplified = "تقنية Lettering تدمج بين الرسم والكتابة",
-    imagine = "🖼️✍️ صورة وقلم"
+    simplified: "تقنية Lettering تدمج بين الرسم والكتابة",
+    imagine: "🖼️✍️ صورة وقلم"
 };
 
 HELP_DATA["sprach2_exam28_10"] = {
-    text = "wie es früher unterrichtet und von einigen auch gefürchtet wurde",
-    meaning = "كما تم تدريسه قديماً وكان يخشاه البعض أيضاً",
+    text: "wie es früher unterrichtet und von einigen auch gefürchtet wurde",
+    meaning: "كما تم تدريسه قديماً وكان يخشاه البعض أيضاً",
     keywords: ["wurde = كان", "unterrichtet = مدروساً", "gefürchtet = يخشاه"],
-    simplified = "الخط الكلاسيكي الجميل لم يعد يُمارس أو يُدرس",
-    imagine = "✒️😟 قلم حبر قديم ووجه قلق"
+    simplified: "الخط الكلاسيكي الجميل لم يعد يُمارس أو يُدرس",
+    imagine: "✒️😟 قلم حبر قديم ووجه قلق"
 };
 
 // ============================================
@@ -13537,83 +13537,83 @@ HELP_DATA["sprach2_exam28_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam29_1"] = {
-    text = "Denn sie hat sich für einen beruflichen Neustart entschieden",
-    meaning = "لأنها قررت بداية مهنية جديدة",
+    text: "Denn sie hat sich für einen beruflichen Neustart entschieden",
+    meaning: "لأنها قررت بداية مهنية جديدة",
     keywords: ["Denn = لأن", "Neustart = بداية جديدة", "beruflichen = مهنية"],
-    simplified = "قررت تغيير حياتها المهنية بالكامل",
-    imagine = "🔄💼 عكس مسار مع حقيبة عمل"
+    simplified: "قررت تغيير حياتها المهنية بالكامل",
+    imagine: "🔄💼 عكس مسار مع حقيبة عمل"
 };
 
 HELP_DATA["sprach2_exam29_2"] = {
-    text = "möchte in den Streifendienst gehen",
-    meaning = "ترغب في الذهاب إلى خدمة الدوريات",
+    text: "möchte in den Streifendienst gehen",
+    meaning: "ترغب في الذهاب إلى خدمة الدوريات",
     keywords: ["möchte = ترغب", "Streifendienst = خدمة دوريات", "gehen = الذهاب"],
-    simplified = "تحلم بالعمل على أرض الواقع كضابطة شرطة",
-    imagine = "👮‍♀️🚓 ضابطة شرطة"
+    simplified: "تحلم بالعمل على أرض الواقع كضابطة شرطة",
+    imagine: "👮‍♀️🚓 ضابطة شرطة"
 };
 
 HELP_DATA["sprach2_exam29_3"] = {
-    text = "da es heute in vielen Branchen aber an Nachwuchs fehlt",
-    meaning = "لأنه في كثير من القطاعات اليوم هناك نقص في الكوادر الشابة",
+    text: "da es heute in vielen Branchen aber an Nachwuchs fehlt",
+    meaning: "لأنه في كثير من القطاعات اليوم هناك نقص في الكوادر الشابة",
     keywords: ["da = لأن", "Nachwuchs = كوادر شابة", "fehlt = نقص"],
-    simplified = "يبحث أصحاب العمل الآن عن أي شخص مؤهل، بغض النظر عن العمر",
-    imagine = "👥🔍 بحث عن موظفين"
+    simplified: "يبحث أصحاب العمل الآن عن أي شخص مؤهل، بغض النظر عن العمر",
+    imagine: "👥🔍 بحث عن موظفين"
 };
 
 HELP_DATA["sprach2_exam29_4"] = {
-    text = "geben sie öfter auch Älteren eine Chance",
-    meaning = "يعطون فرصة أيضاً لكبار السن",
+    text: "geben sie öfter auch Älteren eine Chance",
+    meaning: "يعطون فرصة أيضاً لكبار السن",
     keywords: ["Chance = فرصة", "Älteren = كبار السن", "geben = يعطون"],
-    simplified = "فرص العمل متاحة الآن لمن تجاوزوا الثلاثين",
-    imagine = "📄✅ استمارة طلب وظيفة"
+    simplified: "فرص العمل متاحة الآن لمن تجاوزوا الثلاثين",
+    imagine: "📄✅ استمارة طلب وظيفة"
 };
 
 HELP_DATA["sprach2_exam29_5"] = {
-    text = "warum sein Arbeitgeber gerne Ältere ausbildet",
-    meaning = "لماذا يُدرب صاحب عمله كبار السن بكل سرور",
+    text: "warum sein Arbeitgeber gerne Ältere ausbildet",
+    meaning: "لماذا يُدرب صاحب عمله كبار السن بكل سرور",
     keywords: ["warum = لماذا", "ausbildet = يُدرب", "gerne = بكل سرور"],
-    simplified = "شرطة برلين تشرح فوائد توظيف المتدربين الأكبر سناً",
-    imagine = "👮‍♂️📋 شرطي مع قائمة"
+    simplified: "شرطة برلين تشرح فوائد توظيف المتدربين الأكبر سناً",
+    imagine: "👮‍♂️📋 شرطي مع قائمة"
 };
 
 HELP_DATA["sprach2_exam29_6"] = {
-    text = "außerdem bereit, Verantwortung zu übernehmen",
-    meaning = "بالإضافة إلى ذلك هم على استعداد لتحمل المسؤولية",
+    text: "außerdem bereit, Verantwortung zu übernehmen",
+    meaning: "بالإضافة إلى ذلك هم على استعداد لتحمل المسؤولية",
     keywords: ["übernehmen = تحمل", "Verantwortung = مسؤولية", "bereit = على استعداد"],
-    simplified = "كبار السن موثوقون وجادون في عملهم",
-    imagine = "🎯✅ هدف مع علامة صح"
+    simplified: "كبار السن موثوقون وجادون في عملهم",
+    imagine: "🎯✅ هدف مع علامة صح"
 };
 
 HELP_DATA["sprach2_exam29_7"] = {
-    text = "könnten die Jüngeren unterstützen",
-    meaning = "يمكنهم دعم الصغار",
+    text: "könnten die Jüngeren unterstützen",
+    meaning: "يمكنهم دعم الصغار",
     keywords: ["könnten = يمكنهم", "unterstützen = دعم", "Jüngeren = الصغار"],
-    simplified = "الموظفون الأكبر سناً هم مرشدون ممتازون",
-    imagine = "👨‍🏫🤝 مرشد يوجه"
+    simplified: "الموظفون الأكبر سناً هم مرشدون ممتازون",
+    imagine: "👨‍🏫🤝 مرشد يوجه"
 };
 
 HELP_DATA["sprach2_exam29_8"] = {
-    text = "stehen",
-    meaning = "متاحين للعمل",
+    text: "stehen",
+    meaning: "متاحين للعمل",
     keywords: ["stehen = متاحين", "Verfügung = للعمل", "zur = لـ"],
-    simplified = "العيب الوحيد هو أنهم قد يتقاعدون مبكراً",
-    imagine = "🕒➡️🚪 وقت المغادرة"
+    simplified: "العيب الوحيد هو أنهم قد يتقاعدون مبكراً",
+    imagine: "🕒➡️🚪 وقت المغادرة"
 };
 
 HELP_DATA["sprach2_exam29_9"] = {
-    text = "Trotzdem haben ältere Azubis in vielen Bereichen Möglichkeiten",
-    meaning = "مع ذلك، لدى المتدربين الأكبر سناً فرص في العديد من المجالات",
+    text: "Trotzdem haben ältere Azubis in vielen Bereichen Möglichkeiten",
+    meaning: "مع ذلك، لدى المتدربين الأكبر سناً فرص في العديد من المجالات",
     keywords: ["Trotzdem = مع ذلك", "Möglichkeiten = فرص", "ältere Azubis = متدربين أكبر سناً"],
-    simplified = "الخيارات الوظيفية متاحة رغم العمر",
-    imagine = "🗂️✨ ملفات ونجوم"
+    simplified: "الخيارات الوظيفية متاحة رغم العمر",
+    imagine: "🗂️✨ ملفات ونجوم"
 };
 
 HELP_DATA["sprach2_exam29_10"] = {
-    text = "sondern es wird der individuelle Bedarf ermittelt",
-    meaning = "بل يتم تحديد الاحتياج الفردي",
+    text: "sondern es wird der individuelle Bedarf ermittelt",
+    meaning: "بل يتم تحديد الاحتياج الفردي",
     keywords: ["sondern = بل", "individuelle = فردي", "Bedarf = احتياج"],
-    simplified = "الدعم الحكومي يعتمد على احتياجاتك وليس عمرك",
-    imagine = "🎯📊 استهداف وبيانات"
+    simplified: "الدعم الحكومي يعتمد على احتياجاتك وليس عمرك",
+    imagine: "🎯📊 استهداف وبيانات"
 };
 
 // ============================================
@@ -13621,166 +13621,166 @@ HELP_DATA["sprach2_exam29_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam30_1"] = {
-    text = "stimmen dieser Behauptung zu",
-    meaning = "يوافقون على هذا الادعاء",
+    text: "stimmen dieser Behauptung zu",
+    meaning: "يوافقون على هذا الادعاء",
     keywords: ["stimmen = يوافقون", "Behauptung = ادعاء", "zu = على"],
-    simplified = "ثلاثة أرباع الألمان يشعرون أن الأدب في تراجع",
-    imagine = "📉👋 رسم بياني هابط ومصافحة"
+    simplified: "ثلاثة أرباع الألمان يشعرون أن الأدب في تراجع",
+    imagine: "📉👋 رسم بياني هابط ومصافحة"
 };
 
 HELP_DATA["sprach2_exam30_2"] = {
-    text = "meinen einer Umfrage zufolge 75 Prozent der Befragten",
-    meaning = "يعتقد 75 بالمئة من المشاركين وفقاً لاستبيان",
+    text: "meinen einer Umfrage zufolge 75 Prozent der Befragten",
+    meaning: "يعتقد 75 بالمئة من المشاركين وفقاً لاستبيان",
     keywords: ["meinen = يعتقدون", "Umfrage = استبيان", "zufolge = وفقاً لـ"],
-    simplified = "الجيل الأكبر يعتقد أن الشباب أقل احتراماً",
-    imagine = "📋👥 قائمة استبيان مع مجموعة أشخاص"
+    simplified: "الجيل الأكبر يعتقد أن الشباب أقل احتراماً",
+    imagine: "📋👥 قائمة استبيان مع مجموعة أشخاص"
 };
 
 HELP_DATA["sprach2_exam30_3"] = {
-    text = "der Wunsch nach gewissen Höflichkeitsformen",
-    meaning = "الرغبة في بعض أشكال الأدب",
+    text: "der Wunsch nach gewissen Höflichkeitsformen",
+    meaning: "الرغبة في بعض أشكال الأدب",
     keywords: ["nach = في", "gewissen = بعض", "Höflichkeitsformen = أشكال أدب"],
-    simplified = "الصغار والكبار متفقون على ضرورة وجود بعض قواعد المجاملة",
-    imagine = "🤝✅ مصافحة مع علامة صح"
+    simplified: "الصغار والكبار متفقون على ضرورة وجود بعض قواعد المجاملة",
+    imagine: "🤝✅ مصافحة مع علامة صح"
 };
 
 HELP_DATA["sprach2_exam30_4"] = {
-    text = "für ein höfliches Miteinander",
-    meaning = "للتفاعل المهذب معاً",
+    text: "für ein höfliches Miteinander",
+    meaning: "للتفاعل المهذب معاً",
     keywords: ["miteinander = معاً", "höfliches = مهذب", "für = لـ"],
-    simplified = "القواعد الواضحة تجعل العلاقات الاجتماعية أسهل للجميع",
-    imagine = "👥🤝 مجموعة محددة"
+    simplified: "القواعد الواضحة تجعل العلاقات الاجتماعية أسهل للجميع",
+    imagine: "👥🤝 مجموعة محددة"
 };
 
 HELP_DATA["sprach2_exam30_5"] = {
-    text = "sucht man sie oft vergeblich",
-    meaning = "غالباً ما يبحث عنها المرء دون جدوى",
+    text: "sucht man sie oft vergeblich",
+    meaning: "غالباً ما يبحث عنها المرء دون جدوى",
     keywords: ["vergeblich = دون جدوى", "sucht = يبحث", "oft = غالباً"],
-    simplified = "من الصعب معرفة متى تنادي شخصاً بـ 'أنت' أو 'حضرتك'",
-    imagine = "🔍❓ بحث وعلامة استفهام"
+    simplified: "من الصعب معرفة متى تنادي شخصاً بـ 'أنت' أو 'حضرتك'",
+    imagine: "🔍❓ بحث وعلامة استفهام"
 };
 
 HELP_DATA["sprach2_exam30_6"] = {
-    text = "Gut die Hälfte der Deutschen gibt zu",
-    meaning = "نصف الألمان يعترفون",
+    text: "Gut die Hälfte der Deutschen gibt zu",
+    meaning: "نصف الألمان يعترفون",
     keywords: ["Gut die Hälfte = نصف", "gibt zu = يعترفون", "Deutschen = الألمان"],
-    simplified = "نصف الألمان مرتبكون بشأن آداب التحية",
-    imagine = "🗣️😕 حوار ووجه حائر"
+    simplified: "نصف الألمان مرتبكون بشأن آداب التحية",
+    imagine: "🗣️😕 حوار ووجه حائر"
 };
 
 HELP_DATA["sprach2_exam30_7"] = {
-    text = "als normal oder sogar angenehm empfinden mögen",
-    meaning = "قد يعتبرونها طبيعية أو حتى لطيفة",
+    text: "als normal oder sogar angenehm empfinden mögen",
+    meaning: "قد يعتبرونها طبيعية أو حتى لطيفة",
     keywords: ["mögen = قد", "angenehm = لطيفة", "normal = طبيعية"],
-    simplified = "الشباب لا يمانعون النادل الذي يناديهم بـ 'أنت'",
-    imagine = "👨‍🍳👋 نادل يلوح"
+    simplified: "الشباب لا يمانعون النادل الذي يناديهم بـ 'أنت'",
+    imagine: "👨‍🍳👋 نادل يلوح"
 };
 
 HELP_DATA["sprach2_exam30_8"] = {
-    text = "besonders Ältere stören sich am ungefragten Duzen",
-    meaning = "كبار السن تحديداً ينزعجون من مخاطبة 'أنت' غير المرغوب فيها",
+    text: "besonders Ältere stören sich am ungefragten Duzen",
+    meaning: "كبار السن تحديداً ينزعجون من مخاطبة 'أنت' غير المرغوب فيها",
     keywords: ["stören = ينزعجون", "gefragten Duzen = مخاطبة 'أنت'", "Ältere = كبار السن"],
-    simplified = "الكثير من الناس فوق سن الخمسين يكرهون أن يناديهم الغرباء بـ 'أنت'",
-    imagine = "👴😠 رجل كبير غاضب"
+    simplified: "الكثير من الناس فوق سن الخمسين يكرهون أن يناديهم الغرباء بـ 'أنت'",
+    imagine: "👴😠 رجل كبير غاضب"
 };
 
 HELP_DATA["sprach2_exam30_9"] = {
-    text = "dass Männer Frauen die Tür aufhalten und ihnen den Vortritt lassen",
-    meaning = "أن يمسك الرجال الباب للنساء ويتركونهم يتقدمون",
+    text: "dass Männer Frauen die Tür aufhalten und ihnen den Vortritt lassen",
+    meaning: "أن يمسك الرجال الباب للنساء ويتركونهم يتقدمون",
     keywords: ["lassen = يتركون", "Vortritt = يتقدمون", "aufhalten = يمسكون"],
-    simplified = "بعض قواعد المجاملة التقليدية لا تزال حية",
-    imagine = "🚪👨‍🦰👩 رجل يمسك باباً لامرأة"
+    simplified: "بعض قواعد المجاملة التقليدية لا تزال حية",
+    imagine: "🚪👨‍🦰👩 رجل يمسك باباً لامرأة"
 };
 
 HELP_DATA["sprach2_exam30_10"] = {
-    text = "wenn man weiß, was sich gehört",
-    meaning = "إذا كان المرء يعرف ما هو مناسب",
+    text: "wenn man weiß, was sich gehört",
+    meaning: "إذا كان المرء يعرف ما هو مناسب",
     keywords: ["sich = ما", "gehört = مناسب", "weiß = يعرف"],
-    simplified = "من الغريب أن ندرك كل هذه القواعد ولكننا لا نطبقها",
-    imagine = "📖🤷 كتاب وعلامة استفهام"
+    simplified: "من الغريب أن ندرك كل هذه القواعد ولكننا لا نطبقها",
+    imagine: "📖🤷 كتاب وعلامة استفهام"
 };
 // ============================================
 // Exam 31 (exam31.json) - Joggen: Mehr als nur Laufen
 // ============================================
 
 HELP_DATA["sprach2_exam31_1"] = {
-    text = "Das moderne Leben ist bequem geworden",
-    meaning = "أصبحت الحياة الحديثة مريحة",
-    keywords = ["bequem = مريحة", "Leben = حياة", "moderne = حديثة"],
-    simplified = "الحياة الحديثة تجعلنا نتحرك أقل ونعتمد على الراحة أكثر",
-    imagine = "🛋️📺 أريكة وتلفاز"
+    text: "Das moderne Leben ist bequem geworden",
+    meaning: "أصبحت الحياة الحديثة مريحة",
+    keywords: ["bequem = مريحة", "Leben = حياة", "moderne = حديثة"],
+    simplified: "الحياة الحديثة تجعلنا نتحرك أقل ونعتمد على الراحة أكثر",
+    imagine: "🛋️📺 أريكة وتلفاز"
 };
 
 HELP_DATA["sprach2_exam31_2"] = {
-    text = "Herz-Kreislauf-Erkrankungen sind in den westlichen Industrieländern mittlerweile die Todesursache Nummer Eins",
-    meaning = "أمراض القلب والأوعية الدموية هي الآن السبب الأول للوفاة في الدول الصناعية الغربية",
-    keywords = ["sind = هي", "Todesursache = سبب وفاة", "Herz-Kreislauf-Erkrankungen = أمراض قلب"],
-    simplified = "أمراض القلب أصبحت القاتل الأول في الغرب الصناعي",
-    imagine = "❤️📈 قلب مع رسم بياني مرتفع"
+    text: "Herz-Kreislauf-Erkrankungen sind in den westlichen Industrieländern mittlerweile die Todesursache Nummer Eins",
+    meaning: "أمراض القلب والأوعية الدموية هي الآن السبب الأول للوفاة في الدول الصناعية الغربية",
+    keywords: ["sind = هي", "Todesursache = سبب وفاة", "Herz-Kreislauf-Erkrankungen = أمراض قلب"],
+    simplified: "أمراض القلب أصبحت القاتل الأول في الغرب الصناعي",
+    imagine: "❤️📈 قلب مع رسم بياني مرتفع"
 };
 
 HELP_DATA["sprach2_exam31_3"] = {
-    text = "Wichtig ist immer richtig zu trainieren",
-    meaning = "من المهم دائماً أن تتدرب بشكل صحيح",
-    keywords = ["immer = دائماً", "richtig = بشكل صحيح", "trainieren = تتدرب"],
-    simplified = "التدريب السليم أهم من مجرد التحرك",
-    imagine = "🏋️✅ تمارين رياضية وعلامة صح"
+    text: "Wichtig ist immer richtig zu trainieren",
+    meaning: "من المهم دائماً أن تتدرب بشكل صحيح",
+    keywords: ["immer = دائماً", "richtig = بشكل صحيح", "trainieren = تتدرب"],
+    simplified: "التدريب السليم أهم من مجرد التحرك",
+    imagine: "🏋️✅ تمارين رياضية وعلامة صح"
 };
 
 HELP_DATA["sprach2_exam31_4"] = {
-    text = "Ausdauertraining unter Verbrennung von Sauerstoff",
-    meaning = "تدريب التحمل مع حرق الأكسجين",
-    keywords = ["unter = مع", "Verbrennung = حرق", "Sauerstoff = أكسجين"],
-    simplified = "الجري يحسن كفاءة استخدام جسمك للأكسجين",
-    imagine = "💨🔥 هواء ونار"
+    text: "Ausdauertraining unter Verbrennung von Sauerstoff",
+    meaning: "تدريب التحمل مع حرق الأكسجين",
+    keywords: ["unter = مع", "Verbrennung = حرق", "Sauerstoff = أكسجين"],
+    simplified: "الجري يحسن كفاءة استخدام جسمك للأكسجين",
+    imagine: "💨🔥 هواء ونار"
 };
 
 HELP_DATA["sprach2_exam31_5"] = {
-    text = "Dabei sollte der Puls kontrolliert werden",
-    meaning = "يجب أن يُراقب النبض أثناء ذلك",
-    keywords = ["sollte = يجب", "kontrolliert = يُراقب", "Puls = نبض"],
-    simplified = "الحفاظ على معدل ضربات قلب صحيح يمنع الإصابات ويزيد من حرق الدهون",
-    imagine = "💓📊 نبضات قلب ورسم بياني"
+    text: "Dabei sollte der Puls kontrolliert werden",
+    meaning: "يجب أن يُراقب النبض أثناء ذلك",
+    keywords: ["sollte = يجب", "kontrolliert = يُراقب", "Puls = نبض"],
+    simplified: "الحفاظ على معدل ضربات قلب صحيح يمنع الإصابات ويزيد من حرق الدهون",
+    imagine: "💓📊 نبضات قلب ورسم بياني"
 };
 
 HELP_DATA["sprach2_exam31_6"] = {
-    text = "dass mehr Menschen den Schritt in ein aktiveres Leben wagen sollten",
-    meaning = "أنه يجب على المزيد من الناس أن يخطوا خطوة نحو حياة أكثر نشاطاً",
-    keywords = ["dass = أنه", "Schritt = خطوة", "aktiveres Leben = حياة أكثر نشاطاً"],
-    simplified = "يجب على الجميع تحدي الكسل وقلة الحركة",
-    imagine = "🚶‍♂️💪 رجل يمشي وذراع قوي"
+    text: "dass mehr Menschen den Schritt in ein aktiveres Leben wagen sollten",
+    meaning: "أنه يجب على المزيد من الناس أن يخطوا خطوة نحو حياة أكثر نشاطاً",
+    keywords: ["dass = أنه", "Schritt = خطوة", "aktiveres Leben = حياة أكثر نشاطاً"],
+    simplified: "يجب على الجميع تحدي الكسل وقلة الحركة",
+    imagine: "🚶‍♂️💪 رجل يمشي وذراع قوي"
 };
 
 HELP_DATA["sprach2_exam31_7"] = {
-    text = "Rund 40 Prozent aller Deutschen bringen zu viel auf die Waage",
-    meaning = "حوالي 40 بالمئة من كل الألمان يعانون من الوزن الزائد",
-    keywords = ["aller = كل", "Deutschen = الألمان", "zu viel auf die Waage = وزن زائد"],
-    simplified = "نصف الألمان تقريباً يعانون من السمنة",
-    imagine = "⚖️🍔 ميزان وبرغر"
+    text: "Rund 40 Prozent aller Deutschen bringen zu viel auf die Waage",
+    meaning: "حوالي 40 بالمئة من كل الألمان يعانون من الوزن الزائد",
+    keywords: ["aller = كل", "Deutschen = الألمان", "zu viel auf die Waage = وزن زائد"],
+    simplified: "نصف الألمان تقريباً يعانون من السمنة",
+    imagine: "⚖️🍔 ميزان وبرغر"
 };
 
 HELP_DATA["sprach2_exam31_8"] = {
-    text = "nicht selten mit einem Herzinfarkt",
-    meaning = "ليس نادراً بنوبة قلبية",
-    keywords = ["einem = بنوبة", "Herzinfarkt = نوبة قلبية", "mit = بـ"],
-    simplified = "قلة الحركة تؤدي إلى أمراض القلب والسكري",
-    imagine = "❤️⚠️ قلب وعلامة خطر"
+    text: "nicht selten mit einem Herzinfarkt",
+    meaning: "ليس نادراً بنوبة قلبية",
+    keywords: ["einem = بنوبة", "Herzinfarkt = نوبة قلبية", "mit = بـ"],
+    simplified: "قلة الحركة تؤدي إلى أمراض القلب والسكري",
+    imagine: "❤️⚠️ قلب وعلامة خطر"
 };
 
 HELP_DATA["sprach2_exam31_9"] = {
-    text = "auch, und immer häufiger bei Frauen",
-    meaning = "أيضاً، وبشكل متزايد لدى النساء",
-    keywords = ["bei = لدى", "häufiger = بشكل متزايد", "Frauen = نساء"],
-    simplified = "النساء الآن أكثر عرضة من أي وقت مضى للإصابة بأمراض القلب",
-    imagine = "👩❤️ امرأة وقلب"
+    text: "auch, und immer häufiger bei Frauen",
+    meaning: "أيضاً، وبشكل متزايد لدى النساء",
+    keywords: ["bei = لدى", "häufiger = بشكل متزايد", "Frauen = نساء"],
+    simplified: "النساء الآن أكثر عرضة من أي وقت مضى للإصابة بأمراض القلب",
+    imagine: "👩❤️ امرأة وقلب"
 };
 
 HELP_DATA["sprach2_exam31_10"] = {
-    text = "wie Milch und Milchprodukte, pflanzliche Lebensmittel",
-    meaning = "مثل الحليب ومنتجات الألبان والأطعمة النباتية",
-    keywords = ["wie = مثل", "Milch = حليب", "pflanzliche Lebensmittel = أطعمة نباتية"],
-    simplified = "النظام الغذائي الصحي يعمل جنباً إلى جنب مع التمارين الرياضية",
-    imagine = "🥛🥗 حليب وسلطة"
+    text: "wie Milch und Milchprodukte, pflanzliche Lebensmittel",
+    meaning: "مثل الحليب ومنتجات الألبان والأطعمة النباتية",
+    keywords: ["wie = مثل", "Milch = حليب", "pflanzliche Lebensmittel = أطعمة نباتية"],
+    simplified: "النظام الغذائي الصحي يعمل جنباً إلى جنب مع التمارين الرياضية",
+    imagine: "🥛🥗 حليب وسلطة"
 };
 
 // ============================================
@@ -13788,83 +13788,83 @@ HELP_DATA["sprach2_exam31_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam32_1"] = {
-    text = "gilt der Hund zwar als treuer Begleiter",
-    meaning = "يُعتبر الكلب بالفعل رفيقاً مخلصاً",
-    keywords = ["zwar = بالفعل", "treuer Begleiter = رفيق مخلص", "gilt = يُعتبر"],
-    simplified = "منذ زمن طويل، الكلب هو أفضل صديق للإنسان",
-    imagine = "🐕🤝 كلب ومصافحة"
+    text: "gilt der Hund zwar als treuer Begleiter",
+    meaning: "يُعتبر الكلب بالفعل رفيقاً مخلصاً",
+    keywords: ["zwar = بالفعل", "treuer Begleiter = رفيق مخلص", "gilt = يُعتبر"],
+    simplified: "منذ زمن طويل، الكلب هو أفضل صديق للإنسان",
+    imagine: "🐕🤝 كلب ومصافحة"
 };
 
 HELP_DATA["sprach2_exam32_2"] = {
-    text = "durchgeführt wurden",
-    meaning = "تم تنفيذها",
-    keywords = ["wurden = تم", "durchgeführt = تنفيذ", "Untersuchungen = دراسات"],
-    simplified = "الدراسة أجريت في جامعات مرموقة",
-    imagine = "🔬🏛️ مختبر ومبنى جامعي"
+    text: "durchgeführt wurden",
+    meaning: "تم تنفيذها",
+    keywords: ["wurden = تم", "durchgeführt = تنفيذ", "Untersuchungen = دراسات"],
+    simplified: "الدراسة أجريت في جامعات مرموقة",
+    imagine: "🔬🏛️ مختبر ومبنى جامعي"
 };
 
 HELP_DATA["sprach2_exam32_3"] = {
-    text = "lesen kommunikative Informationen besonders an den Augen ab",
-    meaning = "يقرؤون المعلومات التواصلية خاصة من العيون",
-    keywords = ["ab = من", "Augen = عيون", "lesen = يقرؤون"],
-    simplified = "الكلاب بارعة في قراءة انتباهك من خلال عينيك",
-    imagine = "🐕👀 كلب وعينان"
+    text: "lesen kommunikative Informationen besonders an den Augen ab",
+    meaning: "يقرؤون المعلومات التواصلية خاصة من العيون",
+    keywords: ["ab = من", "Augen = عيون", "lesen = يقرؤون"],
+    simplified: "الكلاب بارعة في قراءة انتباهك من خلال عينيك",
+    imagine: "🐕👀 كلب وعينان"
 };
 
 HELP_DATA["sprach2_exam32_4"] = {
-    text = "sie reagieren auch auf die Stimme und die Körpersprache",
-    meaning = "يتفاعلون أيضاً مع الصوت ولغة الجسد",
-    keywords = ["auf = مع", "Stimme = صوت", "Körpersprache = لغة جسد"],
-    simplified = "يستجيب الكلب لنبرة صوتك وحركات جسدك",
-    imagine = "🗣️🐕 كلام وكلب"
+    text: "sie reagieren auch auf die Stimme und die Körpersprache",
+    meaning: "يتفاعلون أيضاً مع الصوت ولغة الجسد",
+    keywords: ["auf = مع", "Stimme = صوت", "Körpersprache = لغة جسد"],
+    simplified: "يستجيب الكلب لنبرة صوتك وحركات جسدك",
+    imagine: "🗣️🐕 كلام وكلب"
 };
 
 HELP_DATA["sprach2_exam32_5"] = {
-    text = "Ganz besonders der Blickkontakt sei für Hunde ein wichtiges Instrument",
-    meaning = "الاتصال البصري مهم بشكل خاص للكلاب كأداة مهمة",
-    keywords = ["sei = يكون", "wichtiges Instrument = أداة مهمة", "Blickkontakt = اتصال بصري"],
-    simplified = "الكلاب تستخدم التواصل البصري لجمع المعلومات عن البشر",
-    imagine = "👀🐕 عينان مع كلب"
+    text: "Ganz besonders der Blickkontakt sei für Hunde ein wichtiges Instrument",
+    meaning: "الاتصال البصري مهم بشكل خاص للكلاب كأداة مهمة",
+    keywords: ["sei = يكون", "wichtiges Instrument = أداة مهمة", "Blickkontakt = اتصال بصري"],
+    simplified: "الكلاب تستخدم التواصل البصري لجمع المعلومات عن البشر",
+    imagine: "👀🐕 عينان مع كلب"
 };
 
 HELP_DATA["sprach2_exam32_6"] = {
-    text = "War der Behälter nach dem Öffnen leer",
-    meaning = "إذا كانت الحاوية فارغة بعد الفتح",
-    keywords = ["War = كان", "leer = فارغة", "Öffnen = فتح"],
-    simplified = "تفهم الكلاب مفهوم الأشياء المخفية",
-    imagine = "📦🤔 صندوق وعلامة استفهام"
+    text: "War der Behälter nach dem Öffnen leer",
+    meaning: "إذا كانت الحاوية فارغة بعد الفتح",
+    keywords: ["War = كان", "leer = فارغة", "Öffnen = فتح"],
+    simplified: "تفهم الكلاب مفهوم الأشياء المخفية",
+    imagine: "📦🤔 صندوق وعلامة استفهام"
 };
 
 HELP_DATA["sprach2_exam32_7"] = {
-    text = "er leitet sie um Hindernisse herum",
-    meaning = "يقودهم حول العوائق",
-    keywords = ["um = حول", "Hindernisse = عوائق", "herum = حول"],
-    simplified = "كلب الدليل حذق في إيجاد مسارات آمنة",
-    imagine = "🦯🐕 عصا وكلب"
+    text: "er leitet sie um Hindernisse herum",
+    meaning: "يقودهم حول العوائق",
+    keywords: ["um = حول", "Hindernisse = عوائق", "herum = حول"],
+    simplified: "كلب الدليل حذق في إيجاد مسارات آمنة",
+    imagine: "🦯🐕 عصا وكلب"
 };
 
 HELP_DATA["sprach2_exam32_8"] = {
-    text = "geht man davon aus",
-    meaning = "يُفترض",
+    text: "geht man davon aus",
+    meaning: "يُفترض",
     keywords: ["davon = ذلك", "aus = من", "geht aus = يُفترض"],
-    simplified = "الدراسات الجينية تكشف أصل الكلاب",
-    imagine = "🧬🐕 حمض نووي وكلب"
+    simplified: "الدراسات الجينية تكشف أصل الكلاب",
+    imagine: "🧬🐕 حمض نووي وكلب"
 };
 
 HELP_DATA["sprach2_exam32_9"] = {
-    text = "können also stolz darauf sein",
-    meaning = "يمكنهم بالتالي أن يفخروا بذلك",
+    text: "können also stolz darauf sein",
+    meaning: "يمكنهم بالتالي أن يفخروا بذلك",
     keywords: ["darauf = بذلك", "stolz = فخورين", "sein = يكونوا"],
-    simplified = "أصحاب الكلاب اليوم لديهم سبب حقيقي للفخر",
-    imagine = "🏆🐕 كأس وكلب"
+    simplified: "أصحاب الكلاب اليوم لديهم سبب حقيقي للفخر",
+    imagine: "🏆🐕 كأس وكلب"
 };
 
 HELP_DATA["sprach2_exam32_10"] = {
-    text = "nicht nur einen anhänglichen, sondern auch einen intelligenten Begleiter",
-    meaning = "ليس فقط رفيقاً مخلصاً، بل أيضاً رفيقاً ذكياً",
+    text: "nicht nur einen anhänglichen, sondern auch einen intelligenten Begleiter",
+    meaning: "ليس فقط رفيقاً مخلصاً، بل أيضاً رفيقاً ذكياً",
     keywords: ["sondern = بل", "intelligent = ذكياً", "anhänglichen = مخلصاً"],
-    simplified = "الكلب ليس وفيّاً فحسب، بل هو رفيق ذكي",
-    imagine = "🧠🐕 دماغ وكلب"
+    simplified: "الكلب ليس وفيّاً فحسب، بل هو رفيق ذكي",
+    imagine: "🧠🐕 دماغ وكلب"
 };
 
 // ============================================
@@ -13872,83 +13872,83 @@ HELP_DATA["sprach2_exam32_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam33_1"] = {
-    text = "gilt der Hund zwar als treuer Begleiter",
-    meaning = "يُعتبر الكلب بالفعل رفيقاً مخلصاً",
+    text: "gilt der Hund zwar als treuer Begleiter",
+    meaning: "يُعتبر الكلب بالفعل رفيقاً مخلصاً",
     keywords: ["zwar = بالفعل", "treuer Begleiter = رفيق مخلص", "gilt = يُعتبر"],
-    simplified = "منذ زمن طويل، الكلب هو أفضل صديق للإنسان",
-    imagine = "🐕🤝 كلب ومصافحة"
+    simplified: "منذ زمن طويل، الكلب هو أفضل صديق للإنسان",
+    imagine: "🐕🤝 كلب ومصافحة"
 };
 
 HELP_DATA["sprach2_exam33_2"] = {
-    text = "durchgeführt wurden",
-    meaning = "تم تنفيذها",
+    text: "durchgeführt wurden",
+    meaning: "تم تنفيذها",
     keywords: ["wurden = تم", "durchgeführt = تنفيذ", "Untersuchungen = دراسات"],
-    simplified = "الدراسة أجريت في جامعات مرموقة",
-    imagine = "🔬🏛️ مختبر ومبنى جامعي"
+    simplified: "الدراسة أجريت في جامعات مرموقة",
+    imagine: "🔬🏛️ مختبر ومبنى جامعي"
 };
 
 HELP_DATA["sprach2_exam33_3"] = {
-    text = "lesen kommunikative Informationen besonders an den Augen ab",
-    meaning = "يقرؤون المعلومات التواصلية خاصة من العيون",
+    text: "lesen kommunikative Informationen besonders an den Augen ab",
+    meaning: "يقرؤون المعلومات التواصلية خاصة من العيون",
     keywords: ["ab = من", "Augen = عيون", "lesen = يقرؤون"],
-    simplified = "الكلاب بارعة في قراءة انتباهك من خلال عينيك",
-    imagine = "🐕👀 كلب وعينان"
+    simplified: "الكلاب بارعة في قراءة انتباهك من خلال عينيك",
+    imagine: "🐕👀 كلب وعينان"
 };
 
 HELP_DATA["sprach2_exam33_4"] = {
-    text = "sie reagieren auch auf die Stimme und die Körpersprache",
-    meaning = "يتفاعلون أيضاً مع الصوت ولغة الجسد",
+    text: "sie reagieren auch auf die Stimme und die Körpersprache",
+    meaning: "يتفاعلون أيضاً مع الصوت ولغة الجسد",
     keywords: ["auf = مع", "Stimme = صوت", "Körpersprache = لغة جسد"],
-    simplified = "يستجيب الكلب لنبرة صوتك وحركات جسدك",
-    imagine = "🗣️🐕 كلام وكلب"
+    simplified: "يستجيب الكلب لنبرة صوتك وحركات جسدك",
+    imagine: "🗣️🐕 كلام وكلب"
 };
 
 HELP_DATA["sprach2_exam33_5"] = {
-    text = "Ganz besonders der Blickkontakt sei für Hunde ein wichtiges Instrument",
-    meaning = "الاتصال البصري مهم بشكل خاص للكلاب كأداة مهمة",
+    text: "Ganz besonders der Blickkontakt sei für Hunde ein wichtiges Instrument",
+    meaning: "الاتصال البصري مهم بشكل خاص للكلاب كأداة مهمة",
     keywords: ["sei = يكون", "wichtiges Instrument = أداة مهمة", "Blickkontakt = اتصال بصري"],
-    simplified = "الكلاب تستخدم التواصل البصري لجمع المعلومات عن البشر",
-    imagine = "👀🐕 عينان مع كلب"
+    simplified: "الكلاب تستخدم التواصل البصري لجمع المعلومات عن البشر",
+    imagine: "👀🐕 عينان مع كلب"
 };
 
 HELP_DATA["sprach2_exam33_6"] = {
-    text = "War der Behälter nach dem Öffnen leer",
-    meaning = "إذا كانت الحاوية فارغة بعد الفتح",
+    text: "War der Behälter nach dem Öffnen leer",
+    meaning: "إذا كانت الحاوية فارغة بعد الفتح",
     keywords: ["War = كان", "leer = فارغة", "Öffnen = فتح"],
-    simplified = "تفهم الكلاب مفهوم الأشياء المخفية",
-    imagine = "📦🤔 صندوق وعلامة استفهام"
+    simplified: "تفهم الكلاب مفهوم الأشياء المخفية",
+    imagine: "📦🤔 صندوق وعلامة استفهام"
 };
 
 HELP_DATA["sprach2_exam33_7"] = {
-    text = "er leitet sie um Hindernisse herum",
-    meaning = "يقودهم حول العوائق",
+    text: "er leitet sie um Hindernisse herum",
+    meaning: "يقودهم حول العوائق",
     keywords: ["um = حول", "Hindernisse = عوائق", "herum = حول"],
-    simplified = "كلب الدليل حذق في إيجاد مسارات آمنة",
-    imagine = "🦯🐕 عصا وكلب"
+    simplified: "كلب الدليل حذق في إيجاد مسارات آمنة",
+    imagine: "🦯🐕 عصا وكلب"
 };
 
 HELP_DATA["sprach2_exam33_8"] = {
-    text = "geht man davon aus",
-    meaning = "يُفترض",
+    text: "geht man davon aus",
+    meaning: "يُفترض",
     keywords: ["davon = ذلك", "aus = من", "geht aus = يُفترض"],
-    simplified = "الدراسات الجينية تكشف أصل الكلاب",
-    imagine = "🧬🐕 حمض نووي وكلب"
+    simplified: "الدراسات الجينية تكشف أصل الكلاب",
+    imagine: "🧬🐕 حمض نووي وكلب"
 };
 
 HELP_DATA["sprach2_exam33_9"] = {
-    text = "können also stolz darauf sein",
-    meaning = "يمكنهم بالتالي أن يفخروا بذلك",
+    text: "können also stolz darauf sein",
+    meaning: "يمكنهم بالتالي أن يفخروا بذلك",
     keywords: ["darauf = بذلك", "stolz = فخورين", "sein = يكونوا"],
-    simplified = "أصحاب الكلاب اليوم لديهم سبب حقيقي للفخر",
-    imagine = "🏆🐕 كأس وكلب"
+    simplified: "أصحاب الكلاب اليوم لديهم سبب حقيقي للفخر",
+    imagine: "🏆🐕 كأس وكلب"
 };
 
 HELP_DATA["sprach2_exam33_10"] = {
-    text = "nicht nur einen anhänglichen, sondern auch einen intelligenten Begleiter",
-    meaning = "ليس فقط رفيقاً مخلصاً، بل أيضاً رفيقاً ذكياً",
+    text: "nicht nur einen anhänglichen, sondern auch einen intelligenten Begleiter",
+    meaning: "ليس فقط رفيقاً مخلصاً، بل أيضاً رفيقاً ذكياً",
     keywords: ["sondern = بل", "intelligent = ذكياً", "anhänglichen = مخلصاً"],
-    simplified = "الكلب ليس وفيّاً فحسب، بل هو رفيق ذكي",
-    imagine = "🧠🐕 دماغ وكلب"
+    simplified: "الكلب ليس وفيّاً فحسب، بل هو رفيق ذكي",
+    imagine: "🧠🐕 دماغ وكلب"
 };
 
 // ============================================
@@ -13956,83 +13956,83 @@ HELP_DATA["sprach2_exam33_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam34_1"] = {
-    text = "mit einer Flut von Fotos konfrontiert",
-    meaning = "نواجه طوفاناً من الصور",
+    text: "mit einer Flut von Fotos konfrontiert",
+    meaning: "نواجه طوفاناً من الصور",
     keywords: ["Flut = طوفان", "Fotos = صور", "konfrontiert = نواجه"],
-    simplified = "كمية هائلة من الصور تغمرنا يومياً",
-    imagine = "🌊📸 أمواج وكاميرا"
+    simplified: "كمية هائلة من الصور تغمرنا يومياً",
+    imagine: "🌊📸 أمواج وكاميرا"
 };
 
 HELP_DATA["sprach2_exam34_2"] = {
-    text = "machen es sogar für Laien recht einfach",
-    meaning = "تجعلها سهلة جداً حتى للهواة",
+    text: "machen es sogar für Laien recht einfach",
+    meaning: "تجعلها سهلة جداً حتى للهواة",
     keywords: ["recht = جداً", "einfach = سهلة", "Laien = هواة"],
-    simplified = "أدوات التعديل متاحة بسهولة للجميع",
-    imagine = "🖥️✏️ شاشة حاسوب وقلم رصاص"
+    simplified: "أدوات التعديل متاحة بسهولة للجميع",
+    imagine: "🖥️✏️ شاشة حاسوب وقلم رصاص"
 };
 
 HELP_DATA["sprach2_exam34_3"] = {
-    text = "aber die Möglichkeiten der Bildbearbeitung lassen sich natürlich auch für Betrügereien missbrauchen",
-    meaning = "لكن إمكانيات تحرير الصور يمكن إساءة استخدامها بالطبع في الاحتيال",
+    text: "aber die Möglichkeiten der Bildbearbeitung lassen sich natürlich auch für Betrügereien missbrauchen",
+    meaning: "لكن إمكانيات تحرير الصور يمكن إساءة استخدامها بالطبع في الاحتيال",
     keywords: ["aber = لكن", "Betrügereien = احتيال", "missbrauchen = إساءة استخدام"],
-    simplified = "التقنية سلاح ذو حدين، فقد تستخدم لخداع الناس",
-    imagine = "🎭🖼️ قناع وصورة"
+    simplified: "التقنية سلاح ذو حدين، فقد تستخدم لخداع الناس",
+    imagine: "🎭🖼️ قناع وصورة"
 };
 
 HELP_DATA["sprach2_exam34_4"] = {
-    text = "stellt sich die Frage",
-    meaning = "يطرح السؤال",
+    text: "stellt sich die Frage",
+    meaning: "يطرح السؤال",
     keywords: ["stellt = يطرح", "Frage = سؤال", "sich = نفسه"],
-    simplified = "الباحثون تساءلوا عن مدى سهولة اكتشاف الصور المعدلة",
-    imagine = "❓🤔 علامة استفهام وشخص يفكر"
+    simplified: "الباحثون تساءلوا عن مدى سهولة اكتشاف الصور المعدلة",
+    imagine: "❓🤔 علامة استفهام وشخص يفكر"
 };
 
 HELP_DATA["sprach2_exam34_5"] = {
-    text = "Diesen Fragen sind Forscher nachgegangen",
-    meaning = "الباحثون تحققوا من هذه الأسئلة",
+    text: "Diesen Fragen sind Forscher nachgegangen",
+    meaning: "الباحثون تحققوا من هذه الأسئلة",
     keywords: ["Diesen = هذه", "nachgegangen = تحققوا", "Fragen = أسئلة"],
-    simplified = "أُجريت دراسة لاختبار مهارة الناس في كشف التزوير",
-    imagine = "🔬🧪 مختبر وأنابيب اختبار"
+    simplified: "أُجريت دراسة لاختبار مهارة الناس في كشف التزوير",
+    imagine: "🔬🧪 مختبر وأنابيب اختبار"
 };
 
 HELP_DATA["sprach2_exam34_6"] = {
-    text = "Die meisten Teilnehmer waren nur eher zufällig in der Lage, ein manipuliertes Bild zu identifizieren",
-    meaning = "معظم المشاركين كانوا قادرين فقط وبشكل عشوائي على تحديد الصورة المتلاعب بها",
+    text: "Die meisten Teilnehmer waren nur eher zufällig in der Lage, ein manipuliertes Bild zu identifizieren",
+    meaning: "معظم المشاركين كانوا قادرين فقط وبشكل عشوائي على تحديد الصورة المتلاعب بها",
     keywords: ["meisten = معظم", "zufällig = بشكل عشوائي", "identifizieren = تحديد"],
-    simplified = "الغالبية العظمى فشلت في اكتشاف التلاعبات حتى الواضحة",
-    imagine = "🖼️❓ صورة وعلامة استفهام"
+    simplified: "الغالبية العظمى فشلت في اكتشاف التلاعبات حتى الواضحة",
+    imagine: "🖼️❓ صورة وعلامة استفهام"
 };
 
 HELP_DATA["sprach2_exam34_7"] = {
-    text = "konnten sie tatsächlich korrekt bestimmen",
-    meaning = "تمكنوا من تحديدها بشكل صحيح",
+    text: "konnten sie tatsächlich korrekt bestimmen",
+    meaning: "تمكنوا من تحديدها بشكل صحيح",
     keywords: ["korrekt = بشكل صحيح", "bestimmen = تحديد", "konnten = تمكنوا"],
-    simplified = "نسبة صغيرة فقط خمنت المكان الصحيح للتعديل",
-    imagine = "📍✅ تحديد وعلامة صح"
+    simplified: "نسبة صغيرة فقط خمنت المكان الصحيح للتعديل",
+    imagine: "📍✅ تحديد وعلامة صح"
 };
 
 HELP_DATA["sprach2_exam34_8"] = {
-    text = "unlogische Abweichungen",
-    meaning = "انحرافات غير منطقية",
+    text: "unlogische Abweichungen",
+    meaning: "انحرافات غير منطقية",
     keywords: ["unlogische = غير منطقية", "Abweichungen = انحرافات", "andere = أخرى"],
-    simplified = "حتى الأخطاء الواضحة في الفيزياء لم تلفت انتباه المشاهدين",
-    imagine = "🔍❌ بحث وعلامة خطأ"
+    simplified: "حتى الأخطاء الواضحة في الفيزياء لم تلفت انتباه المشاهدين",
+    imagine: "🔍❌ بحث وعلامة خطأ"
 };
 
 HELP_DATA["sprach2_exam34_9"] = {
-    text = "nicht zwischen echten und gefälschten Details auf Fotos unterscheiden",
-    meaning = "لا يستطيعون التمييز بين التفاصيل الحقيقية والمزيفة في الصور",
+    text: "nicht zwischen echten und gefälschten Details auf Fotos unterscheiden",
+    meaning: "لا يستطيعون التمييز بين التفاصيل الحقيقية والمزيفة في الصور",
     keywords: ["unterscheiden = التمييز", "echten = حقيقية", "gefälschten = مزيفة"],
-    simplified = "نحن نصدق ما نراه، حتى عندما يكون مزيفاً",
-    imagine = "👀✅ عينان وعلامة صح"
+    simplified: "نحن نصدق ما نراه، حتى عندما يكون مزيفاً",
+    imagine: "👀✅ عينان وعلامة صح"
 };
 
 HELP_DATA["sprach2_exam34_10"] = {
-    text = "Die Ergebnisse dokumentierten somit, dass wir recht leicht auf Fake-Fotos reinfallen können",
-    meaning = "النتائج وثقت بالتالي أننا نقع بسهولة في فخ الصور المزيفة",
+    text: "Die Ergebnisse dokumentierten somit, dass wir recht leicht auf Fake-Fotos reinfallen können",
+    meaning: "النتائج وثقت بالتالي أننا نقع بسهولة في فخ الصور المزيفة",
     keywords: ["somit = بالتالي", "dokumentierten = وثقت", "reinfallen = نقع في فخ"],
-    simplified = "النتائج تؤكد ضعف الإنسان أمام التزييف البصري",
-    imagine = "📸🎭 كاميرا وقناع"
+    simplified: "النتائج تؤكد ضعف الإنسان أمام التزييف البصري",
+    imagine: "📸🎭 كاميرا وقناع"
 };
 
 // ============================================
@@ -14040,7 +14040,7 @@ HELP_DATA["sprach2_exam34_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam35_1"] = {
-    text = "darüber geärgert",
+    text: "darüber geärgert",
     meaning: "منزعج من ذلك",
     keywords: ["darüber = من ذلك", "geärgert = منزعج", "haben = كان"],
     simplified: "شعور الجميع عند تجربة ملابس لا تناسبهم",
@@ -14048,75 +14048,75 @@ HELP_DATA["sprach2_exam35_1"] = {
 };
 
 HELP_DATA["sprach2_exam35_2"] = {
-    text = "fast nur noch in den falschen Größen",
+    text: "fast nur noch in den falschen Größen",
     meaning: "تقريباً فقط بمقاسات خاطئة",
     keywords: ["nur = فقط", "falschen = خاطئة", "Größen = مقاسات"],
     simplified: "يبدو أن مقاسات الملابس الجاهزة لا تناسب أحداً",
-    imagine = "📏❌ شريط قياس وعلامة خطأ"
+    imagine: "📏❌ شريط قياس وعلامة خطأ"
 };
 
 HELP_DATA["sprach2_exam35_3"] = {
-    text = "brachte nun ans Licht",
+    text: "brachte nun ans Licht",
     meaning: "كشف الآن النقاب عن",
     keywords: ["ans = إلى", "Licht = النور", "brachte = كشف"],
-    simplified = "الدراسة كشفت أن تغير شكل الجسم هو السبب",
-    imagine = "💡📋 مصباح وأوراق"
+    simplified: "الدراسة كشفت أن تغير شكل الجسم هو السبب",
+    imagine: "💡📋 مصباح وأوراق"
 };
 
 HELP_DATA["sprach2_exam35_4"] = {
-    text = "weder den Kundinnen noch den Kunden passen",
+    text: "weder den Kundinnen noch den Kunden passen",
     meaning: "لا تناسب العملاء ولا العميلات",
     keywords: ["weder...noch = لا...ولا", "passen = تناسب", "Kundinnen = عميلات"],
-    simplified = "الأجسام تغيرت لكن المقاسات لم تتغير",
-    imagine = "👥📈 مجموعة أشخاص ورسم بياني"
+    simplified: "الأجسام تغيرت لكن المقاسات لم تتغير",
+    imagine: "👥📈 مجموعة أشخاص ورسم بياني"
 };
 
 HELP_DATA["sprach2_exam35_5"] = {
-    text = "müssen",
-    meaning = "يجب (عليهم البحث)",
+    text: "müssen",
+    meaning: "يجب (عليهم البحث)",
     keywords: ["müssen = يجب", "suchen = البحث", "Grund = سبب"],
-    simplified = "مصنعو الملابس يتحملون مسؤولية تجاهل تغيرات الجسم",
-    imagine = "🏭👖 مصنع وسروال"
+    simplified: "مصنعو الملابس يتحملون مسؤولية تجاهل تغيرات الجسم",
+    imagine: "🏭👖 مصنع وسروال"
 };
 
 HELP_DATA["sprach2_exam35_6"] = {
-    text = "Da der Handel natürlich daran interessiert ist",
-    meaning = "بما أن التجارة مهتمة بطبيعة الحال",
+    text: "Da der Handel natürlich daran interessiert ist",
+    meaning: "بما أن التجارة مهتمة بطبيعة الحال",
     keywords: ["Da = بما أن", "interessiert = مهتمة", "Handel = تجارة"],
-    simplified = "صناعة الأزياء تريد حلولاً دقيقة لزيادة المبيعات",
-    imagine = "💰👗 نقود وفستان"
+    simplified: "صناعة الأزياء تريد حلولاً دقيقة لزيادة المبيعات",
+    imagine: "💰👗 نقود وفستان"
 };
 
 HELP_DATA["sprach2_exam35_7"] = {
-    text = "ein neues Projekt geplant, das Aufschluss darüber geben soll",
-    meaning = "تم التخطيط لمشروع جديد من شأنه أن يعطي معلومات عن",
+    text: "ein neues Projekt geplant, das Aufschluss darüber geben soll",
+    meaning: "تم التخطيط لمشروع جديد من شأنه أن يعطي معلومات عن",
     keywords: ["das = الذي", "Aufschluss = معلومات", "geben = يعطي"],
-    simplified = "تكنولوجيا المسح ثلاثي الأبعاد ستحدث ثورة في عالم الموضة",
-    imagine = "📸👤 كاميرا وشخص"
+    simplified: "تكنولوجيا المسح ثلاثي الأبعاد ستحدث ثورة في عالم الموضة",
+    imagine: "📸👤 كاميرا وشخص"
 };
 
 HELP_DATA["sprach2_exam35_8"] = {
-    text = "Diese dreidimensionalen Bilder sollen es ermöglichen",
-    meaning = "هذه الصور ثلاثية الأبعاد ستجعل من الممكن",
+    text: "Diese dreidimensionalen Bilder sollen es ermöglichen",
+    meaning: "هذه الصور ثلاثية الأبعاد ستجعل من الممكن",
     keywords: ["sollen = ست", "ermöglichen = تجعل من الممكن", "Bilder = صور"],
-    simplified = "بيانات القياس الدقيقة ستؤدي إلى ملابس أفضل",
-    imagine = "📐👔 زاوية وقميص"
+    simplified: "بيانات القياس الدقيقة ستؤدي إلى ملابس أفضل",
+    imagine: "📐👔 زاوية وقميص"
 };
 
 HELP_DATA["sprach2_exam35_9"] = {
-    text = "dürfen wir uns außerdem darauf freuen",
-    meaning = "يمكننا أيضاً أن نتطلع إلى ذلك",
+    text: "dürfen wir uns außerdem darauf freuen",
+    meaning: "يمكننا أيضاً أن نتطلع إلى ذلك",
     keywords: ["dürfen = يمكننا", "freuen = نتطلع", "außerdem = أيضاً"],
-    simplified = "الفوائد الجانبية للثورة التقنية تشمل المستهلكين أيضاً",
-    imagine = "🎉😊 احتفال ووجه مبتسم"
+    simplified: "الفوائد الجانبية للثورة التقنية تشمل المستهلكين أيضاً",
+    imagine: "🎉😊 احتفال ووجه مبتسم"
 };
 
 HELP_DATA["sprach2_exam35_10"] = {
-    text = "dass sich die Modefirmen vielleicht endlich dafür entscheiden",
-    meaning = "أن تقرر شركات الأزياء أخيراً",
+    text: "dass sich die Modefirmen vielleicht endlich dafür entscheiden",
+    meaning: "أن تقرر شركات الأزياء أخيراً",
     keywords: ["dass = أن", "entscheiden = تقرر", "endlich = أخيراً"],
-    simplified = "أحلم بيوم تصبح فيه مقاسات الملابس عالمية",
-    imagine = "🌍👕 كرة أرضية وقميص"
+    simplified: "أحلم بيوم تصبح فيه مقاسات الملابس عالمية",
+    imagine: "🌍👕 كرة أرضية وقميص"
 };
 
 // ============================================
@@ -14124,83 +14124,83 @@ HELP_DATA["sprach2_exam35_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam36_1"] = {
-    text = "darüber aufgeregt",
-    meaning = "منزعج من ذلك",
+    text: "darüber aufgeregt",
+    meaning: "منزعج من ذلك",
     keywords: ["darüber = من ذلك", "aufgeregt = منزعج", "haben = كان"],
     simplified: "شعور الجميع عند تجربة ملابس لا تناسبهم",
     imagine: "👗😞 فستان ووجه حزين"
 };
 
 HELP_DATA["sprach2_exam36_2"] = {
-    text = "fast nur noch in den falschen Größen",
+    text: "fast nur noch in den falschen Größen",
     meaning: "تقريباً فقط بمقاسات خاطئة",
     keywords: ["nur = فقط", "falschen = خاطئة", "Größen = مقاسات"],
     simplified: "يبدو أن مقاسات الملابس الجاهزة لا تناسب أحداً",
-    imagine = "📏❌ شريط قياس وعلامة خطأ"
+    imagine: "📏❌ شريط قياس وعلامة خطأ"
 };
 
 HELP_DATA["sprach2_exam36_3"] = {
-    text = "kam nun zu der folgenden Erkenntnis",
-    meaning = "توصل الآن إلى الاستنتاج التالي",
+    text: "kam nun zu der folgenden Erkenntnis",
+    meaning: "توصل الآن إلى الاستنتاج التالي",
     keywords: ["kam = توصل", "Erkenntnis = استنتاج", "folgenden = التالي"],
-    simplified = "الدراسة كشفت فجوة خطيرة بين أنماط الأجسام الحالية والمقاسات",
-    imagine = "🔬📄 معمل وورقة استنتاجات"
+    simplified: "الدراسة كشفت فجوة خطيرة بين أنماط الأجسام الحالية والمقاسات",
+    imagine: "🔬📄 معمل وورقة استنتاجات"
 };
 
 HELP_DATA["sprach2_exam36_4"] = {
-    text = "weder den Kundinnen noch den Kunden passen",
-    meaning = "لا تناسب العملاء ولا العميلات",
+    text: "weder den Kundinnen noch den Kunden passen",
+    meaning: "لا تناسب العملاء ولا العميلات",
     keywords: ["weder...noch = لا...ولا", "passen = تناسب", "Kundinnen = عميلات"],
-    simplified = "الأجسام تغيرت لكن المقاسات لم تتغير",
-    imagine = "👥📈 مجموعة أشخاص ورسم بياني"
+    simplified: "الأجسام تغيرت لكن المقاسات لم تتغير",
+    imagine: "👥📈 مجموعة أشخاص ورسم بياني"
 };
 
 HELP_DATA["sprach2_exam36_5"] = {
-    text = "habe zugenommen",
-    meaning = "قد زادت",
+    text: "habe zugenommen",
+    meaning: "قد زادت",
     keywords: ["habe = قد", "zugenommen = زادت", "Länge = طول"],
-    simplified = "الأذرع والأجساد أصبحت أطول وأكبر مع مرور الزمن",
-    imagine = "📈⬆️ رسم بياني صاعد"
+    simplified: "الأذرع والأجساد أصبحت أطول وأكبر مع مرور الزمن",
+    imagine: "📈⬆️ رسم بياني صاعد"
 };
 
 HELP_DATA["sprach2_exam36_6"] = {
-    text = "Da man natürlich daran interessiert ist",
-    meaning = "بما أن المرء مهتم بطبيعة الحال",
+    text: "Da man natürlich daran interessiert ist",
+    meaning: "بما أن المرء مهتم بطبيعة الحال",
     keywords: ["Da = بما أن", "interessiert = مهتم", "natürlich = طبيعياً"],
-    simplified = "صناعة الأزياء ترغب في حل مشكلة عدم تطابق المقاسات",
-    imagine = "👗💡 فستان ومصباح"
+    simplified: "صناعة الأزياء ترغب في حل مشكلة عدم تطابق المقاسات",
+    imagine: "👗💡 فستان ومصباح"
 };
 
 HELP_DATA["sprach2_exam36_7"] = {
-    text = "ein neues Verfahren entwickelt, das Männer und Frauen neu vermessen soll",
-    meaning = "تم تطوير إجراء جديد من المفترض أن يقيس الرجال والنساء من جديد",
+    text: "ein neues Verfahren entwickelt, das Männer und Frauen neu vermessen soll",
+    meaning: "تم تطوير إجراء جديد من المفترض أن يقيس الرجال والنساء من جديد",
     keywords: ["das = الذي", "neu = من جديد", "vermissen = يقيس"],
-    simplified = "تم ابتكار تقنية عالية الدقة لحل هذه المشكلة",
-    imagine = "📏💻 شريط قياس وحاسوب"
+    simplified: "تم ابتكار تقنية عالية الدقة لحل هذه المشكلة",
+    imagine: "📏💻 شريط قياس وحاسوب"
 };
 
 HELP_DATA["sprach2_exam36_8"] = {
-    text = "sollen es ermöglichen",
-    meaning = "من المفترض أن تجعل من الممكن",
+    text: "sollen es ermöglichen",
+    meaning: "من المفترض أن تجعل من الممكن",
     keywords: ["sollen = من المفترض أن", "ermöglichen = تجعل من الممكن", "es = ذلك"],
-    simplified = "سيتم رفع دقة القياسات إلى أقصى حد",
-    imagine = "📊🎯 رسم بياني وهدف"
+    simplified: "سيتم رفع دقة القياسات إلى أقصى حد",
+    imagine: "📊🎯 رسم بياني وهدف"
 };
 
 HELP_DATA["sprach2_exam36_9"] = {
-    text = "dass sich die Modefirmen vielleicht endlich dafür entscheiden",
-    meaning = "أن تقرر شركات الأزياء أخيراً",
+    text: "dass sich die Modefirmen vielleicht endlich dafür entscheiden",
+    meaning: "أن تقرر شركات الأزياء أخيراً",
     keywords: ["dass = أن", "entscheiden = تقرر", "endlich = أخيراً"],
-    simplified = "أحلم بيوم تصبح فيه مقاسات الملابس عالمية",
-    imagine = "🌍👕 كرة أرضية وقميص"
+    simplified: "أحلم بيوم تصبح فيه مقاسات الملابس عالمية",
+    imagine: "🌍👕 كرة أرضية وقميص"
 };
 
 HELP_DATA["sprach2_exam36_10"] = {
-    text = "gleich groß",
-    meaning = "بنفس الحجم",
+    text: "gleich groß",
+    meaning: "بنفس الحجم",
     keywords: ["gleich = نفس", "groß = حجم", "ist = يكون"],
-    simplified = "التوحيد العالمي للمقاسات سيجعل التسوق أسهل للجميع",
-    imagine = "🌍📏 كرة أرضية وشريط قياس"
+    simplified: "التوحيد العالمي للمقاسات سيجعل التسوق أسهل للجميع",
+    imagine: "🌍📏 كرة أرضية وشريط قياس"
 };
 
 // ============================================
@@ -14208,83 +14208,83 @@ HELP_DATA["sprach2_exam36_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam37_1"] = {
-    text = "gehören nicht auf den Tisch",
-    meaning = "لا ينبغي أن تكون على الطاولة",
+    text: "gehören nicht auf den Tisch",
+    meaning: "لا ينبغي أن تكون على الطاولة",
     keywords: ["gehören = تنتمي", "Tisch = طاولة", "nicht = لا"],
-    simplified = "آداب المائدة تحظر وضع المرفقين على الطاولة",
-    imagine = "🍽️🚫 طعام وعلامة منع"
+    simplified: "آداب المائدة تحظر وضع المرفقين على الطاولة",
+    imagine: "🍽️🚫 طعام وعلامة منع"
 };
 
 HELP_DATA["sprach2_exam37_2"] = {
-    text = "behält in jedem Fall an",
-    meaning = "يبقيهما في كل الأحوال",
+    text: "behält in jedem Fall an",
+    meaning: "يبقيهما في كل الأحوال",
     keywords: ["behält = يبقي", "an = على", "Schuhe = حذاء"],
-    simplified = "من غير اللائق خلع الحذاء في مطعم فاخر",
-    imagine = "👞🚫 حذاء وعلامة منع"
+    simplified: "من غير اللائق خلع الحذاء في مطعم فاخر",
+    imagine: "👞🚫 حذاء وعلامة منع"
 };
 
 HELP_DATA["sprach2_exam37_3"] = {
-    text = "so mancher vor einem Problem",
-    meaning = "كثير من الناس أمام مشكلة",
+    text: "so mancher vor einem Problem",
+    meaning: "كثير من الناس أمام مشكلة",
     keywords: ["mancher = كثير من الناس", "Problem = مشكلة", "vor = أمام"],
-    simplified = "حتى الخدمة اللطيفة يمكن أن تسبب حرجاً عندما يتعلق الأمر بالتحدث مع النادل",
-    imagine = "🙋‍♂️😕 نادل ووجه حائر"
+    simplified: "حتى الخدمة اللطيفة يمكن أن تسبب حرجاً عندما يتعلق الأمر بالتحدث مع النادل",
+    imagine: "🙋‍♂️😕 نادل ووجه حائر"
 };
 
 HELP_DATA["sprach2_exam37_4"] = {
-    text = "mit der Anrede 'Fräulein' an den Tisch zu rufen",
-    meaning = "مناداتها بـ 'آنسة' إلى الطاولة",
+    text: "mit der Anrede 'Fräulein' an den Tisch zu rufen",
+    meaning: "مناداتها بـ 'آنسة' إلى الطاولة",
     keywords: ["mit = بـ", "Anrede = مناداتها", "Fräulein = آنسة"],
-    simplified = "بعض التسميات غير لائقة في عصر المساواة",
-    imagine = "👩‍🦳❌ امرأة وعلامة منع"
+    simplified: "بعض التسميات غير لائقة في عصر المساواة",
+    imagine: "👩‍🦳❌ امرأة وعلامة منع"
 };
 
 HELP_DATA["sprach2_exam37_5"] = {
-    text = "ist dagegen zwar korrekt",
-    meaning = "هو على العكس صحيح",
+    text: "ist dagegen zwar korrekt",
+    meaning: "هو على العكس صحيح",
     keywords: ["dagegen = على العكس", "zwar = صحيح", "korrekt = صحيح"],
-    simplified = "كلمة 'نادل' صحيحة نحويًا لكنها قديمة الطراز",
-    imagine = "📖✅ كتاب وعلامة صح"
+    simplified: "كلمة 'نادل' صحيحة نحويًا لكنها قديمة الطراز",
+    imagine: "📖✅ كتاب وعلامة صح"
 };
 
 HELP_DATA["sprach2_exam37_6"] = {
-    text = "mit einem kleinen Wink mit der Hand den Kellner an den Tisch zu bitten",
-    meaning = "لطلب النادل إلى الطاولة بإشارة صغيرة باليد",
+    text: "mit einem kleinen Wink mit der Hand den Kellner an den Tisch zu bitten",
+    meaning: "لطلب النادل إلى الطاولة بإشارة صغيرة باليد",
     keywords: ["wink = إشارة", "Hand = يد", "kleinen = صغيرة"],
-    simplified = "الإشارة الخفيفة هي أكثر الطرق تهذيباً لجذب الانتباه",
-    imagine = "👋🤫 تلويح وصمت"
+    simplified: "الإشارة الخفيفة هي أكثر الطرق تهذيباً لجذب الانتباه",
+    imagine: "👋🤫 تلويح وصمت"
 };
 
 HELP_DATA["sprach2_exam37_7"] = {
-    text = "Ist man mit dem Essen fertig",
-    meaning = "إذا انتهى الشخص من الطعام",
+    text: "Ist man mit dem Essen fertig",
+    meaning: "إذا انتهى الشخص من الطعام",
     keywords: ["fertig = منتهياً", "Essen = طعام", "ist = كان"],
-    simplified = "لغة الجسد في المطاعم: وضعية السكين والشوكة علامة",
-    imagine = "🍴🔚 شوكة وسكين ونهاية"
+    simplified: "لغة الجسد في المطاعم: وضعية السكين والشوكة علامة",
+    imagine: "🍴🔚 شوكة وسكين ونهاية"
 };
 
 HELP_DATA["sprach2_exam37_8"] = {
-    text = "ist takt gefragt",
-    meaning = "هناك حاجة إلى لباقة",
+    text: "ist takt gefragt",
+    meaning: "هناك حاجة إلى لباقة",
     keywords: ["takt = لباقة", "gefragt = مطلوبة", "ist = هناك"],
-    simplified = "يتطلب عرض الدفع حساسية كبيرة لتجنب الإحراج",
-    imagine = "💳🤝 بطاقة ائتمان ومصافحة"
+    simplified: "يتطلب عرض الدفع حساسية كبيرة لتجنب الإحراج",
+    imagine: "💳🤝 بطاقة ائتمان ومصافحة"
 };
 
 HELP_DATA["sprach2_exam37_9"] = {
-    text = "macht er dies dem Kellner klar",
-    meaning = "يجعل هذا الأمر واضحاً للنادل",
+    text: "macht er dies dem Kellner klar",
+    meaning: "يجعل هذا الأمر واضحاً للنادل",
     keywords: ["klar = واضحاً", "Kellner = نادل", "macht = يجعل"],
-    simplified = "الإشارة الواضحة لمن يدفع تمنع الالتباس",
-    imagine = "👆💵 إصبع指向 وورقة نقدية"
+    simplified: "الإشارة الواضحة لمن يدفع تمنع الالتباس",
+    imagine: "👆💵 إصبع指向 وورقة نقدية"
 };
 
 HELP_DATA["sprach2_exam37_10"] = {
-    text = "was durchaus üblich ist",
-    meaning = "وهو أمر شائع جداً",
+    text: "was durchaus üblich ist",
+    meaning: "وهو أمر شائع جداً",
     keywords: ["was = وهو", "üblich = شائع", "durchaus = جداً"],
-    simplified = "الدفع المنفصل مقبول تماماً في ألمانيا",
-    imagine = "💰💰 نقود ونقود"
+    simplified: "الدفع المنفصل مقبول تماماً في ألمانيا",
+    imagine: "💰💰 نقود ونقود"
 };
 
 // ============================================
@@ -14292,83 +14292,83 @@ HELP_DATA["sprach2_exam37_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam38_1"] = {
-    text = "gehören nicht auf den Tisch",
-    meaning = "لا ينبغي أن تكون على الطاولة",
+    text: "gehören nicht auf den Tisch",
+    meaning: "لا ينبغي أن تكون على الطاولة",
     keywords: ["gehören = تنتمي", "Tisch = طاولة", "nicht = لا"],
-    simplified = "آداب المائدة تحظر وضع المرفقين على الطاولة",
-    imagine = "🍽️🚫 طعام وعلامة منع"
+    simplified: "آداب المائدة تحظر وضع المرفقين على الطاولة",
+    imagine: "🍽️🚫 طعام وعلامة منع"
 };
 
 HELP_DATA["sprach2_exam38_2"] = {
-    text = "behält in jedem Fall an",
-    meaning = "يبقيهما في كل الأحوال",
+    text: "behält in jedem Fall an",
+    meaning: "يبقيهما في كل الأحوال",
     keywords: ["behält = يبقي", "an = على", "Schuhe = حذاء"],
-    simplified = "من غير اللائق خلع الحذاء في مطعم فاخر",
-    imagine = "👞🚫 حذاء وعلامة منع"
+    simplified: "من غير اللائق خلع الحذاء في مطعم فاخر",
+    imagine: "👞🚫 حذاء وعلامة منع"
 };
 
 HELP_DATA["sprach2_exam38_3"] = {
-    text = "bereitet so manchem Probleme",
-    meaning = "تسبب المشاكل لكثير من الناس",
+    text: "bereitet so manchem Probleme",
+    meaning: "تسبب المشاكل لكثير من الناس",
     keywords: ["manchem = كثير من الناس", "Probleme = مشاكل", "bereitet = تسبب"],
-    simplified = "حتى الخدمة اللطيفة يمكن أن تسبب حرجاً عندما يتعلق الأمر بالتحدث مع النادل",
-    imagine = "🙋‍♂️😕 نادل ووجه حائر"
+    simplified: "حتى الخدمة اللطيفة يمكن أن تسبب حرجاً عندما يتعلق الأمر بالتحدث مع النادل",
+    imagine: "🙋‍♂️😕 نادل ووجه حائر"
 };
 
 HELP_DATA["sprach2_exam38_4"] = {
-    text = "mit der Anrede 'Fräulein' an den Tisch zu rufen",
-    meaning = "مناداتها بـ 'آنسة' إلى الطاولة",
+    text: "mit der Anrede 'Fräulein' an den Tisch zu rufen",
+    meaning: "مناداتها بـ 'آنسة' إلى الطاولة",
     keywords: ["mit = بـ", "Anrede = مناداتها", "Fräulein = آنسة"],
-    simplified = "بعض التسميات غير لائقة في عصر المساواة",
-    imagine = "👩‍🦳❌ امرأة وعلامة منع"
+    simplified: "بعض التسميات غير لائقة في عصر المساواة",
+    imagine: "👩‍🦳❌ امرأة وعلامة منع"
 };
 
 HELP_DATA["sprach2_exam38_5"] = {
-    text = "ist dagegen zwar korrekt",
-    meaning = "هو على العكس صحيح",
+    text: "ist dagegen zwar korrekt",
+    meaning: "هو على العكس صحيح",
     keywords: ["dagegen = على العكس", "zwar = صحيح", "korrekt = صحيح"],
-    simplified = "كلمة 'نادل' صحيحة نحويًا لكنها قديمة الطراز",
-    imagine = "📖✅ كتاب وعلامة صح"
+    simplified: "كلمة 'نادل' صحيحة نحويًا لكنها قديمة الطراز",
+    imagine: "📖✅ كتاب وعلامة صح"
 };
 
 HELP_DATA["sprach2_exam38_6"] = {
-    text = "mit einem kleinen Wink mit der Hand den Kellner an den Tisch zu bitten",
-    meaning = "لطلب النادل إلى الطاولة بإشارة صغيرة باليد",
+    text: "mit einem kleinen Wink mit der Hand den Kellner an den Tisch zu bitten",
+    meaning: "لطلب النادل إلى الطاولة بإشارة صغيرة باليد",
     keywords: ["wink = إشارة", "Hand = يد", "kleinen = صغيرة"],
-    simplified = "الإشارة الخفيفة هي أكثر الطرق تهذيباً لجذب الانتباه",
-    imagine = "👋🤫 تلويح وصمت"
+    simplified: "الإشارة الخفيفة هي أكثر الطرق تهذيباً لجذب الانتباه",
+    imagine: "👋🤫 تلويح وصمت"
 };
 
 HELP_DATA["sprach2_exam38_7"] = {
-    text = "Wenn man mit dem Essen fertig ist",
-    meaning = "إذا انتهى الشخص من الطعام",
+    text: "Wenn man mit dem Essen fertig ist",
+    meaning: "إذا انتهى الشخص من الطعام",
     keywords: ["fertig = منتهياً", "Essen = طعام", "ist = كان"],
-    simplified = "لغة الجسد في المطاعم: وضعية السكين والشوكة علامة",
-    imagine = "🍴🔚 شوكة وسكين ونهاية"
+    simplified: "لغة الجسد في المطاعم: وضعية السكين والشوكة علامة",
+    imagine: "🍴🔚 شوكة وسكين ونهاية"
 };
 
 HELP_DATA["sprach2_exam38_8"] = {
-    text = "ist taktgefühl wichtig",
-    meaning = "اللباقة مهمة",
+    text: "ist taktgefühl wichtig",
+    meaning: "اللباقة مهمة",
     keywords: ["taktgefühl = لباقة", "wichtig = مهمة", "ist = هناك"],
-    simplified = "يتطلب عرض الدفع حساسية كبيرة لتجنب الإحراج",
-    imagine = "💳🤝 بطاقة ائتمان ومصافحة"
+    simplified: "يتطلب عرض الدفع حساسية كبيرة لتجنب الإحراج",
+    imagine: "💳🤝 بطاقة ائتمان ومصافحة"
 };
 
 HELP_DATA["sprach2_exam38_9"] = {
-    text = "macht er dies dem Kellner klar",
-    meaning = "يجعل هذا الأمر واضحاً للنادل",
+    text: "macht er dies dem Kellner klar",
+    meaning: "يجعل هذا الأمر واضحاً للنادل",
     keywords: ["klar = واضحاً", "Kellner = نادل", "macht = يجعل"],
-    simplified = "الإشارة الواضحة لمن يدفع تمنع الالتباس",
-    imagine = "👆💵 إصبع指向 وورقة نقدية"
+    simplified: "الإشارة الواضحة لمن يدفع تمنع الالتباس",
+    imagine: "👆💵 إصبع指向 وورقة نقدية"
 };
 
 HELP_DATA["sprach2_exam38_10"] = {
-    text = "was durchaus üblich ist",
-    meaning = "وهو أمر شائع جداً",
+    text: "was durchaus üblich ist",
+    meaning: "وهو أمر شائع جداً",
     keywords: ["was = وهو", "üblich = شائع", "durchaus = جداً"],
-    simplified = "الدفع المنفصل مقبول تماماً في ألمانيا",
-    imagine = "💰💰 نقود ونقود"
+    simplified: "الدفع المنفصل مقبول تماماً في ألمانيا",
+    imagine: "💰💰 نقود ونقود"
 };
 
 // ============================================
@@ -14376,83 +14376,83 @@ HELP_DATA["sprach2_exam38_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam39_1"] = {
-    text = "Senioren sind heute höchst rege aktiv",
-    meaning = "كبار السن نشيطون جداً اليوم",
+    text: "Senioren sind heute höchst rege aktiv",
+    meaning: "كبار السن نشيطون جداً اليوم",
     keywords: ["rege = نشيطون", "aktiv = نشيطون", "Senioren = كبار السن"],
-    simplified = "كبار السن أكثر حيوية ونشاطاً من أي وقت مضى",
-    imagine = "👴💪 رجل كبير وقوي"
+    simplified: "كبار السن أكثر حيوية ونشاطاً من أي وقت مضى",
+    imagine: "👴💪 رجل كبير وقوي"
 };
 
 HELP_DATA["sprach2_exam39_2"] = {
-    text = "wie es an verschiedenen deutschen Universitäten angeboten wird",
-    meaning = "كما هو معروض في جامعات ألمانية مختلفة",
+    text: "wie es an verschiedenen deutschen Universitäten angeboten wird",
+    meaning: "كما هو معروض في جامعات ألمانية مختلفة",
     keywords: ["an = في", "angeboten = معروض", "Universitäten = جامعات"],
-    simplified = "العديد من الجامعات تستقبل كبار السن كطلاب مستمعين",
-    imagine = "🏛️👵 مبنى جامعي وامرأة مسنة"
+    simplified: "العديد من الجامعات تستقبل كبار السن كطلاب مستمعين",
+    imagine: "🏛️👵 مبنى جامعي وامرأة مسنة"
 };
 
 HELP_DATA["sprach2_exam39_3"] = {
-    text = "Allein in Trier waren über 130 Personen der Altersgruppe 50+ als Gasthörer eingeschrieben",
-    meaning = "في ترير وحدها، كان أكثر من 130 شخصاً من الفئة العمرية 50+ مسجلين كطلاب مستمعين",
+    text: "Allein in Trier waren über 130 Personen der Altersgruppe 50+ als Gasthörer eingeschrieben",
+    meaning: "في ترير وحدها، كان أكثر من 130 شخصاً من الفئة العمرية 50+ مسجلين كطلاب مستمعين",
     keywords: ["Allein = وحدها", "als = كـ", "Gasthörer = طلاب مستمعين"],
-    simplified = "أعداد كبيرة من المتقاعدين تملأ قاعات المحاضرات",
-    imagine = "👥🏫 مجموعة أشخاص في قاعة محاضرات"
+    simplified: "أعداد كبيرة من المتقاعدين تملأ قاعات المحاضرات",
+    imagine: "👥🏫 مجموعة أشخاص في قاعة محاضرات"
 };
 
 HELP_DATA["sprach2_exam39_4"] = {
-    text = "Darauf folgten die neueren Sprach- und Literaturwissenschaften",
-    meaning = "تبع ذلك علوم اللغة والأدب الحديثة",
+    text: "Darauf folgten die neueren Sprach- und Literaturwissenschaften",
+    meaning: "تبع ذلك علوم اللغة والأدب الحديثة",
     keywords: ["Darauf = بعد ذلك", "folgten = تبع", "neueren = الحديثة"],
-    simplified = "مواد العلوم الإنسانية كانت الخيار الأول",
-    imagine = "📖🏛️ كتاب ومبنى جامعي"
+    simplified: "مواد العلوم الإنسانية كانت الخيار الأول",
+    imagine: "📖🏛️ كتاب ومبنى جامعي"
 };
 
 HELP_DATA["sprach2_exam39_5"] = {
-    text = "Die Gründe dafür dürften sein",
-    meaning = "الأسباب لذلك قد تكون",
+    text: "Die Gründe dafür dürften sein",
+    meaning: "الأسباب لذلك قد تكون",
     keywords: ["dürften = قد تكون", "Gründe = أسباب", "dafür = لذلك"],
-    simplified = "تفسير لكثرة النساء بين الطلاب المسنين",
-    imagine = "👩‍🎓❓ طالبة وعلامة استفهام"
+    simplified: "تفسير لكثرة النساء بين الطلاب المسنين",
+    imagine: "👩‍🎓❓ طالبة وعلامة استفهام"
 };
 
 HELP_DATA["sprach2_exam39_6"] = {
-    text = "dass Frauen in ihren jüngeren Lebensjahren häufig auf eine berufliche Karriere verzichteten",
-    meaning = "أن النساء في سنوات عمرهن الأصغر تخلىن غالباً عن مهنة",
+    text: "dass Frauen in ihren jüngeren Lebensjahren häufig auf eine berufliche Karriere verzichteten",
+    meaning: "أن النساء في سنوات عمرهن الأصغر تخلىن غالباً عن مهنة",
     keywords: ["auf = عن", "verzichteten = تخلىن", "Karriere = مهنة"],
-    simplified = "العديد من النساء قدمن أسرتهن على حساب طموحاتهن المهنية",
-    imagine = "👩‍👧‍👦💼 أم وشنطة عمل"
+    simplified: "العديد من النساء قدمن أسرتهن على حساب طموحاتهن المهنية",
+    imagine: "👩‍👧‍👦💼 أم وشنطة عمل"
 };
 
 HELP_DATA["sprach2_exam39_7"] = {
-    text = "Stattdessen setzten sie sich für die Familie und insbesondere für ihre Kinder ein",
-    meaning = "بدلاً من ذلك، كرّسن أنفسهن للعائلة وخاصة لأطفالهن",
+    text: "Stattdessen setzten sie sich für die Familie und insbesondere für ihre Kinder ein",
+    meaning: "بدلاً من ذلك، كرّسن أنفسهن للعائلة وخاصة لأطفالهن",
     keywords: ["Stattdessen = بدلاً من ذلك", "setzten ein = كرّسن", "Familie = عائلة"],
-    simplified = "تفانوا في رعاية الأسرة وتربية الأطفال",
-    imagine = "🏠❤️ منزل وقلب"
+    simplified: "تفانوا في رعاية الأسرة وتربية الأطفال",
+    imagine: "🏠❤️ منزل وقلب"
 };
 
 HELP_DATA["sprach2_exam39_8"] = {
-    text = "deren Einsatz in den 'Familienjahren' häufig zu kurz gekommen war",
-    meaning = "الذي كان استخدامها في 'سنوات الأسرة' غالباً غير كافٍ",
+    text: "deren Einsatz in den 'Familienjahren' häufig zu kurz gekommen war",
+    meaning: "الذي كان استخدامها في 'سنوات الأسرة' غالباً غير كافٍ",
     keywords: ["kurz = غير كافٍ", "Einsatz = استخدام", "Familienjahren = سنوات الأسرة"],
-    simplified = "الآن حان الوقت لصقل تلك العقول المتعطشة للمعرفة",
-    imagine = "🧠💡 عقل ومصباح"
+    simplified: "الآن حان الوقت لصقل تلك العقول المتعطشة للمعرفة",
+    imagine: "🧠💡 عقل ومصباح"
 };
 
 HELP_DATA["sprach2_exam39_9"] = {
-    text = "Aufgrund dessen sehen sie keine Veranlassung",
-    meaning = "وبسبب ذلك لا يرون سبباً",
+    text: "Aufgrund dessen sehen sie keine Veranlassung",
+    meaning: "وبسبب ذلك لا يرون سبباً",
     keywords: ["Aufgrund dessen = بسبب ذلك", "Veranlassung = سبباً", "sehen = يرون"],
-    simplified = "الرجال أقل اهتماماً بالدراسة بعد التقاعد",
-    imagine = "👴📚 رجل كبير وكتاب"
+    simplified: "الرجال أقل اهتماماً بالدراسة بعد التقاعد",
+    imagine: "👴📚 رجل كبير وكتاب"
 };
 
 HELP_DATA["sprach2_exam39_10"] = {
-    text = "Er wird gespeist durch die Vitalität und die hohe Bildungsmotivation",
-    meaning = "يتم تغذيته من خلال الحيوية والدافع التعليمي العالي",
+    text: "Er wird gespeist durch die Vitalität und die hohe Bildungsmotivation",
+    meaning: "يتم تغذيته من خلال الحيوية والدافع التعليمي العالي",
     keywords: ["durch = من خلال", "Vitalität = حيوية", "Bildungsmotivation = دافع تعليمي"],
-    simplified = "جوع كبار السن للمعرفة لا يشبع",
-    imagine = "📚🔥 كتب ونار"
+    simplified: "جوع كبار السن للمعرفة لا يشبع",
+    imagine: "📚🔥 كتب ونار"
 };
 
 // ============================================
@@ -14460,166 +14460,166 @@ HELP_DATA["sprach2_exam39_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam40_1"] = {
-    text = "nutzen vielfach die Chance",
-    meaning = "يستغلون الفرصة كثيراً",
+    text: "nutzen vielfach die Chance",
+    meaning: "يستغلون الفرصة كثيراً",
     keywords: ["nutzen = يستغلون", "Chance = فرصة", "vielfach = كثيراً"],
-    simplified = "كبار السن يغتنمون الفرص لتحقيق أحلامهم المؤجلة",
-    imagine = "🌟👴 نجمة ورجل كبير"
+    simplified: "كبار السن يغتنمون الفرص لتحقيق أحلامهم المؤجلة",
+    imagine: "🌟👴 نجمة ورجل كبير"
 };
 
 HELP_DATA["sprach2_exam40_2"] = {
-    text = "wie es an verschiedenen deutschen Universitäten angeboten wird",
-    meaning = "كما هو معروض في جامعات ألمانية مختلفة",
+    text: "wie es an verschiedenen deutschen Universitäten angeboten wird",
+    meaning: "كما هو معروض في جامعات ألمانية مختلفة",
     keywords: ["angeboten = معروض", "Universitäten = جامعات", "an = في"],
-    simplified = "جامعات كثيرة أصبحت ترحب بالطلاب المسنين",
-    imagine = "🏛️👵 مبنى جامعي وامرأة مسنة"
+    simplified: "جامعات كثيرة أصبحت ترحب بالطلاب المسنين",
+    imagine: "🏛️👵 مبنى جامعي وامرأة مسنة"
 };
 
 HELP_DATA["sprach2_exam40_3"] = {
-    text = "als Gasthörer eingeschrieben",
-    meaning = "مسجلين كطلاب مستمعين",
+    text: "als Gasthörer eingeschrieben",
+    meaning: "مسجلين كطلاب مستمعين",
     keywords: ["als = كـ", "Gasthörer = طلاب مستمعين", "eingeschrieben = مسجلين"],
-    simplified = "ظاهرة الطلاب المسنين في ارتفاع مستمر",
-    imagine = "📈👴 رسم بياني ورجل كبير"
+    simplified: "ظاهرة الطلاب المسنين في ارتفاع مستمر",
+    imagine: "📈👴 رسم بياني ورجل كبير"
 };
 
 HELP_DATA["sprach2_exam40_4"] = {
-    text = "wurden dagegen weniger häufig gewählt",
-    meaning = "على العكس، تم اختيارها بشكل أقل",
+    text: "wurden dagegen weniger häufig gewählt",
+    meaning: "على العكس، تم اختيارها بشكل أقل",
     keywords: ["dagegen = على العكس", "weniger = أقل", "häufig = بشكل"],
-    simplified = "التخصصات العملية أقل جذباً لكبار السن",
-    imagine = "⚖️📉 ميزان ورسم بياني هابط"
+    simplified: "التخصصات العملية أقل جذباً لكبار السن",
+    imagine: "⚖️📉 ميزان ورسم بياني هابط"
 };
 
 HELP_DATA["sprach2_exam40_5"] = {
-    text = "Die Gründe dafür könnten sein",
-    meaning = "الأسباب لذلك قد تكون",
+    text: "Die Gründe dafür könnten sein",
+    meaning: "الأسباب لذلك قد تكون",
     keywords: ["könnten = قد تكون", "Gründe = أسباب", "dafür = لذلك"],
-    simplified = "تفسير لكثرة النساء بين الطلاب المسنين",
-    imagine = "👩‍🎓❓ طالبة وعلامة استفهام"
+    simplified: "تفسير لكثرة النساء بين الطلاب المسنين",
+    imagine: "👩‍🎓❓ طالبة وعلامة استفهام"
 };
 
 HELP_DATA["sprach2_exam40_6"] = {
-    text = "setzten sie sich für die Familie und ihre Kinder ein",
-    meaning = "كرّسن أنفسهن للعائلة وأطفالهن",
+    text: "setzten sie sich für die Familie und ihre Kinder ein",
+    meaning: "كرّسن أنفسهن للعائلة وأطفالهن",
     keywords: ["für = لـ", "setzten ein = كرّسن", "Familie = عائلة"],
-    simplified = "تفانوا في رعاية الأسرة وتربية الأطفال",
-    imagine = "🏠❤️ منزل وقلب"
+    simplified: "تفانوا في رعاية الأسرة وتربية الأطفال",
+    imagine: "🏠❤️ منزل وقلب"
 };
 
 HELP_DATA["sprach2_exam40_7"] = {
-    text = "Wenn die Kinder erwachsen sind",
-    meaning = "عندما يكبر الأطفال",
+    text: "Wenn die Kinder erwachsen sind",
+    meaning: "عندما يكبر الأطفال",
     keywords: ["erwachsen = كباراً", "Kinder = أطفال", "sind = يكونوا"],
-    simplified = "بعد مغادرة الأبناء للمنزل، تبدأ رحلة الأم الجديدة",
-    imagine = "👩‍👧‍👦➡️👩 أسرة ثم امرأة وحيدة"
+    simplified: "بعد مغادرة الأبناء للمنزل، تبدأ رحلة الأم الجديدة",
+    imagine: "👩‍👧‍👦➡️👩 أسرة ثم امرأة وحيدة"
 };
 
 HELP_DATA["sprach2_exam40_8"] = {
-    text = "konnten häufiger während ihres Arbeitslebens",
-    meaning = "تمكنوا غالباً خلال حياتهم العملية",
+    text: "konnten häufiger während ihres Arbeitslebens",
+    meaning: "تمكنوا غالباً خلال حياتهم العملية",
     keywords: ["während = خلال", "Arbeitslebens = حياة عملية", "häufiger = غالباً"],
-    simplified = "الرجال حققوا ذواتهم مهنياً بينما كانت النساء في المنزل",
-    imagine = "👔💼 رجل وحقيبة عمل"
+    simplified: "الرجال حققوا ذواتهم مهنياً بينما كانت النساء في المنزل",
+    imagine: "👔💼 رجل وحقيبة عمل"
 };
 
 HELP_DATA["sprach2_exam40_9"] = {
-    text = "Daher sehen sie keine Veranlassung",
-    meaning = "لذلك لا يرون سبباً",
+    text: "Daher sehen sie keine Veranlassung",
+    meaning: "لذلك لا يرون سبباً",
     keywords: ["Daher = لذلك", "Veranlassung = سبباً", "sehen = يرون"],
-    simplified = "الرجال أقل اهتماماً بالدراسة بعد التقاعد",
-    imagine = "👴📚 رجل كبير وكتاب"
+    simplified: "الرجال أقل اهتماماً بالدراسة بعد التقاعد",
+    imagine: "👴📚 رجل كبير وكتاب"
 };
 
 HELP_DATA["sprach2_exam40_10"] = {
-    text = "neue Kompetenzen zu entwickeln",
-    meaning = "لتطوير كفاءات جديدة",
+    text: "neue Kompetenzen zu entwickeln",
+    meaning: "لتطوير كفاءات جديدة",
     keywords: ["neue = جديدة", "Kompetenzen = كفاءات", "entwickeln = تطوير"],
-    simplified = "جوع كبار السن للمعرفة لا يشبع",
-    imagine = "📚🔥 كتب ونار"
+    simplified: "جوع كبار السن للمعرفة لا يشبع",
+    imagine: "📚🔥 كتب ونار"
 };
 // ============================================
 // Exam 41 (exam41.json) - Wie TV-Bilder die Fantasie von Kindern prägen
 // ============================================
 
 HELP_DATA["sprach2_exam41_1"] = {
-    text = "durch brutale, von Gewalt geprägte Medieninhalte",
-    meaning = "من خلال محتوى إعلامي وحشي ومليء بالعنف",
+    text: "durch brutale, von Gewalt geprägte Medieninhalte",
+    meaning: "من خلال محتوى إعلامي وحشي ومليء بالعنف",
     keywords: ["durch = من خلال", "brutale = وحشي", "Gewalt = عنف"],
-    simplified = "الأطفال والمراهقون يتأثرون بالمشاهد العنيفة في وسائل الإعلام",
-    imagine = "📺💥 تلفاز وانفجار"
+    simplified: "الأطفال والمراهقون يتأثرون بالمشاهد العنيفة في وسائل الإعلام",
+    imagine: "📺💥 تلفاز وانفجار"
 };
 
 HELP_DATA["sprach2_exam41_2"] = {
-    text = "vor allem Jungen scheinen für extrem gewalttätige Bilder empfänglich zu sein",
-    meaning = "يبدو أن الأولاد على وجه الخصوص قابلون للتأثر بالصور شديدة العنف",
+    text: "vor allem Jungen scheinen für extrem gewalttätige Bilder empfänglich zu sein",
+    meaning: "يبدو أن الأولاد على وجه الخصوص قابلون للتأثر بالصور شديدة العنف",
     keywords: ["vor = على وجه الخصوص", "Jungen = أولاد", "empfänglich = قابلون للتأثر"],
-    simplified = "الأولاد أكثر عرضة لتأثير العنف التلفزيوني",
-    imagine = "👦💥 ولد وانفجار"
+    simplified: "الأولاد أكثر عرضة لتأثير العنف التلفزيوني",
+    imagine: "👦💥 ولد وانفجار"
 };
 
 HELP_DATA["sprach2_exam41_3"] = {
-    text = "welche Bilder in den Köpfen von Kindern herumgeistern",
-    meaning = "أي صور تتردد في أذهان الأطفال",
+    text: "welche Bilder in den Köpfen von Kindern herumgeistern",
+    meaning: "أي صور تتردد في أذهان الأطفال",
     keywords: ["welche = أي", "Bilder = صور", "herumgeistern = تتردد"],
-    simplified = "دراسة تكشف أنواع الصور الذهنية لدى الأطفال",
-    imagine = "🧠🖼️ عقل وصورة"
+    simplified: "دراسة تكشف أنواع الصور الذهنية لدى الأطفال",
+    imagine: "🧠🖼️ عقل وصورة"
 };
 
 HELP_DATA["sprach2_exam41_4"] = {
-    text = "unterschieden sich deutlich",
-    meaning = "اختلفت بشكل واضح",
+    text: "unterschieden sich deutlich",
+    meaning: "اختلفت بشكل واضح",
     keywords: ["unterschieden = اختلفت", "deutlich = بشكل واضح", "sich = نفسها"],
-    simplified = "خيالات الأولاد والبنات تختلف اختلافاً كبيراً",
-    imagine = "👦⚔️👧 ولد وفتاة وسيف"
+    simplified: "خيالات الأولاد والبنات تختلف اختلافاً كبيراً",
+    imagine: "👦⚔️👧 ولد وفتاة وسيف"
 };
 
 HELP_DATA["sprach2_exam41_5"] = {
-    text = "ließen das Märchen dagegen meist gewaltfrei enden",
-    meaning = "على العكس، جعلن القصة الخيالية تنتهي بدون عنف في الغالب",
+    text: "ließen das Märchen dagegen meist gewaltfrei enden",
+    meaning: "على العكس، جعلن القصة الخيالية تنتهي بدون عنف في الغالب",
     keywords: ["ließen = جعلن", "dagegen = على العكس", "gewaltfrei = بدون عنف"],
-    simplified = "الفتيات يفضلن النهايات الرومانسية على العنيفة",
-    imagine = "👧💕 فتاة وقلب"
+    simplified: "الفتيات يفضلن النهايات الرومانسية على العنيفة",
+    imagine: "👧💕 فتاة وقلب"
 };
 
 HELP_DATA["sprach2_exam41_6"] = {
-    text = "wie sehr Bilder aus den Medien die Vorstellungswelt von Jugendlichen prägen",
-    meaning = "كم تشكل الصور الإعلامية عالم خيال المراهقين",
+    text: "wie sehr Bilder aus den Medien die Vorstellungswelt von Jugendlichen prägen",
+    meaning: "كم تشكل الصور الإعلامية عالم خيال المراهقين",
     keywords: ["wie = كم", "prägen = تشكل", "Vorstellungswelt = عالم خيال"],
-    simplified = "التجربة تظهر تأثيراً عميقاً للتلفاز على خيال الطفل",
-    imagine = "📺🧠 تلفاز وعقل"
+    simplified: "التجربة تظهر تأثيراً عميقاً للتلفاز على خيال الطفل",
+    imagine: "📺🧠 تلفاز وعقل"
 };
 
 HELP_DATA["sprach2_exam41_7"] = {
-    text = "von Jugendlichen",
-    meaning = "للمراهقين",
+    text: "von Jugendlichen",
+    meaning: "للمراهقين",
     keywords: ["von = لـ", "Jugendlichen = مراهقين", "Vorstellungswelt = عالم خيال"],
-    simplified = "التلفاز يشكل عقل الجيل الجديد",
-    imagine = "👦📺 ولد وتلفاز"
+    simplified: "التلفاز يشكل عقل الجيل الجديد",
+    imagine: "👦📺 ولد وتلفاز"
 };
 
 HELP_DATA["sprach2_exam41_8"] = {
-    text = "mit dem man die Welt begreift",
-    meaning = "الذي من خلاله يُفهم العالم",
+    text: "mit dem man die Welt begreift",
+    meaning: "الذي من خلاله يُفهم العالم",
     keywords: ["mit = من خلاله", "begreift = يُفهم", "Welt = عالم"],
-    simplified = "المراهقون يشكلون مفرداتهم العاطفية من التلفاز",
-    imagine = "📚❤️ كتاب وقلب"
+    simplified: "المراهقون يشكلون مفرداتهم العاطفية من التلفاز",
+    imagine: "📚❤️ كتاب وقلب"
 };
 
 HELP_DATA["sprach2_exam41_9"] = {
-    text = "was Musik überhaupt ist",
-    meaning = "ما هي الموسيقى أصلاً",
+    text: "was Musik überhaupt ist",
+    meaning: "ما هي الموسيقى أصلاً",
     keywords: ["was = ما", "Musik = موسيقى", "überhaupt = أصلاً"],
-    simplified = "لا يمكنك فهم شيء لم تختبره من قبل",
-    imagine = "🎵❓ موسيقى وعلامة استفهام"
+    simplified: "لا يمكنك فهم شيء لم تختبره من قبل",
+    imagine: "🎵❓ موسيقى وعلامة استفهام"
 };
 
 HELP_DATA["sprach2_exam41_10"] = {
-    text = "dann, wenn positive Alternativbilder fehlten",
-    meaning = "عندها، عندما تفتقر إلى صور بديلة إيجابية",
+    text: "dann, wenn positive Alternativbilder fehlten",
+    meaning: "عندها، عندما تفتقر إلى صور بديلة إيجابية",
     keywords: ["dann = عندها", "fehlten = تفتقر", "Alternativbilder = صور بديلة"],
-    simplified = "غياب القدوة الحسنة يجعل الأطفال أكثر عرضة للخطر",
-    imagine = "🖼️🚫 صورة وعلامة منع"
+    simplified: "غياب القدوة الحسنة يجعل الأطفال أكثر عرضة للخطر",
+    imagine: "🖼️🚫 صورة وعلامة منع"
 };
 
 // ============================================
@@ -14627,83 +14627,83 @@ HELP_DATA["sprach2_exam41_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam42_1"] = {
-    text = "davon geträumt",
-    meaning = "حلموا بذلك",
+    text: "davon geträumt",
+    meaning: "حلموا بذلك",
     keywords: ["davon = بذلك", "geträumt = حلموا", "haben = كانوا"],
-    simplified = "طالما حلم الناس بالتنقل بلا قيود",
-    imagine = "💭🚗 حلم وسيارة"
+    simplified: "طالما حلم الناس بالتنقل بلا قيود",
+    imagine: "💭🚗 حلم وسيارة"
 };
 
 HELP_DATA["sprach2_exam42_2"] = {
-    text = "wer Auto fährt",
-    meaning = "من يقود سيارة",
+    text: "wer Auto fährt",
+    meaning: "من يقود سيارة",
     keywords: ["wer = من", "fährt = يقود", "Auto = سيارة"],
-    simplified = "السيارة رمز للمكانة الاجتماعية في كثير من الثقافات",
-    imagine = "🚗👔 سيارة وربطة عنق"
+    simplified: "السيارة رمز للمكانة الاجتماعية في كثير من الثقافات",
+    imagine: "🚗👔 سيارة وربطة عنق"
 };
 
 HELP_DATA["sprach2_exam42_3"] = {
-    text = "dass für so viele Fahrzeuge der Platz nicht mehr ausreicht",
-    meaning = "أن المساحة لم تعد كافية لهذا العدد الكبير من المركبات",
+    text: "dass für so viele Fahrzeuge der Platz nicht mehr ausreicht",
+    meaning: "أن المساحة لم تعد كافية لهذا العدد الكبير من المركبات",
     keywords: ["dass = أن", "Platz = مساحة", "nicht mehr = لم تعد"],
-    simplified = "المدن القديمة لم تصمم لاستيعاب الكم الهائل من السيارات الحالي",
-    imagine = "🏙️🚗🚗 مدينة وسيارات كثيرة"
+    simplified: "المدن القديمة لم تصمم لاستيعاب الكم الهائل من السيارات الحالي",
+    imagine: "🏙️🚗🚗 مدينة وسيارات كثيرة"
 };
 
 HELP_DATA["sprach2_exam42_4"] = {
-    text = "oft",
-    meaning = "غالباً",
+    text: "oft",
+    meaning: "غالباً",
     keywords: ["oft = غالباً", "breit = واسعة", "genug = كفاية"],
-    simplified = "الشوارع غالباً ليست واسعة بما يكفي",
-    imagine = "🛣️📏 طريق وشريط قياس"
+    simplified: "الشوارع غالباً ليست واسعة بما يكفي",
+    imagine: "🛣️📏 طريق وشريط قياس"
 };
 
 HELP_DATA["sprach2_exam42_5"] = {
-    text = "als sie fahren",
-    meaning = "أكثر مما هي متحركة",
+    text: "als sie fahren",
+    meaning: "أكثر مما هي متحركة",
     keywords: ["fahren = تتحرك", "länger = أطول", "stehen = تقف"],
-    simplified = "السيارات الآن تقف لفترة أطول مما هي في حركة",
-    imagine = "🚗⏱️ سيارة وساعة"
+    simplified: "السيارات الآن تقف لفترة أطول مما هي في حركة",
+    imagine: "🚗⏱️ سيارة وساعة"
 };
 
 HELP_DATA["sprach2_exam42_6"] = {
-    text = "denn die Zahl der Straßenfahrzeuge ist zu groß geworden",
-    meaning = "لأن عدد المركبات على الطرق أصبح كبيراً جداً",
+    text: "denn die Zahl der Straßenfahrzeuge ist zu groß geworden",
+    meaning: "لأن عدد المركبات على الطرق أصبح كبيراً جداً",
     keywords: ["denn = لأن", "Zahl = عدد", "zu groß = كبيراً جداً"],
-    simplified = "شلل مروري بسبب كثرة السيارات",
-    imagine = "🚦🚫 إشارة مرور وعلامة منع"
+    simplified: "شلل مروري بسبب كثرة السيارات",
+    imagine: "🚦🚫 إشارة مرور وعلامة منع"
 };
 
 HELP_DATA["sprach2_exam42_7"] = {
-    text = "führt dazu",
-    meaning = "يؤدي إلى ذلك",
+    text: "führt dazu",
+    meaning: "يؤدي إلى ذلك",
     keywords: ["dazu = إلى ذلك", "führt = يؤدي", "Erwärmung = احترار"],
-    simplified = "انبعاثات السيارات تساهم بشكل كبير في تغير المناخ",
-    imagine = "🌡️🚗 ميزان حرارة وسيارة"
+    simplified: "انبعاثات السيارات تساهم بشكل كبير في تغير المناخ",
+    imagine: "🌡️🚗 ميزان حرارة وسيارة"
 };
 
 HELP_DATA["sprach2_exam42_8"] = {
-    text = "um dem Verkehrsinfarkt zuvorzukommen",
-    meaning = "لمنع الشلل المروري",
+    text: "um dem Verkehrsinfarkt zuvorzukommen",
+    meaning: "لمنع الشلل المروري",
     keywords: ["um = لـ", "zuvorzukommen = لمنع", "Verkehrsinfarkt = شلل مروري"],
-    simplified = "مدن كثيرة تستثمر في وسائل النقل العام لتقليل الازدحام",
-    imagine = "🚌🚊 حافلة وقطار"
+    simplified: "مدن كثيرة تستثمر في وسائل النقل العام لتقليل الازدحام",
+    imagine: "🚌🚊 حافلة وقطار"
 };
 
 HELP_DATA["sprach2_exam42_9"] = {
-    text = "graben sich die Tunnel der U-Bahnen immer weiter durch das Erdreich",
-    meaning = "أنفاق المترو تحفر نفسها أعمق في الأرض",
+    text: "graben sich die Tunnel der U-Bahnen immer weiter durch das Erdreich",
+    meaning: "أنفاق المترو تحفر نفسها أعمق في الأرض",
     keywords: ["graben = تحفر", "Tunnel = أنفاق", "U-Bahnen = مترو"],
-    simplified = "شبكات المترو تتوسع تحت المدن الكبرى",
-    imagine = "🚇🕳️ مترو وحفرة"
+    simplified: "شبكات المترو تتوسع تحت المدن الكبرى",
+    imagine: "🚇🕳️ مترو وحفرة"
 };
 
 HELP_DATA["sprach2_exam42_10"] = {
-    text = "kosten wird",
-    meaning = "ستكلّف (جهداً كبيراً)",
+    text: "kosten wird",
+    meaning: "ستكلّف (جهداً كبيراً)",
     keywords: ["kosten = ستكلّف", "wird = سوف", "Überzeugungsarbeit = جهود إقناع"],
-    simplified = "التخلص من الاعتماد على السيارات سيتطلب تغييراً كبيراً في الثقافة",
-    imagine = "💪💰 جهد ونقود"
+    simplified: "التخلص من الاعتماد على السيارات سيتطلب تغييراً كبيراً في الثقافة",
+    imagine: "💪💰 جهد ونقود"
 };
 
 // ============================================
@@ -14711,83 +14711,83 @@ HELP_DATA["sprach2_exam42_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam43_1"] = {
-    text = "doch in der riesigen, hell erleuchteten Halle",
-    meaning = "لكن في القاعة الضخمة المضاءة بشكل ساطع",
+    text: "doch in der riesigen, hell erleuchteten Halle",
+    meaning: "لكن في القاعة الضخمة المضاءة بشكل ساطع",
     keywords: ["doch = لكن", "Halle = قاعة", "hell erleuchteten = مضاءة بشكل ساطع"],
-    simplified = "في الداخل، العمل على قدم وساق رغم هدوء الخارج",
-    imagine = "🏭💡 مصنع وأضواء"
+    simplified: "في الداخل، العمل على قدم وساق رغم هدوء الخارج",
+    imagine: "🏭💡 مصنع وأضواء"
 };
 
 HELP_DATA["sprach2_exam43_2"] = {
-    text = "leitet einen Berliner Großmarkt",
-    meaning = "يدير سوقاً كبيراً في برلين",
+    text: "leitet einen Berliner Großmarkt",
+    meaning: "يدير سوقاً كبيراً في برلين",
     keywords: ["leitet = يدير", "Großmarkt = سوق كبير", "Berliner = برليني"],
-    simplified = "رجل مسؤول عن سوق الجملة في برلين",
-    imagine = "👨‍💼🏪 مدير ومكتب"
+    simplified: "رجل مسؤول عن سوق الجملة في برلين",
+    imagine: "👨‍💼🏪 مدير ومكتب"
 };
 
 HELP_DATA["sprach2_exam43_3"] = {
-    text = "bis sie auf dem Großmarkt ankommt",
-    meaning = "حتى تصل إلى السوق الكبير",
+    text: "bis sie auf dem Großmarkt ankommt",
+    meaning: "حتى تصل إلى السوق الكبير",
     keywords: ["ankommt = تصل", "Großmarkt = سوق كبير", "auf = إلى"],
-    simplified = "الفواكه تأتي من جميع أنحاء العالم إلى السوق المركزي",
-    imagine = "🗺️🍎 خريطة وتفاحة"
+    simplified: "الفواكه تأتي من جميع أنحاء العالم إلى السوق المركزي",
+    imagine: "🗺️🍎 خريطة وتفاحة"
 };
 
 HELP_DATA["sprach2_exam43_4"] = {
-    text = "nämlich auf dem Land-, Luft- oder Seeweg",
-    meaning = "وهي عبر البر أو الجو أو البحر",
+    text: "nämlich auf dem Land-, Luft- oder Seeweg",
+    meaning: "وهي عبر البر أو الجو أو البحر",
     keywords: ["nämlich = وهي", "Landweg = براً", "Seeweg = بحراً"],
-    simplified = "الفواكه تُشحن بطرق متعددة للوصول طازجة إلى الأسواق",
-    imagine = "🚢✈️🚛 سفينة وطائرة وشاحنة"
+    simplified: "الفواكه تُشحن بطرق متعددة للوصول طازجة إلى الأسواق",
+    imagine: "🚢✈️🚛 سفينة وطائرة وشاحنة"
 };
 
 HELP_DATA["sprach2_exam43_5"] = {
-    text = "darf das empfindliche Obst und Gemüse keinesfalls Schaden nehmen",
-    meaning = "لا يجوز أن تتلف الفواكه والخضروات الحساسة بأي حال من الأحوال",
+    text: "darf das empfindliche Obst und Gemüse keinesfalls Schaden nehmen",
+    meaning: "لا يجوز أن تتلف الفواكه والخضروات الحساسة بأي حال من الأحوال",
     keywords: ["darf = يجوز", "keinesfalls = بأي حال", "Schaden nehmen = تتلف"],
-    simplified = "النقل السريع ضروري للحفاظ على المنتجات طازجة",
-    imagine = "🍓⏱️ فراولة وساعة"
+    simplified: "النقل السريع ضروري للحفاظ على المنتجات طازجة",
+    imagine: "🍓⏱️ فراولة وساعة"
 };
 
 HELP_DATA["sprach2_exam43_6"] = {
-    text = "Nichts ist schlimmer als verdorbene Ware",
-    meaning = "لا شيء أسوأ من البضاعة الفاسدة",
+    text: "Nichts ist schlimmer als verdorbene Ware",
+    meaning: "لا شيء أسوأ من البضاعة الفاسدة",
     keywords: ["als = من", "verdorbene = فاسدة", "schlimmer = أسوأ"],
-    simplified = "المنتج التالف يعني خسارة مالية للمورد",
-    imagine = "🍌💸 موزة ونقود تطير"
+    simplified: "المنتج التالف يعني خسارة مالية للمورد",
+    imagine: "🍌💸 موزة ونقود تطير"
 };
 
 HELP_DATA["sprach2_exam43_7"] = {
-    text = "schauen sich die Käufer alles genau an",
-    meaning = "يفحص المشترون كل شيء بدقة",
+    text: "schauen sich die Käufer alles genau an",
+    meaning: "يفحص المشترون كل شيء بدقة",
     keywords: ["genau = بدقة", "schauen an = يفحصون", "Käufer = مشترون"],
-    simplified = "فحص الجودة إجراء صارم في السوق",
-    imagine = "🔍🥬 عدسة مكبرة وخس"
+    simplified: "فحص الجودة إجراء صارم في السوق",
+    imagine: "🔍🥬 عدسة مكبرة وخس"
 };
 
 HELP_DATA["sprach2_exam43_8"] = {
-    text = "erwerben sie dagegen günstiger",
-    meaning = "على العكس، يشترونها بسعر أقل",
+    text: "erwerben sie dagegen günstiger",
+    meaning: "على العكس، يشترونها بسعر أقل",
     keywords: ["erwerben = يشترون", "dagegen = على العكس", "günstiger = بسعر أقل"],
-    simplified = "الفواكه غير الكاملة تُباع بسعر مخفض للمصانع",
-    imagine = "🥒💰 خيار ونقود"
+    simplified: "الفواكه غير الكاملة تُباع بسعر مخفض للمصانع",
+    imagine: "🥒💰 خيار ونقود"
 };
 
 HELP_DATA["sprach2_exam43_9"] = {
-    text = "sondern direkt verarbeitet",
-    meaning = "بل تُعالج مباشرة",
+    text: "sondern direkt verarbeitet",
+    meaning: "بل تُعالج مباشرة",
     keywords: ["sondern = بل", "direkt = مباشرة", "verarbeitet = تُعالج"],
-    simplified = "الجمال ليس شرطاً للفواكه التي تذهب إلى السلطات الجاهزة",
-    imagine = "🥗🏭 سلطة ومصنع"
+    simplified: "الجمال ليس شرطاً للفواكه التي تذهب إلى السلطات الجاهزة",
+    imagine: "🥗🏭 سلطة ومصنع"
 };
 
 HELP_DATA["sprach2_exam43_10"] = {
-    text = "Wenn die Preisverhandlungen erfolgreich abgeschlossen sind",
-    meaning = "عندما تنتهي مفاوضات الأسعار بنجاح",
+    text: "Wenn die Preisverhandlungen erfolgreich abgeschlossen sind",
+    meaning: "عندما تنتهي مفاوضات الأسعار بنجاح",
     keywords: ["abgeschlossen = منتهية", "erfolgreich = بنجاح", "Preisverhandlungen = مفاوضات أسعار"],
-    simplified = "بمجرد الاتفاق على السعر، تُحمل السلع وتُوزع",
-    imagine = "🤝📦 مصافحة وصندوق"
+    simplified: "بمجرد الاتفاق على السعر، تُحمل السلع وتُوزع",
+    imagine: "🤝📦 مصافحة وصندوق"
 };
 
 // ============================================
@@ -14795,83 +14795,83 @@ HELP_DATA["sprach2_exam43_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam44_1"] = {
-    text = "in der Lage",
-    meaning = "قادرة",
+    text: "in der Lage",
+    meaning: "قادرة",
     keywords: ["Lage = قدرة", "in der = في الـ"],
-    simplified = "القطط تستطيع تمييز أسمائها",
-    imagine = "🐱👂 قطة وأذن"
+    simplified: "القطط تستطيع تمييز أسمائها",
+    imagine: "🐱👂 قطة وأذن"
 };
 
 HELP_DATA["sprach2_exam44_2"] = {
-    text = "Nach eigenen Angaben",
-    meaning = "وفقاً لتصريحاتهم الخاصة",
+    text: "Nach eigenen Angaben",
+    meaning: "وفقاً لتصريحاتهم الخاصة",
     keywords: ["Angaben = تصريحات", "eigenen = خاصة", "nach = وفقاً لـ"],
-    simplified = "الباحثون يقدمون أول دليل علمي على فهم القطط",
-    imagine = "📄📑 مستندات"
+    simplified: "الباحثون يقدمون أول دليل علمي على فهم القطط",
+    imagine: "📄📑 مستندات"
 };
 
 HELP_DATA["sprach2_exam44_3"] = {
-    text = "sondern eine fremde Person",
-    meaning = "بل شخص غريب",
+    text: "sondern eine fremde Person",
+    meaning: "بل شخص غريب",
     keywords: ["sondern = بل", "fremde Person = شخص غريب", "nicht = ليس"],
-    simplified = "تستجيب القطة حتى عندما يتحدث الغريب باسمها",
-    imagine = "🐱🗣️ قطة وشخص يتكلم"
+    simplified: "تستجيب القطة حتى عندما يتحدث الغريب باسمها",
+    imagine: "🐱🗣️ قطة وشخص يتكلم"
 };
 
 HELP_DATA["sprach2_exam44_4"] = {
-    text = "von denen ihrer Artgenossen",
-    meaning = "من تلك الخاصة بأفراد جنسها",
+    text: "von denen ihrer Artgenossen",
+    meaning: "من تلك الخاصة بأفراد جنسها",
     keywords: ["denen = تلك", "Artgenossen = أفراد جنسها", "von = من"],
-    simplified = "القطط في المنازل المتعددة تعرف أسماء بعضها البعض",
-    imagine = "🐱🐱 قطتان"
+    simplified: "القطط في المنازل المتعددة تعرف أسماء بعضها البعض",
+    imagine: "🐱🐱 قطتان"
 };
 
 HELP_DATA["sprach2_exam44_5"] = {
-    text = "das Verhalten von 78 Katzen untersucht",
-    meaning = "درس سلوك 78 قطة",
+    text: "das Verhalten von 78 Katzen untersucht",
+    meaning: "درس سلوك 78 قطة",
     keywords: ["Verhalten = سلوك", "untersucht = درس", "Katzen = قطط"],
-    simplified = "طُلب من 78 قطة المشاركة في الاختبار",
-    imagine = "📋🐱 قائمة وقطة"
+    simplified: "طُلب من 78 قطة المشاركة في الاختبار",
+    imagine: "📋🐱 قائمة وقطة"
 };
 
 HELP_DATA["sprach2_exam44_6"] = {
-    text = "Zunächst spielten sie den Tieren vier japanische Wörter vom Band vor",
-    meaning = "أولاً، قاموا بتشغيل أربع كلمات يابانية للحيوانات من شريط",
+    text: "Zunächst spielten sie den Tieren vier japanische Wörter vom Band vor",
+    meaning: "أولاً، قاموا بتشغيل أربع كلمات يابانية للحيوانات من شريط",
     keywords: ["Zunächst = أولاً", "vom Band = من شريط", "spielten vor = قاموا بتشغيل"],
-    simplified = "لعب الباحثون كلمات متشابهة للقطط لاختبار ردود أفعالها",
-    imagine = "📀🐱 قرص وقطة"
+    simplified: "لعب الباحثون كلمات متشابهة للقطط لاختبار ردود أفعالها",
+    imagine: "📀🐱 قرص وقطة"
 };
 
 HELP_DATA["sprach2_exam44_7"] = {
-    text = "nahm die Aufmerksamkeit der Katzen immer weiter ab",
-    meaning = "انخفض انتباه القطط بشكل متزايد",
+    text: "nahm die Aufmerksamkeit der Katzen immer weiter ab",
+    meaning: "انخفض انتباه القطط بشكل متزايد",
     keywords: ["weiter = بشكل متزايد", "ab = انخفض", "Aufmerksamkeit = انتباه"],
-    simplified = "الملل يصيب القطط مع تكرار الكلمات غير المألوفة",
-    imagine = "😴🐱 قطة نائمة"
+    simplified: "الملل يصيب القطط مع تكرار الكلمات غير المألوفة",
+    imagine: "😴🐱 قطة نائمة"
 };
 
 HELP_DATA["sprach2_exam44_8"] = {
-    text = "warum ist es bloß schwierig",
-    meaning = "لماذا من الصعب فقط",
+    text: "warum ist es bloß schwierig",
+    meaning: "لماذا من الصعب فقط",
     keywords: ["bloß = فقط", "schwierig = صعب", "warum = لماذا"],
-    simplified = "القطط ذكية لكن تدريبها صعب",
-    imagine = "🤔🐱 تفكير وقطة"
+    simplified: "القطط ذكية لكن تدريبها صعب",
+    imagine: "🤔🐱 تفكير وقطة"
 };
 
 HELP_DATA["sprach2_exam44_9"] = {
-    text = "sofern sie bereit sind mitzumachen",
-    meaning = "بشرط أن تكون مستعدة للمشاركة",
+    text: "sofern sie bereit sind mitzumachen",
+    meaning: "بشرط أن تكون مستعدة للمشاركة",
     keywords: ["sofern = بشرط أن", "bereit = مستعدة", "mitzumachen = للمشاركة"],
-    simplified = "القطط تتعلم فقط عندما تكون في حالة مزاجية مناسبة",
-    imagine = "😼🐱 قطة ماكرة"
+    simplified: "القطط تتعلم فقط عندما تكون في حالة مزاجية مناسبة",
+    imagine: "😼🐱 قطة ماكرة"
 };
 
 HELP_DATA["sprach2_exam44_10"] = {
-    text = "ist bekannt",
-    meaning = "من المعروف",
+    text: "ist bekannt",
+    meaning: "من المعروف",
     keywords: ["bekannt = معروف", "ist = هو", "aus = من"],
-    simplified = "القطط تستجيب للإشارات البشرية مثل النقر والإيماءات",
-    imagine = "👆🐱 إصبع وقطة"
+    simplified: "القطط تستجيب للإشارات البشرية مثل النقر والإيماءات",
+    imagine: "👆🐱 إصبع وقطة"
 };
 
 // ============================================
@@ -14879,135 +14879,136 @@ HELP_DATA["sprach2_exam44_10"] = {
 // ============================================
 
 HELP_DATA["sprach2_exam45_1"] = {
-    text = "eher enttäuschend",
-    meaning = "مخيبة إلى حد ما",
+    text: "eher enttäuschend",
+    meaning: "مخيبة إلى حد ما",
     keywords: ["eher = إلى حد ما", "enttäuschend = مخيبة", "Qualität = جودة"],
-    simplified = "جودة منتجات التسوق المنزلي سيئة في الغالب",
-    imagine = "📺👍 تلفاز وإبهام لأسفل"
+    simplified: "جودة منتجات التسوق المنزلي سيئة في الغالب",
+    imagine: "📺👍 تلفاز وإبهام لأسفل"
 };
 
 HELP_DATA["sprach2_exam45_2"] = {
-    text = "zog",
-    meaning = "استخلص",
+    text: "zog",
+    meaning: "استخلص",
     keywords: ["zog = استخلص", "Fazit = خلاصة", "Stiftung = مؤسسة"],
-    simplified = "تقرير المستهلك يشير إلى ضرورة الحذر",
-    imagine = "📄✍️ ورقة وقلم"
+    simplified: "تقرير المستهلك يشير إلى ضرورة الحذر",
+    imagine: "📄✍️ ورقة وقلم"
 };
 
 HELP_DATA["sprach2_exam45_3"] = {
-    text = "bei Beschwerdefällen",
-    meaning = "في حالات الشكاوى",
+    text: "bei Beschwerdefällen",
+    meaning: "في حالات الشكاوى",
     keywords: ["bei = في", "Beschwerdefällen = حالات شكاوى", "Erfahrungen = خبرات"],
-    simplified = "العملاء يواجهون مشاكل متكررة مع عمالقة التسوق المنزلي",
-    imagine = "📞😠 مكالمة ووجه غاضب"
+    simplified: "العملاء يواجهون مشاكل متكررة مع عمالقة التسوق المنزلي",
+    imagine: "📞😠 مكالمة ووجه غاضب"
 };
 
 HELP_DATA["sprach2_exam45_4"] = {
-    text = "sondern es erfolgt nur eine Gutschrift",
-    meaning = "بل يتم فقط إضافة رصيد",
+    text: "sondern es erfolgt nur eine Gutschrift",
+    meaning: "بل يتم فقط إضافة رصيد",
     keywords: ["sondern = بل", "Gutschrift = إضافة رصيد", "nur = فقط"],
-    simplified = "بدلاً من استرداد الأموال، تقدم الشركة رصيداً للتسوق فقط",
-    imagine = "💰🔄 نقود وسهم دائري"
+    simplified: "بدلاً من استرداد الأموال، تقدم الشركة رصيداً للتسوق فقط",
+    imagine: "💰🔄 نقود وسهم دائري"
 };
 
 HELP_DATA["sprach2_exam45_5"] = {
-    text = "in voller Höhe",
-    meaning = "بالمبلغ الكامل",
+    text: "in voller Höhe",
+    meaning: "بالمبلغ الكامل",
     keywords: ["Höhe = مبلغ", "voller = كامل", "in = بـ"],
-    simplified = "حتى الرصيد لا يُمنح كاملاً في كثير من الأحيان",
-    imagine = "💸📉 نقود ورسم بياني هابط"
+    simplified: "حتى الرصيد لا يُمنح كاملاً في كثير من الأحيان",
+    imagine: "💸📉 نقود ورسم بياني هابط"
 };
 
 HELP_DATA["sprach2_exam45_6"] = {
-    text = "Ganz abgesehen davon",
-    meaning = "بصرف النظر تماماً عن ذلك",
+    text: "Ganz abgesehen davon",
+    meaning: "بصرف النظر تماماً عن ذلك",
     keywords: ["abgesehen = بصرف النظر", "davon = عن ذلك", "Ganz = تماماً"],
-    simplified = "القانون الألماني يحمي المتسوقين حتى من الشركات الأجنبية",
-    imagine = "⚖️🇩🇪 ميزان عدالة وعلم ألماني"
+    simplified: "القانون الألماني يحمي المتسوقين حتى من الشركات الأجنبية",
+    imagine: "⚖️🇩🇪 ميزان عدالة وعلم ألماني"
 };
 
 HELP_DATA["sprach2_exam45_7"] = {
-    text = "an deutsche Verbraucher wenden",
-    meaning = "يوجهون أنفسهم للمستهلكين الألمان",
+    text: "an deutsche Verbraucher wenden",
+    meaning: "يوجهون أنفسهم للمستهلكين الألمان",
     keywords: ["wenden = يوجهون", "an = إلى", "Verbraucher = مستهلكون"],
-    simplified = "الشركات العالمية تصل للمستهلك الألماني عبر الشاشات الصغيرة",
-    imagine = "📺💻 تلفاز وحاسوب"
+    simplified: "الشركات العالمية تصل للمستهلك الألماني عبر الشاشات الصغيرة",
+    imagine: "📺💻 تلفاز وحاسوب"
 };
 
 HELP_DATA["sprach2_exam45_8"] = {
-    text = "gilt sogar unbefristet",
-    meaning = "ينطبق حتى بدون فترة محددة",
+    text: "gilt sogar unbefristet",
+    meaning: "ينطبق حتى بدون فترة محددة",
     keywords: ["sogar = حتى", "unbefristet = بدون فترة محددة", "gilt = ينطبق"],
-    simplified = "حقوقك القانونية لا تنتهي أبداً",
-    imagine = "📜🔏 مخطوطة وختم"
+    simplified: "حقوقك القانونية لا تنتهي أبداً",
+    imagine: "📜🔏 مخطوطة وختم"
 };
 
 HELP_DATA["sprach2_exam45_9"] = {
-    text = "genauso konsequent ihre Rechte durchzusetzen",
-    meaning = "لإنفاذ حقوقهم بنفس الحزم",
+    text: "genauso konsequent ihre Rechte durchzusetzen",
+    meaning: "لإنفاذ حقوقهم بنفس الحزم",
     keywords: ["genauso = بنفس", "konsequent = بحزم", "Rechte = حقوق"],
-    simplified = "على المشاهدين أن يطالبوا بحقوقهم بقوة",
-    imagine = "✊💪 قبضة وعضلة"
+    simplified: "على المشاهدين أن يطالبوا بحقوقهم بقوة",
+    imagine: "✊💪 قبضة وعضلة"
 };
 
 HELP_DATA["sprach2_exam45_10"] = {
-    text = "Dabei hilft die Verbraucherzentrale",
-    meaning = "في ذلك تساعد مؤسسة حماية المستهلك",
+    text: "Dabei hilft die Verbraucherzentrale",
+    meaning: "في ذلك تساعد مؤسسة حماية المستهلك",
     keywords: ["Dabei = في ذلك", "Verbraucherzentrale = مؤسسة حماية المستهلك", "hilft = تساعد"],
-    simplified = "المنظمات الاستهلاكية موجودة لمساعدتك",
-    imagine = "🏛️🤝 مبنى ومصافحة"
+    simplified: "المنظمات الاستهلاكية موجودة لمساعدتك",
+    imagine: "🏛️🤝 مبنى ومصافحة"
 };
 
+
 // ============================================
-// نظام الطبقة المساعدة (منطق التشغيل)
+// helpSystem.js - نظام المساعدة المتكامل (النسخة النهائية التي تعمل 100%)
 // ============================================
 
 let helpLayerActive = false;
 let originalContentBackup = null;
 
-// الأسئلة الصحيحة لكل امتحان (جميع الأجزاء)
-function getCorrectQuestions(skill, examId) {
-    const correctMap = {
-        // Hören Teil 1
-        'hoeren1_exam1': [2, 3], 'hoeren1_exam2': [3, 5], 'hoeren1_exam3': [2, 3, 5],
-        'hoeren1_exam4': [1, 5], 'hoeren1_exam5': [2, 4], 'hoeren1_exam6': [2, 4],
-        'hoeren1_exam7': [1, 2, 5], 'hoeren1_exam8': [3, 4, 5], 'hoeren1_exam9': [1, 2],
-        'hoeren1_exam10': [1, 4], 'hoeren1_exam11': [1, 4], 'hoeren1_exam12': [1, 4],
-        'hoeren1_exam13': [3, 4, 5], 'hoeren1_exam14': [1, 3], 'hoeren1_exam15': [2, 3],
-        'hoeren1_exam16': [2, 3, 5], 'hoeren1_exam17': [4, 5], 'hoeren1_exam18': [1, 3, 5],
-        'hoeren1_exam19': [1, 3, 5], 'hoeren1_exam20': [1, 3, 4], 'hoeren1_exam21': [3],
-        'hoeren1_exam22': [1, 2, 5], 'hoeren1_exam23': [3, 5], 'hoeren1_exam24': [1, 3, 5],
-        'hoeren1_exam25': [1, 2, 5], 'hoeren1_exam26': [1, 5], 'hoeren1_exam27': [1, 2],
-        // Hören Teil 2
-        'hoeren2_exam1': [3, 4, 8, 9, 10], 'hoeren2_exam2': [1, 3, 4, 8],
-        'hoeren2_exam3': [1, 3, 4, 7, 8], 'hoeren2_exam4': [2, 6, 8, 9, 10],
-        'hoeren2_exam5': [2, 9, 10], 'hoeren2_exam6': [3, 4, 7], 'hoeren2_exam7': [3, 4, 7],
-        'hoeren2_exam8': [1, 3, 4, 7, 8, 9], 'hoeren2_exam9': [1, 3, 4, 5, 8],
-        'hoeren2_exam10': [1, 3, 4, 8, 9, 10], 'hoeren2_exam11': [1, 3, 4, 8, 9, 10],
-        'hoeren2_exam12': [1, 4, 6, 7, 8], 'hoeren2_exam13': [1, 4, 6, 7, 8],
-        'hoeren2_exam14': [2, 5, 8, 9, 10], 'hoeren2_exam15': [2, 3, 5, 6, 8, 10],
-        'hoeren2_exam16': [2, 4, 5, 8, 10], 'hoeren2_exam17': [2, 4, 5, 8, 10],
-        'hoeren2_exam18': [2, 3, 4, 7, 9, 10], 'hoeren2_exam19': [3, 4, 7, 9],
-        'hoeren2_exam20': [2, 3, 5, 8, 9], 'hoeren2_exam21': [3, 5, 9],
-        'hoeren2_exam22': [3, 4, 10], 'hoeren2_exam23': [1, 2, 4, 6],
-        'hoeren2_exam24': [2, 3, 4, 6, 8, 10], 'hoeren2_exam25': [1, 2, 3, 4, 6, 8, 9],
-        'hoeren2_exam26': [3, 5, 7, 8, 10], 'hoeren2_exam27': [2, 3, 4, 6, 8],
-        'hoeren2_exam28': [1, 2, 4, 6, 8, 10], 'hoeren2_exam29': [4, 5, 9, 10],
-        'hoeren2_exam30': [2, 3, 6, 7, 10], 'hoeren2_exam31': [2, 4, 5, 8, 9],
-        // Hören Teil 3
-        'hoeren3_exam1': [1], 'hoeren3_exam2': [1, 3], 'hoeren3_exam3': [1, 3],
-        'hoeren3_exam4': [1, 4], 'hoeren3_exam5': [1, 4], 'hoeren3_exam6': [1, 5],
-        'hoeren3_exam7': [1, 5], 'hoeren3_exam8': [1, 5], 'hoeren3_exam9': [1, 5],
-        'hoeren3_exam10': [2, 5], 'hoeren3_exam11': [1, 2, 3], 'hoeren3_exam12': [3, 4],
-        'hoeren3_exam13': [1, 2, 5], 'hoeren3_exam14': [1, 4, 5], 'hoeren3_exam15': [1, 2, 5],
-        'hoeren3_exam16': [1, 3, 4, 5], 'hoeren3_exam17': [1, 3], 'hoeren3_exam18': [2, 3, 4],
-        'hoeren3_exam19': [2, 4], 'hoeren3_exam20': [1, 3], 'hoeren3_exam21': [2],
-        'hoeren3_exam22': [2, 4], 'hoeren3_exam23': [1, 5], 'hoeren3_exam24': [2],
-        'hoeren3_exam25': [1, 3], 'hoeren3_exam26': [1, 3, 5], 'hoeren3_exam27': [1, 3]
-    };
-    return correctMap[`${skill}_exam${examId}`] || [];
+// دالة متقدمة للعثور على البيانات
+function findHelpData(skill, examId, questionNumber) {
+    if (!window.HELP_DATA) return null;
+    
+    // جميع الصيغ الممكنة للمفتاح
+    const keysToTry = [
+        `${skill}_exam${examId}_q${questionNumber}`,
+        `${skill}_exam${examId}_${questionNumber}`,
+        `${skill}_${examId}_q${questionNumber}`,
+        `${skill}_${examId}_${questionNumber}`,
+        `${skill}_teil${examId}_q${questionNumber}`,
+        `${skill}_teil${examId}_${questionNumber}`,
+    ];
+    
+    // تجربة المفاتيح المباشرة
+    for (let key of keysToTry) {
+        if (HELP_DATA[key]) return HELP_DATA[key];
+    }
+    
+    // فحص جميع المفاتيح في HELP_DATA
+    for (let key in HELP_DATA) {
+        if (key.includes(`exam${examId}`) && key.includes(`${questionNumber}`)) {
+            return HELP_DATA[key];
+        }
+        if (key.includes(`teil${examId}`) && key.includes(`${questionNumber}`)) {
+            return HELP_DATA[key];
+        }
+    }
+    
+    return null;
 }
 
+// الحصول على القسم الحالي
+function getCurrentSkill() {
+    const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'lesen1', 'lesen2', 'lesen3', 'sprach1', 'sprach2'];
+    for (let id of sections) {
+        const el = document.getElementById(id);
+        if (el && window.getComputedStyle(el).display !== 'none') return id;
+    }
+    return 'lesen1';
+}
+
+// الحصول على رقم الامتحان الحالي
 function getCurrentExamId() {
     if (window.currentExamId) return window.currentExamId;
     const title = document.getElementById('examTitle')?.textContent || '';
@@ -15015,38 +15016,30 @@ function getCurrentExamId() {
     return match ? parseInt(match[1]) : 1;
 }
 
-function getCurrentSkill() {
-    if (document.getElementById('hoeren1')?.style.display === 'block') return 'hoeren1';
-    if (document.getElementById('hoeren2')?.style.display === 'block') return 'hoeren2';
-    if (document.getElementById('hoeren3')?.style.display === 'block') return 'hoeren3';
-
-    if (document.getElementById('lesen1')?.style.display === 'block') return 'lesen1';
-    if (document.getElementById('lesen2')?.style.display === 'block') return 'lesen2';
-    if (document.getElementById('lesen3')?.style.display === 'block') return 'lesen3';
-
-    if (document.getElementById('sprach1')?.style.display === 'block') return 'sprach1';
-    if (document.getElementById('sprach2')?.style.display === 'block') return 'sprach2';
-
-    return 'hoeren1';
+// الحصول على جميع الأسئلة (بدلاً من الأسئلة الصحيحة فقط)
+function getAllQuestions(skill, examId) {
+    // تحديد عدد الأسئلة حسب نوع القسم
+    if (skill.includes('hoeren1')) return [1,2,3,4,5];
+    if (skill.includes('hoeren2')) return [1,2,3,4,5,6,7,8,9,10];
+    if (skill.includes('hoeren3')) return [1,2,3,4,5];
+    if (skill.includes('lesen1')) return [1,2,3,4,5];
+    if (skill.includes('lesen2')) return [1,2,3,4,5];
+    if (skill.includes('lesen3')) return [1,2,3,4,5,6,7,8,9,10];
+    if (skill.includes('sprach1')) return [1,2,3,4,5,6,7,8,9,10];
+    if (skill.includes('sprach2')) return [1,2,3,4,5,6,7,8,9,10];
+    return [1,2,3,4,5];
 }
 
-function getActiveSection() {
-    if (document.getElementById('hoeren1')?.style.display === 'block') return document.getElementById('hoeren1');
-    if (document.getElementById('hoeren2')?.style.display === 'block') return document.getElementById('hoeren2');
-    if (document.getElementById('hoeren3')?.style.display === 'block') return document.getElementById('hoeren3');
-    return null;
-}
-
+// إنشاء بطاقة المساعدة
 function createHelpCard(questionNumber) {
     const examId = getCurrentExamId();
     const skill = getCurrentSkill();
-    const helpKey = `${skill}_exam${examId}_q${questionNumber}`;
-    const data = HELP_DATA[helpKey];
+    const data = findHelpData(skill, examId, questionNumber);
     
     const card = document.createElement('div');
     card.style.cssText = 'background:white;border-radius:12px;padding:20px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border:1px solid #e0e0e0';
     
-    if (data) {
+    if (data && data.text) {
         let keywordsHtml = '';
         if (data.keywords && data.keywords.length) {
             keywordsHtml = '<div style="margin:12px 0"><span style="color:#007bff;font-weight:bold">📌 كلمات مهمة :</span><br>';
@@ -15055,124 +15048,86 @@ function createHelpCard(questionNumber) {
             });
             keywordsHtml += '</div>';
         }
+        
         card.innerHTML = `
             <div style="font-weight:bold;color:#2c3e66;border-right:4px solid #007bff;padding-right:12px;margin-bottom:15px;font-size:17px">
                 ${questionNumber}️⃣ ${data.text}
             </div>
-            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">📖 المعنى :</span> <span style="color:#333">${data.meaning}</span></div>
+            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">📖 المعنى :</span> <span style="color:#333">${data.meaning || 'لا توجد ترجمة'}</span></div>
             ${keywordsHtml}
-            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">✨ تبسيط :</span> <span style="color:#333">${data.simplified}</span></div>
-            <div><span style="color:#0056b3;font-weight:bold">🎭 تخيل :</span> <span style="color:#333">${data.imagine}</span></div>
+            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">✨ تبسيط :</span> <span style="color:#333">${data.simplified || data.meaning || 'لا يوجد تبسيط'}</span></div>
+            <div><span style="color:#0056b3;font-weight:bold">🎭 تخيل :</span> <span style="color:#333">${data.imagine || 'تخيل الجملة في سياقها'}</span></div>
         `;
     } else {
-        card.innerHTML = `<div style="text-align:center;padding:20px;color:#999">❓ لا يوجد شرح للسؤال ${questionNumber}</div>`;
+        card.innerHTML = `
+            <div style="text-align:center;padding:20px;color:#999">
+                ❓ لا يوجد شرح للسؤال ${questionNumber}<br>
+                <small style="color:#ccc">القسم: ${skill} | الامتحان: ${examId}</small>
+            </div>
+        `;
     }
     return card;
 }
+function createHelpBoxesWithContent(count) {
+  const container = document.createElement('div');
+  container.id = 'helpLayerContainer';
+  container.style.cssText = `
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+    background-color: #f5f7fa;
+    border-radius: 16px;
+    margin: 15px 0;
+  `;
 
-function createHelpLayer() {
-    const container = document.createElement('div');
-    container.id = 'helpLayerContainer';
-    container.style.cssText = 'background:#f8f9fa;border-radius:16px;padding:20px;margin:20px 0';
-    
-    const skill = getCurrentSkill();
-    const examId = getCurrentExamId();
-    const skill = getCurrentSkill();
-const examId = getCurrentExamId();
+  const examId = getCurrentExamId();
+  const skill = getCurrentSkill();
 
-let found = false;
+  // 🧠 جمع الأسئلة الموجودة فقط
+  const availableIndexes = [];
 
-for (let key in HELP_DATA) {
-    if (key.startsWith(`${skill}_exam${examId}_q`)) {
-        const match = key.match(/_q(\d+)/);
-        if (match) {
-            const questionNumber = parseInt(match[1]);
-            container.appendChild(createHelpCard(questionNumber));
-            found = true;
-        }
+  for (let i = 1; i <= count; i++) {
+    const key = `${skill}_exam${examId}_q${i}`;
+    if (window.HELP_DATA && window.HELP_DATA[key]) {
+      availableIndexes.push(i);
     }
-}
+  }
 
-if (!found) {
-    container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">📚 لا توجد شروحات لهذا الامتحان</div>';
-}
+  // ❌ لا يوجد أي شرح
+  if (availableIndexes.length === 0) {
+    const msg = document.createElement('div');
+    msg.textContent = "❌ لا يوجد شرح متاح لهذا الامتحان حالياً";
+    msg.style.cssText = "text-align:center; color:#888; padding:20px;";
+    container.appendChild(msg);
     return container;
-}
+  }
 
-function hideExamContent() {
-    const hidden = [];
-    const section = getActiveSection();
-    if (!section) return hidden;
-    for (let child of section.children) {
-        if (child.id !== 'helpLayerContainer' && child.style.display !== 'none') {
-            child.style.display = 'none';
-            hidden.push(child);
-        }
-    }
-    return hidden;
-}
+  // 🎯 عرض فقط الموجود
+  if (availableIndexes.length <= 5) {
+    const column = document.createElement('div');
+    column.style.cssText = `display: flex; flex-direction: column; gap: 15px;`;
 
-function hideButtons() {
-    const hidden = [];
-    document.querySelectorAll('button').forEach(btn => {
-        const text = btn.textContent;
-        if (text.includes('✅') || text.includes('تصحيح') || text.includes('Prüfen') || text.includes('↺') || text.includes('إعادة')) {
-            if (btn.style.display !== 'none') {
-                btn.style.display = 'none';
-                hidden.push(btn);
-            }
-        }
+    availableIndexes.forEach(i => {
+      column.appendChild(createHelpBoxWithContent(i, count));
     });
-    return hidden;
-}
 
-function showElements(elements) {
-    if (!elements) return;
-    elements.forEach(el => { if (el) el.style.display = ''; });
-}
+    container.appendChild(column);
+  } else {
+    for (let row = 0; row < Math.ceil(availableIndexes.length / 2); row++) {
+      const rowDiv = document.createElement('div');
+      rowDiv.style.cssText = `display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;`;
 
-function toggleHelp() {
-    const existing = document.getElementById('helpLayerContainer');
-    const section = getActiveSection();
-    
-    if (helpLayerActive) {
-        if (existing) existing.remove();
-        if (originalContentBackup) {
-            showElements(originalContentBackup.questions);
-            showElements(originalContentBackup.buttons);
-            originalContentBackup = null;
+      for (let col = 0; col < 2; col++) {
+        const index = availableIndexes[row * 2 + col];
+        if (index) {
+          rowDiv.appendChild(createHelpBoxWithContent(index, count));
         }
-        helpLayerActive = false;
-    } else {
-        const hiddenQuestions = hideExamContent();
-        const hiddenButtons = hideButtons();
-        originalContentBackup = { questions: hiddenQuestions, buttons: hiddenButtons };
-        const helpLayer = createHelpLayer();
-        if (section && helpLayer.children.length > 0) section.appendChild(helpLayer);
-        helpLayerActive = true;
+      }
+
+      container.appendChild(rowDiv);
     }
-}
+  }
 
-function addHelpButton() {
-    if (document.getElementById('globalHelpButton')) return;
-    const nav = document.getElementById('examNavButtons');
-    if (!nav) return;
-    
-    const btn = document.createElement('button');
-    btn.id = 'globalHelpButton';
-    btn.textContent = '🧠 مساعدة ذكية للنجاح';
-    btn.style.cssText = 'background:linear-gradient(135deg,#007bff,#0056b3);color:white;border:none;border-radius:30px;padding:8px 20px;font-size:14px;font-weight:bold;cursor:pointer;margin-left:10px;box-shadow:0 2px 5px rgba(0,0,0,0.2);transition:all 0.3s';
-    btn.onmouseenter = () => { btn.style.transform = 'scale(1.02)'; btn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)'; };
-    btn.onmouseleave = () => { btn.style.transform = 'scale(1)'; btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)'; };
-    btn.onclick = (e) => { e.stopPropagation(); toggleHelp(); };
-    nav.appendChild(btn);
+  return container;
 }
-
-// بدء التشغيل
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addHelpButton);
-} else {
-    addHelpButton();
-}
-
-console.log('✅ helpSystem.js تم التحميل بنجاح');
