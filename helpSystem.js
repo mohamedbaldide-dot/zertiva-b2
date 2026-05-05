@@ -8678,11 +8678,11 @@ HELP_DATA["sprach1_exam11_3"] = {
 };
 
 HELP_DATA["sprach1_exam11_4"] = {
-    text: "schließlich habe ich schon im Alltag genug Stress",  // ← استخدم : بدلاً من =
-    meaning = "ففي النهاية لدي ما يكفي من التوتر في حياتي اليومية",
-    keywords = ["schließlich = في النهاية", "Alltag = الحياة اليومية", "Stress = إجهاد"],
-    simplified = "لدي ما يكفي من المشاكل في روتيني اليومي",
-    imagine = "😩💆‍♂️ رجل يضع يديه على وجهه تحت ضغط"
+    text: "schließlich habe ich schon im Alltag genug Stress",  // ✅ صحيح
+    meaning: "ففي النهاية لدي ما يكفي من التوتر في حياتي اليومية", // ✅ صحيح
+    keywords: ["schließen = في النهاية", "Alltag = الحياة اليومية", "Stress = إجهاد"], // ✅ صحيح
+    simplified: "لدي ما يكفي من المشاكل في روتيني اليومي", // ✅ صحيح
+    imagine: "😩💆‍♂️ رجل يضع يديه على وجهه تحت ضغط" // ✅ صحيح
 };
 
 HELP_DATA["sprach1_exam11_5"] = {
