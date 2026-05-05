@@ -15004,7 +15004,6 @@ function getCorrectQuestions(skill, examId) {
         'hoeren3_exam19': [2, 4], 'hoeren3_exam20': [1, 3], 'hoeren3_exam21': [2],
         'hoeren3_exam22': [2, 4], 'hoeren3_exam23': [1, 5], 'hoeren3_exam24': [2],
         'hoeren3_exam25': [1, 3], 'hoeren3_exam26': [1, 3, 5], 'hoeren3_exam27': [1, 3]
-    };
             // Lesen Teil 1 (5 أسئلة لكل امتحان)
         'lesen1_exam1': [1, 2, 3, 4, 5], 'lesen1_exam2': [1, 2, 3, 4, 5],
         'lesen1_exam3': [1, 2, 3, 4, 5], 'lesen1_exam4': [1, 2, 3, 4, 5],
@@ -15105,7 +15104,6 @@ function getCorrectQuestions(skill, examId) {
         'lesen3_exam34': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         'lesen3_exam35': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         'lesen3_exam36': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    };
         
 
         // Sprachbausteine Teil 1 (10 أسئلة لكل امتحان)
