@@ -1,13 +1,10 @@
 /**
  * auth.js - نظام إدارة تسجيل الدخول والاشتراك لموقع Zertiva B2
- * مع حماية الامتحانات: المجاني يرى فقط الامتحان الأول من كل جزء
  */
 
-// ========== الإعدادات الأساسية ==========
 const WA_NUMBER = "212687561491";
 const WA_URL = `https://wa.me/${WA_NUMBER}`;
 
-// ========== دوال التخزين المحلي ==========
 function getLoggedInEmail() {
     return localStorage.getItem('zertiva_email');
 }
@@ -32,13 +29,11 @@ function isUserLoggedIn() {
     return getLoggedInEmail() !== null;
 }
 
-// ========== دوال الصلاحية (تقرأ من premium.json) ==========
 async function getPremiumUsers() {
     try {
         const response = await fetch('premium.json?_=' + Date.now());
         return await response.json();
     } catch(e) {
-        console.error('خطأ في قراءة premium.json', e);
         return {};
     }
 }
@@ -73,28 +68,7 @@ async function getExpiryDate(email) {
     }
 }
 
-// ========== التحقق من الامتحان (الأول فقط مجاني) ==========
-// قائمة أسماء الأجزاء (Teile)
-const TEIL_NAMES = ['teil1', 'teil2', 'teil3', 'sprach1', 'sprach2', 'hoeren1', 'hoeren2', 'hoeren3', 'schreiben'];
-
-// دالة لمعرفة هل هذا هو الامتحان الأول في جزئه؟
-function isFirstExamInTeil(examId, teilId) {
-    // الامتحان الأول يكون رقمه 1 أو ليس فيه رقم
-    if (examId === 1 || examId === '1' || examId === 0) return true;
-    return false;
-}
-
-// دالة للتحقق من إمكانية الوصول لامتحان معين
-async function canAccessExam(teilName, examIndex) {
-    const status = await getUserStatus();
-    if (status === 'premium') return true;
-    // المجاني: فقط الامتحان الأول (examIndex === 0)
-    return examIndex === 0;
-}
-
-// ========== إظهار رسالة المحتوى المقفل ==========
-function showLockedMessage(examTitle, teilName) {
-    // إنشاء نافذة منبثقة مخصصة
+function showLockedMessage(examTitle) {
     let modal = document.createElement('div');
     modal.id = 'lockedModal';
     modal.style.cssText = `
@@ -103,7 +77,7 @@ function showLockedMessage(examTitle, teilName) {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,0.7);
+        background: rgba(0,0,0,0.75);
         z-index: 10000;
         display: flex;
         justify-content: center;
@@ -112,17 +86,17 @@ function showLockedMessage(examTitle, teilName) {
     `;
     
     modal.innerHTML = `
-        <div style="background: white; border-radius: 25px; padding: 30px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 25px 45px rgba(0,0,0,0.3);">
-            <div style="font-size: 60px; margin-bottom: 15px;">🔒</div>
-            <h2 style="color: #2b5876; margin-bottom: 10px;">محـتوى مقفل</h2>
+        <div style="background: white; border-radius: 30px; padding: 35px; max-width: 380px; width: 85%; text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.3);">
+            <div style="font-size: 55px; margin-bottom: 15px;">🔒</div>
+            <h2 style="color: #2b5876; margin-bottom: 12px; font-size: 24px;">محـتوى مقفل</h2>
             <p style="color: #555; margin-bottom: 20px;">المرجو ترقية الحساب للوصول لهذا المحتوى</p>
-            <div style="background: #f3e8ff; padding: 10px; border-radius: 15px; margin-bottom: 20px;">
-                <span style="color: #a855f7;">📚 ${examTitle}</span>
+            <div style="background: #f3e8ff; padding: 12px; border-radius: 20px; margin-bottom: 20px;">
+                <span style="color: #a855f7; font-weight: bold;">📚 ${examTitle}</span>
             </div>
-            <p style="color: #888; margin-bottom: 20px; font-size: 14px;">يتطلب باقة: <strong style="color: #f39c12;">Pro</strong></p>
-            <div style="display: flex; gap: 15px; justify-content: center;">
-                <button id="upgradeNowBtnModal" style="background: linear-gradient(135deg, #f39c12, #e67e22); color: white; border: none; padding: 12px 25px; border-radius: 40px; cursor: pointer; font-weight: bold;">🚀 ترقية الحساب الآن</button>
-                <button id="closeModalBtn" style="background: #e2e8f0; border: none; padding: 12px 25px; border-radius: 40px; cursor: pointer;">ليس الآن</button>
+            <p style="color: #888; margin-bottom: 25px; font-size: 14px;">يتطلب باقة: <strong style="color: #f39c12;">Pro</strong></p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <button id="upgradeNowBtnModal" style="background: linear-gradient(135deg, #f39c12, #e67e22); color: white; border: none; padding: 12px 28px; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 15px;">🚀 ترقية الحساب الآن</button>
+                <button id="closeModalBtn" style="background: #e2e8f0; border: none; padding: 12px 28px; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 15px;">ليس الآن</button>
             </div>
         </div>
     `;
@@ -137,72 +111,74 @@ function showLockedMessage(examTitle, teilName) {
         modal.remove();
     });
     
-    // إغلاق عند الضغط خارج النافذة
     modal.addEventListener('click', (e) => {
         if (e.target === modal) modal.remove();
     });
 }
 
-// ========== تزيين الامتحانات المقفلة ==========
 async function styleLockedExams() {
     const status = await getUserStatus();
-    if (status === 'premium') return; // لا شيء نفعله للمشترك
+    if (status === 'premium') return;
     
     // البحث عن جميع أزرار الامتحانات في الصفحة
-    // حسب هيكل engine.js الخاص بك
-    let examButtons = document.querySelectorAll('.exam-item, .exam-card, [data-exam]');
+    let allExamButtons = document.querySelectorAll('.exam-item, .exam-card, [data-exam], .exam-button');
     
-    // تتبع الامتحانات التي مررنا عليها لكل جزء
-    let teilCounter = {};
-    
-    examButtons.forEach((btn, index) => {
-        // معرفة الجزء (teil) من النص أو من class
-        let teilName = '';
-        let examNumber = 1;
+    // إضافة نمط للامتحانات التي ليست الأولى
+    allExamButtons.forEach((btn) => {
+        let btnText = btn.innerText || btn.textContent || '';
         
-        // محاولة استخراج رقم الامتحان من النص
-        let btnText = btn.innerText || '';
-        let match = btnText.match(/(\d+)/);
-        if (match) {
-            examNumber = parseInt(match[1]);
+        // تحديد إذا كان هذا الامتحان الأول (رقم 1)
+        let isFirstExam = false;
+        
+        // فحص النص لوجود رقم 1
+        if (btnText.includes('1') || btnText.includes('teil 1') || btnText.includes('Teil 1')) {
+            // إذا كان هناك رقم 1 وحده تقريباً
+            let match = btnText.match(/(\d+)/);
+            if (match && match[1] === '1') {
+                isFirstExam = true;
+            }
         }
         
-        // إذا كان الامتحان ليس الأول (رقمه > 1)
-        if (examNumber > 1) {
-            // تطبيق القفل
-            btn.style.opacity = '0.65';
+        // إذا لم يكن الامتحان الأول، نطبقه القفل
+        if (!isFirstExam) {
+            btn.style.opacity = '0.7';
             btn.style.filter = 'blur(1px)';
-            btn.style.background = '#f3e8ff';
-            btn.style.border = '2px dashed #a855f7';
+            btn.style.background = '#e9d5ff';
+            btn.style.border = '2px solid #a855f7';
+            btn.style.color = '#4a1d6d';
             btn.style.position = 'relative';
             btn.style.cursor = 'pointer';
             
-            // إضافة أيقونة القفل
-            let lockIcon = document.createElement('span');
-            lockIcon.innerHTML = '🔒';
-            lockIcon.style.cssText = 'position: absolute; top: 8px; right: 12px; font-size: 18px; filter: blur(0); opacity: 1;';
-            btn.style.position = 'relative';
-            btn.appendChild(lockIcon);
+            // إضافة أيقونة قفل
+            let existingLock = btn.querySelector('.lock-icon');
+            if (!existingLock) {
+                let lockIcon = document.createElement('span');
+                lockIcon.className = 'lock-icon';
+                lockIcon.innerHTML = '🔒';
+                lockIcon.style.cssText = 'position: absolute; top: 5px; right: 10px; font-size: 18px; filter: blur(0); opacity: 1; z-index: 10;';
+                btn.style.position = 'relative';
+                btn.appendChild(lockIcon);
+            }
             
-            // حفظ عنوان الامتحان
-            let examTitle = btnText;
+            let examTitle = btnText.substring(0, 50);
             
-            // تغيير حدث الضغط
+            // حفظ الحدث القديم واستبداله
             let oldClick = btn.onclick;
             btn.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                showLockedMessage(examTitle, teilName);
+                showLockedMessage(examTitle);
                 return false;
             };
             
-            // إزالة أي حدث قديم
-            btn.removeEventListener('click', oldClick);
+            // إزالة أي مستمعين آخرين
+            if (oldClick) {
+                btn.removeEventListener('click', oldClick);
+            }
         }
     });
 }
 
-// ========== نافذة تسجيل الدخول ==========
 function showLoginPopup() {
     let popup = document.getElementById('loginPopup');
     if(popup) popup.style.display = 'flex';
@@ -239,14 +215,12 @@ async function handleLogin() {
     location.reload();
 }
 
-// ========== إضافة رسالة الترقية في أعلى الصفحة ==========
 async function addUpgradeMessageToExamsList() {
     const status = await getUserStatus();
     let examsContainer = document.getElementById('examsList');
     
     if(!examsContainer) return;
     
-    // إزالة الرسائل القديمة
     let oldMsg = document.getElementById('upgradeMsg');
     if(oldMsg) oldMsg.remove();
     let oldPremiumMsg = document.getElementById('premiumMsg');
@@ -255,7 +229,7 @@ async function addUpgradeMessageToExamsList() {
     if(status !== 'premium' && status !== 'expired' && isUserLoggedIn()) {
         let msgDiv = document.createElement('div');
         msgDiv.id = 'upgradeMsg';
-        msgDiv.style.cssText = 'background:linear-gradient(135deg, #f3e8ff, #e9d5ff); padding:15px; border-radius:20px; margin:15px; text-align:center; border:1px solid #a855f7; box-shadow: 0 2px 8px rgba(168,85,247,0.2);';
+        msgDiv.style.cssText = 'background:linear-gradient(135deg, #f3e8ff, #e9d5ff); padding:15px; border-radius:20px; margin:15px; text-align:center; border:1px solid #a855f7;';
         msgDiv.innerHTML = `
             <span style="font-size: 24px;">🔒</span>
             <p style="margin: 8px 0; font-weight: bold;">⭐ أنت في <strong style="color:#a855f7;">الوضع المجاني</strong></p>
@@ -276,7 +250,7 @@ async function addUpgradeMessageToExamsList() {
         let msgDiv = document.createElement('div');
         msgDiv.id = 'premiumMsg';
         msgDiv.style.cssText = 'background:#d1fae5; padding:12px; border-radius:15px; margin:15px; text-align:center; border:1px solid #10b981;';
-        msgDiv.innerHTML = `🎉 اشتراكك مفعل حتى تاريخ ${expiry}. شكراً لثقتك! جميع الامتحانات متاحة لك.`;
+        msgDiv.innerHTML = `🎉 اشتراكك مفعل حتى تاريخ ${expiry}. شكراً لثقتك!`;
         examsContainer.prepend(msgDiv);
     }
     
@@ -297,7 +271,6 @@ async function addUpgradeMessageToExamsList() {
     }
 }
 
-// ========== إضافة زر تسجيل الخروج ==========
 function addLogoutButton() {
     let navButtons = document.querySelector('.nav-buttons-area');
     if(!navButtons) return;
@@ -322,7 +295,6 @@ function addLogoutButton() {
     }
 }
 
-// ========== ربط الأزرار والأحداث ==========
 function bindAuthEvents() {
     let navLoginBtn = document.getElementById('navLoginBtn');
     if(navLoginBtn) navLoginBtn.addEventListener('click', showLoginPopup);
@@ -353,9 +325,7 @@ function bindAuthEvents() {
     }
 }
 
-// ========== مراقبة تغييرات الصفحة (لتطبيق القفل بعد تحميل المحتوى) ==========
 function observePageChanges() {
-    // مراقبة عندما تظهر صفحة الامتحانات
     const observer = new MutationObserver(() => {
         let listPage = document.getElementById('list');
         if(listPage && listPage.classList.contains('active')) {
@@ -369,7 +339,6 @@ function observePageChanges() {
     observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
 }
 
-// ========== تهيئة النظام ==========
 function initAuth() {
     bindAuthEvents();
     addLogoutButton();
@@ -381,7 +350,6 @@ function initAuth() {
     }, 800);
 }
 
-// بدء التشغيل
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initAuth);
 } else {
