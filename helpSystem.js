@@ -15014,6 +15014,18 @@ function getCurrentExamId() {
     const title = document.getElementById('examTitle')?.textContent || '';
     const match = title.match(/Exam\s+(\d+)/i);
     return match ? parseInt(match[1]) : 1;
+// في engine.js
+document.addEventListener('DOMContentLoaded', function() {
+    // كل الكود الذي يستدعي دوال المساعدة يوضع هنا
+    if (typeof createHelpBoxesWithContent === 'function') {
+        // استخدام دوال المساعدة
+        const helpContainer = document.getElementById('helpSystemRoot');
+        if (helpContainer) {
+            const helpBoxes = createHelpBoxesWithContent(5);
+            helpContainer.appendChild(helpBoxes);
+        }
+    }
+});
 }
 
 // الحصول على جميع الأسئلة (بدلاً من الأسئلة الصحيحة فقط)
