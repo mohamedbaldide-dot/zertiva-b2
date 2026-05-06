@@ -3986,7 +3986,7 @@ HELP_DATA["lesen3_exam3_q12"] = {
 // ============================================
 
 // a → 4: altersgerechtes Theaterstück für 12-jährige Tochter
-HELP_DATA["lesen3_exam4_q1" = {
+HELP_DATA["lesen3_exam4_q1"] = {
     text: "In Pollekes elfjährigem Leben scheint im Augenblick etwas falsch zu laufen - Sie möchten mit Ihrer zwölfjährigen Tochter ein altersgerechtes Theaterstück sehen.",
     meaning: "في حياة بوليكي البالغة من العمر 11 عاماً - ترغب في مشاهدة مسرحية مناسبة لعمر ابنتك ذات الـ 12 سنة.",
     keywords: ["elfjährigem = 11 عاماً", "altersgerechtes = مناسب للعمر"],
@@ -4062,7 +4062,7 @@ HELP_DATA["lesen3_exam4_q12"] = {
 // ============================================
 
 // a → 4: altersgerechtes Theaterstück für zwölfjährige Tochter
-HELP_DATA["lesen3_exam5_q1" = {
+HELP_DATA["lesen3_exam5_q1"] = {
     text: "In Pollekes elfjährigem Leben - Sie möchten mit Ihrer zwölfjährigen Tochter ein altersgerechtes Theaterstück sehen.",
     meaning: "في حياة بوليكي البالغة من العمر 11 عاماً - ترغب في مشاهدة مسرحية مناسبة لعمر ابنتك ذات الـ 12 سنة.",
     keywords: ["elfjährigem = 11 عاماً", "Theaterstück = مسرحية"],
@@ -4137,8 +4137,7 @@ HELP_DATA["lesen3_exam6_q2"] = {
     imagine: "🧠🏢 رجل يجلس أمام حاسوبه يبحث عن عمل في مجال المعارض."
 };
 
-// c → 1: mehrtägige Musikveranstaltung mit fünf Freunden
-HELP_DATA["lesen3_exam6_q3" = {
+HELP_DATA["lesen3_exam6_q3"] = {   // صحيح: إضافة ] قبل =
     text: "Gemeinsam mehr erleben - Ein Kollege möchte mit fünf Freunden eine mehrtägige Musikveranstaltung besuchen.",
     meaning: "نعيش المزيد معاً - أحد الزملاء يريد زيارة فعالية موسيقية لعدة أيام مع خمسة أصدقاء.",
     keywords: ["Gemeinsam = معاً", "Musikveranstaltung = فعالية موسيقية"],
@@ -4198,7 +4197,7 @@ HELP_DATA["lesen3_exam6_q12"] = {
 // ============================================
 
 // a → 0: Vorstellungsgespräch und Schwangerschaft
-HELP_DATA["lesen3_exam7_q1" = {
+HELP_DATA["lesen3_exam5_q7"] = {
     text: "Bewerber sollten Bewerbungsgespräche nicht dem Zufall überlassen - Ihre Schwägerin erwartet ein Kind. Sie ist nicht sicher, ob Sie in einem Vorstellungsgespräch darauf hinweisen muss.",
     meaning: "يجب على المتقدمين عدم ترك مقابلات العمل للصدفة - زوجة أخيك تنتظر طفلاً. إنها غير متأكدة مما إذا كان يجب أن تذكر ذلك في مقابلة العمل.",
     keywords: ["Bewerbungsgespräche = مقابلات عمل", "Schwangerschaft = حمل"],
@@ -4266,7 +4265,7 @@ HELP_DATA["lesen3_exam7_q12"] = {
 // ============================================
 
 // a → 0: Schwangerschaft im Vorstellungsgespräch
-HELP_DATA["lesen3_exam8_q1" = {
+HELP_DATA["lesen3_exam8_q7"] = {
     text: "Das Vorstellungsgespräch ist eine wichtige Hürde - Ihre Schwägerin erwartet ein Kind. Sie ist nicht sicher, ob Sie in einem Vorstellungsgespräch darauf hinweisen muss.",
     meaning: "مقابلة العمل عائق مهم - زوجة أخيك تنتظر طفلاً. إنها غير متأكدة مما إذا كان يجب أن تذكر ذلك في مقابلة العمل.",
     keywords: ["Vorstellungsgespräch = مقابلة عمل", "Schwangerschaft = حمل"],
@@ -4402,15 +4401,14 @@ HELP_DATA["lesen3_exam9_q12"] = {
 // ============================================
 
 // a → 7: neu in der Stadt und Stadtteil kennenlernen
-HELP_DATA["lesen3_exam10_q1" = {
+HELP_DATA["lesen3_exam10_q7"] = {
     text: "Neues Angebot der VHS - Sie sind neu in der Stadt und möchten Ihren Stadtteil kennenlernen.",
     meaning: "عرض جديد من مدرسة الشعب - أنت جديد في المدينة وتريد التعرف على منطقتك.",
     keywords: ["Angebot = عرض", "Stadtteil = منطقة في المدينة"],
     imagine: "🧠🏘️ شخص يمشي في شارع جديد وينظر إلى المباني من حوله."
 };
 
-// c → 3: Interesse an Technikgeschichte
-HELP_DATA["lesen3_exam10_q3" = {
+HELP_DATA["lesen3_exam10_q3"] = {   // صحيح: إضافة ] قبل =
     text: "Kurzreise nach München - Sie interessieren sich für Technikgeschichte.",
     meaning: "رحلة قصيرة إلى ميونخ - أنت مهتم بتاريخ التقنية.",
     keywords: ["Kurzreise = رحلة قصيرة", "Technikgeschichte = تاريخ التقنية"],
@@ -4470,7 +4468,7 @@ HELP_DATA["lesen3_exam10_q12"] = {
 // ============================================
 
 // a → 0: Schiffsreise auf dem Meer schenken
-HELP_DATA["lesen3_exam11_q1" = {
+HELP_DATA["lesen3_exam11_q7"] = {
     text: "Norwegen: Kirkenes-Bergen - Sie möchten Ihren Eltern zur Silberhochzeit eine besondere Schiffsreise auf dem Meer schenken.",
     meaning: "النرويج: كيركينس-برغن - تريد إهداء والديك رحلة بحرية خاصة بمناسبة الذكرى الفضية لزواجهما.",
     keywords: ["Schiffsreise = رحلة بحرية", "Silberhochzeit = ذكرى فضية"],
@@ -4486,7 +4484,7 @@ HELP_DATA["lesen3_exam11_q2"] = {
 };
 
 // c → 2: besinnliches Wochenende in den Bergen
-HELP_DATA["lesen3_exam11_q3" = {
+HELP_DATA["lesen3_exam11_q3"] = {
     text: "Meditation im Schnee - Ein Bekannter möchte im Winter ein besinnliches Wochenende in den Bergen verbringen, denn er mag es, durch die verschneite Natur zu laufen.",
     meaning: "تأمل في الثلج - أحد المعارف يريد قضاء نهاية أسبوع تأملية في الجبال شتاءً، لأنه يحب المشي في الطبيعة المغطاة بالثلوج.",
     keywords: ["Meditation = تأمل", "verschneite Natur = طبيعة مغطاة بالثلوج"],
@@ -4538,7 +4536,7 @@ HELP_DATA["lesen3_exam11_q10"] = {
 // ============================================
 
 // a → 3: durch Europa reisen und privat übernachten
-HELP_DATA["lesen3_exam12_q1" = {
+HELP_DATA["lesen3_exam12_q7"] = {
     text: "Urlaub auf dem Sofa - Sie möchten durch Europa reisen und privat übernachten.",
     meaning: "عطلة على الأريكة - ترغب في السفر عبر أوروبا والمبيت في منازل خاصة.",
     keywords: ["Urlaub = عطلة", "privat übernachten = المبيت بشكل خاص"],
@@ -4553,14 +4551,12 @@ HELP_DATA["lesen3_exam12_q2"] = {
     imagine: "🧠🪑 رجل يجلس على كرسي قديم وينظر إليه بحزن."
 };
 
-// c → 4: Bilder vermarkten
-HELP_DATA["lesen3_exam12_q3" = {
+HELP_DATA["lesen3_exam12_q3"] = {   // صحيح: إضافة ] قبل =
     text: "Kunstmarkt - Eine Bekannte malt sehr gut und sucht eine Gelegenheit, anderen ihre Bilder zu zeigen oder sie zu verkaufen.",
     meaning: "سوق فني - إحدى المعارف ترسم جيداً وتبحث عن فرصة لعرض لوحاتها على الآخرين أو بيعها.",
     keywords: ["Kunstmarkt = سوق فني", "Bilder = لوحات"],
     imagine: "🧠🎨 امرأة تعلق لوحتها على حائط في معرض فني."
 };
-
 // e → 1: Alternative zu Hotels mit Internet und Frühstück
 HELP_DATA["lesen3_exam12_q5"] = {
     text: "Unser neues Wohnkonzept - Ihr Bekannter ist beruflich oft unterwegs und sucht eine Alternative zu Hotels. Es soll dort aber Internetzugang und Frühstück geben.",
@@ -4614,7 +4610,7 @@ HELP_DATA["lesen3_exam12_q11"] = {
 // ============================================
 
 // a → 3: durch Europa reisen und privat übernachten
-HELP_DATA["lesen3_exam13_q1" = {
+HELP_DATA["lesen3_exam13_q7"] = {
     text: "Urlaub auf dem Sofa - Sie möchten durch Europa reisen und privat übernachten.",
     meaning: "عطلة على الأريكة - ترغب في السفر عبر أوروبا والمبيت في منازل خاصة.",
     keywords: ["Urlaub = عطلة", "privat übernachten = مبيت خاص"],
@@ -4630,7 +4626,7 @@ HELP_DATA["lesen3_exam13_q2"] = {
 };
 
 // c → 4: Bilder vermarkten
-HELP_DATA["lesen3_exam13_q3" = {
+HELP_DATA["lesen3_exam13_q3"] = {
     text: "Kunstmarkt - Eine Bekannte malt sehr gut und sucht eine Gelegenheit, ihre Bilder zu vermarkten.",
     meaning: "سوق فني - إحدى المعارف ترسم جيداً وتبحث عن فرصة لتسويق لوحاتها.",
     keywords: ["Kunstmarkt = سوق فني", "vermarkten = يسوق"],
@@ -4690,7 +4686,7 @@ HELP_DATA["lesen3_exam13_q11"] = {
 // ============================================
 
 // a → 8: Geld nach Kanada überweisen, Kosten wissen
-HELP_DATA["lesen3_exam14_q1" = {
+HELP_DATA["lesen3_exam14_q7"] = {
     text: "Infos zur Auslandsüberweisung - Sie wollen Geld nach Kanada überweisen. Sie möchten wissen, wie viel Sie für die Überweisung bezahlen müssen.",
     meaning: "معلومات حول التحويل الخارجي - تريد تحويل أموال إلى كندا. تريد معرفة كم ستدفع مقابل التحويل.",
     keywords: ["Auslandsüberweisung = تحويل خارجي", "bezahlen = يدفع"],
@@ -4706,7 +4702,7 @@ HELP_DATA["lesen3_exam14_q2"] = {
 };
 
 // c → 1: Auslandsaufenthalt informieren
-HELP_DATA["lesen3_exam14_q3" = {
+HELP_DATA["lesen3_exam14_q3"] = {
     text: "Als Austauschschüler/in verbringst du einige Monate im Ausland - Ihre 14-jährige Nichte möchte sich über einen Auslandsaufenthalt informieren.",
     meaning: "كطالب تبادل تقضي بضعة أشهر في الخارج - ابنة أختك ذات الـ 14 سنة تريد الاستعلام عن البقاء في الخارج.",
     keywords: ["Austauschschüler = طالب تبادل", "Auslandsaufenthalt = بقاء في الخارج"],
@@ -4758,7 +4754,7 @@ HELP_DATA["lesen3_exam14_q11"] = {
 // ============================================
 
 // a → 2: Bekannte hat Fieber und möchte keine Tabletten
-HELP_DATA["lesen3_exam15_q1" = {
+HELP_DATA["lesen3_exam15_q1"] = {
     text: "Ratgeber 'Was bei Erkältung hilft' - Ihre Bekannte hat Fieber, möchte aber keine Tabletten nehmen.",
     meaning: "دليل 'ما يساعد في حالة البرد' - إحدى معارفك لديها حمى ولكنها لا تريد تناول أدوية.",
     keywords: ["Ratgeber = دليل", "Fieber = حمى"],
@@ -4766,7 +4762,7 @@ HELP_DATA["lesen3_exam15_q1" = {
 };
 
 // c → 6: Besuch und Sonntagvormittag unternehmen
-HELP_DATA["lesen3_exam15_q3" = {
+HELP_DATA["lesen3_exam15_q3"] = {
     text: "Kochen und waschen um 1900 - Sie bekommen Besuch und möchten am Sonntagvormittag etwas Interessantes unternehmen.",
     meaning: "الطهي والغسل حوالي عام 1900 - سيأتيك ضيوف وتريد القيام بنشاط ممتع صباح الأحد.",
     keywords: ["Kochen = طهي", "Sonntagvormittag = صباح الأحد"],
@@ -4834,7 +4830,7 @@ HELP_DATA["lesen3_exam15_q12"] = {
 // ============================================
 
 // a → 8: schwangere Freundin mit Schmerzen helfen
-HELP_DATA["lesen3_exam16_q1" = {
+HELP_DATA["lesen3_exam16_q1"] = {
     text: "Wenn eine schwangere Frau erkrankt - Eine Freundin bekommt ein Baby. Sie hat oft Schmerzen. Welche Möglichkeit gibt es, ihr zu helfen?",
     meaning: "عندما تمرض امرأة حامل - صديقة تنتظر طفلاً. غالباً ما تشعر بألم. ما هي الطريقة لمساعدتها؟",
     keywords: ["schwangere = حامل", "Schmerzen = آلام"],
@@ -4842,7 +4838,7 @@ HELP_DATA["lesen3_exam16_q1" = {
 };
 
 // c → 3: pflanzliche Ernährung vor schweren Krankheiten
-HELP_DATA["lesen3_exam16_q3" = {
+HELP_DATA["lesen3_exam16_q3"] = {
     text: "Die regelmäßige Ernährung mit Tomaten - Sie möchten durch pflanzliche Ernährung Ihren Körper vor schweren Krankheiten schützen.",
     meaning: "التغذية المنتظمة بالطماطم - تريد حماية جسمك من الأمراض الخطيرة من خلال التغذية النباتية.",
     keywords: ["Ernährung = تغذية", "Krankheiten = أمراض"],
@@ -4894,7 +4890,7 @@ HELP_DATA["lesen3_exam16_q12"] = {
 // ============================================
 
 // a → 8: Ausstellung mit Sohn der Tiere mag
-HELP_DATA["lesen3_exam17_q1" = {
+HELP_DATA["lesen3_exam17_q1"] = {
     text: "Expedition ins Reich der Schneeleoparden - Sie möchten mit Ihrem zwölfjährigen Sohn eine Ausstellung besuchen. Er interessiert sich für Tiere.",
     meaning: "رحلة إلى عالم الفهود الثلجية - تريد زيارة معرض مع ابنك ذي الـ 12 سنة. إنه مهتم بالحيوانات.",
     keywords: ["Schneeleoparden = فهود ثلجية", "Tiere = حيوانات"],
@@ -4946,7 +4942,7 @@ HELP_DATA["lesen3_exam17_q10"] = {
 // ============================================
 
 // a → 4: Sohn 10 Jahre, besondere Feier
-HELP_DATA["lesen3_exam18_q1" = {
+HELP_DATA["lesen3_exam18_q1"] = {
     text: "Auf den Spuren der Wildkatze - Ihr Sohn wird nächste Woche zehn Jahre alt. Sie möchten ihn mit einer besonderen Feier überraschen.",
     meaning: "على خطى القطة البرية - ابنك سيبلغ العاشرة الأسبوع القادم. تريد مفاجأته بحفل خاص.",
     keywords: ["Wildkatze = قطة برية", "Feier = حفل"],
@@ -4954,7 +4950,7 @@ HELP_DATA["lesen3_exam18_q1" = {
 };
 
 // c → 0: wissen wie Tierdokumentationen entstehen
-HELP_DATA["lesen3_exam18_q3" = {
+HELP_DATA["lesen3_exam18_q3"] = {
     text: "Am 1. August zeigen wir den Film 'Der Natur auf der Spur' - Ein Bekannter interessiert sich für Tierdokumentationen und würde gerne wissen, wie solche Filme entstehen.",
     meaning: "في 1 أغسطس نعرض فيلم 'على خطى الطبيعة' - أحد المعارف مهتم بالأفلام الوثائقية عن الحيوانات ويريد معرفة كيف تُصنع مثل هذه الأفلام.",
     keywords: ["Film = فيلم", "Tierdokumentationen = أفلام وثائقية عن الحيوانات"],
@@ -4998,7 +4994,7 @@ HELP_DATA["lesen3_exam18_q11"] = {
 // ============================================
 
 // a → 0: Schränke voll, kaum Platz, Ideen ändern
-HELP_DATA["lesen3_exam19_q1" = {
+HELP_DATA["lesen3_exam19_q1"] = {
     text: "Das große Aufräumbuch - Alle Ihre Schränke sind voll mit Sachen und Sie haben kaum mehr Platz in der Wohnung. Sie suchen Ideen, wie Sie das ändern können.",
     meaning: "كتاب التنظيم الكبير - جميع خزائنك مليئة بالأشياء ولا يوجد لديك مساحة تقريباً في الشقة. تبحث عن أفكار لتغيير ذلك.",
     keywords: ["Aufräumbuch = كتاب تنظيم", "Platz = مساحة"],
@@ -5066,7 +5062,7 @@ HELP_DATA["lesen3_exam19_q12"] = {
 // ============================================
 
 // a → 8: liebt Bergwelt, kann keine steilen Wege gehen
-HELP_DATA["lesen3_exam20_q1" = {
+HELP_DATA["lesen3_exam20_q1"] = {
     text: "Urlaubsregion Allgäuer Alpen - Ein Bekannter liebt die Bergwelt, kann aber keine steilen und anstrengenden Wege mehr gehen.",
     meaning: "منطقة عطلات ألجاو الألبية - أحد المعارف يحب عالم الجبال ولكنه لم يعد يستطيع المشي في الطرق شديدة الانحدار والمتعبة.",
     keywords: ["Allgäuer Alpen = جبال الألب ألجاو", "Bergwelt = عالم الجبال"],
@@ -5127,7 +5123,7 @@ HELP_DATA["lesen3_exam20_q12"] = {
 // ============================================
 
 // a → 2: psychische Aspekte des Klettersports
-HELP_DATA["lesen3_exam21_q1" = {
+HELP_DATA["lesen3_exam21_q1"] = {
     text: "Die Österreicherin Gerlinde Kaltenbrunner - Sie möchten mehr über die psychischen Aspekte des Klettersports erfahren.",
     meaning: "النمساوية غيرلينده كالتنبرونر - تريد معرفة المزيد عن الجوانب النفسية لرياضة التسلق.",
     keywords: ["Bergsteigerin = متسلقة جبال", "psychischen Aspekte = جوانب نفسية"],
@@ -5135,7 +5131,7 @@ HELP_DATA["lesen3_exam21_q1" = {
 };
 
 // c → 7: gesundheitliche Auswirkungen von Sport
-HELP_DATA["lesen3_exam21_q3" = {
+HELP_DATA["lesen3_exam21_q3"] = {
     text: "Neue Studie erschienen - Sie suchen Informationen zu den gesundheitlichen Auswirkungen von Sport.",
     meaning: "دراسة جديدة صدرت - تبحث عن معلومات حول تأثيرات الرياضة على الصحة.",
     keywords: ["Studie = دراسة", "gesundheitlichen Auswirkungen = تأثيرات صحية"],
@@ -5195,7 +5191,7 @@ HELP_DATA["lesen3_exam21_q12"] = {
 // ============================================
 
 // a → 3: psychische Aspekte des Klettersports
-HELP_DATA["lesen3_exam22_q1" = {
+HELP_DATA["lesen3_exam22_q1"] = {
     text: "Die Österreicherin Gerlinde Kaltenbrunner - Sie möchten mehr über die psychischen Aspekte des Klettersports erfahren.",
     meaning: "النمساوية غيرلينده كالتنبرونر - تريد معرفة المزيد عن الجوانب النفسية لرياضة التسلق.",
     keywords: ["Österreicherin = نمساوية", "Klettersports = رياضة التسلق"],
@@ -5203,7 +5199,7 @@ HELP_DATA["lesen3_exam22_q1" = {
 };
 
 // c → 0: gesundheitliche Auswirkungen von Sport
-HELP_DATA["lesen3_exam22_q3" = {
+HELP_DATA["lesen3_exam22_q3"] = {
     text: "Neue Studie erschienen - Sie suchen Informationen zu den gesundheitlichen Auswirkungen von Sport.",
     meaning: "دراسة جديدة صدرت - تبحث عن معلومات حول تأثيرات الرياضة على الصحة.",
     keywords: ["Studie = دراسة", "gesundheitlichen = صحية"],
@@ -5263,7 +5259,7 @@ HELP_DATA["lesen3_exam22_q12"] = {
 // ============================================
 
 // a → 2: wissen wie das Wetter in Italien ist
-HELP_DATA["lesen3_exam23_q1" = {
+HELP_DATA["lesen3_exam23_q1"] = {
     text: "Auf unserer Homepage finden Sie Wetterberichte - Eine Bekannte fährt in Urlaub und möchte wissen, wie das Wetter in Italien ist.",
     meaning: "على موقعنا تجد تقارير الطقس - إحدى المعارف تسافر في إجازة وتريد معرفة كيف سيكون الطقس في إيطاليا.",
     keywords: ["Wetterberichte = تقارير طقس", "Urlaub = إجازة"],
@@ -5271,7 +5267,7 @@ HELP_DATA["lesen3_exam23_q1" = {
 };
 
 // c → 5: Bio-Weine und Reisen mit Arbeiten verbinden
-HELP_DATA["lesen3_exam23_q3" = {
+HELP_DATA["lesen3_exam23_q3"] = {
     text: "Wir bauen seit vier Generationen Wein an - Ihre Freundin interessiert sich für Bio-Weine und möchte Reisen und Arbeiten verbinden.",
     meaning: "نزرع الكرم منذ أربعة أجيال - صديقتك مهتمة بالنبيذ العضوي وتريد الجمع بين السفر والعمل.",
     keywords: ["Wein = نبيذ", "Reisen = سفر"],
@@ -5331,7 +5327,7 @@ HELP_DATA["lesen3_exam23_q12"] = {
 // ============================================
 
 // a → 0: Angebote für Kinder in Ausstellung
-HELP_DATA["lesen3_exam24_q1" = {
+HELP_DATA["lesen3_exam24_q1"] = {
     text: "Baden wie vor 2000 Jahren - Ein Bekannter möchte mit seiner zehnjährigen Tochter eine Ausstellung besuchen, es sollte auch Angebote für Kinder geben.",
     meaning: "الاستحمام كما قبل 2000 سنة - أحد المعارف يريد زيارة معرض مع ابنته ذات العشر سنوات، ويجب أن تكون هناك عروض للأطفال أيضاً.",
     keywords: ["Baden = استحمام", "Ausstellung = معرض"],
@@ -5339,7 +5335,7 @@ HELP_DATA["lesen3_exam24_q1" = {
 };
 
 // c → 3: Vortrag zu historischem Thema
-HELP_DATA["lesen3_exam24_q3" = {
+HELP_DATA["lesen3_exam24_q3"] = {
     text: "Die Geschichte des Essens: Dessert - Ihr Bruder möchte einen Vortrag zu einem historischen Thema hören.",
     meaning: "تاريخ الطعام: الحلوى - أخوك يريد الاستماع إلى محاضرة عن موضوع تاريخي.",
     keywords: ["Geschichte = تاريخ", "Vortrag = محاضرة"],
@@ -5386,7 +5382,7 @@ HELP_DATA["lesen3_exam24_q12"] = {
 // ============================================
 
 // a → 3: Architektur und Spaziergang mit Bauwerken
-HELP_DATA["lesen3_exam25_q1" = {
+HELP_DATA["lesen3_exam25_q1"] = {
     text: "Die 'Gärten der Welt' sind zehn Themengärten - Ihr Nachbar beschäftigt sich gerne mit Architektur. Er möchte an einem freien Nachmittag spazierengehen und dabei interessante Bauwerke ansehen.",
     meaning: "'حدائق العالم' هي عشرة حدائق ذات مواضيع - جارك مهتم بالهندسة المعمارية. يريد القيام بنزهة بعد ظهر يوم حر ورؤية المباني المثيرة للاهتمام.",
     keywords: ["Gärten = حدائق", "Architektur = عمارة"],
@@ -5446,7 +5442,7 @@ HELP_DATA["lesen3_exam26_q2"] = {
 };
 
 // c → 3: einen Tag in Bäckerei arbeiten
-HELP_DATA["lesen3_exam26_q3" = {
+HELP_DATA["lesen3_exam26_q3"] = {
     text: "BÄCKEREI - KONDITOREI BROTECKE - Eine Freundin möchte einmal einen Tag lang in einer Bäckerei arbeiten.",
     meaning: "مخبز - حلويات بروتيكه - صديقة تريد العمل في مخبز ليوم واحد.",
     keywords: ["BÄCKEREI = مخبز", "arbeiten = يعمل"],
@@ -5506,7 +5502,7 @@ HELP_DATA["lesen3_exam26_q11"] = {
 // ============================================
 
 // a → 0: Dokumentarfilm über Einwanderung nach Australien
-HELP_DATA["lesen3_exam27_q1" = {
+HELP_DATA["lesen3_exam27_q1"] = {
     text: "14.01. - 10:00 Uhr (VOX) McLeods Töchter - Sie möchten sich einen Dokumentarfilm über die Einwanderung nach Australien und über den damit verbundenen Prozess ansehen.",
     meaning: "14.01 - 10:00 صباحاً (VOX) بنات ماكلاود - تريد مشاهدة فيلم وثائقي عن الهجرة إلى أستراليا والعملية المرتبطة بها.",
     keywords: ["Einwanderung = هجرة", "Australien = أستراليا"],
@@ -5522,7 +5518,7 @@ HELP_DATA["lesen3_exam27_q2"] = {
 };
 
 // c → 3: Aufdeckung von Verbrechen früher
-HELP_DATA["lesen3_exam27_q3" = {
+HELP_DATA["lesen3_exam27_q3"] = {
     text: "SPIEGEL TV Thema: Die Chemie des Todes - Ein Mann interessiert sich für die Aufdeckung von Verbrechen, die früher nicht gelöst werden konnten.",
     meaning: "موضوع قناة شبيغل تي في: كيمياء الموت - رجل مهتم بكشف الجرائم التي لم يتم حلها سابقاً.",
     keywords: ["Verbrechen = جرائم", "aufdecken = يكشف"],
@@ -5710,7 +5706,7 @@ HELP_DATA["lesen3_exam29_q12"] = {
 // ============================================
 
 // a → 2: Beziehung zur Mutter des Mannes verbessern
-HELP_DATA["lesen3_exam30_q1" = {
+HELP_DATA["lesen3_exam30_q1"] = {
     text: "Schwiegermütter - Schwiegertöchter Problem oder Chance - Eine Bekannte möchte ihre Beziehung zur Mutter des Mannes verändern.",
     meaning: "الحموات والكنات مشكلة أم فرصة - إحدى المعارف تريد تغيير علاقتها بزوجة والد زوجها (أم الزوج).",
     keywords: ["Schwiegermütter = حموات", "Beziehung = علاقة"],
@@ -5726,7 +5722,7 @@ HELP_DATA["lesen3_exam30_q2"] = {
 };
 
 // c → 8: Strategien lernen um Ziele zu erreichen
-HELP_DATA["lesen3_exam30_q3" = {
+HELP_DATA["lesen3_exam30_q3"] = {
     text: "Kommunikation - Eine Freundin möchte Strategien erlernen, wie man wirkungsvoller argumentiert und dadurch leichter seine Ziele erreicht.",
     meaning: "التواصل - صديقة تريد تعلم استراتيجيات للمناقشة بشكل أكثر فعالية وبالتالي تحقيق أهدافها بسهولة أكبر.",
     keywords: ["Kommunikation = تواصل", "argumentiert = يناقش"],
@@ -5770,7 +5766,7 @@ HELP_DATA["lesen3_exam30_q11"] = {
 // ============================================
 
 // a → 9: jungen Hund für Familie suchen
-HELP_DATA["lesen3_exam31_q1" = {
+HELP_DATA["lesen3_exam31_q1"] = {
     text: "Vier herzerliebste Mopswelpen - Sie suchen nach einem jungen Hund für Ihre Familie.",
     meaning: "أربعة من أجمل جراء الموبس - تبحث عن كلب صغير لعائلتك.",
     keywords: ["Mopswelpen = جراء موبس", "jungen Hund = كلب صغير"],
@@ -5778,7 +5774,7 @@ HELP_DATA["lesen3_exam31_q1" = {
 };
 
 // c → 3: Mitglied in Gesangverein werden
-HELP_DATA["lesen3_exam31_q3" = {
+HELP_DATA["lesen3_exam31_q3"] = {
     text: "Auenbacher Bach-Verein - Ihr Mann singt gerne und möchte Mitglied in einem Gesangverein werden.",
     meaning: "جوقة أوينباخر باخ - زوجك يحب الغناء ويريد أن يصبح عضواً في جوقة غنائية.",
     keywords: ["Verein = نادي/جوقة", "Gesangverein = جوقة غنائية"],
@@ -5830,7 +5826,7 @@ HELP_DATA["lesen3_exam31_q12"] = {
 // ============================================
 
 // a → 4: Tageswanderungen in Gesellschaft
-HELP_DATA["lesen3_exam32_q1" = {
+HELP_DATA["lesen3_exam32_q1"] = {
     text: "Auf den Höhen des Rheins - Ein befreundetes Ehepaar macht gern Tageswanderungen in Gesellschaft.",
     meaning: "على مرتفعات نهر الراين - زوجان صديقان يحبان القيام برحلات مشي ليوم واحد برفقة آخرين.",
     keywords: ["Wanderungen = رحلات مشي", "Gesellschaft = برفقة"],
@@ -5846,7 +5842,7 @@ HELP_DATA["lesen3_exam32_q2"] = {
 };
 
 // c → 5: gute Laufschuhe kaufen
-HELP_DATA["lesen3_exam32_q3" = {
+HELP_DATA["lesen3_exam32_q3"] = {
     text: "Der Wanderladen am Rathausplatz 4 - Eine Bekannte möchte gute Laufschuhe kaufen.",
     meaning: "متجر المشي لمسافات طويلة في ساحة البلدية 4 - إحدى المعارف تريد شراء أحذية جري جيدة.",
     keywords: ["Wanderladen = متجر مشي", "Laufschuhe = أحذية جري"],
@@ -5892,7 +5888,7 @@ HELP_DATA["lesen3_exam32_q12"] = {
 // ============================================
 
 // a → 7: unterhaltsamen Film anschauen
-HELP_DATA["lesen3_exam33_q1" = {
+HELP_DATA["lesen3_exam33_q1"] = {
     text: "Das Comedy Filmfest tourt auch dieses Jahr - Sie möchten mit Freunden einen unterhaltsamen Film anschauen.",
     meaning: "مهرجان الأفلام الكوميدية يجول هذا العام أيضاً - تريد مشاهدة فيلم ترفيهي مع أصدقائك.",
     keywords: ["Comedy = كوميديا", "unterhaltsamen Film = فيلم ترفيهي"],
@@ -5900,7 +5896,7 @@ HELP_DATA["lesen3_exam33_q1" = {
 };
 
 // c → 9: mehrtägige Stadttour mit Freunden
-HELP_DATA["lesen3_exam33_q3" = {
+HELP_DATA["lesen3_exam33_q3"] = {
     text: "Berlin erleben - Sie würden gerne mit Freunden eine mehrtägige Stadttour machen und suchen ein Angebot.",
     meaning: "جوهرة برلين - ترغب في القيام بجولة مدينة لعدة أيام مع الأصدقاء وتبحث عن عرض.",
     keywords: ["Berlin = برلين", "Stadttour = جولة مدينة"],
@@ -5960,7 +5956,7 @@ HELP_DATA["lesen3_exam33_q11"] = {
 // ============================================
 
 // a → 7: Film mit Freunden für gute Unterhaltung
-HELP_DATA["lesen3_exam34_q1" = {
+HELP_DATA["lesen3_exam34_q1"] = {
     text: "Das Comedy Filmfest tourt auch dieses Jahr - Sie planen, mit Ihren Freunden einen Film zu schauen, der gute Unterhaltung bietet.",
     meaning: "مهرجان الأفلام الكوميدية يجول هذا العام أيضاً - تخطط لمشاهدة فيلم مع أصدقائك يقدم ترفيهاً جيداً.",
     keywords: ["Comedy = كوميديا", "Unterhaltung = ترفيه"],
@@ -5968,7 +5964,7 @@ HELP_DATA["lesen3_exam34_q1" = {
 };
 
 // c → 9: mehrtägige Städtereise mit Freunden
-HELP_DATA["lesen3_exam34_q3" = {
+HELP_DATA["lesen3_exam34_q3"] = {
     text: "Berlin erleben - Sie planen eine mehrtägige Städtereise mit Freunden und möchten dafür ein geeignetes Angebot finden.",
     meaning: "جوهرة برلين - تخطط لرحلة مدينة لعدة أيام مع الأصدقاء وتريد العثور على عرض مناسب.",
     keywords: ["Städtereise = رحلة مدينة", "Freunden = أصدقاء"],
@@ -6028,7 +6024,7 @@ HELP_DATA["lesen3_exam34_q11"] = {
 // ============================================
 
 // a → 2: Wissen über Finanzen erweitern
-HELP_DATA["lesen3_exam35_q1" = {
+HELP_DATA["lesen3_exam35_q1"] = {
     text: "Alles rund um das Thema Geld - Ihr Bruder möchte in einem Kurs sein Wissen über Finanzen erweitern.",
     meaning: "كل شيء حول موضوع المال - أخوك يريد توسيع معرفته حول التمويل من خلال دورة تدريبية.",
     keywords: ["Geld = مال", "Finanzen = تمويل"],
@@ -6096,7 +6092,7 @@ HELP_DATA["lesen3_exam35_q12"] = {
 // ============================================
 
 // a → 5: Arbeiten hinter den Kulissen einer Show
-HELP_DATA["lesen3_exam36_q1" = {
+HELP_DATA["lesen3_exam36_q1"] = {
     text: "25 Jahre in Hamburg - Ihre Cousine schaut sich gerne Bühnenshows an und möchte wissen, welche Arbeiten hinter den Kulissen erledigt werden.",
     meaning: "25 عاماً في هامبورغ - ابنة عمتك تحب مشاهدة العروض المسرحية وتريد معرفة الأعمال التي تتم خلف الكواليس.",
     keywords: ["Bühnenshows = عروض مسرحية", "Kulissen = كواليس"],
@@ -6104,7 +6100,7 @@ HELP_DATA["lesen3_exam36_q1" = {
 };
 
 // c → 1: guten Kleidungsstil entwickeln
-HELP_DATA["lesen3_exam36_q3" = {
+HELP_DATA["lesen3_exam36_q3"] = {
     text: "Der perfekte Kleiderschrank - Eine Freundin hat viele Sachen zum Anziehen, die sie nie trägt. Sie möchte einen guten Kleidungsstil entwickeln.",
     meaning: "خزانة الملابس المثالية - صديقة لديها العديد من الأشكال التي لا ترتديها أبداً. تريد تطوير أسلوب ملابس جيد.",
     keywords: ["Kleiderschrank = خزانة ملابس", "Kleidungsstil = أسلوب ملابس"],
