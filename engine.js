@@ -386,6 +386,7 @@ function selectSprach2Word(word) {
     return;
   }
   sprach2SelectedWord = word;
+  
   const allWords = document.querySelectorAll('.sprach2-word-card');
   allWords.forEach(card => {
     if (card.id === `sprach2_word_${word}`) {
@@ -409,7 +410,20 @@ function openSprach2Dropdown(questionId) {
   }
   
   sprach2UserAnswers[questionId] = sprach2SelectedWord;
-  
+
+// ✅ أضف هذا الكود هنا
+const selectedBtn = document.getElementById(`sprach2_btn_${questionId}`);
+if (selectedBtn) {
+    selectedBtn.style.backgroundColor = "#e6e6ff";
+    selectedBtn.style.border = "2px solid #7c4dff";
+}
+
+const btn = document.getElementById(`sprach2_btn_${questionId}`);
+if (btn) {
+    btn.textContent = sprach2SelectedWord;
+    btn.style.backgroundColor = "#d4edda";
+    btn.style.color = "#155724";
+}
   const btn = document.getElementById(`sprach2_btn_${questionId}`);
   if (btn) {
     btn.textContent = sprach2SelectedWord;
@@ -429,6 +443,11 @@ function openSprach2Dropdown(questionId) {
   }
   
   sprach2SelectedWord = null;
+  const wordDiv = document.getElementById(`sprach2_word_${word}`);
+if (wordDiv) {
+    wordDiv.style.backgroundColor = "#e6e6ff";
+    wordDiv.style.border = "2px solid #7c4dff";
+}
   
   const allWords = document.querySelectorAll('.sprach2-word-card');
   allWords.forEach(card => {
@@ -888,9 +907,8 @@ function checkSprach1Exam() {
     if (correctRadio) {
       const parentLabel = correctRadio.parentElement;
       if (parentLabel && !isCorrect) {
-        parentLabel.style.backgroundColor = "#d4edda";
-        parentLabel.style.border = "2px solid #28a745";
-      }
+        parentLabel.style.backgroundColor = "#ffe8cc";
+parentLabel.style.border = "2px solid #e6a800";
     }
   }
   
@@ -1140,21 +1158,14 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
     } else {
       card.classList.add('wrong-answer-card');
       
-      const correctMsg = document.createElement('div');
-      correctMsg.className = 'correct-message';
-      correctMsg.style.marginTop = '10px';
-      correctMsg.style.fontSize = '14px';
-      correctMsg.style.fontWeight = 'bold';
-      
-      if (userAnswer !== undefined) {
-        correctMsg.style.color = '#28a745';
-        correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.correct ? 'Richtig' : 'Falsch'}`;
-      } else {
-        correctMsg.style.color = '#ff9800';
-        correctMsg.innerHTML = `⚠️ لم يتم الإجابة - الصحيح: ${q.correct ? 'Richtig' : 'Falsch'}`;
-      }
-      card.appendChild(correctMsg);
-    }
+     const correctMsg = document.createElement('div');
+correctMsg.className = 'correct-message';
+correctMsg.style.marginTop = '10px';
+correctMsg.style.fontSize = '14px';
+correctMsg.style.fontWeight = 'bold';
+correctMsg.style.color = '#28a745';
+correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.correct ? 'Richtig' : 'Falsch'}`;
+card.appendChild(correctMsg);
     
     const radios = card.querySelectorAll('input[type="radio"]');
     for (let r = 0; r < radios.length; r++) {
@@ -1164,18 +1175,15 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
       
       if (isCorrect && userAnswer !== undefined) {
         if (radio.checked) {
-          parentLabel.style.backgroundColor = '#d4edda';
-          parentLabel.style.border = '2px solid #28a745';
-        }
+          parentLabel.style.backgroundColor = "#ffe8cc";
+parentLabel.style.border = "2px solid #e6a800";
       } else {
         if (radio.checked) {
-          parentLabel.style.backgroundColor = '#f8d7da';
-          parentLabel.style.border = '2px solid #dc3545';
-        }
+          parentLabel.style.backgroundColor = '#ffe8cc';
+parentLabel.style.border = '2px solid #e6a800';
         if (radioValue === q.correct) {
-          parentLabel.style.backgroundColor = '#d4edda';
-          parentLabel.style.border = '2px solid #28a745';
-        }
+          parentLabel.style.backgroundColor = "#ffe8cc";
+parentLabel.style.border = "2px solid #e6a800";
       }
     }
   }
@@ -1553,7 +1561,16 @@ function selectTeil3Option(questionIndex, selectedText) {
   }
   
   closeTeil3Dropdown(questionIndex);
-  
+    // تأثير لوني عند الاختيار
+  const btn = document.getElementById(`teil3_btn_${questionIndex}`);
+  if (btn) {
+    btn.style.backgroundColor = "#e6e6ff";
+    btn.style.border = "2px solid #7c4dff";
+    setTimeout(() => {
+      btn.style.backgroundColor = "white";
+      btn.style.border = "1px solid #ccc";
+    }, 300);
+  }
   for (let i = 0; i < currentTeil3Data.items.length; i++) {
     updateTeil3DropdownList(i);
   }
@@ -1592,6 +1609,22 @@ function checkTeil3Exam() {
       } else {
         isCorrect = false;
         if (card) card.classList.add("wrong-answer-card");
+        const correctMsg = document.createElement('div');
+correctMsg.className = 'correct-message';
+correctMsg.style.marginTop = '10px';
+correctMsg.style.fontSize = '14px';
+correctMsg.style.fontWeight = 'bold';
+correctMsg.style.color = '#28a745';
+if (item.correct !== null) {
+    const correctText = currentTeil3Data.situations[item.correct];
+    correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${String.fromCharCode(97 + item.correct)}. ${correctText}`;
+} else {
+    correctMsg.innerHTML = `✅ ليس لها عنوان (keine passende Situation)`;
+}
+
+const oldMsg = card.querySelector(".correct-message");
+if (oldMsg) oldMsg.remove();
+card.appendChild(correctMsg);
         displayText = "✅ ليس لها عنوان";
       }
     } else {
@@ -1907,19 +1940,19 @@ function checkTeil2Exam() {
         
         if (isCorrect && userAnswer !== undefined) {
           if (radio.checked) {
-            parentLabel.style.backgroundColor = "#d4edda";
-            parentLabel.style.border = "2px solid #28a745";
+            parentLabel.style.backgroundColor = "#ffe8cc";
+parentLabel.style.border = "2px solid #e6a800";
             parentLabel.style.borderRadius = "8px";
           }
         } else {
           if (radio.checked) {
-            parentLabel.style.backgroundColor = "#f8d7da";
-            parentLabel.style.border = "2px solid #dc3545";
+            parentLabel.style.backgroundColor = "#ffe8cc";
+parentLabel.style.border = "2px solid #e6a800";
             parentLabel.style.borderRadius = "8px";
           }
           if (radioValue === q.correct) {
-            parentLabel.style.backgroundColor = "#d4edda";
-            parentLabel.style.border = "2px solid #28a745";
+            parentLabel.style.backgroundColor = "#ffe8cc";
+parentLabel.style.border = "2px solid #e6a800";
             parentLabel.style.borderRadius = "8px";
           }
         }
