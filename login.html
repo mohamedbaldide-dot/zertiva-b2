@@ -2,61 +2,82 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>تسجيل الدخول أو إنشاء حساب</title>
+    <title>تسجيل الدخول أو إنشاء حساب - Zertiva B2</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f0f4f8;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
+            padding: 20px;
         }
         .login-card {
             background: white;
             padding: 40px;
             border-radius: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.2);
             width: 400px;
             text-align: center;
         }
+        h2 {
+            color: #2b5876;
+            margin-bottom: 10px;
+        }
         input {
             width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
+            padding: 14px;
+            margin: 12px 0;
+            border: 1px solid #ddd;
             border-radius: 30px;
             font-size: 16px;
+            box-sizing: border-box;
         }
         button {
-            background: #f39c12;
-            color: #1e2a3e;
-            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px;
             border: none;
             border-radius: 30px;
             width: 100%;
             font-weight: bold;
+            font-size: 16px;
             cursor: pointer;
             margin-top: 10px;
+        }
+        button:hover {
+            opacity: 0.9;
+            transform: scale(1.01);
         }
         .note {
             margin-top: 20px;
             font-size: 13px;
-            color: gray;
+            color: #666;
+        }
+        .back-link {
+            margin-top: 20px;
+        }
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
 <div class="login-card">
     <h2>🔐 تسجيل الدخول / إنشاء حساب</h2>
-    <p>أدخل بريدك الإلكتروني وكلمة سر (أي كلمة سر)</p>
+    <p>أدخل بريدك الإلكتروني وكلمة السر</p>
     <input type="email" id="email" placeholder="بريدك الإلكتروني" autocomplete="off">
-    <input type="password" id="password" placeholder="كلمة السر (أي شيء)">
+    <input type="password" id="password" placeholder="كلمة السر">
     <button id="loginBtn">دخول / إنشاء حساب</button>
     <div class="note">
-        ⚠️ حساب مجاني: يظهر لك امتحان أو اثنين فقط.<br>
+        ⚠️ حساب مجاني: يظهر لك امتحان واحد فقط من كل قسم.<br>
         ✨ الاشتراك المدفوع: يفتح لك كل الامتحانات لمدة شهر أو شهرين.
+    </div>
+    <div class="back-link">
+        <a href="index.html">← العودة إلى الرئيسية</a>
     </div>
 </div>
 
@@ -70,16 +91,11 @@
             return;
         }
 
-        // حفظ بيانات تسجيل الدخول في localStorage
-        localStorage.setItem("loggedInEmail", email);
-        localStorage.setItem("loggedInPass", password);
+        localStorage.setItem("zertiva_email", email);
+        localStorage.setItem("zertiva_password", password);
         
-        // هنا في المستقبل سنتحقق من الصلاحية عبر ملف JSON أو قاعدة بيانات
-        // حالياً: نعتبر كل الحسابات مجانية حتى تفعلها يدوياً
-
-        alert(`✅ تم تسجيل الدخول بنجاح كـ: ${email}\nالآن أنت في الوضع المجاني (امتحانان فقط). للاشتراك اضغط زر "اشتراك" في الصفحة الرئيسية.`);
+        alert(`✅ تم تسجيل الدخول بنجاح كـ: ${email}\n📖 أنت الآن في الوضع المجاني.\n✨ للاشتراك المدفوع اضغط زر "اشتراك" في الصفحة الرئيسية.`);
         
-        // العودة للصفحة الرئيسية
         window.location.href = "index.html";
     });
 </script>
