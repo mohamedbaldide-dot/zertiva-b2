@@ -14958,7 +14958,7 @@ HELP_DATA["sprach2_exam45_10"] = {
     imagine: "🏛️🤝 مبنى ومصافحة"
 };
 // ============================================
-// helpSystem.js - نظام المساعدة المتكامل (النسخة النهائية)
+// helpSystem.js - نظام المساعدة المتكامل (النسخة النهائية المحسنة)
 // ============================================
 
 let helpLayerActive = false;
@@ -15133,27 +15133,61 @@ function getActiveSection() {
     return null;
 }
 
-// البحث عن البيانات في HELP_DATA
+// ========== دالة البحث المحسنة - الحل السحري ==========
 function findHelpData(skill, examId, questionNumber) {
     if (!window.HELP_DATA) return null;
     
-    const key = `${skill}_exam${examId}_q${questionNumber}`;
-    if (window.HELP_DATA[key]) {
-        return window.HELP_DATA[key];
+    // الطريقة 1: البحث بالصيغة الأساسية hoeren1_exam1_q2
+    const key1 = `${skill}_exam${examId}_q${questionNumber}`;
+    if (window.HELP_DATA[key1]) {
+        console.log(`✅ وجد بالصيغة 1: ${key1}`);
+        return window.HELP_DATA[key1];
     }
     
+    // الطريقة 2: البحث بالصيغة hoeren1_exam1_2 (بدون q)
     const key2 = `${skill}_exam${examId}_${questionNumber}`;
     if (window.HELP_DATA[key2]) {
+        console.log(`✅ وجد بالصيغة 2: ${key2}`);
         return window.HELP_DATA[key2];
     }
     
-    // بحث شامل
-    for (let k in window.HELP_DATA) {
-        if (k.includes(`exam${examId}`) && k.includes(`q${questionNumber}`)) {
-            return window.HELP_DATA[k];
+    // الطريقة 3: البحث بالصيغة مع حروف (لـ lesen3_exam2_a, sprach1_exam1_a, etc.)
+    // هذه الطريقة ستجعل النظام يبحث عن lesen3_exam2_a, lesen3_exam2_b, ... إلخ
+    const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    for (let i = 0; i < letters.length; i++) {
+        const letterKey = `${skill}_exam${examId}_${letters[i]}`;
+        if (window.HELP_DATA[letterKey]) {
+            console.log(`✅ وجد بالصيغة مع حرف: ${letterKey} (للسؤال ${questionNumber})`);
+            return window.HELP_DATA[letterKey];
         }
     }
     
+    // الطريقة 4: بحث شامل في كل المفاتيح - هذه الطريقة ستجد أي شيء
+    for (let key in window.HELP_DATA) {
+        // شرط أن المفتاح يحتوي على examId ويرتبط برقم السؤال
+        if (key.includes(`exam${examId}`)) {
+            // إذا كان رقم السؤال موجود في المفتاح بأي صيغة
+            if (key.includes(`q${questionNumber}`) || 
+                key.includes(`_${questionNumber}_`) || 
+                key.endsWith(`_${questionNumber}`) ||
+                key.match(new RegExp(`_${questionNumber}$`)) ||
+                key.match(new RegExp(`_${questionNumber}_`))) {
+                console.log(`✅ وجد بالبحث الشامل: ${key}`);
+                return window.HELP_DATA[key];
+            }
+            
+            // خاص للصيغ مثل lesen3_exam2_a التي ليس بها رقم سؤال
+            // في هذه الحالة، نطابق ترتيب الحرف مع رقم السؤال
+            // مثلاً: السؤال 1 -> a, السؤال 2 -> b, إلخ
+            const letterMatch = key.match(/_([a-z])$/);
+            if (letterMatch && letters.indexOf(letterMatch[1]) + 1 === questionNumber) {
+                console.log(`✅ وجد بالصيغة مع حرف (رقمي): ${key} (للسؤال ${questionNumber})`);
+                return window.HELP_DATA[key];
+            }
+        }
+    }
+    
+    console.warn(`❌ لم يتم العثور على شرح للسؤال ${questionNumber} في ${skill}_exam${examId}`);
     return null;
 }
 
@@ -15177,7 +15211,7 @@ function createHelpCard(questionNumber) {
         }
         card.innerHTML = `
             <div style="font-weight:bold;color:#2c3e66;border-right:4px solid #007bff;padding-right:12px;margin-bottom:15px;font-size:17px">
-                ${questionNumber}️⃣ ${data.text}
+                ${questionNumber}️⃣ ${data.text || ''}
             </div>
             <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">📖 المعنى :</span> <span style="color:#333">${data.meaning || 'لا توجد ترجمة'}</span></div>
             ${keywordsHtml}
@@ -15335,7 +15369,7 @@ function setupExamChangeListener() {
 }
 setupExamChangeListener();
 
-console.log('✅ helpSystem.js - نظام المساعدة الكامل تم تحميله بنجاح');
+console.log('✅ helpSystem.js - نظام المساعدة الكامل تم تحميله بنجاح (نسخة محسنة)');
 
 // ============================================
 // نهاية الملف
