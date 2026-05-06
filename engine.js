@@ -34,13 +34,11 @@ function renderSchreibenExam() {
   
   const data = currentSchreibenData;
   
-  // تقسيم الصفحة إلى عمودين
   const twoColumns = document.createElement("div");
   twoColumns.style.display = "flex";
   twoColumns.style.gap = "30px";
   twoColumns.style.flexWrap = "wrap";
   
-  // ========== العمود الأيسر: Situation + Aufgabe ==========
   const leftColumn = document.createElement("div");
   leftColumn.style.flex = "1";
   leftColumn.style.minWidth = "350px";
@@ -51,7 +49,6 @@ function renderSchreibenExam() {
   leftColumn.style.maxHeight = "80vh";
   leftColumn.style.overflowY = "auto";
   
-  // Situation
   const situationTitle = document.createElement("h3");
   situationTitle.innerHTML = "📌 SITUATION";
   situationTitle.style.color = "#2c3e66";
@@ -74,7 +71,6 @@ function renderSchreibenExam() {
   situationDiv.appendChild(situationText);
   leftColumn.appendChild(situationDiv);
   
-  // Aufgabe
   const aufgabeTitle = document.createElement("h3");
   aufgabeTitle.innerHTML = "📝 AUFGABE";
   aufgabeTitle.style.color = "#2c3e66";
@@ -123,7 +119,6 @@ function renderSchreibenExam() {
   
   leftColumn.appendChild(aufgabeDiv);
   
-  // ========== العمود الأيمن: Template ==========
   const rightColumn = document.createElement("div");
   rightColumn.style.flex = "1";
   rightColumn.style.minWidth = "350px";
@@ -134,7 +129,6 @@ function renderSchreibenExam() {
   rightColumn.style.maxHeight = "80vh";
   rightColumn.style.overflowY = "auto";
   
-  // ✅ التعديل: إزالة الـ ✦ المكررة
   const templateTitle = document.createElement("div");
   let cleanTitle = data.template.title;
   cleanTitle = cleanTitle.replace(/✦/g, '').trim();
@@ -158,11 +152,9 @@ function renderSchreibenExam() {
   templateBox.style.lineHeight = "1.6";
   templateBox.style.whiteSpace = "pre-wrap";
   
-  // ✅ التعديل: لا نضيف 🔹 إضافية، فقط نلون النقاط باللون الأزرق
   let templateText = data.template.text;
   const bluePoints = data.template.colors.blue_points || [];
   
-  // تحويل النص إلى HTML مع إضافة اللون الأزرق للنقاط (بدون إضافة 🔹)
   let htmlText = templateText.replace(/\n/g, '<br>');
   for (let i = 0; i < bluePoints.length; i++) {
     const point = bluePoints[i];
@@ -209,13 +201,11 @@ function renderSprach2Exam() {
   const options = currentSprach2Data.options;
   const allOptions = currentSprach2Data.allOptions;
   
-  // تقسيم الصفحة إلى عمودين
   const twoColumns = document.createElement("div");
   twoColumns.style.display = "flex";
   twoColumns.style.gap = "30px";
   twoColumns.style.flexWrap = "wrap";
   
-  // ========== العمود الأيسر: النص ==========
   const leftColumn = document.createElement("div");
   leftColumn.style.flex = "1.5";
   leftColumn.style.minWidth = "400px";
@@ -232,7 +222,6 @@ function renderSprach2Exam() {
   leftTitle.style.color = "#2c3e66";
   leftColumn.appendChild(leftTitle);
   
-  // عرض النص مع تحويل الفجوات إلى أزرار قابلة للنقر
   let htmlText = text;
   for (let i = 1; i <= options.length; i++) {
     const btnId = `sprach2_btn_${i}`;
@@ -251,7 +240,6 @@ function renderSprach2Exam() {
   textDiv.style.fontSize = "14px";
   textDiv.style.textAlign = "justify";
   
-  // ربط الأزرار
   for (let i = 1; i <= options.length; i++) {
     const btn = textDiv.querySelector(`#sprach2_btn_${i}`);
     if (btn) {
@@ -263,7 +251,6 @@ function renderSprach2Exam() {
   
   leftColumn.appendChild(textDiv);
   
-  // ========== العمود الأيمن: الخيارات ==========
   const rightColumn = document.createElement("div");
   rightColumn.style.flex = "0.8";
   rightColumn.style.minWidth = "250px";
@@ -280,7 +267,6 @@ function renderSprach2Exam() {
   rightTitle.style.color = "#2c3e66";
   rightColumn.appendChild(rightTitle);
   
-  // عرض الكلمات في شبكة 3x5
   const wordsGrid = document.createElement("div");
   wordsGrid.style.display = "grid";
   wordsGrid.style.gridTemplateColumns = "repeat(3, 1fr)";
@@ -333,7 +319,6 @@ function renderSprach2Exam() {
   twoColumns.appendChild(rightColumn);
   container.appendChild(twoColumns);
   
-  // أزرار التحكم
   const buttonContainer = document.createElement("div");
   buttonContainer.style.display = "flex";
   buttonContainer.style.gap = "15px";
@@ -387,6 +372,16 @@ function selectSprach2Word(word) {
   }
   sprach2SelectedWord = word;
   
+  const wordDiv = document.getElementById(`sprach2_word_${word}`);
+  if (wordDiv) {
+    wordDiv.style.backgroundColor = "#e6e6ff";
+    wordDiv.style.border = "2px solid #7c4dff";
+    setTimeout(() => {
+      wordDiv.style.backgroundColor = "#ffffff";
+      wordDiv.style.border = "1px solid #007bff";
+    }, 300);
+  }
+  
   const allWords = document.querySelectorAll('.sprach2-word-card');
   allWords.forEach(card => {
     if (card.id === `sprach2_word_${word}`) {
@@ -410,20 +405,13 @@ function openSprach2Dropdown(questionId) {
   }
   
   sprach2UserAnswers[questionId] = sprach2SelectedWord;
-
-// ✅ أضف هذا الكود هنا
-const selectedBtn = document.getElementById(`sprach2_btn_${questionId}`);
-if (selectedBtn) {
+  
+  const selectedBtn = document.getElementById(`sprach2_btn_${questionId}`);
+  if (selectedBtn) {
     selectedBtn.style.backgroundColor = "#e6e6ff";
     selectedBtn.style.border = "2px solid #7c4dff";
-}
-
-const btn = document.getElementById(`sprach2_btn_${questionId}`);
-if (btn) {
-    btn.textContent = sprach2SelectedWord;
-    btn.style.backgroundColor = "#d4edda";
-    btn.style.color = "#155724";
-}
+  }
+  
   const btn = document.getElementById(`sprach2_btn_${questionId}`);
   if (btn) {
     btn.textContent = sprach2SelectedWord;
@@ -443,11 +431,6 @@ if (btn) {
   }
   
   sprach2SelectedWord = null;
-  const wordDiv = document.getElementById(`sprach2_word_${word}`);
-if (wordDiv) {
-    wordDiv.style.backgroundColor = "#e6e6ff";
-    wordDiv.style.border = "2px solid #7c4dff";
-}
   
   const allWords = document.querySelectorAll('.sprach2-word-card');
   allWords.forEach(card => {
@@ -507,10 +490,10 @@ function checkSprach2Exam() {
         btn.style.backgroundColor = "#28a745";
         btn.style.color = "white";
       } else if (userAnswer) {
-        btn.style.backgroundColor = "#dc3545";
+        btn.style.backgroundColor = "#e6a800";
         btn.style.color = "white";
       } else {
-        btn.style.backgroundColor = "#ffc107";
+        btn.style.backgroundColor = "#e6a800";
         btn.style.color = "#333";
       }
     }
@@ -528,8 +511,8 @@ function checkSprach2Exam() {
     resultDiv.style.backgroundColor = "#fff3cd";
     resultDiv.style.color = "#856404";
   } else {
-    resultDiv.style.backgroundColor = "#f8d7da";
-    resultDiv.style.color = "#721c24";
+    resultDiv.style.backgroundColor = "#ffe8cc";
+    resultDiv.style.color = "#664d00";
   }
 }
 
@@ -879,10 +862,10 @@ function checkSprach1Exam() {
         btn.style.backgroundColor = "#28a745";
         btn.style.color = "white";
       } else if (userAnswer) {
-        btn.style.backgroundColor = "#dc3545";
+        btn.style.backgroundColor = "#e6a800";
         btn.style.color = "white";
       } else {
-        btn.style.backgroundColor = "#ffc107";
+        btn.style.backgroundColor = "#e6a800";
         btn.style.color = "#333";
       }
     }
@@ -893,11 +876,11 @@ function checkSprach1Exam() {
         optGroup.style.backgroundColor = "#d4edda";
         optGroup.style.border = "2px solid #28a745";
       } else if (userAnswer) {
-        optGroup.style.backgroundColor = "#f8d7da";
-        optGroup.style.border = "2px solid #dc3545";
+        optGroup.style.backgroundColor = "#ffe8cc";
+        optGroup.style.border = "2px solid #e6a800";
       } else {
-        optGroup.style.backgroundColor = "#fff3cd";
-        optGroup.style.border = "2px solid #ffc107";
+        optGroup.style.backgroundColor = "#ffe8cc";
+        optGroup.style.border = "2px solid #e6a800";
       }
     }
     
@@ -907,8 +890,10 @@ function checkSprach1Exam() {
     if (correctRadio) {
       const parentLabel = correctRadio.parentElement;
       if (parentLabel && !isCorrect) {
-        parentLabel.style.backgroundColor = "#ffe8cc";
-parentLabel.style.border = "2px solid #e6a800";
+        parentLabel.style.backgroundColor = "#d4edda";
+        parentLabel.style.border = "2px solid #28a745";
+        parentLabel.style.borderRadius = "8px";
+      }
     }
   }
   
@@ -924,8 +909,8 @@ parentLabel.style.border = "2px solid #e6a800";
     resultDiv.style.backgroundColor = "#fff3cd";
     resultDiv.style.color = "#856404";
   } else {
-    resultDiv.style.backgroundColor = "#f8d7da";
-    resultDiv.style.color = "#721c24";
+    resultDiv.style.backgroundColor = "#ffe8cc";
+    resultDiv.style.color = "#664d00";
   }
 }
 
@@ -1066,7 +1051,6 @@ window.buildTrueFalseExam = function(container, questions, note) {
   checkBtn.style.cursor = 'pointer';
   checkBtn.style.fontSize = '16px';
   
-  // ✅ الآن نمرر container إلى دالة التصحيح
   checkBtn.onclick = () => {
     checkTrueFalseExam(container, questions, window._trueFalseUserAnswers, correctNumbersContainer);
   };
@@ -1135,8 +1119,7 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
   let correctIndices = [];
-  
-  // ✅ استخدم container نفسه للبحث عن البطاقات (بدلاً من document.querySelectorAll)
+
   const cards = container.querySelectorAll('.question-card');
   
   for (let i = 0; i < questions.length; i++) {
@@ -1158,14 +1141,15 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
     } else {
       card.classList.add('wrong-answer-card');
       
-     const correctMsg = document.createElement('div');
-correctMsg.className = 'correct-message';
-correctMsg.style.marginTop = '10px';
-correctMsg.style.fontSize = '14px';
-correctMsg.style.fontWeight = 'bold';
-correctMsg.style.color = '#28a745';
-correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.correct ? 'Richtig' : 'Falsch'}`;
-card.appendChild(correctMsg);
+      const correctMsg = document.createElement('div');
+      correctMsg.className = 'correct-message';
+      correctMsg.style.marginTop = '10px';
+      correctMsg.style.fontSize = '14px';
+      correctMsg.style.fontWeight = 'bold';
+      correctMsg.style.color = '#28a745';
+      correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.correct ? 'Richtig' : 'Falsch'}`;
+      card.appendChild(correctMsg);
+    }
     
     const radios = card.querySelectorAll('input[type="radio"]');
     for (let r = 0; r < radios.length; r++) {
@@ -1175,15 +1159,21 @@ card.appendChild(correctMsg);
       
       if (isCorrect && userAnswer !== undefined) {
         if (radio.checked) {
-          parentLabel.style.backgroundColor = "#ffe8cc";
-parentLabel.style.border = "2px solid #e6a800";
+          parentLabel.style.backgroundColor = "#d4edda";
+          parentLabel.style.border = "2px solid #28a745";
+          parentLabel.style.borderRadius = "8px";
+        }
       } else {
         if (radio.checked) {
-          parentLabel.style.backgroundColor = '#ffe8cc';
-parentLabel.style.border = '2px solid #e6a800';
-        if (radioValue === q.correct) {
           parentLabel.style.backgroundColor = "#ffe8cc";
-parentLabel.style.border = "2px solid #e6a800";
+          parentLabel.style.border = "2px solid #e6a800";
+          parentLabel.style.borderRadius = "8px";
+        }
+        if (radioValue === q.correct) {
+          parentLabel.style.backgroundColor = "#d4edda";
+          parentLabel.style.border = "2px solid #28a745";
+          parentLabel.style.borderRadius = "8px";
+        }
       }
     }
   }
@@ -1204,18 +1194,17 @@ parentLabel.style.border = "2px solid #e6a800";
     resultDiv.style.display = 'block';
     
     if (finalScore >= 20) {
-      resultDiv.style.backgroundColor = '#28a745';
-      resultDiv.style.color = 'white';
+      resultDiv.style.backgroundColor = "#d4edda";
+      resultDiv.style.color = "#155724";
     } else if (finalScore >= 15) {
-      resultDiv.style.backgroundColor = '#ffc107';
-      resultDiv.style.color = '#333';
+      resultDiv.style.backgroundColor = "#fff3cd";
+      resultDiv.style.color = "#856404";
     } else {
-      resultDiv.style.backgroundColor = '#dc3545';
-      resultDiv.style.color = 'white';
+      resultDiv.style.backgroundColor = "#ffe8cc";
+      resultDiv.style.color = "#664d00";
     }
   }
 }
-
 
 // ========== نظام Teil 3 (Matching) ==========
 let currentTeil3Data = null;
@@ -1310,7 +1299,7 @@ function renderTeil3Exam() {
     const btnText = document.createElement("span");
     if (currentVal && typeof currentVal === 'object' && currentVal.displayText) {
       btnText.textContent = currentVal.displayText;
-      btnText.style.color = currentVal.isCorrect ? "#28a745" : "#dc3545";
+      btnText.style.color = currentVal.isCorrect ? "#28a745" : "#e6a800";
     } else if (currentVal && typeof currentVal === 'string') {
       btnText.textContent = currentVal;
       btnText.style.color = "#333";
@@ -1561,7 +1550,7 @@ function selectTeil3Option(questionIndex, selectedText) {
   }
   
   closeTeil3Dropdown(questionIndex);
-    // تأثير لوني عند الاختيار
+  
   const btn = document.getElementById(`teil3_btn_${questionIndex}`);
   if (btn) {
     btn.style.backgroundColor = "#e6e6ff";
@@ -1571,6 +1560,7 @@ function selectTeil3Option(questionIndex, selectedText) {
       btn.style.border = "1px solid #ccc";
     }, 300);
   }
+  
   for (let i = 0; i < currentTeil3Data.items.length; i++) {
     updateTeil3DropdownList(i);
   }
@@ -1595,7 +1585,7 @@ function checkTeil3Exam() {
     const card = document.getElementById(`teil3_item_${i}`);
     const userAnswer = teil3UserAnswers[i];
     const correctIndex = item.correct;
-    const btnSpan = document.querySelector(`teil3_btn_${i} span:first-child`);
+    const btnSpan = document.querySelector(`#teil3_btn_${i} span:first-child`);
     
     let isCorrect = false;
     let displayText = "";
@@ -1609,22 +1599,6 @@ function checkTeil3Exam() {
       } else {
         isCorrect = false;
         if (card) card.classList.add("wrong-answer-card");
-        const correctMsg = document.createElement('div');
-correctMsg.className = 'correct-message';
-correctMsg.style.marginTop = '10px';
-correctMsg.style.fontSize = '14px';
-correctMsg.style.fontWeight = 'bold';
-correctMsg.style.color = '#28a745';
-if (item.correct !== null) {
-    const correctText = currentTeil3Data.situations[item.correct];
-    correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${String.fromCharCode(97 + item.correct)}. ${correctText}`;
-} else {
-    correctMsg.innerHTML = `✅ ليس لها عنوان (keine passende Situation)`;
-}
-
-const oldMsg = card.querySelector(".correct-message");
-if (oldMsg) oldMsg.remove();
-card.appendChild(correctMsg);
         displayText = "✅ ليس لها عنوان";
       }
     } else {
@@ -1638,12 +1612,24 @@ card.appendChild(correctMsg);
         isCorrect = false;
         if (card) card.classList.add("wrong-answer-card");
         displayText = `✅ ${String.fromCharCode(97 + correctIndex)}. ${correctText}`;
+        
+        const correctMsg = document.createElement('div');
+        correctMsg.className = 'correct-message';
+        correctMsg.style.marginTop = '10px';
+        correctMsg.style.fontSize = '14px';
+        correctMsg.style.fontWeight = 'bold';
+        correctMsg.style.color = '#28a745';
+        correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${String.fromCharCode(97 + correctIndex)}. ${correctText}`;
+        
+        const oldMsg = card.querySelector(".correct-message");
+        if (oldMsg) oldMsg.remove();
+        card.appendChild(correctMsg);
       }
     }
     
     if (btnSpan) {
       btnSpan.textContent = displayText;
-      btnSpan.style.color = isCorrect ? "#28a745" : "#dc3545";
+      btnSpan.style.color = isCorrect ? "#28a745" : "#e6a800";
     }
     
     teil3UserAnswers[i] = {
@@ -1665,8 +1651,8 @@ card.appendChild(correctMsg);
     resultDiv.style.backgroundColor = "#fff3cd";
     resultDiv.style.color = "#856404";
   } else {
-    resultDiv.style.backgroundColor = "#f8d7da";
-    resultDiv.style.color = "#721c24";
+    resultDiv.style.backgroundColor = "#ffe8cc";
+    resultDiv.style.color = "#664d00";
   }
 }
 
@@ -1940,19 +1926,19 @@ function checkTeil2Exam() {
         
         if (isCorrect && userAnswer !== undefined) {
           if (radio.checked) {
-            parentLabel.style.backgroundColor = "#ffe8cc";
-parentLabel.style.border = "2px solid #e6a800";
+            parentLabel.style.backgroundColor = "#d4edda";
+            parentLabel.style.border = "2px solid #28a745";
             parentLabel.style.borderRadius = "8px";
           }
         } else {
           if (radio.checked) {
             parentLabel.style.backgroundColor = "#ffe8cc";
-parentLabel.style.border = "2px solid #e6a800";
+            parentLabel.style.border = "2px solid #e6a800";
             parentLabel.style.borderRadius = "8px";
           }
           if (radioValue === q.correct) {
-            parentLabel.style.backgroundColor = "#ffe8cc";
-parentLabel.style.border = "2px solid #e6a800";
+            parentLabel.style.backgroundColor = "#d4edda";
+            parentLabel.style.border = "2px solid #28a745";
             parentLabel.style.borderRadius = "8px";
           }
         }
@@ -1972,8 +1958,8 @@ parentLabel.style.border = "2px solid #e6a800";
     resultDiv.style.backgroundColor = "#fff3cd";
     resultDiv.style.color = "#856404";
   } else {
-    resultDiv.style.backgroundColor = "#f8d7da";
-    resultDiv.style.color = "#721c24";
+    resultDiv.style.backgroundColor = "#ffe8cc";
+    resultDiv.style.color = "#664d00";
   }
 }
 
