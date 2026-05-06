@@ -3926,7 +3926,7 @@ HELP_DATA["lesen3_exam2_q12"] = {
 // ============================================
 
 // a → 5: äußeres Erscheinungsbild optimieren
-HELP_DATA["lesen3_exam3_q1" = {
+HELP_DATA["lesen3_exam3_q1"] = { 
     text: "Die Nachfrage nach individueller Farb- und Stilberatung - Eine Bekannte möchte ihr äußeres Erscheinungsbild optimieren.",
     meaning: "الطلب على استشارات الألوان والأنماط الفردية - إحدى المعارف تريد تحسين مظهرها الخارجي.",
     keywords: ["Farbberatung = استشارة ألوان", "Erscheinungsbild = المظهر"],
@@ -3942,7 +3942,7 @@ HELP_DATA["lesen3_exam3_q2"] = {
 };
 
 // c → 7: gesellschaftliche Normen und Verhaltensregeln
-HELP_DATA["lesen3_exam3_q3" = {
+HELP_DATA["lesen3_exam3_q3"] = { 
     text: "Dieses erstmals 1788 erschienene Buch - Ein Bekannter schreibt an einer Hausarbeit über gesellschaftliche Normen und Verhaltensregeln verschiedener Jahrhunderte.",
     meaning: "هذا الكتاب الذي صدر أول مرة عام 1788 - أحد المعارف يكتب بحثاً عن الأعراف الاجتماعية وقواعد السلوك عبر القرون.",
     keywords: ["erschienene Buch = الكتاب الصادر", "Verhaltensregeln = قواعد سلوك"],
