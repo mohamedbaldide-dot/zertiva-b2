@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - Zertiva B2</title>
+    <style>
+        body {
+            font-family: 'Tajawal', Arial, sans-serif;
+            padding: 30px;
+            background: #f0f4f8;
+            direction: rtl;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            max-width: 550px;
+            margin: auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2b5876;
+            margin-bottom: 10px;
+        }
+        p {
+            color: gray;
+            margin-bottom: 20px;
+        }
+        input, select, button {
+            padding: 12px;
+            margin: 12px 0;
+            width: 100%;
+            border-radius: 30px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #2b5876;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+        }
+        button:hover {
+            opacity: 0.9;
+            transform: scale(1.01);
+        }
+        .premium-list {
+            margin-top: 25px;
+            background: #eef2ff;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        .premium-list h3 {
+            margin-top: 0;
+            color: #2b5876;
+        }
+        .premium-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .premium-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .delete-btn {
+            background: #e74c3c;
+            padding: 5px 12px;
+            width: auto;
+            margin: 0;
+            font-size: 13px;
+        }
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+        .refresh-btn {
+            background: #27ae60;
+            margin-top: 15px;
+        }
+        .refresh-btn:hover {
+            background: #219a52;
+        }
+        .empty-message {
+            color: gray;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2>🔧 لوحة تحكم Zertiva B2</h2>
+    <p>🔒 استخدم هذه الصفحة لتفعيل حسابات المستخدمين بعد استلام الدفع عبر واتساب</p>
+    
+    <input type="email" id="adminEmail" placeholder="📧 البريد الإلكتروني للمستخدم">
+    <select id="adminMonths">
+        <option value="1">📅 شهر واحد</option>
+        <option value="2">📅 شهران</option>
+    </select>
+    <button id="activateBtn">✅ تفعيل الاشتراك</button>
+    
+    <div class="premium-list">
+        <h3>📋 المستخدمون المفعّلون حالياً</h3>
+        <div id="premiumList">
+            <div class="empty-message">جاري التحميل...</div>
+        </div>
+        <button id="refreshList" class="refresh-btn">🔄 تحديث القائمة</button>
+    </div>
+</div>
+
+<script>
+    // مفتاح التخزين (نفس المستخدم في auth.js)
+    const STORAGE_KEY = 'zertiva_premium_users';
+    
+    function getPremiumUsers() {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    }
+    
+    function savePremiumUsers(premium) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(premium));
+    }
+    
+    function loadPremiumList() {
+        let premium = getPremiumUsers();
+        let container = document.getElementById('premiumList');
+        if(!container) return;
+        
+        let users = Object.keys(premium);
+        if(users.length === 0) {
+            container.innerHTML = '<div class="empty-message">📭 لا يوجد مستخدمون مفعلون حالياً</div>';
+        } else {
+            let html = '<ul>';
+            for(let [email, expiry] of Object.entries(premium)) {
+                html += `
+                    <li>
+                        <span>📧 <strong>${escapeHtml(email)}</strong> → صالح حتى ${expiry}</span>
+                        <button class="delete-btn" data-email="${escapeHtml(email)}">🗑 حذف</button>
+                    </li>
+                `;
+            }
+            html += '</ul>';
+            container.innerHTML = html;
+            
+            // ربط أزرار الحذف
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    let email = this.getAttribute('data-email');
+                    if(confirm(`هل أنت متأكد من حذف التفعيل عن ${email}؟`)) {
+                        let premium = getPremiumUsers();
+                        delete premium[email];
+                        savePremiumUsers(premium);
+                        loadPremiumList();
+                        alert(`✅ تم حذف ${email} بنجاح`);
+                    }
+                });
+            });
+        }
+    }
+    
+    // دالة للحماية من الـ XSS
+    function escapeHtml(str) {
+        if(!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if(m === '&') return '&amp;';
+            if(m === '<') return '&lt;';
+            if(m === '>') return '&gt;';
+            return m;
+        });
+    }
+    
+    // تفعيل الاشتراك
+    document.getElementById('activateBtn')?.addEventListener('click', function() {
+        let email = document.getElementById('adminEmail').value.trim();
+        let months = parseInt(document.getElementById('adminMonths').value);
+        
+        if(!email) {
+            alert("⚠️ الرجاء إدخال البريد الإلكتروني");
+            return;
+        }
+        
+        if(!email.includes('@')) {
+            alert("⚠️ الرجاء إدخال بريد إلكتروني صحيح (يحتوي على @)");
+            return;
+        }
+        
+        let expiry = new Date();
+        expiry.setMonth(expiry.getMonth() + months);
+        let expiryStr = expiry.toISOString().slice(0,10);
+        
+        let premium = getPremiumUsers();
+        premium[email] = expiryStr;
+        savePremiumUsers(premium);
+        
+        alert(`✅ تم تفعيل ${email} حتى ${expiryStr}\n📢 يمكن للمستخدم الآن الدخول إلى جميع الامتحانات.`);
+        document.getElementById('adminEmail').value = '';
+        loadPremiumList();
+    });
+    
+    // تحديث القائمة
+    document.getElementById('refreshList')?.addEventListener('click', loadPremiumList);
+    
+    // تحميل القائمة عند فتح الصفحة
+    loadPremiumList();
+</script>
+</body>
+</html>
