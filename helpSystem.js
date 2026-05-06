@@ -15512,8 +15512,6 @@ HELP_DATA["sprach2_exam1_10"] = {
 // نظام الطبقة المساعدة (منطق التشغيل) - المعدل بالكامل
 // ============================================
 
-let helpLayerActive = false;
-let originalContentBackup = null;
 
 // الأسئلة الصحيحة لكل امتحان (جميع الأجزاء)
 function getCorrectQuestions(skill, examId) {

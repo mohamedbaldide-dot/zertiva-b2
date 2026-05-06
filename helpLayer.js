@@ -3,13 +3,8 @@
 // يدعم: hören1, hören2, hören3, lesen1, lesen2, lesen3, sprach1, sprach2
 // ============================================
 
-// helpLayer.js - استخدم أسماء متغيرات مختلفة
-let helpLayerActive2 = false;
-let originalContentBackup2 = null;
-
-// ثم غيّر كل استخدام لهذه المتغيرات في باقي الكود
-// helpLayerActive → helpLayerActive2
-// originalContentBackup → originalContentBackup2
+let helpLayerActive = false;
+let originalContentBackup = null;
 
 // تحديد عدد الأسئلة حسب الجزء النشط
 function getHelpBoxCount() {
