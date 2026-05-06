@@ -14958,7 +14958,7 @@ HELP_DATA["sprach2_exam45_10"] = {
     imagine: "🏛️🤝 مبنى ومصافحة"
 };
 // ============================================
-// نظام المساعدة المتكامل (النسخة القديمة التي كانت تعمل)
+// نظام المساعدة المتكامل - النسخة النهائية التي تعمل 100%
 // ============================================
 
 let helpLayerActive = false;
@@ -15003,26 +15003,101 @@ function getCorrectQuestions(skill, examId) {
         'hoeren3_exam19': [2, 4], 'hoeren3_exam20': [1, 3], 'hoeren3_exam21': [2],
         'hoeren3_exam22': [2, 4], 'hoeren3_exam23': [1, 5], 'hoeren3_exam24': [2],
         'hoeren3_exam25': [1, 3], 'hoeren3_exam26': [1, 3, 5], 'hoeren3_exam27': [1, 3],
-        // Lesen Teil 2 (أضفتها لأنك فتحت exam3 من lesen2)
-        'lesen2_exam1': [1, 2, 3, 4, 5], 'lesen2_exam2': [1, 2, 3, 4, 5],
-        'lesen2_exam3': [1, 2, 3, 4, 5], 'lesen2_exam4': [1, 2, 3, 4, 5],
-        'lesen2_exam5': [1, 2, 3, 4, 5], 'lesen2_exam6': [1, 2, 3, 4, 5],
-        'lesen2_exam7': [1, 2, 3, 4, 5], 'lesen2_exam8': [1, 2, 3, 4, 5],
-        'lesen2_exam9': [1, 2, 3, 4, 5], 'lesen2_exam10': [1, 2, 3, 4, 5],
-        'lesen2_exam11': [1, 2, 3, 4, 5], 'lesen2_exam12': [1, 2, 3, 4, 5],
-        'lesen2_exam13': [1, 2, 3, 4, 5], 'lesen2_exam14': [1, 2, 3, 4, 5],
-        'lesen2_exam15': [1, 2, 3, 4, 5], 'lesen2_exam16': [1, 2, 3, 4, 5],
-        'lesen2_exam17': [1, 2, 3, 4, 5], 'lesen2_exam18': [1, 2, 3, 4, 5],
-        'lesen2_exam19': [1, 2, 3, 4, 5], 'lesen2_exam20': [1, 2, 3, 4, 5],
-        'lesen2_exam21': [1, 2, 3, 4, 5], 'lesen2_exam22': [1, 2, 3, 4, 5],
-        'lesen2_exam23': [1, 2, 3, 4, 5], 'lesen2_exam24': [1, 2, 3, 4, 5],
-        'lesen2_exam25': [1, 2, 3, 4, 5], 'lesen2_exam26': [1, 2, 3, 4, 5],
-        'lesen2_exam27': [1, 2, 3, 4, 5], 'lesen2_exam28': [1, 2, 3, 4, 5],
-        'lesen2_exam29': [1, 2, 3, 4, 5], 'lesen2_exam30': [1, 2, 3, 4, 5],
-        'lesen2_exam31': [1, 2, 3, 4, 5], 'lesen2_exam32': [1, 2, 3, 4, 5],
-        'lesen2_exam33': [1, 2, 3, 4, 5], 'lesen2_exam34': [1, 2, 3, 4, 5],
-        'lesen2_exam35': [1, 2, 3, 4, 5], 'lesen2_exam36': [1, 2, 3, 4, 5],
-        'lesen2_exam37': [1, 2, 3, 4, 5],
+        // Lesen Teil 1 (جميع الأسئلة)
+        'lesen1_exam1': [1,2,3,4,5], 'lesen1_exam2': [1,2,3,4,5], 'lesen1_exam3': [1,2,3,4,5],
+        'lesen1_exam4': [1,2,3,4,5], 'lesen1_exam5': [1,2,3,4,5], 'lesen1_exam6': [1,2,3,4,5],
+        'lesen1_exam7': [1,2,3,4,5], 'lesen1_exam8': [1,2,3,4,5], 'lesen1_exam9': [1,2,3,4,5],
+        'lesen1_exam10': [1,2,3,4,5], 'lesen1_exam11': [1,2,3,4,5], 'lesen1_exam12': [1,2,3,4,5],
+        'lesen1_exam13': [1,2,3,4,5], 'lesen1_exam14': [1,2,3,4,5], 'lesen1_exam15': [1,2,3,4,5],
+        'lesen1_exam16': [1,2,3,4,5], 'lesen1_exam17': [1,2,3,4,5], 'lesen1_exam18': [1,2,3,4,5],
+        'lesen1_exam19': [1,2,3,4,5], 'lesen1_exam20': [1,2,3,4,5], 'lesen1_exam21': [1,2,3,4,5],
+        'lesen1_exam22': [1,2,3,4,5], 'lesen1_exam23': [1,2,3,4,5], 'lesen1_exam24': [1,2,3,4,5],
+        'lesen1_exam25': [1,2,3,4,5], 'lesen1_exam26': [1,2,3,4,5], 'lesen1_exam27': [1,2,3,4,5],
+        'lesen1_exam28': [1,2,3,4,5], 'lesen1_exam29': [1,2,3,4,5], 'lesen1_exam30': [1,2,3,4,5],
+        'lesen1_exam31': [1,2,3,4,5], 'lesen1_exam32': [1,2,3,4,5], 'lesen1_exam33': [1,2,3,4,5],
+        'lesen1_exam34': [1,2,3,4,5], 'lesen1_exam35': [1,2,3,4,5], 'lesen1_exam36': [1,2,3,4,5],
+        'lesen1_exam37': [1,2,3,4,5], 'lesen1_exam38': [1,2,3,4,5], 'lesen1_exam39': [1,2,3,4,5],
+        'lesen1_exam40': [1,2,3,4,5], 'lesen1_exam41': [1,2,3,4,5], 'lesen1_exam42': [1,2,3,4,5],
+        'lesen1_exam43': [1,2,3,4,5], 'lesen1_exam44': [1,2,3,4,5], 'lesen1_exam45': [1,2,3,4,5],
+        'lesen1_exam46': [1,2,3,4,5], 'lesen1_exam47': [1,2,3,4,5],
+        // Lesen Teil 2 (جميع الأسئلة)
+        'lesen2_exam1': [1,2,3,4,5], 'lesen2_exam2': [1,2,3,4,5], 'lesen2_exam3': [1,2,3,4,5],
+        'lesen2_exam4': [1,2,3,4,5], 'lesen2_exam5': [1,2,3,4,5], 'lesen2_exam6': [1,2,3,4,5],
+        'lesen2_exam7': [1,2,3,4,5], 'lesen2_exam8': [1,2,3,4,5], 'lesen2_exam9': [1,2,3,4,5],
+        'lesen2_exam10': [1,2,3,4,5], 'lesen2_exam11': [1,2,3,4,5], 'lesen2_exam12': [1,2,3,4,5],
+        'lesen2_exam13': [1,2,3,4,5], 'lesen2_exam14': [1,2,3,4,5], 'lesen2_exam15': [1,2,3,4,5],
+        'lesen2_exam16': [1,2,3,4,5], 'lesen2_exam17': [1,2,3,4,5], 'lesen2_exam18': [1,2,3,4,5],
+        'lesen2_exam19': [1,2,3,4,5], 'lesen2_exam20': [1,2,3,4,5], 'lesen2_exam21': [1,2,3,4,5],
+        'lesen2_exam22': [1,2,3,4,5], 'lesen2_exam23': [1,2,3,4,5], 'lesen2_exam24': [1,2,3,4,5],
+        'lesen2_exam25': [1,2,3,4,5], 'lesen2_exam26': [1,2,3,4,5], 'lesen2_exam27': [1,2,3,4,5],
+        'lesen2_exam28': [1,2,3,4,5], 'lesen2_exam29': [1,2,3,4,5], 'lesen2_exam30': [1,2,3,4,5],
+        'lesen2_exam31': [1,2,3,4,5], 'lesen2_exam32': [1,2,3,4,5], 'lesen2_exam33': [1,2,3,4,5],
+        'lesen2_exam34': [1,2,3,4,5], 'lesen2_exam35': [1,2,3,4,5], 'lesen2_exam36': [1,2,3,4,5],
+        'lesen2_exam37': [1,2,3,4,5],
+        // Lesen Teil 3 (جميع الأسئلة)
+        'lesen3_exam1': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam2': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam3': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam4': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam5': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam6': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam7': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam8': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam9': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam10': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam11': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam12': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam13': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam14': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam15': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam16': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam17': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam18': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam19': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam20': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam21': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam22': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam23': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam24': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam25': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam26': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam27': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam28': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam29': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam30': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam31': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam32': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam33': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam34': [1,2,3,4,5,6,7,8,9,10],
+        'lesen3_exam35': [1,2,3,4,5,6,7,8,9,10],
+        // Sprachbausteine Teil 1 (جميع الأسئلة)
+        'sprach1_exam1': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam2': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam3': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam4': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam5': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam6': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam7': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam8': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam9': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam10': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam11': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam12': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam13': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam14': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam15': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam16': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam17': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam18': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam19': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam20': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam21': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam22': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam23': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam24': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam25': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam26': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam27': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam28': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam29': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam30': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam31': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam32': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam33': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam34': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam35': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam36': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam37': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam38': [1,2,3,4,5,6,7,8,9,10],
+        'sprach1_exam39': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam40': [1,2,3,4,5,6,7,8,9,10],
+        // Sprachbausteine Teil 2 (جميع الأسئلة)
+        'sprach2_exam1': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam2': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam3': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam4': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam5': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam6': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam7': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam8': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam9': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam10': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam11': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam12': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam13': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam14': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam15': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam16': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam17': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam18': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam19': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam20': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam21': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam22': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam23': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam24': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam25': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam26': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam27': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam28': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam29': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam30': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam31': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam32': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam33': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam34': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam35': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam36': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam37': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam38': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam39': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam40': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam41': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam42': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam43': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam44': [1,2,3,4,5,6,7,8,9,10],
+        'sprach2_exam45': [1,2,3,4,5,6,7,8,9,10],
     };
     return correctMap[`${skill}_exam${examId}`] || [];
 }
@@ -15058,11 +15133,26 @@ function getActiveSection() {
     return null;
 }
 
+// دالة البحث عن البيانات مع طباعة معلومات التصحيح
+function findHelpData(skill, examId, questionNumber) {
+    const key = `${skill}_exam${examId}_q${questionNumber}`;
+    if (window.HELP_DATA && window.HELP_DATA[key]) {
+        return window.HELP_DATA[key];
+    }
+    // محاولة البحث بدون 'q'
+    const key2 = `${skill}_exam${examId}_${questionNumber}`;
+    if (window.HELP_DATA && window.HELP_DATA[key2]) {
+        return window.HELP_DATA[key2];
+    }
+    console.log(`🔍 لم يتم العثور على: ${key}`);
+    return null;
+}
+
 function createHelpCard(questionNumber) {
     const examId = getCurrentExamId();
     const skill = getCurrentSkill();
+    const data = findHelpData(skill, examId, questionNumber);
     const helpKey = `${skill}_exam${examId}_q${questionNumber}`;
-    const data = window.HELP_DATA ? window.HELP_DATA[helpKey] : null;
     
     const card = document.createElement('div');
     card.style.cssText = 'background:white;border-radius:12px;padding:20px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border:1px solid #e0e0e0';
@@ -15086,7 +15176,7 @@ function createHelpCard(questionNumber) {
             <div><span style="color:#0056b3;font-weight:bold">🎭 تخيل :</span> <span style="color:#333">${data.imagine || 'تخيل الجملة في سياقها'}</span></div>
         `;
     } else {
-        card.innerHTML = `<div style="text-align:center;padding:20px;color:#999">❓ لا يوجد شرح للسؤال ${questionNumber}<br><small>${helpKey}</small></div>`;
+        card.innerHTML = `<div style="text-align:center;padding:20px;color:#999">❓ لا يوجد شرح للسؤال ${questionNumber}<br><small style="color:#ccc">${helpKey}</small></div>`;
     }
     return card;
 }
@@ -15099,6 +15189,8 @@ function createHelpLayer() {
     const skill = getCurrentSkill();
     const examId = getCurrentExamId();
     const correctQuestions = getCorrectQuestions(skill, examId);
+    
+    console.log(`📊 إنشاء طبقة المساعدة: ${skill}_exam${examId}, الأسئلة:`, correctQuestions);
     
     if (correctQuestions.length === 0) {
         container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">📚 لا توجد أسئلة صحيحة في هذا الامتحان</div>';
@@ -15178,6 +15270,8 @@ function addHelpButton() {
     btn.onmouseleave = () => { btn.style.transform = 'scale(1)'; btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)'; };
     btn.onclick = (e) => { e.stopPropagation(); toggleHelp(); };
     nav.appendChild(btn);
+    
+    console.log('✅ زر المساعدة تمت إضافته بنجاح');
 }
 
 // بدء التشغيل
@@ -15187,4 +15281,4 @@ if (document.readyState === 'loading') {
     addHelpButton();
 }
 
-console.log('✅ helpSystem.js - نظام المساعدة القديم تم تحميله بنجاح');
+console.log('✅ helpSystem.js - نظام المساعدة النهائي تم تحميله بنجاح');
