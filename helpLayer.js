@@ -59,11 +59,11 @@ function getActiveSection() {
   return null;
 }
 
-// البحث عن البيانات في HELP_DATA (نسخة محسنة)
+// ========== البحث عن البيانات في HELP_DATA (نسخة محسنة) ==========
 function findHelpData(skill, examId, questionNumber) {
   if (!window.HELP_DATA) return null;
   
-  // تحويل رقم السؤال إلى حرف (1->a, 2->b...)
+  // تحويل رقم السؤال إلى حرف (1->a, 2->b, 3->c...)
   const letter = String.fromCharCode(96 + questionNumber);
   
   // الصيغ المختلفة للبحث
@@ -75,6 +75,7 @@ function findHelpData(skill, examId, questionNumber) {
   
   for (let key of possibleKeys) {
     if (window.HELP_DATA[key]) {
+      console.log(`✅ helpLayer: وجد البيانات للمفتاح: ${key}`);
       return window.HELP_DATA[key];
     }
   }
@@ -83,11 +84,13 @@ function findHelpData(skill, examId, questionNumber) {
   for (let key in window.HELP_DATA) {
     if (key.includes(`exam${examId}`)) {
       if (key.includes(`_${questionNumber}`) || key.includes(`q${questionNumber}`) || key.includes(`_${letter}`)) {
+        console.log(`✅ helpLayer: وجد البيانات للمفتاح (بحث شامل): ${key}`);
         return window.HELP_DATA[key];
       }
     }
   }
   
+  console.log(`❌ helpLayer: لم يجد بيانات للسؤال ${questionNumber} في ${skill}_exam${examId}`);
   return null;
 }
 
@@ -107,7 +110,7 @@ function createHelpBoxWithContent(index, totalQuestions) {
     // تنسيق الكلمات المهمة
     let keywordsHtml = '';
     if (data.keywords && data.keywords.length > 0) {
-      keywordsHtml = '<div style="margin: 10px 0;"><span style="color: #007bff; font-weight: bold; font-size: 15px;">كلمات مهمة :</span><br>';
+      keywordsHtml = '<div style="margin: 10px 0;"><span style="color: #007bff; font-weight: bold; font-size: 15px;">📌 كلمات مهمة :</span><br>';
       for (let i = 0; i < data.keywords.length; i++) {
         keywordsHtml += `<span style="display: inline-block; background: #e3f2fd; padding: 4px 12px; border-radius: 20px; font-size: 14px; margin: 3px;">${data.keywords[i]}</span>`;
       }
@@ -120,16 +123,16 @@ function createHelpBoxWithContent(index, totalQuestions) {
           ${index}️⃣ ${data.text || ''}
         </div>
         <div style="margin-bottom: 12px;">
-          <span style="color: #0056b3; font-weight: bold; font-size: 15px;">المعنى :</span>
+          <span style="color: #0056b3; font-weight: bold; font-size: 15px;">📖 المعنى :</span>
           <span style="color: #333; font-size: 15px; line-height: 1.6;"> ${data.meaning || 'لا يوجد'}</span>
         </div>
         ${keywordsHtml}
         <div style="margin-bottom: 12px;">
-          <span style="color: #0056b3; font-weight: bold; font-size: 15px;">تبسيط :</span>
+          <span style="color: #0056b3; font-weight: bold; font-size: 15px;">✨ تبسيط :</span>
           <span style="color: #333; font-size: 15px; line-height: 1.6;"> ${data.simplified || 'لا يوجد'}</span>
         </div>
         <div>
-          <span style="color: #0056b3; font-weight: bold; font-size: 15px;">تخيل :</span>
+          <span style="color: #0056b3; font-weight: bold; font-size: 15px;">🎭 تخيل :</span>
           <span style="color: #333; font-size: 15px; line-height: 1.6;"> ${data.imagine || 'لا يوجد'}</span>
         </div>
       </div>
@@ -137,7 +140,7 @@ function createHelpBoxWithContent(index, totalQuestions) {
   } else {
     contentHtml = `
       <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 150px; color: #999; text-align: center;">
-        <div style="font-size: 16px;">❓ لا يوجد شرح متاح حالياً</div>
+        <div style="font-size: 16px;">❓ لا يوجد شرح للسؤال ${index}</div>
         <div style="font-size: 12px; margin-top: 8px;">${skill}_exam${examId}_q${index}</div>
       </div>
     `;
@@ -182,6 +185,10 @@ function createHelpBoxesWithContent(count) {
     border-radius: 16px;
     margin: 15px 0;
   `;
+  
+  const skill = getCurrentSkill();
+  const examId = getCurrentExamId();
+  console.log(`📊 helpLayer: إنشاء المساعدة لـ ${skill}_exam${examId} (${count} سؤال)`);
   
   if (count === 10) {
     for (let row = 0; row < 5; row++) {
@@ -239,7 +246,7 @@ function hideCheckAndResetButtons() {
   allButtons.forEach(btn => {
     const btnText = btn.textContent;
     if (btnText.includes('✅') || btnText.includes('تصحيح') || btnText.includes('Prüfen') || btnText.includes('↺') || btnText.includes('إعادة تعيين')) {
-      if (btn.style.display !== 'none') {
+      if (btn.style.display !== 'none' && btn.id !== 'globalHelpButton') {
         btn.style.display = 'none';
         hidden.push(btn);
       }
@@ -287,7 +294,6 @@ function addHelpButtonToExam() {
   // ❌ لا نضيف الزر في قسم Schreiben
   const schreiben = document.getElementById('schreiben');
   if (schreiben && schreiben.style.display === 'block') {
-    // إذا كان الزر موجوداً نزيله
     const existingBtn = document.getElementById('globalHelpButton');
     if (existingBtn) existingBtn.remove();
     return;
