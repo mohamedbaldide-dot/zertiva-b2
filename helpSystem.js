@@ -1880,233 +1880,78 @@ HELP_DATA["lesen1_exam5_q5"] = {
     simplified: "ملل - مواعيد",
     imagine: "🧠👁️ تخيل طفلاً لديه مواعيد (Termine) كثيرة كل يوم، لأن الآباء يخافون من أن يشعر الطفل بالملل (Langeweile) 📅😫😰"
 };
-
-// ============================================
-// Exam 6: Impfung
-// ============================================
-
-HELP_DATA["lesen1_exam6_q1"] = {
-    text: "Text 1: Immer wieder überspringen Krankheitserreger aus dem Tierreich die Artengrenze und werden auch dem Menschen gefährlich... Die Experten empfehlen, Adenoviren künftig sorgfältiger zu beobachten.",
-    meaning: "مراراً وتكراراً تقفز مسببات الأمراض من مملكة الحيوان الحدود بين الأنواع وتصبح خطيرة على الإنسان أيضاً - الخبراء يوصون بمراقبة الفيروسات الغدية بعناية أكبر مستقبلاً",
-    keywords: ["Impfung = تطعيم", "Viren = فيروسات", "Übertragung = انتقال"],
-    simplified: "تطعيم - انتقال فيروسات بين البشر والحيوانات",
-    imagine: "🧠👁️ تخيل طبيباً يأخذ تطعيماً (Impfung) بينما ينتقل فيروس (Virus) من حيوان إلى إنسان 🦠🐒→👨‍⚕️"
-};
-
-HELP_DATA["lesen1_exam6_q2"] = {
-    text: "Text 2: Virologen ist es gelungen, den Vogelgrippe-Erreger hochansteckend zu machen... Das Ministerium stützt seine Entscheidung auf die Empfehlungen des unabhängigen Expertengremiums NSABB.",
-    meaning: "علماء الفيروسات نجحوا في جعل مسبب إنفلونزا الطيور شديد العدوى - الوزارة تستند في قرارها على توصيات لجنة الخبراء المستقلة NSABB",
-    keywords: ["Forschungsergebnisse = نتائج أبحاث", "Veröffentlichung = نشر"],
-    simplified: "نتائج الأبحاث - قرار منع نشر معلومات خطيرة",
-    imagine: "🧠👁️ تخيل عالماً يحمل نتائج أبحاثه (Forschungsergebnisse) ولكن الحكومة تمنع النشر (Veröffentlichung) خوفاً من الإرهابيين 🔬🚫📰"
-};
-
-HELP_DATA["lesen1_exam6_q3"] = {
-    text: "Text 3: Ein neuer Impfstoff gegen Grippe könnte in Zukunft sämtliche Varianten der Krankheit abdecken und damit die jährliche Spritze überflüssig machen.",
-    meaning: "لقاح جديد ضد الإنفلونزا يمكنه في المستقبل تغطية جميع أنواع المرض وبالتالي يجعل الحقنة السنوية غير ضرورية",
-    keywords: ["Grippeschutz = حماية من إنفلونزا", "Impfstoff = لقاح"],
-    simplified: "الحماية من الأنفلونزا - لقاح جديد لجميع الفيروسات",
-    imagine: "🧠👁️ تخيل حقنة سحرية واحدة تحمي من كل أنواع الإنفلونزا (Grippeschutz) بدون حاجة لتطعيم (Impfstoff) سنوي 💉✨"
-};
-
-HELP_DATA["lesen1_exam6_q4"] = {
-    text: "Text 4: Breitet sich die Grippe in einer Schule aus, sind es besonders geschlechtshomogene Gruppen, in denen das Virus schnell neue Opfer findet.",
-    meaning: "عندما تنتشر الإنفلونزا في مدرسة، تكون المجموعات المتجانسة جنسياً هي الأماكن التي يجد فيها الفيروس ضحايا جدداً بسرعة",
-    keywords: ["Grippeviren = فيروسات إنفلونزا", "Gruppen = مجموعات"],
-    simplified: "فيروسات الأنفلونزا - تنتشر بين نفس الجنس",
-    imagine: "🧠👁️ تخيل فيروس الإنفلونزا (Grippeviren) ينتقل بين الأولاد فقط وبين البنات فقط 👦→👦 👧→👧"
-};
-
-HELP_DATA["lesen1_exam6_q5"] = {
-    text: "Text 5: Da sich Influenzaviren immer wieder verändern, unternimmt die Weltgesundheitsorganisation WHO jedes Jahr Anstrengungen... Eine neue Studie liefert Anhaltspunkte dafür, dass die tatsächliche Wirksamkeit von Grippeimpfungen geringer ist.",
-    meaning: "بما أن فيروسات الإنفلونزا تتغير باستمرار، تبذل منظمة الصحة العالمية WHO جهوداً كل عام - دراسة جديدة تقدم دلائل على أن الفعالية الفعلية لتطعيمات الإنفلونزا أقل",
-    keywords: ["Grippeimpfung = تطعيم إنفلونزا", "Wirksamkeit = فعالية"],
-    simplified: "تطعيم الأنفلونزا - فعاليته أقل مما كنا نظن",
-    imagine: "🧠👁️ تخيل شخصاً يأخذ تطعيم الأنفلونزا (Grippeimpfung) لكن المرض يصيبه رغم ذلك، لأن الفعالية (Wirksamkeit) أقل من 60% 😷❌"
-};
-
-// ============================================
-// Exam 7: Insel
-// ============================================
-
-HELP_DATA["lesen1_exam7_q1"] = {
-    text: "Text 1: Die Shengsi-Inseln liegen im Ostchinesischen Meer... Das Dorf aber, das sie zurückgelassen haben, ist in kürzester Zeit von der Natur zurückerobert worden.",
-    meaning: "جزر شينغشي تقع في بحر الصين الشرقي - لكن القرية التي تركوها استعادتها الطبيعة في وقت قصير جداً",
-    keywords: ["Insel = جزيرة", "Natur = طبيعة", "verlassen = مهجورة"],
-    simplified: "جزر مهجورة - الطبيعة تستعيد أراضيها",
-    imagine: "🧠👁️ تخيل جزيرة (Insel) مهجورة، والطبيعة (Natur) تغطي المنازل بالنباتات 🏝️🌿🏚️"
-};
-
-HELP_DATA["lesen1_exam7_q2"] = {
-    text: "Text 2: Der Reiseveranstalter TOURIMARS hat kürzlich eine Befragung durchgeführt... Gerade noch in die Top Ten schaffte es auch die französische Mittelmeerinsel Korsika.",
-    meaning: "منظم الرحلات TOURIMARS أجرى مؤخراً استبياناً - جزيرة كورسيكا الفرنسية في البحر المتوسط تمكنت بالكاد من دخول المراكز العشرة الأولى",
-    keywords: ["Reiseziele = وجهات سفر", "Inseln = جزر", "beliebteste = الأكثر شعبية"],
-    simplified: "أشهر الجزر الأوروبية - قائمة بأفضل 10 جزر",
-    imagine: "🧠👁️ تخيل قائمة بأفضل الجزر الأوروبية (Top 10 Inseln) والسياح يصوتون 🏆📋"
-};
-
-HELP_DATA["lesen1_exam7_q3"] = {
-    text: "Text 3: Das ostfriesische Memmert ist für seltene Vögel reserviert... Im Auftrag des Landes Niedersachsen ist der Inselvogt zuständig für den Schutz von Natur und Vögeln auf Memmert.",
-    meaning: "جزيرة ميميرت في فريزيا الشرقية محجوزة للطيور النادرة - بناءً على طلب ولاية ساكسونيا السفلى، حارس الجزيرة مسؤول عن حماية الطبيعة والطيور في ميميرت",
-    keywords: ["Vögel = طيور", "Naturschutz = حماية الطبيعة", "Insel = جزيرة"],
-    simplified: "جزيرة - ملجأ للطيور النادرة",
-    imagine: "🧠👁️ تخيل جزيرة (Insel) محمية، والطيور النادرة (seltene Vögel) تعشش بأمان 🏝️🕊️"
-};
-
-HELP_DATA["lesen1_exam7_q4"] = {
-    text: "Text 4: Die südamerikanischen Galapagosinseln locken nicht mit weißen Sandstränden und Palmen... Auf den unbewohnten Galapagosinseln verhalten sich die Tiere so, als ob es keine Menschen gäbe.",
-    meaning: "جزر غالاباغوس في أمريكا الجنوبية لا تجذب بالرمال البيضاء والنخيل - في جزر غالاباغوس غير المأهولة، تتصرف الحيوانات وكأنه لا يوجد بشر",
-    keywords: ["Tiere = حيوانات", "Paradies = جنة", "unberührt = بكر"],
-    simplified: "جزر غالاباغوس - جنة الحيوانات البرية",
-    imagine: "🧠👁️ تخيل جزراً (Inseln) حيث تقترب من الحيوانات (Tiere) دون خوف، وكأنك في جنة (Paradies) 🏝️🦎🐢"
-};
-
-HELP_DATA["lesen1_exam7_q5"] = {
-    text: "Text 5: Dass Elefanten in Thailand teurer sein können als ein 3er-BMW in München, liegt an ihrem enormen wirtschaftlichen Potenzial: Sie sind eine der Hauptattraktionen der thailändischen Tourismusindustrie.",
-    meaning: "أن الأفيال في تايلاند يمكن أن تكون أغلى من BMW الفئة الثالثة في ميونيخ، يعود إلى إمكاناتها الاقتصادية الهائلة - فهي واحدة من مناطق الجذب الرئيسية لصناعة السياحة التايلاندية",
-    keywords: ["Elefanten = أفيال", "Tourismus = سياحة", "Tierschutz = حماية الحيوان"],
-    simplified: "الأفيال - جذب سياحي مثير للجدل",
-    imagine: "🧠👁️ تخيل سائحاً يركب فيلاً (Elefant) بينما ناشط حماية الحيوان (Tierschützer) يحتج 🐘🚫"
-};
-
-// ============================================
-// Exam 8: Bilder
-// ============================================
-
-HELP_DATA["lesen1_exam8_q1"] = {
-    text: "Text 1: Der Buchtitel erinnert an eine Horrorgeschichte: 'Die Nacht'... Paul Bogart erläutert, warum künstliches Licht so weit verbreitet ist, und betrachtet dies sehr kritisch.",
-    meaning: "عنوان الكتاب يذكر بقصة رعب: 'الليل' - بول بوغارت يشرح لماذا الضوء الاصطناعي منتشر جداً وينظر إلى هذا بشكل نقدي جداً",
-    keywords: ["Licht = ضوء", "Finsternis = ظلام", "kritisch = نقدي"],
-    simplified: "الضوء الاصطناعي - يفسد الظلام الطبيعي",
-    imagine: "🧠👁️ تخيل سماء ليلية مظلمة مليئة بالنجوم، وفجأة تضيء مدينة بأكملها 💡🌃"
-};
-
-HELP_DATA["lesen1_exam8_q2"] = {
-    text: "Text 2: Fotos machen ist heute nicht schwer... Dietmar Spehrs neuer Fotografie-Ratgeber ist dabei ein gutes Hilfsmittel.",
-    meaning: "التقاط الصور اليوم ليس صعباً - دليل ديتمار شبير الجديد للتصوير الفوتوغرافي هو أداة جيدة لذلك",
-    keywords: ["Fotografie = تصوير", "Ratgeber = دليل", "Technik = تقنية"],
-    simplified: "دليل تصوير - للمبتدئين والمحترفين",
-    imagine: "🧠👁️ تخيل شخصاً يقرأ دليل تصوير (Fotografie-Ratgeber) ويتعلم كيف يلتقط صوراً رائعة 📸📖"
-};
-
-HELP_DATA["lesen1_exam8_q3"] = {
-    text: "Text 3: Bilder der Fotografin Annie Leibovitz sind ab kommendem Samstag im Kunsthaus Wien zu sehen... Um die Fotografien besser kennenzulernen, können Besucher einen ca. 1,5 Stunden langen Film über die Karriere von Annie Leibovitz sehen.",
-    meaning: "صور المصورة آني ليبوفيتز ستعرض ابتداء من السبت القادم في بيت الفن في فيينا - للتعرف على الصور بشكل أفضل، يمكن للزوار مشاهدة فيلم مدته حوالي 1.5 ساعة عن مسيرة آني ليبوفيتز",
-    keywords: ["Fotografin = مصورة", "Ausstellung = معرض", "Portraits = صور شخصية"],
-    simplified: "معرض صور آني ليبوفيتز - صور شخصية للمشاهير",
-    imagine: "🧠👁️ تخيل معرضاً (Ausstellung) مليئاً بصور المشاهير (Prominente) والمصورين 🖼️📸"
-};
-
-HELP_DATA["lesen1_exam8_q4"] = {
-    text: "Text 4: Die Abkürzung TWAN klingt nach einem neuen Computerprogramm, aber tatsächlich steht sie für eine neue fotografische Methode, die der Iraner Babak Amin Tafreshi entwickelt hat.",
-    meaning: "الاختصار TWAN يبدو كبرنامج كمبيوتر جديد، لكنه في الواقع يمثل طريقة تصوير جديدة طورها الإيراني باباك أمين تافريشي",
-    keywords: ["Sterne = نجوم", "Fotografie = تصوير", "Landschaft = منظر طبيعي"],
-    simplified: "تصوير النجوم - طريقة جديدة مذهلة",
-    imagine: "🧠👁️ تخيل صوراً مذهلة للنجوم (Sterne) والسماء ليلاً فوق مناظر طبيعية جميلة ✨📷🌌"
-};
-
-HELP_DATA["lesen1_exam8_q5"] = {
-    text: "Text 5: Er gehörte zu den ganz Großen seines Fachs: Andreas Feininger... Eigentlich war Andreas Feininger gelernter Architekt.",
-    meaning: "كان من كبار مجاله: أندرياس فاينينغر - في الأصل كان أندرياس فاينينغر مهندساً معمارياً",
-    keywords: ["Fotograf = مصور", "Karriere = مسيرة مهنية", "Architekt = مهندس معماري"],
-    simplified: "أندرياس فاينينغر - من مهندس إلى مصور مشهور",
-    imagine: "🧠👁️ تخيل مصوراً (Fotograf) شهيراً بدأ حياته كمهندس معماري (Architekt) 🏗️→📸"
-};
-
-// ============================================
-// Exam 9: Grundschule
-// ============================================
-
-HELP_DATA["lesen1_exam9_q1"] = {
-    text: "Text 1: Berlin wird in 10 Jahren rund 5.000 Lehrkräfte weniger brauchen als derzeit... Nach Meinung der GEW steuert die Hauptstadt bei der Personalausstattung der Schulen auf ein Fiasko zu.",
-    meaning: "برلين ستحتاج إلى حوالي 5000 معلم أقل مما تحتاجه حالياً بعد 10 سنوات - حسب رأي نقابة GEW، العاصمة تتجه نحو كارثة في تزويد المدارس بالكوادر",
-    keywords: ["Lehrermangel = نقص معلمين", "GEW = نقابة", "Bildung = تعليم"],
-    simplified: "نقص المعلمين في برلين - أزمة قادمة",
-    imagine: "🧠👁️ تخيل مدرسة (Schule) بدون معلمين (Lehrer) كافيين، والفصول الدراسية مزدحمة 🏫😰📚"
-};
-
-HELP_DATA["lesen1_exam9_q2"] = {
-    text: "Text 2: Wer sich in Berlin um eine Stelle als Lehrer bewirbt, muss hart im Nehmen sein... Maria Schütz, die ihr Examen mit der Note 1,5 bestanden hat und unbedingt in Berlin unterrichten wollte, hat mit ihrer Bewerbung leidvolle Erfahrungen hinter sich.",
-    meaning: "من يتقدم لوظيفة معلم في برلين، يجب أن يكون قوياً - ماريا شوتس التي اجتازت امتحانها بدرجة 1.5 وكانت تريد التدريس في برلين بشدة، خاضت تجارب مؤلمة مع طلب التوظيف الخاص بها",
-    keywords: ["Lehrer = معلم", "Berlin = برلين", "Abwanderung = هجرة"],
-    simplified: "المعلمون يغادرون برلين - ظروف العمل الصعبة",
-    imagine: "🧠👁️ تخيل معلماً (Lehrer) يحمل حقيبته ويترك برلين (Berlin) إلى مدينة أخرى 🚶‍♂️🎒"
-};
-
-HELP_DATA["lesen1_exam9_q3"] = {
-    text: "Text 3: Eltern klagen über Stundenausfall und Schulleiter über fehlende Bewerber... Der Verband Bildung und Erziehung (VBE) rechnet in den nächsten 15 Jahren mit einem 'gewaltigen Lehrermangel' in Deutschland.",
-    meaning: "الآباء يشكون من تساقط الساعات ومديرو المدارس من نقص المتقدمين - اتحاد التربية والتعليم (VBE) يتوقع 'نقصاً هائلاً في المعلمين' في ألمانيا خلال الـ 15 سنة القادمة",
-    keywords: ["Lehrermangel = نقص معلمين", "Deutschland = ألمانيا", "Prognose = توقع"],
-    simplified: "نقص معلمين في ألمانيا - أزمة وطنية",
-    imagine: "🧠👁️ تخيل خريطة ألمانيا (Deutschland) وعلامات تحذير على المدارس بسبب نقص المعلمين (Lehrermangel) 🗺️⚠️🏫"
-};
-
-HELP_DATA["lesen1_exam9_q4"] = {
-    text: "Text 4: Bildungspolitiker und Lehrervertreter wollen Abiturienten scharenweise in den Lehrerberuf locken... Die Arbeitsgruppe Bildungsforschung/Bildungsplanung unter der Leitung des Wissenschaftlers Klaus Klemm kommt in ihrem Bericht zu einem ganz anderen Ergebnis.",
-    meaning: "سياسيو التعليم وممثلو المعلمين يريدون جذب خريجي الثانوية العامة بأعداد كبيرة لمهنة التدريس - مجموعة أبحاث التعليم تحت قيادة العالم كلاوس كليم تصل في تقريرها إلى نتيجة مختلفة تماماً",
-    keywords: ["Bildungsforscher = باحث تربوي", "Lehrermangel = نقص معلمين", "Studie = دراسة"],
-    simplified: "جدل حول نقص المعلمين - دراسات متضاربة",
-    imagine: "🧠👁️ تخيل باحثين (Forscher) يقدمون دراسات (Studien) مختلفة حول أزمة المعلمين 📊🔍"
-};
-
-HELP_DATA["lesen1_exam9_q5"] = {
-    text: "Text 5: Mädchen haben tendenziell bessere Noten und stellen 56 Prozent der Abiturienten... An der Grundschule sind Männer eine Rarität.",
-    meaning: "الفتيات تميل درجاتهن للارتفاع ويشكلن 56 في المئة من خريجي الثانوية العامة - الرجال في المدرسة الابتدائية هم نادرون",
-    keywords: ["männliche Lehrkräfte = معلمون ذكور", "Grundschule = مدرسة ابتدائية", "selten = نادر"],
-    simplified: "قلة المعلمين الرجال في المدارس الابتدائية",
-    imagine: "🧠👁️ تخيل مدرسة ابتدائية (Grundschule) يغلب عليها المعلمات النساء، والرجال (Männer) قليلون جداً 👩‍🏫👨‍🏫"
-};
-
 // ============================================
 // نظام الطبقة المساعدة (منطق التشغيل)
+// يدعم: hören1, hören2, hören3, lesen1 (5 امتحانات)
 // ============================================
 
 let helpLayerActive = false;
 let originalContentBackup = null;
 
-// الأسئلة الصحيحة لكل امتحان
+// الأسئلة الصحيحة لكل امتحان (جميع الأجزاء)
 function getCorrectQuestions(skill, examId) {
     const correctMap = {
         // Hören Teil 1 (27 امتحان)
-        'hoeren1_exam1': [2,3], 'hoeren1_exam2': [3,5], 'hoeren1_exam3': [2,3,5],
-        'hoeren1_exam4': [1,5], 'hoeren1_exam5': [2,4], 'hoeren1_exam6': [2,4],
-        'hoeren1_exam7': [1,2,5], 'hoeren1_exam8': [3,4,5], 'hoeren1_exam9': [1,2],
-        'hoeren1_exam10': [1,4], 'hoeren1_exam11': [1,4], 'hoeren1_exam12': [1,4],
-        'hoeren1_exam13': [3,4,5], 'hoeren1_exam14': [1,3], 'hoeren1_exam15': [2,3],
-        'hoeren1_exam16': [2,3,5], 'hoeren1_exam17': [4,5], 'hoeren1_exam18': [1,3,5],
-        'hoeren1_exam19': [1,3,5], 'hoeren1_exam20': [1,3,4], 'hoeren1_exam21': [3],
-        'hoeren1_exam22': [1,2,5], 'hoeren1_exam23': [3,5], 'hoeren1_exam24': [1,3,5],
-        'hoeren1_exam25': [1,2,5], 'hoeren1_exam26': [1,5], 'hoeren1_exam27': [1,2],
-        // Hören Teil 2
-        'hoeren2_exam1': [3,4,8,9,10], 'hoeren2_exam2': [1,3,4,8], 'hoeren2_exam3': [1,3,4,7,8],
-        'hoeren2_exam4': [2,6,8,9,10], 'hoeren2_exam5': [2,9,10], 'hoeren2_exam8': [1,3,4,7,8,9],
-        'hoeren2_exam10': [1,3,4,8,9,10], 'hoeren2_exam12': [1,4,6,7,8], 'hoeren2_exam14': [2,5,8,9,10],
-        'hoeren2_exam15': [2,3,5,6,8,10], 'hoeren2_exam18': [2,3,4,7,9,10], 'hoeren2_exam19': [3,4,7,9],
-        'hoeren2_exam20': [2,3,5,8,9], 'hoeren2_exam22': [3,4,10], 'hoeren2_exam23': [1,2,4,6],
-        'hoeren2_exam24': [2,3,4,6,8,10], 'hoeren2_exam25': [1,2,3,4,6,8,9], 'hoeren2_exam26': [3,5,7,8,10],
-        // Hören Teil 3
-        'hoeren3_exam1': [1], 'hoeren3_exam2': [1,3], 'hoeren3_exam3': [1,3], 'hoeren3_exam4': [1,4],
-        'hoeren3_exam5': [1,4], 'hoeren3_exam6': [1,5], 'hoeren3_exam7': [1,5], 'hoeren3_exam8': [1,5],
-        'hoeren3_exam9': [1,5], 'hoeren3_exam10': [2,5], 'hoeren3_exam11': [1,2,3], 'hoeren3_exam12': [3,4],
-        'hoeren3_exam13': [1,2,5], 'hoeren3_exam14': [1,4,5], 'hoeren3_exam15': [1,2,5], 'hoeren3_exam16': [1,3,4,5],
-        'hoeren3_exam17': [1,3], 'hoeren3_exam18': [2,3,4], 'hoeren3_exam19': [2,4], 'hoeren3_exam20': [1,3],
-        'hoeren3_exam21': [2], 'hoeren3_exam22': [2,4], 'hoeren3_exam23': [1,5], 'hoeren3_exam24': [2],
-        'hoeren3_exam25': [1,3], 'hoeren3_exam26': [1,3,5], 'hoeren3_exam27': [1,3],
-        // Lesen Teil 1 (Exams 1-9)
-        'lesen1_exam1': [1,2,3,4,5], 'lesen1_exam2': [1,2,3,4,5], 'lesen1_exam3': [1,2,3,4,5],
-        'lesen1_exam4': [1,2,3,4,5], 'lesen1_exam5': [1,2,3,4,5], 'lesen1_exam6': [1,2,3,4,5],
-        'lesen1_exam7': [1,2,3,4,5], 'lesen1_exam8': [1,2,3,4,5], 'lesen1_exam9': [1,2,3,4,5],
+        'hoeren1_exam1': [2, 3], 'hoeren1_exam2': [3, 5], 'hoeren1_exam3': [2, 3, 5],
+        'hoeren1_exam4': [1, 5], 'hoeren1_exam5': [2, 4], 'hoeren1_exam6': [2, 4],
+        'hoeren1_exam7': [1, 2, 5], 'hoeren1_exam8': [3, 4, 5], 'hoeren1_exam9': [1, 2],
+        'hoeren1_exam10': [1, 4], 'hoeren1_exam11': [1, 4], 'hoeren1_exam12': [1, 4],
+        'hoeren1_exam13': [3, 4, 5], 'hoeren1_exam14': [1, 3], 'hoeren1_exam15': [2, 3],
+        'hoeren1_exam16': [2, 3, 5], 'hoeren1_exam17': [4, 5], 'hoeren1_exam18': [1, 3, 5],
+        'hoeren1_exam19': [1, 3, 5], 'hoeren1_exam20': [1, 3, 4], 'hoeren1_exam21': [3],
+        'hoeren1_exam22': [1, 2, 5], 'hoeren1_exam23': [3, 5], 'hoeren1_exam24': [1, 3, 5],
+        'hoeren1_exam25': [1, 2, 5], 'hoeren1_exam26': [1, 5], 'hoeren1_exam27': [1, 2],
+        
+        // Hören Teil 2 (31 امتحان)
+        'hoeren2_exam1': [3, 4, 8, 9, 10], 'hoeren2_exam2': [1, 3, 4, 8],
+        'hoeren2_exam3': [1, 3, 4, 7, 8], 'hoeren2_exam4': [2, 6, 8, 9, 10],
+        'hoeren2_exam5': [2, 9, 10], 'hoeren2_exam6': [3, 4, 7], 'hoeren2_exam7': [3, 4, 7],
+        'hoeren2_exam8': [1, 3, 4, 7, 8, 9], 'hoeren2_exam9': [1, 3, 4, 5, 8],
+        'hoeren2_exam10': [1, 3, 4, 8, 9, 10], 'hoeren2_exam11': [1, 3, 4, 8, 9, 10],
+        'hoeren2_exam12': [1, 4, 6, 7, 8], 'hoeren2_exam13': [1, 4, 6, 7, 8],
+        'hoeren2_exam14': [2, 5, 8, 9, 10], 'hoeren2_exam15': [2, 3, 5, 6, 8, 10],
+        'hoeren2_exam16': [2, 4, 5, 8, 10], 'hoeren2_exam17': [2, 4, 5, 8, 10],
+        'hoeren2_exam18': [2, 3, 4, 7, 9, 10], 'hoeren2_exam19': [3, 4, 7, 9],
+        'hoeren2_exam20': [2, 3, 5, 8, 9], 'hoeren2_exam21': [3, 5, 9],
+        'hoeren2_exam22': [3, 4, 10], 'hoeren2_exam23': [1, 2, 4, 6],
+        'hoeren2_exam24': [2, 3, 4, 6, 8, 10], 'hoeren2_exam25': [1, 2, 3, 4, 6, 8, 9],
+        'hoeren2_exam26': [3, 5, 7, 8, 10], 'hoeren2_exam27': [2, 3, 4, 6, 8],
+        'hoeren2_exam28': [1, 2, 4, 6, 8, 10], 'hoeren2_exam29': [4, 5, 9, 10],
+        'hoeren2_exam30': [2, 3, 6, 7, 10], 'hoeren2_exam31': [2, 4, 5, 8, 9],
+        
+        // Hören Teil 3 (27 امتحان)
+        'hoeren3_exam1': [1], 'hoeren3_exam2': [1, 3], 'hoeren3_exam3': [1, 3],
+        'hoeren3_exam4': [1, 4], 'hoeren3_exam5': [1, 4], 'hoeren3_exam6': [1, 5],
+        'hoeren3_exam7': [1, 5], 'hoeren3_exam8': [1, 5], 'hoeren3_exam9': [1, 5],
+        'hoeren3_exam10': [2, 5], 'hoeren3_exam11': [1, 2, 3], 'hoeren3_exam12': [3, 4],
+        'hoeren3_exam13': [1, 2, 5], 'hoeren3_exam14': [1, 4, 5], 'hoeren3_exam15': [1, 2, 5],
+        'hoeren3_exam16': [1, 3, 4, 5], 'hoeren3_exam17': [1, 3], 'hoeren3_exam18': [2, 3, 4],
+        'hoeren3_exam19': [2, 4], 'hoeren3_exam20': [1, 3], 'hoeren3_exam21': [2],
+        'hoeren3_exam22': [2, 4], 'hoeren3_exam23': [1, 5], 'hoeren3_exam24': [2],
+        'hoeren3_exam25': [1, 3], 'hoeren3_exam26': [1, 3, 5], 'hoeren3_exam27': [1, 3],
+        
+        // Lesen Teil 1 (5 امتحانات فقط - Exam 1 إلى 5)
+        'lesen1_exam1': [1, 2, 3, 4, 5],
+        'lesen1_exam2': [1, 2, 3, 4, 5],
+        'lesen1_exam3': [1, 2, 3, 4, 5],
+        'lesen1_exam4': [1, 2, 3, 4, 5],
+        'lesen1_exam5': [1, 2, 3, 4, 5]
     };
     return correctMap[`${skill}_exam${examId}`] || [];
 }
 
+// الحصول على رقم الامتحان الحالي
 function getCurrentExamId() {
-    if (window.currentExamId) return window.currentExamId;
+    if (window.currentExamId && window.currentExamId > 0) return window.currentExamId;
     const title = document.getElementById('examTitle')?.textContent || '';
     const match = title.match(/Exam\s+(\d+)/i);
-    return match ? parseInt(match[1]) : 1;
+    if (match) return parseInt(match[1]);
+    const numMatch = title.match(/\d+/);
+    if (numMatch) return parseInt(numMatch[0]);
+    return 1;
 }
 
+// الحصول على نوع المهارة الحالي
 function getCurrentSkill() {
     if (document.getElementById('hoeren1')?.style.display === 'block') return 'hoeren1';
     if (document.getElementById('hoeren2')?.style.display === 'block') return 'hoeren2';
@@ -2115,6 +1960,7 @@ function getCurrentSkill() {
     return 'hoeren1';
 }
 
+// الحصول على القسم النشط
 function getActiveSection() {
     if (document.getElementById('hoeren1')?.style.display === 'block') return document.getElementById('hoeren1');
     if (document.getElementById('hoeren2')?.style.display === 'block') return document.getElementById('hoeren2');
@@ -2123,35 +1969,28 @@ function getActiveSection() {
     return null;
 }
 
-function findHelpData(skill, examId, questionNumber) {
-    if (!window.HELP_DATA) return null;
+// البحث عن البيانات في HELP_DATA
+function getHelpData(skill, examId, questionNumber) {
+    if (typeof HELP_DATA === 'undefined') return null;
     
-    const key1 = `${skill}_exam${examId}_q${questionNumber}`;
-    if (window.HELP_DATA[key1]) return window.HELP_DATA[key1];
+    // النمط الأساسي: skill_examX_qY
+    const key = `${skill}_exam${examId}_q${questionNumber}`;
+    if (HELP_DATA[key]) return HELP_DATA[key];
     
-    const key2 = `${skill}_exam${examId}_${questionNumber}`;
-    if (window.HELP_DATA[key2]) return window.HELP_DATA[key2];
-    
-    const letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'];
-    for (let i = 0; i < letters.length; i++) {
-        const letterKey = `${skill}_exam${examId}_${letters[i]}`;
-        if (window.HELP_DATA[letterKey]) return window.HELP_DATA[letterKey];
-    }
-    
-    for (let key in window.HELP_DATA) {
-        if (key.includes(`exam${examId}`)) {
-            if (key.includes(`_${questionNumber}`) || key.includes(`q${questionNumber}`)) {
-                return window.HELP_DATA[key];
-            }
+    // محاولة البحث بطرق أخرى
+    for (let k in HELP_DATA) {
+        if (k.includes(`exam${examId}`) && (k.includes(`q${questionNumber}`) || k.includes(`_${questionNumber}`))) {
+            return HELP_DATA[k];
         }
     }
     return null;
 }
 
+// إنشاء بطاقة شرح واحدة
 function createHelpCard(questionNumber) {
     const examId = getCurrentExamId();
     const skill = getCurrentSkill();
-    const data = findHelpData(skill, examId, questionNumber);
+    const data = getHelpData(skill, examId, questionNumber);
     
     const card = document.createElement('div');
     card.style.cssText = 'background:white;border-radius:12px;padding:20px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border:1px solid #e0e0e0';
@@ -2169,9 +2008,9 @@ function createHelpCard(questionNumber) {
             <div style="font-weight:bold;color:#2c3e66;border-right:4px solid #007bff;padding-right:12px;margin-bottom:15px;font-size:17px">
                 ${questionNumber}️⃣ ${data.text || ''}
             </div>
-            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">📖 المعنى :</span> <span style="color:#333">${data.meaning || 'لا توجد ترجمة'}</span></div>
+            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">📖 المعنى :</span> <span style="color:#333">${data.meaning || 'لا يوجد'}</span></div>
             ${keywordsHtml}
-            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">✨ تبسيط :</span> <span style="color:#333">${data.simplified || data.meaning || 'لا يوجد تبسيط'}</span></div>
+            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">✨ تبسيط :</span> <span style="color:#333">${data.simplified || data.meaning || 'لا يوجد'}</span></div>
             <div><span style="color:#0056b3;font-weight:bold">🎭 تخيل :</span> <span style="color:#333">${data.imagine || 'تخيل الجملة في سياقها'}</span></div>
         `;
     } else {
@@ -2180,7 +2019,8 @@ function createHelpCard(questionNumber) {
     return card;
 }
 
-function createAllHelpCards() {
+// إنشاء طبقة المساعدة (تعرض فقط الأسئلة الصحيحة)
+function createHelpLayer() {
     const container = document.createElement('div');
     container.id = 'helpLayerContainer';
     container.style.cssText = 'background:#f8f9fa;border-radius:16px;padding:20px;margin:20px 0';
@@ -2188,36 +2028,29 @@ function createAllHelpCards() {
     const skill = getCurrentSkill();
     const examId = getCurrentExamId();
     const correctQuestions = getCorrectQuestions(skill, examId);
-    const questionCount = correctQuestions.length;
     
-    if (questionCount === 0) {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">📚 لا توجد أسئلة في هذا الامتحان</div>';
+    if (correctQuestions.length === 0) {
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">📚 لا توجد أسئلة صحيحة مسجلة في هذا الامتحان</div>';
         return container;
     }
     
-    if (questionCount === 10) {
-        const grid = document.createElement('div');
-        grid.style.cssText = 'display:grid;grid-template-columns:repeat(2,1fr);gap:15px;';
-        for (let i = 0; i < correctQuestions.length; i++) {
-            const card = createHelpCard(correctQuestions[i]);
-            card.style.marginBottom = '0';
-            card.style.height = '100%';
-            grid.appendChild(card);
-        }
-        container.appendChild(grid);
-    } else {
-        for (let i = 0; i < correctQuestions.length; i++) {
-            container.appendChild(createHelpCard(correctQuestions[i]));
-        }
-    }
+    // ترتيب الأرقام تصاعدياً
+    correctQuestions.sort((a, b) => a - b);
+    
+    correctQuestions.forEach(q => {
+        container.appendChild(createHelpCard(q));
+    });
     return container;
 }
 
+// إخفاء محتوى الامتحان
 function hideExamContent() {
     const hidden = [];
     const section = getActiveSection();
     if (!section) return hidden;
-    for (let child of section.children) {
+    
+    const allChildren = [...section.children];
+    for (let child of allChildren) {
         if (child.id !== 'helpLayerContainer' && child.style.display !== 'none') {
             child.style.display = 'none';
             hidden.push(child);
@@ -2226,6 +2059,7 @@ function hideExamContent() {
     return hidden;
 }
 
+// إخفاء أزرار التصحيح وإعادة التعيين
 function hideButtons() {
     const hidden = [];
     document.querySelectorAll('button').forEach(btn => {
@@ -2240,11 +2074,13 @@ function hideButtons() {
     return hidden;
 }
 
+// إظهار العناصر المخفية
 function showElements(elements) {
     if (!elements) return;
     elements.forEach(el => { if (el) el.style.display = ''; });
 }
 
+// تبديل وضع المساعدة
 function toggleHelp() {
     const existing = document.getElementById('helpLayerContainer');
     const section = getActiveSection();
@@ -2261,12 +2097,13 @@ function toggleHelp() {
         const hiddenQuestions = hideExamContent();
         const hiddenButtons = hideButtons();
         originalContentBackup = { questions: hiddenQuestions, buttons: hiddenButtons };
-        const helpLayer = createAllHelpCards();
+        const helpLayer = createHelpLayer();
         if (section && helpLayer.children.length > 0) section.appendChild(helpLayer);
         helpLayerActive = true;
     }
 }
 
+// إضافة زر المساعدة
 function addHelpButton() {
     if (document.getElementById('globalHelpButton')) return;
     const nav = document.getElementById('examNavButtons');
@@ -2280,16 +2117,9 @@ function addHelpButton() {
     btn.onmouseleave = () => { btn.style.transform = 'scale(1)'; btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)'; };
     btn.onclick = (e) => { e.stopPropagation(); toggleHelp(); };
     nav.appendChild(btn);
-    console.log('✅ زر المساعدة تمت إضافته بنجاح');
 }
 
-// بدء التشغيل
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addHelpButton);
-} else {
-    addHelpButton();
-}
-
+// مراقبة تغيير الامتحان لإغلاق المساعدة تلقائياً
 function setupExamChangeListener() {
     let lastExamId = getCurrentExamId();
     let lastSkill = getCurrentSkill();
@@ -2304,10 +2134,16 @@ function setupExamChangeListener() {
         }
     }, 500);
 }
-setupExamChangeListener();
 
-console.log('✅ helpSystem.js - نظام المساعدة تم تحميله بنجاح');
+// بدء التشغيل
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        addHelpButton();
+        setupExamChangeListener();
+    });
+} else {
+    addHelpButton();
+    setupExamChangeListener();
+}
 
-// ============================================
-// نهاية الملف
-// ============================================
+console.log('✅ helpSystem.js تم التحميل بنجاح (يدعم hören1, hören2, hören3, lesen1)');
