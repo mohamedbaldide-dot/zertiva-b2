@@ -1,22 +1,9 @@
 // ============================================
-// helpLayer.js - نظام الطبقة المساعدة
+// helpLayer.js - نظام الطبقة المساعدة (النسخة النهائية)
 // ============================================
 
 let helpLayerActive = false;
 let originalContentBackup = null;
-
-// تحديد عدد المستطيلات حسب نوع الامتحان
-function getHelpBoxCount() {
-  if (document.getElementById('hoeren1')?.style.display === 'block') return 5;
-  if (document.getElementById('hoeren2')?.style.display === 'block') return 10;
-  if (document.getElementById('hoeren3')?.style.display === 'block') return 5;
-  if (document.getElementById('teil1')?.style.display === 'block') return 5;
-  if (document.getElementById('teil2')?.style.display === 'block') return 5;
-  if (document.getElementById('teil3')?.style.display === 'block') return 10;
-  if (document.getElementById('sprach1')?.style.display === 'block') return 10;
-  if (document.getElementById('sprach2')?.style.display === 'block') return 10;
-  return 0;
-}
 
 // الحصول على معرف الامتحان الحالي
 function getCurrentExamId() {
@@ -34,7 +21,7 @@ function getCurrentExamId() {
   return 1;
 }
 
-// الحصول على نوع المهارة الحالي (تحويل teil1 -> lesen1, etc.)
+// الحصول على نوع المهارة الحالي
 function getCurrentSkill() {
   if (document.getElementById('hoeren1')?.style.display === 'block') return 'hoeren1';
   if (document.getElementById('hoeren2')?.style.display === 'block') return 'hoeren2';
@@ -59,94 +46,10 @@ function getActiveSection() {
   return null;
 }
 
-// ========== البحث عن البيانات في HELP_DATA (نسخة محسنة) ==========
-function findHelpData(skill, examId, questionNumber) {
-  if (!window.HELP_DATA) return null;
-  
-  // تحويل رقم السؤال إلى حرف (1->a, 2->b, 3->c...)
-  const letter = String.fromCharCode(96 + questionNumber);
-  
-  // الصيغ المختلفة للبحث
-  const possibleKeys = [
-    `${skill}_exam${examId}_q${questionNumber}`,
-    `${skill}_exam${examId}_${questionNumber}`,
-    `${skill}_exam${examId}_${letter}`
-  ];
-  
-  for (let key of possibleKeys) {
-    if (window.HELP_DATA[key]) {
-      console.log(`✅ helpLayer: وجد البيانات للمفتاح: ${key}`);
-      return window.HELP_DATA[key];
-    }
-  }
-  
-  // بحث شامل
-  for (let key in window.HELP_DATA) {
-    if (key.includes(`exam${examId}`)) {
-      if (key.includes(`_${questionNumber}`) || key.includes(`q${questionNumber}`) || key.includes(`_${letter}`)) {
-        console.log(`✅ helpLayer: وجد البيانات للمفتاح (بحث شامل): ${key}`);
-        return window.HELP_DATA[key];
-      }
-    }
-  }
-  
-  console.log(`❌ helpLayer: لم يجد بيانات للسؤال ${questionNumber} في ${skill}_exam${examId}`);
-  return null;
-}
-
-// إنشاء مستطيل شرح مع محتوى من HELP_DATA
-function createHelpBoxWithContent(index, totalQuestions) {
+// ========== إنشاء بطاقة من البيانات مباشرة ==========
+function createHelpBoxFromData(data, index) {
   const box = document.createElement('div');
   box.className = 'help-box';
-  box.id = `helpBox_${index}`;
-  
-  const examId = getCurrentExamId();
-  const skill = getCurrentSkill();
-  const data = findHelpData(skill, examId, index);
-  
-  let contentHtml = '';
-  
-  if (data) {
-    // تنسيق الكلمات المهمة
-    let keywordsHtml = '';
-    if (data.keywords && data.keywords.length > 0) {
-      keywordsHtml = '<div style="margin: 10px 0;"><span style="color: #007bff; font-weight: bold; font-size: 15px;">📌 كلمات مهمة :</span><br>';
-      for (let i = 0; i < data.keywords.length; i++) {
-        keywordsHtml += `<span style="display: inline-block; background: #e3f2fd; padding: 4px 12px; border-radius: 20px; font-size: 14px; margin: 3px;">${data.keywords[i]}</span>`;
-      }
-      keywordsHtml += '</div>';
-    }
-    
-    contentHtml = `
-      <div style="padding: 15px;">
-        <div style="font-weight: bold; color: #2c3e66; margin-bottom: 15px; font-size: 18px; border-right: 4px solid #007bff; padding-right: 12px;">
-          ${index}️⃣ ${data.text || ''}
-        </div>
-        <div style="margin-bottom: 12px;">
-          <span style="color: #0056b3; font-weight: bold; font-size: 15px;">📖 المعنى :</span>
-          <span style="color: #333; font-size: 15px; line-height: 1.6;"> ${data.meaning || 'لا يوجد'}</span>
-        </div>
-        ${keywordsHtml}
-        <div style="margin-bottom: 12px;">
-          <span style="color: #0056b3; font-weight: bold; font-size: 15px;">✨ تبسيط :</span>
-          <span style="color: #333; font-size: 15px; line-height: 1.6;"> ${data.simplified || 'لا يوجد'}</span>
-        </div>
-        <div>
-          <span style="color: #0056b3; font-weight: bold; font-size: 15px;">🎭 تخيل :</span>
-          <span style="color: #333; font-size: 15px; line-height: 1.6;"> ${data.imagine || 'لا يوجد'}</span>
-        </div>
-      </div>
-    `;
-  } else {
-    contentHtml = `
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 150px; color: #999; text-align: center;">
-        <div style="font-size: 16px;">❓ لا يوجد شرح للسؤال ${index}</div>
-        <div style="font-size: 12px; margin-top: 8px;">${skill}_exam${examId}_q${index}</div>
-      </div>
-    `;
-  }
-  
-  box.innerHTML = contentHtml;
   box.style.cssText = `
     background: #ffffff;
     border: 1px solid #dee2e6;
@@ -156,6 +59,37 @@ function createHelpBoxWithContent(index, totalQuestions) {
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     margin-bottom: 15px;
+  `;
+  
+  // تنسيق الكلمات المهمة
+  let keywordsHtml = '';
+  if (data.keywords && data.keywords.length > 0) {
+    keywordsHtml = '<div style="margin: 10px 0;"><span style="color: #007bff; font-weight: bold; font-size: 15px;">📌 كلمات مهمة :</span><br>';
+    for (let i = 0; i < data.keywords.length; i++) {
+      keywordsHtml += `<span style="display: inline-block; background: #e3f2fd; padding: 4px 12px; border-radius: 20px; font-size: 14px; margin: 3px;">${data.keywords[i]}</span>`;
+    }
+    keywordsHtml += '</div>';
+  }
+  
+  box.innerHTML = `
+    <div style="padding: 15px;">
+      <div style="font-weight: bold; color: #2c3e66; margin-bottom: 15px; font-size: 17px; border-right: 4px solid #007bff; padding-right: 12px;">
+        ${index}️⃣ ${data.text || ''}
+      </div>
+      <div style="margin-bottom: 12px;">
+        <span style="color: #0056b3; font-weight: bold; font-size: 15px;">📖 المعنى :</span>
+        <span style="color: #333; font-size: 15px; line-height: 1.6;"> ${data.meaning || 'لا يوجد'}</span>
+      </div>
+      ${keywordsHtml}
+      <div style="margin-bottom: 12px;">
+        <span style="color: #0056b3; font-weight: bold; font-size: 15px;">✨ تبسيط :</span>
+        <span style="color: #333; font-size: 15px; line-height: 1.6;"> ${data.simplified || 'لا يوجد'}</span>
+      </div>
+      <div>
+        <span style="color: #0056b3; font-weight: bold; font-size: 15px;">🎭 تخيل :</span>
+        <span style="color: #333; font-size: 15px; line-height: 1.6;"> ${data.imagine || 'لا يوجد'}</span>
+      </div>
+    </div>
   `;
   
   box.addEventListener('mouseenter', () => {
@@ -172,8 +106,21 @@ function createHelpBoxWithContent(index, totalQuestions) {
   return box;
 }
 
-// إنشاء شبكة المستطيلات مع محتوى
-function createHelpBoxesWithContent(count) {
+// ========== الحصول على عدد الأسئلة (تقديري) ==========
+function getHelpBoxCount() {
+  if (document.getElementById('hoeren1')?.style.display === 'block') return 5;
+  if (document.getElementById('hoeren2')?.style.display === 'block') return 10;
+  if (document.getElementById('hoeren3')?.style.display === 'block') return 5;
+  if (document.getElementById('teil1')?.style.display === 'block') return 5;
+  if (document.getElementById('teil2')?.style.display === 'block') return 5;
+  if (document.getElementById('teil3')?.style.display === 'block') return 10;
+  if (document.getElementById('sprach1')?.style.display === 'block') return 10;
+  if (document.getElementById('sprach2')?.style.display === 'block') return 10;
+  return 0;
+}
+
+// ========== إنشاء شبكة البطاقات بناءً على المفاتيح الموجودة فعلاً ==========
+function createHelpBoxesWithContent() {
   const container = document.createElement('div');
   container.id = 'helpLayerContainer';
   container.style.cssText = `
@@ -188,28 +135,49 @@ function createHelpBoxesWithContent(count) {
   
   const skill = getCurrentSkill();
   const examId = getCurrentExamId();
-  console.log(`📊 helpLayer: إنشاء المساعدة لـ ${skill}_exam${examId} (${count} سؤال)`);
   
-  if (count === 10) {
-    for (let row = 0; row < 5; row++) {
-      const rowDiv = document.createElement('div');
-      rowDiv.style.cssText = `display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 5px;`;
-      for (let col = 0; col < 2; col++) {
-        const index = row * 2 + col + 1;
-        if (index <= 10) {
-          rowDiv.appendChild(createHelpBoxWithContent(index, count));
-        }
-      }
-      container.appendChild(rowDiv);
-    }
-  } 
-  else if (count === 5) {
-    const column = document.createElement('div');
-    column.style.cssText = `display: flex; flex-direction: column; gap: 15px;`;
-    for (let i = 0; i < 5; i++) {
-      column.appendChild(createHelpBoxWithContent(i + 1, count));
-    }
-    container.appendChild(column);
+  // 🔑 الحل السحري: نأخذ المفاتيح الموجودة فعلاً في HELP_DATA
+  const keys = Object.keys(window.HELP_DATA || {}).filter(k =>
+    k.startsWith(`${skill}_exam${examId}`)
+  );
+  
+  console.log(`📊 helpLayer: المفاتيح الموجودة في ${skill}_exam${examId}:`, keys);
+  
+  if (keys.length === 0) {
+    container.innerHTML = `
+      <div style="text-align:center; padding:40px; color:#999;">
+        ❌ لا توجد بيانات مساعدة لهذا الامتحان
+      </div>
+    `;
+    return container;
+  }
+  
+  // ترتيب المفاتيح
+  keys.sort();
+  
+  // إذا كان عدد المفاتيح 10 (للشبكة بعمودين) أو 5 (لعمود واحد)
+  const count = keys.length;
+  const isTenQuestions = (count === 10);
+  
+  if (isTenQuestions) {
+    // شبكة بعمودين
+    const grid = document.createElement('div');
+    grid.style.cssText = `display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;`;
+    
+    keys.forEach((key, i) => {
+      const data = window.HELP_DATA[key];
+      const box = createHelpBoxFromData(data, i + 1);
+      box.style.marginBottom = '0';
+      box.style.height = '100%';
+      grid.appendChild(box);
+    });
+    container.appendChild(grid);
+  } else {
+    // عمود واحد
+    keys.forEach((key, i) => {
+      const data = window.HELP_DATA[key];
+      container.appendChild(createHelpBoxFromData(data, i + 1));
+    });
   }
   
   return container;
@@ -232,13 +200,6 @@ function hideExamQuestions() {
   return hidden;
 }
 
-// إظهار المحتوى المخفي
-function showHiddenElements(hiddenElements) {
-  hiddenElements.forEach(el => {
-    el.style.display = '';
-  });
-}
-
 // إخفاء أزرار التصحيح وإعادة التعيين
 function hideCheckAndResetButtons() {
   const hidden = [];
@@ -255,7 +216,12 @@ function hideCheckAndResetButtons() {
   return hidden;
 }
 
-// إظهار الأزرار المخفية
+function showHiddenElements(hiddenElements) {
+  hiddenElements.forEach(el => {
+    el.style.display = '';
+  });
+}
+
 function showCheckAndResetButtons(hiddenButtons) {
   hiddenButtons.forEach(btn => {
     btn.style.display = '';
@@ -280,16 +246,15 @@ function toggleHelpLayer() {
     const hiddenButtons = hideCheckAndResetButtons();
     originalContentBackup = { hiddenQuestions, hiddenButtons };
     
-    const boxCount = getHelpBoxCount();
-    if (boxCount > 0 && activeSection) {
-      const helpLayer = createHelpBoxesWithContent(boxCount);
+    const helpLayer = createHelpBoxesWithContent();
+    if (activeSection && helpLayer.children.length > 0) {
       activeSection.appendChild(helpLayer);
     }
     helpLayerActive = true;
   }
 }
 
-// إضافة زر "مساعدة ذكية للنجاح" (مع منع ظهوره في Schreiben)
+// إضافة زر "مساعدة ذكية للنجاح"
 function addHelpButtonToExam() {
   // ❌ لا نضيف الزر في قسم Schreiben
   const schreiben = document.getElementById('schreiben');
