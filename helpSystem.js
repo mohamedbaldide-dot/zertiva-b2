@@ -14957,17 +14957,17 @@ HELP_DATA["sprach2_exam45_10"] = {
     simplified: "المنظمات الاستهلاكية موجودة لمساعدتك",
     imagine: "🏛️🤝 مبنى ومصافحة"
 };
+
 // ============================================
-// helpSystem.js - نظام المساعدة المتكامل (النسخة النهائية المحسنة)
+// helpSystem.js - نظام المساعدة المتكامل (النسخة النهائية)
 // ============================================
 
 let helpLayerActive = false;
 let originalContentBackup = null;
 
-// ========== الأسئلة الصحيحة لكل امتحان (جميع الأجزاء) ==========
+// ========== الأسئلة الصحيحة لكل امتحان (للرجوع إليها فقط) ==========
 function getCorrectQuestions(skill, examId) {
     const correctMap = {
-        // Hören Teil 1
         'hoeren1_exam1': [2, 3], 'hoeren1_exam2': [3, 5], 'hoeren1_exam3': [2, 3, 5],
         'hoeren1_exam4': [1, 5], 'hoeren1_exam5': [2, 4], 'hoeren1_exam6': [2, 4],
         'hoeren1_exam7': [1, 2, 5], 'hoeren1_exam8': [3, 4, 5], 'hoeren1_exam9': [1, 2],
@@ -14977,7 +14977,6 @@ function getCorrectQuestions(skill, examId) {
         'hoeren1_exam19': [1, 3, 5], 'hoeren1_exam20': [1, 3, 4], 'hoeren1_exam21': [3],
         'hoeren1_exam22': [1, 2, 5], 'hoeren1_exam23': [3, 5], 'hoeren1_exam24': [1, 3, 5],
         'hoeren1_exam25': [1, 2, 5], 'hoeren1_exam26': [1, 5], 'hoeren1_exam27': [1, 2],
-        // Hören Teil 2
         'hoeren2_exam1': [3, 4, 8, 9, 10], 'hoeren2_exam2': [1, 3, 4, 8],
         'hoeren2_exam3': [1, 3, 4, 7, 8], 'hoeren2_exam4': [2, 6, 8, 9, 10],
         'hoeren2_exam5': [2, 9, 10], 'hoeren2_exam6': [3, 4, 7], 'hoeren2_exam7': [3, 4, 7],
@@ -14993,7 +14992,6 @@ function getCorrectQuestions(skill, examId) {
         'hoeren2_exam26': [3, 5, 7, 8, 10], 'hoeren2_exam27': [2, 3, 4, 6, 8],
         'hoeren2_exam28': [1, 2, 4, 6, 8, 10], 'hoeren2_exam29': [4, 5, 9, 10],
         'hoeren2_exam30': [2, 3, 6, 7, 10], 'hoeren2_exam31': [2, 4, 5, 8, 9],
-        // Hören Teil 3
         'hoeren3_exam1': [1], 'hoeren3_exam2': [1, 3], 'hoeren3_exam3': [1, 3],
         'hoeren3_exam4': [1, 4], 'hoeren3_exam5': [1, 4], 'hoeren3_exam6': [1, 5],
         'hoeren3_exam7': [1, 5], 'hoeren3_exam8': [1, 5], 'hoeren3_exam9': [1, 5],
@@ -15003,7 +15001,6 @@ function getCorrectQuestions(skill, examId) {
         'hoeren3_exam19': [2, 4], 'hoeren3_exam20': [1, 3], 'hoeren3_exam21': [2],
         'hoeren3_exam22': [2, 4], 'hoeren3_exam23': [1, 5], 'hoeren3_exam24': [2],
         'hoeren3_exam25': [1, 3], 'hoeren3_exam26': [1, 3, 5], 'hoeren3_exam27': [1, 3],
-        // Lesen Teil 1 (جميع الأسئلة)
         'lesen1_exam1': [1,2,3,4,5], 'lesen1_exam2': [1,2,3,4,5], 'lesen1_exam3': [1,2,3,4,5],
         'lesen1_exam4': [1,2,3,4,5], 'lesen1_exam5': [1,2,3,4,5], 'lesen1_exam6': [1,2,3,4,5],
         'lesen1_exam7': [1,2,3,4,5], 'lesen1_exam8': [1,2,3,4,5], 'lesen1_exam9': [1,2,3,4,5],
@@ -15020,7 +15017,6 @@ function getCorrectQuestions(skill, examId) {
         'lesen1_exam40': [1,2,3,4,5], 'lesen1_exam41': [1,2,3,4,5], 'lesen1_exam42': [1,2,3,4,5],
         'lesen1_exam43': [1,2,3,4,5], 'lesen1_exam44': [1,2,3,4,5], 'lesen1_exam45': [1,2,3,4,5],
         'lesen1_exam46': [1,2,3,4,5], 'lesen1_exam47': [1,2,3,4,5],
-        // Lesen Teil 2 (جميع الأسئلة)
         'lesen2_exam1': [1,2,3,4,5], 'lesen2_exam2': [1,2,3,4,5], 'lesen2_exam3': [1,2,3,4,5],
         'lesen2_exam4': [1,2,3,4,5], 'lesen2_exam5': [1,2,3,4,5], 'lesen2_exam6': [1,2,3,4,5],
         'lesen2_exam7': [1,2,3,4,5], 'lesen2_exam8': [1,2,3,4,5], 'lesen2_exam9': [1,2,3,4,5],
@@ -15034,7 +15030,6 @@ function getCorrectQuestions(skill, examId) {
         'lesen2_exam31': [1,2,3,4,5], 'lesen2_exam32': [1,2,3,4,5], 'lesen2_exam33': [1,2,3,4,5],
         'lesen2_exam34': [1,2,3,4,5], 'lesen2_exam35': [1,2,3,4,5], 'lesen2_exam36': [1,2,3,4,5],
         'lesen2_exam37': [1,2,3,4,5],
-        // Lesen Teil 3 (جميع الأسئلة - 10 أسئلة)
         'lesen3_exam1': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam2': [1,2,3,4,5,6,7,8,9,10],
         'lesen3_exam3': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam4': [1,2,3,4,5,6,7,8,9,10],
         'lesen3_exam5': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam6': [1,2,3,4,5,6,7,8,9,10],
@@ -15053,7 +15048,6 @@ function getCorrectQuestions(skill, examId) {
         'lesen3_exam31': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam32': [1,2,3,4,5,6,7,8,9,10],
         'lesen3_exam33': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam34': [1,2,3,4,5,6,7,8,9,10],
         'lesen3_exam35': [1,2,3,4,5,6,7,8,9,10],
-        // Sprachbausteine Teil 1 (جميع الأسئلة - 10 أسئلة)
         'sprach1_exam1': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam2': [1,2,3,4,5,6,7,8,9,10],
         'sprach1_exam3': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam4': [1,2,3,4,5,6,7,8,9,10],
         'sprach1_exam5': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam6': [1,2,3,4,5,6,7,8,9,10],
@@ -15074,7 +15068,6 @@ function getCorrectQuestions(skill, examId) {
         'sprach1_exam35': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam36': [1,2,3,4,5,6,7,8,9,10],
         'sprach1_exam37': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam38': [1,2,3,4,5,6,7,8,9,10],
         'sprach1_exam39': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam40': [1,2,3,4,5,6,7,8,9,10],
-        // Sprachbausteine Teil 2 (جميع الأسئلة - 10 أسئلة)
         'sprach2_exam1': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam2': [1,2,3,4,5,6,7,8,9,10],
         'sprach2_exam3': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam4': [1,2,3,4,5,6,7,8,9,10],
         'sprach2_exam5': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam6': [1,2,3,4,5,6,7,8,9,10],
@@ -15100,6 +15093,20 @@ function getCorrectQuestions(skill, examId) {
         'sprach2_exam45': [1,2,3,4,5,6,7,8,9,10],
     };
     return correctMap[`${skill}_exam${examId}`] || [];
+}
+
+// ========== دالة جديدة: الحصول على عدد الأسئلة الصحيحة لكل امتحان ==========
+function getTotalQuestionsCount(skill, examId) {
+    // القيم الافتراضية حسب نوع المهارة
+    if (skill === 'hoeren1') return 5;      // Hören Teil 1: 5 أسئلة
+    if (skill === 'hoeren2') return 10;     // Hören Teil 2: 10 أسئلة
+    if (skill === 'hoeren3') return 5;      // Hören Teil 3: 5 أسئلة
+    if (skill === 'lesen1') return 5;       // Lesen Teil 1: 5 أسئلة
+    if (skill === 'lesen2') return 5;       // Lesen Teil 2: 5 أسئلة
+    if (skill === 'lesen3') return 10;      // Lesen Teil 3: 10 أسئلة
+    if (skill === 'sprach1') return 10;     // Sprachbausteine 1: 10 أسئلة
+    if (skill === 'sprach2') return 10;     // Sprachbausteine 2: 10 أسئلة
+    return 5; // القيمة الافتراضية
 }
 
 function getCurrentExamId() {
@@ -15133,55 +15140,41 @@ function getActiveSection() {
     return null;
 }
 
-// ========== دالة البحث المحسنة - الحل السحري ==========
+// ========== دالة البحث المحسنة ==========
 function findHelpData(skill, examId, questionNumber) {
     if (!window.HELP_DATA) return null;
     
-    // الطريقة 1: البحث بالصيغة الأساسية hoeren1_exam1_q2
+    // تحويل رقم السؤال إلى حرف (1->a, 2->b, 3->c, ...)
+    const letter = String.fromCharCode(96 + questionNumber);
+    
+    // الطريقة 1: البحث بالصيغة مع حرف (lesen3_exam32_a)
+    const keyWithLetter = `${skill}_exam${examId}_${letter}`;
+    if (window.HELP_DATA[keyWithLetter]) {
+        console.log(`✅ وجد بالصيغة مع حرف: ${keyWithLetter} (للسؤال ${questionNumber})`);
+        return window.HELP_DATA[keyWithLetter];
+    }
+    
+    // الطريقة 2: البحث بالصيغة الأساسية hoeren1_exam1_q2
     const key1 = `${skill}_exam${examId}_q${questionNumber}`;
     if (window.HELP_DATA[key1]) {
         console.log(`✅ وجد بالصيغة 1: ${key1}`);
         return window.HELP_DATA[key1];
     }
     
-    // الطريقة 2: البحث بالصيغة hoeren1_exam1_2 (بدون q)
+    // الطريقة 3: البحث بالصيغة hoeren1_exam1_2 (بدون q)
     const key2 = `${skill}_exam${examId}_${questionNumber}`;
     if (window.HELP_DATA[key2]) {
         console.log(`✅ وجد بالصيغة 2: ${key2}`);
         return window.HELP_DATA[key2];
     }
     
-    // الطريقة 3: البحث بالصيغة مع حروف (لـ lesen3_exam2_a, sprach1_exam1_a, etc.)
-    // هذه الطريقة ستجعل النظام يبحث عن lesen3_exam2_a, lesen3_exam2_b, ... إلخ
-    const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-    for (let i = 0; i < letters.length; i++) {
-        const letterKey = `${skill}_exam${examId}_${letters[i]}`;
-        if (window.HELP_DATA[letterKey]) {
-            console.log(`✅ وجد بالصيغة مع حرف: ${letterKey} (للسؤال ${questionNumber})`);
-            return window.HELP_DATA[letterKey];
-        }
-    }
-    
-    // الطريقة 4: بحث شامل في كل المفاتيح - هذه الطريقة ستجد أي شيء
+    // الطريقة 4: بحث شامل في كل المفاتيح
     for (let key in window.HELP_DATA) {
-        // شرط أن المفتاح يحتوي على examId ويرتبط برقم السؤال
         if (key.includes(`exam${examId}`)) {
-            // إذا كان رقم السؤال موجود في المفتاح بأي صيغة
             if (key.includes(`q${questionNumber}`) || 
                 key.includes(`_${questionNumber}_`) || 
-                key.endsWith(`_${questionNumber}`) ||
-                key.match(new RegExp(`_${questionNumber}$`)) ||
-                key.match(new RegExp(`_${questionNumber}_`))) {
+                key.endsWith(`_${questionNumber}`)) {
                 console.log(`✅ وجد بالبحث الشامل: ${key}`);
-                return window.HELP_DATA[key];
-            }
-            
-            // خاص للصيغ مثل lesen3_exam2_a التي ليس بها رقم سؤال
-            // في هذه الحالة، نطابق ترتيب الحرف مع رقم السؤال
-            // مثلاً: السؤال 1 -> a, السؤال 2 -> b, إلخ
-            const letterMatch = key.match(/_([a-z])$/);
-            if (letterMatch && letters.indexOf(letterMatch[1]) + 1 === questionNumber) {
-                console.log(`✅ وجد بالصيغة مع حرف (رقمي): ${key} (للسؤال ${questionNumber})`);
                 return window.HELP_DATA[key];
             }
         }
@@ -15224,7 +15217,7 @@ function createHelpCard(questionNumber) {
     return card;
 }
 
-// إنشاء جميع البطاقات (عرض مختلف حسب عدد الأسئلة)
+// ========== الدالة الرئيسية لإنشاء البطاقات ==========
 function createAllHelpCards() {
     const container = document.createElement('div');
     container.id = 'helpLayerContainer';
@@ -15232,36 +15225,33 @@ function createAllHelpCards() {
     
     const skill = getCurrentSkill();
     const examId = getCurrentExamId();
-    const correctQuestions = getCorrectQuestions(skill, examId);
-    const questionCount = correctQuestions.length;
     
-    console.log(`📊 إنشاء المساعدة: ${skill}_exam${examId} (${questionCount} سؤال/أسئلة صحيحة)`);
+    // ✅ المفتاح: نأخذ عدد الأسئلة من الدالة الجديدة، وليس من getCorrectQuestions!
+    const questionCount = getTotalQuestionsCount(skill, examId);
+    
+    console.log(`📊 إنشاء المساعدة: ${skill}_exam${examId} (${questionCount} سؤال)`);
     
     if (questionCount === 0) {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">📚 لا توجد أسئلة صحيحة في هذا الامتحان</div>';
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">📚 لا توجد أسئلة في هذا الامتحان</div>';
         return container;
     }
     
-    // إذا كان عدد الأسئلة 10 (Hören Teil 2, Lesen Teil 3, Sprach 1, Sprach 2)
+    // إنشاء شبكة بعمودين للـ 10 أسئلة، أو عمود واحد للـ 5 أسئلة
     if (questionCount === 10) {
-        // إنشاء شبكة بعمودين
         const grid = document.createElement('div');
         grid.style.cssText = 'display:grid;grid-template-columns:repeat(2,1fr);gap:15px;';
         
-        for (let i = 0; i < correctQuestions.length; i++) {
-            const qNumber = correctQuestions[i];
-            const card = createHelpCard(qNumber);
+        for (let i = 1; i <= questionCount; i++) {
+            const card = createHelpCard(i);
             card.style.marginBottom = '0';
             card.style.height = '100%';
             grid.appendChild(card);
         }
         container.appendChild(grid);
-    } 
-    // إذا كان عدد الأسئلة 5 أو أقل (باقي الأقسام)
-    else {
-        for (let i = 0; i < correctQuestions.length; i++) {
-            const qNumber = correctQuestions[i];
-            container.appendChild(createHelpCard(qNumber));
+    } else {
+        // 5 أسئلة أو أقل
+        for (let i = 1; i <= questionCount; i++) {
+            container.appendChild(createHelpCard(i));
         }
     }
     
@@ -15369,7 +15359,7 @@ function setupExamChangeListener() {
 }
 setupExamChangeListener();
 
-console.log('✅ helpSystem.js - نظام المساعدة الكامل تم تحميله بنجاح (نسخة محسنة)');
+console.log('✅ helpSystem.js - نظام المساعدة الكامل تم تحميله بنجاح');
 
 // ============================================
 // نهاية الملف
