@@ -1,6 +1,6 @@
 /**
  * auth.js - نظام إدارة تسجيل الدخول والاشتراك لموقع Zertiva B2
- * رقم الواتساب: 212687561491
+ * مع حماية الامتحانات: المجاني يرى فقط الامتحان الأول من كل جزء
  */
 
 // ========== الإعدادات الأساسية ==========
@@ -32,7 +32,7 @@ function isUserLoggedIn() {
     return getLoggedInEmail() !== null;
 }
 
-// ========== دوال الصلاحية والاشتراك (تقرأ من premium.json عبر API) ==========
+// ========== دوال الصلاحية (تقرأ من premium.json) ==========
 async function getPremiumUsers() {
     try {
         const response = await fetch('premium.json?_=' + Date.now());
@@ -73,34 +73,133 @@ async function getExpiryDate(email) {
     }
 }
 
-// ========== التحقق من صلاحية الوصول لامتحان معين ==========
-// قائمة الامتحانات المجانية (المفتوحة للجميع)
-const FREE_EXAMS_LIST = [
-    "Leseverstehen - Teil 1",
-    "Sprachbausteine - Teil 1",
-    "Hörverstehen - Teil 1"
-];
+// ========== التحقق من الامتحان (الأول فقط مجاني) ==========
+// قائمة أسماء الأجزاء (Teile)
+const TEIL_NAMES = ['teil1', 'teil2', 'teil3', 'sprach1', 'sprach2', 'hoeren1', 'hoeren2', 'hoeren3', 'schreiben'];
 
-async function canAccessExam(examName) {
-    const status = await getUserStatus();
-    if(status === 'premium') return true;
-    if(status === 'guest') return false;
-    // status === 'free' or 'expired'
-    return FREE_EXAMS_LIST.includes(examName);
+// دالة لمعرفة هل هذا هو الامتحان الأول في جزئه؟
+function isFirstExamInTeil(examId, teilId) {
+    // الامتحان الأول يكون رقمه 1 أو ليس فيه رقم
+    if (examId === 1 || examId === '1' || examId === 0) return true;
+    return false;
 }
 
-// ========== إرسال رسالة واتساب للاشتراك (توجه إلى subscribe.html) ==========
-function sendSubscribeWhatsApp() {
-    let email = getLoggedInEmail();
+// دالة للتحقق من إمكانية الوصول لامتحان معين
+async function canAccessExam(teilName, examIndex) {
+    const status = await getUserStatus();
+    if (status === 'premium') return true;
+    // المجاني: فقط الامتحان الأول (examIndex === 0)
+    return examIndex === 0;
+}
+
+// ========== إظهار رسالة المحتوى المقفل ==========
+function showLockedMessage(examTitle, teilName) {
+    // إنشاء نافذة منبثقة مخصصة
+    let modal = document.createElement('div');
+    modal.id = 'lockedModal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        z-index: 10000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        direction: rtl;
+    `;
     
-    if(!email) {
-        alert("⚠️ يجب أن تسجل دخولك أولاً");
-        showLoginPopup();
-        return;
-    }
+    modal.innerHTML = `
+        <div style="background: white; border-radius: 25px; padding: 30px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 25px 45px rgba(0,0,0,0.3);">
+            <div style="font-size: 60px; margin-bottom: 15px;">🔒</div>
+            <h2 style="color: #2b5876; margin-bottom: 10px;">محـتوى مقفل</h2>
+            <p style="color: #555; margin-bottom: 20px;">المرجو ترقية الحساب للوصول لهذا المحتوى</p>
+            <div style="background: #f3e8ff; padding: 10px; border-radius: 15px; margin-bottom: 20px;">
+                <span style="color: #a855f7;">📚 ${examTitle}</span>
+            </div>
+            <p style="color: #888; margin-bottom: 20px; font-size: 14px;">يتطلب باقة: <strong style="color: #f39c12;">Pro</strong></p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <button id="upgradeNowBtnModal" style="background: linear-gradient(135deg, #f39c12, #e67e22); color: white; border: none; padding: 12px 25px; border-radius: 40px; cursor: pointer; font-weight: bold;">🚀 ترقية الحساب الآن</button>
+                <button id="closeModalBtn" style="background: #e2e8f0; border: none; padding: 12px 25px; border-radius: 40px; cursor: pointer;">ليس الآن</button>
+            </div>
+        </div>
+    `;
     
-    // التوجه إلى صفحة اختيار الباقة
-    window.location.href = "subscribe.html";
+    document.body.appendChild(modal);
+    
+    document.getElementById('upgradeNowBtnModal')?.addEventListener('click', () => {
+        window.location.href = 'subscribe.html';
+    });
+    
+    document.getElementById('closeModalBtn')?.addEventListener('click', () => {
+        modal.remove();
+    });
+    
+    // إغلاق عند الضغط خارج النافذة
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.remove();
+    });
+}
+
+// ========== تزيين الامتحانات المقفلة ==========
+async function styleLockedExams() {
+    const status = await getUserStatus();
+    if (status === 'premium') return; // لا شيء نفعله للمشترك
+    
+    // البحث عن جميع أزرار الامتحانات في الصفحة
+    // حسب هيكل engine.js الخاص بك
+    let examButtons = document.querySelectorAll('.exam-item, .exam-card, [data-exam]');
+    
+    // تتبع الامتحانات التي مررنا عليها لكل جزء
+    let teilCounter = {};
+    
+    examButtons.forEach((btn, index) => {
+        // معرفة الجزء (teil) من النص أو من class
+        let teilName = '';
+        let examNumber = 1;
+        
+        // محاولة استخراج رقم الامتحان من النص
+        let btnText = btn.innerText || '';
+        let match = btnText.match(/(\d+)/);
+        if (match) {
+            examNumber = parseInt(match[1]);
+        }
+        
+        // إذا كان الامتحان ليس الأول (رقمه > 1)
+        if (examNumber > 1) {
+            // تطبيق القفل
+            btn.style.opacity = '0.65';
+            btn.style.filter = 'blur(1px)';
+            btn.style.background = '#f3e8ff';
+            btn.style.border = '2px dashed #a855f7';
+            btn.style.position = 'relative';
+            btn.style.cursor = 'pointer';
+            
+            // إضافة أيقونة القفل
+            let lockIcon = document.createElement('span');
+            lockIcon.innerHTML = '🔒';
+            lockIcon.style.cssText = 'position: absolute; top: 8px; right: 12px; font-size: 18px; filter: blur(0); opacity: 1;';
+            btn.style.position = 'relative';
+            btn.appendChild(lockIcon);
+            
+            // حفظ عنوان الامتحان
+            let examTitle = btnText;
+            
+            // تغيير حدث الضغط
+            let oldClick = btn.onclick;
+            btn.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                showLockedMessage(examTitle, teilName);
+                return false;
+            };
+            
+            // إزالة أي حدث قديم
+            btn.removeEventListener('click', oldClick);
+        }
+    });
 }
 
 // ========== نافذة تسجيل الدخول ==========
@@ -129,17 +228,18 @@ async function handleLogin() {
     if(status === 'premium') {
         let expiry = await getExpiryDate(email);
         alert(`✅ مرحباً ${email}\n🎉 حسابك مفعل حتى ${expiry}\nجميع الامتحانات متاحة لك.`);
+        location.reload();
     } else if(status === 'expired') {
-        alert(`⚠️ مرحباً ${email}\n⏰ انتهت صلاحية اشتراكك.\n✨ يرجى الاشتراك مرة أخرى للوصول إلى الامتحانات.`);
+        alert(`⚠️ مرحباً ${email}\n⏰ انتهت صلاحية اشتراكك.\n✨ يرجى الاشتراك مرة أخرى.`);
     } else {
-        alert(`✅ مرحباً ${email}\n📖 حسابك مجاني حالياً.\n✨ للوصول إلى كل الامتحانات، اضغط زر "اشتراك" وادفع ثم سأفعلك يدوياً.`);
+        alert(`✅ مرحباً ${email}\n📖 حسابك مجاني حالياً.\n✨ متاح لك فقط الامتحان الأول من كل قسم.\nللوصول إلى كل الامتحانات، اضغط "اشتراك" ثم ادفع.`);
     }
     
     hideLoginPopup();
     location.reload();
 }
 
-// ========== إضافة رسالة الترقية للمستخدم المجاني ==========
+// ========== إضافة رسالة الترقية في أعلى الصفحة ==========
 async function addUpgradeMessageToExamsList() {
     const status = await getUserStatus();
     let examsContainer = document.getElementById('examsList');
@@ -152,13 +252,15 @@ async function addUpgradeMessageToExamsList() {
     let oldPremiumMsg = document.getElementById('premiumMsg');
     if(oldPremiumMsg) oldPremiumMsg.remove();
     
-    if(status !== 'premium' && status !== 'expired') {
+    if(status !== 'premium' && status !== 'expired' && isUserLoggedIn()) {
         let msgDiv = document.createElement('div');
         msgDiv.id = 'upgradeMsg';
-        msgDiv.style.cssText = 'background:#fef3c7; padding:12px; border-radius:15px; margin:15px; text-align:center; border:1px solid #f59e0b;';
+        msgDiv.style.cssText = 'background:linear-gradient(135deg, #f3e8ff, #e9d5ff); padding:15px; border-radius:20px; margin:15px; text-align:center; border:1px solid #a855f7; box-shadow: 0 2px 8px rgba(168,85,247,0.2);';
         msgDiv.innerHTML = `
-            ⭐ أنت في <strong>الوضع المجاني</strong>: متاح لك فقط امتحان واحد من كل قسم.
-            <button id="upgradeNowBtn" style="background:#f39c12; border:none; padding:5px 15px; border-radius:20px; margin-right:10px; cursor:pointer;">✨ اشترك الآن لفتح الكل</button>
+            <span style="font-size: 24px;">🔒</span>
+            <p style="margin: 8px 0; font-weight: bold;">⭐ أنت في <strong style="color:#a855f7;">الوضع المجاني</strong></p>
+            <p style="font-size: 14px; color:#555;">متاح لك فقط <strong>الامتحان الأول</strong> من كل قسم</p>
+            <button id="upgradeNowBtn" style="background:linear-gradient(135deg, #f39c12, #e67e22); border:none; padding:8px 25px; border-radius:30px; margin-top:10px; cursor:pointer; font-weight:bold; color:white;">🚀 ترقية الحساب الآن</button>
         `;
         examsContainer.prepend(msgDiv);
         
@@ -168,17 +270,17 @@ async function addUpgradeMessageToExamsList() {
         });
     }
     
-    if(status === 'premium') {
+    if(status === 'premium' && isUserLoggedIn()) {
         let email = getLoggedInEmail();
         let expiry = await getExpiryDate(email);
         let msgDiv = document.createElement('div');
         msgDiv.id = 'premiumMsg';
         msgDiv.style.cssText = 'background:#d1fae5; padding:12px; border-radius:15px; margin:15px; text-align:center; border:1px solid #10b981;';
-        msgDiv.innerHTML = `🎉 اشتراكك مفعل حتى تاريخ ${expiry}. شكراً لثقتك!`;
+        msgDiv.innerHTML = `🎉 اشتراكك مفعل حتى تاريخ ${expiry}. شكراً لثقتك! جميع الامتحانات متاحة لك.`;
         examsContainer.prepend(msgDiv);
     }
     
-    if(status === 'expired') {
+    if(status === 'expired' && isUserLoggedIn()) {
         let msgDiv = document.createElement('div');
         msgDiv.id = 'upgradeMsg';
         msgDiv.style.cssText = 'background:#fee2e2; padding:12px; border-radius:15px; margin:15px; text-align:center; border:1px solid #ef4444;';
@@ -251,16 +353,35 @@ function bindAuthEvents() {
     }
 }
 
+// ========== مراقبة تغييرات الصفحة (لتطبيق القفل بعد تحميل المحتوى) ==========
+function observePageChanges() {
+    // مراقبة عندما تظهر صفحة الامتحانات
+    const observer = new MutationObserver(() => {
+        let listPage = document.getElementById('list');
+        if(listPage && listPage.classList.contains('active')) {
+            setTimeout(() => {
+                styleLockedExams();
+                addUpgradeMessageToExamsList();
+            }, 300);
+        }
+    });
+    
+    observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
+}
+
 // ========== تهيئة النظام ==========
 function initAuth() {
     bindAuthEvents();
     addLogoutButton();
+    observePageChanges();
     
     setTimeout(() => {
+        styleLockedExams();
         addUpgradeMessageToExamsList();
-    }, 500);
+    }, 800);
 }
 
+// بدء التشغيل
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initAuth);
 } else {
