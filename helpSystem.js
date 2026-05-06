@@ -14957,52 +14957,23 @@ HELP_DATA["sprach2_exam45_10"] = {
     simplified: "المنظمات الاستهلاكية موجودة لمساعدتك",
     imagine: "🏛️🤝 مبنى ومصافحة"
 };
-
 // ============================================
-// كود نظام المساعدة التشغيلي (يتم إضافته في نهاية الملف)
+// كود نظام المساعدة التشغيلي (يضاف في نهاية الملف)
 // ============================================
 
-// مساعد للنوم (تأخير) لدعم التحميل الديناميكي
+// مساعد للنوم
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// دالة مطورة وآمنة للعثور على البيانات
-function findHelpData(skill, examId, questionNumber) {
-    if (!window.HELP_DATA) return null;
-
-    const keysToTry = [
-        `${skill}_exam${examId}_q${questionNumber}`,
-        `${skill}_exam${examId}_${questionNumber}`,
-        `${skill}_${examId}_q${questionNumber}`,
-        `${skill}_${examId}_${questionNumber}`,
-        `${skill}_teil${examId}_q${questionNumber}`,
-        `${skill}_teil${examId}_${questionNumber}`,
-    ];
-
-    for (let key of keysToTry) {
-        if (HELP_DATA[key]) return HELP_DATA[key];
-    }
-
-    for (let key in HELP_DATA) {
-        if (key.includes(`exam${examId}`) && key.includes(`${questionNumber}`)) {
-            return HELP_DATA[key];
-        }
-        if (key.includes(`teil${examId}`) && key.includes(`${questionNumber}`)) {
-            return HELP_DATA[key];
-        }
-    }
-    return null;
-}
-
 // الحصول على القسم الحالي
 function getCurrentSkill() {
-    const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'lesen1', 'lesen2', 'lesen3', 'sprach1', 'sprach2'];
+    const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'teil1', 'teil2', 'teil3', 'sprach1', 'sprach2', 'schreiben'];
     for (let id of sections) {
         const el = document.getElementById(id);
         if (el && window.getComputedStyle(el).display !== 'none') return id;
     }
-    return 'lesen1';
+    return 'teil1';
 }
 
 // الحصول على رقم الامتحان الحالي
@@ -15013,24 +14984,42 @@ function getCurrentExamId() {
     return match ? parseInt(match[1]) : 1;
 }
 
-// الحصول على جميع أسئلة الامتحان
-function getAllQuestions(skill, examId) {
-    if (skill.includes('hoeren1')) return [1,2,3,4,5];
-    if (skill.includes('hoeren2')) return [1,2,3,4,5,6,7,8,9,10];
-    if (skill.includes('hoeren3')) return [1,2,3,4,5];
-    if (skill.includes('lesen1')) return [1,2,3,4,5];
-    if (skill.includes('lesen2')) return [1,2,3,4,5];
-    if (skill.includes('lesen3')) return [1,2,3,4,5,6,7,8,9,10];
-    if (skill.includes('sprach1')) return [1,2,3,4,5,6,7,8,9,10];
-    if (skill.includes('sprach2')) return [1,2,3,4,5,6,7,8,9,10];
-    return [1,2,3,4,5];
+// الحصول على عدد الأسئلة حسب نوع القسم
+function getQuestionCount(skill) {
+    if (skill === 'hoeren1' || skill === 'hoeren3') return 5;
+    if (skill === 'hoeren2') return 10;
+    if (skill === 'teil1' || skill === 'lesen1') return 5;
+    if (skill === 'teil2' || skill === 'lesen2') return 5;
+    if (skill === 'sprach1' || skill === 'sprach2') return 10;
+    if (skill === 'teil3' || skill === 'lesen3') return 10;
+    return 5;
 }
 
 // إنشاء بطاقة المساعدة لسؤال واحد
 function createHelpCard(questionNumber) {
     const examId = getCurrentExamId();
     const skill = getCurrentSkill();
-    const data = findHelpData(skill, examId, questionNumber);
+    
+    const possibleKeys = [
+        `${skill}_exam${examId}_q${questionNumber}`,
+        `${skill}_exam${examId}_${questionNumber}`,
+        `lesen1_exam${examId}_q${questionNumber}`,
+        `lesen2_exam${examId}_q${questionNumber}`,
+        `lesen3_exam${examId}_q${questionNumber}`,
+        `hoeren1_exam${examId}_q${questionNumber}`,
+        `hoeren2_exam${examId}_q${questionNumber}`,
+        `hoeren3_exam${examId}_q${questionNumber}`,
+        `sprach1_exam${examId}_q${questionNumber}`,
+        `sprach2_exam${examId}_q${questionNumber}`
+    ];
+    
+    let data = null;
+    for (let key of possibleKeys) {
+        if (window.HELP_DATA && window.HELP_DATA[key]) {
+            data = window.HELP_DATA[key];
+            break;
+        }
+    }
     
     const card = document.createElement('div');
     card.style.cssText = 'background:white;border-radius:12px;padding:20px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border:1px solid #e0e0e0';
@@ -15065,75 +15054,30 @@ function createHelpCard(questionNumber) {
     return card;
 }
 
-// إنشاء جميع الصناديق الخاصة بالامتحان الحالي
-function createHelpBoxesWithContent() {
+// إنشاء جميع البطاقات
+function createAllHelpCards() {
     const container = document.createElement('div');
-    container.id = 'helpLayerContainer';
-    container.style.cssText = `
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        padding: 10px;
-        background-color: #f5f7fa;
-        border-radius: 16px;
-        margin: 15px 0;
-    `;
-
-    const examId = getCurrentExamId();
+    container.style.cssText = 'display:flex;flex-direction:column;gap:15px;padding:10px;background:#f5f7fa;border-radius:16px;margin:15px 0';
+    
     const skill = getCurrentSkill();
-    const questions = getAllQuestions(skill, examId);
-
-    const availableIndexes = [];
-    for (let i of questions) {
-        const key = `${skill}_exam${examId}_q${i}`;
-        if (window.HELP_DATA && window.HELP_DATA[key]) {
-            availableIndexes.push(i);
-        }
+    const questionCount = getQuestionCount(skill);
+    
+    for (let i = 1; i <= questionCount; i++) {
+        container.appendChild(createHelpCard(i));
     }
-
-    if (availableIndexes.length === 0) {
-        const msg = document.createElement('div');
-        msg.textContent = "❌ لا يوجد شرح متاح لهذا الامتحان حالياً";
-        msg.style.cssText = "text-align:center; color:#888; padding:20px;";
-        container.appendChild(msg);
-        return container;
-    }
-
-    if (availableIndexes.length <= 5) {
-        const column = document.createElement('div');
-        column.style.cssText = `display: flex; flex-direction: column; gap: 15px;`;
-        availableIndexes.forEach(i => {
-            column.appendChild(createHelpCard(i));
-        });
-        container.appendChild(column);
-    } else {
-        for (let row = 0; row < Math.ceil(availableIndexes.length / 2); row++) {
-            const rowDiv = document.createElement('div');
-            rowDiv.style.cssText = `display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;`;
-            for (let col = 0; col < 2; col++) {
-                const index = availableIndexes[row * 2 + col];
-                if (index) {
-                    rowDiv.appendChild(createHelpCard(index));
-                }
-            }
-            container.appendChild(rowDiv);
-        }
-    }
+    
     return container;
 }
 
-// ============================================
-// الحل الأساسي لظهور الزر وربطه بالوظيفة
-// ============================================
-
-async function addMasterHelpButton() {
-    await sleep(500);
+// إضافة زر المساعدة
+async function addHelpButton() {
+    await sleep(300);
     
     const examPage = document.getElementById('exam');
     if (!examPage) return;
-
+    
     if (document.getElementById('masterHelpButton')) return;
-
+    
     const helpButton = document.createElement('button');
     helpButton.id = 'masterHelpButton';
     helpButton.textContent = '❓ المساعدة (شرح الأسئلة)';
@@ -15155,7 +15099,7 @@ async function addMasterHelpButton() {
     
     helpButton.onmouseover = () => helpButton.style.backgroundColor = '#218838';
     helpButton.onmouseout = () => helpButton.style.backgroundColor = '#28a745';
-
+    
     helpButton.onclick = () => {
         let helpContainer = document.getElementById('dynamicHelpContainer');
         
@@ -15168,12 +15112,17 @@ async function addMasterHelpButton() {
         
         helpContainer = document.createElement('div');
         helpContainer.id = 'dynamicHelpContainer';
-        helpContainer.style.cssText = `margin-top: 20px;`;
+        helpContainer.style.cssText = 'margin-top: 20px;';
+        helpContainer.appendChild(createAllHelpCards());
         
-        const helpContent = createHelpBoxesWithContent();
-        helpContainer.appendChild(helpContent);
-        
-        examPage.insertBefore(helpContainer, helpButton);
+        const examBox = examPage.querySelector('.exam-box');
+        if (examBox) {
+            examBox.appendChild(helpContainer);
+            examBox.appendChild(helpButton);
+        } else {
+            examPage.appendChild(helpContainer);
+            examPage.appendChild(helpButton);
+        }
         helpButton.textContent = '❌ إخفاء المساعدة';
         helpButton.style.backgroundColor = '#dc3545';
     };
@@ -15186,12 +15135,14 @@ async function addMasterHelpButton() {
     }
 }
 
+// تشغيل النظام
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addMasterHelpButton);
+    document.addEventListener('DOMContentLoaded', addHelpButton);
 } else {
-    addMasterHelpButton();
+    addHelpButton();
 }
 
+// تحديث المحتوى عند تغيير الامتحان
 function setupExamChangeListener() {
     let lastExamId = getCurrentExamId();
     setInterval(() => {
@@ -15201,7 +15152,7 @@ function setupExamChangeListener() {
             const helpContainer = document.getElementById('dynamicHelpContainer');
             const helpButton = document.getElementById('masterHelpButton');
             if (helpContainer && helpButton) {
-                const newContent = createHelpBoxesWithContent();
+                const newContent = createAllHelpCards();
                 helpContainer.innerHTML = '';
                 helpContainer.appendChild(newContent);
                 helpButton.textContent = '❌ إخفاء المساعدة';
@@ -15212,8 +15163,4 @@ function setupExamChangeListener() {
 }
 setupExamChangeListener();
 
-// تأكد من أن HELP_DATA معرف
-if (typeof window.HELP_DATA === 'undefined') {
-    window.HELP_DATA = {};
-}
-// ========== نهاية الكود المضاف ==========
+console.log('✅ نظام المساعدة التشغيلي تم تحميله بنجاح');
