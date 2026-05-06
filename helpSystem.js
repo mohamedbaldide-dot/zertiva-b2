@@ -3850,7 +3850,7 @@ HELP_DATA["lesen3_exam1_q12"] = {
 // ============================================
 
 // a → 6: informative Beiträge zur neueren Geschichte
-HELP_DATA["lesen3_exam2_q1" = {
+HELP_DATA["lesen3_exam2_q1"] = {
     text: "Ullrich Kasten und Hans-Hermann Hertle schildern - Eine Bekannte interessiert sich für informative Beiträge zur neueren Geschichte.",
     meaning: "أولريش كاستن وهانز-هيرمان هيرتل يصفان - إحدى المعارف مهتمة بالمساهمات الإعلامية عن التاريخ المعاصر.",
     keywords: ["schildern = يصفان", "neueren Geschichte = التاريخ المعاصر"],
