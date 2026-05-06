@@ -1,6 +1,6 @@
 // ============================================
-// exams.js - نظام الامتحانات المتكامل
-// يدعم: Lesen Teil 1, Lesen Teil 2, Lesen Teil 3, Hören Teil 1-3, Sprachbausteine Teil 1, Sprachbausteine Teil 2, Schreiben
+// exams.js - نظام الامتحانات المتكامل مع نظام القفل
+// يدعم: Lesen Teil 1, Lesen Teil 2, Lesen Teil 3, Hören Teil 1-3, Sprachbausteine Teil 1-2, Schreiben
 // ============================================
 
 const teile = [
@@ -19,6 +19,54 @@ let currentExamData = null;
 let currentSkill = "lesen1";
 let currentExamId = null;
 let currentExamsList = [];
+
+// ========== دالة التحقق من حالة المستخدم ==========
+async function getUserStatusForExam() {
+    let email = localStorage.getItem('zertiva_email');
+    if (!email) return 'guest';
+    try {
+        const response = await fetch('premium.json?_=' + Date.now());
+        const premium = await response.json();
+        if (premium[email]) {
+            let expiry = premium[email];
+            let today = new Date().toISOString().slice(0,10);
+            if (today <= expiry) return 'premium';
+        }
+        return 'free';
+    } catch(e) {
+        return 'free';
+    }
+}
+
+// ========== دالة عرض نافذة المحتوى المقفل ==========
+function showLockedModal(examTitle, examId) {
+    let modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.85); z-index: 999999;
+        display: flex; justify-content: center; align-items: center;
+        direction: rtl;
+    `;
+    modal.innerHTML = `
+        <div style="background: white; border-radius: 30px; padding: 30px; max-width: 350px; width: 85%; text-align: center;">
+            <div style="font-size: 55px;">🔒</div>
+            <h2 style="color: #2b5876;">محـتوى مقفل</h2>
+            <p>المرجو ترقية الحساب للوصول لهذا المحتوى</p>
+            <div style="background: #f3e8ff; padding: 10px; border-radius: 15px; margin: 15px 0;">
+                <span style="color: #a855f7;">📚 ${examTitle}</span>
+            </div>
+            <p style="color: #888;">يتطلب باقة: <strong style="color: #f39c12;">Pro</strong></p>
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                <button id="upgradeModalBtn" style="background: #f39c12; border: none; padding: 10px 20px; border-radius: 30px; cursor: pointer; font-weight: bold;">🚀 ترقية الحساب الآن</button>
+                <button id="closeModalBtn" style="background: #ccc; border: none; padding: 10px 20px; border-radius: 30px; cursor: pointer;">ليس الآن</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    document.getElementById('upgradeModalBtn')?.onclick = () => window.location.href = 'subscribe.html';
+    document.getElementById('closeModalBtn')?.onclick = () => modal.remove();
+    modal.onclick = (e) => { if(e.target === modal) modal.remove(); };
+}
 
 // ========== قائمة امتحانات Lesen Teil 1 (47 امتحاناً) ==========
 const lesenExams = [
@@ -103,7 +151,8 @@ const schreibenExams = [
   { id: 28, title: "Kursbeschreibung (sich vorstellen)", enabled: true, hasFile: true },
   { id: 29, title: "FITWATCH Smartwatch", enabled: true, hasFile: true }
 ];
-// أسماء الملفات الحقيقية (لجميع الامتحانات)
+
+// أسماء الملفات الحقيقية
 const actualFileNames = {
   1: "exam1.json", 2: "exam2.json", 3: "exam3.json",
   4: "exam4.json", 5: "exam5.json", 6: "exam6.json",
@@ -123,7 +172,7 @@ const actualFileNames = {
   46: "exam46.json", 47: "exam47.json"
 };
 
-// ✅ قائمة الامتحانات لكل جزء
+// ========== قائمة الامتحانات لكل جزء ==========
 const examsDatabase = {
   lesen1: lesenExams,
   lesen2: [
@@ -385,7 +434,7 @@ const examsDatabase = {
   schreiben: schreibenExams
 };
 
-// ========== باقي الدوال ==========
+// ========== الدوال الرئيسية ==========
 
 function renderTeileList() {
   const container = document.getElementById("teileList");
@@ -406,7 +455,8 @@ function renderTeileList() {
   }
 }
 
-function renderExamListForSkill(skill, teilName) {
+// ========== الدالة المعدلة لعرض الامتحانات مع نظام القفل ==========
+async function renderExamListForSkill(skill, teilName) {
   currentSkill = skill;
   
   const container = document.getElementById("examsList");
@@ -426,21 +476,61 @@ function renderExamListForSkill(skill, teilName) {
     return;
   }
   
+  // جلب حالة المستخدم
+  const userStatus = await getUserStatusForExam();
+  const isPremium = (userStatus === 'premium');
+  
   for (let i = 0; i < exams.length; i++) {
     const exam = exams[i];
+    const examNumber = exam.id;
+    const isFirstExam = (examNumber === 1);
+    
     const div = document.createElement("div");
     div.className = "item";
+    div.innerHTML = `${exam.id}: ${exam.title}`;
     
-    if (exam.hasFile) {
-      div.innerHTML = `${exam.id}: ${exam.title}`;
-      div.onclick = (function(id, title, skill) {
-        return function() { openExam(id, title, skill); };
-      })(exam.id, exam.title, skill);
+    // إذا كان المستخدم ليس مدفوعاً وليس الامتحان الأول => مقفل
+    if (!isPremium && !isFirstExam) {
+      // تطبيق الشكل المقفل
+      div.style.backgroundColor = '#e9d5ff';
+      div.style.border = '2px solid #a855f7';
+      div.style.opacity = '0.7';
+      div.style.filter = 'blur(1px)';
+      div.style.position = 'relative';
+      div.style.cursor = 'pointer';
+      
+      // إضافة أيقونة قفل
+      let lockSpan = document.createElement('span');
+      lockSpan.innerHTML = ' 🔒';
+      lockSpan.style.cssText = 'font-size: 16px; margin-right: 8px;';
+      div.appendChild(lockSpan);
+      
+      // إضافة علامة PRO
+      let proSpan = document.createElement('span');
+      proSpan.innerHTML = ' PRO';
+      proSpan.style.cssText = 'background: #f39c12; color: white; font-size: 10px; padding: 2px 6px; border-radius: 10px; margin-right: 8px;';
+      div.appendChild(proSpan);
+      
+      // حدث الضغط: يظهر نافذة القفل
+      div.onclick = () => {
+        showLockedModal(`${exam.id}: ${exam.title}`, exam.id);
+      };
     } else {
-      div.innerHTML = `${exam.id}: ${exam.title} 🔜`;
-      div.style.opacity = "0.6";
-      div.style.backgroundColor = "#f8f9fa";
-      div.onclick = () => alert(`⚠️ الامتحان رقم ${exam.id} سيتم إضافته قريباً.`);
+      // امتحان مفتوح (الأول للمجاني، أو كل الامتحانات للمدفوع)
+      div.style.backgroundColor = '';
+      div.style.border = '';
+      div.style.opacity = '1';
+      div.style.filter = 'none';
+      
+      if (exam.hasFile) {
+        div.onclick = (function(id, title, skill) {
+          return function() { openExam(id, title, skill); };
+        })(exam.id, exam.title, skill);
+      } else {
+        div.style.opacity = "0.6";
+        div.style.backgroundColor = "#f8f9fa";
+        div.onclick = () => alert(`⚠️ الامتحان رقم ${exam.id} سيتم إضافته قريباً.`);
+      }
     }
     container.appendChild(div);
   }
@@ -708,13 +798,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 renderTeileList();
 
-console.log("✅ exams.js تم تحميله بنجاح");
-console.log("📚 Lesen Teil 1:", examsDatabase.lesen1.length, "امتحان");
-console.log("📚 Lesen Teil 2:", examsDatabase.lesen2.length, "امتحان");
-console.log("📚 Lesen Teil 3:", examsDatabase.lesen3.length, "امتحان");
-console.log("📝 Sprachbausteine Teil 1:", examsDatabase.sprach1.length, "امتحان");
-console.log("📝 Sprachbausteine Teil 2:", examsDatabase.sprach2.length, "امتحان");
-console.log("🎧 Hören Teil 1:", examsDatabase.hoeren1.length, "امتحان");
-console.log("🎧 Hören Teil 2:", examsDatabase.hoeren2.length, "امتحان");
-console.log("🎧 Hören Teil 3:", examsDatabase.hoeren3.length, "امتحان");
-console.log("✏️ Schreiben:", examsDatabase.schreiben.length, "امتحان");
+console.log("✅ exams.js تم تحميله بنجاح (نسخة مع قفل الامتحانات)");
