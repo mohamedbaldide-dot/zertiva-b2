@@ -106,19 +106,6 @@ function createHelpBoxFromData(data, index) {
   return box;
 }
 
-// ========== الحصول على عدد الأسئلة (تقديري) ==========
-function getHelpBoxCount() {
-  if (document.getElementById('hoeren1')?.style.display === 'block') return 5;
-  if (document.getElementById('hoeren2')?.style.display === 'block') return 10;
-  if (document.getElementById('hoeren3')?.style.display === 'block') return 5;
-  if (document.getElementById('teil1')?.style.display === 'block') return 5;
-  if (document.getElementById('teil2')?.style.display === 'block') return 5;
-  if (document.getElementById('teil3')?.style.display === 'block') return 10;
-  if (document.getElementById('sprach1')?.style.display === 'block') return 10;
-  if (document.getElementById('sprach2')?.style.display === 'block') return 10;
-  return 0;
-}
-
 // ========== إنشاء شبكة البطاقات بناءً على المفاتيح الموجودة فعلاً ==========
 function createHelpBoxesWithContent() {
   const container = document.createElement('div');
@@ -136,12 +123,28 @@ function createHelpBoxesWithContent() {
   const skill = getCurrentSkill();
   const examId = getCurrentExamId();
   
+  console.log(`📊 helpLayer: البحث في ${skill}_exam${examId}`);
+  
   // 🔑 الحل السحري: نأخذ المفاتيح الموجودة فعلاً في HELP_DATA
-  const keys = Object.keys(window.HELP_DATA || {}).filter(k =>
+  let keys = Object.keys(window.HELP_DATA || {}).filter(k =>
     k.startsWith(`${skill}_exam${examId}`)
   );
   
-  console.log(`📊 helpLayer: المفاتيح الموجودة في ${skill}_exam${examId}:`, keys);
+  // إذا لم يجد شيئاً، جرب البحث بالصيغة مع حرف بدل الرقم (لـ lesen3, sprach1, sprach2)
+  if (keys.length === 0) {
+    const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'];
+    for (let i = 0; i < letters.length; i++) {
+      const altKey = `${skill}_exam${examId}_${letters[i]}`;
+      if (window.HELP_DATA[altKey]) {
+        keys.push(altKey);
+      }
+    }
+  }
+  
+  // ترتيب المفاتيح
+  keys.sort();
+  
+  console.log(`📊 helpLayer: المفاتيح الموجودة:`, keys);
   
   if (keys.length === 0) {
     container.innerHTML = `
@@ -152,33 +155,13 @@ function createHelpBoxesWithContent() {
     return container;
   }
   
-  // ترتيب المفاتيح
-  keys.sort();
-  
-  // إذا كان عدد المفاتيح 10 (للشبكة بعمودين) أو 5 (لعمود واحد)
-  const count = keys.length;
-  const isTenQuestions = (count === 10);
-  
-  if (isTenQuestions) {
-    // شبكة بعمودين
-    const grid = document.createElement('div');
-    grid.style.cssText = `display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;`;
-    
-    keys.forEach((key, i) => {
-      const data = window.HELP_DATA[key];
-      const box = createHelpBoxFromData(data, i + 1);
-      box.style.marginBottom = '0';
-      box.style.height = '100%';
-      grid.appendChild(box);
-    });
-    container.appendChild(grid);
-  } else {
-    // عمود واحد
-    keys.forEach((key, i) => {
-      const data = window.HELP_DATA[key];
+  // عرض البطاقات في عمود واحد (مناسب لجميع الحالات)
+  keys.forEach((key, i) => {
+    const data = window.HELP_DATA[key];
+    if (data) {
       container.appendChild(createHelpBoxFromData(data, i + 1));
-    });
-  }
+    }
+  });
   
   return container;
 }
