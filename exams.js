@@ -1,6 +1,5 @@
 // ============================================
 // exams.js - نظام الامتحانات المتكامل مع نظام القفل
-// يدعم: Hören Teil 1-3, Lesen Teil 1-3, Sprachbausteine Teil 1-2, Schreiben
 // ============================================
 
 const teile = [
@@ -19,19 +18,33 @@ let currentExamData = null;
 let currentSkill = "lesen1";
 let currentExamId = null;
 let currentExamsList = [];
+let userStatusCache = null;
+let lastStatusCheck = 0;
 
-// ========== دالة التحقق من حالة المستخدم ==========
+// ========== دالة التحقق من حالة المستخدم (مع كاش للسرعة) ==========
 async function getUserStatusForExam() {
     let email = localStorage.getItem('zertiva_email');
     if (!email) return 'guest';
+    
+    let now = Date.now();
+    if (userStatusCache && (now - lastStatusCheck) < 5000) {
+        return userStatusCache;
+    }
+    
     try {
-        const response = await fetch('premium.json?_=' + Date.now());
+        const response = await fetch('premium.json?_=' + now);
         const premium = await response.json();
         if (premium[email]) {
             let expiry = premium[email];
             let today = new Date().toISOString().slice(0,10);
-            if (today <= expiry) return 'premium';
+            if (today <= expiry) {
+                userStatusCache = 'premium';
+                lastStatusCheck = now;
+                return 'premium';
+            }
         }
+        userStatusCache = 'free';
+        lastStatusCheck = now;
         return 'free';
     } catch(e) {
         return 'free';
@@ -47,22 +60,20 @@ function showLockedModal(examTitle, examId) {
     modal.id = 'globalLockedModal';
     modal.style.cssText = `
         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.85); z-index: 999999;
+        background: rgba(0,0,0,0.75); z-index: 999999;
         display: flex; justify-content: center; align-items: center;
         direction: rtl;
     `;
     modal.innerHTML = `
-        <div style="background: white; border-radius: 30px; padding: 30px; max-width: 350px; width: 85%; text-align: center;">
-            <div style="font-size: 55px;">🔒</div>
-            <h2 style="color: #2b5876;">محـتوى مقفل</h2>
-            <p>المرجو ترقية الحساب للوصول لهذا المحتوى</p>
-            <div style="background: #f3e8ff; padding: 10px; border-radius: 15px; margin: 15px 0;">
-                <span style="color: #a855f7;">📚 ${examTitle}</span>
-            </div>
-            <p style="color: #888;">يتطلب باقة: <strong style="color: #f39c12;">Pro</strong></p>
-            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
-                <button id="upgradeModalBtn" style="background: #f39c12; border: none; padding: 10px 20px; border-radius: 30px; cursor: pointer; font-weight: bold;">🚀 ترقية الحساب الآن</button>
-                <button id="closeModalBtn" style="background: #ccc; border: none; padding: 10px 20px; border-radius: 30px; cursor: pointer;">ليس الآن</button>
+        <div class="locked-modal-content">
+            <div class="locked-modal-icon">🔒</div>
+            <h2 class="locked-modal-title">محـتوى مقفل</h2>
+            <p class="locked-modal-text">المرجو ترقية الحساب للوصول لهذا المحتوى</p>
+            <div class="locked-modal-exam">📚 ${examTitle}</div>
+            <p class="locked-modal-required">يتطلب باقة: <strong>Pro</strong></p>
+            <div class="locked-modal-buttons">
+                <button id="upgradeModalBtn" class="btn-upgrade">🚀 ترقية الحساب الآن</button>
+                <button id="closeModalBtn" class="btn-later">ليس الآن</button>
             </div>
         </div>
     `;
@@ -91,7 +102,7 @@ function showLockedModal(examTitle, examId) {
     };
 }
 
-// ========== قائمة امتحانات Lesen Teil 1 (47 امتحاناً) ==========
+// ========== قوائم الامتحانات (كلها موجودة) ==========
 const lesenExams = [
   { id: 1, title: "Jugend Forscher", enabled: true, hasFile: true },
   { id: 2, title: "sport ist gesund", enabled: true, hasFile: true },
@@ -142,7 +153,6 @@ const lesenExams = [
   { id: 47, title: "Bäder", enabled: true, hasFile: true }
 ];
 
-// ========== قائمة امتحانات Lesen Teil 2 ==========
 const lesen2Exams = [
   { id: 1, title: "Krista", enabled: true, hasFile: true },
   { id: 2, title: "Krista (معدل)", enabled: true, hasFile: true },
@@ -183,7 +193,6 @@ const lesen2Exams = [
   { id: 37, title: "Wie zwei US-Teenager Millionäre wurden", enabled: true, hasFile: true }
 ];
 
-// ========== قائمة امتحانات Lesen Teil 3 ==========
 const lesen3Exams = [
   { id: 1, title: "Filme - Fernsehprogramme", enabled: true, hasFile: true },
   { id: 2, title: "Filme - Fernsehprogramme (معدل)", enabled: true, hasFile: true },
@@ -222,7 +231,6 @@ const lesen3Exams = [
   { id: 35, title: "Möbel für die neue Wohnung", enabled: true, hasFile: true }
 ];
 
-// ========== قائمة امتحانات Sprachbausteine Teil 1 ==========
 const sprach1Exams = [
   { id: 1, title: "Hallo Ferdinand", enabled: true, hasFile: true },
   { id: 2, title: "Hallo Ferdinand (معدل)", enabled: true, hasFile: true },
@@ -266,7 +274,6 @@ const sprach1Exams = [
   { id: 40, title: "Liebe Sandra", enabled: true, hasFile: true }
 ];
 
-// ========== قائمة امتحانات Sprachbausteine Teil 2 ==========
 const sprach2Exams = [
   { id: 1, title: "Das Fahrrad", enabled: true, hasFile: true },
   { id: 2, title: "Das Fahrrad (معدل)", enabled: true, hasFile: true },
@@ -315,7 +322,6 @@ const sprach2Exams = [
   { id: 45, title: "Teleshopping – nicht immer gut und günstig", enabled: true, hasFile: true }
 ];
 
-// ========== قائمة امتحانات Hören Teil 1 ==========
 const hoeren1Exams = [
   { id: 1, title: "Die Deutsche Lufthansa", enabled: true, hasFile: true },
   { id: 2, title: "Die Piloten der Lufthansa", enabled: true, hasFile: true },
@@ -346,7 +352,6 @@ const hoeren1Exams = [
   { id: 27, title: "Berufen (bonbon)", enabled: true, hasFile: true }
 ];
 
-// ========== قائمة امتحانات Hören Teil 2 ==========
 const hoeren2Exams = [
   { id: 1, title: "Herr Gasser und Frau Janke", enabled: true, hasFile: true },
   { id: 2, title: "Suza Hotop", enabled: true, hasFile: true },
@@ -381,7 +386,6 @@ const hoeren2Exams = [
   { id: 31, title: "Frau Keder aus Malta", enabled: true, hasFile: true }
 ];
 
-// ========== قائمة امتحانات Hören Teil 3 ==========
 const hoeren3Exams = [
   { id: 1, title: "Telefon", enabled: true, hasFile: true },
   { id: 2, title: "Musikfestivals", enabled: true, hasFile: true },
@@ -412,7 +416,6 @@ const hoeren3Exams = [
   { id: 27, title: "Radio Konzert", enabled: true, hasFile: true }
 ];
 
-// ========== قائمة امتحانات Schreiben ==========
 const schreibenExams = [
   { id: 1, title: "Fotobuch", enabled: true, hasFile: true },
   { id: 2, title: "Abenteuer TIKKI TAKKA", enabled: true, hasFile: true },
@@ -445,7 +448,6 @@ const schreibenExams = [
   { id: 29, title: "FITWATCH Smartwatch", enabled: true, hasFile: true }
 ];
 
-// أسماء الملفات الحقيقية
 const actualFileNames = {
   1: "exam1.json", 2: "exam2.json", 3: "exam3.json",
   4: "exam4.json", 5: "exam5.json", 6: "exam6.json",
@@ -465,7 +467,6 @@ const actualFileNames = {
   46: "exam46.json", 47: "exam47.json"
 };
 
-// ========== قاعدة بيانات الامتحانات ==========
 const examsDatabase = {
   lesen1: lesenExams,
   lesen2: lesen2Exams,
@@ -499,7 +500,6 @@ function renderTeileList() {
   }
 }
 
-// ========== الدالة المعدلة لعرض الامتحانات مع نظام القفل ==========
 async function renderExamListForSkill(skill, teilName) {
   currentSkill = skill;
   
@@ -530,25 +530,29 @@ async function renderExamListForSkill(skill, teilName) {
     
     const div = document.createElement("div");
     div.className = "item";
-    div.innerHTML = exam.id + ": " + exam.title;
+    
+    const titleSpan = document.createElement("span");
+    titleSpan.className = "exam-title";
+    titleSpan.innerHTML = exam.id + ": " + exam.title;
+    div.appendChild(titleSpan);
     
     if (!isPremium && !isFirstExam) {
-      div.style.backgroundColor = '#e9d5ff';
-      div.style.border = '2px solid #a855f7';
-      div.style.opacity = '0.7';
-      div.style.filter = 'blur(1px)';
-      div.style.position = 'relative';
-      div.style.cursor = 'pointer';
+      div.classList.add("item-locked");
       
-      let lockSpan = document.createElement('span');
-      lockSpan.innerHTML = ' 🔒';
-      lockSpan.style.cssText = 'font-size: 16px; margin-right: 8px;';
-      div.appendChild(lockSpan);
+      const rightSide = document.createElement("span");
+      rightSide.className = "exam-right-icons";
       
-      let proSpan = document.createElement('span');
-      proSpan.innerHTML = ' PRO';
-      proSpan.style.cssText = 'background: #f39c12; color: white; font-size: 10px; padding: 2px 6px; border-radius: 10px; margin-right: 8px;';
-      div.appendChild(proSpan);
+      const lockSpan = document.createElement("span");
+      lockSpan.className = "lock-icon";
+      lockSpan.innerHTML = "🔒";
+      rightSide.appendChild(lockSpan);
+      
+      const proSpan = document.createElement("span");
+      proSpan.className = "pro-badge";
+      proSpan.innerHTML = "PRO";
+      rightSide.appendChild(proSpan);
+      
+      div.appendChild(rightSide);
       
       div.onclick = (function(title, id) {
         return function() {
@@ -556,11 +560,6 @@ async function renderExamListForSkill(skill, teilName) {
         };
       })(exam.title, exam.id);
     } else {
-      div.style.backgroundColor = '';
-      div.style.border = '';
-      div.style.opacity = '1';
-      div.style.filter = 'none';
-      
       if (exam.hasFile) {
         div.onclick = (function(id, title, skill) {
           return function() { openExam(id, title, skill); };
@@ -595,9 +594,6 @@ async function openExam(examId, examTitle, skill) {
   
   const fileName = getActualFileName(examId);
   
-  console.log("🟢 فتح الامتحان:", examId, examTitle, skill);
-  console.log("📁 اسم الملف:", fileName);
-  
   try {
     const response = await fetch("data/" + skill + "/" + fileName);
     if (!response.ok) {
@@ -617,47 +613,17 @@ async function openExam(examId, examTitle, skill) {
       if (typeof window.loadMatchingExam === "function") {
         window.loadMatchingExam(currentExamData);
       } else {
-        alert("نظام التصحيح غير متوفر حالياً");
+        buildTeil1(currentExamData.questions || []);
       }
     } else if (currentExamData.type === "truefalse") {
       const container = document.getElementById(currentSkill);
       if (container && typeof window.buildTrueFalseExam === "function") {
         window.buildTrueFalseExam(container, currentExamData.questions, currentExamData.note);
       } else {
-        buildTeil1(currentExamData.questions);
-      }
-    } else if (currentExamData.type === "teil2") {
-      if (typeof window.loadTeil2Exam === "function") {
-        window.loadTeil2Exam(currentExamData);
-      } else {
-        alert("نظام Teil 2 غير متوفر حالياً");
-      }
-    } else if (currentExamData.type === "teil3") {
-      if (typeof window.loadTeil3Exam === "function") {
-        window.loadTeil3Exam(currentExamData);
-      } else {
-        alert("نظام Teil 3 غير متوفر حالياً");
-      }
-    } else if (currentExamData.type === "sprach1") {
-      if (typeof window.loadSprach1Exam === "function") {
-        window.loadSprach1Exam(currentExamData);
-      } else {
-        alert("نظام Sprachbausteine Teil 1 غير متوفر حالياً");
-      }
-    } else if (currentExamData.type === "sprach2") {
-      if (typeof window.loadSprach2Exam === "function") {
-        window.loadSprach2Exam(currentExamData);
-      } else {
-        alert("نظام Sprachbausteine Teil 2 غير متوفر حالياً");
-      }
-    } else if (currentExamData.type === "schreiben") {
-      if (typeof window.loadSchreibenExam === "function") {
-        window.loadSchreibenExam(currentExamData);
-      } else {
-        alert("نظام Schreiben غير متوفر حالياً");
+        buildTeil1(currentExamData.questions || []);
       }
     } else {
-      buildTeil1(currentExamData.questions);
+      buildTeil1(currentExamData.questions || []);
     }
     
     const teilIndex = teile.findIndex(function(t) { return t.skill === skill; });
@@ -841,4 +807,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 renderTeileList();
 
-console.log("✅ exams.js تم تحميله بنجاح (النسخة الكاملة مع نظام قفل الامتحانات)");
+console.log("✅ exams.js تم تحميله بنجاح");
