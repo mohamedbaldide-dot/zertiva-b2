@@ -1,5 +1,7 @@
 // ============================================
 // exams.js - نظام الامتحانات المتكامل مع نظام القفل
+// يدعم: Hören Teil 1-3, Lesen Teil 1-3, Sprachbausteine Teil 1-2, Schreiben
+// جميع الامتحانات شغالة بالكامل
 // ============================================
 
 const teile = [
@@ -21,7 +23,7 @@ let currentExamsList = [];
 let userStatusCache = null;
 let lastStatusCheck = 0;
 
-// ========== دالة التحقق من حالة المستخدم (مع كاش للسرعة) ==========
+// ========== دالة التحقق من حالة المستخدم ==========
 async function getUserStatusForExam() {
     let email = localStorage.getItem('zertiva_email');
     if (!email) return 'guest';
@@ -52,7 +54,7 @@ async function getUserStatusForExam() {
 }
 
 // ========== دالة عرض نافذة المحتوى المقفل ==========
-function showLockedModal(examTitle, examId) {
+function showLockedModalForExam(examTitle, examId) {
     let oldModal = document.getElementById('globalLockedModal');
     if (oldModal) oldModal.remove();
     
@@ -102,7 +104,7 @@ function showLockedModal(examTitle, examId) {
     };
 }
 
-// ========== قوائم الامتحانات (كلها موجودة) ==========
+// ========== قائمة امتحانات Lesen Teil 1 ==========
 const lesenExams = [
   { id: 1, title: "Jugend Forscher", enabled: true, hasFile: true },
   { id: 2, title: "sport ist gesund", enabled: true, hasFile: true },
@@ -153,6 +155,7 @@ const lesenExams = [
   { id: 47, title: "Bäder", enabled: true, hasFile: true }
 ];
 
+// ========== قائمة امتحانات Lesen Teil 2 ==========
 const lesen2Exams = [
   { id: 1, title: "Krista", enabled: true, hasFile: true },
   { id: 2, title: "Krista (معدل)", enabled: true, hasFile: true },
@@ -193,6 +196,7 @@ const lesen2Exams = [
   { id: 37, title: "Wie zwei US-Teenager Millionäre wurden", enabled: true, hasFile: true }
 ];
 
+// ========== قائمة امتحانات Lesen Teil 3 ==========
 const lesen3Exams = [
   { id: 1, title: "Filme - Fernsehprogramme", enabled: true, hasFile: true },
   { id: 2, title: "Filme - Fernsehprogramme (معدل)", enabled: true, hasFile: true },
@@ -231,6 +235,7 @@ const lesen3Exams = [
   { id: 35, title: "Möbel für die neue Wohnung", enabled: true, hasFile: true }
 ];
 
+// ========== قائمة امتحانات Sprachbausteine Teil 1 ==========
 const sprach1Exams = [
   { id: 1, title: "Hallo Ferdinand", enabled: true, hasFile: true },
   { id: 2, title: "Hallo Ferdinand (معدل)", enabled: true, hasFile: true },
@@ -274,6 +279,7 @@ const sprach1Exams = [
   { id: 40, title: "Liebe Sandra", enabled: true, hasFile: true }
 ];
 
+// ========== قائمة امتحانات Sprachbausteine Teil 2 ==========
 const sprach2Exams = [
   { id: 1, title: "Das Fahrrad", enabled: true, hasFile: true },
   { id: 2, title: "Das Fahrrad (معدل)", enabled: true, hasFile: true },
@@ -322,6 +328,7 @@ const sprach2Exams = [
   { id: 45, title: "Teleshopping – nicht immer gut und günstig", enabled: true, hasFile: true }
 ];
 
+// ========== قائمة امتحانات Hören Teil 1 ==========
 const hoeren1Exams = [
   { id: 1, title: "Die Deutsche Lufthansa", enabled: true, hasFile: true },
   { id: 2, title: "Die Piloten der Lufthansa", enabled: true, hasFile: true },
@@ -352,6 +359,7 @@ const hoeren1Exams = [
   { id: 27, title: "Berufen (bonbon)", enabled: true, hasFile: true }
 ];
 
+// ========== قائمة امتحانات Hören Teil 2 ==========
 const hoeren2Exams = [
   { id: 1, title: "Herr Gasser und Frau Janke", enabled: true, hasFile: true },
   { id: 2, title: "Suza Hotop", enabled: true, hasFile: true },
@@ -386,6 +394,7 @@ const hoeren2Exams = [
   { id: 31, title: "Frau Keder aus Malta", enabled: true, hasFile: true }
 ];
 
+// ========== قائمة امتحانات Hören Teil 3 ==========
 const hoeren3Exams = [
   { id: 1, title: "Telefon", enabled: true, hasFile: true },
   { id: 2, title: "Musikfestivals", enabled: true, hasFile: true },
@@ -416,6 +425,7 @@ const hoeren3Exams = [
   { id: 27, title: "Radio Konzert", enabled: true, hasFile: true }
 ];
 
+// ========== قائمة امتحانات Schreiben ==========
 const schreibenExams = [
   { id: 1, title: "Fotobuch", enabled: true, hasFile: true },
   { id: 2, title: "Abenteuer TIKKI TAKKA", enabled: true, hasFile: true },
@@ -448,6 +458,7 @@ const schreibenExams = [
   { id: 29, title: "FITWATCH Smartwatch", enabled: true, hasFile: true }
 ];
 
+// أسماء الملفات الحقيقية
 const actualFileNames = {
   1: "exam1.json", 2: "exam2.json", 3: "exam3.json",
   4: "exam4.json", 5: "exam5.json", 6: "exam6.json",
@@ -556,7 +567,7 @@ async function renderExamListForSkill(skill, teilName) {
       
       div.onclick = (function(title, id) {
         return function() {
-          showLockedModal(title + " (" + id + ")", id);
+          showLockedModalForExam(title + " (" + id + ")", id);
         };
       })(exam.title, exam.id);
     } else {
@@ -788,6 +799,7 @@ function goList() {
   }
 }
 
+// ========== تهيئة الصفحة ==========
 document.addEventListener("DOMContentLoaded", function() {
   const startBtn = document.getElementById("startBtn");
   const backHomeBtn = document.getElementById("backHomeBtn");
@@ -807,4 +819,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 renderTeileList();
 
-console.log("✅ exams.js تم تحميله بنجاح");
+console.log("✅ exams.js تم تحميله بنجاح (جميع الامتحانات شغالة)");
