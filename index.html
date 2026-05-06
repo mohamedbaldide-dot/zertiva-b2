@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zertiva B2</title>
+<title>Zertiva B2 - أشهر منصة للتحضير لامتحان Telc B2</title>
 <link rel="stylesheet" href="style.css">
 <style>
-    /* إضافات جديدة للنظام */
+    /* ========== إضافات نظام تسجيل الدخول والاشتراك ========== */
+    
+    /* شريط التنقل الجديد */
     .nav-bar {
         display: flex;
         justify-content: space-between;
@@ -15,23 +17,30 @@
         background: white;
         border-bottom: 2px solid #e2e8f0;
         direction: rtl;
+        position: sticky;
+        top: 0;
+        z-index: 100;
     }
     .logo-area {
         font-size: 24px;
         font-weight: bold;
-        color: #2b5876;
+        background: linear-gradient(135deg, #2b5876, #4e4376);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
     }
-    .nav-buttons-area button {
-        margin-left: 10px;
-        padding: 8px 20px;
-        border-radius: 30px;
-        cursor: pointer;
-        font-weight: bold;
-        transition: 0.3s;
+    .nav-buttons-area {
+        display: flex;
+        gap: 12px;
     }
     .btn-login-nav {
-        border: 1px solid #2b5876;
-        background: white;
+        padding: 8px 20px;
+        border: 2px solid #2b5876;
+        background: transparent;
+        border-radius: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
         color: #2b5876;
     }
     .btn-login-nav:hover {
@@ -39,8 +48,13 @@
         color: white;
     }
     .btn-subscribe-nav {
+        padding: 8px 20px;
         background: #f39c12;
         border: none;
+        border-radius: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
         color: #1e2a3e;
     }
     .btn-subscribe-nav:hover {
@@ -56,18 +70,23 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0,0,0,0.6);
         z-index: 1000;
         justify-content: center;
         align-items: center;
     }
     .login-popup-content {
         background: white;
-        padding: 30px;
-        border-radius: 20px;
-        width: 350px;
+        padding: 35px;
+        border-radius: 25px;
+        width: 380px;
         text-align: center;
         direction: rtl;
+        box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+    }
+    .login-popup-content h3 {
+        color: #2b5876;
+        margin-bottom: 10px;
     }
     .login-popup-content input {
         width: 90%;
@@ -75,29 +94,33 @@
         margin: 10px 0;
         border-radius: 30px;
         border: 1px solid #ccc;
-    }
-    .login-popup-content button {
-        padding: 10px 20px;
-        margin: 5px;
-        border-radius: 30px;
-        cursor: pointer;
+        font-size: 15px;
     }
     .btn-popup-login {
-        background: #2b5876;
+        background: linear-gradient(135deg, #2b5876, #4e4376);
         color: white;
         border: none;
+        padding: 12px;
+        border-radius: 30px;
         width: 95%;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 10px;
     }
     .btn-popup-close {
         background: #ccc;
         border: none;
+        padding: 8px 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        margin-top: 12px;
     }
     
     /* أيقونة واتساب ثابتة */
     .whatsapp-float {
         position: fixed;
-        bottom: 20px;
-        left: 20px;
+        bottom: 25px;
+        left: 25px;
         background: #25D366;
         width: 55px;
         height: 55px;
@@ -106,48 +129,38 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.25);
         z-index: 999;
         transition: 0.3s;
     }
     .whatsapp-float:hover {
-        transform: scale(1.05);
+        transform: scale(1.08);
     }
     .whatsapp-float span {
         color: white;
         font-size: 30px;
     }
     
-    /* رسالة الترقية */
-    .upgrade-message {
-        background: #fef3c7;
-        padding: 12px;
-        border-radius: 15px;
-        margin: 15px;
-        text-align: center;
-        border: 1px solid #f59e0b;
+    /* تنسيق الامتحانات المغلقة */
+    .exam-card.locked, .exam-item.locked {
+        opacity: 0.6;
+        filter: blur(1px);
+        position: relative;
+        background: #f3e8ff;
     }
-    .upgrade-message button {
-        background: #f39c12;
-        border: none;
-        padding: 5px 15px;
-        border-radius: 20px;
-        margin-right: 10px;
-        cursor: pointer;
-        font-weight: bold;
-    }
-    
-    /* زر تسجيل الخروج */
-    .logout-btn {
-        background: #e74c3c !important;
-        color: white !important;
-        border: none !important;
+    .exam-card.locked::after, .exam-item.locked::after {
+        content: "🔒";
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        filter: blur(0);
     }
 </style>
 </head>
 <body>
 
-<!-- شريط التنقل الجديد -->
+<!-- ========== شريط التنقل الجديد ========== -->
 <div class="nav-bar">
     <div class="logo-area">🎓 Zertiva B2</div>
     <div class="nav-buttons-area">
@@ -156,7 +169,20 @@
     </div>
 </div>
 
-<!-- الصفحة 1: البداية -->
+<!-- ========== نافذة تسجيل الدخول المنبثقة ========== -->
+<div id="loginPopup" class="login-popup">
+    <div class="login-popup-content">
+        <h3>🔐 تسجيل الدخول / إنشاء حساب</h3>
+        <p>أدخل بريدك الإلكتروني وكلمة سر (أي كلمة)</p>
+        <input type="email" id="popupEmail" placeholder="البريد الإلكتروني">
+        <input type="password" id="popupPassword" placeholder="كلمة السر">
+        <button id="popupLoginBtn" class="btn-popup-login">دخول / إنشاء حساب</button>
+        <br>
+        <button id="closePopupBtn" class="btn-popup-close">إغلاق</button>
+    </div>
+</div>
+
+<!-- ========== الصفحة 1: البداية ========== -->
 <div id="home" class="page active home">
   <div class="card">
     <h1>Zertiva B2</h1>
@@ -165,7 +191,7 @@
   </div>
 </div>
 
-<!-- الصفحة 2: قائمة الأجزاء والامتحانات -->
+<!-- ========== الصفحة 2: قائمة الأجزاء والامتحانات ========== -->
 <div id="list" class="page">
   <div class="teile-header-section">
     <h3>📌 اختر القسم (Teil)</h3>
@@ -179,7 +205,7 @@
   <button id="backHomeBtn" class="back-home-btn">🏠 الرئيسية</button>
 </div>
 
-<!-- الصفحة 3: الامتحان -->
+<!-- ========== الصفحة 3: الامتحان ========== -->
 <div id="exam" class="page">
 <div class="exam-box">
   
@@ -210,24 +236,12 @@
 </div>
 </div>
 
-<!-- نافذة تسجيل الدخول المنبثقة -->
-<div id="loginPopup" class="login-popup">
-    <div class="login-popup-content">
-        <h3>🔐 تسجيل الدخول / إنشاء حساب</h3>
-        <p>أدخل بريدك الإلكتروني وكلمة سر (أي كلمة)</p>
-        <input type="email" id="popupEmail" placeholder="البريد الإلكتروني">
-        <input type="password" id="popupPassword" placeholder="كلمة السر">
-        <button id="popupLoginBtn" class="btn-popup-login">دخول / إنشاء حساب</button>
-        <br>
-        <button id="closePopupBtn" class="btn-popup-close">إغلاق</button>
-    </div>
-</div>
-
-<!-- أيقونة واتساب ثابتة -->
+<!-- ========== أيقونة واتساب الثابتة ========== -->
 <div id="whatsappFloat" class="whatsapp-float">
     <span>💬</span>
 </div>
 
+<!-- ========== تحميل الملفات ========== -->
 <script src="helpSystem.js"></script>
 <script src="engine.js"></script>
 <script src="exams.js"></script>

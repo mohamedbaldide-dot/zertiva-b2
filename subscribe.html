@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختر باقة الاشتراك - Zertiva B2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Tajawal', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            font-size: 32px;
+        }
+        .plans {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .plan-card {
+            background: white;
+            border-radius: 30px;
+            padding: 35px 25px;
+            width: 280px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+        }
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 45px rgba(0,0,0,0.25);
+        }
+        .plan-card.highlight {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        .plan-card.highlight .price {
+            color: white;
+        }
+        .plan-card.highlight .btn-select {
+            background: white;
+            color: #f5576c;
+            border: none;
+        }
+        .plan-name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .price {
+            font-size: 42px;
+            font-weight: bold;
+            color: #2b5876;
+            margin-bottom: 10px;
+        }
+        .price small {
+            font-size: 16px;
+        }
+        .duration {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        .plan-card.highlight .duration {
+            color: #f0f0f0;
+        }
+        .btn-select {
+            background: #2b5876;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+        .btn-select:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+        .features {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+        .features li {
+            margin: 8px 0;
+            list-style: none;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .back-link a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid white;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>✨ اختر باقة الاشتراك ✨</h1>
+    <div class="plans">
+        <div class="plan-card" data-plan="1month" data-price="49" data-duration="شهر واحد">
+            <div class="plan-name">📖 باقة أساسية</div>
+            <div class="price">49 <small>درهم</small></div>
+            <div class="duration">لمدة شهر واحد</div>
+            <ul class="features">
+                <li>✅ فتح جميع الامتحانات</li>
+                <li>✅ الوصول الكامل للمحتوى</li>
+                <li>✅ تحديثات مستمرة</li>
+            </ul>
+            <button class="btn-select">اختر هذه الباقة</button>
+        </div>
+
+        <div class="plan-card highlight" data-plan="2months" data-price="99" data-duration="شهران">
+            <div class="plan-name">⭐ باقة VIP</div>
+            <div class="price">99 <small>درهم</small></div>
+            <div class="duration">لمدة شهرين (وفر 20%)</div>
+            <ul class="features">
+                <li>✅ فتح جميع الامتحانات</li>
+                <li>✅ الوصول الكامل للمحتوى</li>
+                <li>✅ تحديثات مستمرة</li>
+                <li>🎁 دعم أولوية</li>
+            </ul>
+            <button class="btn-select">اختر هذه الباقة</button>
+        </div>
+    </div>
+    <div class="back-link">
+        <a href="index.html">← العودة إلى الرئيسية</a>
+    </div>
+</div>
+
+<script>
+    const WA_NUMBER = "212687561491";
+    
+    function getLoggedInEmail() {
+        return localStorage.getItem('zertiva_email');
+    }
+    
+    function getLoggedInPassword() {
+        return localStorage.getItem('zertiva_password');
+    }
+    
+    function sendWhatsApp(plan, duration, price) {
+        let email = getLoggedInEmail();
+        let password = getLoggedInPassword();
+        
+        if(!email) {
+            alert("⚠️ يجب تسجيل الدخول أولاً!\nسيتم توجيهك إلى صفحة تسجيل الدخول.");
+            window.location.href = "login.html";
+            return;
+        }
+        
+        let durationText = (plan === '1month') ? 'شهر واحد' : 'شهران';
+        let message = `🟢 *طلب اشتراك جديد - Zertiva B2*%0A%0A`;
+        message += `📧 *البريد الإلكتروني:* ${encodeURIComponent(email)}%0A`;
+        message += `🔑 *كلمة السر:* ${encodeURIComponent(password)}%0A`;
+        message += `💰 *المبلغ:* ${price} درهم%0A`;
+        message += `📆 *المدة:* ${durationText}%0A%0A`;
+        message += `🔹 *الرجاء تفعيل حسابي بعد استلام الدفع* 🔹`;
+        
+        window.open(`https://wa.me/${WA_NUMBER}?text=${message}`, '_blank');
+        
+        // رسالة تأكيد للمستخدم
+        alert(`✅ تم إرسال طلب الاشتراك إلى الواتساب\n📧 بريدك: ${email}\n📆 المدة: ${durationText}\n💰 المبلغ: ${price} درهم\n\nسأتصل بك لإتمام الدفع.`);
+    }
+    
+    document.querySelectorAll('.plan-card').forEach(card => {
+        let btn = card.querySelector('.btn-select');
+        let plan = card.getAttribute('data-plan');
+        let price = card.getAttribute('data-price');
+        let duration = card.getAttribute('data-duration');
+        
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            sendWhatsApp(plan, duration, price);
+        });
+        
+        card.addEventListener('click', function(e) {
+            if(e.target !== btn) {
+                sendWhatsApp(plan, duration, price);
+            }
+        });
+    });
+</script>
+</body>
+</html>
