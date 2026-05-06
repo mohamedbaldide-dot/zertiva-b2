@@ -46,6 +46,77 @@ function getActiveSection() {
   return null;
 }
 
+// ========== إخفاء محتوى الامتحان بالكامل (جميع العناصر المتداخلة) ==========
+function hideExamQuestions() {
+  const hidden = [];
+  const activeSection = getActiveSection();
+  if (!activeSection) return hidden;
+  
+  // إخفاء جميع العناصر في القسم النشط
+  const allElements = activeSection.querySelectorAll('*');
+  
+  allElements.forEach(el => {
+    // لا نخفي العناصر التالية:
+    // 1. حاوية المساعدة نفسها
+    // 2. أزرار التنقل (السابق/التالي)
+    // 3. زر المساعدة نفسه
+    // 4. زر العودة إلى القائمة
+    if (
+      el.id === 'helpLayerContainer' ||
+      el.closest('#examNavButtons') ||
+      el.id === 'globalHelpButton' ||
+      el.classList?.contains('back-list-btn') ||
+      el.id === 'backToListBtn'
+    ) {
+      return;
+    }
+    
+    if (el.style.display !== 'none') {
+      const originalDisplay = window.getComputedStyle(el).display;
+      el.style.display = 'none';
+      hidden.push({ el, originalDisplay });
+    }
+  });
+  
+  return hidden;
+}
+
+// إظهار المحتوى المخفي
+function showHiddenElements(hiddenElements) {
+  if (!hiddenElements) return;
+  hiddenElements.forEach(item => {
+    if (item.el) {
+      item.el.style.display = item.originalDisplay || '';
+    }
+  });
+}
+
+// إخفاء أزرار التصحيح وإعادة التعيين
+function hideCheckAndResetButtons() {
+  const hidden = [];
+  const allButtons = document.querySelectorAll('button');
+  allButtons.forEach(btn => {
+    const btnText = btn.textContent;
+    if (btnText.includes('✅') || btnText.includes('تصحيح') || btnText.includes('Prüfen') || btnText.includes('↺') || btnText.includes('إعادة تعيين')) {
+      if (btn.style.display !== 'none' && btn.id !== 'globalHelpButton') {
+        const originalDisplay = window.getComputedStyle(btn).display;
+        btn.style.display = 'none';
+        hidden.push({ el: btn, originalDisplay });
+      }
+    }
+  });
+  return hidden;
+}
+
+function showCheckAndResetButtons(hiddenButtons) {
+  if (!hiddenButtons) return;
+  hiddenButtons.forEach(item => {
+    if (item.el) {
+      item.el.style.display = item.originalDisplay || '';
+    }
+  });
+}
+
 // ========== إنشاء بطاقة من البيانات مباشرة ==========
 function createHelpBoxFromData(data, index) {
   const box = document.createElement('div');
@@ -125,12 +196,12 @@ function createHelpBoxesWithContent() {
   
   console.log(`📊 helpLayer: البحث في ${skill}_exam${examId}`);
   
-  // 🔑 الحل السحري: نأخذ المفاتيح الموجودة فعلاً في HELP_DATA
+  // 🔑 نأخذ المفاتيح الموجودة فعلاً في HELP_DATA
   let keys = Object.keys(window.HELP_DATA || {}).filter(k =>
     k.startsWith(`${skill}_exam${examId}`)
   );
   
-  // إذا لم يجد شيئاً، جرب البحث بالصيغة مع حرف بدل الرقم (لـ lesen3, sprach1, sprach2)
+  // إذا لم يجد شيئاً، جرب البحث بالصيغة مع حرف
   if (keys.length === 0) {
     const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'];
     for (let i = 0; i < letters.length; i++) {
@@ -155,7 +226,7 @@ function createHelpBoxesWithContent() {
     return container;
   }
   
-  // عرض البطاقات في عمود واحد (مناسب لجميع الحالات)
+  // عرض البطاقات في عمود واحد
   keys.forEach((key, i) => {
     const data = window.HELP_DATA[key];
     if (data) {
@@ -164,51 +235,6 @@ function createHelpBoxesWithContent() {
   });
   
   return container;
-}
-
-// إخفاء محتوى الامتحان
-function hideExamQuestions() {
-  const hidden = [];
-  const activeSection = getActiveSection();
-  if (!activeSection) return hidden;
-  
-  const allChildren = activeSection.children;
-  for (let i = 0; i < allChildren.length; i++) {
-    const child = allChildren[i];
-    if (child.id !== 'helpLayerContainer' && child.style.display !== 'none') {
-      child.style.display = 'none';
-      hidden.push(child);
-    }
-  }
-  return hidden;
-}
-
-// إخفاء أزرار التصحيح وإعادة التعيين
-function hideCheckAndResetButtons() {
-  const hidden = [];
-  const allButtons = document.querySelectorAll('button');
-  allButtons.forEach(btn => {
-    const btnText = btn.textContent;
-    if (btnText.includes('✅') || btnText.includes('تصحيح') || btnText.includes('Prüfen') || btnText.includes('↺') || btnText.includes('إعادة تعيين')) {
-      if (btn.style.display !== 'none' && btn.id !== 'globalHelpButton') {
-        btn.style.display = 'none';
-        hidden.push(btn);
-      }
-    }
-  });
-  return hidden;
-}
-
-function showHiddenElements(hiddenElements) {
-  hiddenElements.forEach(el => {
-    el.style.display = '';
-  });
-}
-
-function showCheckAndResetButtons(hiddenButtons) {
-  hiddenButtons.forEach(btn => {
-    btn.style.display = '';
-  });
 }
 
 // تبديل وضع المساعدة
