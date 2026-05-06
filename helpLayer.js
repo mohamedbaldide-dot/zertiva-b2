@@ -1,5 +1,6 @@
 // ============================================
 // helpLayer.js - نظام الطبقة المساعدة (معدل بالكامل)
+// يدعم: hören1, hören2, hören3, lesen1, sprach1, sprach2
 // ============================================
 
 let helpLayerActive = false;
@@ -34,9 +35,9 @@ function getCurrentExamId() {
     return 1;
 }
 
-// الحصول على الجزء النشط (hören1, hören2, hören3, teil1)
+// الحصول على الجزء النشط
 function getActiveSection() {
-    const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'teil1'];
+    const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'teil1', 'teil2', 'teil3', 'sprach1', 'sprach2'];
     for (const section of sections) {
         const el = document.getElementById(section);
         if (el && el.style.display === 'block') {
@@ -52,23 +53,53 @@ function getCurrentSkill() {
     if (document.getElementById('hoeren2')?.style.display === 'block') return 'hoeren2';
     if (document.getElementById('hoeren3')?.style.display === 'block') return 'hoeren3';
     if (document.getElementById('teil1')?.style.display === 'block') return 'lesen1';
+    if (document.getElementById('teil2')?.style.display === 'block') return 'lesen2';
+    if (document.getElementById('teil3')?.style.display === 'block') return 'lesen3';
+    if (document.getElementById('sprach1')?.style.display === 'block') return 'sprach1';
+    if (document.getElementById('sprach2')?.style.display === 'block') return 'sprach2';
     return 'hoeren1';
 }
 
-// البحث عن البيانات في HELP_DATA
-function getHelpData(skill, examId, questionNumber) {
-    if (typeof HELP_DATA === 'undefined') return null;
+// دالة البحث المرنة عن البيانات في HELP_DATA
+function findHelpData(skill, examId, questionNumber) {
+    if (typeof HELP_DATA === 'undefined') {
+        console.warn('HELP_DATA غير موجود');
+        return null;
+    }
     
-    // النمط الأساسي: skill_examX_qY
-    const key = `${skill}_exam${examId}_q${questionNumber}`;
-    if (HELP_DATA[key]) return HELP_DATA[key];
+    // الأنماط الممكنة للمفاتيح
+    const patterns = [
+        `${skill}_exam${examId}_q${questionNumber}`,           // hoeren1_exam1_q2
+        `${skill}_exam${examId}_${questionNumber}`,            // lesen1_exam1_1
+        `${skill}_exam${examId}_${String.fromCharCode(96 + questionNumber)}` // a,b,c...
+    ];
     
-    // محاولة بحث إضافية في حال كان المفتاح مختلفاً
-    for (let k in HELP_DATA) {
-        if (k.includes(`exam${examId}`) && (k.includes(`q${questionNumber}`) || k.includes(`_${questionNumber}`))) {
-            return HELP_DATA[k];
+    // البحث بالأنماط المباشرة
+    for (let pattern of patterns) {
+        if (HELP_DATA[pattern]) {
+            return HELP_DATA[pattern];
         }
     }
+    
+    // البحث العام في جميع المفاتيح
+    for (let key in HELP_DATA) {
+        if (key.includes(`exam${examId}`)) {
+            // البحث عن q1, q2, q3
+            if (key.includes(`q${questionNumber}`)) {
+                return HELP_DATA[key];
+            }
+            // البحث عن _1, _2, _3
+            if (key.includes(`_${questionNumber}`)) {
+                return HELP_DATA[key];
+            }
+            // البحث عن حروف a,b,c...
+            const letter = String.fromCharCode(96 + questionNumber);
+            if (key.endsWith(`_${letter}`)) {
+                return HELP_DATA[key];
+            }
+        }
+    }
+    
     return null;
 }
 
@@ -80,7 +111,7 @@ function createHelpBox(index, totalQuestions) {
     
     const examId = getCurrentExamId();
     const skill = getCurrentSkill();
-    const helpContent = getHelpData(skill, examId, index);
+    const helpContent = findHelpData(skill, examId, index);
     
     let contentHtml = '';
     
@@ -317,11 +348,31 @@ function initHelpSystem() {
     });
 }
 
-// بدء التشغيل
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHelpSystem);
-} else {
-    initHelpSystem();
+// مراقبة تغيير الامتحان لإغلاق المساعدة تلقائياً
+function setupExamChangeListener() {
+    let lastExamId = getCurrentExamId();
+    let lastSkill = getCurrentSkill();
+    setInterval(() => {
+        const currentId = getCurrentExamId();
+        const currentSkill = getCurrentSkill();
+        if (currentId !== lastExamId || currentSkill !== lastSkill) {
+            lastExamId = currentId;
+            lastSkill = currentSkill;
+            if (helpLayerActive) toggleHelpLayer();
+            console.log(`🔄 تغير الامتحان إلى: ${currentSkill}_exam${currentId}`);
+        }
+    }, 500);
 }
 
-console.log('✅ helpLayer.js تم تحميله بنجاح');
+// بدء التشغيل
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        initHelpSystem();
+        setupExamChangeListener();
+    });
+} else {
+    initHelpSystem();
+    setupExamChangeListener();
+}
+
+console.log('✅ helpLayer.js تم تحميله بنجاح (يدعم hören1, hören2, hören3, lesen1, sprach1, sprach2)');
