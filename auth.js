@@ -59,15 +59,6 @@ async function getUserStatus() {
     }
 }
 
-async function getExpiryDate(email) {
-    try {
-        const premium = await getPremiumUsers();
-        return premium[email] || null;
-    } catch(e) {
-        return null;
-    }
-}
-
 function showLockedMessage(examTitle) {
     let modal = document.createElement('div');
     modal.id = 'lockedModal';
@@ -77,8 +68,8 @@ function showLockedMessage(examTitle) {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,0.75);
-        z-index: 10000;
+        background: rgba(0,0,0,0.8);
+        z-index: 100000;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -116,55 +107,70 @@ function showLockedMessage(examTitle) {
     });
 }
 
-async function styleLockedExams() {
+// دالة لتطبيق القفل على الامتحانات الداخلية
+async function lockInternalExams() {
     const status = await getUserStatus();
-    if (status === 'premium') return;
+    if (status === 'premium') return; // لا نقفل أي شيء للمشترك
     
-    // البحث عن جميع أزرار الامتحانات في الصفحة
-    let allExamButtons = document.querySelectorAll('.exam-item, .exam-card, [data-exam], .exam-button');
+    // البحث عن جميع عناصر الامتحانات داخل الصفحة
+    // engine.js يعرض الامتحانات على شكل أزرار أو روابط داخل الـ div
     
-    // إضافة نمط للامتحانات التي ليست الأولى
-    allExamButtons.forEach((btn) => {
-        let btnText = btn.innerText || btn.textContent || '';
+    // نبحث عن جميع الأزرار التي تحتوي على أرقام امتحانات (2,3,4,...)
+    let allExamLinks = document.querySelectorAll('#teil1 a, #teil2 a, #teil3 a, #sprach1 a, #sprach2 a, #hoeren1 a, #hoeren2 a, #hoeren3 a, #schreiben a');
+    allExamLinks = [...allExamLinks, ...document.querySelectorAll('.exam-link, .exam-item, .fragen-link')];
+    
+    // نبحث أيضاً عن أي رابط أو زر داخل محتوى الامتحانات
+    let allButtons = document.querySelectorAll('#teil1 button, #teil2 button, #teil3 button, #sprach1 button, #sprach2 button, #hoeren1 button, #hoeren2 button, #hoeren3 button, #schreiben button');
+    
+    let allElements = [...allExamLinks, ...allButtons];
+    
+    // إضافة مميزات فريدة للعناصر
+    allElements.forEach((el, idx) => {
+        let text = el.innerText || el.textContent || '';
         
-        // تحديد إذا كان هذا الامتحان الأول (رقم 1)
-        let isFirstExam = false;
+        // استخراج رقم الامتحان من النص
+        let match = text.match(/^(\d+)[\.:\-\s]/);
+        let examNumber = match ? parseInt(match[1]) : null;
         
-        // فحص النص لوجود رقم 1
-        if (btnText.includes('1') || btnText.includes('teil 1') || btnText.includes('Teil 1')) {
-            // إذا كان هناك رقم 1 وحده تقريباً
-            let match = btnText.match(/(\d+)/);
-            if (match && match[1] === '1') {
-                isFirstExam = true;
+        // إذا كان رقم الامتحان موجود وأكبر من 1، نطبقه القفل
+        if (examNumber && examNumber > 1) {
+            // تطبيق الشكل المطلوب: لون بنفسجي هادئ + شفافية + قفل
+            el.style.opacity = '0.7';
+            el.style.filter = 'blur(1px)';
+            el.style.backgroundColor = '#e9d5ff';
+            el.style.color = '#4a1d6d';
+            el.style.border = '1px solid #a855f7';
+            el.style.borderRadius = '12px';
+            el.style.padding = '8px 12px';
+            el.style.display = 'inline-block';
+            el.style.margin = '5px';
+            el.style.cursor = 'pointer';
+            el.style.position = 'relative';
+            
+            // إضافة أيقونة قفل صغيرة في الأعلى
+            if (!el.querySelector('.mini-lock')) {
+                let lockSpan = document.createElement('span');
+                lockSpan.className = 'mini-lock';
+                lockSpan.innerHTML = '🔒';
+                lockSpan.style.cssText = 'position: absolute; top: -5px; right: -5px; font-size: 14px; background: white; border-radius: 50%; padding: 2px; z-index: 10;';
+                el.style.position = 'relative';
+                el.appendChild(lockSpan);
             }
-        }
-        
-        // إذا لم يكن الامتحان الأول، نطبقه القفل
-        if (!isFirstExam) {
-            btn.style.opacity = '0.7';
-            btn.style.filter = 'blur(1px)';
-            btn.style.background = '#e9d5ff';
-            btn.style.border = '2px solid #a855f7';
-            btn.style.color = '#4a1d6d';
-            btn.style.position = 'relative';
-            btn.style.cursor = 'pointer';
             
-            // إضافة أيقونة قفل
-            let existingLock = btn.querySelector('.lock-icon');
-            if (!existingLock) {
-                let lockIcon = document.createElement('span');
-                lockIcon.className = 'lock-icon';
-                lockIcon.innerHTML = '🔒';
-                lockIcon.style.cssText = 'position: absolute; top: 5px; right: 10px; font-size: 18px; filter: blur(0); opacity: 1; z-index: 10;';
-                btn.style.position = 'relative';
-                btn.appendChild(lockIcon);
+            // إضافة رمز Pro صغير
+            if (!el.querySelector('.pro-badge')) {
+                let proSpan = document.createElement('span');
+                proSpan.className = 'pro-badge';
+                proSpan.innerHTML = 'PRO';
+                proSpan.style.cssText = 'position: absolute; bottom: -5px; left: -5px; font-size: 10px; background: #f39c12; color: white; border-radius: 10px; padding: 2px 6px; z-index: 10; font-weight: bold;';
+                el.appendChild(proSpan);
             }
             
-            let examTitle = btnText.substring(0, 50);
+            let examTitle = text.substring(0, 50);
             
-            // حفظ الحدث القديم واستبداله
-            let oldClick = btn.onclick;
-            btn.onclick = (e) => {
+            // حفظ الحدث الأصلي واستبداله
+            let originalOnClick = el.onclick;
+            el.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 showLockedMessage(examTitle);
@@ -172,8 +178,8 @@ async function styleLockedExams() {
             };
             
             // إزالة أي مستمعين آخرين
-            if (oldClick) {
-                btn.removeEventListener('click', oldClick);
+            if (originalOnClick) {
+                el.removeEventListener('click', originalOnClick);
             }
         }
     });
@@ -202,8 +208,7 @@ async function handleLogin() {
     
     const status = await getUserStatus();
     if(status === 'premium') {
-        let expiry = await getExpiryDate(email);
-        alert(`✅ مرحباً ${email}\n🎉 حسابك مفعل حتى ${expiry}\nجميع الامتحانات متاحة لك.`);
+        alert(`✅ مرحباً ${email}\n🎉 حسابك مفعل. جميع الامتحانات متاحة لك.`);
         location.reload();
     } else if(status === 'expired') {
         alert(`⚠️ مرحباً ${email}\n⏰ انتهت صلاحية اشتراكك.\n✨ يرجى الاشتراك مرة أخرى.`);
@@ -213,62 +218,6 @@ async function handleLogin() {
     
     hideLoginPopup();
     location.reload();
-}
-
-async function addUpgradeMessageToExamsList() {
-    const status = await getUserStatus();
-    let examsContainer = document.getElementById('examsList');
-    
-    if(!examsContainer) return;
-    
-    let oldMsg = document.getElementById('upgradeMsg');
-    if(oldMsg) oldMsg.remove();
-    let oldPremiumMsg = document.getElementById('premiumMsg');
-    if(oldPremiumMsg) oldPremiumMsg.remove();
-    
-    if(status !== 'premium' && status !== 'expired' && isUserLoggedIn()) {
-        let msgDiv = document.createElement('div');
-        msgDiv.id = 'upgradeMsg';
-        msgDiv.style.cssText = 'background:linear-gradient(135deg, #f3e8ff, #e9d5ff); padding:15px; border-radius:20px; margin:15px; text-align:center; border:1px solid #a855f7;';
-        msgDiv.innerHTML = `
-            <span style="font-size: 24px;">🔒</span>
-            <p style="margin: 8px 0; font-weight: bold;">⭐ أنت في <strong style="color:#a855f7;">الوضع المجاني</strong></p>
-            <p style="font-size: 14px; color:#555;">متاح لك فقط <strong>الامتحان الأول</strong> من كل قسم</p>
-            <button id="upgradeNowBtn" style="background:linear-gradient(135deg, #f39c12, #e67e22); border:none; padding:8px 25px; border-radius:30px; margin-top:10px; cursor:pointer; font-weight:bold; color:white;">🚀 ترقية الحساب الآن</button>
-        `;
-        examsContainer.prepend(msgDiv);
-        
-        let upgradeBtn = document.getElementById('upgradeNowBtn');
-        if(upgradeBtn) upgradeBtn.addEventListener('click', () => {
-            window.location.href = "subscribe.html";
-        });
-    }
-    
-    if(status === 'premium' && isUserLoggedIn()) {
-        let email = getLoggedInEmail();
-        let expiry = await getExpiryDate(email);
-        let msgDiv = document.createElement('div');
-        msgDiv.id = 'premiumMsg';
-        msgDiv.style.cssText = 'background:#d1fae5; padding:12px; border-radius:15px; margin:15px; text-align:center; border:1px solid #10b981;';
-        msgDiv.innerHTML = `🎉 اشتراكك مفعل حتى تاريخ ${expiry}. شكراً لثقتك!`;
-        examsContainer.prepend(msgDiv);
-    }
-    
-    if(status === 'expired' && isUserLoggedIn()) {
-        let msgDiv = document.createElement('div');
-        msgDiv.id = 'upgradeMsg';
-        msgDiv.style.cssText = 'background:#fee2e2; padding:12px; border-radius:15px; margin:15px; text-align:center; border:1px solid #ef4444;';
-        msgDiv.innerHTML = `
-            ⏰ <strong>انتهت صلاحية اشتراكك</strong>. يرجى الاشتراك مرة أخرى.
-            <button id="renewBtn" style="background:#f39c12; border:none; padding:5px 15px; border-radius:20px; margin-right:10px; cursor:pointer;">🔄 تجديد الاشتراك</button>
-        `;
-        examsContainer.prepend(msgDiv);
-        
-        let renewBtn = document.getElementById('renewBtn');
-        if(renewBtn) renewBtn.addEventListener('click', () => {
-            window.location.href = "subscribe.html";
-        });
-    }
 }
 
 function addLogoutButton() {
@@ -325,14 +274,21 @@ function bindAuthEvents() {
     }
 }
 
+// مراقبة تغييرات الصفحة لتطبيق القفل عند تحميل المحتوى
 function observePageChanges() {
     const observer = new MutationObserver(() => {
         let listPage = document.getElementById('list');
         if(listPage && listPage.classList.contains('active')) {
             setTimeout(() => {
-                styleLockedExams();
-                addUpgradeMessageToExamsList();
-            }, 300);
+                lockInternalExams();
+            }, 500);
+        }
+        
+        let examPage = document.getElementById('exam');
+        if(examPage && examPage.classList.contains('active')) {
+            setTimeout(() => {
+                lockInternalExams();
+            }, 500);
         }
     });
     
@@ -345,8 +301,7 @@ function initAuth() {
     observePageChanges();
     
     setTimeout(() => {
-        styleLockedExams();
-        addUpgradeMessageToExamsList();
+        lockInternalExams();
     }, 800);
 }
 
