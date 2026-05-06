@@ -108,6 +108,14 @@
             margin: 8px 0;
             list-style: none;
         }
+        .saving-badge {
+            background: rgba(255,255,255,0.25);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
         .back-link {
             text-align: center;
             margin-top: 40px;
@@ -139,7 +147,8 @@
         <div class="plan-card highlight" data-plan="2months" data-price="99" data-duration="شهران">
             <div class="plan-name">⭐ باقة VIP</div>
             <div class="price">99 <small>درهم</small></div>
-            <div class="duration">لمدة شهرين (وفر 20%)</div>
+            <div class="duration">لمدة شهرين</div>
+            <div class="saving-badge">🎯 استعد أفضل وكن مميز</div>
             <ul class="features">
                 <li>✅ فتح جميع الامتحانات</li>
                 <li>✅ الوصول الكامل للمحتوى</li>
@@ -185,7 +194,6 @@
         
         window.open(`https://wa.me/${WA_NUMBER}?text=${message}`, '_blank');
         
-        // رسالة تأكيد للمستخدم
         alert(`✅ تم إرسال طلب الاشتراك إلى الواتساب\n📧 بريدك: ${email}\n📆 المدة: ${durationText}\n💰 المبلغ: ${price} درهم\n\nسأتصل بك لإتمام الدفع.`);
     }
     
