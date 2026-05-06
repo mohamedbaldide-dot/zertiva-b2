@@ -2057,98 +2057,100 @@ HELP_DATA["lesen1_exam9_q5"] = {
     imagine: "🧠👁️ تخيل مدرسة ابتدائية (Grundschule) يغلب عليها المعلمات النساء، والرجال (Männer) قليلون جداً 👩‍🏫👨‍🏫"
 };
 
-
 // ============================================
-// helpSystem.js - نظام المساعدة المتكامل (النسخة النهائية)
+// نظام الطبقة المساعدة (منطق التشغيل)
 // ============================================
 
 let helpLayerActive = false;
 let originalContentBackup = null;
 
-// ========== تحديد عدد الأسئلة حسب نوع الامتحان ==========
-function getQuestionCount(skill) {
-    switch(skill) {
-        case 'hoeren1': return 5;
-        case 'hoeren2': return 10;
-        case 'hoeren3': return 5;
-        case 'lesen2': return 5;
-        
-    }
+// الأسئلة الصحيحة لكل امتحان
+function getCorrectQuestions(skill, examId) {
+    const correctMap = {
+        // Hören Teil 1 (27 امتحان)
+        'hoeren1_exam1': [2,3], 'hoeren1_exam2': [3,5], 'hoeren1_exam3': [2,3,5],
+        'hoeren1_exam4': [1,5], 'hoeren1_exam5': [2,4], 'hoeren1_exam6': [2,4],
+        'hoeren1_exam7': [1,2,5], 'hoeren1_exam8': [3,4,5], 'hoeren1_exam9': [1,2],
+        'hoeren1_exam10': [1,4], 'hoeren1_exam11': [1,4], 'hoeren1_exam12': [1,4],
+        'hoeren1_exam13': [3,4,5], 'hoeren1_exam14': [1,3], 'hoeren1_exam15': [2,3],
+        'hoeren1_exam16': [2,3,5], 'hoeren1_exam17': [4,5], 'hoeren1_exam18': [1,3,5],
+        'hoeren1_exam19': [1,3,5], 'hoeren1_exam20': [1,3,4], 'hoeren1_exam21': [3],
+        'hoeren1_exam22': [1,2,5], 'hoeren1_exam23': [3,5], 'hoeren1_exam24': [1,3,5],
+        'hoeren1_exam25': [1,2,5], 'hoeren1_exam26': [1,5], 'hoeren1_exam27': [1,2],
+        // Hören Teil 2
+        'hoeren2_exam1': [3,4,8,9,10], 'hoeren2_exam2': [1,3,4,8], 'hoeren2_exam3': [1,3,4,7,8],
+        'hoeren2_exam4': [2,6,8,9,10], 'hoeren2_exam5': [2,9,10], 'hoeren2_exam8': [1,3,4,7,8,9],
+        'hoeren2_exam10': [1,3,4,8,9,10], 'hoeren2_exam12': [1,4,6,7,8], 'hoeren2_exam14': [2,5,8,9,10],
+        'hoeren2_exam15': [2,3,5,6,8,10], 'hoeren2_exam18': [2,3,4,7,9,10], 'hoeren2_exam19': [3,4,7,9],
+        'hoeren2_exam20': [2,3,5,8,9], 'hoeren2_exam22': [3,4,10], 'hoeren2_exam23': [1,2,4,6],
+        'hoeren2_exam24': [2,3,4,6,8,10], 'hoeren2_exam25': [1,2,3,4,6,8,9], 'hoeren2_exam26': [3,5,7,8,10],
+        // Hören Teil 3
+        'hoeren3_exam1': [1], 'hoeren3_exam2': [1,3], 'hoeren3_exam3': [1,3], 'hoeren3_exam4': [1,4],
+        'hoeren3_exam5': [1,4], 'hoeren3_exam6': [1,5], 'hoeren3_exam7': [1,5], 'hoeren3_exam8': [1,5],
+        'hoeren3_exam9': [1,5], 'hoeren3_exam10': [2,5], 'hoeren3_exam11': [1,2,3], 'hoeren3_exam12': [3,4],
+        'hoeren3_exam13': [1,2,5], 'hoeren3_exam14': [1,4,5], 'hoeren3_exam15': [1,2,5], 'hoeren3_exam16': [1,3,4,5],
+        'hoeren3_exam17': [1,3], 'hoeren3_exam18': [2,3,4], 'hoeren3_exam19': [2,4], 'hoeren3_exam20': [1,3],
+        'hoeren3_exam21': [2], 'hoeren3_exam22': [2,4], 'hoeren3_exam23': [1,5], 'hoeren3_exam24': [2],
+        'hoeren3_exam25': [1,3], 'hoeren3_exam26': [1,3,5], 'hoeren3_exam27': [1,3],
+        // Lesen Teil 1 (Exams 1-9)
+        'lesen1_exam1': [1,2,3,4,5], 'lesen1_exam2': [1,2,3,4,5], 'lesen1_exam3': [1,2,3,4,5],
+        'lesen1_exam4': [1,2,3,4,5], 'lesen1_exam5': [1,2,3,4,5], 'lesen1_exam6': [1,2,3,4,5],
+        'lesen1_exam7': [1,2,3,4,5], 'lesen1_exam8': [1,2,3,4,5], 'lesen1_exam9': [1,2,3,4,5],
+    };
+    return correctMap[`${skill}_exam${examId}`] || [];
 }
 
 function getCurrentExamId() {
     if (window.currentExamId) return window.currentExamId;
     const title = document.getElementById('examTitle')?.textContent || '';
-    const match = title.match(/(\d+)/);
+    const match = title.match(/Exam\s+(\d+)/i);
     return match ? parseInt(match[1]) : 1;
 }
 
-// ========== الحصول على اسم المهارة من القسم النشط ==========
 function getCurrentSkill() {
-    // التحقق من أقسام Hören
     if (document.getElementById('hoeren1')?.style.display === 'block') return 'hoeren1';
     if (document.getElementById('hoeren2')?.style.display === 'block') return 'hoeren2';
     if (document.getElementById('hoeren3')?.style.display === 'block') return 'hoeren3';
-    
-    // التحقق من أقسام Lesen (teil1 = lesen1, teil2 = lesen2, teil3 = lesen3)
     if (document.getElementById('teil1')?.style.display === 'block') return 'lesen1';
-    if (document.getElementById('teil2')?.style.display === 'block') return 'lesen2';
-    if (document.getElementById('teil3')?.style.display === 'block') return 'lesen3';
-    
-    // التحقق من أقسام Sprachbausteine
-    if (document.getElementById('sprach1')?.style.display === 'block') return 'sprach1';
-    if (document.getElementById('sprach2')?.style.display === 'block') return 'sprach2';
-    
-    // التحقق من قسم Schreiben
-    if (document.getElementById('schreiben')?.style.display === 'block') return 'schreiben';
-    
-    return 'lesen1';
+    return 'hoeren1';
 }
 
-// ========== الحصول على العنصر النشط ==========
 function getActiveSection() {
-    const sections = ['hoeren1', 'hoeren2', 'hoeren3', 'teil1', 'teil2', 'teil3', 'sprach1', 'sprach2', 'schreiben'];
-    for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el && el.style.display === 'block') return el;
-    }
+    if (document.getElementById('hoeren1')?.style.display === 'block') return document.getElementById('hoeren1');
+    if (document.getElementById('hoeren2')?.style.display === 'block') return document.getElementById('hoeren2');
+    if (document.getElementById('hoeren3')?.style.display === 'block') return document.getElementById('hoeren3');
+    if (document.getElementById('teil1')?.style.display === 'block') return document.getElementById('teil1');
     return null;
 }
 
-// ========== البحث عن البيانات ==========
 function findHelpData(skill, examId, questionNumber) {
     if (!window.HELP_DATA) return null;
     
-    // تحويل رقم السؤال إلى حرف (1->a, 2->b...)
-    const letter = String.fromCharCode(96 + questionNumber);
+    const key1 = `${skill}_exam${examId}_q${questionNumber}`;
+    if (window.HELP_DATA[key1]) return window.HELP_DATA[key1];
     
-    // الصيغ المختلفة للبحث
-    const keys = [
-        `${skill}_exam${examId}_q${questionNumber}`,
-        `${skill}_exam${examId}_${questionNumber}`,
-        `${skill}_exam${examId}_${letter}`
-    ];
+    const key2 = `${skill}_exam${examId}_${questionNumber}`;
+    if (window.HELP_DATA[key2]) return window.HELP_DATA[key2];
     
-    for (let key of keys) {
-        if (window.HELP_DATA[key]) {
-            return window.HELP_DATA[key];
-        }
+    const letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'];
+    for (let i = 0; i < letters.length; i++) {
+        const letterKey = `${skill}_exam${examId}_${letters[i]}`;
+        if (window.HELP_DATA[letterKey]) return window.HELP_DATA[letterKey];
     }
     
-    // بحث شامل
     for (let key in window.HELP_DATA) {
         if (key.includes(`exam${examId}`)) {
-            if (key.includes(`_${questionNumber}`) || key.includes(`q${questionNumber}`) || key.includes(`_${letter}`)) {
+            if (key.includes(`_${questionNumber}`) || key.includes(`q${questionNumber}`)) {
                 return window.HELP_DATA[key];
             }
         }
     }
-    
     return null;
 }
 
-// ========== إنشاء بطاقة شرح ==========
-function createHelpCard(questionNumber, skill, examId) {
+function createHelpCard(questionNumber) {
+    const examId = getCurrentExamId();
+    const skill = getCurrentSkill();
     const data = findHelpData(skill, examId, questionNumber);
     
     const card = document.createElement('div');
@@ -2178,7 +2180,6 @@ function createHelpCard(questionNumber, skill, examId) {
     return card;
 }
 
-// ========== إنشاء جميع البطاقات ==========
 function createAllHelpCards() {
     const container = document.createElement('div');
     container.id = 'helpLayerContainer';
@@ -2186,47 +2187,38 @@ function createAllHelpCards() {
     
     const skill = getCurrentSkill();
     const examId = getCurrentExamId();
+    const correctQuestions = getCorrectQuestions(skill, examId);
+    const questionCount = correctQuestions.length;
     
-    // منع عرض المساعدة في Schreiben
-    if (skill === 'schreiben') {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">✏️ المساعدة غير متوفرة في قسم الكتابة</div>';
+    if (questionCount === 0) {
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">📚 لا توجد أسئلة في هذا الامتحان</div>';
         return container;
     }
     
-    const questionCount = getQuestionCount(skill);
-    
-    console.log(`📊 إنشاء المساعدة: ${skill}_exam${examId} (${questionCount} سؤال)`);
-    
     if (questionCount === 10) {
-        // شبكة بعمودين لـ 10 أسئلة
         const grid = document.createElement('div');
         grid.style.cssText = 'display:grid;grid-template-columns:repeat(2,1fr);gap:15px;';
-        
-        for (let i = 1; i <= questionCount; i++) {
-            const card = createHelpCard(i, skill, examId);
+        for (let i = 0; i < correctQuestions.length; i++) {
+            const card = createHelpCard(correctQuestions[i]);
             card.style.marginBottom = '0';
             card.style.height = '100%';
             grid.appendChild(card);
         }
         container.appendChild(grid);
     } else {
-        // عمود واحد لـ 5 أسئلة
-        for (let i = 1; i <= questionCount; i++) {
-            container.appendChild(createHelpCard(i, skill, examId));
+        for (let i = 0; i < correctQuestions.length; i++) {
+            container.appendChild(createHelpCard(correctQuestions[i]));
         }
     }
-    
     return container;
 }
 
-// ========== إخفاء محتوى الامتحان ==========
 function hideExamContent() {
     const hidden = [];
     const section = getActiveSection();
     if (!section) return hidden;
-    
     for (let child of section.children) {
-        if (child.id !== 'helpLayerContainer' && child.id !== 'examNavButtons' && child.style.display !== 'none') {
+        if (child.id !== 'helpLayerContainer' && child.style.display !== 'none') {
             child.style.display = 'none';
             hidden.push(child);
         }
@@ -2234,18 +2226,14 @@ function hideExamContent() {
     return hidden;
 }
 
-// ========== إخفاء أزرار التصحيح (مع استثناء زر المساعدة وأزرار التنقل) ==========
 function hideButtons() {
     const hidden = [];
     document.querySelectorAll('button').forEach(btn => {
         const text = btn.textContent;
         if (text.includes('✅') || text.includes('تصحيح') || text.includes('Prüfen') || text.includes('↺') || text.includes('إعادة')) {
-            // استثناء زر المساعدة وأزرار التنقل
-            if (btn.id !== 'globalHelpButton' && btn.id !== 'prevExamBtn' && btn.id !== 'nextExamBtn') {
-                if (btn.style.display !== 'none') {
-                    btn.style.display = 'none';
-                    hidden.push(btn);
-                }
+            if (btn.style.display !== 'none' && btn.id !== 'globalHelpButton') {
+                btn.style.display = 'none';
+                hidden.push(btn);
             }
         }
     });
@@ -2257,7 +2245,6 @@ function showElements(elements) {
     elements.forEach(el => { if (el) el.style.display = ''; });
 }
 
-// ========== تبديل وضع المساعدة ==========
 function toggleHelp() {
     const existing = document.getElementById('helpLayerContainer');
     const section = getActiveSection();
@@ -2275,17 +2262,13 @@ function toggleHelp() {
         const hiddenButtons = hideButtons();
         originalContentBackup = { questions: hiddenQuestions, buttons: hiddenButtons };
         const helpLayer = createAllHelpCards();
-        if (section && helpLayer.children.length > 0) {
-            section.appendChild(helpLayer);
-        }
+        if (section && helpLayer.children.length > 0) section.appendChild(helpLayer);
         helpLayerActive = true;
     }
 }
 
-// ========== إضافة زر المساعدة ==========
 function addHelpButton() {
     if (document.getElementById('globalHelpButton')) return;
-    
     const nav = document.getElementById('examNavButtons');
     if (!nav) return;
     
@@ -2297,40 +2280,34 @@ function addHelpButton() {
     btn.onmouseleave = () => { btn.style.transform = 'scale(1)'; btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)'; };
     btn.onclick = (e) => { e.stopPropagation(); toggleHelp(); };
     nav.appendChild(btn);
-    
     console.log('✅ زر المساعدة تمت إضافته بنجاح');
 }
 
-// ========== مراقبة تغيير الامتحان ==========
+// بدء التشغيل
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addHelpButton);
+} else {
+    addHelpButton();
+}
+
 function setupExamChangeListener() {
     let lastExamId = getCurrentExamId();
     let lastSkill = getCurrentSkill();
-    
     setInterval(() => {
         const currentId = getCurrentExamId();
         const currentSkill = getCurrentSkill();
-        
         if (currentId !== lastExamId || currentSkill !== lastSkill) {
             lastExamId = currentId;
             lastSkill = currentSkill;
-            
-            if (helpLayerActive) {
-                toggleHelp();
-            }
+            if (helpLayerActive) toggleHelp();
             console.log(`🔄 تغير الامتحان إلى: ${currentSkill}_exam${currentId}`);
         }
     }, 500);
 }
-
-// ========== بدء التشغيل ==========
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        addHelpButton();
-        setupExamChangeListener();
-    });
-} else {
-    addHelpButton();
-    setupExamChangeListener();
-}
+setupExamChangeListener();
 
 console.log('✅ helpSystem.js - نظام المساعدة تم تحميله بنجاح');
+
+// ============================================
+// نهاية الملف
+// ============================================
