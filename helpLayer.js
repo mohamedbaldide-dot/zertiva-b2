@@ -46,50 +46,6 @@ function getActiveSection() {
   return null;
 }
 
-// ========== إخفاء القسم النشط بالكامل ==========
-function hideExamContentCompletely() {
-  const activeSection = getActiveSection();
-  if (!activeSection) return null;
-  
-  const originalDisplay = activeSection.style.display;
-  activeSection.style.display = 'none';
-  
-  return { el: activeSection, originalDisplay: originalDisplay || 'block' };
-}
-
-// إظهار القسم المخفي
-function showExamContent(backup) {
-  if (backup && backup.el) {
-    backup.el.style.display = backup.originalDisplay;
-  }
-}
-
-// ========== إخفاء أزرار التصحيح وإعادة التعيين ==========
-function hideCheckAndResetButtons() {
-  const hidden = [];
-  const allButtons = document.querySelectorAll('button');
-  allButtons.forEach(btn => {
-    const btnText = btn.textContent;
-    if (btnText.includes('✅') || btnText.includes('تصحيح') || btnText.includes('Prüfen') || btnText.includes('↺') || btnText.includes('إعادة تعيين')) {
-      if (btn.style.display !== 'none' && btn.id !== 'globalHelpButton' && btn.id !== 'prevExamBtn' && btn.id !== 'nextExamBtn') {
-        const originalDisplay = window.getComputedStyle(btn).display;
-        btn.style.display = 'none';
-        hidden.push({ el: btn, originalDisplay });
-      }
-    }
-  });
-  return hidden;
-}
-
-function showCheckAndResetButtons(hiddenButtons) {
-  if (!hiddenButtons) return;
-  hiddenButtons.forEach(item => {
-    if (item.el) {
-      item.el.style.display = item.originalDisplay || '';
-    }
-  });
-}
-
 // ========== إنشاء بطاقة من البيانات مباشرة ==========
 function createHelpBoxFromData(data, index) {
   const box = document.createElement('div');
@@ -150,7 +106,20 @@ function createHelpBoxFromData(data, index) {
   return box;
 }
 
-// ========== إنشاء حاوية البطاقات ==========
+// ========== الحصول على عدد الأسئلة (تقديري) ==========
+function getHelpBoxCount() {
+  if (document.getElementById('hoeren1')?.style.display === 'block') return 5;
+  if (document.getElementById('hoeren2')?.style.display === 'block') return 10;
+  if (document.getElementById('hoeren3')?.style.display === 'block') return 5;
+  if (document.getElementById('teil1')?.style.display === 'block') return 5;
+  if (document.getElementById('teil2')?.style.display === 'block') return 5;
+  if (document.getElementById('teil3')?.style.display === 'block') return 10;
+  if (document.getElementById('sprach1')?.style.display === 'block') return 10;
+  if (document.getElementById('sprach2')?.style.display === 'block') return 10;
+  return 0;
+}
+
+// ========== إنشاء شبكة البطاقات بناءً على المفاتيح الموجودة فعلاً ==========
 function createHelpBoxesWithContent() {
   const container = document.createElement('div');
   container.id = 'helpLayerContainer';
@@ -167,28 +136,12 @@ function createHelpBoxesWithContent() {
   const skill = getCurrentSkill();
   const examId = getCurrentExamId();
   
-  console.log(`📊 helpLayer: البحث في ${skill}_exam${examId}`);
-  
-  // 🔑 نأخذ المفاتيح الموجودة فعلاً في HELP_DATA
-  let keys = Object.keys(window.HELP_DATA || {}).filter(k =>
+  // 🔑 الحل السحري: نأخذ المفاتيح الموجودة فعلاً في HELP_DATA
+  const keys = Object.keys(window.HELP_DATA || {}).filter(k =>
     k.startsWith(`${skill}_exam${examId}`)
   );
   
-  // إذا لم يجد شيئاً، جرب البحث بالصيغة مع حرف (لـ lesen3, sprach1, sprach2)
-  if (keys.length === 0) {
-    const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'];
-    for (let i = 0; i < letters.length; i++) {
-      const altKey = `${skill}_exam${examId}_${letters[i]}`;
-      if (window.HELP_DATA[altKey]) {
-        keys.push(altKey);
-      }
-    }
-  }
-  
-  // ترتيب المفاتيح
-  keys.sort();
-  
-  console.log(`📊 helpLayer: المفاتيح الموجودة:`, keys);
+  console.log(`📊 helpLayer: المفاتيح الموجودة في ${skill}_exam${examId}:`, keys);
   
   if (keys.length === 0) {
     container.innerHTML = `
@@ -199,43 +152,103 @@ function createHelpBoxesWithContent() {
     return container;
   }
   
-  // عرض البطاقات في عمود واحد
-  keys.forEach((key, i) => {
-    const data = window.HELP_DATA[key];
-    if (data) {
+  // ترتيب المفاتيح
+  keys.sort();
+  
+  // إذا كان عدد المفاتيح 10 (للشبكة بعمودين) أو 5 (لعمود واحد)
+  const count = keys.length;
+  const isTenQuestions = (count === 10);
+  
+  if (isTenQuestions) {
+    // شبكة بعمودين
+    const grid = document.createElement('div');
+    grid.style.cssText = `display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;`;
+    
+    keys.forEach((key, i) => {
+      const data = window.HELP_DATA[key];
+      const box = createHelpBoxFromData(data, i + 1);
+      box.style.marginBottom = '0';
+      box.style.height = '100%';
+      grid.appendChild(box);
+    });
+    container.appendChild(grid);
+  } else {
+    // عمود واحد
+    keys.forEach((key, i) => {
+      const data = window.HELP_DATA[key];
       container.appendChild(createHelpBoxFromData(data, i + 1));
-    }
-  });
+    });
+  }
   
   return container;
 }
 
-// ========== تبديل وضع المساعدة ==========
+// إخفاء محتوى الامتحان
+function hideExamQuestions() {
+  const hidden = [];
+  const activeSection = getActiveSection();
+  if (!activeSection) return hidden;
+  
+  const allChildren = activeSection.children;
+  for (let i = 0; i < allChildren.length; i++) {
+    const child = allChildren[i];
+    if (child.id !== 'helpLayerContainer' && child.style.display !== 'none') {
+      child.style.display = 'none';
+      hidden.push(child);
+    }
+  }
+  return hidden;
+}
+
+// إخفاء أزرار التصحيح وإعادة التعيين
+function hideCheckAndResetButtons() {
+  const hidden = [];
+  const allButtons = document.querySelectorAll('button');
+  allButtons.forEach(btn => {
+    const btnText = btn.textContent;
+    if (btnText.includes('✅') || btnText.includes('تصحيح') || btnText.includes('Prüfen') || btnText.includes('↺') || btnText.includes('إعادة تعيين')) {
+      if (btn.style.display !== 'none' && btn.id !== 'globalHelpButton') {
+        btn.style.display = 'none';
+        hidden.push(btn);
+      }
+    }
+  });
+  return hidden;
+}
+
+function showHiddenElements(hiddenElements) {
+  hiddenElements.forEach(el => {
+    el.style.display = '';
+  });
+}
+
+function showCheckAndResetButtons(hiddenButtons) {
+  hiddenButtons.forEach(btn => {
+    btn.style.display = '';
+  });
+}
+
+// تبديل وضع المساعدة
 function toggleHelpLayer() {
   const existingHelpLayer = document.getElementById('helpLayerContainer');
   const activeSection = getActiveSection();
   
   if (helpLayerActive) {
-    // إغلاق المساعدة: إزالة البطاقات وإظهار المحتوى الأصلي
     if (existingHelpLayer) existingHelpLayer.remove();
     if (originalContentBackup) {
-      showExamContent(originalContentBackup.hiddenSection);
+      showHiddenElements(originalContentBackup.hiddenQuestions);
       showCheckAndResetButtons(originalContentBackup.hiddenButtons);
       originalContentBackup = null;
     }
     helpLayerActive = false;
   } else {
-    // فتح المساعدة: إخفاء المحتوى الأصلي وعرض البطاقات
-    const hiddenSection = hideExamContentCompletely();
+    const hiddenQuestions = hideExamQuestions();
     const hiddenButtons = hideCheckAndResetButtons();
-    originalContentBackup = { hiddenSection, hiddenButtons };
+    originalContentBackup = { hiddenQuestions, hiddenButtons };
     
     const helpLayer = createHelpBoxesWithContent();
     if (activeSection && helpLayer.children.length > 0) {
-      // إضافة البطاقات بعد إخفاء المحتوى
-      activeSection.parentNode?.insertBefore(helpLayer, activeSection);
-      // أو يمكن إضافتها داخل القسم بعد إخفاء المحتوى
-      // activeSection.appendChild(helpLayer);
+      activeSection.appendChild(helpLayer);
     }
     helpLayerActive = true;
   }
@@ -313,5 +326,3 @@ if (document.readyState === 'loading') {
 } else {
   observeForHelpButton();
 }
-
-console.log('✅ helpLayer.js - نظام المساعدة تم تحميله بنجاح');
