@@ -14950,8 +14950,8 @@ HELP_DATA["sprach2_exam45_q10"] = {
 };
 
 // ============================================
-// helpSystem.js - نظام المساعدة المتكامل (الإصدار النهائي)
-// يدعم: hören1, hören2, hören3, lesen1, lesen2, lesen3, sprach1, sprach2
+// نظام الطبقة المساعدة (منطق التشغيل)
+// يدعم: hören1, hören2, hören3, lesen1 (5 امتحانات)
 // ============================================
 
 let helpLayerActive = false;
@@ -14960,7 +14960,7 @@ let originalContentBackup = null;
 // الأسئلة الصحيحة لكل امتحان (جميع الأجزاء)
 function getCorrectQuestions(skill, examId) {
     const correctMap = {
-        // Hören Teil 1 (27 امتحان - 5 أسئلة)
+        // Hören Teil 1 (27 امتحان)
         'hoeren1_exam1': [2, 3], 'hoeren1_exam2': [3, 5], 'hoeren1_exam3': [2, 3, 5],
         'hoeren1_exam4': [1, 5], 'hoeren1_exam5': [2, 4], 'hoeren1_exam6': [2, 4],
         'hoeren1_exam7': [1, 2, 5], 'hoeren1_exam8': [3, 4, 5], 'hoeren1_exam9': [1, 2],
@@ -14971,7 +14971,7 @@ function getCorrectQuestions(skill, examId) {
         'hoeren1_exam22': [1, 2, 5], 'hoeren1_exam23': [3, 5], 'hoeren1_exam24': [1, 3, 5],
         'hoeren1_exam25': [1, 2, 5], 'hoeren1_exam26': [1, 5], 'hoeren1_exam27': [1, 2],
         
-        // Hören Teil 2 (31 امتحان - 10 أسئلة)
+        // Hören Teil 2 (31 امتحان)
         'hoeren2_exam1': [3, 4, 8, 9, 10], 'hoeren2_exam2': [1, 3, 4, 8],
         'hoeren2_exam3': [1, 3, 4, 7, 8], 'hoeren2_exam4': [2, 6, 8, 9, 10],
         'hoeren2_exam5': [2, 9, 10], 'hoeren2_exam6': [3, 4, 7], 'hoeren2_exam7': [3, 4, 7],
@@ -14988,7 +14988,7 @@ function getCorrectQuestions(skill, examId) {
         'hoeren2_exam28': [1, 2, 4, 6, 8, 10], 'hoeren2_exam29': [4, 5, 9, 10],
         'hoeren2_exam30': [2, 3, 6, 7, 10], 'hoeren2_exam31': [2, 4, 5, 8, 9],
         
-        // Hören Teil 3 (27 امتحان - 5 أسئلة)
+        // Hören Teil 3 (27 امتحان)
         'hoeren3_exam1': [1], 'hoeren3_exam2': [1, 3], 'hoeren3_exam3': [1, 3],
         'hoeren3_exam4': [1, 4], 'hoeren3_exam5': [1, 4], 'hoeren3_exam6': [1, 5],
         'hoeren3_exam7': [1, 5], 'hoeren3_exam8': [1, 5], 'hoeren3_exam9': [1, 5],
@@ -14999,105 +14999,12 @@ function getCorrectQuestions(skill, examId) {
         'hoeren3_exam22': [2, 4], 'hoeren3_exam23': [1, 5], 'hoeren3_exam24': [2],
         'hoeren3_exam25': [1, 3], 'hoeren3_exam26': [1, 3, 5], 'hoeren3_exam27': [1, 3],
         
-        // Lesen Teil 1 (47 امتحان - 5 أسئلة)
-        'lesen1_exam1': [1,2,3,4,5], 'lesen1_exam2': [1,2,3,4,5], 'lesen1_exam3': [1,2,3,4,5],
-        'lesen1_exam4': [1,2,3,4,5], 'lesen1_exam5': [1,2,3,4,5], 'lesen1_exam6': [1,2,3,4,5],
-        'lesen1_exam7': [1,2,3,4,5], 'lesen1_exam8': [1,2,3,4,5], 'lesen1_exam9': [1,2,3,4,5],
-        'lesen1_exam10': [1,2,3,4,5], 'lesen1_exam11': [1,2,3,4,5], 'lesen1_exam12': [1,2,3,4,5],
-        'lesen1_exam13': [1,2,3,4,5], 'lesen1_exam14': [1,2,3,4,5], 'lesen1_exam15': [1,2,3,4,5],
-        'lesen1_exam16': [1,2,3,4,5], 'lesen1_exam17': [1,2,3,4,5], 'lesen1_exam18': [1,2,3,4,5],
-        'lesen1_exam19': [1,2,3,4,5], 'lesen1_exam20': [1,2,3,4,5], 'lesen1_exam21': [1,2,3,4,5],
-        'lesen1_exam22': [1,2,3,4,5], 'lesen1_exam23': [1,2,3,4,5], 'lesen1_exam24': [1,2,3,4,5],
-        'lesen1_exam25': [1,2,3,4,5], 'lesen1_exam26': [1,2,3,4,5], 'lesen1_exam27': [1,2,3,4,5],
-        'lesen1_exam28': [1,2,3,4,5], 'lesen1_exam29': [1,2,3,4,5], 'lesen1_exam30': [1,2,3,4,5],
-        'lesen1_exam31': [1,2,3,4,5], 'lesen1_exam32': [1,2,3,4,5], 'lesen1_exam33': [1,2,3,4,5],
-        'lesen1_exam34': [1,2,3,4,5], 'lesen1_exam35': [1,2,3,4,5], 'lesen1_exam36': [1,2,3,4,5],
-        'lesen1_exam37': [1,2,3,4,5], 'lesen1_exam38': [1,2,3,4,5], 'lesen1_exam39': [1,2,3,4,5],
-        'lesen1_exam40': [1,2,3,4,5], 'lesen1_exam41': [1,2,3,4,5], 'lesen1_exam42': [1,2,3,4,5],
-        'lesen1_exam43': [1,2,3,4,5], 'lesen1_exam44': [1,2,3,4,5], 'lesen1_exam45': [1,2,3,4,5],
-        'lesen1_exam46': [1,2,3,4,5], 'lesen1_exam47': [1,2,3,4,5],
-        
-        // Lesen Teil 2 (37 امتحان - 5 أسئلة)
-        'lesen2_exam1': [1,2,3,4,5], 'lesen2_exam2': [1,2,3,4,5], 'lesen2_exam3': [1,2,3,4,5],
-        'lesen2_exam4': [1,2,3,4,5], 'lesen2_exam5': [1,2,3,4,5], 'lesen2_exam6': [1,2,3,4,5],
-        'lesen2_exam7': [1,2,3,4,5], 'lesen2_exam8': [1,2,3,4,5], 'lesen2_exam9': [1,2,3,4,5],
-        'lesen2_exam10': [1,2,3,4,5], 'lesen2_exam11': [1,2,3,4,5], 'lesen2_exam12': [1,2,3,4,5],
-        'lesen2_exam13': [1,2,3,4,5], 'lesen2_exam14': [1,2,3,4,5], 'lesen2_exam15': [1,2,3,4,5],
-        'lesen2_exam16': [1,2,3,4,5], 'lesen2_exam17': [1,2,3,4,5], 'lesen2_exam18': [1,2,3,4,5],
-        'lesen2_exam19': [1,2,3,4,5], 'lesen2_exam20': [1,2,3,4,5], 'lesen2_exam21': [1,2,3,4,5],
-        'lesen2_exam22': [1,2,3,4,5], 'lesen2_exam23': [1,2,3,4,5], 'lesen2_exam24': [1,2,3,4,5],
-        'lesen2_exam25': [1,2,3,4,5], 'lesen2_exam26': [1,2,3,4,5], 'lesen2_exam27': [1,2,3,4,5],
-        'lesen2_exam28': [1,2,3,4,5], 'lesen2_exam29': [1,2,3,4,5], 'lesen2_exam30': [1,2,3,4,5],
-        'lesen2_exam31': [1,2,3,4,5], 'lesen2_exam32': [1,2,3,4,5], 'lesen2_exam33': [1,2,3,4,5],
-        'lesen2_exam34': [1,2,3,4,5], 'lesen2_exam35': [1,2,3,4,5], 'lesen2_exam36': [1,2,3,4,5],
-        'lesen2_exam37': [1,2,3,4,5],
-        
-        // Lesen Teil 3 (35 امتحان - 10 أسئلة) - مهم جداً!
-        'lesen3_exam1': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam2': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam3': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam4': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam5': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam6': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam7': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam8': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam9': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam10': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam11': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam12': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam13': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam14': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam15': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam16': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam17': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam18': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam19': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam20': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam21': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam22': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam23': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam24': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam25': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam26': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam27': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam28': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam29': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam30': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam31': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam32': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam33': [1,2,3,4,5,6,7,8,9,10], 'lesen3_exam34': [1,2,3,4,5,6,7,8,9,10],
-        'lesen3_exam35': [1,2,3,4,5,6,7,8,9,10],
-        
-        // Sprach Teil 1 (40 امتحان - 10 أسئلة)
-        'sprach1_exam1': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam2': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam3': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam4': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam5': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam6': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam7': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam8': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam9': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam10': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam11': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam12': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam13': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam14': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam15': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam16': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam17': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam18': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam19': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam20': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam21': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam22': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam23': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam24': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam25': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam26': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam27': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam28': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam29': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam30': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam31': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam32': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam33': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam34': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam35': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam36': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam37': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam38': [1,2,3,4,5,6,7,8,9,10],
-        'sprach1_exam39': [1,2,3,4,5,6,7,8,9,10], 'sprach1_exam40': [1,2,3,4,5,6,7,8,9,10],
-        
-        // Sprach Teil 2 (45 امتحان - 10 أسئلة)
-        'sprach2_exam1': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam2': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam3': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam4': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam5': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam6': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam7': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam8': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam9': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam10': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam11': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam12': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam13': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam14': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam15': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam16': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam17': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam18': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam19': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam20': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam21': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam22': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam23': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam24': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam25': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam26': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam27': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam28': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam29': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam30': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam31': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam32': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam33': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam34': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam35': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam36': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam37': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam38': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam39': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam40': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam41': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam42': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam43': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam44': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam45': [1,2,3,4,5,6,7,8,9,10]
+        // Lesen Teil 1 (5 امتحانات فقط - Exam 1 إلى 5)
+        'lesen1_exam1': [1, 2, 3, 4, 5],
+        'lesen1_exam2': [1, 2, 3, 4, 5],
+        'lesen1_exam3': [1, 2, 3, 4, 5],
+        'lesen1_exam4': [1, 2, 3, 4, 5],
+        'lesen1_exam5': [1, 2, 3, 4, 5]
     };
     return correctMap[`${skill}_exam${examId}`] || [];
 }
@@ -15119,10 +15026,6 @@ function getCurrentSkill() {
     if (document.getElementById('hoeren2')?.style.display === 'block') return 'hoeren2';
     if (document.getElementById('hoeren3')?.style.display === 'block') return 'hoeren3';
     if (document.getElementById('teil1')?.style.display === 'block') return 'lesen1';
-    if (document.getElementById('teil2')?.style.display === 'block') return 'lesen2';
-    if (document.getElementById('teil3')?.style.display === 'block') return 'lesen3';
-    if (document.getElementById('sprach1')?.style.display === 'block') return 'sprach1';
-    if (document.getElementById('sprach2')?.style.display === 'block') return 'sprach2';
     return 'hoeren1';
 }
 
@@ -15132,41 +15035,23 @@ function getActiveSection() {
     if (document.getElementById('hoeren2')?.style.display === 'block') return document.getElementById('hoeren2');
     if (document.getElementById('hoeren3')?.style.display === 'block') return document.getElementById('hoeren3');
     if (document.getElementById('teil1')?.style.display === 'block') return document.getElementById('teil1');
-    if (document.getElementById('teil2')?.style.display === 'block') return document.getElementById('teil2');
-    if (document.getElementById('teil3')?.style.display === 'block') return document.getElementById('teil3');
-    if (document.getElementById('sprach1')?.style.display === 'block') return document.getElementById('sprach1');
-    if (document.getElementById('sprach2')?.style.display === 'block') return document.getElementById('sprach2');
     return null;
 }
 
-// دالة البحث المرنة عن البيانات في HELP_DATA
-function findHelpData(skill, examId, questionNumber) {
-    if (typeof HELP_DATA === 'undefined') {
-        console.warn('HELP_DATA غير موجود');
-        return null;
-    }
+// البحث عن البيانات في HELP_DATA
+function getHelpData(skill, examId, questionNumber) {
+    if (typeof HELP_DATA === 'undefined') return null;
     
-    const patterns = [
-        `${skill}_exam${examId}_q${questionNumber}`,
-        `${skill}_exam${examId}_${questionNumber}`,
-        `${skill}_exam${examId}_${String.fromCharCode(96 + questionNumber)}`
-    ];
+    // النمط الأساسي: skill_examX_qY
+    const key = `${skill}_exam${examId}_q${questionNumber}`;
+    if (HELP_DATA[key]) return HELP_DATA[key];
     
-    for (let pattern of patterns) {
-        if (HELP_DATA[pattern]) {
-            return HELP_DATA[pattern];
+    // محاولة البحث بطرق أخرى
+    for (let k in HELP_DATA) {
+        if (k.includes(`exam${examId}`) && (k.includes(`q${questionNumber}`) || k.includes(`_${questionNumber}`))) {
+            return HELP_DATA[k];
         }
     }
-    
-    for (let key in HELP_DATA) {
-        if (key.includes(`exam${examId}`)) {
-            if (key.includes(`q${questionNumber}`)) return HELP_DATA[key];
-            if (key.includes(`_${questionNumber}`)) return HELP_DATA[key];
-            const letter = String.fromCharCode(96 + questionNumber);
-            if (key.endsWith(`_${letter}`)) return HELP_DATA[key];
-        }
-    }
-    
     return null;
 }
 
@@ -15174,7 +15059,7 @@ function findHelpData(skill, examId, questionNumber) {
 function createHelpCard(questionNumber) {
     const examId = getCurrentExamId();
     const skill = getCurrentSkill();
-    const data = findHelpData(skill, examId, questionNumber);
+    const data = getHelpData(skill, examId, questionNumber);
     
     const card = document.createElement('div');
     card.style.cssText = 'background:white;border-radius:12px;padding:20px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border:1px solid #e0e0e0';
@@ -15203,7 +15088,7 @@ function createHelpCard(questionNumber) {
     return card;
 }
 
-// إنشاء طبقة المساعدة
+// إنشاء طبقة المساعدة (تعرض فقط الأسئلة الصحيحة)
 function createHelpLayer() {
     const container = document.createElement('div');
     container.id = 'helpLayerContainer';
@@ -15218,28 +15103,16 @@ function createHelpLayer() {
         return container;
     }
     
+    // ترتيب الأرقام تصاعدياً
     correctQuestions.sort((a, b) => a - b);
     
-    // إذا كان عدد الأسئلة 10، نعرضها في شبكة 2x5
-    if (correctQuestions.length === 10) {
-        const grid = document.createElement('div');
-        grid.style.cssText = 'display:grid;grid-template-columns:repeat(2,1fr);gap:15px;';
-        for (let i = 0; i < correctQuestions.length; i++) {
-            const card = createHelpCard(correctQuestions[i]);
-            card.style.marginBottom = '0';
-            card.style.height = '100%';
-            grid.appendChild(card);
-        }
-        container.appendChild(grid);
-    } else {
-        for (let i = 0; i < correctQuestions.length; i++) {
-            container.appendChild(createHelpCard(correctQuestions[i]));
-        }
-    }
+    correctQuestions.forEach(q => {
+        container.appendChild(createHelpCard(q));
+    });
     return container;
 }
 
-// إخفاء محتوى الامتحان - نحفظ النمط الأصلي لكل عنصر
+// إخفاء محتوى الامتحان
 function hideExamContent() {
     const hidden = [];
     const section = getActiveSection();
@@ -15247,32 +15120,12 @@ function hideExamContent() {
     
     const allChildren = [...section.children];
     for (let child of allChildren) {
-        if (child.id !== 'helpLayerContainer') {
-            if (child.style.display !== 'none') {
-                // حفظ النمط الأصلي قبل الإخفاء
-                child.dataset.originalDisplay = child.style.display || '';
-                child.style.display = 'none';
-                hidden.push(child);
-            }
+        if (child.id !== 'helpLayerContainer' && child.style.display !== 'none') {
+            child.style.display = 'none';
+            hidden.push(child);
         }
     }
     return hidden;
-}
-
-// إظهار العناصر المخفية - استعادة النمط الأصلي
-function showElements(elements) {
-    if (!elements) return;
-    elements.forEach(el => {
-        if (el) {
-            const originalDisplay = el.dataset.originalDisplay;
-            if (originalDisplay !== undefined) {
-                el.style.display = originalDisplay;
-                delete el.dataset.originalDisplay;
-            } else {
-                el.style.display = '';
-            }
-        }
-    });
 }
 
 // إخفاء أزرار التصحيح وإعادة التعيين
@@ -15282,7 +15135,6 @@ function hideButtons() {
         const text = btn.textContent;
         if (text.includes('✅') || text.includes('تصحيح') || text.includes('Prüfen') || text.includes('↺') || text.includes('إعادة')) {
             if (btn.style.display !== 'none' && btn.id !== 'globalHelpButton') {
-                btn.dataset.originalDisplayBtn = btn.style.display || '';
                 btn.style.display = 'none';
                 hidden.push(btn);
             }
@@ -15291,20 +15143,10 @@ function hideButtons() {
     return hidden;
 }
 
-// إظهار الأزرار المخفية
-function showButtons(buttons) {
-    if (!buttons) return;
-    buttons.forEach(btn => {
-        if (btn) {
-            const originalDisplay = btn.dataset.originalDisplayBtn;
-            if (originalDisplay !== undefined) {
-                btn.style.display = originalDisplay;
-                delete btn.dataset.originalDisplayBtn;
-            } else {
-                btn.style.display = '';
-            }
-        }
-    });
+// إظهار العناصر المخفية
+function showElements(elements) {
+    if (!elements) return;
+    elements.forEach(el => { if (el) el.style.display = ''; });
 }
 
 // تبديل وضع المساعدة
@@ -15313,16 +15155,14 @@ function toggleHelp() {
     const section = getActiveSection();
     
     if (helpLayerActive) {
-        // إغلاق المساعدة
         if (existing) existing.remove();
         if (originalContentBackup) {
             showElements(originalContentBackup.questions);
-            showButtons(originalContentBackup.buttons);
+            showElements(originalContentBackup.buttons);
             originalContentBackup = null;
         }
         helpLayerActive = false;
     } else {
-        // فتح المساعدة
         const hiddenQuestions = hideExamContent();
         const hiddenButtons = hideButtons();
         originalContentBackup = { questions: hiddenQuestions, buttons: hiddenButtons };
@@ -15375,4 +15215,290 @@ if (document.readyState === 'loading') {
     setupExamChangeListener();
 }
 
-console.log('✅ helpSystem.js تم التحميل بنجاح (يدعم hören1, hören2, hören3, lesen1, lesen2, lesen3, sprach1, sprach2)');
+console.log('✅ helpSystem.js تم التحميل بنجاح (يدعم hören1, hören2, hören3, lesen1)');// ============================================
+// helpSystem.js - نظام المساعدة المتكامل
+// يدعم: hören1, hören2, hören3, lesen1
+// ============================================
+
+// ============================================
+// جميع البيانات (HELP_DATA)
+// ============================================
+// ============================================
+// Hören Teil 1 (البيانات موجودة في ملفك الأصلي)
+// ============================================
+// ... (سيتم إضافة بيانات Hören Teil 1 من ملفك الأصلي)
+
+// ============================================
+// Hören Teil 2 (البيانات موجودة في ملفك الأصلي)
+// ============================================
+// ... (سيتم إضافة بيانات Hören Teil 2 من ملفك الأصلي)
+
+// ============================================
+// Hören Teil 3 (البيانات موجودة في ملفك الأصلي)
+// ============================================
+// ... (سيتم إضافة بيانات Hören Teil 3 من ملفك الأصلي)
+
+// ============================================
+// lesen1.js - جميع شروحات Lesen Teil 1 (Exams 1-5)
+// ============================================
+
+// Exam 1: Jugend Forscht
+HELP_DATA["lesen1_exam1_q1"] = {
+    text: "Text 1: Die Zahlen wirken auf dem ersten Blick dramatisch... eine gelbe Zucchini wird gerne mal als Banane bezeichnet.",
+    meaning: "الأرقام تبدو درامية للوهلة الأولى - كوسا صفراء تُسمى بالخطأ موزة",
+    keywords: ["Erdbeeren = فراولة", "Tomaten = طماطم", "Praxis = ممارسة", "Küche = مطبخ"],
+    simplified: "التعرف على الفراولة والطماطم - تنقصهم الممارسة في المطبخ",
+    imagine: "🧠👁️ تخيل طفل ينظر إلى فراولة ويقول 'طماطم' لأن الممارسة في المطبخ تنقصه 🍓→🍅"
+};
+HELP_DATA["lesen1_exam1_q2"] = {
+    text: "Text 2: Immer mehr Mädchen leiden an schweren Essstörungen...",
+    meaning: "المزيد من الفتيات يعانين من اضطرابات أكل حادة - يبدأ عادة بحمية بسيطة وقد ينتهي بمرض خطير",
+    keywords: ["Diät = حمية", "Krankheit = مرض", "Schlankheitswahn = هوس النحافة"],
+    simplified: "فتيات حمية مرض - هوس النحافة نتائجه",
+    imagine: "🧠👁️ تخيل فتاة تتبع حمية لكي تصبح نحيفة 👧→🤒"
+};
+HELP_DATA["lesen1_exam1_q3"] = {
+    text: "Text 3: Energiesparlampen, umweltfreundliche Elektrogeräte...",
+    meaning: "لمبات موفرة، أجهزة كهربائية صديقة للبيئة - الفائزون يستعدون للمسابقة المحلية 'شباب يبحثون'",
+    keywords: ["Jugend = شباب", "forsch = يبحث", "Wettbewerb = مسابقة", "Umwelt = بيئة"],
+    simplified: "شباب يبحثون بيئة تقنية - مسابقة مشاريع طلاب",
+    imagine: "🧠👁️ تخيل شباب يشاركون في مسابقة علمية بعروضهم البحثية 🧑‍🔬🏆"
+};
+HELP_DATA["lesen1_exam1_q4"] = {
+    text: "Text 4: 13,5 Meter lang und leuchtend gelb...",
+    meaning: "طوله 13.5 متر ولونه أصفر لامع - بأبحاثهم يريدون لفت الانتباه إلى تلوث بحر الشمال",
+    keywords: ["Meer = بحر", "Plastik = بلاستيك", "Projekt = مشروع", "Nordsee = بحر الشمال"],
+    simplified: "بحث بحر بلاستيك - طلاب بحر الشمال مشروع",
+    imagine: "🧠👁️ تخيل طلاب يجمعون البلاستيك من البحر ضمن مشروع بحثي 🚤🫗🔬"
+};
+HELP_DATA["lesen1_exam1_q5"] = {
+    text: "Text 5: Mobbing ist kein neues Phänomen...",
+    meaning: "التنمر ليس ظاهرة جديدة - المضايقات تحدث بمهارة وخلال الفسحة أو في طريق المدرسة",
+    keywords: ["Mobbing = تنمر", "Schule = مدرسة", "Isolation = عزلة", "Angst = خوف"],
+    simplified: "تنمر مدرسة عنف - طلاب عزلة خوف",
+    imagine: "🧠👁️ تخيل طالب يتعرض للتنمر في المدرسة 😞😔"
+};
+
+// Exam 2: Sport ist gesund
+HELP_DATA["lesen1_exam2_q1"] = {
+    text: "Text 1: An der Ostküste Attikas in Griechenland lag in der Antike der Ort Marathon...",
+    meaning: "على الساحل الشرقي لأتيكا في اليونان قديماً كان موقع ماراثون",
+    keywords: ["Marathon = ماراثون", "Leistungssport = رياضة تنافسية"],
+    simplified: "ماراثون - رياضة تنافسية",
+    imagine: "🧠👁️ تخيل جد كبير يركض ماراثون ويصل إلى خط النهاية 🏃‍♂️👴🏁"
+};
+HELP_DATA["lesen1_exam2_q2"] = {
+    text: "Text 2: Warum soll sich der Mensch nun auf Straßen und Wegen fortbewegen?...",
+    meaning: "لماذا يتحرك الإنسان على الطرق والمسالك؟ - الآن في الموضة عربة جري",
+    keywords: ["Babys = أطفال", "Jogging = جري"],
+    simplified: "أطفال - جري",
+    imagine: "🧠👁️ تخيل أب وأم يركضان ويدفعان عربة أطفال أمامهما 🏃‍♂️🏃‍♀️🚼"
+};
+HELP_DATA["lesen1_exam2_q3"] = {
+    text: "Text 3: Schweizer Forscher haben herausgefunden, dass nur 6 Minuten Hochleistungstraining pro Woche...",
+    meaning: "باحثون سويسريون اكتشفوا أن 6 دقائق فقط من التدريب عالي الأداء أسبوعياً تكفي للحفاظ على اللياقة",
+    keywords: ["Fitness = لياقة", "Training = تدريب"],
+    simplified: "لياقة - تدريب",
+    imagine: "🧠👁️ تخيل شخصاً يتدرب 6 دقائق فقط ويصبح ذا لياقة عالية 💪⏱️"
+};
+HELP_DATA["lesen1_exam2_q4"] = {
+    text: "Text 4: Mehr Bewegung als Ausgleich für zu langes Sitzen im Büro...",
+    meaning: "حركة أكثر كتعويض للجلوس الطويل في المكتب - هناك قواعد أساسية في رياضات التحمل",
+    keywords: ["Sport = رياضة", "Regeln = قواعد"],
+    simplified: "رياضة - قواعد",
+    imagine: "🧠👁️ تخيل رياضياً يقيس نبضه لكي يتبع القواعد بشكل صحيح ❤️✅"
+};
+HELP_DATA["lesen1_exam2_q5"] = {
+    text: "Text 5: Viele frischgebackene Eltern stehen einem riesigen Angebot an Kinderwagen gegenüber...",
+    meaning: "كثير من الآباء الجدد يواجهون عرضاً ضخماً من عربات الأطفال",
+    keywords: ["Babys = أطفال", "Sicherheit = أمان"],
+    simplified: "أطفال - أمان",
+    imagine: "🧠👁️ تخيل عربة أطفال عليها ختم TÜV والطفل سعيد 🚼✅😊"
+};
+
+// Exam 3: Sport ist gesund (التعديل 1)
+HELP_DATA["lesen1_exam3_q1"] = {
+    text: "Text 1: An der Ostküste Attikas in Griechenland lag in der Antike der Ort Marathon...",
+    meaning: "على الساحل الشرقي لأتيكا في اليونان قديماً كان موقع ماراثون",
+    keywords: ["Marathon = ماراثون", "Leistungssport = رياضة تنافسية"],
+    simplified: "ماراثون - رياضة تنافسية",
+    imagine: "🧠👁️ تخيل جد كبير يركض ماراثون 🏃‍♂️👴🏁"
+};
+HELP_DATA["lesen1_exam3_q2"] = {
+    text: "Text 2: Warum soll sich der Mensch nun auf Straßen und Wegen fortbewegen?...",
+    meaning: "لماذا يتحرك الإنسان على الطرق والمسالك؟ - الآن في الموضة عربة جري",
+    keywords: ["Babys = أطفال", "Jogging = جري"],
+    simplified: "أطفال - جري",
+    imagine: "🧠👁️ تخيل أب وأم يركضان ويدفعان عربة أطفال 🏃‍♂️🏃‍♀️🚼"
+};
+HELP_DATA["lesen1_exam3_q3"] = {
+    text: "Text 3: Schweizer Forscher haben herausgefunden, dass nur 6 Minuten Hochleistungstraining pro Woche...",
+    meaning: "باحثون سويسريون اكتشفوا أن 6 دقائق فقط من التدريب عالي الأداء أسبوعياً تكفي للحفاظ على اللياقة",
+    keywords: ["Fitness = لياقة", "Training = تدريب"],
+    simplified: "لياقة - تدريب",
+    imagine: "🧠👁️ تخيل شخصاً يتدرب 6 دقائق 💪⏱️"
+};
+HELP_DATA["lesen1_exam3_q4"] = {
+    text: "Text 4: Mehr Bewegung als Ausgleich für zu langes Sitzen im Büro...",
+    meaning: "حركة أكثر كتعويض للجلوس الطويل في المكتب - هناك قواعد أساسية في رياضات التحمل",
+    keywords: ["Sport = رياضة", "Regeln = قواعد"],
+    simplified: "رياضة - قواعد",
+    imagine: "🧠👁️ تخيل رياضياً يقيس نبضه ❤️✅"
+};
+HELP_DATA["lesen1_exam3_q5"] = {
+    text: "Text 5: Viele frischgebackene Eltern stehen einem riesigen Angebot an Kinderwagen gegenüber...",
+    meaning: "كثير من الآباء الجدد يواجهون عرضاً ضخماً من عربات الأطفال",
+    keywords: ["Babys = أطفال", "Sicherheit = أمان"],
+    simplified: "أطفال - أمان",
+    imagine: "🧠👁️ تخيل عربة أطفال عليها ختم TÜV 🚼✅😊"
+};
+
+// Exam 4: Tanzkurs
+HELP_DATA["lesen1_exam4_q1"] = {
+    text: "Text 1: Der Begriff Extremsport wird oft subjektiv verwendet...",
+    meaning: "مصطلح الرياضة الخطيرة يُستخدم غالباً بشكل شخصي",
+    keywords: ["Extremsport = رياضة خطيرة", "Adrenalin = أدرينالين"],
+    simplified: "رياضة خطيرة - أدرينالين",
+    imagine: "🧠👁️ تخيل شخصاً يقفز من جسر بالحبال 🪢💓"
+};
+HELP_DATA["lesen1_exam4_q2"] = {
+    text: "Text 2: Musik, Sport, ehrenamtliches Engagement - die Teilnahme von Jugendlichen...",
+    meaning: "الموسيقى والرياضة والعمل التطوعي - مشاركة الشباب في الأنشطة الترفيهية التعليمية زادت",
+    keywords: ["Jugendliche = شباب", "Aktivitäten = أنشطة"],
+    simplified: "شباب - أنشطة",
+    imagine: "🧠👁️ تخيل شباباً يمارسون أنشطة مفيدة 🎸🏀📱"
+};
+HELP_DATA["lesen1_exam4_q3"] = {
+    text: "Text 3: In Firmen gibt es sie schon, jetzt wollen auch Schulen Entspannungskurse anbieten...",
+    meaning: "في الشركات توجد بالفعل، الآن المدارس تريد تقديم دورات استرخاء",
+    keywords: ["Schüler = طلاب", "Entspannung = استرخاء"],
+    simplified: "طلاب - استرخاء",
+    imagine: "🧠👁️ تخيل طالباً مرهقاً وبعد الاسترخاء يستطيع التركيز بشكل أفضل 🧘‍♂️😌"
+};
+HELP_DATA["lesen1_exam4_q4"] = {
+    text: "Text 4: Tanja Kleist ist von modernem Tanz absolut begeistert...",
+    meaning: "تانيا كلايست متحمسة جداً للرقص الحديث - تبحث عن مشاركات ومشاركين جدد",
+    keywords: ["Tanzkurs = درس رقص", "Teilnehmer = مشاركين"],
+    simplified: "درس رقص - مشاركين",
+    imagine: "🧠👁️ تخيل إعلاناً يقول درس رقص مجاني 💃🕺"
+};
+HELP_DATA["lesen1_exam4_q5"] = {
+    text: "Text 5: Montags Tennis, dienstags Klavierunterricht, mittwochs Jazztanz...",
+    meaning: "الاثنين تنس، الثلاثاء درس بيانو، الأربعاء رقص جاز جماعي",
+    keywords: ["Langeweile = ملل", "Termine = مواعيد"],
+    simplified: "ملل - مواعيد",
+    imagine: "🧠👁️ تخيل طفلاً لديه مواعيد كثيرة كل يوم 📅😫😰"
+};
+
+// Exam 5: Tanzkurs (التعديل 1)
+HELP_DATA["lesen1_exam5_q1"] = {
+    text: "Text 1: Der Begriff Extremsport wird oft subjektiv verwendet...",
+    meaning: "مصطلح الرياضة الخطيرة يُستخدم غالباً بشكل شخصي",
+    keywords: ["Extremsport = رياضة خطيرة", "Adrenalin = أدرينالين"],
+    simplified: "رياضة خطيرة - أدرينالين",
+    imagine: "🧠👁️ تخيل شخصاً يقفز من جسر بالحبال 🪢💓"
+};
+HELP_DATA["lesen1_exam5_q2"] = {
+    text: "Text 2: Musik, Sport, ehrenamtliches Engagement - die Teilnahme von Jugendlichen...",
+    meaning: "الموسيقى والرياضة والعمل التطوعي - مشاركة الشباب في الأنشطة الترفيهية التعليمية زادت",
+    keywords: ["Jugendliche = شباب", "Aktivitäten = أنشطة"],
+    simplified: "شباب - أنشطة",
+    imagine: "🧠👁️ تخيل شباباً يمارسون أنشطة مفيدة 🎸🏀📱"
+};
+HELP_DATA["lesen1_exam5_q3"] = {
+    text: "Text 3: In Firmen gibt es sie schon, jetzt wollen auch Schulen Entspannungskurse anbieten...",
+    meaning: "في الشركات توجد بالفعل، الآن المدارس تريد تقديم دورات استرخاء",
+    keywords: ["Schüler = طلاب", "Entspannung = استرخاء"],
+    simplified: "طلاب - استرخاء",
+    imagine: "🧠👁️ تخيل طالباً مرهقاً وبعد الاسترخاء يستطيع التركيز بشكل أفضل 🧘‍♂️😌"
+};
+HELP_DATA["lesen1_exam5_q4"] = {
+    text: "Text 4: Tanja Kleist ist von modernem Tanz absolut begeistert...",
+    meaning: "تانيا كلايست متحمسة جداً للرقص الحديث - تبحث عن مشاركات ومشاركين جدد",
+    keywords: ["Tanzkurs = درس رقص", "Teilnehmer = مشاركين"],
+    simplified: "درس رقص - مشاركين",
+    imagine: "🧠👁️ تخيل إعلاناً يقول درس رقص مجاني 💃🕺"
+};
+HELP_DATA["lesen1_exam5_q5"] = {
+    text: "Text 5: Montags Tennis, dienstags Klavierunterricht, mittwochs Jazztanz...",
+    meaning: "الاثنين تنس، الثلاثاء درس بيانو، الأربعاء رقص جاز جماعي",
+    keywords: ["Langeweile = ملل", "Termine = مواعيد"],
+    simplified: "ملل - مواعيد",
+    imagine: "🧠👁️ تخيل طفلاً لديه مواعيد كثيرة كل يوم 📅😫😰"
+};
+
+// ============================================
+// sprach2.js - جميع شروحات Sprachbausteine Teil 2 (Exams 1-45 مختصرة)
+// ============================================
+
+// Exam 1: Das Fahrrad
+HELP_DATA["sprach2_exam1_1"] = {
+    text: "kaum einem anderen Land gibt es so viele Automobilfabriken",
+    meaning: "بالكاد توجد في أي دولة أخرى مصانع سيارات بقدر ما في ألمانيا",
+    keywords: ["kaum = بالكاد", "Automobilfabriken = مصانع سيارات"],
+    simplified: "ألمانيا غنية بمصانع السيارات",
+    imagine: "🏭🚗 مصانع سيارات على الخريطة الألمانية"
+};
+HELP_DATA["sprach2_exam1_2"] = {
+    text: "auf ein anderes Verkehrsmittel umzusteigen",
+    meaning: "التحول إلى وسيلة نقل أخرى",
+    keywords: ["umzusteigen = التحول", "Verkehrsmittel = وسيلة نقل"],
+    simplified: "للانتقال إلى وسيلة مواصلات أخرى",
+    imagine: "🚲➡️🚗 دراجة وسيارة وسهم"
+};
+HELP_DATA["sprach2_exam1_3"] = {
+    text: "an den im Stau wartenden Fahrzeugen vorbeizufahren",
+    meaning: "المرور بجانب السيارات المنتظرة في الازدحام المروري",
+    keywords: ["Stau = ازدحام", "vorbeizufahren = المرور"],
+    simplified: "تمر بجانب السيارات المتوقفة في الزحام",
+    imagine: "🚲🚗🚗🚗 دراجة تتجاوز سيارات واقفة"
+};
+HELP_DATA["sprach2_exam1_4"] = {
+    text: "Wer Fahrrad fährt statt zu sitzen",
+    meaning: "من يركب دراجة بدلاً من الجلوس",
+    keywords: ["statt = بدلاً من", "Fahrrad fährt = يركب دراجة"],
+    simplified: "ركوب الدراجة أفضل من الجلوس خلف المقود",
+    imagine: "🚴‍♂️🪑 دراجة ومقعد سيارة"
+};
+HELP_DATA["sprach2_exam1_5"] = {
+    text: "innerhalb geschlossener Räume aufhalten",
+    meaning: "يتواجدون داخل أماكن مغلقة",
+    keywords: ["innerhalb = داخل", "geschlossener Räume = أماكن مغلقة"],
+    simplified: "يقضون معظم وقتهم في مكاتب مغلقة",
+    imagine: "🏢🚪 مبنى به أبواب مغلقة"
+};
+HELP_DATA["sprach2_exam1_6"] = {
+    text: "sich die meiste Zeit innerhalb geschlossener Räume aufhalten müssen",
+    meaning: "يضطرون لقضاء معظم وقتهم في أماكن مغلقة",
+    keywords: ["müssen = يضطرون", "meiste Zeit = معظم الوقت"],
+    simplified: "ممن يضطرون لقضاء وقتهم بالداخل",
+    imagine: "💼😞 عامل مجبر على البقاء في مكتب ضيق"
+};
+HELP_DATA["sprach2_exam1_7"] = {
+    text: "Ein breites Angebot an Zubehör",
+    meaning: "عرض واسع من الإكسسوارات",
+    keywords: ["Angebot = عرض", "Zubehör = إكسسوارات"],
+    simplified: "متاجر تبيع إكسسوارات الدراجات",
+    imagine: "🚲🔧 دراجة وأدوات جانبية"
+};
+HELP_DATA["sprach2_exam1_8"] = {
+    text: "die das Fahrrad fast so sicher wie einen Panzer machen sollen",
+    meaning: "يجب أن تجعل الدراجة آمنة مثل الدبابة",
+    keywords: ["sicher = آمنة", "Panzer = دبابة"],
+    simplified: "معدات مصممة لتوفير حماية قصوى للدراج",
+    imagine: "🛡️🚲 دراجة ودرع"
+};
+HELP_DATA["sprach2_exam1_9"] = {
+    text: "dann sind die Autoschlangen wieder länger",
+    meaning: "عندها تصبح طوابير السيارات أطول",
+    keywords: ["Autoschlangen = طوابير سيارات", "länger = أطول"],
+    simplified: "حينها ستعود الاختناقات المرورية",
+    imagine: "🚗🚗🚗 طابور سيارات طويل"
+};
+HELP_DATA["sprach2_exam1_10"] = {
+    text: "denn einen praktischen Wetterschutz für Radfahrer haben die Geschäfte noch nicht im Angebot",
+    meaning: "فالمتاجر لا تقدم بعد حماية عملية من الطقس لراكبي الدراجات",
+    keywords: ["Wetterschutz = حماية من الطقس", "Radfahrer = راكبي دراجات"],
+    simplified: "لا توجد معاطف مطر جيدة لركوب الدراجة بعد",
+    imagine: "☔🚲 مطر ودراجة بدون مظلة"
+};
