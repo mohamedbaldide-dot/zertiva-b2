@@ -10,6 +10,7 @@ const HELP_DATA = {};
 // ============================================
 // Hören Teil 1
 // ============================================
+
 // ========== Exam 1: Die Deutsche Lufthansa (صحيح: 2,3) ==========
 HELP_DATA["hoeren1_exam1_q2"] = {
     text: "Ein Bonner Sportverein zeigt der Öffentlichkeit sein Angebot.",
@@ -1653,236 +1654,8 @@ HELP_DATA["hoeren3_exam27_q3"] = {
     imagine: "تخيل موقعاً إلكترونياً لمهرجان 💻🎉"
 };
 
-
-
-
-// ============================================
-// lesen1.js - جميع شروحات Lesen Teil 1
-// ============================================
-
-
-// ============================================
-// Exam 1: Jugend Forscht
-// ============================================
-
-HELP_DATA["lesen1_exam1_q1"] = {
-    text: "Text 1: Die Zahlen wirken auf dem ersten Blick dramatisch... eine gelbe Zucchini wird gerne mal als Banane bezeichnet.",
-    meaning: "الأرقام تبدو درامية للوهلة الأولى - كوسا صفراء تُسمى بالخطأ موزة",
-    keywords: ["Erdbeeren = فراولة", "Tomaten = طماطم", "Praxis = ممارسة", "Küche = مطبخ"],
-    simplified: "التعرف على الفراولة والطماطم - تنقصهم الممارسة في المطبخ",
-    imagine: "🧠👁️ تخيل طفل ينظر إلى فراولة (Erdbeeren) ويقول 'طماطم' (Tomaten) لأن الممارسة (Praxis) في المطبخ تنقصه 🍓→🍅"
-};
-
-HELP_DATA["lesen1_exam1_q2"] = {
-    text: "Text 2: Immer mehr Mädchen leiden an schweren Essstörungen... Mit einer harmlosen Diät fängt es meist an, mit einer schweren Krankheit kann es enden.",
-    meaning: "المزيد من الفتيات يعانين من اضطرابات أكل حادة - يبدأ عادة بحمية بسيطة وقد ينتهي بمرض خطير",
-    keywords: ["Diät = حمية", "Krankheit = مرض", "Schlankheitswahn = هوس النحافة"],
-    simplified: "فتيات حمية مرض - هوس النحافة نتائجه",
-    imagine: "🧠👁️ تخيل فتاة تتبع حمية (Diät) لكي تصبح نحيفة، ولكن هوس النحافة (Schlankheitswahn) جلب لها المرض (Krankheit) 👧→🤒"
-};
-
-HELP_DATA["lesen1_exam1_q3"] = {
-    text: "Text 3: Energiesparlampen, umweltfreundliche Elektrogeräte... Die Gewinner bereiten sich nun auf den Landeswettbewerb 'Jugend forscht' vor.",
-    meaning: "لمبات موفرة، أجهزة كهربائية صديقة للبيئة - الفائزون يستعدون للمسابقة المحلية 'شباب يبحثون'",
-    keywords: ["Jugend = شباب", "forsch = يبحث", "Wettbewerb = مسابقة", "Umwelt = بيئة"],
-    simplified: "شباب يبحثون بيئة تقنية - مسابقة مشاريع طلاب",
-    imagine: "🧠👁️ تخيل شباب (Jugend) يشاركون في مسابقة (Wettbewerb) علمية بعروضهم البحثية 🧑‍🔬🏆"
-};
-
-HELP_DATA["lesen1_exam1_q4"] = {
-    text: "Text 4: 13,5 Meter lang und leuchtend gelb... Mit ihren Untersuchungen wollen sie die Aufmerksamkeit auf die Verschmutzung der Nordsee mit winzigen Plastikteilchen lenken.",
-    meaning: "طوله 13.5 متر ولونه أصفر لامع - بأبحاثهم يريدون لفت الانتباه إلى تلوث بحر الشمال بجزيئات البلاستيك الصغيرة",
-    keywords: ["Meer = بحر", "Plastik = بلاستيك", "Projekt = مشروع", "Nordsee = بحر الشمال", "Schüler = طلاب"],
-    simplified: "بحث بحر بلاستيك - طلاب بحر الشمال مشروع",
-    imagine: "🧠👁️ تخيل طلاب (Schüler) يجمعون البلاستيك (Plastik) من البحر (Meer) ضمن مشروع (Projekt) بحثي 🚤🫗🔬"
-};
-
-HELP_DATA["lesen1_exam1_q5"] = {
-    text: "Text 5: Mobbing ist kein neues Phänomen... Die Schikanen geschehen oft zu subtil und meist außerhalb des Unterrichts, während der Pausen oder auf dem Schulweg.",
-    meaning: "التنمر ليس ظاهرة جديدة - المضايقات تحدث بمهارة وخلال الفسحة أو في طريق المدرسة",
-    keywords: ["Mobbing = تنمر", "Schule = مدرسة", "Isolation = عزلة", "Angst = خوف"],
-    simplified: "تنمر مدرسة عنف - طلاب عزلة خوف",
-    imagine: "🧠👁️ تخيل طالب يتعرض للتنمر (Mobbing) في المدرسة (Schule) ويعيش في عزلة (Isolation) وحزن 😞😔"
-};
-
-// ============================================
-// Exam 2: Sport ist gesund
-// ============================================
-
-HELP_DATA["lesen1_exam2_q1"] = {
-    text: "Text 1: An der Ostküste Attikas in Griechenland lag in der Antike der Ort Marathon... Der Marathonlauf gilt als einziger Leistungssport, der bis ins hohe Alter ausgeübt werden kann.",
-    meaning: "على الساحل الشرقي لأتيكا في اليونان قديماً كان موقع ماراثون - سباق الماراثون يعتبر الرياضة التنافسية الوحيدة التي يمكن ممارستها حتى سن متقدم",
-    keywords: ["Marathon = ماراثون", "Leistungssport = رياضة تنافسية"],
-    simplified: "ماراثون - رياضة تنافسية",
-    imagine: "🧠👁️ تخيل جد كبير في السن (Großvater) يركض ماراثون (Marathon) ويصل إلى خط النهاية 🏃‍♂️👴🏁"
-};
-
-HELP_DATA["lesen1_exam2_q2"] = {
-    text: "Text 2: Warum soll sich der Mensch nun auf Straßen und Wegen fortbewegen?... Im Trend liegt jetzt der Jogging-Stroller, ein Kinderwagen mit nur noch drei bereiften Rädern.",
-    meaning: "لماذا يتحرك الإنسان على الطرق والمسالك؟ - الآن في الموضة عربة جري (Jogging-Stroller) وهي عربة أطفال بثلاث عجلات فقط",
-    keywords: ["Babys = أطفال", "Jogging = جري"],
-    simplified: "أطفال - جري",
-    imagine: "🧠👁️ تخيل أب وأم يركضان (Jogging) ويدفعان عربة أطفال (Babys) أمامهما 🏃‍♂️🏃‍♀️🚼"
-};
-
-HELP_DATA["lesen1_exam2_q3"] = {
-    text: "Text 3: Schweizer Forscher haben herausgefunden, dass nur 6 Minuten Hochleistungstraining pro Woche... ausreichen, um den Körper fit zu halten.",
-    meaning: "باحثون سويسريون اكتشفوا أن 6 دقائق فقط من التدريب عالي الأداء أسبوعياً تكفي للحفاظ على لياقة الجسم",
-    keywords: ["Fitness = لياقة", "Training = تدريب"],
-    simplified: "لياقة - تدريب",
-    imagine: "🧠👁️ تخيل شخصاً يتدرب (Training) 6 دقائق فقط ويصبح ذا لياقة (Fitness) عالية 💪⏱️"
-};
-
-HELP_DATA["lesen1_exam2_q4"] = {
-    text: "Text 4: Mehr Bewegung als Ausgleich für zu langes Sitzen im Büro... gibt es jedoch bei den die Ausdauer trainierenden Sportarten wie dem Joggen einige Grundregeln, die beachtet werden müssen.",
-    meaning: "حركة أكثر كتعويض للجلوس الطويل في المكتب - هناك قواعد أساسية يجب مراعاتها في رياضات التحمل مثل الجري",
-    keywords: ["Sport = رياضة", "Regeln = قواعد"],
-    simplified: "رياضة - قواعد",
-    imagine: "🧠👁️ تخيل رياضياً يقيس نبضه (Puls) لكي يتبع القواعد (Regeln) بشكل صحيح ❤️✅"
-};
-
-HELP_DATA["lesen1_exam2_q5"] = {
-    text: "Text 5: Viele frischgebackene Eltern stehen einem riesigen Angebot an Kinderwagen gegenüber... Vom TÜV geprüfte Kinderwagen erhalten ein Prüfzeichen.",
-    meaning: "كثير من الآباء الجدد يواجهون عرضاً ضخماً من عربات الأطفال - عربات الأطفال المفحوصة من TÜV تحصل على علامة فحص",
-    keywords: ["Babys = أطفال", "Sicherheit = أمان"],
-    simplified: "أطفال - أمان",
-    imagine: "🧠👁️ تخيل عربة أطفال (Kinderwagen) عليها ختم TÜV والطفل (Baby) سعيد 🚼✅😊"
-};
-
-// ============================================
-// Exam 3: Sport ist gesund (التعديل 1)
-// ============================================
-
-HELP_DATA["lesen1_exam3_q1"] = {
-    text: "Text 1: An der Ostküste Attikas in Griechenland lag in der Antike der Ort Marathon... Der Marathonlauf gilt als einziger Leistungssport, der bis ins hohe Alter ausgeübt werden kann.",
-    meaning: "على الساحل الشرقي لأتيكا في اليونان قديماً كان موقع ماراثون - سباق الماراثون يعتبر الرياضة التنافسية الوحيدة التي يمكن ممارستها حتى سن متقدم",
-    keywords: ["Marathon = ماراثون", "Leistungssport = رياضة تنافسية"],
-    simplified: "ماراثون - رياضة تنافسية",
-    imagine: "🧠👁️ تخيل جد كبير في السن (Großvater) يركض ماراثون (Marathon) ويصل إلى خط النهاية 🏃‍♂️👴🏁"
-};
-
-HELP_DATA["lesen1_exam3_q2"] = {
-    text: "Text 2: Warum soll sich der Mensch nun auf Straßen und Wegen fortbewegen?... Im Trend liegt jetzt der Jogging-Stroller, ein Kinderwagen mit nur noch drei bereiften Rädern.",
-    meaning: "لماذا يتحرك الإنسان على الطرق والمسالك؟ - الآن في الموضة عربة جري (Jogging-Stroller) وهي عربة أطفال بثلاث عجلات فقط",
-    keywords: ["Babys = أطفال", "Jogging = جري"],
-    simplified: "أطفال - جري",
-    imagine: "🧠👁️ تخيل أب وأم يركضان (Jogging) ويدفعان عربة أطفال (Babys) أمامهما 🏃‍♂️🏃‍♀️🚼"
-};
-
-HELP_DATA["lesen1_exam3_q3"] = {
-    text: "Text 3: Schweizer Forscher haben herausgefunden, dass nur 6 Minuten Hochleistungstraining pro Woche... ausreichen, um den Körper fit zu halten.",
-    meaning: "باحثون سويسريون اكتشفوا أن 6 دقائق فقط من التدريب عالي الأداء أسبوعياً تكفي للحفاظ على لياقة الجسم",
-    keywords: ["Fitness = لياقة", "Training = تدريب"],
-    simplified: "لياقة - تدريب",
-    imagine: "🧠👁️ تخيل شخصاً يتدرب (Training) 6 دقائق فقط ويصبح ذا لياقة (Fitness) عالية 💪⏱️"
-};
-
-HELP_DATA["lesen1_exam3_q4"] = {
-    text: "Text 4: Mehr Bewegung als Ausgleich für zu langes Sitzen im Büro... gibt es jedoch bei den die Ausdauer trainierenden Sportarten wie dem Joggen einige Grundregeln, die beachtet werden müssen.",
-    meaning: "حركة أكثر كتعويض للجلوس الطويل في المكتب - هناك قواعد أساسية يجب مراعاتها في رياضات التحمل مثل الجري",
-    keywords: ["Sport = رياضة", "Regeln = قواعد"],
-    simplified: "رياضة - قواعد",
-    imagine: "🧠👁️ تخيل رياضياً يقيس نبضه (Puls) لكي يتبع القواعد (Regeln) بشكل صحيح ❤️✅"
-};
-
-HELP_DATA["lesen1_exam3_q5"] = {
-    text: "Text 5: Viele frischgebackene Eltern stehen einem riesigen Angebot an Kinderwagen gegenüber... Vom TÜV geprüfte Kinderwagen erhalten ein Prüfzeichen.",
-    meaning: "كثير من الآباء الجدد يواجهون عرضاً ضخماً من عربات الأطفال - عربات الأطفال المفحوصة من TÜV تحصل على علامة فحص",
-    keywords: ["Babys = أطفال", "Sicherheit = أمان"],
-    simplified: "أطفال - أمان",
-    imagine: "🧠👁️ تخيل عربة أطفال (Kinderwagen) عليها ختم TÜV والطفل (Baby) سعيد 🚼✅😊"
-};
-
-// ============================================
-// Exam 4: Tanzkurs
-// ============================================
-
-HELP_DATA["lesen1_exam4_q1"] = {
-    text: "Text 1: Der Begriff Extremsport wird oft subjektiv verwendet... Viele Extremsportler ignorieren die Gefahren, was zu schweren Unfällen führt und sie häufig genug das Leben kostet.",
-    meaning: "مصطلح الرياضة الخطيرة يُستخدم غالباً بشكل شخصي - كثير من ممارسي الرياضات الخطيرة يتجاهلون المخاطر مما يؤدي إلى حوادث خطيرة وتكلفهم حياتهم",
-    keywords: ["Extremsport = رياضة خطيرة", "Adrenalin = أدرينالين"],
-    simplified: "رياضة خطيرة - أدرينالين",
-    imagine: "🧠👁️ تخيل شخصاً يقفز من جسر بالحبال (Bungee) وتدفق الأدرينالين (Adrenalin) في جسده 🪢💓"
-};
-
-HELP_DATA["lesen1_exam4_q2"] = {
-    text: "Text 2: Musik, Sport, ehrenamtliches Engagement - die Teilnahme von Jugendlichen an diesen sogenannten bildungsorientierten Freizeitaktivitäten hat in den vergangenen zehn Jahren deutlich zugenommen.",
-    meaning: "الموسيقى والرياضة والعمل التطوعي - مشاركة الشباب في هذه الأنشطة الترفيهية التعليمية زادت بشكل واضح في السنوات العشر الماضية",
-    keywords: ["Jugendliche = شباب", "Aktivitäten = أنشطة"],
-    simplified: "شباب - أنشطة",
-    imagine: "🧠👁️ تخيل شباباً (Jugendliche) يمارسون أنشطة (Aktivitäten) مفيدة مثل الموسيقى والرياضة بدلاً من الجلوس على الهاتف 🎸🏀📱"
-};
-
-HELP_DATA["lesen1_exam4_q3"] = {
-    text: "Text 3: In Firmen gibt es sie schon, jetzt wollen auch Schulen Entspannungskurse anbieten... Gerade Entspannungspausen seien aber wichtig, erklären Pädagogen und auch Neurowissenschaftler.",
-    meaning: "في الشركات توجد بالفعل، الآن المدارس تريد تقديم دورات استرخاء - فترات الاسترخاء مهمة جداً كما يوضح المعلمون وعلماء الأعصاب",
-    keywords: ["Schüler = طلاب", "Entspannung = استرخاء"],
-    simplified: "طلاب - استرخاء",
-    imagine: "🧠👁️ تخيل طالباً (Schüler) مرهقاً (gestresst) وبعد الاسترخاء (Entspannung) يستطيع التركيز بشكل أفضل 🧘‍♂️😌"
-};
-
-HELP_DATA["lesen1_exam4_q4"] = {
-    text: "Text 4: Tanja Kleist ist von modernem Tanz absolut begeistert... Für ihre Hip-Hop-Tanzgruppe sucht Frau Kleist neue tanzbegeisterte Teilnehmerinnen und Teilnehmer...",
-    meaning: "تانيا كلايست متحمسة جداً للرقص الحديث - السيدة كلايست تبحث عن مشاركات ومشاركين جدد متحمسين للرقص لمجموعة الهيب هوب الخاصة بها",
-    keywords: ["Tanzkurs = درس رقص", "Teilnehmer = مشاركين"],
-    simplified: "درس رقص - مشاركين",
-    imagine: "🧠👁️ تخيل إعلاناً يقول درس رقص (Tanzkurs) مجاني وكل المشاركين (Teilnehmer) قادمون للرقص 💃🕺"
-};
-
-HELP_DATA["lesen1_exam4_q5"] = {
-    text: "Text 5: Montags Tennis, dienstags Klavierunterricht, mittwochs Jazztanz in der Gruppe und donnerstags Treffen der Astronomie-Gruppe... Ob der Freizeitstress für alle Beteiligten wirklich gut ist?",
-    meaning: "الاثنين تنس، الثلاثاء درس بيانو، الأربعاء رقص جاز جماعي، الخميس لقاء مجموعة فلك - هل ضغط وقت الفراغ مفيد حقاً لكل المعنيين؟",
-    keywords: ["Langeweile = ملل", "Termine = مواعيد"],
-    simplified: "ملل - مواعيد",
-    imagine: "🧠👁️ تخيل طفلاً لديه مواعيد (Termine) كثيرة كل يوم، لأن الآباء يخافون من أن يشعر الطفل بالملل (Langeweile) 📅😫😰"
-};
-
-// ============================================
-// Exam 5: Tanzkurs (التعديل 1)
-// ============================================
-
-HELP_DATA["lesen1_exam5_q1"] = {
-    text: "Text 1: Der Begriff Extremsport wird oft subjektiv verwendet... Viele Extremsportler ignorieren die Gefahren, was zu schweren Unfällen führt und sie häufig genug das Leben kostet.",
-    meaning: "مصطلح الرياضة الخطيرة يُستخدم غالباً بشكل شخصي - كثير من ممارسي الرياضات الخطيرة يتجاهلون المخاطر مما يؤدي إلى حوادث خطيرة وتكلفهم حياتهم",
-    keywords: ["Extremsport = رياضة خطيرة", "Adrenalin = أدرينالين"],
-    simplified: "رياضة خطيرة - أدرينالين",
-    imagine: "🧠👁️ تخيل شخصاً يقفز من جسر بالحبال (Bungee) وتدفق الأدرينالين (Adrenalin) في جسده 🪢💓"
-};
-
-HELP_DATA["lesen1_exam5_q2"] = {
-    text: "Text 2: Musik, Sport, ehrenamtliches Engagement - die Teilnahme von Jugendlichen an diesen sogenannten bildungsorientierten Freizeitaktivitäten hat in den vergangenen zehn Jahren deutlich zugenommen.",
-    meaning: "الموسيقى والرياضة والعمل التطوعي - مشاركة الشباب في هذه الأنشطة الترفيهية التعليمية زادت بشكل واضح في السنوات العشر الماضية",
-    keywords: ["Jugendliche = شباب", "Aktivitäten = أنشطة"],
-    simplified: "شباب - أنشطة",
-    imagine: "🧠👁️ تخيل شباباً (Jugendliche) يمارسون أنشطة (Aktivitäten) مفيدة مثل الموسيقى والرياضة بدلاً من الجلوس على الهاتف 🎸🏀📱"
-};
-
-HELP_DATA["lesen1_exam5_q3"] = {
-    text: "Text 3: In Firmen gibt es sie schon, jetzt wollen auch Schulen Entspannungskurse anbieten... Gerade Entspannungspausen seien aber wichtig, erklären Pädagogen und auch Neurowissenschaftler.",
-    meaning: "في الشركات توجد بالفعل، الآن المدارس تريد تقديم دورات استرخاء - فترات الاسترخاء مهمة جداً كما يوضح المعلمون وعلماء الأعصاب",
-    keywords: ["Schüler = طلاب", "Entspannung = استرخاء"],
-    simplified: "طلاب - استرخاء",
-    imagine: "🧠👁️ تخيل طالباً (Schüler) مرهقاً (gestresst) وبعد الاسترخاء (Entspannung) يستطيع التركيز بشكل أفضل 🧘‍♂️😌"
-};
-
-HELP_DATA["lesen1_exam5_q4"] = {
-    text: "Text 4: Tanja Kleist ist von modernem Tanz absolut begeistert... Für ihre Hip-Hop-Tanzgruppe sucht Frau Kleist neue tanzbegeisterte Teilnehmerinnen und Teilnehmer...",
-    meaning: "تانيا كلايست متحمسة جداً للرقص الحديث - السيدة كلايست تبحث عن مشاركات ومشاركين جدد متحمسين للرقص لمجموعة الهيب هوب الخاصة بها",
-    keywords: ["Tanzkurs = درس رقص", "Teilnehmer = مشاركين"],
-    simplified: "درس رقص - مشاركين",
-    imagine: "🧠👁️ تخيل إعلاناً يقول درس رقص (Tanzkurs) مجاني وكل المشاركين (Teilnehmer) قادمون للرقص 💃🕺"
-};
-
-HELP_DATA["lesen1_exam5_q5"] = {
-    text: "Text 5: Montags Tennis, dienstags Klavierunterricht, mittwochs Jazztanz in der Gruppe und donnerstags Treffen der Astronomie-Gruppe... Ob der Freizeitstress für alle Beteiligten wirklich gut ist?",
-    meaning: "الاثنين تنس، الثلاثاء درس بيانو، الأربعاء رقص جاز جماعي، الخميس لقاء مجموعة فلك - هل ضغط وقت الفراغ مفيد حقاً لكل المعنيين؟",
-    keywords: ["Langeweile = ملل", "Termine = مواعيد"],
-    simplified: "ملل - مواعيد",
-    imagine: "🧠👁️ تخيل طفلاً لديه مواعيد (Termine) كثيرة كل يوم، لأن الآباء يخافون من أن يشعر الطفل بالملل (Langeweile) 📅😫😰"
-};
 // ============================================
 // نظام الطبقة المساعدة (منطق التشغيل)
-// يدعم: hören1, hören2, hören3, lesen1 (5 امتحانات)
 // ============================================
 
 let helpLayerActive = false;
@@ -1891,7 +1664,7 @@ let originalContentBackup = null;
 // الأسئلة الصحيحة لكل امتحان (جميع الأجزاء)
 function getCorrectQuestions(skill, examId) {
     const correctMap = {
-        // Hören Teil 1 (27 امتحان)
+        // Hören Teil 1
         'hoeren1_exam1': [2, 3], 'hoeren1_exam2': [3, 5], 'hoeren1_exam3': [2, 3, 5],
         'hoeren1_exam4': [1, 5], 'hoeren1_exam5': [2, 4], 'hoeren1_exam6': [2, 4],
         'hoeren1_exam7': [1, 2, 5], 'hoeren1_exam8': [3, 4, 5], 'hoeren1_exam9': [1, 2],
@@ -1901,8 +1674,7 @@ function getCorrectQuestions(skill, examId) {
         'hoeren1_exam19': [1, 3, 5], 'hoeren1_exam20': [1, 3, 4], 'hoeren1_exam21': [3],
         'hoeren1_exam22': [1, 2, 5], 'hoeren1_exam23': [3, 5], 'hoeren1_exam24': [1, 3, 5],
         'hoeren1_exam25': [1, 2, 5], 'hoeren1_exam26': [1, 5], 'hoeren1_exam27': [1, 2],
-        
-        // Hören Teil 2 (31 امتحان)
+        // Hören Teil 2
         'hoeren2_exam1': [3, 4, 8, 9, 10], 'hoeren2_exam2': [1, 3, 4, 8],
         'hoeren2_exam3': [1, 3, 4, 7, 8], 'hoeren2_exam4': [2, 6, 8, 9, 10],
         'hoeren2_exam5': [2, 9, 10], 'hoeren2_exam6': [3, 4, 7], 'hoeren2_exam7': [3, 4, 7],
@@ -1918,8 +1690,7 @@ function getCorrectQuestions(skill, examId) {
         'hoeren2_exam26': [3, 5, 7, 8, 10], 'hoeren2_exam27': [2, 3, 4, 6, 8],
         'hoeren2_exam28': [1, 2, 4, 6, 8, 10], 'hoeren2_exam29': [4, 5, 9, 10],
         'hoeren2_exam30': [2, 3, 6, 7, 10], 'hoeren2_exam31': [2, 4, 5, 8, 9],
-        
-        // Hören Teil 3 (27 امتحان)
+        // Hören Teil 3
         'hoeren3_exam1': [1], 'hoeren3_exam2': [1, 3], 'hoeren3_exam3': [1, 3],
         'hoeren3_exam4': [1, 4], 'hoeren3_exam5': [1, 4], 'hoeren3_exam6': [1, 5],
         'hoeren3_exam7': [1, 5], 'hoeren3_exam8': [1, 5], 'hoeren3_exam9': [1, 5],
@@ -1928,69 +1699,37 @@ function getCorrectQuestions(skill, examId) {
         'hoeren3_exam16': [1, 3, 4, 5], 'hoeren3_exam17': [1, 3], 'hoeren3_exam18': [2, 3, 4],
         'hoeren3_exam19': [2, 4], 'hoeren3_exam20': [1, 3], 'hoeren3_exam21': [2],
         'hoeren3_exam22': [2, 4], 'hoeren3_exam23': [1, 5], 'hoeren3_exam24': [2],
-        'hoeren3_exam25': [1, 3], 'hoeren3_exam26': [1, 3, 5], 'hoeren3_exam27': [1, 3],
-        
-        // Lesen Teil 1 (5 امتحانات فقط - Exam 1 إلى 5)
-        'lesen1_exam1': [1, 2, 3, 4, 5],
-        'lesen1_exam2': [1, 2, 3, 4, 5],
-        'lesen1_exam3': [1, 2, 3, 4, 5],
-        'lesen1_exam4': [1, 2, 3, 4, 5],
-        'lesen1_exam5': [1, 2, 3, 4, 5]
+        'hoeren3_exam25': [1, 3], 'hoeren3_exam26': [1, 3, 5], 'hoeren3_exam27': [1, 3]
     };
     return correctMap[`${skill}_exam${examId}`] || [];
 }
 
-// الحصول على رقم الامتحان الحالي
 function getCurrentExamId() {
-    if (window.currentExamId && window.currentExamId > 0) return window.currentExamId;
+    if (window.currentExamId) return window.currentExamId;
     const title = document.getElementById('examTitle')?.textContent || '';
     const match = title.match(/Exam\s+(\d+)/i);
-    if (match) return parseInt(match[1]);
-    const numMatch = title.match(/\d+/);
-    if (numMatch) return parseInt(numMatch[0]);
-    return 1;
+    return match ? parseInt(match[1]) : 1;
 }
 
-// الحصول على نوع المهارة الحالي
 function getCurrentSkill() {
     if (document.getElementById('hoeren1')?.style.display === 'block') return 'hoeren1';
     if (document.getElementById('hoeren2')?.style.display === 'block') return 'hoeren2';
     if (document.getElementById('hoeren3')?.style.display === 'block') return 'hoeren3';
-    if (document.getElementById('teil1')?.style.display === 'block') return 'lesen1';
     return 'hoeren1';
 }
 
-// الحصول على القسم النشط
 function getActiveSection() {
     if (document.getElementById('hoeren1')?.style.display === 'block') return document.getElementById('hoeren1');
     if (document.getElementById('hoeren2')?.style.display === 'block') return document.getElementById('hoeren2');
     if (document.getElementById('hoeren3')?.style.display === 'block') return document.getElementById('hoeren3');
-    if (document.getElementById('teil1')?.style.display === 'block') return document.getElementById('teil1');
     return null;
 }
 
-// البحث عن البيانات في HELP_DATA
-function getHelpData(skill, examId, questionNumber) {
-    if (typeof HELP_DATA === 'undefined') return null;
-    
-    // النمط الأساسي: skill_examX_qY
-    const key = `${skill}_exam${examId}_q${questionNumber}`;
-    if (HELP_DATA[key]) return HELP_DATA[key];
-    
-    // محاولة البحث بطرق أخرى
-    for (let k in HELP_DATA) {
-        if (k.includes(`exam${examId}`) && (k.includes(`q${questionNumber}`) || k.includes(`_${questionNumber}`))) {
-            return HELP_DATA[k];
-        }
-    }
-    return null;
-}
-
-// إنشاء بطاقة شرح واحدة
 function createHelpCard(questionNumber) {
     const examId = getCurrentExamId();
     const skill = getCurrentSkill();
-    const data = getHelpData(skill, examId, questionNumber);
+    const helpKey = `${skill}_exam${examId}_q${questionNumber}`;
+    const data = HELP_DATA[helpKey];
     
     const card = document.createElement('div');
     card.style.cssText = 'background:white;border-radius:12px;padding:20px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border:1px solid #e0e0e0';
@@ -2006,12 +1745,12 @@ function createHelpCard(questionNumber) {
         }
         card.innerHTML = `
             <div style="font-weight:bold;color:#2c3e66;border-right:4px solid #007bff;padding-right:12px;margin-bottom:15px;font-size:17px">
-                ${questionNumber}️⃣ ${data.text || ''}
+                ${questionNumber}️⃣ ${data.text}
             </div>
-            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">📖 المعنى :</span> <span style="color:#333">${data.meaning || 'لا يوجد'}</span></div>
+            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">📖 المعنى :</span> <span style="color:#333">${data.meaning}</span></div>
             ${keywordsHtml}
-            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">✨ تبسيط :</span> <span style="color:#333">${data.simplified || data.meaning || 'لا يوجد'}</span></div>
-            <div><span style="color:#0056b3;font-weight:bold">🎭 تخيل :</span> <span style="color:#333">${data.imagine || 'تخيل الجملة في سياقها'}</span></div>
+            <div style="margin-bottom:10px"><span style="color:#0056b3;font-weight:bold">✨ تبسيط :</span> <span style="color:#333">${data.simplified}</span></div>
+            <div><span style="color:#0056b3;font-weight:bold">🎭 تخيل :</span> <span style="color:#333">${data.imagine}</span></div>
         `;
     } else {
         card.innerHTML = `<div style="text-align:center;padding:20px;color:#999">❓ لا يوجد شرح للسؤال ${questionNumber}</div>`;
@@ -2019,7 +1758,6 @@ function createHelpCard(questionNumber) {
     return card;
 }
 
-// إنشاء طبقة المساعدة (تعرض فقط الأسئلة الصحيحة)
 function createHelpLayer() {
     const container = document.createElement('div');
     container.id = 'helpLayerContainer';
@@ -2030,12 +1768,9 @@ function createHelpLayer() {
     const correctQuestions = getCorrectQuestions(skill, examId);
     
     if (correctQuestions.length === 0) {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">📚 لا توجد أسئلة صحيحة مسجلة في هذا الامتحان</div>';
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">📚 لا توجد أسئلة صحيحة في هذا الامتحان</div>';
         return container;
     }
-    
-    // ترتيب الأرقام تصاعدياً
-    correctQuestions.sort((a, b) => a - b);
     
     correctQuestions.forEach(q => {
         container.appendChild(createHelpCard(q));
@@ -2043,14 +1778,11 @@ function createHelpLayer() {
     return container;
 }
 
-// إخفاء محتوى الامتحان
 function hideExamContent() {
     const hidden = [];
     const section = getActiveSection();
     if (!section) return hidden;
-    
-    const allChildren = [...section.children];
-    for (let child of allChildren) {
+    for (let child of section.children) {
         if (child.id !== 'helpLayerContainer' && child.style.display !== 'none') {
             child.style.display = 'none';
             hidden.push(child);
@@ -2059,13 +1791,12 @@ function hideExamContent() {
     return hidden;
 }
 
-// إخفاء أزرار التصحيح وإعادة التعيين
 function hideButtons() {
     const hidden = [];
     document.querySelectorAll('button').forEach(btn => {
         const text = btn.textContent;
         if (text.includes('✅') || text.includes('تصحيح') || text.includes('Prüfen') || text.includes('↺') || text.includes('إعادة')) {
-            if (btn.style.display !== 'none' && btn.id !== 'globalHelpButton') {
+            if (btn.style.display !== 'none') {
                 btn.style.display = 'none';
                 hidden.push(btn);
             }
@@ -2074,13 +1805,11 @@ function hideButtons() {
     return hidden;
 }
 
-// إظهار العناصر المخفية
 function showElements(elements) {
     if (!elements) return;
     elements.forEach(el => { if (el) el.style.display = ''; });
 }
 
-// تبديل وضع المساعدة
 function toggleHelp() {
     const existing = document.getElementById('helpLayerContainer');
     const section = getActiveSection();
@@ -2103,7 +1832,6 @@ function toggleHelp() {
     }
 }
 
-// إضافة زر المساعدة
 function addHelpButton() {
     if (document.getElementById('globalHelpButton')) return;
     const nav = document.getElementById('examNavButtons');
@@ -2119,31 +1847,11 @@ function addHelpButton() {
     nav.appendChild(btn);
 }
 
-// مراقبة تغيير الامتحان لإغلاق المساعدة تلقائياً
-function setupExamChangeListener() {
-    let lastExamId = getCurrentExamId();
-    let lastSkill = getCurrentSkill();
-    setInterval(() => {
-        const currentId = getCurrentExamId();
-        const currentSkill = getCurrentSkill();
-        if (currentId !== lastExamId || currentSkill !== lastSkill) {
-            lastExamId = currentId;
-            lastSkill = currentSkill;
-            if (helpLayerActive) toggleHelp();
-            console.log(`🔄 تغير الامتحان إلى: ${currentSkill}_exam${currentId}`);
-        }
-    }, 500);
-}
-
 // بدء التشغيل
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        addHelpButton();
-        setupExamChangeListener();
-    });
+    document.addEventListener('DOMContentLoaded', addHelpButton);
 } else {
     addHelpButton();
-    setupExamChangeListener();
 }
 
-console.log('✅ helpSystem.js تم التحميل بنجاح (يدعم hören1, hören2, hören3, lesen1)');
+console.log('✅ helpSystem.js تم التحميل بنجاح');
