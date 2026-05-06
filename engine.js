@@ -1,9 +1,9 @@
 // ============================================
-// engine.js - محرك الامتحانات المتكامل
-// يدعم: Matching (Custom Dropdown) + True/False (Hören 1,2,3) + Teil 2 + Teil 3 + Sprachbausteine Teil 1 + Sprachbausteine Teil 2 + Schreiben
+// engine.js - محرك الامتحانات المتكامل (النسخة النهائية الشغالة)
+// يدعم: Matching + True/False + Teil 2 + Teil 3 + Sprachbausteine Teil 1 + Sprachbausteine Teil 2 + Schreiben
 // ============================================
 
-console.log("✅ engine.js تم تحميله (النسخة النهائية المعدلة)");
+console.log("✅ engine.js تم تحميله (النسخة النهائية الشغالة)");
 
 window.loadExamFromFile = async function(skill, examId) {
   try {
@@ -170,12 +170,11 @@ function renderSchreibenExam() {
   container.appendChild(twoColumns);
 }
 
-// ========== نظام Sprachbausteine Teil 2 (معدل - طريقة ربط مزدوجة) ==========
+// ========== نظام Sprachbausteine Teil 2 ==========
 let currentSprach2Data = null;
 let sprach2UserAnswers = {};
 let sprach2SelectedQuestionId = null;
 let sprach2SelectedWordForLinking = null;
-let sprach2LinkMode = false; // وضع الربط
 
 window.loadSprach2Exam = function(examData) {
   console.log("🟢 loadSprach2Exam", examData.title);
@@ -183,7 +182,6 @@ window.loadSprach2Exam = function(examData) {
   sprach2UserAnswers = {};
   sprach2SelectedQuestionId = null;
   sprach2SelectedWordForLinking = null;
-  sprach2LinkMode = false;
   renderSprach2Exam();
 };
 
@@ -196,7 +194,6 @@ function isSprach2WordUsed(word) {
   return false;
 }
 
-// إزالة التحديد من جميع الكلمات
 function clearSprach2WordSelection() {
   document.querySelectorAll('.sprach2-word-card').forEach(card => {
     card.style.backgroundColor = "#ffffff";
@@ -205,7 +202,6 @@ function clearSprach2WordSelection() {
   });
 }
 
-// إزالة التحديد من جميع الأزرار (الفجوات)
 function clearSprach2ButtonSelection() {
   document.querySelectorAll('.sprach2-gap-btn').forEach(btn => {
     btn.classList.remove('selected-for-link');
@@ -261,14 +257,92 @@ function renderSprach2Exam() {
   textDiv.style.fontSize = "14px";
   textDiv.style.textAlign = "justify";
   
-  // ربط الأزرار - طريقة الربط المزدوجة
   for (let i = 1; i <= options.length; i++) {
     const btn = textDiv.querySelector(`#sprach2_btn_${i}`);
     if (btn) {
       btn.addEventListener('click', (function(qId) {
         return function(e) {
           e.stopPropagation();
-          // إذا كان هناك كلمة محددة مسبقاً، نربطها بهذا السؤال
+          
+          // التراجع عن الإجابة إذا كانت موجودة
+          if (sprach2UserAnswers[qId]) {
+            const oldWord = sprach2UserAnswers[qId];
+            delete sprach2UserAnswers[qId];
+            
+            const wordCard = document.getElementById(`sprach2_word_${oldWord}`);
+            if (wordCard) {
+              wordCard.style.backgroundColor = "#ffffff";
+              wordCard.style.border = "1px solid #7c6ce6";
+              wordCard.style.color = "#4a4a4a";
+              wordCard.style.cursor = "pointer";
+              wordCard.style.opacity = "1";
+              wordCard.classList.remove('selected-for-link');
+              
+              const newCard = wordCard.cloneNode(true);
+              wordCard.parentNode.replaceChild(newCard, wordCard);
+              
+              newCard.onclick = (function(w) {
+                return function() {
+                  if (sprach2SelectedQuestionId) {
+                    if (isSprach2WordUsed(w)) {
+                      alert(`⚠️ كلمة "${w}" تم استخدامها بالفعل!`);
+                      sprach2SelectedQuestionId = null;
+                      clearSprach2ButtonSelection();
+                      return;
+                    }
+                    sprach2UserAnswers[sprach2SelectedQuestionId] = w;
+                    const targetBtn = document.getElementById(`sprach2_btn_${sprach2SelectedQuestionId}`);
+                    if (targetBtn) {
+                      targetBtn.textContent = w;
+                      targetBtn.style.backgroundColor = "#d4edda";
+                      targetBtn.style.color = "#155724";
+                    }
+                    const cardEl = document.getElementById(`sprach2_word_${w}`);
+                    if (cardEl) {
+                      cardEl.style.backgroundColor = "#d4edda";
+                      cardEl.style.border = "2px solid #28a745";
+                      cardEl.style.color = "#155724";
+                      cardEl.style.cursor = "default";
+                      cardEl.style.opacity = "0.6";
+                    }
+                    sprach2SelectedQuestionId = null;
+                    clearSprach2ButtonSelection();
+                  } else {
+                    clearSprach2WordSelection();
+                    newCard.classList.add('selected-for-link');
+                    newCard.style.backgroundColor = "#c4b5fd";
+                    newCard.style.border = "2px solid #7c6ce6";
+                    sprach2SelectedWordForLinking = w;
+                  }
+                };
+              })(oldWord);
+              
+              newCard.onmouseenter = function() {
+                if (!this.classList.contains('selected-for-link')) {
+                  this.style.backgroundColor = "#e8e4ff";
+                  this.style.transform = "scale(1.02)";
+                }
+              };
+              newCard.onmouseleave = function() {
+                if (!this.classList.contains('selected-for-link')) {
+                  this.style.backgroundColor = "#ffffff";
+                  this.style.transform = "scale(1)";
+                }
+              };
+            }
+            
+            btn.textContent = `__( ${qId} )__`;
+            btn.style.backgroundColor = "#e0e0e0";
+            btn.style.color = "#333";
+            btn.classList.remove('selected-for-link');
+            btn.style.border = "none";
+            
+            const parentDiv = btn.parentElement;
+            const existingMsg = parentDiv.querySelector('.correct-answer-hint');
+            if (existingMsg) existingMsg.remove();
+            return;
+          }
+          
           if (sprach2SelectedWordForLinking) {
             const word = sprach2SelectedWordForLinking;
             if (isSprach2WordUsed(word)) {
@@ -277,15 +351,11 @@ function renderSprach2Exam() {
               clearSprach2WordSelection();
               return;
             }
-            // ربط الكلمة بالسؤال
             sprach2UserAnswers[qId] = word;
-            const targetBtn = document.getElementById(`sprach2_btn_${qId}`);
-            if (targetBtn) {
-              targetBtn.textContent = word;
-              targetBtn.style.backgroundColor = "#d4edda";
-              targetBtn.style.color = "#155724";
-            }
-            // تحديث الكلمة في القائمة
+            btn.textContent = word;
+            btn.style.backgroundColor = "#d4edda";
+            btn.style.color = "#155724";
+            
             const wordCard = document.getElementById(`sprach2_word_${word}`);
             if (wordCard) {
               wordCard.style.backgroundColor = "#d4edda";
@@ -296,12 +366,8 @@ function renderSprach2Exam() {
             }
             sprach2SelectedWordForLinking = null;
             clearSprach2WordSelection();
-          } 
-          // إذا لم تكن هناك كلمة محددة، ندخل وضع اختيار السؤال
-          else {
-            // إزالة التحديد من الأزرار الأخرى
+          } else {
             clearSprach2ButtonSelection();
-            // تحديد هذا الزر
             btn.classList.add('selected-for-link');
             btn.style.border = "2px solid #7c6ce6";
             sprach2SelectedQuestionId = qId;
@@ -359,22 +425,8 @@ function renderSprach2Exam() {
       wordCard.style.cursor = "default";
       wordCard.style.opacity = "0.6";
     } else {
-      wordCard.addEventListener("mouseenter", function() {
-        if (!this.classList.contains('selected-for-link')) {
-          this.style.backgroundColor = "#e8e4ff";
-          this.style.transform = "scale(1.02)";
-        }
-      });
-      wordCard.addEventListener("mouseleave", function() {
-        if (!this.classList.contains('selected-for-link')) {
-          this.style.backgroundColor = "#ffffff";
-          this.style.transform = "scale(1)";
-        }
-      });
-      wordCard.addEventListener("click", (function(w) {
-        return function(e) {
-          e.stopPropagation();
-          // إذا كان هناك سؤال محدد مسبقاً
+      wordCard.onclick = (function(w) {
+        return function() {
           if (sprach2SelectedQuestionId) {
             if (isSprach2WordUsed(w)) {
               alert(`⚠️ كلمة "${w}" تم استخدامها بالفعل!`);
@@ -382,7 +434,6 @@ function renderSprach2Exam() {
               clearSprach2ButtonSelection();
               return;
             }
-            // ربط السؤال المحدد بهذه الكلمة
             sprach2UserAnswers[sprach2SelectedQuestionId] = w;
             const targetBtn = document.getElementById(`sprach2_btn_${sprach2SelectedQuestionId}`);
             if (targetBtn) {
@@ -390,20 +441,17 @@ function renderSprach2Exam() {
               targetBtn.style.backgroundColor = "#d4edda";
               targetBtn.style.color = "#155724";
             }
-            // تحديث هذه الكلمة
-            const card = document.getElementById(`sprach2_word_${w}`);
-            if (card) {
-              card.style.backgroundColor = "#d4edda";
-              card.style.border = "2px solid #28a745";
-              card.style.color = "#155724";
-              card.style.cursor = "default";
-              card.style.opacity = "0.6";
+            const cardEl = document.getElementById(`sprach2_word_${w}`);
+            if (cardEl) {
+              cardEl.style.backgroundColor = "#d4edda";
+              cardEl.style.border = "2px solid #28a745";
+              cardEl.style.color = "#155724";
+              cardEl.style.cursor = "default";
+              cardEl.style.opacity = "0.6";
             }
             sprach2SelectedQuestionId = null;
             clearSprach2ButtonSelection();
-          } 
-          // إذا لم يكن هناك سؤال محدد، نختار هذه الكلمة للربط
-          else {
+          } else {
             clearSprach2WordSelection();
             wordCard.classList.add('selected-for-link');
             wordCard.style.backgroundColor = "#c4b5fd";
@@ -411,7 +459,20 @@ function renderSprach2Exam() {
             sprach2SelectedWordForLinking = w;
           }
         };
-      })(word));
+      })(word);
+      
+      wordCard.onmouseenter = function() {
+        if (!this.classList.contains('selected-for-link')) {
+          this.style.backgroundColor = "#e8e4ff";
+          this.style.transform = "scale(1.02)";
+        }
+      };
+      wordCard.onmouseleave = function() {
+        if (!this.classList.contains('selected-for-link')) {
+          this.style.backgroundColor = "#ffffff";
+          this.style.transform = "scale(1)";
+        }
+      };
     }
     
     wordsGrid.appendChild(wordCard);
@@ -530,8 +591,6 @@ function checkSprach2Exam() {
       }
     }
     
-    // عرض الإجابة الصحيحة في حالة الخطأ أو عدم الإجابة
-    const card = btn ? btn.closest('.question-card') : null;
     if (btn && !isCorrect) {
       const parentDiv = btn.parentElement;
       let existingMsg = parentDiv.querySelector('.correct-answer-hint');
@@ -565,7 +624,7 @@ function checkSprach2Exam() {
   }
 }
 
-// ========== نظام Sprachbausteine Teil 1 (معدل - الألوان) ==========
+// ========== نظام Sprachbausteine Teil 1 ==========
 let currentSprach1Data = null;
 let sprach1UserAnswers = {};
 
@@ -962,7 +1021,7 @@ function checkSprach1Exam() {
   }
 }
 
-// ========== نظام True/False (معدل: إخفاء رسالة "لم يتم الإجابة" + ألوان برتقالية) ==========
+// ========== نظام True/False ==========
 window.buildTrueFalseExam = function(container, questions, note) {
   container.innerHTML = '';
   
@@ -1161,7 +1220,6 @@ window.buildTrueFalseExam = function(container, questions, note) {
   container.appendChild(resultDiv);
 };
 
-// دالة التصحيح المعدلة (بدون رسالة "لم يتم الإجابة")
 function checkTrueFalseExam(container, questions, answers, correctNumbersContainer) {
   let score = 0;
   const total = questions.length;
@@ -1195,7 +1253,6 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
       correctMsg.style.fontSize = '14px';
       correctMsg.style.fontWeight = 'bold';
       correctMsg.style.color = '#28a745';
-      // تم إزالة رسالة "لم يتم الإجابة"
       correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${q.correct ? 'Richtig' : 'Falsch'}`;
       card.appendChild(correctMsg);
     }
@@ -1252,18 +1309,16 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
   }
 }
 
-// ========== نظام Teil 3 (معدل بالكامل - ربط مزدوج + عرض الإجابات الصحيحة) ==========
+// ========== نظام Teil 3 (معدل بالكامل) ==========
 let currentTeil3Data = null;
 let teil3UserAnswers = {};
-let teil3AvailableOptions = [];
 let teil3SelectedItemIndex = null;
 let teil3SelectedSituationIndex = null;
 
 window.loadTeil3Exam = function(examData) {
-  console.log("🟢 loadTeil3Exam (نسخة الربط المزدوج)", examData.title);
+  console.log("🟢 loadTeil3Exam", examData.title);
   currentTeil3Data = examData;
   teil3UserAnswers = {};
-  teil3AvailableOptions = [...examData.situations];
   teil3SelectedItemIndex = null;
   teil3SelectedSituationIndex = null;
   renderTeil3Exam();
@@ -1283,6 +1338,86 @@ function clearTeil3SituationSelection() {
   });
 }
 
+function checkIfSituationUsed(sitIdx, excludeItemIdx = null) {
+  for (let key in teil3UserAnswers) {
+    const ans = teil3UserAnswers[key];
+    if (ans !== undefined && ans !== null && typeof ans === 'number') {
+      if (ans === sitIdx && parseInt(key) !== excludeItemIdx) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function rebindSituationClick(sitIdx) {
+  const sitDiv = document.getElementById(`teil3_sit_${sitIdx}`);
+  if (!sitDiv) return;
+  const newSitDiv = sitDiv.cloneNode(true);
+  sitDiv.parentNode.replaceChild(newSitDiv, sitDiv);
+  newSitDiv.id = `teil3_sit_${sitIdx}`;
+  newSitDiv.setAttribute('data-sit-index', sitIdx);
+  newSitDiv.style.backgroundColor = "white";
+  newSitDiv.style.border = "1px solid #ddd";
+  newSitDiv.style.cursor = "pointer";
+  newSitDiv.style.opacity = "1";
+  newSitDiv.classList.remove('used', 'selected-for-link');
+  newSitDiv.innerHTML = `${String.fromCharCode(97 + sitIdx)}. ${currentTeil3Data.situations[sitIdx]}`;
+  
+  newSitDiv.onclick = (e) => {
+    e.stopPropagation();
+    if (teil3SelectedItemIndex !== null) {
+      if (newSitDiv.classList.contains('used')) {
+        alert(`⚠️ الموقف "${String.fromCharCode(97 + sitIdx)}. ${currentTeil3Data.situations[sitIdx]}" تم استخدامه بالفعل!`);
+        clearTeil3ItemSelection();
+        teil3SelectedItemIndex = null;
+        return;
+      }
+      const oldSitForItem = teil3UserAnswers[teil3SelectedItemIndex];
+      if (oldSitForItem !== undefined && oldSitForItem !== null && typeof oldSitForItem === 'number') {
+        const oldSitDiv = document.getElementById(`teil3_sit_${oldSitForItem}`);
+        if (oldSitDiv) {
+          oldSitDiv.style.backgroundColor = "white";
+          oldSitDiv.style.border = "1px solid #ddd";
+          oldSitDiv.style.cursor = "pointer";
+          oldSitDiv.style.opacity = "1";
+          oldSitDiv.classList.remove('used');
+          rebindSituationClick(oldSitForItem);
+        }
+      }
+      teil3UserAnswers[teil3SelectedItemIndex] = sitIdx;
+      const dropdownBtn = document.getElementById(`teil3_dropdown_btn_${teil3SelectedItemIndex}`);
+      if (dropdownBtn) {
+        dropdownBtn.innerHTML = `<span>${String.fromCharCode(97 + sitIdx)}. ${currentTeil3Data.situations[sitIdx]}</span><span>▼</span>`;
+      }
+      newSitDiv.style.backgroundColor = "#d4edda";
+      newSitDiv.style.border = "2px solid #28a745";
+      newSitDiv.style.cursor = "default";
+      newSitDiv.style.opacity = "0.6";
+      newSitDiv.classList.add('used');
+      clearTeil3ItemSelection();
+      teil3SelectedItemIndex = null;
+    } else {
+      if (newSitDiv.classList.contains('used')) return;
+      clearTeil3SituationSelection();
+      newSitDiv.classList.add('selected-for-link');
+      newSitDiv.style.border = "2px solid #7c6ce6";
+      teil3SelectedSituationIndex = sitIdx;
+    }
+  };
+  
+  newSitDiv.onmouseenter = () => {
+    if (!newSitDiv.classList.contains('used') && !newSitDiv.classList.contains('selected-for-link')) {
+      newSitDiv.style.backgroundColor = "#e8e4ff";
+    }
+  };
+  newSitDiv.onmouseleave = () => {
+    if (!newSitDiv.classList.contains('used') && !newSitDiv.classList.contains('selected-for-link')) {
+      newSitDiv.style.backgroundColor = "white";
+    }
+  };
+}
+
 function renderTeil3Exam() {
   const container = document.getElementById("teil3");
   if (!container) return;
@@ -1296,7 +1431,6 @@ function renderTeil3Exam() {
   twoColumns.style.gap = "30px";
   twoColumns.style.flexWrap = "wrap";
   
-  // ========== العمود الأيسر: العناصر (Anzeigen) ==========
   const leftColumn = document.createElement("div");
   leftColumn.style.flex = "2";
   leftColumn.style.minWidth = "500px";
@@ -1342,86 +1476,193 @@ function renderTeil3Exam() {
     itemText.innerHTML = item.text;
     card.appendChild(itemText);
     
-    const answerDisplay = document.createElement("div");
-    answerDisplay.id = `teil3_answer_${i}`;
-    answerDisplay.style.marginTop = "10px";
-    answerDisplay.style.padding = "8px";
-    answerDisplay.style.backgroundColor = "#e9ecef";
-    answerDisplay.style.borderRadius = "6px";
-    answerDisplay.style.fontSize = "12px";
-    answerDisplay.style.color = "#333";
-    answerDisplay.style.textAlign = "center";
-    const currentAnswer = teil3UserAnswers[i];
-    if (currentAnswer !== undefined && currentAnswer !== null) {
-      if (typeof currentAnswer === 'object' && currentAnswer.displayText) {
-        answerDisplay.innerHTML = currentAnswer.displayText;
-      } else if (typeof currentAnswer === 'number') {
-        answerDisplay.innerHTML = `المختار: ${String.fromCharCode(97 + currentAnswer)}. ${situations[currentAnswer]}`;
-      } else {
-        answerDisplay.innerHTML = `المختار: ${currentAnswer}`;
-      }
-    } else {
-      answerDisplay.innerHTML = "— لم يتم الاختيار بعد —";
-    }
-    card.appendChild(answerDisplay);
+    const dropdownContainer = document.createElement("div");
+    dropdownContainer.style.position = "relative";
+    dropdownContainer.style.width = "100%";
+    dropdownContainer.style.marginTop = "10px";
     
-    // حدث النقر على العنصر
-    card.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const idx = parseInt(this.getAttribute('data-item-index'));
-      // إذا كان هناك موقف محدد مسبقاً
-      if (teil3SelectedSituationIndex !== null) {
-        const sitIndex = teil3SelectedSituationIndex;
-        const sitText = situations[sitIndex];
-        // التحقق من عدم استخدام هذا الموقف بالفعل
-        let isUsed = false;
-        for (let key in teil3UserAnswers) {
-          const ans = teil3UserAnswers[key];
-          if (ans !== undefined && ans !== null && typeof ans === 'number' && ans === sitIndex) {
-            isUsed = true;
-            break;
+    const dropdownBtn = document.createElement("div");
+    dropdownBtn.className = "teil3-dropdown-btn";
+    dropdownBtn.id = `teil3_dropdown_btn_${i}`;
+    dropdownBtn.style.width = "100%";
+    dropdownBtn.style.padding = "8px 12px";
+    dropdownBtn.style.backgroundColor = "white";
+    dropdownBtn.style.border = "1px solid #ccc";
+    dropdownBtn.style.borderRadius = "8px";
+    dropdownBtn.style.cursor = "pointer";
+    dropdownBtn.style.display = "flex";
+    dropdownBtn.style.justifyContent = "space-between";
+    dropdownBtn.style.alignItems = "center";
+    dropdownBtn.style.boxSizing = "border-box";
+    dropdownBtn.style.fontSize = "13px";
+    
+    const currentAnswer = teil3UserAnswers[i];
+    if (currentAnswer !== undefined && currentAnswer !== null && typeof currentAnswer === 'number') {
+      dropdownBtn.innerHTML = `<span>${String.fromCharCode(97 + currentAnswer)}. ${situations[currentAnswer]}</span><span>▼</span>`;
+    } else {
+      dropdownBtn.innerHTML = `<span style="color:#999;">-- اختر العنوان --</span><span>▼</span>`;
+    }
+    
+    const dropdownList = document.createElement("div");
+    dropdownList.className = "teil3-dropdown-list";
+    dropdownList.id = `teil3_dropdown_list_${i}`;
+    dropdownList.style.position = "absolute";
+    dropdownList.style.top = "100%";
+    dropdownList.style.left = "0";
+    dropdownList.style.right = "0";
+    dropdownList.style.backgroundColor = "white";
+    dropdownList.style.border = "1px solid #ccc";
+    dropdownList.style.borderTop = "none";
+    dropdownList.style.borderRadius = "0 0 8px 8px";
+    dropdownList.style.maxHeight = "200px";
+    dropdownList.style.overflowY = "auto";
+    dropdownList.style.zIndex = "1000";
+    dropdownList.style.display = "none";
+    
+    function fillDropdownList(idx) {
+      const list = document.getElementById(`teil3_dropdown_list_${idx}`);
+      if (!list) return;
+      list.innerHTML = "";
+      
+      const noneOption = document.createElement("div");
+      noneOption.textContent = "— ليس لها عنوان —";
+      noneOption.style.padding = "10px";
+      noneOption.style.cursor = "pointer";
+      noneOption.style.borderBottom = "1px solid #eee";
+      noneOption.style.backgroundColor = "#f8f9fa";
+      noneOption.onclick = (e) => {
+        e.stopPropagation();
+        const oldSit = teil3UserAnswers[idx];
+        if (oldSit !== undefined && typeof oldSit === 'number') {
+          const oldSitDiv = document.getElementById(`teil3_sit_${oldSit}`);
+          if (oldSitDiv) {
+            oldSitDiv.style.backgroundColor = "white";
+            oldSitDiv.style.border = "1px solid #ddd";
+            oldSitDiv.style.cursor = "pointer";
+            oldSitDiv.style.opacity = "1";
+            oldSitDiv.classList.remove('used');
+            rebindSituationClick(oldSit);
           }
         }
-        if (isUsed) {
-          alert(`⚠️ الموقف "${String.fromCharCode(97 + sitIndex)}. ${sitText}" تم استخدامه بالفعل!`);
+        teil3UserAnswers[idx] = null;
+        dropdownBtn.innerHTML = `<span style="color:#999;">-- اختر العنوان --</span><span>▼</span>`;
+        list.style.display = "none";
+        dropdownBtn.style.borderRadius = "8px";
+      };
+      noneOption.onmouseenter = () => { noneOption.style.backgroundColor = "#e8e4ff"; };
+      noneOption.onmouseleave = () => { noneOption.style.backgroundColor = "#f8f9fa"; };
+      list.appendChild(noneOption);
+      
+      for (let s = 0; s < situations.length; s++) {
+        const isUsed = checkIfSituationUsed(s, idx);
+        const sitDiv = document.createElement("div");
+        sitDiv.textContent = `${String.fromCharCode(97 + s)}. ${situations[s]}`;
+        sitDiv.style.padding = "10px";
+        sitDiv.style.cursor = isUsed ? "default" : "pointer";
+        sitDiv.style.borderBottom = "1px solid #eee";
+        sitDiv.style.opacity = isUsed ? "0.5" : "1";
+        sitDiv.style.backgroundColor = "white";
+        
+        if (!isUsed) {
+          sitDiv.onclick = (e) => {
+            e.stopPropagation();
+            const oldSit = teil3UserAnswers[idx];
+            if (oldSit !== undefined && typeof oldSit === 'number') {
+              const oldSitDiv = document.getElementById(`teil3_sit_${oldSit}`);
+              if (oldSitDiv) {
+                oldSitDiv.style.backgroundColor = "white";
+                oldSitDiv.style.border = "1px solid #ddd";
+                oldSitDiv.style.cursor = "pointer";
+                oldSitDiv.style.opacity = "1";
+                oldSitDiv.classList.remove('used');
+                rebindSituationClick(oldSit);
+              }
+            }
+            teil3UserAnswers[idx] = s;
+            dropdownBtn.innerHTML = `<span>${String.fromCharCode(97 + s)}. ${situations[s]}</span><span>▼</span>`;
+            const targetSitDiv = document.getElementById(`teil3_sit_${s}`);
+            if (targetSitDiv) {
+              targetSitDiv.style.backgroundColor = "#d4edda";
+              targetSitDiv.style.border = "2px solid #28a745";
+              targetSitDiv.style.cursor = "default";
+              targetSitDiv.style.opacity = "0.6";
+              targetSitDiv.classList.add('used');
+            }
+            list.style.display = "none";
+            dropdownBtn.style.borderRadius = "8px";
+          };
+          sitDiv.onmouseenter = () => { sitDiv.style.backgroundColor = "#e8e4ff"; };
+          sitDiv.onmouseleave = () => { sitDiv.style.backgroundColor = "white"; };
+        }
+        list.appendChild(sitDiv);
+      }
+    }
+    
+    dropdownBtn.onclick = (e) => {
+      e.stopPropagation();
+      if (dropdownList.style.display === "block") {
+        dropdownList.style.display = "none";
+        dropdownBtn.style.borderRadius = "8px";
+      } else {
+        document.querySelectorAll('.teil3-dropdown-list').forEach(l => l.style.display = 'none');
+        document.querySelectorAll('.teil3-dropdown-btn').forEach(b => b.style.borderRadius = '8px');
+        dropdownList.style.display = "block";
+        dropdownBtn.style.borderRadius = "8px 8px 0 0";
+        fillDropdownList(i);
+      }
+    };
+    
+    dropdownContainer.appendChild(dropdownBtn);
+    dropdownContainer.appendChild(dropdownList);
+    card.appendChild(dropdownContainer);
+    
+    card.onclick = (e) => {
+      e.stopPropagation();
+      if (teil3SelectedSituationIndex !== null) {
+        const sitIdx = teil3SelectedSituationIndex;
+        if (checkIfSituationUsed(sitIdx, i)) {
+          alert(`⚠️ الموقف "${String.fromCharCode(97 + sitIdx)}. ${situations[sitIdx]}" تم استخدامه بالفعل!`);
           clearTeil3SituationSelection();
           teil3SelectedSituationIndex = null;
           return;
         }
-        // ربط الموقف بهذا العنصر
-        teil3UserAnswers[idx] = sitIndex;
-        // تحديث العرض
-        const answerDiv = document.getElementById(`teil3_answer_${idx}`);
-        if (answerDiv) {
-          answerDiv.innerHTML = `المختار: ${String.fromCharCode(97 + sitIndex)}. ${sitText}`;
+        const oldSit = teil3UserAnswers[i];
+        if (oldSit !== undefined && typeof oldSit === 'number') {
+          const oldSitDiv = document.getElementById(`teil3_sit_${oldSit}`);
+          if (oldSitDiv) {
+            oldSitDiv.style.backgroundColor = "white";
+            oldSitDiv.style.border = "1px solid #ddd";
+            oldSitDiv.style.cursor = "pointer";
+            oldSitDiv.style.opacity = "1";
+            oldSitDiv.classList.remove('used');
+            rebindSituationClick(oldSit);
+          }
         }
-        // تحديث الموقف في القائمة (جعله مستخدماً)
-        const sitElement = document.getElementById(`teil3_sit_${sitIndex}`);
-        if (sitElement) {
-          sitElement.style.backgroundColor = "#d4edda";
-          sitElement.style.border = "2px solid #28a745";
-          sitElement.style.cursor = "default";
-          sitElement.style.opacity = "0.6";
-          sitElement.classList.add('used');
+        teil3UserAnswers[i] = sitIdx;
+        dropdownBtn.innerHTML = `<span>${String.fromCharCode(97 + sitIdx)}. ${situations[sitIdx]}</span><span>▼</span>`;
+        const sitDiv = document.getElementById(`teil3_sit_${sitIdx}`);
+        if (sitDiv) {
+          sitDiv.style.backgroundColor = "#d4edda";
+          sitDiv.style.border = "2px solid #28a745";
+          sitDiv.style.cursor = "default";
+          sitDiv.style.opacity = "0.6";
+          sitDiv.classList.add('used');
         }
         clearTeil3SituationSelection();
         teil3SelectedSituationIndex = null;
-      } 
-      else {
-        // تحديد هذا العنصر للربط
+      } else {
         clearTeil3ItemSelection();
         card.classList.add('selected-for-link');
         card.style.border = "2px solid #7c6ce6";
-        teil3SelectedItemIndex = idx;
+        teil3SelectedItemIndex = i;
       }
-    });
+    };
     
     itemsGrid.appendChild(card);
   }
   
   leftColumn.appendChild(itemsGrid);
   
-  // ========== العمود الأيمن: المواقف (Situationen) ==========
   const rightColumn = document.createElement("div");
   rightColumn.style.flex = "1";
   rightColumn.style.minWidth = "250px";
@@ -1457,68 +1698,68 @@ function renderTeil3Exam() {
     sitDiv.style.transition = "all 0.2s";
     sitDiv.innerHTML = `${String.fromCharCode(97 + i)}. ${situations[i]}`;
     
-    // التحقق إذا كان هذا الموقف مستخدماً بالفعل
-    let isUsed = false;
-    for (let key in teil3UserAnswers) {
-      const ans = teil3UserAnswers[key];
-      if (ans !== undefined && ans !== null && typeof ans === 'number' && ans === i) {
-        isUsed = true;
-        break;
-      }
-    }
+    const isUsed = checkIfSituationUsed(i);
     if (isUsed) {
       sitDiv.style.backgroundColor = "#d4edda";
       sitDiv.style.border = "2px solid #28a745";
       sitDiv.style.cursor = "default";
       sitDiv.style.opacity = "0.6";
       sitDiv.classList.add('used');
-    } else {
-      sitDiv.addEventListener("mouseenter", function() {
-        if (!this.classList.contains('used') && !this.classList.contains('selected-for-link')) {
-          this.style.backgroundColor = "#e8e4ff";
-        }
-      });
-      sitDiv.addEventListener("mouseleave", function() {
-        if (!this.classList.contains('used') && !this.classList.contains('selected-for-link')) {
-          this.style.backgroundColor = "white";
-        }
-      });
-      sitDiv.addEventListener("click", function(e) {
-        e.stopPropagation();
-        const sitIdx = parseInt(this.getAttribute('data-sit-index'));
-        // إذا كان هناك عنصر محدد مسبقاً
-        if (teil3SelectedItemIndex !== null) {
-          // التحقق من عدم استخدام هذا الموقف
-          if (this.classList.contains('used')) {
-            alert(`⚠️ الموقف "${String.fromCharCode(97 + sitIdx)}. ${situations[sitIdx]}" تم استخدامه بالفعل!`);
-            clearTeil3ItemSelection();
-            teil3SelectedItemIndex = null;
-            return;
-          }
-          // ربط العنصر المحدد بهذا الموقف
-          teil3UserAnswers[teil3SelectedItemIndex] = sitIdx;
-          const answerDiv = document.getElementById(`teil3_answer_${teil3SelectedItemIndex}`);
-          if (answerDiv) {
-            answerDiv.innerHTML = `المختار: ${String.fromCharCode(97 + sitIdx)}. ${situations[sitIdx]}`;
-          }
-          // تحديث هذا الموقف
-          this.style.backgroundColor = "#d4edda";
-          this.style.border = "2px solid #28a745";
-          this.style.cursor = "default";
-          this.style.opacity = "0.6";
-          this.classList.add('used');
+    }
+    
+    sitDiv.onclick = (e) => {
+      e.stopPropagation();
+      if (sitDiv.classList.contains('used')) return;
+      
+      if (teil3SelectedItemIndex !== null) {
+        if (checkIfSituationUsed(i, teil3SelectedItemIndex)) {
+          alert(`⚠️ الموقف "${String.fromCharCode(97 + i)}. ${situations[i]}" تم استخدامه بالفعل!`);
           clearTeil3ItemSelection();
           teil3SelectedItemIndex = null;
-        } 
-        else {
-          // تحديد هذا الموقف للربط
-          clearTeil3SituationSelection();
-          this.classList.add('selected-for-link');
-          this.style.border = "2px solid #7c6ce6";
-          teil3SelectedSituationIndex = sitIdx;
+          return;
         }
-      });
-    }
+        const oldSit = teil3UserAnswers[teil3SelectedItemIndex];
+        if (oldSit !== undefined && typeof oldSit === 'number') {
+          const oldSitDiv = document.getElementById(`teil3_sit_${oldSit}`);
+          if (oldSitDiv) {
+            oldSitDiv.style.backgroundColor = "white";
+            oldSitDiv.style.border = "1px solid #ddd";
+            oldSitDiv.style.cursor = "pointer";
+            oldSitDiv.style.opacity = "1";
+            oldSitDiv.classList.remove('used');
+            rebindSituationClick(oldSit);
+          }
+        }
+        teil3UserAnswers[teil3SelectedItemIndex] = i;
+        const dropdownBtn = document.getElementById(`teil3_dropdown_btn_${teil3SelectedItemIndex}`);
+        if (dropdownBtn) {
+          dropdownBtn.innerHTML = `<span>${String.fromCharCode(97 + i)}. ${situations[i]}</span><span>▼</span>`;
+        }
+        sitDiv.style.backgroundColor = "#d4edda";
+        sitDiv.style.border = "2px solid #28a745";
+        sitDiv.style.cursor = "default";
+        sitDiv.style.opacity = "0.6";
+        sitDiv.classList.add('used');
+        clearTeil3ItemSelection();
+        teil3SelectedItemIndex = null;
+      } else {
+        clearTeil3SituationSelection();
+        sitDiv.classList.add('selected-for-link');
+        sitDiv.style.border = "2px solid #7c6ce6";
+        teil3SelectedSituationIndex = i;
+      }
+    };
+    
+    sitDiv.onmouseenter = () => {
+      if (!sitDiv.classList.contains('used') && !sitDiv.classList.contains('selected-for-link')) {
+        sitDiv.style.backgroundColor = "#e8e4ff";
+      }
+    };
+    sitDiv.onmouseleave = () => {
+      if (!sitDiv.classList.contains('used') && !sitDiv.classList.contains('selected-for-link')) {
+        sitDiv.style.backgroundColor = "white";
+      }
+    };
     
     situationsList.appendChild(sitDiv);
   }
@@ -1529,7 +1770,6 @@ function renderTeil3Exam() {
   twoColumns.appendChild(rightColumn);
   container.appendChild(twoColumns);
   
-  // أزرار التحكم
   const buttonContainer = document.createElement("div");
   buttonContainer.style.display = "flex";
   buttonContainer.style.gap = "15px";
@@ -1592,7 +1832,7 @@ function checkTeil3Exam() {
     
     if (correctIndex === null || correctIndex === undefined) {
       correctText = "ليس لها عنوان";
-      isCorrect = (userAnswerVal === undefined || userAnswerVal === null || userAnswerVal === "— ليس لها عنوان —");
+      isCorrect = (userAnswerVal === null || userAnswerVal === undefined);
       if (isCorrect) score++;
     } else {
       correctText = `${String.fromCharCode(97 + correctIndex)}. ${situations[correctIndex]}`;
@@ -1619,17 +1859,6 @@ function checkTeil3Exam() {
         correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${correctText}`;
         card.appendChild(correctMsg);
       }
-      
-      const answerDiv = document.getElementById(`teil3_answer_${i}`);
-      if (answerDiv) {
-        if (isCorrect) {
-          answerDiv.style.backgroundColor = "#d4edda";
-          answerDiv.style.border = "1px solid #28a745";
-        } else {
-          answerDiv.style.backgroundColor = "#fef0e0";
-          answerDiv.style.border = "1px solid #e67e22";
-        }
-      }
     }
   }
   
@@ -1655,13 +1884,10 @@ function resetTeil3Exam() {
   teil3SelectedItemIndex = null;
   teil3SelectedSituationIndex = null;
   
-  // إعادة تعيين العناصر
   for (let i = 0; i < currentTeil3Data.items.length; i++) {
-    const answerDiv = document.getElementById(`teil3_answer_${i}`);
-    if (answerDiv) {
-      answerDiv.innerHTML = "— لم يتم الاختيار بعد —";
-      answerDiv.style.backgroundColor = "#e9ecef";
-      answerDiv.style.border = "1px solid #dee2e6";
+    const dropdownBtn = document.getElementById(`teil3_dropdown_btn_${i}`);
+    if (dropdownBtn) {
+      dropdownBtn.innerHTML = `<span style="color:#999;">-- اختر العنوان --</span><span>▼</span>`;
     }
     const card = document.getElementById(`teil3_item_${i}`);
     if (card) {
@@ -1672,7 +1898,6 @@ function resetTeil3Exam() {
     }
   }
   
-  // إعادة تعيين المواقف
   for (let i = 0; i < currentTeil3Data.situations.length; i++) {
     const sitDiv = document.getElementById(`teil3_sit_${i}`);
     if (sitDiv) {
@@ -1681,44 +1906,7 @@ function resetTeil3Exam() {
       sitDiv.style.cursor = "pointer";
       sitDiv.style.opacity = "1";
       sitDiv.classList.remove('used', 'selected-for-link');
-      
-      // إعادة ربط الأحداث
-      const newSitDiv = sitDiv.cloneNode(true);
-      sitDiv.parentNode.replaceChild(newSitDiv, sitDiv);
-      
-      const sitIdx = i;
-      newSitDiv.addEventListener("mouseenter", function() {
-        if (!this.classList.contains('used') && !this.classList.contains('selected-for-link')) {
-          this.style.backgroundColor = "#e8e4ff";
-        }
-      });
-      newSitDiv.addEventListener("mouseleave", function() {
-        if (!this.classList.contains('used') && !this.classList.contains('selected-for-link')) {
-          this.style.backgroundColor = "white";
-        }
-      });
-      newSitDiv.addEventListener("click", function(e) {
-        e.stopPropagation();
-        if (teil3SelectedItemIndex !== null && !this.classList.contains('used')) {
-          teil3UserAnswers[teil3SelectedItemIndex] = sitIdx;
-          const answerDiv = document.getElementById(`teil3_answer_${teil3SelectedItemIndex}`);
-          if (answerDiv) {
-            answerDiv.innerHTML = `المختار: ${String.fromCharCode(97 + sitIdx)}. ${currentTeil3Data.situations[sitIdx]}`;
-          }
-          this.style.backgroundColor = "#d4edda";
-          this.style.border = "2px solid #28a745";
-          this.style.cursor = "default";
-          this.style.opacity = "0.6";
-          this.classList.add('used');
-          clearTeil3ItemSelection();
-          teil3SelectedItemIndex = null;
-        } else if (teil3SelectedItemIndex === null && !this.classList.contains('used')) {
-          clearTeil3SituationSelection();
-          this.classList.add('selected-for-link');
-          this.style.border = "2px solid #7c6ce6";
-          teil3SelectedSituationIndex = sitIdx;
-        }
-      });
+      rebindSituationClick(i);
     }
   }
   
@@ -1728,7 +1916,7 @@ function resetTeil3Exam() {
   console.log("✅ تم إعادة تعيين Teil 3");
 }
 
-// ========== نظام Teil 2 (معدل - الألوان) ==========
+// ========== نظام Teil 2 ==========
 let currentTeil2Data = null;
 let teil2UserAnswers = {};
 
@@ -2015,7 +2203,7 @@ function checkTeil2Exam() {
   }
 }
 
-// ========== نظام Matching القديم (Teil 1 - معدل الألوان) ==========
+// ========== نظام Matching (Teil 1) ==========
 let currentMatchingExamData = null;
 let matchingSelectedAnswers = {};
 let matchingAvailableOptions = [];
@@ -2097,11 +2285,47 @@ function renderMatchingQuestions() {
     dropdownList.style.zIndex = "1000";
     dropdownList.style.display = "none";
     
-    dropdownContainer.appendChild(dropdownBtn);
-    dropdownContainer.appendChild(dropdownList);
-    card.appendChild(dropdownContainer);
-    
-    updateDropdownList(i);
+    function updateDropdownListForIndex(idx) {
+      const list = document.getElementById("m_list_" + idx);
+      if (!list) return;
+      list.innerHTML = "";
+      
+      for (let k = 0; k < matchingAvailableOptions.length; k++) {
+        const option = matchingAvailableOptions[k];
+        const optionDiv = document.createElement("div");
+        optionDiv.className = "dropdown-option";
+        optionDiv.textContent = option;
+        optionDiv.style.padding = "10px";
+        optionDiv.style.cursor = "pointer";
+        optionDiv.style.borderBottom = "1px solid #eee";
+        optionDiv.style.transition = "background 0.2s";
+        
+        optionDiv.addEventListener("mouseenter", function() {
+          this.style.backgroundColor = "#e8e4ff";
+        });
+        optionDiv.addEventListener("mouseleave", function() {
+          this.style.backgroundColor = "white";
+        });
+        
+        optionDiv.addEventListener("click", (function(qIdx, optText) {
+          return function(e) {
+            e.stopPropagation();
+            selectOption(qIdx, optText);
+          };
+        })(idx, option));
+        
+        list.appendChild(optionDiv);
+      }
+      
+      if (matchingAvailableOptions.length === 0) {
+        const emptyDiv = document.createElement("div");
+        emptyDiv.textContent = "⚠️ لا توجد خيارات متاحة";
+        emptyDiv.style.padding = "10px";
+        emptyDiv.style.color = "#999";
+        emptyDiv.style.textAlign = "center";
+        list.appendChild(emptyDiv);
+      }
+    }
     
     dropdownBtn.addEventListener("click", function(e) {
       e.stopPropagation();
@@ -2115,12 +2339,51 @@ function renderMatchingQuestions() {
       }
     });
     
+    function openDropdown(questionIndex) {
+      const list = document.getElementById("m_list_" + questionIndex);
+      const btn = document.getElementById("m_btn_" + questionIndex);
+      if (list && btn) {
+        list.style.display = "block";
+        btn.style.borderRadius = "8px 8px 0 0";
+        btn.style.borderBottom = "none";
+        openDropdownIndex = questionIndex;
+        updateDropdownListForIndex(questionIndex);
+      }
+    }
+    
+    function closeDropdown(questionIndex) {
+      const list = document.getElementById("m_list_" + questionIndex);
+      const btn = document.getElementById("m_btn_" + questionIndex);
+      if (list && btn) {
+        list.style.display = "none";
+        btn.style.borderRadius = "8px";
+        btn.style.border = "1px solid #ccc";
+      }
+      if (openDropdownIndex === questionIndex) {
+        openDropdownIndex = null;
+      }
+    }
+    
+    dropdownContainer.appendChild(dropdownBtn);
+    dropdownContainer.appendChild(dropdownList);
+    card.appendChild(dropdownContainer);
     container.appendChild(card);
+    
+    window.updateDropdownListForIndex = updateDropdownListForIndex;
+    window.openDropdown = openDropdown;
+    window.closeDropdown = closeDropdown;
   }
   
   document.addEventListener("click", function() {
     if (openDropdownIndex !== null) {
-      closeDropdown(openDropdownIndex);
+      const list = document.getElementById("m_list_" + openDropdownIndex);
+      const btn = document.getElementById("m_btn_" + openDropdownIndex);
+      if (list && btn) {
+        list.style.display = "none";
+        btn.style.borderRadius = "8px";
+        btn.style.border = "1px solid #ccc";
+      }
+      openDropdownIndex = null;
     }
   });
   
@@ -2162,7 +2425,7 @@ function renderMatchingQuestions() {
         btnSpan.textContent = "-- اختر الإجابة --";
         btnSpan.style.color = "#999";
       }
-      updateDropdownList(i);
+      if (window.updateDropdownListForIndex) window.updateDropdownListForIndex(i);
     }
     for (let i = 0; i < currentMatchingExamData.questions.length; i++) {
       const card = document.getElementById(`m_q_${i}`);
@@ -2184,114 +2447,47 @@ function renderMatchingQuestions() {
   resultDiv.className = "result-box";
   resultDiv.style.display = "none";
   container.appendChild(resultDiv);
-}
-
-function updateDropdownList(questionIndex) {
-  const list = document.getElementById("m_list_" + questionIndex);
-  if (!list) return;
   
-  list.innerHTML = "";
-  
-  for (let i = 0; i < matchingAvailableOptions.length; i++) {
-    const option = matchingAvailableOptions[i];
-    const optionDiv = document.createElement("div");
-    optionDiv.className = "dropdown-option";
-    optionDiv.textContent = option;
-    optionDiv.style.padding = "10px";
-    optionDiv.style.cursor = "pointer";
-    optionDiv.style.borderBottom = "1px solid #eee";
-    optionDiv.style.transition = "background 0.2s";
+  function selectOption(questionIndex, selectedText) {
+    const oldValue = matchingSelectedAnswers[questionIndex] || "";
     
-    optionDiv.addEventListener("mouseenter", function() {
-      this.style.backgroundColor = "#e8e4ff";
-    });
-    optionDiv.addEventListener("mouseleave", function() {
-      this.style.backgroundColor = "white";
-    });
-    
-    optionDiv.addEventListener("click", (function(qIdx, optText) {
-      return function(e) {
-        e.stopPropagation();
-        selectOption(qIdx, optText);
-      };
-    })(questionIndex, option));
-    
-    list.appendChild(optionDiv);
-  }
-  
-  if (matchingAvailableOptions.length === 0) {
-    const emptyDiv = document.createElement("div");
-    emptyDiv.textContent = "⚠️ لا توجد خيارات متاحة";
-    emptyDiv.style.padding = "10px";
-    emptyDiv.style.color = "#999";
-    emptyDiv.style.textAlign = "center";
-    list.appendChild(emptyDiv);
-  }
-}
-
-function openDropdown(questionIndex) {
-  const list = document.getElementById("m_list_" + questionIndex);
-  const btn = document.getElementById("m_btn_" + questionIndex);
-  if (list && btn) {
-    list.style.display = "block";
-    btn.style.borderRadius = "8px 8px 0 0";
-    btn.style.borderBottom = "none";
-    openDropdownIndex = questionIndex;
-    updateDropdownList(questionIndex);
-  }
-}
-
-function closeDropdown(questionIndex) {
-  const list = document.getElementById("m_list_" + questionIndex);
-  const btn = document.getElementById("m_btn_" + questionIndex);
-  if (list && btn) {
-    list.style.display = "none";
-    btn.style.borderRadius = "8px";
-    btn.style.border = "1px solid #ccc";
-  }
-  if (openDropdownIndex === questionIndex) {
-    openDropdownIndex = null;
-  }
-}
-
-function selectOption(questionIndex, selectedText) {
-  const oldValue = matchingSelectedAnswers[questionIndex] || "";
-  
-  if (oldValue === selectedText && oldValue !== "") {
-    if (!matchingAvailableOptions.includes(selectedText)) {
-      matchingAvailableOptions.push(selectedText);
-      matchingAvailableOptions.sort();
-    }
-    matchingSelectedAnswers[questionIndex] = "";
-  } 
-  else {
-    const indexInAvailable = matchingAvailableOptions.indexOf(selectedText);
-    if (indexInAvailable !== -1) {
-      matchingAvailableOptions.splice(indexInAvailable, 1);
-    }
-    
-    if (oldValue !== "") {
-      if (!matchingAvailableOptions.includes(oldValue)) {
-        matchingAvailableOptions.push(oldValue);
+    if (oldValue === selectedText && oldValue !== "") {
+      if (!matchingAvailableOptions.includes(selectedText)) {
+        matchingAvailableOptions.push(selectedText);
         matchingAvailableOptions.sort();
       }
+      matchingSelectedAnswers[questionIndex] = "";
+    } else {
+      const indexInAvailable = matchingAvailableOptions.indexOf(selectedText);
+      if (indexInAvailable !== -1) {
+        matchingAvailableOptions.splice(indexInAvailable, 1);
+      }
+      
+      if (oldValue !== "") {
+        if (!matchingAvailableOptions.includes(oldValue)) {
+          matchingAvailableOptions.push(oldValue);
+          matchingAvailableOptions.sort();
+        }
+      }
+      
+      matchingSelectedAnswers[questionIndex] = selectedText;
     }
     
-    matchingSelectedAnswers[questionIndex] = selectedText;
+    const btnSpan = document.querySelector(`#m_btn_${questionIndex} span:first-child`);
+    if (btnSpan) {
+      const newVal = matchingSelectedAnswers[questionIndex];
+      btnSpan.textContent = newVal || "-- اختر الإجابة --";
+      btnSpan.style.color = newVal ? "#333" : "#999";
+    }
+    
+    if (window.closeDropdown) window.closeDropdown(questionIndex);
+    
+    for (let i = 0; i < currentMatchingExamData.questions.length; i++) {
+      if (window.updateDropdownListForIndex) window.updateDropdownListForIndex(i);
+    }
   }
   
-  const btnSpan = document.querySelector(`#m_btn_${questionIndex} span:first-child`);
-  if (btnSpan) {
-    const newVal = matchingSelectedAnswers[questionIndex];
-    btnSpan.textContent = newVal || "-- اختر الإجابة --";
-    btnSpan.style.color = newVal ? "#333" : "#999";
-  }
-  
-  closeDropdown(questionIndex);
-  
-  for (let i = 0; i < currentMatchingExamData.questions.length; i++) {
-    updateDropdownList(i);
-  }
+  window.selectOption = selectOption;
 }
 
 function checkMatchingExam() {
@@ -2338,5 +2534,4 @@ function checkMatchingExam() {
   resultDiv.style.display = "block";
 }
 
-console.log("✅ engine.js جاهز بالكامل (النسخة المعدلة النهائية)");
-console.log("✅ جميع المشاكل تم حلها: إخفاء الرسائل، الألوان البرتقالية، الربط المزدوج في Teil 3 و Sprach2، عرض الإجابات الصحيحة");
+console.log("✅ engine.js جاهز بالكامل (النسخة النهائية الشغالة)");
