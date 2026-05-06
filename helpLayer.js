@@ -46,59 +46,32 @@ function getActiveSection() {
   return null;
 }
 
-// ========== إخفاء محتوى الامتحان بالكامل (جميع العناصر المتداخلة) ==========
-function hideExamQuestions() {
-  const hidden = [];
+// ========== إخفاء القسم النشط بالكامل ==========
+function hideExamContentCompletely() {
   const activeSection = getActiveSection();
-  if (!activeSection) return hidden;
+  if (!activeSection) return null;
   
-  // إخفاء جميع العناصر في القسم النشط
-  const allElements = activeSection.querySelectorAll('*');
+  const originalDisplay = activeSection.style.display;
+  activeSection.style.display = 'none';
   
-  allElements.forEach(el => {
-    // لا نخفي العناصر التالية:
-    // 1. حاوية المساعدة نفسها
-    // 2. أزرار التنقل (السابق/التالي)
-    // 3. زر المساعدة نفسه
-    // 4. زر العودة إلى القائمة
-    if (
-      el.id === 'helpLayerContainer' ||
-      el.closest('#examNavButtons') ||
-      el.id === 'globalHelpButton' ||
-      el.classList?.contains('back-list-btn') ||
-      el.id === 'backToListBtn'
-    ) {
-      return;
-    }
-    
-    if (el.style.display !== 'none') {
-      const originalDisplay = window.getComputedStyle(el).display;
-      el.style.display = 'none';
-      hidden.push({ el, originalDisplay });
-    }
-  });
-  
-  return hidden;
+  return { el: activeSection, originalDisplay: originalDisplay || 'block' };
 }
 
-// إظهار المحتوى المخفي
-function showHiddenElements(hiddenElements) {
-  if (!hiddenElements) return;
-  hiddenElements.forEach(item => {
-    if (item.el) {
-      item.el.style.display = item.originalDisplay || '';
-    }
-  });
+// إظهار القسم المخفي
+function showExamContent(backup) {
+  if (backup && backup.el) {
+    backup.el.style.display = backup.originalDisplay;
+  }
 }
 
-// إخفاء أزرار التصحيح وإعادة التعيين
+// ========== إخفاء أزرار التصحيح وإعادة التعيين ==========
 function hideCheckAndResetButtons() {
   const hidden = [];
   const allButtons = document.querySelectorAll('button');
   allButtons.forEach(btn => {
     const btnText = btn.textContent;
     if (btnText.includes('✅') || btnText.includes('تصحيح') || btnText.includes('Prüfen') || btnText.includes('↺') || btnText.includes('إعادة تعيين')) {
-      if (btn.style.display !== 'none' && btn.id !== 'globalHelpButton') {
+      if (btn.style.display !== 'none' && btn.id !== 'globalHelpButton' && btn.id !== 'prevExamBtn' && btn.id !== 'nextExamBtn') {
         const originalDisplay = window.getComputedStyle(btn).display;
         btn.style.display = 'none';
         hidden.push({ el: btn, originalDisplay });
@@ -177,7 +150,7 @@ function createHelpBoxFromData(data, index) {
   return box;
 }
 
-// ========== إنشاء شبكة البطاقات بناءً على المفاتيح الموجودة فعلاً ==========
+// ========== إنشاء حاوية البطاقات ==========
 function createHelpBoxesWithContent() {
   const container = document.createElement('div');
   container.id = 'helpLayerContainer';
@@ -201,7 +174,7 @@ function createHelpBoxesWithContent() {
     k.startsWith(`${skill}_exam${examId}`)
   );
   
-  // إذا لم يجد شيئاً، جرب البحث بالصيغة مع حرف
+  // إذا لم يجد شيئاً، جرب البحث بالصيغة مع حرف (لـ lesen3, sprach1, sprach2)
   if (keys.length === 0) {
     const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'];
     for (let i = 0; i < letters.length; i++) {
@@ -237,27 +210,32 @@ function createHelpBoxesWithContent() {
   return container;
 }
 
-// تبديل وضع المساعدة
+// ========== تبديل وضع المساعدة ==========
 function toggleHelpLayer() {
   const existingHelpLayer = document.getElementById('helpLayerContainer');
   const activeSection = getActiveSection();
   
   if (helpLayerActive) {
+    // إغلاق المساعدة: إزالة البطاقات وإظهار المحتوى الأصلي
     if (existingHelpLayer) existingHelpLayer.remove();
     if (originalContentBackup) {
-      showHiddenElements(originalContentBackup.hiddenQuestions);
+      showExamContent(originalContentBackup.hiddenSection);
       showCheckAndResetButtons(originalContentBackup.hiddenButtons);
       originalContentBackup = null;
     }
     helpLayerActive = false;
   } else {
-    const hiddenQuestions = hideExamQuestions();
+    // فتح المساعدة: إخفاء المحتوى الأصلي وعرض البطاقات
+    const hiddenSection = hideExamContentCompletely();
     const hiddenButtons = hideCheckAndResetButtons();
-    originalContentBackup = { hiddenQuestions, hiddenButtons };
+    originalContentBackup = { hiddenSection, hiddenButtons };
     
     const helpLayer = createHelpBoxesWithContent();
     if (activeSection && helpLayer.children.length > 0) {
-      activeSection.appendChild(helpLayer);
+      // إضافة البطاقات بعد إخفاء المحتوى
+      activeSection.parentNode?.insertBefore(helpLayer, activeSection);
+      // أو يمكن إضافتها داخل القسم بعد إخفاء المحتوى
+      // activeSection.appendChild(helpLayer);
     }
     helpLayerActive = true;
   }
@@ -335,3 +313,5 @@ if (document.readyState === 'loading') {
 } else {
   observeForHelpButton();
 }
+
+console.log('✅ helpLayer.js - نظام المساعدة تم تحميله بنجاح');
