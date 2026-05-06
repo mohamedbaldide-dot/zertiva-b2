@@ -15101,7 +15101,14 @@ function getCorrectQuestions(skill, examId) {
     };
     return correctMap[`${skill}_exam${examId}`] || [];
 }
+// ============================================
+// helpSystem.js - نظام المساعدة البسيط الذي يعمل 100%
+// ============================================
 
+let helpLayerActive = false;
+let originalContentBackup = null;
+
+// الحصول على رقم الامتحان الحالي
 function getCurrentExamId() {
     if (window.currentExamId) return window.currentExamId;
     const title = document.getElementById('examTitle')?.textContent || '';
@@ -15109,6 +15116,7 @@ function getCurrentExamId() {
     return match ? parseInt(match[1]) : 1;
 }
 
+// الحصول على القسم الحالي
 function getCurrentSkill() {
     if (document.getElementById('hoeren1')?.style.display === 'block') return 'hoeren1';
     if (document.getElementById('hoeren2')?.style.display === 'block') return 'hoeren2';
@@ -15121,6 +15129,7 @@ function getCurrentSkill() {
     return 'hoeren1';
 }
 
+// الحصول على العنصر النشط
 function getActiveSection() {
     if (document.getElementById('hoeren1')?.style.display === 'block') return document.getElementById('hoeren1');
     if (document.getElementById('hoeren2')?.style.display === 'block') return document.getElementById('hoeren2');
@@ -15133,26 +15142,46 @@ function getActiveSection() {
     return null;
 }
 
-// دالة البحث عن البيانات مع طباعة معلومات التصحيح
-function findHelpData(skill, examId, questionNumber) {
-    const key = `${skill}_exam${examId}_q${questionNumber}`;
-    if (window.HELP_DATA && window.HELP_DATA[key]) {
-        return window.HELP_DATA[key];
+// عدد الأسئلة حسب القسم
+function getQuestionCount(skill) {
+    if (skill === 'hoeren2') return 10;
+    if (skill === 'lesen3') return 10;
+    if (skill === 'sprach1') return 10;
+    if (skill === 'sprach2') return 10;
+    return 5;
+}
+
+// البحث عن البيانات في HELP_DATA
+function getHelpData(skill, examId, questionNumber) {
+    if (!window.HELP_DATA) return null;
+    
+    // الصيغ الممكنة للمفتاح
+    const possibleKeys = [
+        `${skill}_exam${examId}_q${questionNumber}`,
+        `${skill}_exam${examId}_${questionNumber}`,
+        `lesen1_exam${examId}_q${questionNumber}`,
+        `lesen2_exam${examId}_q${questionNumber}`,
+        `lesen3_exam${examId}_q${questionNumber}`,
+        `hoeren1_exam${examId}_q${questionNumber}`,
+        `hoeren2_exam${examId}_q${questionNumber}`,
+        `hoeren3_exam${examId}_q${questionNumber}`,
+        `sprach1_exam${examId}_q${questionNumber}`,
+        `sprach2_exam${examId}_q${questionNumber}`,
+    ];
+    
+    for (let key of possibleKeys) {
+        if (window.HELP_DATA[key]) {
+            return window.HELP_DATA[key];
+        }
     }
-    // محاولة البحث بدون 'q'
-    const key2 = `${skill}_exam${examId}_${questionNumber}`;
-    if (window.HELP_DATA && window.HELP_DATA[key2]) {
-        return window.HELP_DATA[key2];
-    }
-    console.log(`🔍 لم يتم العثور على: ${key}`);
     return null;
 }
 
+// إنشاء بطاقة مساعدة لسؤال واحد
 function createHelpCard(questionNumber) {
     const examId = getCurrentExamId();
     const skill = getCurrentSkill();
-    const data = findHelpData(skill, examId, questionNumber);
-    const helpKey = `${skill}_exam${examId}_q${questionNumber}`;
+    const data = getHelpData(skill, examId, questionNumber);
     
     const card = document.createElement('div');
     card.style.cssText = 'background:white;border-radius:12px;padding:20px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border:1px solid #e0e0e0';
@@ -15166,6 +15195,7 @@ function createHelpCard(questionNumber) {
             });
             keywordsHtml += '</div>';
         }
+        
         card.innerHTML = `
             <div style="font-weight:bold;color:#2c3e66;border-right:4px solid #007bff;padding-right:12px;margin-bottom:15px;font-size:17px">
                 ${questionNumber}️⃣ ${data.text}
@@ -15176,37 +15206,36 @@ function createHelpCard(questionNumber) {
             <div><span style="color:#0056b3;font-weight:bold">🎭 تخيل :</span> <span style="color:#333">${data.imagine || 'تخيل الجملة في سياقها'}</span></div>
         `;
     } else {
-        card.innerHTML = `<div style="text-align:center;padding:20px;color:#999">❓ لا يوجد شرح للسؤال ${questionNumber}<br><small style="color:#ccc">${helpKey}</small></div>`;
+        card.innerHTML = `<div style="text-align:center;padding:20px;color:#999">❓ لا يوجد شرح للسؤال ${questionNumber}</div>`;
     }
     return card;
 }
 
-function createHelpLayer() {
+// إنشاء جميع البطاقات
+function createAllHelpCards() {
     const container = document.createElement('div');
     container.id = 'helpLayerContainer';
     container.style.cssText = 'background:#f8f9fa;border-radius:16px;padding:20px;margin:20px 0';
     
     const skill = getCurrentSkill();
     const examId = getCurrentExamId();
-    const correctQuestions = getCorrectQuestions(skill, examId);
+    const questionCount = getQuestionCount(skill);
     
-    console.log(`📊 إنشاء طبقة المساعدة: ${skill}_exam${examId}, الأسئلة:`, correctQuestions);
+    console.log(`📊 إنشاء المساعدة: ${skill}_exam${examId} (${questionCount} أسئلة)`);
     
-    if (correctQuestions.length === 0) {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#666">📚 لا توجد أسئلة صحيحة في هذا الامتحان</div>';
-        return container;
+    for (let i = 1; i <= questionCount; i++) {
+        container.appendChild(createHelpCard(i));
     }
     
-    correctQuestions.forEach(q => {
-        container.appendChild(createHelpCard(q));
-    });
     return container;
 }
 
+// إخفاء محتوى الامتحان
 function hideExamContent() {
     const hidden = [];
     const section = getActiveSection();
     if (!section) return hidden;
+    
     for (let child of section.children) {
         if (child.id !== 'helpLayerContainer' && child.style.display !== 'none') {
             child.style.display = 'none';
@@ -15216,11 +15245,12 @@ function hideExamContent() {
     return hidden;
 }
 
+// إخفاء أزرار التصحيح
 function hideButtons() {
     const hidden = [];
     document.querySelectorAll('button').forEach(btn => {
         const text = btn.textContent;
-        if (text.includes('✅') || text.includes('تصحيح') || text.includes('Prüfen') || text.includes('↺') || text.includes('إعادة')) {
+        if (text.includes('✅') || text.includes('تصحيح') || text.includes('Prüfen') || text.includes('↺')) {
             if (btn.style.display !== 'none') {
                 btn.style.display = 'none';
                 hidden.push(btn);
@@ -15230,11 +15260,13 @@ function hideButtons() {
     return hidden;
 }
 
+// إظهار العناصر المخفية
 function showElements(elements) {
     if (!elements) return;
     elements.forEach(el => { if (el) el.style.display = ''; });
 }
 
+// تبديل عرض المساعدة
 function toggleHelp() {
     const existing = document.getElementById('helpLayerContainer');
     const section = getActiveSection();
@@ -15251,14 +15283,16 @@ function toggleHelp() {
         const hiddenQuestions = hideExamContent();
         const hiddenButtons = hideButtons();
         originalContentBackup = { questions: hiddenQuestions, buttons: hiddenButtons };
-        const helpLayer = createHelpLayer();
-        if (section && helpLayer.children.length > 0) section.appendChild(helpLayer);
+        const helpLayer = createAllHelpCards();
+        if (section) section.appendChild(helpLayer);
         helpLayerActive = true;
     }
 }
 
+// إضافة زر المساعدة
 function addHelpButton() {
     if (document.getElementById('globalHelpButton')) return;
+    
     const nav = document.getElementById('examNavButtons');
     if (!nav) return;
     
@@ -15281,4 +15315,27 @@ if (document.readyState === 'loading') {
     addHelpButton();
 }
 
-console.log('✅ helpSystem.js - نظام المساعدة النهائي تم تحميله بنجاح');
+// تحديث عند تغيير الامتحان
+function setupExamChangeListener() {
+    let lastExamId = getCurrentExamId();
+    let lastSkill = getCurrentSkill();
+    
+    setInterval(() => {
+        const currentId = getCurrentExamId();
+        const currentSkill = getCurrentSkill();
+        
+        if (currentId !== lastExamId || currentSkill !== lastSkill) {
+            lastExamId = currentId;
+            lastSkill = currentSkill;
+            
+            // إذا كانت المساعدة مفتوحة، أغلقها تلقائياً
+            if (helpLayerActive) {
+                toggleHelp();
+            }
+            console.log(`🔄 تغير الامتحان إلى: ${currentSkill}_exam${currentId}`);
+        }
+    }, 500);
+}
+setupExamChangeListener();
+
+console.log('✅ helpSystem.js - نظام المساعدة البسيط تم تحميله بنجاح');
