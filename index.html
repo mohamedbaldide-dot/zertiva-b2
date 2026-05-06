@@ -218,5 +218,129 @@
 <script src="engine.js"></script>
 <script src="exams.js"></script>
 <script src="auth.js"></script>
+    <script>
+// ========== نظام قفل الامتحانات المتأخر (يعمل على أي شيء في الصفحة) ==========
+(async function() {
+    // دالة معرفة حالة المستخدم
+    async function getUserStatusFinal() {
+        let email = localStorage.getItem('zertiva_email');
+        if (!email) return 'guest';
+        try {
+            const response = await fetch('premium.json?_=' + Date.now());
+            const premium = await response.json();
+            if (premium[email]) {
+                let expiry = premium[email];
+                let today = new Date().toISOString().slice(0,10);
+                if (today <= expiry) return 'premium';
+            }
+            return 'free';
+        } catch(e) {
+            return 'free';
+        }
+    }
+
+    // دالة عرض نافذة القفل
+    function showLockModal(examTitle) {
+        let modal = document.createElement('div');
+        modal.style.cssText = `
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 999999;
+            display: flex; justify-content: center; align-items: center;
+            direction: rtl;
+        `;
+        modal.innerHTML = `
+            <div style="background: white; border-radius: 30px; padding: 30px; max-width: 350px; width: 85%; text-align: center;">
+                <div style="font-size: 55px;">🔒</div>
+                <h2 style="color: #2b5876;">محـتوى مقفل</h2>
+                <p>المرجو ترقية الحساب للوصول لهذا المحتوى</p>
+                <div style="background: #f3e8ff; padding: 10px; border-radius: 15px; margin: 15px 0;">
+                    <span style="color: #a855f7;">📚 ${examTitle}</span>
+                </div>
+                <p style="color: #888;">يتطلب باقة: <strong style="color: #f39c12;">Pro</strong></p>
+                <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                    <button id="upgradeModalBtn" style="background: #f39c12; border: none; padding: 10px 20px; border-radius: 30px; cursor: pointer; font-weight: bold;">🚀 ترقية الحساب الآن</button>
+                    <button id="closeModalBtn" style="background: #ccc; border: none; padding: 10px 20px; border-radius: 30px; cursor: pointer;">ليس الآن</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        document.getElementById('upgradeModalBtn')?.onclick = () => window.location.href = 'subscribe.html';
+        document.getElementById('closeModalBtn')?.onclick = () => modal.remove();
+        modal.onclick = (e) => { if(e.target === modal) modal.remove(); };
+    }
+
+    // دالة تطبيق القفل على كل الامتحانات
+    async function applyFinalLock() {
+        let status = await getUserStatusFinal();
+        if (status === 'premium') return; // المستخدم مدفوع، كل شيء مفتوح
+        
+        // البحث عن جميع عناصر الامتحانات (أي عنصر يحتوي على رقم ثم نقطة)
+        let allElements = document.querySelectorAll('#teil1 div, #teil2 div, #teil3 div, #sprach1 div, #sprach2 div, #hoeren1 div, #hoeren2 div, #hoeren3 div, #schreiben div');
+        
+        // أيضاً البحث في أي مكان آخر
+        allElements = [...allElements, ...document.querySelectorAll('.exam-item, .fragen-item, [class*="exam"]')];
+        
+        allElements.forEach(el => {
+            let text = el.innerText || el.textContent || '';
+            // استخراج رقم الامتحان (مثل "1:", "2:", "3:"...)
+            let match = text.match(/^(\d+)[:\.\-\s]/);
+            let examNumber = match ? parseInt(match[1]) : null;
+            
+            // إذا كان رقم الامتحان موجود وأكبر من 1
+            if (examNumber && examNumber > 1) {
+                // تغيير الشكل
+                el.style.backgroundColor = '#e9d5ff';
+                el.style.border = '2px solid #a855f7';
+                el.style.opacity = '0.65';
+                el.style.filter = 'blur(1px)';
+                el.style.cursor = 'pointer';
+                el.style.position = 'relative';
+                el.style.padding = '8px 12px';
+                el.style.margin = '5px 0';
+                el.style.borderRadius = '12px';
+                
+                // إضافة قفل
+                if (!el.querySelector('.final-lock-icon')) {
+                    let lock = document.createElement('span');
+                    lock.className = 'final-lock-icon';
+                    lock.innerHTML = ' 🔒';
+                    lock.style.cssText = 'font-size: 16px; margin-right: 8px;';
+                    el.appendChild(lock);
+                }
+                
+                // إضافة علامة PRO
+                if (!el.querySelector('.final-pro-badge')) {
+                    let pro = document.createElement('span');
+                    pro.className = 'final-pro-badge';
+                    pro.innerHTML = ' PRO';
+                    pro.style.cssText = 'background: #f39c12; color: white; font-size: 10px; padding: 2px 6px; border-radius: 10px; margin-right: 8px;';
+                    el.appendChild(pro);
+                }
+                
+                let examTitle = text.split('\n')[0].substring(0, 60);
+                let oldClick = el.onclick;
+                el.onclick = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showLockModal(examTitle);
+                    return false;
+                };
+            }
+        });
+    }
+
+    // مراقبة الصفحة وتطبيق القفل بشكل مستمر
+    let observer = new MutationObserver(() => {
+        let listPage = document.getElementById('list');
+        if (listPage && listPage.classList.contains('active')) {
+            setTimeout(applyFinalLock, 200);
+        }
+    });
+    observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
+    
+    // تطبيق القفل عند تحميل الصفحة
+    setTimeout(applyFinalLock, 1000);
+})();
+</script>
 </body>
 </html>
