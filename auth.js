@@ -1,593 +1,302 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-}
-
-.page {
-    display: none;
-    min-height: 100vh;
-    padding: 30px;
-}
-
-.active {
-    display: block;
-}
-
-.home {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.card {
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-button {
-    padding: 12px 20px;
-    border: none;
-    background: black;
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.item {
-    background: white;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.item:hover {
-    background: #eee;
-}
-
-.item-locked {
-    background: rgba(200, 200, 200, 0.5);
-}
-
-.item-locked .exam-title {
-    flex: 1;
-}
-
-.item-locked .lock-icon {
-    font-size: 14px;
-    margin: 0 4px;
-    opacity: 0.8;
-    color: #3b82f6;
-}
-
-.item-locked .pro-badge {
-    background: rgba(59, 130, 246, 0.15);
-    color: #3b82f6;
-    font-size: 10px;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin: 0 4px;
-    font-weight: bold;
-}
-
-.exam-title {
-    flex: 1;
-}
-
-.exam-right-icons {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.exam-box {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-select {
-    margin: 10px 0;
-    padding: 8px;
-    width: 100%;
-}
-
-.correct {
-    background: #c8f7c5;
-}
-
-.wrong {
-    background: #f7c5c5;
-}
-
-.question-card {
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 15px;
-}
-
-.question-text {
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 12px;
-}
-
-.option-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 8px 0;
-    padding: 8px;
-    background: white;
-    border-radius: 8px;
-    cursor: pointer;
-    border: 1px solid #e0e0e0;
-}
-
-.option-label:hover {
-    background: #f0f0f0;
-}
-
-.option-input {
-    margin: 0;
-}
-
-.correct-answer-card {
-    background: #d4edda;
-    border-color: #28a745;
-}
-
-.wrong-answer-card {
-    background: #f8d7da;
-    border-color: #dc3545;
-}
-
-.result-box {
-    background: #2c3e66;
-    color: white;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.teil-btn {
-    background: #e9ecef;
-    color: #333;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    margin: 3px;
-}
-
-.teil-btn.active {
-    background: #2c3e66;
-    color: white;
-}
-
-.teile-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 30px;
-    justify-content: flex-start;
-    direction: ltr;
-}
-
-.teil-item {
-    background: #2c3e66;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    text-align: center;
-    font-weight: bold;
-    transition: 0.3s;
-    min-width: 140px;
-    margin-bottom: 0;
-}
-
-.teil-item:hover {
-    background: #1e2a45;
-    transform: translateY(-2px);
-}
-
-#backArrowBtn, #backArrowFromExam {
-    background: none !important;
-    border: none !important;
-    font-size: 28px !important;
-    cursor: pointer !important;
-    color: #2c3e66 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    transition: transform 0.2s ease !important;
-}
-
-#backArrowBtn:hover, #backArrowFromExam:hover {
-    transform: scale(1.1);
-    background: none !important;
-    color: #1e2a45 !important;
-}
-
-#prevExamBtn, #nextExamBtn {
-    background: #6c757d !important;
-    color: white !important;
-    padding: 10px 20px !important;
-    font-size: 14px !important;
-    margin: 5px !important;
-    border-radius: 8px !important;
-    cursor: pointer !important;
-    transition: background 0.2s ease !important;
-}
-
-#prevExamBtn:hover, #nextExamBtn:hover {
-    background: #5a6268 !important;
-    transform: translateY(-1px);
-}
-
-#nextExamBtn.locked-nav {
-    background: #b0bec5 !important;
-    opacity: 0.7;
-    cursor: pointer;
-}
-
-#nextExamBtn.locked-nav:hover {
-    background: #90a4ae !important;
-}
-
-.top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 30px;
-    background: white;
-    border-bottom: 1px solid #e0e0e0;
-    direction: rtl;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.logo-icon {
-    width: 40px;
-    height: 40px;
-    background: #2b5876;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    font-size: 22px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.logo-icon:hover {
-    background: #1e2a45;
-    transform: scale(1.05);
-}
-
-.right-buttons {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-
-.profile-icon {
-    width: 40px;
-    height: 40px;
-    background: #e2e8f0;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: 0.3s;
-    color: #2b5876;
-    font-size: 20px;
-}
-
-.profile-icon:hover {
-    background: #cbd5e1;
-    transform: scale(1.05);
-}
-
-.profile-dropdown {
-    position: absolute;
-    top: 60px;
-    left: 30px;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    padding: 15px 20px;
-    min-width: 250px;
-    z-index: 200;
-    display: none;
-    direction: rtl;
-}
-
-.profile-dropdown.show {
-    display: block;
-}
-
-.profile-email {
-    font-weight: bold;
-    color: #2b5876;
-    margin-bottom: 10px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #e2e8f0;
-}
-
-.profile-expiry {
-    color: #4a5568;
-    font-size: 13px;
-    margin-bottom: 8px;
-}
-
-.profile-status {
-    font-size: 13px;
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px solid #e2e8f0;
-}
-
-.status-premium {
-    color: #10b981;
-    font-weight: bold;
-}
-
-.status-free {
-    color: #f59e0b;
-}
-
-.profile-logout {
-    margin-top: 12px;
-    background: #ef4444;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 25px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 13px;
-}
-
-.profile-logout:hover {
-    background: #dc2626;
-}
-
-.btn-login-top {
-    padding: 8px 20px;
-    border: 1.5px solid #2b5876;
-    background: transparent;
-    border-radius: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    color: #2b5876;
-}
-
-.btn-login-top:hover {
-    background: #2b5876;
-    color: white;
-}
-
-.btn-subscribe-top {
-    padding: 8px 20px;
-    background: linear-gradient(135deg, #2b5876, #4e4376);
-    border: none;
-    border-radius: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    color: white;
-}
-
-.btn-subscribe-top:hover {
-    opacity: 0.9;
-    transform: scale(1.02);
-}
-
-.login-popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.login-popup-content {
-    background: white;
-    padding: 35px;
-    border-radius: 25px;
-    width: 380px;
-    text-align: center;
-    direction: rtl;
-    box-shadow: 0 25px 45px rgba(0,0,0,0.2);
-}
-
-.login-popup-content h3 {
-    color: #2b5876;
-    margin-bottom: 10px;
-}
-
-.login-popup-content input {
-    width: 90%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 30px;
-    border: 1px solid #ccc;
-    font-size: 15px;
-}
-
-.btn-popup-login {
-    background: linear-gradient(135deg, #2b5876, #4e4376);
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 30px;
-    width: 95%;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.btn-popup-close {
-    background: #ccc;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 30px;
-    cursor: pointer;
-    margin-top: 12px;
-}
-
-.whatsapp-float {
-    position: fixed;
-    bottom: 25px;
-    left: 25px;
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
-    z-index: 999;
-    transition: 0.3s;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.5 3.45 1.44 4.94L2 22l5.33-1.44c1.45.85 3.1 1.3 4.81 1.3 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zM9.5 7.5c.18 0 .36.07.5.19.14.12.33.39.49.67.16.28.36.66.48.9.12.24.15.44.03.64-.12.2-.18.29-.36.48-.18.19-.23.29-.39.46-.16.17-.34.2-.52.31-.18.11-.36.28-.27.56.09.28.37.84.77 1.35.4.51.86.91 1.28 1.22.42.31.74.44.93.52.19.08.36.03.49-.12.13-.15.33-.45.51-.72.18-.27.35-.3.52-.5.17-.2.34-.15.52.09.18.24.69 1.03.78 1.22.09.19.09.44-.08.66-.17.22-.75.89-1.03.98-.28.09-.56.06-.86-.07-.3-.13-1.09-.45-1.99-1.23-.9-.78-1.44-1.45-1.68-1.8-.24-.35-.24-.65-.18-.86.06-.21.22-.4.35-.53.13-.13.3-.35.43-.55.13-.2.17-.38.09-.58-.08-.2-.36-1.02-.48-1.34-.12-.32-.24-.27-.36-.28h-.51c-.17 0-.48.07-.66.29-.18.22-.66.8-.66 1.93 0 1.13.76 2.43 1.03 2.75.27.32 1.68 2.76 4.05 3.58 1.9.66 2.37.58 2.82.54.45-.04 1.44-.6 1.64-1.18.2-.58.36-1.3.28-1.44-.08-.14-.31-.23-.65-.4-.34-.17-1.58-.81-1.84-.91-.26-.1-.47-.09-.65.19-.18.28-.71.91-.87 1.1-.16.19-.32.2-.58.07-.26-.13-1.02-.42-1.82-1.18-.8-.76-1.34-1.69-1.48-1.98-.14-.29-.02-.45.1-.59.12-.14.28-.32.39-.48.11-.16.14-.31.06-.47-.08-.16-.42-1.07-.58-1.45-.16-.38-.33-.33-.48-.34h-.52c-.18 0-.49.07-.79.4-.3.33-.96.98-.96 2.29 0 1.31.95 2.57 1.08 2.75.13.18 1.87 3.1 4.5 4.08.85.32 1.66.5 2.32.67 1.35.3 2.47.24 3.41.13.93-.11 2.36-.66 2.72-1.41.36-.75.36-1.46.27-1.68-.09-.22-.37-.4-.74-.59"/></svg>');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 32px;
-    background-color: #25D366;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.08);
-}
-
-.locked-modal-content {
-    background: white;
-    border-radius: 28px;
-    padding: 30px;
-    max-width: 350px;
-    width: 85%;
-    text-align: center;
-    box-shadow: 0 25px 45px rgba(0,0,0,0.25);
-    direction: rtl;
-}
-
-.locked-modal-icon {
-    font-size: 55px;
-    margin-bottom: 15px;
-}
-
-.locked-modal-title {
-    color: #2b5876;
-    margin-bottom: 12px;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.locked-modal-text {
-    color: #555;
-    margin-bottom: 20px;
-}
-
-.locked-modal-exam {
-    background: #e9d5ff;
-    padding: 12px;
-    border-radius: 18px;
-    margin-bottom: 20px;
-    color: #6b21a5;
-    font-weight: bold;
-}
-
-.locked-modal-required {
-    color: #888;
-    margin-bottom: 25px;
-    font-size: 14px;
-}
-
-.locked-modal-required strong {
-    color: #2b5876;
-}
-
-.locked-modal-buttons {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.btn-upgrade {
-    background: linear-gradient(135deg, #2b5876, #4e4376);
-    color: white;
-    border: none;
-    padding: 12px 28px;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
-}
-
-.btn-upgrade:hover {
-    opacity: 0.9;
-    transform: scale(1.02);
-}
-
-.btn-later {
-    background: #e2e8f0;
-    border: none;
-    padding: 12px 28px;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
-    color: #4a5568;
-}
-
-.btn-later:hover {
-    background: #cbd5e1;
-}
-
-.teil-header {
-    font-size: 20px;
-    margin-bottom: 15px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #ddd;
-    color: #2c3e66;
-}
-
-.welcome-message {
-    text-align: center;
-    color: #999;
-    padding: 20px;
-}
-
-.exams-container {
-    margin-top: 15px;
-}
-
-.check-btn {
-    background: #2c3e66;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-size: 16px;
-    margin-top: 20px;
+/**
+ * auth.js - نظام إدارة تسجيل الدخول والاشتراك لموقع Zertiva B2
+ */
+
+const WA_NUMBER = "212687561491";
+const WA_URL = `https://wa.me/${WA_NUMBER}`;
+
+let currentUserStatus = 'guest';
+let currentExpiry = null;
+
+function getLoggedInEmail() {
+    return localStorage.getItem('zertiva_email');
+}
+
+function getLoggedInPassword() {
+    return localStorage.getItem('zertiva_password');
+}
+
+function setLoggedInUser(email, password) {
+    localStorage.setItem('zertiva_email', email);
+    localStorage.setItem('zertiva_password', password);
+}
+
+function logoutUser() {
+    localStorage.removeItem('zertiva_email');
+    localStorage.removeItem('zertiva_password');
+    alert("تم تسجيل الخروج بنجاح");
+    location.reload();
+}
+
+function isUserLoggedIn() {
+    return getLoggedInEmail() !== null;
+}
+
+async function getPremiumUsers() {
+    try {
+        const response = await fetch('premium.json?_=' + Date.now());
+        return await response.json();
+    } catch(e) {
+        return {};
+    }
+}
+
+async function getUserStatus() {
+    let email = getLoggedInEmail();
+    if(!email) return 'guest';
+    
+    try {
+        const premium = await getPremiumUsers();
+        if(premium[email]) {
+            let expiry = premium[email];
+            let today = new Date().toISOString().slice(0,10);
+            if(today <= expiry) {
+                currentExpiry = expiry;
+                return 'premium';
+            } else {
+                return 'expired';
+            }
+        }
+        return 'free';
+    } catch(e) {
+        return 'free';
+    }
+}
+
+async function getExpiryDate(email) {
+    try {
+        const premium = await getPremiumUsers();
+        return premium[email] || null;
+    } catch(e) {
+        return null;
+    }
+}
+
+function showLockedMessage(examTitle) {
+    let modal = document.createElement('div');
+    modal.id = 'lockedModal';
+    modal.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.75); z-index: 100000;
+        display: flex; justify-content: center; align-items: center;
+        direction: rtl;
+    `;
+    
+    modal.innerHTML = `
+        <div class="locked-modal-content">
+            <div class="locked-modal-icon">🔒</div>
+            <h2 class="locked-modal-title">محـتوى مقفل</h2>
+            <p class="locked-modal-text">المرجو ترقية الحساب للوصول لهذا المحتوى</p>
+            <div class="locked-modal-exam">📚 ${examTitle}</div>
+            <p class="locked-modal-required">يتطلب باقة: <strong>Pro</strong></p>
+            <div class="locked-modal-buttons">
+                <button id="upgradeNowBtnModal" class="btn-upgrade">🚀 ترقية الحساب الآن</button>
+                <button id="closeModalBtn" class="btn-later">ليس الآن</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    let upgradeBtn = document.getElementById('upgradeNowBtnModal');
+    let closeBtn = document.getElementById('closeModalBtn');
+    
+    if(upgradeBtn) {
+        upgradeBtn.onclick = function() {
+            window.location.href = 'subscribe.html';
+        };
+    }
+    
+    if(closeBtn) {
+        closeBtn.onclick = function() {
+            modal.remove();
+        };
+    }
+    
+    modal.onclick = function(e) {
+        if(e.target === modal) modal.remove();
+    };
+}
+
+async function updateProfileDropdown() {
+    let email = getLoggedInEmail();
+    let profileEmail = document.getElementById('profileEmail');
+    let profileExpiry = document.getElementById('profileExpiry');
+    let profileStatus = document.getElementById('profileStatus');
+    let profileLogoutBtn = document.getElementById('profileLogoutBtn');
+    let profileIcon = document.getElementById('profileIcon');
+    let navLoginBtn = document.getElementById('navLoginBtn');
+    
+    if(!profileEmail) return;
+    
+    if(email) {
+        let status = await getUserStatus();
+        let expiry = currentExpiry;
+        
+        profileEmail.innerHTML = `📧 ${email}`;
+        
+        if(status === 'premium' && expiry) {
+            let expiryDate = new Date(expiry);
+            let formattedExpiry = `${expiryDate.getDate()}/${expiryDate.getMonth()+1}/${expiryDate.getFullYear()}`;
+            profileExpiry.innerHTML = `📅 الصلاحية: حتى ${formattedExpiry}`;
+            profileStatus.innerHTML = `✅ الحالة: <span class="status-premium">مشترك (Pro)</span>`;
+        } else if(status === 'expired') {
+            profileExpiry.innerHTML = `⏰ انتهت الصلاحية`;
+            profileStatus.innerHTML = `⚠️ الحالة: <span class="status-free">منتهي</span>`;
+        } else {
+            profileExpiry.innerHTML = `📖 الوضع المجاني`;
+            profileStatus.innerHTML = `⭐ الحالة: <span class="status-free">مجاني</span>`;
+        }
+        
+        if(profileLogoutBtn) profileLogoutBtn.style.display = 'block';
+        if(profileIcon) profileIcon.style.display = 'flex';
+        if(navLoginBtn) navLoginBtn.style.display = 'none';
+    } else {
+        profileEmail.innerHTML = '👤 غير مسجل';
+        profileExpiry.innerHTML = '';
+        profileStatus.innerHTML = '';
+        if(profileLogoutBtn) profileLogoutBtn.style.display = 'none';
+        if(profileIcon) profileIcon.style.display = 'none';
+        if(navLoginBtn) navLoginBtn.style.display = 'inline-block';
+    }
+}
+
+function toggleProfileDropdown() {
+    let dropdown = document.getElementById('profileDropdown');
+    if(dropdown) {
+        dropdown.classList.toggle('show');
+    }
+}
+
+function showLoginPopup() {
+    let popup = document.getElementById('loginPopup');
+    if(popup) popup.style.display = 'flex';
+}
+
+function hideLoginPopup() {
+    let popup = document.getElementById('loginPopup');
+    if(popup) popup.style.display = 'none';
+}
+
+async function handleLogin() {
+    let email = document.getElementById('popupEmail').value.trim();
+    let password = document.getElementById('popupPassword').value.trim();
+    
+    if(!email || !password) {
+        alert("يرجى إدخال البريد الإلكتروني وكلمة السر");
+        return;
+    }
+    
+    setLoggedInUser(email, password);
+    
+    let status = await getUserStatus();
+    if(status === 'premium') {
+        let expiry = currentExpiry;
+        let expiryDate = new Date(expiry);
+        let formattedExpiry = `${expiryDate.getDate()}/${expiryDate.getMonth()+1}/${expiryDate.getFullYear()}`;
+        alert(`✅ مرحباً ${email}\n🎉 حسابك مفعل حتى ${formattedExpiry}\nجميع الامتحانات متاحة لك.`);
+    } else if(status === 'expired') {
+        alert(`⚠️ مرحباً ${email}\n⏰ انتهت صلاحية اشتراكك.\n✨ يرجى الاشتراك مرة أخرى.`);
+    } else {
+        alert(`✅ مرحباً ${email}\n📖 حسابك مجاني حالياً.\n✨ متاح لك فقط الامتحان الأول من كل قسم.\nللوصول إلى كل الامتحانات، اضغط "اشتراك" ثم ادفع.`);
+    }
+    
+    hideLoginPopup();
+    await updateProfileDropdown();
+    location.reload();
+}
+
+async function setupLockedNextButton() {
+    let status = await getUserStatus();
+    let nextBtn = document.getElementById('nextExamBtn');
+    
+    if(nextBtn && status !== 'premium') {
+        nextBtn.classList.add('locked-nav');
+        let oldClick = nextBtn.onclick;
+        nextBtn.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            showLockedMessage("الامتحان التالي (يتطلب ترقية)");
+            return false;
+        };
+    }
+}
+
+function bindAuthEvents() {
+    let navLoginBtn = document.getElementById('navLoginBtn');
+    if(navLoginBtn) navLoginBtn.addEventListener('click', showLoginPopup);
+    
+    let navSubscribeBtn = document.getElementById('navSubscribeBtn');
+    if(navSubscribeBtn) navSubscribeBtn.addEventListener('click', () => {
+        if(isUserLoggedIn()) {
+            window.location.href = 'subscribe.html';
+        } else {
+            showLoginPopup();
+        }
+    });
+    
+    let whatsappFloat = document.getElementById('whatsappFloat');
+    if(whatsappFloat) whatsappFloat.addEventListener('click', () => window.open(WA_URL, '_blank'));
+    
+    let popupLoginBtn = document.getElementById('popupLoginBtn');
+    if(popupLoginBtn) popupLoginBtn.addEventListener('click', handleLogin);
+    
+    let closePopupBtn = document.getElementById('closePopupBtn');
+    if(closePopupBtn) closePopupBtn.addEventListener('click', hideLoginPopup);
+    
+    let loginPopup = document.getElementById('loginPopup');
+    if(loginPopup) {
+        loginPopup.addEventListener('click', function(e) {
+            if(e.target === loginPopup) hideLoginPopup();
+        });
+    }
+    
+    let profileIcon = document.getElementById('profileIcon');
+    if(profileIcon) profileIcon.addEventListener('click', toggleProfileDropdown);
+    
+    let profileLogoutBtn = document.getElementById('profileLogoutBtn');
+    if(profileLogoutBtn) profileLogoutBtn.addEventListener('click', logoutUser);
+    
+    let logoHomeBtn = document.getElementById('logoHomeBtn');
+    if(logoHomeBtn) {
+        logoHomeBtn.addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+    }
+    
+    document.addEventListener('click', function(e) {
+        let dropdown = document.getElementById('profileDropdown');
+        let profileIcon = document.getElementById('profileIcon');
+        if(dropdown && profileIcon && !profileIcon.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('show');
+        }
+    });
+}
+
+function observePageChanges() {
+    const observer = new MutationObserver(() => {
+        let listPage = document.getElementById('list');
+        if(listPage && listPage.classList.contains('active')) {
+            setTimeout(setupLockedNextButton, 300);
+        }
+        let examPage = document.getElementById('exam');
+        if(examPage && examPage.classList.contains('active')) {
+            setTimeout(setupLockedNextButton, 300);
+        }
+    });
+    
+    observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
+}
+
+async function initAuth() {
+    bindAuthEvents();
+    await updateProfileDropdown();
+    observePageChanges();
+    setTimeout(setupLockedNextButton, 800);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAuth);
+} else {
+    initAuth();
 }
