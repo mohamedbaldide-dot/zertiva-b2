@@ -511,31 +511,54 @@ async function renderExamListForSkill(skill, teilName) {
     titleSpan.innerHTML = `${exam.id}: ${exam.title}`;
     div.appendChild(titleSpan);
     
-    if (!isPremium && !isFirstExam) {
+        if (!isPremium && !isFirstExam) {
       div.style.backgroundColor = "rgba(255,255,255,0.75)";
       div.style.border = "1px solid #e2e8f0";
       div.style.opacity = "1";
+      div.style.transition = "all 0.25s ease";
+      div.style.cursor = "pointer";
       
       const rightSide = document.createElement("span");
       rightSide.className = "exam-right-icons";
       rightSide.style.display = "flex";
       rightSide.style.alignItems = "center";
       rightSide.style.gap = "6px";
+      rightSide.style.transition = "all 0.25s ease";
       
       const lockSpan = document.createElement("span");
       lockSpan.className = "lock-icon";
       lockSpan.innerHTML = "🔒";
-      lockSpan.style.cssText = "font-size:13px; color:#60a5fa; margin-right:5px;";
+      lockSpan.style.cssText = "font-size:13px; color:#60a5fa; margin-right:5px; transition:all 0.25s ease;";
       rightSide.appendChild(lockSpan);
       
       const proSpan = document.createElement("span");
       proSpan.className = "pro-badge";
       proSpan.innerHTML = "PRO";
-      proSpan.style.cssText = "color:#2563eb; font-size:9px; font-weight:bold; letter-spacing:1px;";
+      proSpan.style.cssText = "color:#2563eb; font-size:9px; font-weight:bold; letter-spacing:1px; transition:all 0.25s ease;";
       rightSide.appendChild(proSpan);
       
       div.appendChild(rightSide);
       titleSpan.style.color = "#6b7280";
+      titleSpan.style.transition = "color 0.25s ease";
+      
+      // تأثير hover
+      div.onmouseenter = function() {
+        this.style.backgroundColor = "rgba(255,255,255,0.95)";
+        this.style.transform = "translateX(5px)";
+        this.style.borderColor = "#60a5fa";
+        titleSpan.style.color = "#4b5563";
+        lockSpan.style.transform = "scale(1.1)";
+        proSpan.style.transform = "scale(1.05)";
+      };
+      
+      div.onmouseleave = function() {
+        this.style.backgroundColor = "rgba(255,255,255,0.75)";
+        this.style.transform = "translateX(0)";
+        this.style.borderColor = "#e2e8f0";
+        titleSpan.style.color = "#6b7280";
+        lockSpan.style.transform = "scale(1)";
+        proSpan.style.transform = "scale(1)";
+      };
       
       div.onclick = (function(title, id) {
         return function() {
