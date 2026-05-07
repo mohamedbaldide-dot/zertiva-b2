@@ -53,10 +53,11 @@ button {
     background: #eee;
 }
 
-/* ========== الامتحانات المقفلة - بدون لون بنفسجي ========== */
+/* ========== الامتحانات المقفلة - بدون لون بنفسجي وبدون ضباب ========== */
 .item-locked {
     opacity: 0.7;
     background: white;
+    border: 1px solid #e2e8f0;
 }
 
 .item-locked .exam-title {
