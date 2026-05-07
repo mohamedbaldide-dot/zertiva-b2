@@ -79,18 +79,6 @@
     <!-- SECTION: علاش خاصك تشترك معانا -->
     <section class="features-section">
         <div class="features-container">
-            <!-- الصور أولاً (ستظهر في اليمين) -->
-            <div class="features-images">
-                <div class="image-stack">
-                    <div class="image-card-feature image-top">
-                        <img src="images/f1.png" alt="Feature 1" class="feature-img">
-                    </div>
-                    <div class="image-card-feature image-bottom">
-                        <img src="images/f2.png" alt="Feature 2" class="feature-img">
-                    </div>
-                </div>
-            </div>
-            <!-- النص ثانياً (سيظهر في اليسار) -->
             <div class="features-content">
                 <h2 class="features-title">
                     علاش خاصك <span class="blue-text">تشترك</span> معانا ؟
@@ -106,6 +94,16 @@
                     اشترك الآن
                     <span class="btn-arrow">→</span>
                 </button>
+            </div>
+            <div class="features-images">
+                <div class="image-stack">
+                    <div class="image-card-feature image-top">
+                        <img src="images/f1.png" alt="Feature 1" class="feature-img">
+                    </div>
+                    <div class="image-card-feature image-bottom">
+                        <img src="images/f2.png" alt="Feature 2" class="feature-img">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -163,7 +161,6 @@
 <script src="auth.js"></script>
 
 <script>
-    // زر الاشتراك في القسم الجديد
     const subscribeBtn = document.getElementById('featuresSubscribeBtn');
     if(subscribeBtn) {
         subscribeBtn.addEventListener('click', function() {
@@ -176,7 +173,6 @@
         });
     }
     
-    // الشعار: يذهب إلى أعلى الصفحة فقط (بدون إعادة تحميل)
     const logoBtn = document.getElementById('logoHomeBtn');
     if(logoBtn) {
         logoBtn.addEventListener('click', function(e) {
