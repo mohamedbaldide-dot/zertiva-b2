@@ -1,5 +1,7 @@
+
 // ============================================
-// exams.js - نظام الامتحانات المتكامل مع نظام القفل
+// exams.js - نظام الامتحانات المتكامل
+// يدعم: Lesen Teil 1, Lesen Teil 2, Lesen Teil 3, Hören Teil 1-3, Sprachbausteine Teil 1, Sprachbausteine Teil 2, Schreiben
 // ============================================
 
 const teile = [
@@ -18,91 +20,8 @@ let currentExamData = null;
 let currentSkill = "lesen1";
 let currentExamId = null;
 let currentExamsList = [];
-let userStatusCache = null;
-let lastStatusCheck = 0;
 
-// ========== دالة التحقق من حالة المستخدم (مع كاش للسرعة) ==========
-async function getUserStatusForExam() {
-    let email = localStorage.getItem('zertiva_email');
-    if (!email) return 'guest';
-    
-    let now = Date.now();
-    if (userStatusCache && (now - lastStatusCheck) < 5000) {
-        return userStatusCache;
-    }
-    
-    try {
-        const response = await fetch('premium.json?_=' + now);
-        const premium = await response.json();
-        if (premium[email]) {
-            let expiry = premium[email];
-            let today = new Date().toISOString().slice(0,10);
-            if (today <= expiry) {
-                userStatusCache = 'premium';
-                lastStatusCheck = now;
-                return 'premium';
-            }
-        }
-        userStatusCache = 'free';
-        lastStatusCheck = now;
-        return 'free';
-    } catch(e) {
-        return 'free';
-    }
-}
-
-// ========== دالة عرض نافذة المحتوى المقفل ==========
-function showLockedModal(examTitle, examId) {
-    let oldModal = document.getElementById('globalLockedModal');
-    if (oldModal) oldModal.remove();
-    
-    let modal = document.createElement('div');
-    modal.id = 'globalLockedModal';
-    modal.style.cssText = `
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.75); z-index: 999999;
-        display: flex; justify-content: center; align-items: center;
-        direction: rtl;
-    `;
-    modal.innerHTML = `
-        <div class="locked-modal-content">
-            <div class="locked-modal-icon">🔒</div>
-            <h2 class="locked-modal-title">محـتوى مقفل</h2>
-            <p class="locked-modal-text">المرجو ترقية الحساب للوصول لهذا المحتوى</p>
-            <div class="locked-modal-exam">📚 ${examTitle}</div>
-            <p class="locked-modal-required">يتطلب باقة: <strong>Pro</strong></p>
-            <div class="locked-modal-buttons">
-                <button id="upgradeModalBtn" class="btn-upgrade">🚀 ترقية الحساب الآن</button>
-                <button id="closeModalBtn" class="btn-later">ليس الآن</button>
-            </div>
-        </div>
-    `;
-    
-    document.body.appendChild(modal);
-    
-    let upgradeBtn = document.getElementById('upgradeModalBtn');
-    let closeBtn = document.getElementById('closeModalBtn');
-    
-    if (upgradeBtn) {
-        upgradeBtn.onclick = function() {
-            window.location.href = 'subscribe.html';
-        };
-    }
-    
-    if (closeBtn) {
-        closeBtn.onclick = function() {
-            modal.remove();
-        };
-    }
-    
-    modal.onclick = function(e) {
-        if (e.target === modal) {
-            modal.remove();
-        }
-    };
-}
-
-// ========== قوائم الامتحانات (كلها موجودة) ==========
+// ========== قائمة امتحانات Lesen Teil 1 (47 امتحاناً) ==========
 const lesenExams = [
   { id: 1, title: "Jugend Forscher", enabled: true, hasFile: true },
   { id: 2, title: "sport ist gesund", enabled: true, hasFile: true },
@@ -153,269 +72,7 @@ const lesenExams = [
   { id: 47, title: "Bäder", enabled: true, hasFile: true }
 ];
 
-const lesen2Exams = [
-  { id: 1, title: "Krista", enabled: true, hasFile: true },
-  { id: 2, title: "Krista (معدل)", enabled: true, hasFile: true },
-  { id: 3, title: "Der Ein-Personen-Karneval", enabled: true, hasFile: true },
-  { id: 4, title: "Der Ein-Personen-Karneval (معدل)", enabled: true, hasFile: true },
-  { id: 5, title: "ein leben für den Kaffee", enabled: true, hasFile: true },
-  { id: 6, title: "ein leben für den Kaffee (معدل 1)", enabled: true, hasFile: true },
-  { id: 7, title: "ein leben für den Kaffee (معدل 2)", enabled: true, hasFile: true },
-  { id: 8, title: "Kreditkarte", enabled: true, hasFile: true },
-  { id: 9, title: "Gedächtnis", enabled: true, hasFile: true },
-  { id: 10, title: "Gedächtnis (معدل)", enabled: true, hasFile: true },
-  { id: 11, title: "Kaufentscheidungen", enabled: true, hasFile: true },
-  { id: 12, title: "Kellnern - Nebenjob", enabled: true, hasFile: true },
-  { id: 13, title: "die Ernährung", enabled: true, hasFile: true },
-  { id: 14, title: "Geschichte des Hauspersonals", enabled: true, hasFile: true },
-  { id: 15, title: "Österreich, das Land der Poolbesitzer", enabled: true, hasFile: true },
-  { id: 16, title: "Großraumbüros", enabled: true, hasFile: true },
-  { id: 17, title: "Korbjagd zu Pferde", enabled: true, hasFile: true },
-  { id: 18, title: "Mehrsprachige Erziehung", enabled: true, hasFile: true },
-  { id: 19, title: "Mehrsprachige Erziehung (معدل)", enabled: true, hasFile: true },
-  { id: 20, title: "Verpackungen im Supermarkt", enabled: true, hasFile: true },
-  { id: 21, title: "Der Puppenmacher", enabled: true, hasFile: true },
-  { id: 22, title: "Der Puppenmacher (معدل)", enabled: true, hasFile: true },
-  { id: 23, title: "Lehrkräftepreis", enabled: true, hasFile: true },
-  { id: 24, title: "Wer parkt, muss zahlen", enabled: true, hasFile: true },
-  { id: 25, title: "Wer parkt, muss zahlen (معدل)", enabled: true, hasFile: true },
-  { id: 26, title: "Familienglück oder Generationskonflikte", enabled: true, hasFile: true },
-  { id: 27, title: "Traumfrau und Traummann gesucht", enabled: true, hasFile: true },
-  { id: 28, title: "Traumfrau und Traummann gesucht (معدل)", enabled: true, hasFile: true },
-  { id: 29, title: "Wie Babys lernen", enabled: true, hasFile: true },
-  { id: 30, title: "Volkskrankheit Rückenschmerz", enabled: true, hasFile: true },
-  { id: 31, title: "Volkskrankheit Rückenschmerz (معدل)", enabled: true, hasFile: true },
-  { id: 32, title: "Die ganze Welt auf dem eigenen PC", enabled: true, hasFile: true },
-  { id: 33, title: "Die deutschen und ihre Ernährung", enabled: true, hasFile: true },
-  { id: 34, title: "Weniger Euro-Blüten in Deutschland", enabled: true, hasFile: true },
-  { id: 35, title: "Nachtzug", enabled: true, hasFile: true },
-  { id: 36, title: "Nachtzug (معدل)", enabled: true, hasFile: true },
-  { id: 37, title: "Wie zwei US-Teenager Millionäre wurden", enabled: true, hasFile: true }
-];
-
-const lesen3Exams = [
-  { id: 1, title: "Filme - Fernsehprogramme", enabled: true, hasFile: true },
-  { id: 2, title: "Filme - Fernsehprogramme (معدل)", enabled: true, hasFile: true },
-  { id: 3, title: "Im Katalog eines Buchversands", enabled: true, hasFile: true },
-  { id: 4, title: "kein Zeit", enabled: true, hasFile: true },
-  { id: 5, title: "kein Zeit (معدل)", enabled: true, hasFile: true },
-  { id: 6, title: "Musik - spielt Gitarre", enabled: true, hasFile: true },
-  { id: 7, title: "Die schwangere Frau", enabled: true, hasFile: true },
-  { id: 8, title: "Unterstützung in Mathematik", enabled: true, hasFile: true },
-  { id: 9, title: "Ganztagesausflug", enabled: true, hasFile: true },
-  { id: 10, title: "Ihren Eltern zur Silberhochzeit", enabled: true, hasFile: true },
-  { id: 11, title: "Rechtsanwalt", enabled: true, hasFile: true },
-  { id: 12, title: "Rechtsanwalt (معدل)", enabled: true, hasFile: true },
-  { id: 13, title: "Au-pair Mädchen", enabled: true, hasFile: true },
-  { id: 14, title: "Hautprobleme", enabled: true, hasFile: true },
-  { id: 15, title: "Eine Bekannte ist schwanger", enabled: true, hasFile: true },
-  { id: 16, title: "Die Tochter einer Bekannten wird vier Jahre alt", enabled: true, hasFile: true },
-  { id: 17, title: "Tierdokumentationen", enabled: true, hasFile: true },
-  { id: 18, title: "Aufräumen", enabled: true, hasFile: true },
-  { id: 19, title: "Erholung und Reisen", enabled: true, hasFile: true },
-  { id: 20, title: "Sport", enabled: true, hasFile: true },
-  { id: 21, title: "Sport (معدل)", enabled: true, hasFile: true },
-  { id: 22, title: "Wein und Insekten", enabled: true, hasFile: true },
-  { id: 23, title: "Reiseführer", enabled: true, hasFile: true },
-  { id: 24, title: "Gartenbau", enabled: true, hasFile: true },
-  { id: 25, title: "Haushaltshilfe", enabled: true, hasFile: true },
-  { id: 26, title: "Einwanderung", enabled: true, hasFile: true },
-  { id: 27, title: "Musikinstrumente", enabled: true, hasFile: true },
-  { id: 28, title: "Musikinstrumente (معدل)", enabled: true, hasFile: true },
-  { id: 29, title: "Arbeitsorganisation", enabled: true, hasFile: true },
-  { id: 30, title: "Hunde", enabled: true, hasFile: true },
-  { id: 31, title: "schnelle Wasserfahrzeuge", enabled: true, hasFile: true },
-  { id: 32, title: "ein paar Tage in Berlin", enabled: true, hasFile: true },
-  { id: 33, title: "ein paar Tage in Berlin (معدل)", enabled: true, hasFile: true },
-  { id: 34, title: "Autos", enabled: true, hasFile: true },
-  { id: 35, title: "Möbel für die neue Wohnung", enabled: true, hasFile: true }
-];
-
-const sprach1Exams = [
-  { id: 1, title: "Hallo Ferdinand", enabled: true, hasFile: true },
-  { id: 2, title: "Hallo Ferdinand (معدل)", enabled: true, hasFile: true },
-  { id: 3, title: "Liebe Vanessa", enabled: true, hasFile: true },
-  { id: 4, title: "Hallo Judith / Lina", enabled: true, hasFile: true },
-  { id: 5, title: "Liebe Karin", enabled: true, hasFile: true },
-  { id: 6, title: "Liebe Karin (معدل)", enabled: true, hasFile: true },
-  { id: 7, title: "Hallo Leon", enabled: true, hasFile: true },
-  { id: 8, title: "Sehr geehrter Herr Martini", enabled: true, hasFile: true },
-  { id: 9, title: "Sehr geehrter Herr Martini (معدل)", enabled: true, hasFile: true },
-  { id: 10, title: "Liebe Maria, lieber Timur", enabled: true, hasFile: true },
-  { id: 11, title: "Lieber Justus", enabled: true, hasFile: true },
-  { id: 12, title: "Lieber Justus (معدل)", enabled: true, hasFile: true },
-  { id: 13, title: "Lieber Thomas", enabled: true, hasFile: true },
-  { id: 14, title: "Sehr geehrte Frau Goronska", enabled: true, hasFile: true },
-  { id: 15, title: "Liebe Agnieszka", enabled: true, hasFile: true },
-  { id: 16, title: "Liebe Anna", enabled: true, hasFile: true },
-  { id: 17, title: "Sehr geehrter Herr Dr. Moosberger (معدل)", enabled: true, hasFile: true },
-  { id: 18, title: "Sehr geehrter Herr Dr. Dobromil", enabled: true, hasFile: true },
-  { id: 19, title: "Liebe Lina, lieber Florian", enabled: true, hasFile: true },
-  { id: 20, title: "Liebes Julian", enabled: true, hasFile: true },
-  { id: 21, title: "Liebe Meike", enabled: true, hasFile: true },
-  { id: 22, title: "Liebe Corinna (معدل)", enabled: true, hasFile: true },
-  { id: 23, title: "Liebe Corinna", enabled: true, hasFile: true },
-  { id: 24, title: "Liebe Ida", enabled: true, hasFile: true },
-  { id: 25, title: "Liebe Paola", enabled: true, hasFile: true },
-  { id: 26, title: "Liebe Jutta", enabled: true, hasFile: true },
-  { id: 27, title: "Liebe Familie Geissler", enabled: true, hasFile: true },
-  { id: 28, title: "Liebe Andrea", enabled: true, hasFile: true },
-  { id: 29, title: "Liebe Andrea (معدل)", enabled: true, hasFile: true },
-  { id: 30, title: "Hallo Maria", enabled: true, hasFile: true },
-  { id: 31, title: "Sehr geehrte Frau Szabo", enabled: true, hasFile: true },
-  { id: 32, title: "Sehr geehrte Frau Szabo (معدل)", enabled: true, hasFile: true },
-  { id: 33, title: "Lieber Igor", enabled: true, hasFile: true },
-  { id: 34, title: "Liebe Lara", enabled: true, hasFile: true },
-  { id: 35, title: "Lieber David", enabled: true, hasFile: true },
-  { id: 36, title: "Sehr geehrter Herr Wenzel", enabled: true, hasFile: true },
-  { id: 37, title: "Liebe Autorinnen und Autoren", enabled: true, hasFile: true },
-  { id: 38, title: "Liebe Clara", enabled: true, hasFile: true },
-  { id: 39, title: "Sehr geehrte Frau Melchior", enabled: true, hasFile: true },
-  { id: 40, title: "Liebe Sandra", enabled: true, hasFile: true }
-];
-
-const sprach2Exams = [
-  { id: 1, title: "Das Fahrrad", enabled: true, hasFile: true },
-  { id: 2, title: "Das Fahrrad (معدل)", enabled: true, hasFile: true },
-  { id: 3, title: "Man(n) kocht selbst", enabled: true, hasFile: true },
-  { id: 4, title: "Jugend diskutiert - mach mit!", enabled: true, hasFile: true },
-  { id: 5, title: "Theater für Kinder und Jugendliche", enabled: true, hasFile: true },
-  { id: 6, title: "Umgang mit Haustieren", enabled: true, hasFile: true },
-  { id: 7, title: "Liebesgrüße aus der Kühltruhe", enabled: true, hasFile: true },
-  { id: 8, title: "Liebesgrüße aus der Kühltruhe (معدل)", enabled: true, hasFile: true },
-  { id: 9, title: "Online-Sprachkurse", enabled: true, hasFile: true },
-  { id: 10, title: "Deutschland – ein Paradies für Kinder?", enabled: true, hasFile: true },
-  { id: 11, title: "Deutschland – ein Paradies für Kinder? (معدل 1)", enabled: true, hasFile: true },
-  { id: 12, title: "Deutschland – ein Paradies für Kinder? (معدل 2)", enabled: true, hasFile: true },
-  { id: 13, title: "Das Schicksal des Braunbären", enabled: true, hasFile: true },
-  { id: 14, title: "Das Schicksal des Braunbären (معدل)", enabled: true, hasFile: true },
-  { id: 15, title: "Was steckt hinter Bio?", enabled: true, hasFile: true },
-  { id: 16, title: "Was genau sind eigentlich Bio-Lebensmittel (معدل)", enabled: true, hasFile: true },
-  { id: 17, title: "Sicherer Schulweg", enabled: true, hasFile: true },
-  { id: 18, title: "Der Hund als intelligentes Wesen", enabled: true, hasFile: true },
-  { id: 19, title: "Die wichtigsten Regeln auf der Skipiste", enabled: true, hasFile: true },
-  { id: 20, title: "Kaffee und Kuchen – ein Stück Tradition", enabled: true, hasFile: true },
-  { id: 21, title: "Fische sind schlauer, als wir denken", enabled: true, hasFile: true },
-  { id: 22, title: "Schwarzarbeit kann teuer werden", enabled: true, hasFile: true },
-  { id: 23, title: "Schwarzarbeit kann teuer werden (معدل 1)", enabled: true, hasFile: true },
-  { id: 24, title: "Schwarzarbeit kann teuer werden (معدل 2)", enabled: true, hasFile: true },
-  { id: 25, title: "Teamarbeit als Schlüssel zum Erfolg", enabled: true, hasFile: true },
-  { id: 26, title: "Teamarbeit als Schlüssel zum Erfolg (معدل)", enabled: true, hasFile: true },
-  { id: 27, title: "Wie Handschrift wieder cool wird (معدل)", enabled: true, hasFile: true },
-  { id: 28, title: "Wie Handschrift wieder cool wird", enabled: true, hasFile: true },
-  { id: 29, title: "Ausbildung mit über 30", enabled: true, hasFile: true },
-  { id: 30, title: "Verlernen die Deutschen die Höflichkeit?", enabled: true, hasFile: true },
-  { id: 31, title: "Joggen: Mehr als nur Laufen", enabled: true, hasFile: true },
-  { id: 32, title: "Der klügste Freund des Menschen", enabled: true, hasFile: true },
-  { id: 33, title: "Der klügste Freund des Menschen (معدل)", enabled: true, hasFile: true },
-  { id: 34, title: "Manipulierte Bilder", enabled: true, hasFile: true },
-  { id: 35, title: "Maßgeschneidert nach Bodyscanning", enabled: true, hasFile: true },
-  { id: 36, title: "Maßgeschneidert nach Bodyscanning (معدل)", enabled: true, hasFile: true },
-  { id: 37, title: "Im Restaurant", enabled: true, hasFile: true },
-  { id: 38, title: "Im Restaurant (معدل)", enabled: true, hasFile: true },
-  { id: 39, title: "Lernen ist kein Privileg der Jugend", enabled: true, hasFile: true },
-  { id: 40, title: "Lernen ist kein Privileg der Jugend (معدل)", enabled: true, hasFile: true },
-  { id: 41, title: "Wie TV-Bilder die Fantasie von Kindern prägen", enabled: true, hasFile: true },
-  { id: 42, title: "Städte vor dem Infarkt", enabled: true, hasFile: true },
-  { id: 43, title: "Es ist erst 6 Uhr morgens", enabled: true, hasFile: true },
-  { id: 44, title: "Die Katzen", enabled: true, hasFile: true },
-  { id: 45, title: "Teleshopping – nicht immer gut und günstig", enabled: true, hasFile: true }
-];
-
-const hoeren1Exams = [
-  { id: 1, title: "Die Deutsche Lufthansa", enabled: true, hasFile: true },
-  { id: 2, title: "Die Piloten der Lufthansa", enabled: true, hasFile: true },
-  { id: 3, title: "Die Stadt Friedrichsberg", enabled: true, hasFile: true },
-  { id: 4, title: "Erdbeben", enabled: true, hasFile: true },
-  { id: 5, title: "Bierkonsum", enabled: true, hasFile: true },
-  { id: 6, title: "Bierkonsum (Mittel)", enabled: true, hasFile: true },
-  { id: 7, title: "Deutsches Schiff", enabled: true, hasFile: true },
-  { id: 8, title: "Weniger Vögel - Viele Kunden", enabled: true, hasFile: true },
-  { id: 9, title: "Europäische Union", enabled: true, hasFile: true },
-  { id: 10, title: "Unwetterschäden", enabled: true, hasFile: true },
-  { id: 11, title: "Nicht sicher", enabled: true, hasFile: true },
-  { id: 12, title: "Nicht sicher 2", enabled: true, hasFile: true },
-  { id: 13, title: "Frau Jürgens", enabled: true, hasFile: true },
-  { id: 14, title: "Die Wahlbeteiligung", enabled: true, hasFile: true },
-  { id: 15, title: "Die Wetterlage in den Alpen", enabled: true, hasFile: true },
-  { id: 16, title: "Wetter in den Alpen (Mittel)", enabled: true, hasFile: true },
-  { id: 17, title: "Insel Bali", enabled: true, hasFile: true },
-  { id: 18, title: "Die Fluggesellschaft", enabled: true, hasFile: true },
-  { id: 19, title: "Der Fluggesellschaft (Mittel)", enabled: true, hasFile: true },
-  { id: 20, title: "Der Bau", enabled: true, hasFile: true },
-  { id: 21, title: "50-Euro", enabled: true, hasFile: true },
-  { id: 22, title: "Das Schladminger", enabled: true, hasFile: true },
-  { id: 23, title: "Bei den Europawahlen (Linksparteien)", enabled: true, hasFile: true },
-  { id: 24, title: "Bei den Europawahlen (CDU/CSU)", enabled: true, hasFile: true },
-  { id: 25, title: "Die Bundesländer", enabled: true, hasFile: true },
-  { id: 26, title: "Bio-Siegels", enabled: true, hasFile: true },
-  { id: 27, title: "Berufen (bonbon)", enabled: true, hasFile: true }
-];
-
-const hoeren2Exams = [
-  { id: 1, title: "Herr Gasser und Frau Janke", enabled: true, hasFile: true },
-  { id: 2, title: "Suza Hotop", enabled: true, hasFile: true },
-  { id: 3, title: "Suza Hotop (Mittel)", enabled: true, hasFile: true },
-  { id: 4, title: "Professor Steiner", enabled: true, hasFile: true },
-  { id: 5, title: "Professor Steiner (Mittel)", enabled: true, hasFile: true },
-  { id: 6, title: "Mallorca", enabled: true, hasFile: true },
-  { id: 7, title: "Mallorca (Mittel)", enabled: true, hasFile: true },
-  { id: 8, title: "In dem Restaurant", enabled: true, hasFile: true },
-  { id: 9, title: "Julia", enabled: true, hasFile: true },
-  { id: 10, title: "Carina", enabled: true, hasFile: true },
-  { id: 11, title: "Carina (Mittel)", enabled: true, hasFile: true },
-  { id: 12, title: "Frau Schenk", enabled: true, hasFile: true },
-  { id: 13, title: "Frau Schenk (Mittel)", enabled: true, hasFile: true },
-  { id: 14, title: "Herr Karimov", enabled: true, hasFile: true },
-  { id: 15, title: "Nadine", enabled: true, hasFile: true },
-  { id: 16, title: "Markus", enabled: true, hasFile: true },
-  { id: 17, title: "Markus (Mittel)", enabled: true, hasFile: true },
-  { id: 18, title: "Roland (Spielen)", enabled: true, hasFile: true },
-  { id: 19, title: "Roland (aufsteigen)", enabled: true, hasFile: true },
-  { id: 20, title: "Roland (einer höheren Lige)", enabled: true, hasFile: true },
-  { id: 21, title: "Die Deutschen machen", enabled: true, hasFile: true },
-  { id: 22, title: "Herr Scherer", enabled: true, hasFile: true },
-  { id: 23, title: "Beim Wettkampf", enabled: true, hasFile: true },
-  { id: 24, title: "Vanessa", enabled: true, hasFile: true },
-  { id: 25, title: "Zu Beginn", enabled: true, hasFile: true },
-  { id: 26, title: "Die TU Dresden", enabled: true, hasFile: true },
-  { id: 27, title: "Lisa Eisenberg", enabled: true, hasFile: true },
-  { id: 28, title: "Franz Schumacher", enabled: true, hasFile: true },
-  { id: 29, title: "Meron Makeba", enabled: true, hasFile: true },
-  { id: 30, title: "Frau Kedar Malta", enabled: true, hasFile: true },
-  { id: 31, title: "Frau Keder aus Malta", enabled: true, hasFile: true }
-];
-
-const hoeren3Exams = [
-  { id: 1, title: "Telefon", enabled: true, hasFile: true },
-  { id: 2, title: "Musikfestivals", enabled: true, hasFile: true },
-  { id: 3, title: "Musikfestivals (Mittel)", enabled: true, hasFile: true },
-  { id: 4, title: "Fahrschule", enabled: true, hasFile: true },
-  { id: 5, title: "Im Süden Deutschlands (regnen)", enabled: true, hasFile: true },
-  { id: 6, title: "Im Süden Deutschlands (Schnee)", enabled: true, hasFile: true },
-  { id: 7, title: "Internet prüfen", enabled: true, hasFile: true },
-  { id: 8, title: "Ehrenamts", enabled: true, hasFile: true },
-  { id: 9, title: "Ehrenamts (Mittel)", enabled: true, hasFile: true },
-  { id: 10, title: "Demonstration", enabled: true, hasFile: true },
-  { id: 11, title: "Wochenanfang", enabled: true, hasFile: true },
-  { id: 12, title: "Im August", enabled: true, hasFile: true },
-  { id: 13, title: "Fundbüro", enabled: true, hasFile: true },
-  { id: 14, title: "Ausgang 26", enabled: true, hasFile: true },
-  { id: 15, title: "Ausgang 26 (Mittel)", enabled: true, hasFile: true },
-  { id: 16, title: "Blutspenden", enabled: true, hasFile: true },
-  { id: 17, title: "Reitturnier", enabled: true, hasFile: true },
-  { id: 18, title: "Delikatessen", enabled: true, hasFile: true },
-  { id: 19, title: "Für ein Konzert (Bus gratis)", enabled: true, hasFile: true },
-  { id: 20, title: "Für ein Konzert (in der ganzen Stadt)", enabled: true, hasFile: true },
-  { id: 21, title: "In Raum C23", enabled: true, hasFile: true },
-  { id: 22, title: "Trainingsausfahrten", enabled: true, hasFile: true },
-  { id: 23, title: "Das Geschäft", enabled: true, hasFile: true },
-  { id: 24, title: "Nach einer Großdemonstration", enabled: true, hasFile: true },
-  { id: 25, title: "Das Fest (ohne Frankfurt)", enabled: true, hasFile: true },
-  { id: 26, title: "Das Fest (mit Frankfurt)", enabled: true, hasFile: true },
-  { id: 27, title: "Radio Konzert", enabled: true, hasFile: true }
-];
-
+// ========== قائمة امتحانات Schreiben (30 امتحاناً) ==========
 const schreibenExams = [
   { id: 1, title: "Fotobuch", enabled: true, hasFile: true },
   { id: 2, title: "Abenteuer TIKKI TAKKA", enabled: true, hasFile: true },
@@ -447,7 +104,7 @@ const schreibenExams = [
   { id: 28, title: "Kursbeschreibung (sich vorstellen)", enabled: true, hasFile: true },
   { id: 29, title: "FITWATCH Smartwatch", enabled: true, hasFile: true }
 ];
-
+// أسماء الملفات الحقيقية (لجميع الامتحانات)
 const actualFileNames = {
   1: "exam1.json", 2: "exam2.json", 3: "exam3.json",
   4: "exam4.json", 5: "exam5.json", 6: "exam6.json",
@@ -467,19 +124,273 @@ const actualFileNames = {
   46: "exam46.json", 47: "exam47.json"
 };
 
+// ✅ قائمة الامتحانات لكل جزء
 const examsDatabase = {
   lesen1: lesenExams,
-  lesen2: lesen2Exams,
-  lesen3: lesen3Exams,
-  sprach1: sprach1Exams,
-  sprach2: sprach2Exams,
-  hoeren1: hoeren1Exams,
-  hoeren2: hoeren2Exams,
-  hoeren3: hoeren3Exams,
+  lesen2: [
+    { id: 1, title: "Krista", enabled: true, hasFile: true },
+    { id: 2, title: "Krista (معدل)", enabled: true, hasFile: true },
+    { id: 3, title: "Der Ein-Personen-Karneval", enabled: true, hasFile: true },
+    { id: 4, title: "Der Ein-Personen-Karneval (معدل)", enabled: true, hasFile: true },
+    { id: 5, title: "ein leben für den Kaffee", enabled: true, hasFile: true },
+    { id: 6, title: "ein leben für den Kaffee (معدل 1)", enabled: true, hasFile: true },
+    { id: 7, title: "ein leben für den Kaffee (معدل 2)", enabled: true, hasFile: true },
+    { id: 8, title: "Kreditkarte", enabled: true, hasFile: true },
+    { id: 9, title: "Gedächtnis", enabled: true, hasFile: true },
+    { id: 10, title: "Gedächtnis (معدل)", enabled: true, hasFile: true },
+    { id: 11, title: "Kaufentscheidungen", enabled: true, hasFile: true },
+    { id: 12, title: "Kellnern - Nebenjob", enabled: true, hasFile: true },
+    { id: 13, title: "die Ernährung", enabled: true, hasFile: true },
+    { id: 14, title: "Geschichte des Hauspersonals", enabled: true, hasFile: true },
+    { id: 15, title: "Österreich, das Land der Poolbesitzer", enabled: true, hasFile: true },
+    { id: 16, title: "Großraumbüros", enabled: true, hasFile: true },
+    { id: 17, title: "Korbjagd zu Pferde", enabled: true, hasFile: true },
+    { id: 18, title: "Mehrsprachige Erziehung", enabled: true, hasFile: true },
+    { id: 19, title: "Mehrsprachige Erziehung (معدل)", enabled: true, hasFile: true },
+    { id: 20, title: "Verpackungen im Supermarkt", enabled: true, hasFile: true },
+    { id: 21, title: "Der Puppenmacher", enabled: true, hasFile: true },
+    { id: 22, title: "Der Puppenmacher (معدل)", enabled: true, hasFile: true },
+    { id: 23, title: "Lehrkräftepreis", enabled: true, hasFile: true },
+    { id: 24, title: "Wer parkt, muss zahlen", enabled: true, hasFile: true },
+    { id: 25, title: "Wer parkt, muss zahlen (معدل)", enabled: true, hasFile: true },
+    { id: 26, title: "Familienglück oder Generationskonflikte", enabled: true, hasFile: true },
+    { id: 27, title: "Traumfrau und Traummann gesucht", enabled: true, hasFile: true },
+    { id: 28, title: "Traumfrau und Traummann gesucht (معدل)", enabled: true, hasFile: true },
+    { id: 29, title: "Wie Babys lernen", enabled: true, hasFile: true },
+    { id: 30, title: "Volkskrankheit Rückenschmerz", enabled: true, hasFile: true },
+    { id: 31, title: "Volkskrankheit Rückenschmerz (معدل)", enabled: true, hasFile: true },
+    { id: 32, title: "Die ganze Welt auf dem eigenen PC", enabled: true, hasFile: true },
+    { id: 33, title: "Die deutschen und ihre Ernährung", enabled: true, hasFile: true },
+    { id: 34, title: "Weniger Euro-Blüten in Deutschland", enabled: true, hasFile: true },
+    { id: 35, title: "Nachtzug", enabled: true, hasFile: true },
+    { id: 36, title: "Nachtzug (معدل)", enabled: true, hasFile: true },
+    { id: 37, title: "Wie zwei US-Teenager Millionäre wurden", enabled: true, hasFile: true }
+  ],
+  lesen3: [
+    { id: 1, title: "Filme - Fernsehprogramme", enabled: true, hasFile: true },
+    { id: 2, title: "Filme - Fernsehprogramme (معدل)", enabled: true, hasFile: true },
+    { id: 3, title: "Im Katalog eines Buchversands", enabled: true, hasFile: true },
+    { id: 4, title: "kein Zeit", enabled: true, hasFile: true },
+    { id: 5, title: "kein Zeit (معدل)", enabled: true, hasFile: true },
+    { id: 6, title: "Musik - spielt Gitarre", enabled: true, hasFile: true },
+    { id: 7, title: "Die schwangere Frau", enabled: true, hasFile: true },
+    { id: 8, title: "Unterstützung in Mathematik", enabled: true, hasFile: true },
+    { id: 9, title: "Ganztagesausflug", enabled: true, hasFile: true },
+    { id: 10, title: "Ihren Eltern zur Silberhochzeit", enabled: true, hasFile: true },
+    { id: 11, title: "Rechtsanwalt", enabled: true, hasFile: true },
+    { id: 12, title: "Rechtsanwalt (معدل)", enabled: true, hasFile: true },
+    { id: 13, title: "Au-pair Mädchen", enabled: true, hasFile: true },
+    { id: 14, title: "Hautprobleme", enabled: true, hasFile: true },
+    { id: 15, title: "Eine Bekannte ist schwanger", enabled: true, hasFile: true },
+    { id: 16, title: "Die Tochter einer Bekannten wird vier Jahre alt", enabled: true, hasFile: true },
+    { id: 17, title: "Tierdokumentationen", enabled: true, hasFile: true },
+    { id: 18, title: "Aufräumen", enabled: true, hasFile: true },
+    { id: 19, title: "Erholung und Reisen", enabled: true, hasFile: true },
+    { id: 20, title: "Sport", enabled: true, hasFile: true },
+    { id: 21, title: "Sport (معدل)", enabled: true, hasFile: true },
+    { id: 22, title: "Wein und Insekten", enabled: true, hasFile: true },
+    { id: 23, title: "Reiseführer", enabled: true, hasFile: true },
+    { id: 24, title: "Gartenbau", enabled: true, hasFile: true },
+    { id: 25, title: "Haushaltshilfe", enabled: true, hasFile: true },
+    { id: 26, title: "Einwanderung", enabled: true, hasFile: true },
+    { id: 27, title: "Musikinstrumente", enabled: true, hasFile: true },
+    { id: 28, title: "Musikinstrumente (معدل)", enabled: true, hasFile: true },
+    { id: 29, title: "Arbeitsorganisation", enabled: true, hasFile: true },
+    { id: 30, title: "Hunde", enabled: true, hasFile: true },
+    { id: 31, title: "schnelle Wasserfahrzeuge", enabled: true, hasFile: true },
+    { id: 32, title: "ein paar Tage in Berlin", enabled: true, hasFile: true },
+    { id: 33, title: "ein paar Tage in Berlin (معدل)", enabled: true, hasFile: true },
+    { id: 34, title: "Autos", enabled: true, hasFile: true },
+    { id: 35, title: "Möbel für die neue Wohnung", enabled: true, hasFile: true }
+  ],
+  sprach1: [
+    { id: 1, title: "Hallo Ferdinand", enabled: true, hasFile: true },
+    { id: 2, title: "Hallo Ferdinand (معدل)", enabled: true, hasFile: true },
+    { id: 3, title: "Liebe Vanessa", enabled: true, hasFile: true },
+    { id: 4, title: "Hallo Judith / Lina", enabled: true, hasFile: true },
+    { id: 5, title: "Liebe Karin", enabled: true, hasFile: true },
+    { id: 6, title: "Liebe Karin (معدل)", enabled: true, hasFile: true },
+    { id: 7, title: "Hallo Leon", enabled: true, hasFile: true },
+    { id: 8, title: "Sehr geehrter Herr Martini", enabled: true, hasFile: true },
+    { id: 9, title: "Sehr geehrter Herr Martini (معدل)", enabled: true, hasFile: true },
+    { id: 10, title: "Liebe Maria, lieber Timur", enabled: true, hasFile: true },
+    { id: 11, title: "Lieber Justus", enabled: true, hasFile: true },
+    { id: 12, title: "Lieber Justus (معدل)", enabled: true, hasFile: true },
+    { id: 13, title: "Lieber Thomas", enabled: true, hasFile: true },
+    { id: 14, title: "Sehr geehrte Frau Goronska", enabled: true, hasFile: true },
+    { id: 15, title: "Liebe Agnieszka", enabled: true, hasFile: true },
+    { id: 16, title: "Liebe Anna", enabled: true, hasFile: true },
+    { id: 17, title: "Sehr geehrter Herr Dr. Moosberger (معدل)", enabled: true, hasFile: true },
+    { id: 18, title: "Sehr geehrter Herr Dr. Dobromil", enabled: true, hasFile: true },
+    { id: 19, title: "Liebe Lina, lieber Florian", enabled: true, hasFile: true },
+    { id: 20, title: "Liebes Julian", enabled: true, hasFile: true },
+    { id: 21, title: "Liebe Meike", enabled: true, hasFile: true },
+    { id: 22, title: "Liebe Corinna (معدل)", enabled: true, hasFile: true },
+    { id: 23, title: "Liebe Corinna", enabled: true, hasFile: true },
+    { id: 24, title: "Liebe Ida", enabled: true, hasFile: true },
+    { id: 25, title: "Liebe Paola", enabled: true, hasFile: true },
+    { id: 26, title: "Liebe Jutta", enabled: true, hasFile: true },
+    { id: 27, title: "Liebe Familie Geissler", enabled: true, hasFile: true },
+    { id: 28, title: "Liebe Andrea", enabled: true, hasFile: true },
+    { id: 29, title: "Liebe Andrea (معدل)", enabled: true, hasFile: true },
+    { id: 30, title: "Hallo Maria", enabled: true, hasFile: true },
+    { id: 31, title: "Sehr geehrte Frau Szabo", enabled: true, hasFile: true },
+    { id: 32, title: "Sehr geehrte Frau Szabo (معدل)", enabled: true, hasFile: true },
+    { id: 33, title: "Lieber Igor", enabled: true, hasFile: true },
+    { id: 34, title: "Liebe Lara", enabled: true, hasFile: true },
+    { id: 35, title: "Lieber David", enabled: true, hasFile: true },
+    { id: 36, title: "Sehr geehrter Herr Wenzel", enabled: true, hasFile: true },
+    { id: 37, title: "Liebe Autorinnen und Autoren", enabled: true, hasFile: true },
+    { id: 38, title: "Liebe Clara", enabled: true, hasFile: true },
+    { id: 39, title: "Sehr geehrte Frau Melchior", enabled: true, hasFile: true },
+    { id: 40, title: "Liebe Sandra", enabled: true, hasFile: true }
+  ],
+  sprach2: [
+    { id: 1, title: "Das Fahrrad", enabled: true, hasFile: true },
+    { id: 2, title: "Das Fahrrad (معدل)", enabled: true, hasFile: true },
+    { id: 3, title: "Man(n) kocht selbst", enabled: true, hasFile: true },
+    { id: 4, title: "Jugend diskutiert - mach mit!", enabled: true, hasFile: true },
+    { id: 5, title: "Theater für Kinder und Jugendliche", enabled: true, hasFile: true },
+    { id: 6, title: "Umgang mit Haustieren", enabled: true, hasFile: true },
+    { id: 7, title: "Liebesgrüße aus der Kühltruhe", enabled: true, hasFile: true },
+    { id: 8, title: "Liebesgrüße aus der Kühltruhe (معدل)", enabled: true, hasFile: true },
+    { id: 9, title: "Online-Sprachkurse", enabled: true, hasFile: true },
+    { id: 10, title: "Deutschland – ein Paradies für Kinder?", enabled: true, hasFile: true },
+    { id: 11, title: "Deutschland – ein Paradies für Kinder? (معدل 1)", enabled: true, hasFile: true },
+    { id: 12, title: "Deutschland – ein Paradies für Kinder? (معدل 2)", enabled: true, hasFile: true },
+    { id: 13, title: "Das Schicksal des Braunbären", enabled: true, hasFile: true },
+    { id: 14, title: "Das Schicksal des Braunbären (معدل)", enabled: true, hasFile: true },
+    { id: 15, title: "Was steckt hinter Bio?", enabled: true, hasFile: true },
+    { id: 16, title: "Was genau sind eigentlich Bio-Lebensmittel (معدل)", enabled: true, hasFile: true },
+    { id: 17, title: "Sicherer Schulweg", enabled: true, hasFile: true },
+    { id: 18, title: "Der Hund als intelligentes Wesen", enabled: true, hasFile: true },
+    { id: 19, title: "Die wichtigsten Regeln auf der Skipiste", enabled: true, hasFile: true },
+    { id: 20, title: "Kaffee und Kuchen – ein Stück Tradition", enabled: true, hasFile: true },
+    { id: 21, title: "Fische sind schlauer, als wir denken", enabled: true, hasFile: true },
+    { id: 22, title: "Schwarzarbeit kann teuer werden", enabled: true, hasFile: true },
+    { id: 23, title: "Schwarzarbeit kann teuer werden (معدل 1)", enabled: true, hasFile: true },
+    { id: 24, title: "Schwarzarbeit kann teuer werden (معدل 2)", enabled: true, hasFile: true },
+    { id: 25, title: "Teamarbeit als Schlüssel zum Erfolg", enabled: true, hasFile: true },
+    { id: 26, title: "Teamarbeit als Schlüssel zum Erfolg (معدل)", enabled: true, hasFile: true },
+    { id: 27, title: "Wie Handschrift wieder cool wird (معدل)", enabled: true, hasFile: true },
+    { id: 28, title: "Wie Handschrift wieder cool wird", enabled: true, hasFile: true },
+    { id: 29, title: "Ausbildung mit über 30", enabled: true, hasFile: true },
+    { id: 30, title: "Verlernen die Deutschen die Höflichkeit?", enabled: true, hasFile: true },
+    { id: 31, title: "Joggen: Mehr als nur Laufen", enabled: true, hasFile: true },
+    { id: 32, title: "Der klügste Freund des Menschen", enabled: true, hasFile: true },
+    { id: 33, title: "Der klügste Freund des Menschen (معدل)", enabled: true, hasFile: true },
+    { id: 34, title: "Manipulierte Bilder", enabled: true, hasFile: true },
+    { id: 35, title: "Maßgeschneidert nach Bodyscanning", enabled: true, hasFile: true },
+    { id: 36, title: "Maßgeschneidert nach Bodyscanning (معدل)", enabled: true, hasFile: true },
+    { id: 37, title: "Im Restaurant", enabled: true, hasFile: true },
+    { id: 38, title: "Im Restaurant (معدل)", enabled: true, hasFile: true },
+    { id: 39, title: "Lernen ist kein Privileg der Jugend", enabled: true, hasFile: true },
+    { id: 40, title: "Lernen ist kein Privileg der Jugend (معدل)", enabled: true, hasFile: true },
+    { id: 41, title: "Wie TV-Bilder die Fantasie von Kindern prägen", enabled: true, hasFile: true },
+    { id: 42, title: "Städte vor dem Infarkt", enabled: true, hasFile: true },
+    { id: 43, title: "Es ist erst 6 Uhr morgens", enabled: true, hasFile: true },
+    { id: 44, title: "Die Katzen", enabled: true, hasFile: true },
+    { id: 45, title: "Teleshopping – nicht immer gut und günstig", enabled: true, hasFile: true }
+  ],
+  hoeren1: [
+    { id: 1, title: "Die Deutsche Lufthansa", enabled: true, hasFile: true },
+    { id: 2, title: "Die Piloten der Lufthansa", enabled: true, hasFile: true },
+    { id: 3, title: "Die Stadt Friedrichsberg", enabled: true, hasFile: true },
+    { id: 4, title: "Erdbeben", enabled: true, hasFile: true },
+    { id: 5, title: "Bierkonsum", enabled: true, hasFile: true },
+    { id: 6, title: "Bierkonsum (Mittel)", enabled: true, hasFile: true },
+    { id: 7, title: "Deutsches Schiff", enabled: true, hasFile: true },
+    { id: 8, title: "Weniger Vögel - Viele Kunden", enabled: true, hasFile: true },
+    { id: 9, title: "Europäische Union", enabled: true, hasFile: true },
+    { id: 10, title: "Unwetterschäden", enabled: true, hasFile: true },
+    { id: 11, title: "Nicht sicher", enabled: true, hasFile: true },
+    { id: 12, title: "Nicht sicher 2", enabled: true, hasFile: true },
+    { id: 13, title: "Frau Jürgens", enabled: true, hasFile: true },
+    { id: 14, title: "Die Wahlbeteiligung", enabled: true, hasFile: true },
+    { id: 15, title: "Die Wetterlage in den Alpen", enabled: true, hasFile: true },
+    { id: 16, title: "Wetter in den Alpen (Mittel)", enabled: true, hasFile: true },
+    { id: 17, title: "Insel Bali", enabled: true, hasFile: true },
+    { id: 18, title: "Die Fluggesellschaft", enabled: true, hasFile: true },
+    { id: 19, title: "Der Fluggesellschaft (Mittel)", enabled: true, hasFile: true },
+    { id: 20, title: "Der Bau", enabled: true, hasFile: true },
+    { id: 21, title: "50-Euro", enabled: true, hasFile: true },
+    { id: 22, title: "Das Schladminger", enabled: true, hasFile: true },
+    { id: 23, title: "Bei den Europawahlen (Linksparteien)", enabled: true, hasFile: true },
+    { id: 24, title: "Bei den Europawahlen (CDU/CSU)", enabled: true, hasFile: true },
+    { id: 25, title: "Die Bundesländer", enabled: true, hasFile: true },
+    { id: 26, title: "Bio-Siegels", enabled: true, hasFile: true },
+    { id: 27, title: "Berufen (bonbon)", enabled: true, hasFile: true }
+  ],
+  hoeren2: [
+    { id: 1, title: "Herr Gasser und Frau Janke", enabled: true, hasFile: true },
+    { id: 2, title: "Suza Hotop", enabled: true, hasFile: true },
+    { id: 3, title: "Suza Hotop (Mittel)", enabled: true, hasFile: true },
+    { id: 4, title: "Professor Steiner", enabled: true, hasFile: true },
+    { id: 5, title: "Professor Steiner (Mittel)", enabled: true, hasFile: true },
+    { id: 6, title: "Mallorca", enabled: true, hasFile: true },
+    { id: 7, title: "Mallorca (Mittel)", enabled: true, hasFile: true },
+    { id: 8, title: "In dem Restaurant", enabled: true, hasFile: true },
+    { id: 9, title: "Julia", enabled: true, hasFile: true },
+    { id: 10, title: "Carina", enabled: true, hasFile: true },
+    { id: 11, title: "Carina (Mittel)", enabled: true, hasFile: true },
+    { id: 12, title: "Frau Schenk", enabled: true, hasFile: true },
+    { id: 13, title: "Frau Schenk (Mittel)", enabled: true, hasFile: true },
+    { id: 14, title: "Herr Karimov", enabled: true, hasFile: true },
+    { id: 15, title: "Nadine", enabled: true, hasFile: true },
+    { id: 16, title: "Markus", enabled: true, hasFile: true },
+    { id: 17, title: "Markus (Mittel)", enabled: true, hasFile: true },
+    { id: 18, title: "Roland (Spielen)", enabled: true, hasFile: true },
+    { id: 19, title: "Roland (aufsteigen)", enabled: true, hasFile: true },
+    { id: 20, title: "Roland (einer höheren Lige)", enabled: true, hasFile: true },
+    { id: 21, title: "Die Deutschen machen", enabled: true, hasFile: true },
+    { id: 22, title: "Herr Scherer", enabled: true, hasFile: true },
+    { id: 23, title: "Beim Wettkampf", enabled: true, hasFile: true },
+    { id: 24, title: "Vanessa", enabled: true, hasFile: true },
+    { id: 25, title: "Zu Beginn", enabled: true, hasFile: true },
+    { id: 26, title: "Die TU Dresden", enabled: true, hasFile: true },
+    { id: 27, title: "Lisa Eisenberg", enabled: true, hasFile: true },
+    { id: 28, title: "Franz Schumacher", enabled: true, hasFile: true },
+    { id: 29, title: "Meron Makeba", enabled: true, hasFile: true },
+    { id: 30, title: "Frau Kedar Malta", enabled: true, hasFile: true },
+    { id: 31, title: "Frau Keder aus Malta", enabled: true, hasFile: true }
+  ],
+  hoeren3: [
+    { id: 1, title: "Telefon", enabled: true, hasFile: true },
+    { id: 2, title: "Musikfestivals", enabled: true, hasFile: true },
+    { id: 3, title: "Musikfestivals (Mittel)", enabled: true, hasFile: true },
+    { id: 4, title: "Fahrschule", enabled: true, hasFile: true },
+    { id: 5, title: "Im Süden Deutschlands (regnen)", enabled: true, hasFile: true },
+    { id: 6, title: "Im Süden Deutschlands (Schnee)", enabled: true, hasFile: true },
+    { id: 7, title: "Internet prüfen", enabled: true, hasFile: true },
+    { id: 8, title: "Ehrenamts", enabled: true, hasFile: true },
+    { id: 9, title: "Ehrenamts (Mittel)", enabled: true, hasFile: true },
+    { id: 10, title: "Demonstration", enabled: true, hasFile: true },
+    { id: 11, title: "Wochenanfang", enabled: true, hasFile: true },
+    { id: 12, title: "Im August", enabled: true, hasFile: true },
+    { id: 13, title: "Fundbüro", enabled: true, hasFile: true },
+    { id: 14, title: "Ausgang 26", enabled: true, hasFile: true },
+    { id: 15, title: "Ausgang 26 (Mittel)", enabled: true, hasFile: true },
+    { id: 16, title: "Blutspenden", enabled: true, hasFile: true },
+    { id: 17, title: "Reitturnier", enabled: true, hasFile: true },
+    { id: 18, title: "Delikatessen", enabled: true, hasFile: true },
+    { id: 19, title: "Für ein Konzert (Bus gratis)", enabled: true, hasFile: true },
+    { id: 20, title: "Für ein Konzert (in der ganzen Stadt)", enabled: true, hasFile: true },
+    { id: 21, title: "In Raum C23", enabled: true, hasFile: true },
+    { id: 22, title: "Trainingsausfahrten", enabled: true, hasFile: true },
+    { id: 23, title: "Das Geschäft", enabled: true, hasFile: true },
+    { id: 24, title: "Nach einer Großdemonstration", enabled: true, hasFile: true },
+    { id: 25, title: "Das Fest (ohne Frankfurt)", enabled: true, hasFile: true },
+    { id: 26, title: "Das Fest (mit Frankfurt)", enabled: true, hasFile: true },
+    { id: 27, title: "Radio Konzert", enabled: true, hasFile: true }
+  ],
+  
+  
+  
+  
   schreiben: schreibenExams
 };
 
-// ========== الدوال الرئيسية ==========
+// ========== باقي الدوال ==========
 
 function renderTeileList() {
   const container = document.getElementById("teileList");
@@ -500,7 +411,7 @@ function renderTeileList() {
   }
 }
 
-async function renderExamListForSkill(skill, teilName) {
+function renderExamListForSkill(skill, teilName) {
   currentSkill = skill;
   
   const container = document.getElementById("examsList");
@@ -509,7 +420,7 @@ async function renderExamListForSkill(skill, teilName) {
   
   const headerDiv = document.createElement("div");
   headerDiv.className = "teil-header";
-  headerDiv.innerHTML = "<strong>📚 " + (teilName || getTeilNameBySkill(skill)) + "</strong>";
+  headerDiv.innerHTML = `<strong>📚 ${teilName || getTeilNameBySkill(skill)}</strong>`;
   container.appendChild(headerDiv);
   
   const exams = examsDatabase[skill] || [];
@@ -520,64 +431,28 @@ async function renderExamListForSkill(skill, teilName) {
     return;
   }
   
-  const userStatus = await getUserStatusForExam();
-  const isPremium = (userStatus === 'premium');
-  
   for (let i = 0; i < exams.length; i++) {
     const exam = exams[i];
-    const examNumber = exam.id;
-    const isFirstExam = (examNumber === 1);
-    
     const div = document.createElement("div");
     div.className = "item";
     
-    const titleSpan = document.createElement("span");
-    titleSpan.className = "exam-title";
-    titleSpan.innerHTML = exam.id + ": " + exam.title;
-    div.appendChild(titleSpan);
-    
-    if (!isPremium && !isFirstExam) {
-      div.classList.add("item-locked");
-      
-      const rightSide = document.createElement("span");
-      rightSide.className = "exam-right-icons";
-      
-      const lockSpan = document.createElement("span");
-      lockSpan.className = "lock-icon";
-      lockSpan.innerHTML = "🔒";
-      rightSide.appendChild(lockSpan);
-      
-      const proSpan = document.createElement("span");
-      proSpan.className = "pro-badge";
-      proSpan.innerHTML = "PRO";
-      rightSide.appendChild(proSpan);
-      
-      div.appendChild(rightSide);
-      
-      div.onclick = (function(title, id) {
-        return function() {
-          showLockedModal(title + " (" + id + ")", id);
-        };
-      })(exam.title, exam.id);
+    if (exam.hasFile) {
+      div.innerHTML = `${exam.id}: ${exam.title}`;
+      div.onclick = (function(id, title, skill) {
+        return function() { openExam(id, title, skill); };
+      })(exam.id, exam.title, skill);
     } else {
-      if (exam.hasFile) {
-        div.onclick = (function(id, title, skill) {
-          return function() { openExam(id, title, skill); };
-        })(exam.id, exam.title, skill);
-      } else {
-        div.style.opacity = "0.6";
-        div.style.backgroundColor = "#f8f9fa";
-        div.onclick = (function(id) {
-          return function() { alert("⚠️ الامتحان رقم " + id + " سيتم إضافته قريباً."); };
-        })(exam.id);
-      }
+      div.innerHTML = `${exam.id}: ${exam.title} 🔜`;
+      div.style.opacity = "0.6";
+      div.style.backgroundColor = "#f8f9fa";
+      div.onclick = () => alert(`⚠️ الامتحان رقم ${exam.id} سيتم إضافته قريباً.`);
     }
     container.appendChild(div);
   }
 }
 
 function getTeilNameBySkill(skill) {
-  const teil = teile.find(function(t) { return t.skill === skill; });
+  const teil = teile.find(t => t.skill === skill);
   return teil ? teil.name : skill;
 }
 
@@ -585,7 +460,7 @@ function getActualFileName(examId) {
   if (actualFileNames[examId]) {
     return actualFileNames[examId];
   }
-  return "exam" + examId + ".json";
+  return `exam${examId}.json`;
 }
 
 async function openExam(examId, examTitle, skill) {
@@ -594,10 +469,13 @@ async function openExam(examId, examTitle, skill) {
   
   const fileName = getActualFileName(examId);
   
+  console.log("🟢 فتح الامتحان:", examId, examTitle, skill);
+  console.log("📁 اسم الملف:", fileName);
+  
   try {
-    const response = await fetch("data/" + skill + "/" + fileName);
+    const response = await fetch(`data/${skill}/${fileName}`);
     if (!response.ok) {
-      alert("⚠️ الامتحان \"" + examTitle + "\" سيتم إضافته قريباً.\nالملف المطلوب: " + fileName);
+      alert(`⚠️ الامتحان "${examTitle}" سيتم إضافته قريباً.\nالملف المطلوب: ${fileName}`);
       return;
     }
     currentExamData = await response.json();
@@ -613,20 +491,57 @@ async function openExam(examId, examTitle, skill) {
       if (typeof window.loadMatchingExam === "function") {
         window.loadMatchingExam(currentExamData);
       } else {
-        buildTeil1(currentExamData.questions || []);
+        console.error("❌ loadMatchingExam غير موجود");
+        alert("نظام التصحيح غير متوفر حالياً");
       }
     } else if (currentExamData.type === "truefalse") {
       const container = document.getElementById(currentSkill);
       if (container && typeof window.buildTrueFalseExam === "function") {
         window.buildTrueFalseExam(container, currentExamData.questions, currentExamData.note);
       } else {
-        buildTeil1(currentExamData.questions || []);
+        console.error("❌ buildTrueFalseExam غير موجود");
+        buildTeil1(currentExamData.questions);
+      }
+    } else if (currentExamData.type === "teil2") {
+      if (typeof window.loadTeil2Exam === "function") {
+        window.loadTeil2Exam(currentExamData);
+      } else {
+        console.error("❌ loadTeil2Exam غير موجود");
+        alert("نظام Teil 2 غير متوفر حالياً");
+      }
+    } else if (currentExamData.type === "teil3") {
+      if (typeof window.loadTeil3Exam === "function") {
+        window.loadTeil3Exam(currentExamData);
+      } else {
+        console.error("❌ loadTeil3Exam غير موجود");
+        alert("نظام Teil 3 غير متوفر حالياً");
+      }
+    } else if (currentExamData.type === "sprach1") {
+      if (typeof window.loadSprach1Exam === "function") {
+        window.loadSprach1Exam(currentExamData);
+      } else {
+        console.error("❌ loadSprach1Exam غير موجود");
+        alert("نظام Sprachbausteine Teil 1 غير متوفر حالياً");
+      }
+    } else if (currentExamData.type === "sprach2") {
+      if (typeof window.loadSprach2Exam === "function") {
+        window.loadSprach2Exam(currentExamData);
+      } else {
+        console.error("❌ loadSprach2Exam غير موجود");
+        alert("نظام Sprachbausteine Teil 2 غير متوفر حالياً");
+      }
+    } else if (currentExamData.type === "schreiben") {
+      if (typeof window.loadSchreibenExam === "function") {
+        window.loadSchreibenExam(currentExamData);
+      } else {
+        console.error("❌ loadSchreibenExam غير موجود");
+        alert("نظام Schreiben غير متوفر حالياً");
       }
     } else {
-      buildTeil1(currentExamData.questions || []);
+      buildTeil1(currentExamData.questions);
     }
     
-    const teilIndex = teile.findIndex(function(t) { return t.skill === skill; });
+    const teilIndex = teile.findIndex(t => t.skill === skill);
     showTeil(teilIndex + 1);
   } catch(e) {
     console.error("❌ خطأ:", e);
@@ -635,25 +550,19 @@ async function openExam(examId, examTitle, skill) {
 }
 
 function updateExamNavButtons() {
-  let prevBtn = document.getElementById("prevExamBtn");
-  let nextBtn = document.getElementById("nextExamBtn");
+  const prevBtn = document.getElementById("prevExamBtn");
+  const nextBtn = document.getElementById("nextExamBtn");
   
   if (!prevBtn || !nextBtn) return;
   
-  let currentIndex = -1;
-  for (let i = 0; i < currentExamsList.length; i++) {
-    if (currentExamsList[i].id === currentExamId) {
-      currentIndex = i;
-      break;
-    }
-  }
-  let hasPrev = currentIndex > 0;
-  let hasNext = currentIndex < currentExamsList.length - 1;
+  const currentIndex = currentExamsList.findIndex(e => e.id === currentExamId);
+  const hasPrev = currentIndex > 0;
+  const hasNext = currentIndex < currentExamsList.length - 1;
   
   if (hasPrev) {
     prevBtn.style.display = "inline-block";
-    prevBtn.onclick = function() {
-      let prevExam = currentExamsList[currentIndex - 1];
+    prevBtn.onclick = () => {
+      const prevExam = currentExamsList[currentIndex - 1];
       openExam(prevExam.id, prevExam.title, currentSkill);
     };
   } else {
@@ -662,8 +571,8 @@ function updateExamNavButtons() {
   
   if (hasNext) {
     nextBtn.style.display = "inline-block";
-    nextBtn.onclick = function() {
-      let nextExam = currentExamsList[currentIndex + 1];
+    nextBtn.onclick = () => {
+      const nextExam = currentExamsList[currentIndex + 1];
       openExam(nextExam.id, nextExam.title, currentSkill);
     };
   } else {
@@ -672,13 +581,10 @@ function updateExamNavButtons() {
 }
 
 function showTeil(teilNumber) {
-  for (let i = 0; i < teile.length; i++) {
-    const teil = teile[i];
+  teile.forEach((teil, idx) => {
     const container = document.getElementById(teil.container);
-    if (container) {
-      container.style.display = (i + 1 === teilNumber) ? "block" : "none";
-    }
-  }
+    if (container) container.style.display = (idx + 1 === teilNumber) ? "block" : "none";
+  });
 }
 
 function buildTeil1(questions) {
@@ -808,3 +714,12 @@ document.addEventListener("DOMContentLoaded", function() {
 renderTeileList();
 
 console.log("✅ exams.js تم تحميله بنجاح");
+console.log("📚 Lesen Teil 1:", examsDatabase.lesen1.length, "امتحان");
+console.log("📚 Lesen Teil 2:", examsDatabase.lesen2.length, "امتحان");
+console.log("📚 Lesen Teil 3:", examsDatabase.lesen3.length, "امتحان");
+console.log("📝 Sprachbausteine Teil 1:", examsDatabase.sprach1.length, "امتحان");
+console.log("📝 Sprachbausteine Teil 2:", examsDatabase.sprach2.length, "امتحان");
+console.log("🎧 Hören Teil 1:", examsDatabase.hoeren1.length, "امتحان");
+console.log("🎧 Hören Teil 2:", examsDatabase.hoeren2.length, "امتحان");
+console.log("🎧 Hören Teil 3:", examsDatabase.hoeren3.length, "امتحان");
+console.log("✏️ Schreiben:", examsDatabase.schreiben.length, "امتحان");
