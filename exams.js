@@ -511,12 +511,11 @@ async function renderExamListForSkill(skill, teilName) {
     titleSpan.className = "exam-title";
     titleSpan.innerHTML = `${exam.id}: ${exam.title}`;
     div.appendChild(titleSpan);
-    
     if (!isPremium && !isFirstExam) {
-      // امتحان مقفل - شفاف مع قفل أزرق فاتح
-      div.style.opacity = "0.7";
-      div.style.backgroundColor = "white";
-      div.style.border = "1px solid #dbeafe";
+      // امتحان مقفل - شكل احترافي
+      div.style.backgroundColor = "rgba(255,255,255,0.75)";
+      div.style.border = "1px solid #e2e8f0";
+      div.style.opacity = "1";
       
       const rightSide = document.createElement("span");
       rightSide.className = "exam-right-icons";
@@ -533,13 +532,13 @@ async function renderExamListForSkill(skill, teilName) {
       const proSpan = document.createElement("span");
       proSpan.className = "pro-badge";
       proSpan.innerHTML = "PRO";
-      proSpan.style.cssText = "color:#3b82f6; font-size:9px; font-weight:bold; letter-spacing:1px;";
+      proSpan.style.cssText = "color:#2563eb; font-size:9px; font-weight:bold; letter-spacing:1px;";
       rightSide.appendChild(proSpan);
       
       div.appendChild(rightSide);
       
-      // تغيير لون النص
-      titleSpan.style.color = "#7c8594";
+      // تغيير لون النص إلى رمادي حديث
+      titleSpan.style.color = "#6b7280";
       
       div.onclick = (function(title, id) {
         return function() {
