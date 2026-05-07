@@ -51,7 +51,7 @@ async function getUserStatusForExam() {
     }
 }
 
-// ========== دالة عرض نافذة المحتوى المقفل ==========
+ر// ========== دالة عرض نافذة المحتوى المقفل (لزر التالي) ==========
 function showLockedModalForExam(examTitle) {
     let oldModal = document.getElementById('globalLockedModal');
     if (oldModal) oldModal.remove();
@@ -71,9 +71,9 @@ function showLockedModalForExam(examTitle) {
             <p style="color:#555; margin-bottom:20px;">المرجو ترقية الحساب للوصول لهذا المحتوى</p>
             <div style="background:#e9d5ff; padding:12px; border-radius:18px; margin-bottom:20px; color:#6b21a5; font-weight:bold;">📚 ${examTitle}</div>
             <p style="color:#888; margin-bottom:25px; font-size:14px;">يتطلب باقة: <strong style="color:#2b5876;">Pro</strong></p>
-            <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-                <button id="upgradeModalBtn" style="background:linear-gradient(135deg, #2b5876, #4e4376); color:white; border:none; padding:12px 28px; border-radius:50px; cursor:pointer; font-weight:bold; font-size:15px;">🚀 ترقية الحساب الآن</button>
-                <button id="closeModalBtn" style="background:#e2e8f0; border:none; padding:12px 28px; border-radius:50px; cursor:pointer; font-weight:bold; font-size:15px; color:#4a5568;">ليس الآن</button>
+            <div style="display:flex; flex-direction:column; gap:12px; justify-content:center; align-items:center; margin-top:10px;">
+                <button id="upgradeModalBtn" style="background:linear-gradient(135deg, #2b5876, #4e4376); color:white; border:none; padding:12px 28px; border-radius:50px; cursor:pointer; font-weight:bold; font-size:15px; width:80%;">🚀 ترقية الحساب الآن</button>
+                <button id="closeModalBtn" style="background:#e2e8f0; border:none; padding:12px 28px; border-radius:50px; cursor:pointer; font-weight:bold; font-size:15px; color:#4a5568; width:80%;">ليس الآن</button>
             </div>
         </div>
     `;
