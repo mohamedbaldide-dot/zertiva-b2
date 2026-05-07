@@ -118,13 +118,14 @@ function showLockedMessage(examTitle) {
     };
 }
 
-// ========== أيقونة الحساب (Profile) ==========
 async function updateProfileDropdown() {
     let email = getLoggedInEmail();
     let profileEmail = document.getElementById('profileEmail');
     let profileExpiry = document.getElementById('profileExpiry');
     let profileStatus = document.getElementById('profileStatus');
     let profileLogoutBtn = document.getElementById('profileLogoutBtn');
+    let profileIcon = document.getElementById('profileIcon');
+    let navLoginBtn = document.getElementById('navLoginBtn');
     
     if(!profileEmail) return;
     
@@ -148,11 +149,15 @@ async function updateProfileDropdown() {
         }
         
         if(profileLogoutBtn) profileLogoutBtn.style.display = 'block';
+        if(profileIcon) profileIcon.style.display = 'flex';
+        if(navLoginBtn) navLoginBtn.style.display = 'none';
     } else {
         profileEmail.innerHTML = '👤 غير مسجل';
         profileExpiry.innerHTML = '';
         profileStatus.innerHTML = '';
         if(profileLogoutBtn) profileLogoutBtn.style.display = 'none';
+        if(profileIcon) profileIcon.style.display = 'none';
+        if(navLoginBtn) navLoginBtn.style.display = 'inline-block';
     }
 }
 
@@ -163,7 +168,6 @@ function toggleProfileDropdown() {
     }
 }
 
-// ========== نافذة تسجيل الدخول ==========
 function showLoginPopup() {
     let popup = document.getElementById('loginPopup');
     if(popup) popup.style.display = 'flex';
@@ -202,7 +206,6 @@ async function handleLogin() {
     location.reload();
 }
 
-// ========== زر التالي المقفل ==========
 async function setupLockedNextButton() {
     let status = await getUserStatus();
     let nextBtn = document.getElementById('nextExamBtn');
@@ -219,7 +222,6 @@ async function setupLockedNextButton() {
     }
 }
 
-// ========== أزرار تسجيل الدخول والخروج ==========
 function bindAuthEvents() {
     let navLoginBtn = document.getElementById('navLoginBtn');
     if(navLoginBtn) navLoginBtn.addEventListener('click', showLoginPopup);
@@ -271,7 +273,6 @@ function bindAuthEvents() {
     });
 }
 
-// ========== مراقبة تغيير الصفحة ==========
 function observePageChanges() {
     const observer = new MutationObserver(() => {
         let listPage = document.getElementById('list');
@@ -287,7 +288,6 @@ function observePageChanges() {
     observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
 }
 
-// ========== تهيئة النظام ==========
 async function initAuth() {
     bindAuthEvents();
     await updateProfileDropdown();
