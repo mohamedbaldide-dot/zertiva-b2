@@ -279,47 +279,50 @@ body {
 
 .features-images {
     flex: 1;
-    min-width: 380px;
+    min-width: 550px;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .image-stack {
     position: relative;
     width: 100%;
-    max-width: 450px;
-    min-height: 450px;
+    max-width: 700px;
+    min-height: 750px;
 }
 
 .image-card-feature {
     background: white;
     border-radius: 24px;
-    padding: 12px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
     overflow: hidden;
-    width: 100%;
+    width: 85%;
 }
 
 .image-card-feature:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
 }
 
 .image-top {
     position: absolute;
     top: 0;
     right: 0;
-    width: 70%;
+    width: 85%;
     z-index: 2;
+    transform: rotate(-2deg);
 }
 
 .image-bottom {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 70%;
+    width: 85%;
     z-index: 1;
+    transform: rotate(3deg);
 }
 
 .feature-img {
@@ -327,22 +330,59 @@ body {
     height: auto;
     border-radius: 16px;
     display: block;
-    background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
-    min-height: 220px;
-    object-fit: cover;
+    background: white;
+    object-fit: contain;
 }
 
-.image-caption {
-    font-size: 12px;
-    color: #64748b;
-    text-align: center;
-    margin-top: 10px;
-    padding: 8px;
-    background: #f1f5f9;
-    border-radius: 12px;
-    font-weight: 500;
+@media (max-width: 900px) {
+    .features-images {
+        min-width: 400px;
+    }
+    
+    .image-stack {
+        max-width: 500px;
+        min-height: 550px;
+    }
+    
+    .image-card-feature {
+        width: 90%;
+        padding: 12px;
+    }
+    
+    .image-top {
+        width: 90%;
+    }
+    
+    .image-bottom {
+        width: 90%;
+    }
 }
 
+@media (max-width: 600px) {
+    .features-images {
+        min-width: 300px;
+    }
+    
+    .image-stack {
+        max-width: 380px;
+        min-height: 420px;
+    }
+    
+    .image-card-feature {
+        width: 95%;
+        padding: 10px;
+    }
+    
+    .image-top {
+        width: 95%;
+        transform: rotate(-1deg);
+    }
+    
+    .image-bottom {
+        width: 95%;
+        transform: rotate(2deg);
+    }
+}
 /* ========================================
    Top Bar
    ======================================== */
@@ -815,9 +855,5 @@ body {
     .image-bottom {
         width: 60%;
         left: 5%;
-    }
-    
-    .image-caption {
-        font-size: 10px;
     }
 }
