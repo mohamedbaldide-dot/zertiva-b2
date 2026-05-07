@@ -512,50 +512,70 @@ async function renderExamListForSkill(skill, teilName) {
     titleSpan.innerHTML = `${exam.id}: ${exam.title}`;
     div.appendChild(titleSpan);
     if (!isPremium && !isFirstExam) {
-      // امتحان مقفل - شكل احترافي
-      div.style.backgroundColor = "rgba(255,255,255,0.75)";
-      div.style.border = "1px solid #e2e8f0";
-      div.style.opacity = "1";
-      
-      const rightSide = document.createElement("span");
-      rightSide.className = "exam-right-icons";
-      rightSide.style.display = "flex";
-      rightSide.style.alignItems = "center";
-      rightSide.style.gap = "6px";
-      
-      const lockSpan = document.createElement("span");
-      lockSpan.className = "lock-icon";
-      lockSpan.innerHTML = "🔒";
-      lockSpan.style.cssText = "font-size:13px; color:#60a5fa; margin-right:5px;";
-      rightSide.appendChild(lockSpan);
-      
-      const proSpan = document.createElement("span");
-      proSpan.className = "pro-badge";
-      proSpan.innerHTML = "PRO";
-      proSpan.style.cssText = "color:#2563eb; font-size:9px; font-weight:bold; letter-spacing:1px;";
-      rightSide.appendChild(proSpan);
-      
-      div.appendChild(rightSide);
-      
-      // تغيير لون النص إلى رمادي حديث
-      titleSpan.style.color = "#6b7280";
-      
-      div.onclick = (function(title, id) {
+
+    // نفس شكل الامتحانات العادية تقريباً
+    div.style.background = "white";
+    div.style.border = "1px solid #edf2f7";
+    div.style.borderRadius = "10px";
+
+    // فرق خفيف فقط
+    div.style.opacity = "0.96";
+
+    // حركة ناعمة
+    div.style.transition = "all 0.18s ease";
+
+    // تأثير الماوس مثل الامتحان المفتوح
+    div.onmouseenter = () => {
+        div.style.background = "#f8fafc";
+        div.style.transform = "translateY(-1px)";
+        div.style.boxShadow = "0 2px 8px rgba(0,0,0,0.05)";
+    };
+
+    div.onmouseleave = () => {
+        div.style.background = "white";
+        div.style.transform = "translateY(0px)";
+        div.style.boxShadow = "none";
+    };
+
+    // لون العنوان
+    titleSpan.style.color = "#6b7280";
+    titleSpan.style.fontWeight = "500";
+
+    // الجهة اليمنى
+    const rightSide = document.createElement("div");
+
+    rightSide.style.display = "flex";
+    rightSide.style.alignItems = "center";
+    rightSide.style.gap = "6px";
+
+    // القفل
+    const lockSpan = document.createElement("span");
+    lockSpan.innerHTML = "🔒";
+
+    lockSpan.style.fontSize = "13px";
+    lockSpan.style.color = "#60a5fa";
+
+    // PRO
+    const proSpan = document.createElement("span");
+    proSpan.innerHTML = "PRO";
+
+    proSpan.style.fontSize = "10px";
+    proSpan.style.fontWeight = "700";
+    proSpan.style.color = "#2563eb";
+
+    // إضافة العناصر
+    rightSide.appendChild(lockSpan);
+    rightSide.appendChild(proSpan);
+
+    div.appendChild(rightSide);
+
+    // عند الضغط
+    div.onclick = (function(title, id) {
         return function() {
-          showLockedModalForExam(title + " (" + id + ")");
+            showLockedModalForExam(title + " (" + id + ")");
         };
-      })(exam.title, exam.id);
-    } else {
-      // امتحان مفتوح
-      div.style.opacity = "1";
-      div.style.backgroundColor = "";
-      div.style.border = "";
-      
-      if (exam.hasFile) {
-        div.onclick = (function(id, title, skill) {
-          return function() { openExam(id, title, skill); };
-        })(exam.id, exam.title, skill);
-      } else {
+    })(exam.title, exam.id);
+} else {
         div.style.opacity = "0.6";
         div.style.backgroundColor = "#f8f9fa";
         div.onclick = () => alert(`⚠️ الامتحان رقم ${exam.id} سيتم إضافته قريباً.`);
