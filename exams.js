@@ -1,6 +1,5 @@
 // ============================================
 // exams.js - نظام الامتحانات المتكامل مع نظام القفل
-// يدعم: Hören Teil 1-3, Lesen Teil 1-3, Sprachbausteine Teil 1-2, Schreiben
 // ============================================
 
 const teile = [
@@ -511,8 +510,8 @@ async function renderExamListForSkill(skill, teilName) {
     titleSpan.className = "exam-title";
     titleSpan.innerHTML = `${exam.id}: ${exam.title}`;
     div.appendChild(titleSpan);
+    
     if (!isPremium && !isFirstExam) {
-      // امتحان مقفل - شكل احترافي
       div.style.backgroundColor = "rgba(255,255,255,0.75)";
       div.style.border = "1px solid #e2e8f0";
       div.style.opacity = "1";
@@ -536,8 +535,6 @@ async function renderExamListForSkill(skill, teilName) {
       rightSide.appendChild(proSpan);
       
       div.appendChild(rightSide);
-      
-      // تغيير لون النص إلى رمادي حديث
       titleSpan.style.color = "#6b7280";
       
       div.onclick = (function(title, id) {
@@ -545,28 +542,28 @@ async function renderExamListForSkill(skill, teilName) {
           showLockedModalForExam(title + " (" + id + ")");
         };
       })(exam.title, exam.id);
+    } else if (exam.hasFile) {
+      div.onclick = (function(id, title, skill) {
+        return function() { openExam(id, title, skill); };
+      })(exam.id, exam.title, skill);
     } else {
-        div.style.opacity = "0.6";
-        div.style.backgroundColor = "#f8f9fa";
-        div.onclick = () => alert(`⚠️ الامتحان رقم ${exam.id} سيتم إضافته قريباً.`);
-      }
+      div.style.opacity = "0.6";
+      div.style.backgroundColor = "#f8f9fa";
+      div.onclick = () => alert(`⚠️ الامتحان رقم ${exam.id} سيتم إضافته قريباً.`);
     }
     container.appendChild(div);
   }
   
   setTimeout(setupLockedNextButton, 100);
-
+}
 
 function setupLockedNextButton() {
   const nextBtn = document.getElementById('nextExamBtn');
   if (!nextBtn) return;
   
-  // التحقق من وجود حدث أصلي
-  const userStatus = getUserStatusForExam();
-  userStatus.then(status => {
+  getUserStatusForExam().then(status => {
     const isPremium = (status === 'premium');
     if (!isPremium && nextBtn.style.display !== 'none') {
-      // إضافة قفل لزر التالي
       nextBtn.style.position = "relative";
       nextBtn.style.paddingLeft = "35px";
       
@@ -863,7 +860,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 renderTeileList();
 
-console.log("✅ exams.js تم تحميله بنجاح مع نظام القفل");
+console.log("✅ exams.js تم تحميله بنجاح");
 console.log("📚 Lesen Teil 1:", examsDatabase.lesen1.length, "امتحان");
 console.log("📚 Lesen Teil 2:", examsDatabase.lesen2.length, "امتحان");
 console.log("📚 Lesen Teil 3:", examsDatabase.lesen3.length, "امتحان");
