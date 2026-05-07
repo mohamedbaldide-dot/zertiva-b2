@@ -283,7 +283,7 @@ body {
 /* ===== تحسين البطاقتين ===== */
 .features-images {
     flex: 1;
-    min-width: 880px;
+    min-width: 480px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -292,8 +292,8 @@ body {
 .image-stack {
     position: relative;
     width: 100%;
-    max-width: 880px;
-    min-height: 880px;
+    max-width: 500px;
+    min-height: 480px;
 }
 
 .image-card-feature {
