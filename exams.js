@@ -51,7 +51,7 @@ async function getUserStatusForExam() {
     }
 }
 
-// ========== دالة عرض نافذة المحتوى المقفل (لزر التالي) ==========
+// ========== دالة عرض نافذة المحتوى المقفل (لزر التالي - نسخة غير شفافة) ==========
 function showLockedModalForExam(examTitle) {
     let oldModal = document.getElementById('globalLockedModal');
     if (oldModal) oldModal.remove();
@@ -60,12 +60,12 @@ function showLockedModalForExam(examTitle) {
     modal.id = 'globalLockedModal';
     modal.style.cssText = `
         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.08); z-index: 999999;
+        background: rgba(0,0,0,0.8); z-index: 999999;
         display: flex; justify-content: center; align-items: center;
         direction: rtl;
     `;
     modal.innerHTML = `
-        <div style="background:white; border-radius:28px; padding:30px; max-width:350px; width:85%; text-align:center; box-shadow:0 25px 45px rgba(0,0,0,0.25); direction:rtl;">
+        <div style="background:white; border-radius:28px; padding:30px; max-width:350px; width:85%; text-align:center; box-shadow:0 25px 45px rgba(0,0,0,0.3); direction:rtl;">
             <div style="font-size:55px; margin-bottom:15px;">🔒</div>
             <h2 style="color:#2b5876; margin-bottom:12px; font-size:24px;">محـتوى مقفل</h2>
             <p style="color:#555; margin-bottom:20px;">المرجو ترقية الحساب للوصول لهذا المحتوى</p>
