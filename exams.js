@@ -503,10 +503,11 @@ async function renderExamListForSkill(skill, teilName) {
     div.appendChild(titleSpan);
     
        if (!isPremium && !isFirstExam) {
-      // شفاف قليلاً
+      // لا نضيف class item-locked
+      // div.classList.add("item-locked");  // علق هذا السطر أو احذفه
+      
       div.style.opacity = "0.7";
-      div.style.backgroundColor = "";
-      div.style.border = "";
+      div.style.backgroundColor = "transparent";
       
       const rightSide = document.createElement("span");
       rightSide.className = "exam-right-icons";
@@ -514,18 +515,16 @@ async function renderExamListForSkill(skill, teilName) {
       rightSide.style.alignItems = "center";
       rightSide.style.gap = "6px";
       
-      // قفل إطار رمادي فقط (باستخدام SVG نصي)
       const lockSpan = document.createElement("span");
       lockSpan.className = "lock-icon";
       lockSpan.innerHTML = "🔒";
-      lockSpan.style.cssText = "font-size:14px; color:#6b7280; opacity:0.8; margin-right:8px; filter: grayscale(0.3);";
+      lockSpan.style.cssText = "font-size:14px; color:#9ca3af; margin-right:8px;";
       rightSide.appendChild(lockSpan);
       
-      // كلمة PRO باللون الأزرق الفاتح فقط (بدون خلفية)
       const proSpan = document.createElement("span");
       proSpan.className = "pro-badge";
       proSpan.innerHTML = "PRO";
-      proSpan.style.cssText = "color:#3b82f6; font-size:10px; font-weight:bold; background:transparent; padding:0; margin:0;";
+      proSpan.style.cssText = "color:#3b82f6; font-size:10px; font-weight:bold; background:transparent; padding:0;";
       rightSide.appendChild(proSpan);
       
       div.appendChild(rightSide);
