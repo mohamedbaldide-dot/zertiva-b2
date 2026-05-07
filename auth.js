@@ -72,7 +72,7 @@ async function getExpiryDate(email) {
     }
 }
 
-   function showLockedMessage(examTitle) {
+function showLockedMessage(examTitle) {
     let modal = document.createElement('div');
     modal.id = 'lockedModal';
     modal.style.cssText = `
@@ -235,9 +235,6 @@ function bindAuthEvents() {
         }
     });
     
-    let whatsappFloat = document.getElementById('whatsappFloat');
-    if(whatsappFloat) whatsappFloat.addEventListener('click', () => window.open(WA_URL, '_blank'));
-    
     let popupLoginBtn = document.getElementById('popupLoginBtn');
     if(popupLoginBtn) popupLoginBtn.addEventListener('click', handleLogin);
     
@@ -266,8 +263,8 @@ function bindAuthEvents() {
     
     document.addEventListener('click', function(e) {
         let dropdown = document.getElementById('profileDropdown');
-        let profileIcon = document.getElementById('profileIcon');
-        if(dropdown && profileIcon && !profileIcon.contains(e.target) && !dropdown.contains(e.target)) {
+        let profileIconElem = document.getElementById('profileIcon');
+        if(dropdown && profileIconElem && !profileIconElem.contains(e.target) && !dropdown.contains(e.target)) {
             dropdown.classList.remove('show');
         }
     });
