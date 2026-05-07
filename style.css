@@ -279,7 +279,7 @@ body {
 
 .features-images {
     flex: 1;
-    min-width: 550px;
+    min-width: 700px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -288,18 +288,18 @@ body {
 .image-stack {
     position: relative;
     width: 100%;
-    max-width: 700px;
-    min-height: 750px;
+    max-width: 900px;
+    min-height: 950px;
 }
 
 .image-card-feature {
     background: white;
     border-radius: 24px;
-    padding: 18px;
+    padding: 20px;
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
     overflow: hidden;
-    width: 85%;
+    width: 90%;
 }
 
 .image-card-feature:hover {
