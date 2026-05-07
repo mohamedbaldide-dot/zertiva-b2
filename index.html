@@ -99,9 +99,11 @@
                 <div class="image-stack">
                     <div class="image-card-feature image-top">
                         <img src="images/f1.png" alt="Feature 1" class="feature-img">
+                        <div class="image-caption">🏃‍♂️ نادي رياضي - Bonner Sportverein</div>
                     </div>
                     <div class="image-card-feature image-bottom">
                         <img src="images/f2.png" alt="Feature 2" class="feature-img">
+                        <div class="image-caption">📚 الإرهاب النفسي - Mobbing an der Schule</div>
                     </div>
                 </div>
             </div>
@@ -171,6 +173,15 @@
             } else {
                 document.getElementById('loginPopup').style.display = 'flex';
             }
+        });
+    }
+    
+    // الشعار: يذهب إلى أعلى الصفحة فقط (بدون إعادة تحميل)
+    const logoBtn = document.getElementById('logoHomeBtn');
+    if(logoBtn) {
+        logoBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 </script>
