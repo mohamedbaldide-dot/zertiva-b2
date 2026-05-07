@@ -2612,10 +2612,3 @@ const lockObserver = new MutationObserver(() => {
     }
 });
 
-lockObserver.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
-
-// تطبيق القفل عند تحميل الصفحة
-window.addEventListener('DOMContentLoaded', () => {
-   
-});
-console.log("✅ engine.js جاهز بالكامل (النسخة النهائية الشغالة)");
