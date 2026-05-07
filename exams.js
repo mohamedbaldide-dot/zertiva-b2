@@ -51,7 +51,7 @@ async function getUserStatusForExam() {
     }
 }
 
-ر// ========== دالة عرض نافذة المحتوى المقفل (لزر التالي) ==========
+// ========== دالة عرض نافذة المحتوى المقفل (لزر التالي) ==========
 function showLockedModalForExam(examTitle) {
     let oldModal = document.getElementById('globalLockedModal');
     if (oldModal) oldModal.remove();
