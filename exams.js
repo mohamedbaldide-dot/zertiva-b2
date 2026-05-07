@@ -13,7 +13,40 @@ const teile = [
   { id: 8, name: "Sprachbausteine Teil 2", container: "sprach2", skill: "sprach2" },
   { id: 9, name: "Schreiben", container: "schreiben", skill: "schreiben" }
 ];
-
+// ========== دالة عرض نافذة القفل ==========
+function showLockedMessage(examTitle) {
+    let modal = document.createElement('div');
+    modal.id = 'lockedModal';
+    modal.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.85); z-index: 100000;
+        display: flex; justify-content: center; align-items: center;
+        direction: rtl;
+    `;
+    
+    modal.innerHTML = `
+        <div style="background:white; border-radius:28px; padding:35px; max-width:360px; width:85%; text-align:center; box-shadow:0 25px 50px rgba(0,0,0,0.3); direction:rtl;">
+            <div style="font-size:55px; margin-bottom:15px;">🔒</div>
+            <h2 style="color:#2b5876; margin-bottom:12px; font-size:24px;">محـتوى مقفل</h2>
+            <p style="color:#555; margin-bottom:20px;">المرجو ترقية الحساب للوصول لهذا المحتوى</p>
+            <div style="background:#e9d5ff; padding:12px; border-radius:18px; margin-bottom:20px; color:#6b21a5; font-weight:bold;">📚 ${examTitle}</div>
+            <p style="color:#888; margin-bottom:25px; font-size:14px;">يتطلب باقة: <strong style="color:#2b5876;">Pro</strong></p>
+            <div style="display:flex; flex-direction:column; gap:12px; justify-content:center; align-items:center; margin-top:10px;">
+                <button id="upgradeNowBtnModal" style="background:linear-gradient(135deg, #2b5876, #4e4376); color:white; border:none; padding:12px 28px; border-radius:50px; cursor:pointer; font-weight:bold; font-size:15px; width:80%;">🚀 ترقية الحساب الآن</button>
+                <button id="closeModalBtn" style="background:#e2e8f0; border:none; padding:12px 28px; border-radius:50px; cursor:pointer; font-weight:bold; font-size:15px; color:#4a5568; width:80%;">ليس الآن</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    let upgradeBtn = document.getElementById('upgradeNowBtnModal');
+    let closeBtn = document.getElementById('closeModalBtn');
+    
+    if(upgradeBtn) upgradeBtn.onclick = function() { window.location.href = 'subscribe.html'; };
+    if(closeBtn) closeBtn.onclick = function() { modal.remove(); };
+    modal.onclick = function(e) { if(e.target === modal) modal.remove(); };
+}
 let currentExamData = null;
 let currentSkill = "lesen1";
 let currentExamId = null;
