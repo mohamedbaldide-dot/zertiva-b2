@@ -212,18 +212,18 @@ body {
 }
 
 .features-container {
-    max-width: 1300px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 60px;
+    gap: 80px;
     flex-wrap: wrap;
 }
 
 .features-content {
     flex: 1;
-    min-width: 300px;
+    min-width: 380px;
 }
 
 .features-title {
@@ -277,9 +277,10 @@ body {
     transform: translateX(5px);
 }
 
+/* ===== الصور المائلة في الجهة اليمنى ===== */
 .features-images {
     flex: 1;
-    min-width: 700px;
+    min-width: 550px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -288,101 +289,53 @@ body {
 .image-stack {
     position: relative;
     width: 100%;
-    max-width: 900px;
-    min-height: 950px;
+    max-width: 550px;
+    min-height: 580px;
 }
 
 .image-card-feature {
     background: white;
     border-radius: 24px;
-    padding: 20px;
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
+    padding: 15px;
+    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.12);
+    transition: all 0.4s ease;
     overflow: hidden;
-    width: 90%;
+    width: 80%;
 }
 
 .image-card-feature:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.18);
 }
 
 .image-top {
     position: absolute;
     top: 0;
-    right: 0;
-    width: 85%;
+    right: 5%;
+    width: 75%;
     z-index: 2;
-    transform: rotate(-2deg);
+    transform: rotate(5deg);
 }
 
 .image-bottom {
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 85%;
+    left: 5%;
+    width: 75%;
     z-index: 1;
-    transform: rotate(3deg);
+    transform: rotate(-4deg);
 }
 
 .feature-img {
     width: 100%;
     height: auto;
-    border-radius: 16px;
+    border-radius: 18px;
     display: block;
     background: white;
     object-fit: contain;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
-@media (max-width: 900px) {
-    .features-images {
-        min-width: 400px;
-    }
-    
-    .image-stack {
-        max-width: 500px;
-        min-height: 550px;
-    }
-    
-    .image-card-feature {
-        width: 90%;
-        padding: 12px;
-    }
-    
-    .image-top {
-        width: 90%;
-    }
-    
-    .image-bottom {
-        width: 90%;
-    }
-}
-
-@media (max-width: 600px) {
-    .features-images {
-        min-width: 300px;
-    }
-    
-    .image-stack {
-        max-width: 380px;
-        min-height: 420px;
-    }
-    
-    .image-card-feature {
-        width: 95%;
-        padding: 10px;
-    }
-    
-    .image-top {
-        width: 95%;
-        transform: rotate(-1deg);
-    }
-    
-    .image-bottom {
-        width: 95%;
-        transform: rotate(2deg);
-    }
-}
 /* ========================================
    Top Bar
    ======================================== */
@@ -768,6 +721,10 @@ body {
     background: #eee;
 }
 
+/* ========================================
+   Responsive
+   ======================================== */
+
 @media (max-width: 900px) {
     .hero-container {
         flex-direction: column;
@@ -798,26 +755,28 @@ body {
     }
     
     .features-images {
-        min-width: 300px;
+        min-width: 400px;
     }
     
     .image-stack {
-        max-width: 350px;
-        min-height: 350px;
+        max-width: 450px;
+        min-height: 480px;
     }
     
     .image-top {
-        width: 65%;
-        right: 5%;
+        width: 80%;
+        right: 10%;
+        transform: rotate(3deg);
     }
     
     .image-bottom {
-        width: 65%;
-        left: 5%;
+        width: 80%;
+        left: 10%;
+        transform: rotate(-2deg);
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .hero-title {
         font-size: 1.8rem;
     }
@@ -839,21 +798,27 @@ body {
     }
     
     .features-images {
-        min-width: 260px;
+        min-width: 320px;
     }
     
     .image-stack {
-        max-width: 280px;
-        min-height: 280px;
+        max-width: 350px;
+        min-height: 380px;
+    }
+    
+    .image-card-feature {
+        padding: 10px;
     }
     
     .image-top {
-        width: 60%;
+        width: 85%;
         right: 5%;
+        transform: rotate(2deg);
     }
     
     .image-bottom {
-        width: 60%;
+        width: 85%;
         left: 5%;
+        transform: rotate(-1deg);
     }
 }
