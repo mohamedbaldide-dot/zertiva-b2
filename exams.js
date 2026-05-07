@@ -569,10 +569,10 @@ async function renderExamListForSkill(skill, teilName) {
       };
       
       div.onclick = (function(title, id) {
-        return function() {
-          showLockedModalForExam(title + " (" + id + ")");
-        };
-      })(exam.title, exam.id);
+  return function() {
+    showLockedMessage(title + " (" + id + ")");
+  };
+})(exam.title, exam.id);
     } else if (exam.hasFile) {
       div.onclick = (function(id, title, skill) {
         return function() { openExam(id, title, skill); };
@@ -614,7 +614,7 @@ function setupLockedNextButton() {
       nextBtn.onclick = function(e) {
         e.preventDefault();
         e.stopPropagation();
-        showLockedModalForExam("الامتحان التالي (يتطلب ترقية)");
+        showLockedMessage("الامتحان التالي (يتطلب ترقية)");
         return false;
       };
     } else if (isPremium && nextBtn._originalOnClick) {
