@@ -606,3 +606,58 @@ select {
     font-size: 16px;
     margin-top: 20px;
 }
+/* ===== إزالة كل الألوان البنفسجية والضباب نهائياً ===== */
+.item-locked,
+.item-locked *,
+div.item-locked,
+span.item-locked,
+.exam-item.locked,
+[class*="locked"],
+[class*="Locked"] {
+    background: rgba(255, 255, 255, 0.75) !important;
+    background-color: rgba(255, 255, 255, 0.75) !important;
+    background-image: none !important;
+    border: 1px solid #dbeafe !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    opacity: 0.8 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+/* إزالة أي فلتر blur */
+.item-locked,
+[class*="locked"] {
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    transform: none !important;
+}
+
+/* القفل */
+.item-locked .lock-icon,
+[class*="locked"] .lock-icon,
+.lock-icon {
+    color: #60a5fa !important;
+    background: transparent !important;
+    font-size: 14px !important;
+}
+
+/* كلمة PRO */
+.item-locked .pro-badge,
+[class*="locked"] .pro-badge,
+.pro-badge {
+    color: #3b82f6 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+}
+
+/* عنوان الامتحان المقفل */
+.item-locked .exam-title,
+[class*="locked"] .exam-title,
+.item-locked span:first-child {
+    color: #7c8594 !important;
+}
