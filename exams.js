@@ -527,11 +527,9 @@ async function renderExamListForSkill(skill, teilName) {
     titleSpan.innerHTML = `${exam.id}: ${exam.title}`;
     div.appendChild(titleSpan);
     
-    // إذا كان المستخدم غير مدفوع وليس الامتحان الأول => مقفل
-    if (!isPremium && !isFirstExam) {
-      // تنسيق القفل: خلفية رمادية شفافة
-      div.style.backgroundColor = "rgba(200, 200, 200, 0.4)";
-      div.style.border = "1px solid #ddd";
+       if (!isPremium && !isFirstExam) {
+      // تنسيق القفل: نفس شكل الامتحان العادي ولكن شفاف قليلاً
+      div.style.opacity = "0.7";
       
       // إضافة القفل و PRO في أقصى اليمين
       const rightSide = document.createElement("span");
@@ -543,13 +541,13 @@ async function renderExamListForSkill(skill, teilName) {
       const lockSpan = document.createElement("span");
       lockSpan.className = "lock-icon";
       lockSpan.innerHTML = "🔒";
-      lockSpan.style.cssText = "font-size:14px; color:#3b82f6; opacity:0.8;";
+      lockSpan.style.cssText = "font-size:14px; color:#3b82f6; opacity:0.9; margin-right:8px;";
       rightSide.appendChild(lockSpan);
       
       const proSpan = document.createElement("span");
       proSpan.className = "pro-badge";
       proSpan.innerHTML = "PRO";
-      proSpan.style.cssText = "background:rgba(59,130,246,0.15); color:#3b82f6; font-size:10px; padding:3px 10px; border-radius:20px; font-weight:bold;";
+      proSpan.style.cssText = "color:#3b82f6; font-size:10px; padding:3px 10px; border-radius:20px; font-weight:bold; background:transparent;";
       rightSide.appendChild(proSpan);
       
       div.appendChild(rightSide);
