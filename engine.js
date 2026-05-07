@@ -2616,6 +2616,6 @@ lockObserver.observe(document.body, { attributes: true, subtree: true, attribute
 
 // تطبيق القفل عند تحميل الصفحة
 window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(applyLockToExams, 800);
+   
 });
 console.log("✅ engine.js جاهز بالكامل (النسخة النهائية الشغالة)");
