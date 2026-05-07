@@ -2604,38 +2604,6 @@ async function getUserStatusForLock() {
     }
 }
 
-async function applyLockToExams() {
-    let userStatus = await getUserStatusForLock();
-    if (userStatus === 'premium') return;
-    
-    // البحث عن جميع الامتحانات المعروضة في الصفحة
-    let allExamDivs = document.querySelectorAll('.exam-item, #examsList div, .exam-card');
-    
-    allExamDivs.forEach((div, idx) => {
-        let text = div.innerText || div.textContent || '';
-        let match = text.match(/^(\d+)[\.:\-\s]/);
-        let examNumber = match ? parseInt(match[1]) : null;
-        
-        if (examNumber && examNumber > 1) {
-            div.style.backgroundColor = '#e9d5ff';
-            div.style.border = '2px solid #a855f7';
-            div.style.opacity = '0.7';
-            div.style.filter = 'blur(1px)';
-            div.style.position = 'relative';
-            div.style.cursor = 'pointer';
-            
-            let examTitle = text.substring(0, 50);
-            let oldOnclick = div.onclick;
-            div.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                showLockedMessageForExam(examTitle);
-                return false;
-            };
-        }
-    });
-}
-
 // مراقبة الصفحة لتطبيق القفل عند تغيير المحتوى
 const lockObserver = new MutationObserver(() => {
     let listPage = document.getElementById('list');
