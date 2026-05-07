@@ -40,24 +40,21 @@
     </div>
 </div>
 
-<!-- الصفحة الرئيسية الجديدة - Hero Section احترافية -->
+<!-- الصفحة الرئيسية -->
 <div id="home" class="page active home">
+    <!-- Hero Section -->
     <div class="hero-wrapper">
         <div class="hero-container">
-            <!-- الجهة اليسرى: الصورة -->
             <div class="hero-image-side">
                 <div class="image-glow"></div>
                 <div class="image-card">
                     <img src="images/certificate-sample.jpg" alt="telc Deutsch B2 Zertifikat" class="certificate-img">
                 </div>
             </div>
-
-            <!-- الجهة اليمنى: النصوص والأزرار -->
             <div class="hero-content-side">
                 <h1 class="hero-title">
-                    <span class="blue-text">B2</span> دير النية وخود
+                    <span class="blue-text">B2</span> إن شاء الله في الجيب
                 </h1>
-                
                 <div class="hero-description-wrapper">
                     <p class="hero-desc">
                         مرحبا بيك <span class="blue-text">صاحبي</span>  ما تحتاجش تبقى تغرق راسك مع PDF والحفظ العشوائي… دوز الامتحانات، تدرّب بطريقة ذكية، وغادي تلقى راسك كتفهم وكتعقل بسهولة بفضل المساعدة الذكية اللي كنقدموها في الموقع واللي جرّبتها شخصيًا وفعلًا كننصحك بيها
@@ -66,13 +63,10 @@
                       الاجوبة صحيحة. <span class="blue-text">100%</span>
                     </p>
                 </div>
-
-                <!-- Glassmorphism Info Box -->
                 <div class="info-glass-card">
                     <div class="info-icon">💡</div>
                     <div class="info-text">الأغلبية كيسقطو حيت عندهم مشكل فالحفظ وما كايعرفوش يخدموا بطريقة صحيحة.</div>
                 </div>  
-                <!-- الزر الرئيسي -->
                 <button id="startBtn" class="hero-btn-primary">
                     اكتشف الامتحانات
                     <span class="btn-arrow-icon">→</span>
@@ -80,9 +74,42 @@
             </div>
         </div>
     </div>
-    
-    <!-- Pattern خلفية -->
     <div class="bg-pattern"></div>
+
+    <!-- ========== SECTION الجديد: علاش خاصك تشترك معانا ========== -->
+    <section class="features-section" id="featuresSection">
+        <div class="features-container">
+            <!-- الجهة اليسرى: النصوص -->
+            <div class="features-content fade-element">
+                <h2 class="features-title">
+                    علاش خاصك <span class="blue-text">تشترك</span> معانا ؟
+                </h2>
+                <p class="features-description">
+                    كتتهنى من الاجوبة الخاطئة و التقلب على التيمات،
+                    وزيد عليها كنقدمو مساعدة ذكية لمجربها أنا شخصياً واللي تخليك تعقل على الأجوبة بسهولة وهادشي فكل الأجزاء.
+                </p>
+                <p class="features-description second">
+                    بالإضافة لمنهجية تهنيك من الامتحان الكتابي كامل، ونصائح مغاديش تسمعهم من عند حتى واحد آخر.
+                </p>
+                <button id="featuresSubscribeBtn" class="features-btn">
+                    اشترك الآن
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+
+            <!-- الجهة اليمنى: الصورتين -->
+            <div class="features-images fade-element">
+                <div class="image-stack">
+                    <div class="image-card-feature image-top">
+                        <img src="images/f1.png" alt="Feature 1" class="feature-img">
+                    </div>
+                    <div class="image-card-feature image-bottom">
+                        <img src="images/f2.png" alt="Feature 2" class="feature-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 <div id="list" class="page">
@@ -135,5 +162,42 @@
 <script src="engine.js"></script>
 <script src="exams.js"></script>
 <script src="auth.js"></script>
+
+<script>
+    // تأثير Fade عند ظهور القسم أثناء النزول
+    const fadeElements = document.querySelectorAll('.fade-element');
+    
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    fadeElements.forEach(el => {
+        observer.observe(el);
+    });
+    
+    // زر الاشتراك في القسم الجديد
+    const featuresSubscribeBtn = document.getElementById('featuresSubscribeBtn');
+    if(featuresSubscribeBtn) {
+        featuresSubscribeBtn.addEventListener('click', () => {
+            const isLoggedIn = localStorage.getItem('zertiva_email');
+            if(isLoggedIn) {
+                window.location.href = 'subscribe.html';
+            } else {
+                document.getElementById('loginPopup').style.display = 'flex';
+            }
+        });
+    }
+</script>
+
 </body>
 </html>
