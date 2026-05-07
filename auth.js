@@ -72,7 +72,7 @@ async function getExpiryDate(email) {
     }
 }
 
-   function showLockedMessage(examTitle) {
+function showLockedMessage(examTitle) {
     let modal = document.createElement('div');
     modal.id = 'lockedModal';
     modal.style.cssText = `
