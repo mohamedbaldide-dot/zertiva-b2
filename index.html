@@ -5,6 +5,226 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zertiva B2 - أشهر منصة للتحضير لامتحان Telc B2</title>
 <link rel="stylesheet" href="style.css">
+<style>
+    /* ========== تنسيقات إضافية للصفحة الرئيسية ========== */
+    
+    /* قسم الترحيب (Hero) */
+    .hero-section {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(135deg, #e8f0ff 0%, #d9e4f5 100%);
+        padding: 60px 50px;
+        border-radius: 30px;
+        margin-bottom: 40px;
+    }
+    .hero-text {
+        flex: 1;
+        min-width: 280px;
+    }
+    .hero-text h1 {
+        font-size: 42px;
+        color: #2b5876;
+        margin-bottom: 20px;
+    }
+    .hero-text h1 span {
+        color: #f39c12;
+    }
+    .hero-text p {
+        font-size: 18px;
+        color: #4a5568;
+        margin-bottom: 30px;
+        line-height: 1.7;
+    }
+    .hero-image {
+        flex: 1;
+        text-align: center;
+    }
+    .hero-image img {
+        max-width: 100%;
+        max-height: 280px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    
+    /* قسم آراء المستخدمين */
+    .reviews-section {
+        padding: 40px 0;
+        margin-bottom: 40px;
+    }
+    .reviews-title {
+        text-align: center;
+        font-size: 32px;
+        color: #2b5876;
+        margin-bottom: 40px;
+        position: relative;
+    }
+    .reviews-title::after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(135deg, #2b5876, #4e4376);
+        margin: 15px auto 0;
+        border-radius: 3px;
+    }
+    .reviews-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        justify-content: center;
+    }
+    .review-card {
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        width: 300px;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        transition: 0.3s;
+        border: 1px solid #e2e8f0;
+    }
+    .review-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    }
+    .review-avatar {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, #2b5876, #4e4376);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+        font-size: 30px;
+        color: white;
+    }
+    .review-text {
+        font-size: 14px;
+        line-height: 1.7;
+        color: #4a5568;
+        margin-bottom: 15px;
+        font-style: italic;
+    }
+    .review-name {
+        font-weight: bold;
+        color: #2b5876;
+        margin-top: 10px;
+    }
+    .review-stars {
+        color: #f39c12;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+    
+    /* ========== معرض الصور (Slider) ========== */
+    .gallery-section {
+        padding: 40px 0;
+        margin-top: 20px;
+        background: #f8fafc;
+        border-radius: 30px;
+    }
+    .gallery-title {
+        text-align: center;
+        font-size: 28px;
+        color: #2b5876;
+        margin-bottom: 30px;
+    }
+    .slider-container {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .slider-track {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+    .slider-slide {
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+    .slider-slide img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        display: block;
+    }
+    .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(43, 88, 118, 0.8);
+        color: white;
+        border: none;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s;
+        z-index: 10;
+    }
+    .slider-btn:hover {
+        background: #2b5876;
+        transform: translateY(-50%) scale(1.1);
+    }
+    .slider-prev {
+        left: 15px;
+    }
+    .slider-next {
+        right: 15px;
+    }
+    .slider-dots {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 20px;
+    }
+    .slider-dot {
+        width: 12px;
+        height: 12px;
+        background: #cbd5e1;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .slider-dot.active {
+        background: #2b5876;
+        width: 25px;
+        border-radius: 10px;
+    }
+    
+    @media (max-width: 768px) {
+        .hero-section {
+            flex-direction: column;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .hero-text h1 {
+            font-size: 32px;
+        }
+        .reviews-grid {
+            flex-direction: column;
+            align-items: center;
+        }
+        .slider-slide img {
+            height: 250px;
+        }
+        .slider-btn {
+            width: 35px;
+            height: 35px;
+            font-size: 16px;
+        }
+    }
+</style>
 </head>
 <body>
 
@@ -45,6 +265,67 @@
 </div>
 
 <div id="list" class="page">
+  
+  <!-- قسم الترحيب -->
+  <div class="hero-section">
+    <div class="hero-text">
+      <h1>اختبر نفسك <span>للألمانية B2</span> بذكاء</h1>
+      <p>تمارين حقيقية، شروحات بالدارجة، وأسئلة تجريبية من telc و Goethe. ابدأ مجاناً، ثم افتح كل الامتحانات.</p>
+      <button id="heroSubscribeBtn" class="btn-subscribe-top" style="background:linear-gradient(135deg, #f39c12, #e67e22);">📚 ابدأ الاشتراك الآن</button>
+    </div>
+    <div class="hero-image">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%232b5876' rx='15'/%3E%3Ctext x='100' y='75' text-anchor='middle' fill='white' font-size='16' font-weight='bold'%3EZertifikat%3C/text%3E%3Ctext x='100' y='100' text-anchor='middle' fill='%23f39c12' font-size='20' font-weight='bold'%3EB2%3C/text%3E%3C/svg%3E" alt="Zertifikat B2">
+    </div>
+  </div>
+
+  <!-- قسم آراء المستخدمين -->
+  <div class="reviews-section">
+    <h2 class="reviews-title">📢 ثقة وتعامل في المستوى</h2>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-avatar">⭐</div>
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"والله نفعني بزاف، كنت تالفة في القرامر، ومن بعد هاد الموقع دخلت B2 والحمد الله جبت 85%."</div>
+        <div class="review-name">~ أمين من الدار البيضاء</div>
+      </div>
+      <div class="review-card">
+        <div class="review-avatar">⭐</div>
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"أول حاجة بغيت نقولك الله يرحم الوالدين، كنت غادي نسقط ولكن lesen ديالكم نعمة."</div>
+        <div class="review-name">~ سارة من الرباط</div>
+      </div>
+      <div class="review-card">
+        <div class="review-avatar">⭐</div>
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"أحسن موقع للمغاربة، شروحات بالدارجة وكلمات مفتاحية، نصحيتي ليا وليكم."</div>
+        <div class="review-name">~ يوسف من طنجة</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== معرض الصور (11 صورة) ========== -->
+  <div class="gallery-section">
+    <h3 class="gallery-title">📸 نماذج من شهادات الطلاب 🎓</h3>
+    <div class="slider-container">
+      <button class="slider-btn slider-prev" id="prevSlideBtn">◀</button>
+      <div class="slider-track" id="sliderTrack">
+        <div class="slider-slide"><img src="images/slide1.jpg" alt="شهادة 1"></div>
+        <div class="slider-slide"><img src="images/slide2.jpg" alt="شهادة 2"></div>
+        <div class="slider-slide"><img src="images/slide3.jpg" alt="شهادة 3"></div>
+        <div class="slider-slide"><img src="images/slide4.jpg" alt="شهادة 4"></div>
+        <div class="slider-slide"><img src="images/slide5.jpg" alt="شهادة 5"></div>
+        <div class="slider-slide"><img src="images/slide6.jpg" alt="شهادة 6"></div>
+        <div class="slider-slide"><img src="images/slide7.jpg" alt="شهادة 7"></div>
+        <div class="slider-slide"><img src="images/slide8.jpg" alt="شهادة 8"></div>
+        <div class="slider-slide"><img src="images/slide9.jpg" alt="شهادة 9"></div>
+        <div class="slider-slide"><img src="images/slide10.jpg" alt="شهادة 10"></div>
+        <div class="slider-slide"><img src="images/slide11.jpg" alt="شهادة 11"></div>
+      </div>
+      <button class="slider-btn slider-next" id="nextSlideBtn">▶</button>
+    </div>
+    <div class="slider-dots" id="sliderDots"></div>
+  </div>
+
   <div class="teile-header-section">
     <h3>📌 اختر القسم (Teil)</h3>
   </div>
@@ -93,5 +374,94 @@
 <script src="engine.js"></script>
 <script src="exams.js"></script>
 <script src="auth.js"></script>
+
+<script>
+    // ربط زر الاشتراك في قسم hero
+    document.getElementById('heroSubscribeBtn')?.addEventListener('click', function() {
+        if(localStorage.getItem('zertiva_email')) {
+            window.location.href = 'subscribe.html';
+        } else {
+            document.getElementById('loginPopup').style.display = 'flex';
+        }
+    });
+    
+    // ========== كود معرض الصور (Slider) ==========
+    const sliderTrack = document.getElementById('sliderTrack');
+    const slides = document.querySelectorAll('.slider-slide');
+    const prevBtn = document.getElementById('prevSlideBtn');
+    const nextBtn = document.getElementById('nextSlideBtn');
+    const dotsContainer = document.getElementById('sliderDots');
+    
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    
+    // إنشاء النقاط (dots)
+    function createDots() {
+        dotsContainer.innerHTML = '';
+        for(let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('slider-dot');
+            if(i === currentIndex) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+    
+    // تحديث النقاط
+    function updateDots() {
+        const dots = document.querySelectorAll('.slider-dot');
+        dots.forEach((dot, index) => {
+            if(index === currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+    
+    // الانتقال لشريحة محددة
+    function goToSlide(index) {
+        if(index < 0) index = 0;
+        if(index >= totalSlides) index = totalSlides - 1;
+        currentIndex = index;
+        sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateDots();
+    }
+    
+    // الشريحة التالية
+    function nextSlide() {
+        if(currentIndex < totalSlides - 1) {
+            goToSlide(currentIndex + 1);
+        } else {
+            goToSlide(0); // العودة للبداية
+        }
+    }
+    
+    // الشريحة السابقة
+    function prevSlide() {
+        if(currentIndex > 0) {
+            goToSlide(currentIndex - 1);
+        } else {
+            goToSlide(totalSlides - 1); // الذهاب للنهاية
+        }
+    }
+    
+    // ربط الأزرار
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+    
+    // إنشاء النقاط عند تحميل الصفحة
+    createDots();
+    
+    // اختياري: التبديل التلقائي كل 5 ثوان
+    let autoSlide = setInterval(nextSlide, 5000);
+    
+    // إيقاف التبديل التلقائي عند المرور بالماوس
+    const sliderContainer = document.querySelector('.slider-container');
+    sliderContainer.addEventListener('mouseenter', () => clearInterval(autoSlide));
+    sliderContainer.addEventListener('mouseleave', () => {
+        autoSlide = setInterval(nextSlide, 5000);
+    });
+</script>
 </body>
 </html>
