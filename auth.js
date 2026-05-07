@@ -235,8 +235,6 @@ function bindAuthEvents() {
         }
     });
     
-    // ملاحظة: زر الواتساب أصبح رابط مباشر في HTML، لا نحتاج إضافة حدث هنا
-    
     let popupLoginBtn = document.getElementById('popupLoginBtn');
     if(popupLoginBtn) popupLoginBtn.addEventListener('click', handleLogin);
     
