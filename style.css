@@ -266,7 +266,7 @@ body {
 }
 
 /* ========================================
-   باقي الأنماط الموجودة (محفوظة كما هي)
+   باقي الأنماط الموجودة
    ======================================== */
 
 .home {
@@ -308,7 +308,7 @@ button {
     background: #eee;
 }
 
-/* ===== الامتحانات المقفولة الجديدة ===== */
+/* ===== الامتحانات المقفولة ===== */
 
 .item-locked {
     background: rgba(255,255,255,0.65);
@@ -322,21 +322,18 @@ button {
     transform: translateY(-1px);
 }
 
-/* عنوان الامتحان */
 .item-locked .exam-title {
     flex: 1;
     color: #7c8594;
     font-weight: 500;
 }
 
-/* القفل */
 .item-locked .lock-icon {
     font-size: 15px;
     color: #60a5fa;
     opacity: 1;
 }
 
-/* كلمة PRO */
 .item-locked .pro-badge {
     color: #3b82f6;
     font-size: 10px;
@@ -346,7 +343,6 @@ button {
     margin-left: 5px;
 }
 
-/* الأيقونات */
 .exam-right-icons {
     display: flex;
     align-items: center;
@@ -505,7 +501,6 @@ select {
     transform: translateY(-1px);
 }
 
-/* زر التالي المقفل */
 #nextExamBtn.locked-nav {
     background: #b0bec5 !important;
     opacity: 0.7;
@@ -516,6 +511,7 @@ select {
     background: #90a4ae !important;
 }
 
+/* ====== الشريط العلوي ====== */
 .top-bar {
     display: flex;
     justify-content: space-between;
@@ -529,12 +525,9 @@ select {
     z-index: 100;
 }
 
-/* ====== التعديلات الجديدة للشعار وأزرار الأعلى ====== */
-
-/* استبدال شعار Z بصورة */
 .logo-icon {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     background: transparent;
     display: flex;
     align-items: center;
@@ -549,7 +542,7 @@ select {
 .logo-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 12px;
 }
 
@@ -558,7 +551,29 @@ select {
     box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
 }
 
-/* زر الاشتراك كرمز دائرة فقط */
+.right-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.btn-login-top {
+    padding: 6px 16px;
+    border: 1.5px solid #38bdf8;
+    background: transparent;
+    border-radius: 25px;
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #38bdf8;
+}
+
+.btn-login-top:hover {
+    background: #38bdf8;
+    color: #0a0e1a;
+}
+
 .subscribe-icon-btn {
     width: 40px;
     height: 40px;
@@ -585,33 +600,6 @@ select {
     transform: scale(1.1);
     box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
 }
-
-/* زر تسجيل الدخول بدون قفل وصغير */
-.btn-login-top {
-    padding: 6px 16px;
-    border: 1.5px solid #38bdf8;
-    background: transparent;
-    border-radius: 25px;
-    font-weight: 500;
-    font-size: 13px;
-    cursor: pointer;
-    transition: 0.3s;
-    color: #38bdf8;
-}
-
-.btn-login-top:hover {
-    background: #38bdf8;
-    color: #0a0e1a;
-}
-
-/* تعديل ترتيب الأزرار في الشريط العلوي */
-.right-buttons {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-/* ====== نهاية التعديلات الجديدة ====== */
 
 .profile-icon {
     width: 40px;
@@ -763,7 +751,7 @@ select {
     margin-top: 12px;
 }
 
-/* أيقونة الواتساب الجديدة - استبدال SVG بصورة */
+/* أيقونة الواتساب */
 .whatsapp-float {
     position: fixed;
     bottom: 25px;
@@ -775,22 +763,17 @@ select {
     box-shadow: 0 5px 15px rgba(0,0,0,0.25);
     z-index: 999;
     transition: 0.3s;
-    background-image: none;
-    background-color: transparent;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #25D366;
+    text-decoration: none;
 }
 
-.whatsapp-float::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('images/whatsapp_logo_icon_189219.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+.whatsapp-img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
 }
 
 .whatsapp-float:hover {
@@ -909,7 +892,7 @@ select {
     margin-top: 20px;
 }
 
-/* ===== إزالة كل الألوان البنفسجية ===== */
+/* ===== إزالة الألوان البنفسجية ===== */
 .item-locked,
 .item-locked *,
 div.item-locked,
