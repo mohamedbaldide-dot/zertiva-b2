@@ -839,18 +839,128 @@ body {
 }
 
 @media (max-width: 600px) {
+   .features-images {
+    flex: 1;
+    min-width: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-stack {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    min-height: 700px;
+}
+
+.image-card-feature {
+    background: white;
+    border-radius: 24px;
+    padding: 15px;
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    width: 85%;
+}
+
+.image-card-feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2);
+}
+
+.image-top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 85%;
+    z-index: 2;
+    transform: rotate(-2deg);
+}
+
+.image-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 85%;
+    z-index: 1;
+    transform: rotate(3deg);
+}
+
+.feature-img {
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    display: block;
+    background: #ffffff;
+    object-fit: contain;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* تكبير الصور على الشاشات الكبيرة */
+@media (min-width: 1200px) {
     .features-images {
-        min-width: 280px;
+        min-width: 650px;
     }
     
     .image-stack {
-        max-width: 320px;
-        min-height: 360px;
+        max-width: 750px;
+        min-height: 800px;
     }
     
     .image-card-feature {
-        width: 85%;
-        padding: 8px;
+        width: 80%;
+        padding: 18px;
+    }
+    
+    .image-top {
+        width: 80%;
+    }
+    
+    .image-bottom {
+        width: 80%;
+    }
+}
+
+@media (max-width: 900px) {
+    .features-images {
+        min-width: 450px;
+    }
+    
+    .image-stack {
+        max-width: 550px;
+        min-height: 600px;
+    }
+    
+    .image-card-feature {
+        width: 88%;
+        padding: 12px;
+    }
+    
+    .image-top {
+        right: 0;
+        width: 88%;
+    }
+    
+    .image-bottom {
+        left: 0;
+        width: 88%;
+    }
+}
+
+@media (max-width: 600px) {
+    .features-images {
+        min-width: 320px;
+    }
+    
+    .image-stack {
+        max-width: 400px;
+        min-height: 480px;
+    }
+    
+    .image-card-feature {
+        width: 92%;
+        padding: 10px;
     }
     
     .image-top {
