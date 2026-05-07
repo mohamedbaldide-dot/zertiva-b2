@@ -555,7 +555,7 @@ async function renderExamListForSkill(skill, teilName) {
   }
   
   setTimeout(setupLockedNextButton, 100);
-}
+
 
 function setupLockedNextButton() {
   const nextBtn = document.getElementById('nextExamBtn');
