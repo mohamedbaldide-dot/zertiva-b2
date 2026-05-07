@@ -812,3 +812,52 @@ body {
         font-size: 10px;
     }
 }
+@media (max-width: 900px) {
+    .features-images {
+        min-width: 320px;
+    }
+    
+    .image-stack {
+        max-width: 380px;
+        min-height: 420px;
+    }
+    
+    .image-card-feature {
+        width: 80%;
+        padding: 10px;
+    }
+    
+    .image-top {
+        right: 0;
+        width: 80%;
+    }
+    
+    .image-bottom {
+        left: 0;
+        width: 80%;
+    }
+}
+
+@media (max-width: 600px) {
+    .features-images {
+        min-width: 280px;
+    }
+    
+    .image-stack {
+        max-width: 320px;
+        min-height: 360px;
+    }
+    
+    .image-card-feature {
+        width: 85%;
+        padding: 8px;
+    }
+    
+    .image-top {
+        transform: rotate(-1deg);
+    }
+    
+    .image-bottom {
+        transform: rotate(2deg);
+    }
+}
