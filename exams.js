@@ -898,12 +898,6 @@ function goList() {
   document.getElementById("exam").classList.remove("active");
   
   renderTeileList();
-  
-  const examsContainer = document.getElementById("examsList");
-  if (examsContainer) {
-    examsContainer.innerHTML = '<div class="welcome-message">👈 اختر القسم (Teil) من الأعلى لعرض الامتحانات</div>';
-  }
-}
 
 document.addEventListener("DOMContentLoaded", function() {
   const startBtn = document.getElementById("startBtn");
@@ -911,17 +905,23 @@ document.addEventListener("DOMContentLoaded", function() {
   const backToListBtn = document.getElementById("backToListBtn");
   const backArrowFromExam = document.getElementById("backArrowFromExam");
   
-  if (startBtn) startBtn.onclick = function() { goList(); };
+ if (startBtn) startBtn.onclick = function() { 
+    // فتح Hören Teil 1 مباشرة
+    currentSkill = "hoeren1";
+    const teilName = "Hören Teil 1";
+    renderExamListForSkill("hoeren1", teilName);
+    document.getElementById("home").classList.remove("active");
+    document.getElementById("list").classList.add("active");
+    document.getElementById("exam").classList.remove("active");
+};
   if (backHomeBtn) backHomeBtn.onclick = function() { goHome(); };
   if (backToListBtn) backToListBtn.onclick = function() { goList(); };
   if (backArrowFromExam) backArrowFromExam.onclick = function() { goList(); };
   
   const examsContainer = document.getElementById("examsList");
-  if (examsContainer) {
-    examsContainer.innerHTML = '<div class="welcome-message">👈 اختر القسم (Teil) من الأعلى لعرض الامتحانات</div>';
-  }
-});
-
+if (examsContainer) {
+    examsContainer.innerHTML = '<div class="welcome-message"></div>';
+}
 renderTeileList();
 
 console.log("✅ exams.js تم تحميله بنجاح");
