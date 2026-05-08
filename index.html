@@ -42,12 +42,10 @@
 
 <!-- الصفحة الرئيسية -->
 <div id="home" class="page active home">
-    <!-- Hero Section -->
     <div class="hero-wrapper">
         <div class="hero-container">
             <div class="hero-image-side">
-                <div class="image-glow">
-                </div>
+                <div class="image-glow"></div>
                 <div class="image-card">
                     <img src="images/certificate-sample.jpg" alt="telc Deutsch B2 Zertifikat" class="certificate-img">
                 </div>
@@ -73,7 +71,6 @@
                     <span class="btn-arrow-icon">→</span>
                 </button>
                 
-                <!-- Floating Reviews Widget -->
                 <div id="reviewsWidget" class="reviews-widget collapsed">
                     <div class="widget-bubble">
                         <span class="widget-icon">💬</span>
@@ -87,23 +84,27 @@
                         </div>
                         <p class="widget-subtitle">شوف ناس سبقوك واستافدو من المنصة.</p>
                         <div class="widget-slider-container">
-                        <div class="widget-slider" id="widgetSlider">
-    <div class="widget-slide"><img src="images/review1.jpg" alt="Review 1"></div>
-    <div class="widget-slide"><img src="images/review2.jpg" alt="Review 2"></div>
-    <div class="widget-slide"><img src="images/review3.jpg" alt="Review 3"></div>
-    <div class="widget-slide"><img src="images/review4.jpg" alt="Review 4"></div>
-    <div class="widget-slide"><img src="images/review5.jpg" alt="Review 5"></div>
-    <div class="widget-slide"><img src="images/review6.jpg" alt="Review 6"></div>
-    <div class="widget-slide"><img src="images/review7.jpg" alt="Review 7"></div>
-    <div class="widget-slide"><img src="images/review8.jpg" alt="Review 8"></div>
-    <div class="widget-slide"><img src="images/review9.jpg" alt="Review 9"></div>
-    <div class="widget-slide"><img src="images/review10.jpg" alt="Review 10"></div>
-    <div class="widget-slide"><img src="images/review11.jpg" alt="Review 11"></div>
-</div>
-                    
+                            <div class="widget-slider" id="widgetSlider">
+                                <div class="widget-slide"><img src="images/review1.png" alt="Review 1"></div>
+                                <div class="widget-slide"><img src="images/review2.png" alt="Review 2"></div>
+                                <div class="widget-slide"><img src="images/review3.png" alt="Review 3"></div>
+                                <div class="widget-slide"><img src="images/review4.png" alt="Review 4"></div>
+                                <div class="widget-slide"><img src="images/review5.png" alt="Review 5"></div>
+                                <div class="widget-slide"><img src="images/review6.png" alt="Review 6"></div>
+                                <div class="widget-slide"><img src="images/review7.png" alt="Review 7"></div>
+                                <div class="widget-slide"><img src="images/review8.png" alt="Review 8"></div>
+                                <div class="widget-slide"><img src="images/review9.png" alt="Review 9"></div>
+                                <div class="widget-slide"><img src="images/review10.png" alt="Review 10"></div>
+                                <div class="widget-slide"><img src="images/review11.png" alt="Review 11"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="bg-pattern"></div>
 
-    <!-- SECTION: علاش خاصك تشترك معانا -->
     <section class="features-section">
         <div class="features-container">
             <div class="features-content">
@@ -182,7 +183,6 @@
     <img src="images/whatsapp.png" alt="WhatsApp" class="whatsapp-img">
 </a>
 
-<!-- Modal كبير للشهادات -->
 <div id="reviewsModal" class="reviews-modal">
     <div class="reviews-modal-content">
         <div class="reviews-modal-header">
@@ -227,29 +227,24 @@
         });
     }
 
-    // ========== تكرار الصور لإنشاء Infinite Loop ==========
     const widgetSliderElem = document.getElementById('widgetSlider');
     if (widgetSliderElem) {
         const items = widgetSliderElem.innerHTML;
         widgetSliderElem.innerHTML = items + items + items;
     }
     
-    // ========== التحكم في حركة السلايدر: 10 ثواني حركة - 5 ثواني توقف ==========
     let moveTimeout = null;
     let pauseTimeout = null;
     let isHovering = false;
 
     function startMoveCycle() {
         if (isHovering) return;
-        
         if (widgetSliderElem) {
             widgetSliderElem.style.animationPlayState = 'running';
-            
             if (moveTimeout) clearTimeout(moveTimeout);
             moveTimeout = setTimeout(() => {
                 if (!isHovering && widgetSliderElem) {
                     widgetSliderElem.style.animationPlayState = 'paused';
-                    
                     if (pauseTimeout) clearTimeout(pauseTimeout);
                     pauseTimeout = setTimeout(() => {
                         if (!isHovering && widgetSliderElem) {
@@ -275,7 +270,6 @@
             stopMoveCycle();
             widgetSliderElem.style.animationPlayState = 'paused';
         });
-        
         widgetSliderElem.addEventListener('mouseleave', () => {
             isHovering = false;
             startMoveCycle();
@@ -290,9 +284,7 @@
         }, 500);
     }
 
-    // ========== Floating Reviews Widget ==========
     const widget = document.getElementById('reviewsWidget');
-    
     if (widget) {
         setTimeout(() => {
             widget.classList.remove('collapsed');
@@ -314,20 +306,19 @@
         });
     }
     
-    // ========== الـ Modal الكبير ==========
-   const reviewImages = [
-    "https://picsum.photos/300/400?random=1",
-    "https://picsum.photos/300/400?random=2",
-    "https://picsum.photos/300/400?random=3",
-    "https://picsum.photos/300/400?random=4",
-    "https://picsum.photos/300/400?random=5",
-    "https://picsum.photos/300/400?random=6",
-    "https://picsum.photos/300/400?random=7",
-    "https://picsum.photos/300/400?random=8",
-    "https://picsum.photos/300/400?random=9",
-    "https://picsum.photos/300/400?random=10",
-    "https://picsum.photos/300/400?random=11"
-];
+    const reviewImages = [
+        "images/review1.png",
+        "images/review2.png",
+        "images/review3.png",
+        "images/review4.png",
+        "images/review5.png",
+        "images/review6.png",
+        "images/review7.png",
+        "images/review8.png",
+        "images/review9.png",
+        "images/review10.png",
+        "images/review11.png"
+    ];
     
     let currentModalIndex = 0;
     
@@ -408,7 +399,6 @@
         }
     });
     
-    // ========== Modal للصور الصغيرة ==========
     const reviews = reviewImages;
     let currentIndex = 0;
     
