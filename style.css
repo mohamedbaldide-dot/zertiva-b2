@@ -283,7 +283,7 @@ body {
 /* ===== تحسين البطاقتين ===== */
 .features-images {
     flex: 1;
-    min-width: 650px;
+    min-width: 900px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -292,8 +292,8 @@ body {
 .image-stack {
     position: relative;
     width: 100%;
-    max-width: 700px;
-    min-height: 520px;
+    max-width: 900px;
+    min-height: 650px;
 }
 
 .image-card-feature {
@@ -763,7 +763,7 @@ body {
     }
     
     .features-images {
-        min-width: 450px;
+        min-width: 600px;
     }
     
     .image-stack {
@@ -817,7 +817,7 @@ body {
     }
     
     .features-images {
-        min-width: 320px;
+        min-width: 444px;
     }
     
     .image-stack {
