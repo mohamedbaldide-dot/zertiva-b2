@@ -131,6 +131,10 @@ async function updateProfileDropdown() {
     if(!profileEmail) return;
     
     if(email) {
+        // حذف زر الترقية إذا كان موجوداً (للمستخدم المسجل)
+        const oldUpgradeBtn = document.getElementById('dropdownUpgradeBtn');
+        if (oldUpgradeBtn) oldUpgradeBtn.remove();
+        
         let status = await getUserStatus();
         let expiry = currentExpiry;
         
@@ -159,6 +163,41 @@ async function updateProfileDropdown() {
         profileEmail.innerHTML = '👤 غير مسجل';
         profileExpiry.innerHTML = 'الوصول محدود لبعض الامتحانات';
         profileStatus.innerHTML = '';
+        
+        // إضافة زر الترقية للمستخدم غير المسجل
+        const upgradeBtn = document.createElement('button');
+        upgradeBtn.id = 'dropdownUpgradeBtn';
+        upgradeBtn.innerHTML = 'الترقية إلى الحساب الكامل →';
+        upgradeBtn.style.cssText = `
+            margin-top: 12px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 13px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        `;
+        upgradeBtn.onmouseenter = function() {
+            this.style.background = 'linear-gradient(135deg, #059669, #047857)';
+        };
+        upgradeBtn.onmouseleave = function() {
+            this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        };
+        upgradeBtn.onclick = function() {
+            window.location.href = 'subscribe.html';
+        };
+        
+        const dropdown = document.getElementById('profileDropdown');
+        if (dropdown) {
+            // حذف الزر القديم إذا كان موجوداً
+            const oldBtn = document.getElementById('dropdownUpgradeBtn');
+            if (oldBtn) oldBtn.remove();
+            dropdown.appendChild(upgradeBtn);
+        }
         
         if(profileLogoutBtn) profileLogoutBtn.style.display = 'none';
         if(profileIcon) profileIcon.style.display = 'none';
