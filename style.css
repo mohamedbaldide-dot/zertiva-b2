@@ -1130,10 +1130,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.25s ease;
 }
 
 .item:hover {
-    background: #eee;
+    background: #f0f0f0;
+    transform: translateX(3px);
 }
 
 /* ========================================
