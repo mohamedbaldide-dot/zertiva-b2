@@ -881,18 +881,11 @@ document.addEventListener("DOMContentLoaded", function() {
   const backToListBtn = document.getElementById("backToListBtn");
   const backArrowFromExam = document.getElementById("backArrowFromExam");
   
- if (startBtn) startBtn.onclick = function() { 
-    // فتح Hören Teil 1 مباشرة
-    currentSkill = "hoeren1";
-    const teilName = "Hören Teil 1";
-    
-    // عرض قائمة الامتحانات أولاً
-    renderExamListForSkill("hoeren1", teilName);
-    
-    // إخفاء الصفحة الرئيسية وإظهار صفحة القائمة
+ function goList() {
     document.getElementById("home").classList.remove("active");
     document.getElementById("list").classList.add("active");
     document.getElementById("exam").classList.remove("active");
+}
     
     // تحديد الجزء النشط في شريط الأجزاء
     const teileItems = document.querySelectorAll('.teil-item');
