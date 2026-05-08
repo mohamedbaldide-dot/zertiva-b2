@@ -1030,22 +1030,19 @@ body {
 }
 
 .teil-item {
-    background: #FFFFFF;
-    color: #1E1E1E;
+    background: rgba(15, 23, 42, 0.75);
+    color: #e2e8f0;
     padding: 12px 20px;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     text-align: center;
-    font-weight: 600;
-    transition: all 0.25s ease;
+    font-weight: bold;
+    transition: 0.3s;
     min-width: 140px;
     margin-bottom: 0;
-
-    border: 1px solid #E6E6E6;
-
-    /* ظل خفيف يعطي شكل بطاقات */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(56, 189, 248, 0.15);
 }
+
 .teil-item:hover {
     background: rgba(30, 41, 59, 0.95);
     color: #38bdf8;
