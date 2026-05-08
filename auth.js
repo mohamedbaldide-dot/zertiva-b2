@@ -126,6 +126,7 @@ async function updateProfileDropdown() {
     let profileLogoutBtn = document.getElementById('profileLogoutBtn');
     let profileIcon = document.getElementById('profileIcon');
     let navLoginBtn = document.getElementById('navLoginBtn');
+    let navSubscribeBtn = document.getElementById('navSubscribeBtn');
     
     if(!profileEmail) return;
     
@@ -140,12 +141,16 @@ async function updateProfileDropdown() {
             let formattedExpiry = `${expiryDate.getDate()}/${expiryDate.getMonth()+1}/${expiryDate.getFullYear()}`;
             profileExpiry.innerHTML = `📅 الصلاحية: حتى ${formattedExpiry}`;
             profileStatus.innerHTML = `✅ الحالة: <span class="status-premium">مشترك (Pro)</span>`;
+            // إخفاء زر الاشتراك للمستخدم المدفوع
+            if (navSubscribeBtn) navSubscribeBtn.style.display = 'none';
         } else if(status === 'expired') {
             profileExpiry.innerHTML = `⏰ انتهت الصلاحية`;
             profileStatus.innerHTML = `⚠️ الحالة: <span class="status-free">منتهي</span>`;
+            if (navSubscribeBtn) navSubscribeBtn.style.display = 'inline-flex';
         } else {
             profileExpiry.innerHTML = `📖 الوضع المجاني`;
             profileStatus.innerHTML = `⭐ الحالة: <span class="status-free">مجاني</span>`;
+            if (navSubscribeBtn) navSubscribeBtn.style.display = 'inline-flex';
         }
         
         if(profileLogoutBtn) profileLogoutBtn.style.display = 'block';
@@ -158,6 +163,8 @@ async function updateProfileDropdown() {
         if(profileLogoutBtn) profileLogoutBtn.style.display = 'none';
         if(profileIcon) profileIcon.style.display = 'none';
         if(navLoginBtn) navLoginBtn.style.display = 'inline-block';
+        // إظهار زر الاشتراك للمستخدم غير المسجل
+        if (navSubscribeBtn) navSubscribeBtn.style.display = 'inline-flex';
     }
 }
 
