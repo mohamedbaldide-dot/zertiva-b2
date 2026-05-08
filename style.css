@@ -200,7 +200,7 @@ body {
 }
 
 /* ========================================
-   Features Section - تحسين البطاقتين والفقرة
+   Features Section
    ======================================== */
 
 .features-section {
@@ -221,7 +221,6 @@ body {
     flex-wrap: wrap;
 }
 
-/* ===== تحسين الفقرة ===== */
 .features-content {
     flex: 1;
     min-width: 380px;
@@ -280,7 +279,6 @@ body {
     transform: translateX(5px);
 }
 
-/* ===== تحسين البطاقتين ===== */
 .features-images {
     flex: 1;
     min-width: 650px;
@@ -486,7 +484,7 @@ body {
 }
 
 /* ========================================
-   Floating Reviews Widget (Expandable)
+   Floating Reviews Widget
    ======================================== */
 
 .reviews-widget {
@@ -496,7 +494,6 @@ body {
     transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
-/* الحالة المغلقة (صغيرة) */
 .reviews-widget.collapsed .widget-expanded-content {
     display: none;
 }
@@ -513,7 +510,6 @@ body {
     display: inline-flex;
 }
 
-/* الحالة المفتوحة */
 .reviews-widget.expanded .widget-bubble {
     display: none;
 }
@@ -523,7 +519,6 @@ body {
     animation: widgetExpand 0.5s ease forwards;
 }
 
-/* تصميم الفقاعة الصغيرة */
 .widget-bubble {
     display: inline-flex;
     align-items: center;
@@ -562,7 +557,6 @@ body {
     border-radius: 30px;
 }
 
-/* المحتوى الممتد */
 .widget-expanded-content {
     background: rgba(15, 23, 42, 0.85);
     backdrop-filter: blur(12px);
@@ -655,7 +649,7 @@ body {
 }
 
 /* ========================================
-   Modal لفتح الصورة بالكامل
+   Modals
    ======================================== */
 
 .review-modal {
@@ -742,10 +736,6 @@ body {
     padding: 5px 15px;
     border-radius: 20px;
 }
-
-/* ========================================
-   Modal كبير للشهادات (Full Screen)
-   ======================================== */
 
 .reviews-modal {
     position: fixed;
