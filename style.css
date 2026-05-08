@@ -359,36 +359,42 @@ body {
 body:has(#list.active) .top-bar,
 body:has(#exam.active) .top-bar {
     position: relative;
-    overflow: visible;
-    
+
     background: rgba(45, 58, 82, 0.88);
     backdrop-filter: blur(14px);
-    
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    
-    box-shadow: 
+
+    border: none;
+
+    box-shadow:
         0 6px 24px rgba(0, 0, 0, 0.08),
         0 1px 0 rgba(255, 255, 255, 0.03) inset;
-    
+
     transition: all 0.3s ease;
 }
 
-/* الموجة الناعمة السفلية مع ظل خفيف يطفو فوق الصفحة */
+
+/* النهاية المتموجة نفسها للهيدر */
 body:has(#list.active) .top-bar::after,
 body:has(#exam.active) .top-bar::after {
     content: "";
+
     position: absolute;
-    left: -5%;
-    bottom: -18px;
-    width: 110%;
-    height: 30px;
-    background: transparent;
-    border-radius: 0 0 50% 50% / 0 0 100% 100%;
-    box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.12);
+    left: 0;
+    bottom: -1px;
+
+    width: 100%;
+    height: 26px;
+
+    background:
+        radial-gradient(circle at 12px -2px, transparent 16px, #f5f7fb 17px);
+
+    background-size: 32px 26px;
+    background-repeat: repeat-x;
+
+    filter: drop-shadow(0 3px 8px rgba(0,0,0,0.05));
+
     pointer-events: none;
 }
-
-
 
 /* الوضع الفاتح (صفحة القائمة والامتحانات) */
 .top-bar.light {
