@@ -349,3 +349,12 @@ if (document.readyState === 'loading') {
 } else {
     initAuth();
 }
+function applyBlurEffect() {
+    const isPremium = (currentUserStatus === 'premium');
+    
+    if (!isPremium) {
+        document.body.classList.add('free-user');
+    } else {
+        document.body.classList.remove('free-user');
+    }
+}
