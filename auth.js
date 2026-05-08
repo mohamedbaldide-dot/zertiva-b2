@@ -157,15 +157,52 @@ async function updateProfileDropdown() {
         if(profileIcon) profileIcon.style.display = 'flex';
         if(navLoginBtn) navLoginBtn.style.display = 'none';
     } else {
-        profileEmail.innerHTML = '👤 غير مسجل';
-        profileExpiry.innerHTML = '';
-        profileStatus.innerHTML = '';
-        if(profileLogoutBtn) profileLogoutBtn.style.display = 'none';
-        if(profileIcon) profileIcon.style.display = 'none';
-        if(navLoginBtn) navLoginBtn.style.display = 'inline-block';
-        // إظهار زر الاشتراك للمستخدم غير المسجل
-        if (navSubscribeBtn) navSubscribeBtn.style.display = 'inline-flex';
+       } else {
+    profileEmail.innerHTML = '👤 غير مسجل';
+    profileExpiry.innerHTML = 'الوصول محدود لبعض الامتحانات';
+    profileStatus.innerHTML = '';
+    
+    // إضافة زر الترقية داخل dropdown للمستخدم غير المسجل
+    const existingUpgradeBtn = document.getElementById('dropdownUpgradeBtn');
+    if (!existingUpgradeBtn) {
+        const upgradeBtn = document.createElement('button');
+        upgradeBtn.id = 'dropdownUpgradeBtn';
+        upgradeBtn.innerHTML = 'الترقية إلى الحساب الكامل →';
+        upgradeBtn.style.cssText = `
+            margin-top: 12px;
+            background: #64748B;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 13px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        `;
+        upgradeBtn.onmouseenter = function() {
+            this.style.backgroundColor = '#475569';
+        };
+        upgradeBtn.onmouseleave = function() {
+            this.style.backgroundColor = '#64748B';
+        };
+        upgradeBtn.onclick = function() {
+            window.location.href = 'subscribe.html';
+        };
+        
+        const dropdown = document.getElementById('profileDropdown');
+        if (dropdown && !document.getElementById('dropdownUpgradeBtn')) {
+            dropdown.appendChild(upgradeBtn);
+        }
     }
+    
+    if(profileLogoutBtn) profileLogoutBtn.style.display = 'none';
+    if(profileIcon) profileIcon.style.display = 'none';
+    if(navLoginBtn) navLoginBtn.style.display = 'inline-block';
+    // إظهار زر الاشتراك للمستخدم غير المسجل
+    if (navSubscribeBtn) navSubscribeBtn.style.display = 'inline-flex';
+}
 }
 
 function toggleProfileDropdown() {
