@@ -359,7 +359,7 @@ body {
 body:has(#list.active) .top-bar,
 body:has(#exam.active) .top-bar {
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     
     background: rgba(45, 58, 82, 0.88);
     backdrop-filter: blur(14px);
@@ -373,20 +373,19 @@ body:has(#exam.active) .top-bar {
     transition: all 0.3s ease;
 }
 
-/* الموجة الناعمة السفلية (قوس ناعم) */
+/* الموجة الناعمة السفلية مع ظل خفيف يطفو فوق الصفحة */
 body:has(#list.active) .top-bar::after,
 body:has(#exam.active) .top-bar::after {
     content: "";
     position: absolute;
     left: -5%;
-    bottom: -20px;
+    bottom: -18px;
     width: 110%;
-    height: 35px;
-    background: #F1F5F9;
-    border-radius: 0 0 40% 40% / 0 0 100% 100%;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.03);
+    height: 30px;
+    background: transparent;
+    border-radius: 0 0 50% 50% / 0 0 100% 100%;
+    box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.12);
     pointer-events: none;
-    z-index: -1;
 }
 
 
