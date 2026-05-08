@@ -24,7 +24,7 @@
 <div id="profileDropdown" class="profile-dropdown">
     <div id="profileEmail" class="profile-email">غير مسجل</div>
     <div id="profileExpiry" class="profile-expiry"></div>
-<div id="profileStatus" class="profile-status"></div>
+    <div id="profileStatus" class="profile-status"></div>
     <button id="profileLogoutBtn" class="profile-logout">🚪 تسجيل خروج</button>
 </div>
 
@@ -231,37 +231,105 @@
         });
     }
 
-    // ========== Floating Reviews Widget مع الحركات ==========
-    const widget = document.getElementById('reviewsWidget');
-    const widgetSlider = document.getElementById('widgetSlider');
-    
-    // تكرار الصور لإنشاء Infinite Loop
-    if (widgetSlider) {
-        const items = widgetSlider.innerHTML;
-        widgetSlider.innerHTML = items + items + items;
+    // ========== تكرار الصور لإنشاء Infinite Loop ==========
+    const widgetSliderElem = document.getElementById('widgetSlider');
+    if (widgetSliderElem) {
+        const items = widgetSliderElem.innerHTML;
+        widgetSliderElem.innerHTML = items + items + items;
     }
     
-    // حركات الـ Widget
+    // ========== التحكم في حركة السلايدر ==========
+    let isPlaying = true;
+    let timeoutId = null;
+    let stopTimeoutId = null;
+    
+    function startSliderAnimation() {
+        if (widgetSliderElem && !widgetSliderElem.matches(':hover')) {
+            widgetSliderElem.style.animationPlayState = 'running';
+            isPlaying = true;
+            
+            // بعد 10 ثواني من الحركة، نوقفها لمدة 5 ثواني
+            if (timeoutId) clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                if (widgetSliderElem && !widgetSliderElem.matches(':hover')) {
+                    widgetSliderElem.style.animationPlayState = 'paused';
+                    isPlaying = false;
+                    
+                    // بعد 5 ثواني توقف، نعيد الحركة مرة أخرى
+                    if (stopTimeoutId) clearTimeout(stopTimeoutId);
+                    stopTimeoutId = setTimeout(() => {
+                        if (widgetSliderElem && !widgetSliderElem.matches(':hover')) {
+                            widgetSliderElem.style.animationPlayState = 'running';
+                            isPlaying = true;
+                            startSliderAnimation();
+                        }
+                    }, 5000);
+                } else {
+                    // إذا كان Hover، نعيد المحاولة بعد ثانية
+                    setTimeout(() => {
+                        if (widgetSliderElem && !widgetSliderElem.matches(':hover')) {
+                            startSliderAnimation();
+                        }
+                    }, 1000);
+                }
+            }, 10000);
+        }
+    }
+    
+    // ========== Floating Reviews Widget مع الحركات ==========
+    const widget = document.getElementById('reviewsWidget');
+    
     if (widget) {
         // بعد ثانيتين، يتمدد الـ Widget
         setTimeout(() => {
             widget.classList.remove('collapsed');
             widget.classList.add('expanded');
+            
+            // بعد أن يتمدد، نبدأ حركة السلايدر
+            setTimeout(() => {
+                if (widgetSliderElem) {
+                    startSliderAnimation();
+                }
+            }, 500);
         }, 2000);
         
-        // بعد 6 ثواني من التمدد، يرجع للتصغير (لكن يبقى ظاهر)
+        // بعد 8 ثواني من التمدد، يرجع للتصغير (لكن يبقى ظاهر)
         setTimeout(() => {
             if (widget.classList.contains('expanded')) {
                 widget.classList.remove('expanded');
                 widget.classList.add('collapsed-keep');
+                // نوقف الحركة كلها
+                if (timeoutId) clearTimeout(timeoutId);
+                if (stopTimeoutId) clearTimeout(stopTimeoutId);
+                if (widgetSliderElem) {
+                    widgetSliderElem.style.animationPlayState = 'paused';
+                    isPlaying = false;
+                }
             }
-        }, 8000);
+        }, 10000);
         
         // عند الضغط على الـ Widget يفتح المودال
         widget.addEventListener('click', function(e) {
-            // لمنع الفتح عند الضغط على الصور
             if (e.target.tagName === 'IMG') return;
             openReviewsModal();
+        });
+    }
+    
+    // التحكم في Hover على السلايدر
+    if (widgetSliderElem) {
+        widgetSliderElem.addEventListener('mouseenter', () => {
+            if (timeoutId) clearTimeout(timeoutId);
+            if (stopTimeoutId) clearTimeout(stopTimeoutId);
+            widgetSliderElem.style.animationPlayState = 'paused';
+            isPlaying = false;
+        });
+        
+        widgetSliderElem.addEventListener('mouseleave', () => {
+            if (!isPlaying && widget.classList.contains('expanded')) {
+                widgetSliderElem.style.animationPlayState = 'running';
+                isPlaying = true;
+                startSliderAnimation();
+            }
         });
     }
     
@@ -405,12 +473,25 @@
         modalCounter.textContent = `${currentIndex + 1} / ${reviews.length}`;
     }
     
-    document.querySelectorAll('.widget-slide').forEach((item, idx) => {
-        item.addEventListener('click', (e) => {
-            e.stopPropagation();
-            openImageModal(idx % reviewImages.length);
+    // ربط الأحداث على الصور التي تظهر بعد تمدد الـ Widget
+    function bindSlideClickEvents() {
+        document.querySelectorAll('.widget-slide').forEach((item, idx) => {
+            // إزالة الأحداث القديمة لتجنب التكرار
+            item.removeEventListener('click', () => {});
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openImageModal(idx % reviewImages.length);
+            });
         });
+    }
+    
+    // مراقبة التغيرات في DOM لربط الأحداث عند ظهور الصور
+    const observer = new MutationObserver(() => {
+        bindSlideClickEvents();
     });
+    observer.observe(document.body, { childList: true, subtree: true });
+    
+    bindSlideClickEvents();
     
     modalClose.addEventListener('click', closeImageModal);
     modalNext.addEventListener('click', nextImageModal);
