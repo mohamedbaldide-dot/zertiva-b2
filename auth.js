@@ -129,34 +129,37 @@ async function updateProfileDropdown() {
     let navSubscribeBtn = document.getElementById('navSubscribeBtn');
     
     if(!profileEmail) return;
-    
     if(email) {
-        let status = await getUserStatus();
-        let expiry = currentExpiry;
-        
-        profileEmail.innerHTML = `📧 ${email}`;
-        
-        if(status === 'premium' && expiry) {
-            let expiryDate = new Date(expiry);
-            let formattedExpiry = `${expiryDate.getDate()}/${expiryDate.getMonth()+1}/${expiryDate.getFullYear()}`;
-            profileExpiry.innerHTML = `📅 الصلاحية: حتى ${formattedExpiry}`;
-            profileStatus.innerHTML = `✅ الحالة: <span class="status-premium">مشترك (Pro)</span>`;
-            // إخفاء زر الاشتراك للمستخدم المدفوع
-            if (navSubscribeBtn) navSubscribeBtn.style.display = 'none';
-        } else if(status === 'expired') {
-            profileExpiry.innerHTML = `⏰ انتهت الصلاحية`;
-            profileStatus.innerHTML = `⚠️ الحالة: <span class="status-free">منتهي</span>`;
-            if (navSubscribeBtn) navSubscribeBtn.style.display = 'inline-flex';
-        } else {
-            profileExpiry.innerHTML = `📖 الوضع المجاني`;
-            profileStatus.innerHTML = `⭐ الحالة: <span class="status-free">مجاني</span>`;
-            if (navSubscribeBtn) navSubscribeBtn.style.display = 'inline-flex';
-        }
-        
-        if(profileLogoutBtn) profileLogoutBtn.style.display = 'block';
-        if(profileIcon) profileIcon.style.display = 'flex';
-        if(navLoginBtn) navLoginBtn.style.display = 'none';
+    // حذف زر الترقية إذا كان موجوداً (للمستخدم المسجل)
+    const oldUpgradeBtn = document.getElementById('dropdownUpgradeBtn');
+    if (oldUpgradeBtn) oldUpgradeBtn.remove();
+    
+    let status = await getUserStatus();
+    let expiry = currentExpiry;
+    
+    profileEmail.innerHTML = `📧 ${email}`;
+    
+    if(status === 'premium' && expiry) {
+        let expiryDate = new Date(expiry);
+        let formattedExpiry = `${expiryDate.getDate()}/${expiryDate.getMonth()+1}/${expiryDate.getFullYear()}`;
+        profileExpiry.innerHTML = `📅 الصلاحية: حتى ${formattedExpiry}`;
+        profileStatus.innerHTML = `✅ الحالة: <span class="status-premium">مشترك (Pro)</span>`;
+        // إخفاء زر الاشتراك للمستخدم المدفوع
+        if (navSubscribeBtn) navSubscribeBtn.style.display = 'none';
+    } else if(status === 'expired') {
+        profileExpiry.innerHTML = `⏰ انتهت الصلاحية`;
+        profileStatus.innerHTML = `⚠️ الحالة: <span class="status-free">منتهي</span>`;
+        if (navSubscribeBtn) navSubscribeBtn.style.display = 'inline-flex';
     } else {
+        profileExpiry.innerHTML = `📖 الوضع المجاني`;
+        profileStatus.innerHTML = `⭐ الحالة: <span class="status-free">مجاني</span>`;
+        if (navSubscribeBtn) navSubscribeBtn.style.display = 'inline-flex';
+    }
+    
+    if(profileLogoutBtn) profileLogoutBtn.style.display = 'block';
+    if(profileIcon) profileIcon.style.display = 'flex';
+    if(navLoginBtn) navLoginBtn.style.display = 'none';
+} else {
        } else {
     profileEmail.innerHTML = '👤 غير مسجل';
     profileExpiry.innerHTML = 'الوصول محدود لبعض الامتحانات';
