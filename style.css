@@ -292,8 +292,8 @@ body {
 .image-stack {
     position: relative;
     width: 100%;
-    max-width: 500px;
-    min-height: 480px;
+    max-width: 700px;
+    min-height: 520px;
 }
 
 .image-card-feature {
@@ -303,7 +303,7 @@ body {
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
     transition: all 0.35s ease;
     overflow: hidden;
-    width: 88%;
+    width: 100%;
 }
 
 .image-card-feature:hover {
@@ -313,8 +313,8 @@ body {
 
 .image-top {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 40px;
+    right: 20px;
     width: 78%;
     z-index: 2;
     transform: rotate(3deg);
@@ -322,8 +322,8 @@ body {
 
 .image-bottom {
     position: absolute;
-    bottom: 5%;
-    left: 0;
+    bottom: 40px;
+    left: 20px;
     width: 78%;
     z-index: 1;
     transform: rotate(-2deg);
@@ -763,23 +763,24 @@ body {
     }
     
     .features-images {
-        min-width: 380px;
+        min-width: 450px;
     }
     
     .image-stack {
-        max-width: 420px;
+        max-width: 500px;
         min-height: 420px;
     }
     
     .image-top {
+        top: 25px;
+        right: 15px;
         width: 80%;
-        right: 10%;
         transform: rotate(2deg);
     }
     
     .image-bottom {
-        bottom: 3%;
-        left: 10%;
+        bottom: 25px;
+        left: 15px;
         width: 80%;
         transform: rotate(-1deg);
     }
@@ -816,27 +817,28 @@ body {
     }
     
     .features-images {
-        min-width: 300px;
+        min-width: 320px;
     }
     
     .image-stack {
-        max-width: 340px;
+        max-width: 380px;
         min-height: 350px;
     }
     
     .image-card-feature {
-        padding: 8px;
+        padding: 10px;
     }
     
     .image-top {
+        top: 15px;
+        right: 10px;
         width: 85%;
-        right: 5%;
         transform: rotate(1.5deg);
     }
     
     .image-bottom {
-        bottom: 2%;
-        left: 5%;
+        bottom: 15px;
+        left: 10px;
         width: 85%;
         transform: rotate(-1deg);
     }
