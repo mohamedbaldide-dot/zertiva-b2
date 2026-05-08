@@ -238,98 +238,94 @@
         widgetSliderElem.innerHTML = items + items + items;
     }
     
-    // ========== التحكم في حركة السلايدر ==========
+    // ========== التحكم في حركة السلايدر: يتحرك 10 ثواني، يتوقف 5 ثواني ==========
     let isPlaying = true;
-    let timeoutId = null;
-    let stopTimeoutId = null;
+    let moveTimeout = null;
+    let pauseTimeout = null;
+    let animationRunning = false;
     
-    function startSliderAnimation() {
+    function startMoveCycle() {
+        if (animationRunning) return;
+        animationRunning = true;
+        
         if (widgetSliderElem && !widgetSliderElem.matches(':hover')) {
             widgetSliderElem.style.animationPlayState = 'running';
             isPlaying = true;
             
-            // بعد 10 ثواني من الحركة، نوقفها لمدة 5 ثواني
-            if (timeoutId) clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => {
+            if (moveTimeout) clearTimeout(moveTimeout);
+            moveTimeout = setTimeout(() => {
                 if (widgetSliderElem && !widgetSliderElem.matches(':hover')) {
                     widgetSliderElem.style.animationPlayState = 'paused';
                     isPlaying = false;
                     
-                    // بعد 5 ثواني توقف، نعيد الحركة مرة أخرى
-                    if (stopTimeoutId) clearTimeout(stopTimeoutId);
-                    stopTimeoutId = setTimeout(() => {
+                    if (pauseTimeout) clearTimeout(pauseTimeout);
+                    pauseTimeout = setTimeout(() => {
                         if (widgetSliderElem && !widgetSliderElem.matches(':hover')) {
-                            widgetSliderElem.style.animationPlayState = 'running';
-                            isPlaying = true;
-                            startSliderAnimation();
+                            animationRunning = false;
+                            startMoveCycle();
+                        } else {
+                            animationRunning = false;
                         }
                     }, 5000);
                 } else {
-                    // إذا كان Hover، نعيد المحاولة بعد ثانية
-                    setTimeout(() => {
-                        if (widgetSliderElem && !widgetSliderElem.matches(':hover')) {
-                            startSliderAnimation();
-                        }
-                    }, 1000);
+                    animationRunning = false;
                 }
             }, 10000);
         }
+    }
+    
+    function stopMoveCycle() {
+        if (moveTimeout) clearTimeout(moveTimeout);
+        if (pauseTimeout) clearTimeout(pauseTimeout);
+        animationRunning = false;
+        if (widgetSliderElem) {
+            widgetSliderElem.style.animationPlayState = 'paused';
+        }
+    }
+    
+    function initSliderAnimation() {
+        stopMoveCycle();
+        setTimeout(() => {
+            startMoveCycle();
+        }, 500);
+    }
+    
+    if (widgetSliderElem) {
+        widgetSliderElem.addEventListener('mouseenter', () => {
+            stopMoveCycle();
+            widgetSliderElem.style.animationPlayState = 'paused';
+            isPlaying = false;
+        });
+        
+        widgetSliderElem.addEventListener('mouseleave', () => {
+            if (!isPlaying) {
+                animationRunning = false;
+                startMoveCycle();
+            }
+        });
     }
     
     // ========== Floating Reviews Widget مع الحركات ==========
     const widget = document.getElementById('reviewsWidget');
     
     if (widget) {
-        // بعد ثانيتين، يتمدد الـ Widget
         setTimeout(() => {
             widget.classList.remove('collapsed');
             widget.classList.add('expanded');
-            
-            // بعد أن يتمدد، نبدأ حركة السلايدر
-            setTimeout(() => {
-                if (widgetSliderElem) {
-                    startSliderAnimation();
-                }
-            }, 500);
+            initSliderAnimation();
         }, 2000);
         
-        // بعد 8 ثواني من التمدد، يرجع للتصغير (لكن يبقى ظاهر)
         setTimeout(() => {
             if (widget.classList.contains('expanded')) {
                 widget.classList.remove('expanded');
                 widget.classList.add('collapsed-keep');
-                // نوقف الحركة كلها
-                if (timeoutId) clearTimeout(timeoutId);
-                if (stopTimeoutId) clearTimeout(stopTimeoutId);
-                if (widgetSliderElem) {
-                    widgetSliderElem.style.animationPlayState = 'paused';
-                    isPlaying = false;
-                }
+                stopMoveCycle();
             }
         }, 10000);
         
-        // عند الضغط على الـ Widget يفتح المودال
         widget.addEventListener('click', function(e) {
             if (e.target.tagName === 'IMG') return;
             openReviewsModal();
-        });
-    }
-    
-    // التحكم في Hover على السلايدر
-    if (widgetSliderElem) {
-        widgetSliderElem.addEventListener('mouseenter', () => {
-            if (timeoutId) clearTimeout(timeoutId);
-            if (stopTimeoutId) clearTimeout(stopTimeoutId);
-            widgetSliderElem.style.animationPlayState = 'paused';
-            isPlaying = false;
-        });
-        
-        widgetSliderElem.addEventListener('mouseleave', () => {
-            if (!isPlaying && widget.classList.contains('expanded')) {
-                widgetSliderElem.style.animationPlayState = 'running';
-                isPlaying = true;
-                startSliderAnimation();
-            }
         });
     }
     
@@ -427,7 +423,7 @@
         }
     });
     
-    // ========== Modal للصور الصغيرة (عند الضغط على صورة في الـ Widget) ==========
+    // ========== Modal للصور الصغيرة ==========
     const reviews = reviewImages;
     let currentIndex = 0;
     
@@ -473,10 +469,8 @@
         modalCounter.textContent = `${currentIndex + 1} / ${reviews.length}`;
     }
     
-    // ربط الأحداث على الصور التي تظهر بعد تمدد الـ Widget
     function bindSlideClickEvents() {
         document.querySelectorAll('.widget-slide').forEach((item, idx) => {
-            // إزالة الأحداث القديمة لتجنب التكرار
             item.removeEventListener('click', () => {});
             item.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -485,12 +479,10 @@
         });
     }
     
-    // مراقبة التغيرات في DOM لربط الأحداث عند ظهور الصور
     const observer = new MutationObserver(() => {
         bindSlideClickEvents();
     });
     observer.observe(document.body, { childList: true, subtree: true });
-    
     bindSlideClickEvents();
     
     modalClose.addEventListener('click', closeImageModal);
