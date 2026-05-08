@@ -164,13 +164,13 @@ async function updateProfileDropdown() {
         profileExpiry.innerHTML = 'الوصول محدود لبعض الامتحانات';
         profileStatus.innerHTML = '';
         
-        // إضافة زر الترقية للمستخدم غير المسجل
+        // إضافة زر الترقية للمستخدم غير المسجل (لون رمادي مزرق)
         const upgradeBtn = document.createElement('button');
         upgradeBtn.id = 'dropdownUpgradeBtn';
         upgradeBtn.innerHTML = 'الترقية إلى الحساب الكامل →';
         upgradeBtn.style.cssText = `
             margin-top: 12px;
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: #64748B;
             color: white;
             border: none;
             padding: 10px 15px;
@@ -182,13 +182,14 @@ async function updateProfileDropdown() {
             transition: all 0.3s ease;
         `;
         upgradeBtn.onmouseenter = function() {
-            this.style.background = 'linear-gradient(135deg, #059669, #047857)';
+            this.style.background = '#475569';
         };
         upgradeBtn.onmouseleave = function() {
-            this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+            this.style.background = '#64748B';
         };
         upgradeBtn.onclick = function() {
-            window.location.href = 'subscribe.html';
+            // فتح نافذة تسجيل الدخول أولاً
+            showLoginPopup();
         };
         
         const dropdown = document.getElementById('profileDropdown');
@@ -248,7 +249,13 @@ async function handleLogin() {
     
     hideLoginPopup();
     await updateProfileDropdown();
-    location.reload();
+    
+    // إذا كان المستخدم مسجل (مجاني أو منتهي) نوجهه لصفحة الاشتراك
+    if (status !== 'premium') {
+        window.location.href = 'subscribe.html';
+    } else {
+        location.reload();
+    }
 }
 
 async function setupLockedNextButton() {
