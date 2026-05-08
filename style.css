@@ -330,8 +330,9 @@ body {
 }
 
 .feature-img {
-    width: 100%;
+    width: 120%;
     height: auto;
+    margin-left: -10%;
     border-radius: 16px;
     display: block;
     background: white;
