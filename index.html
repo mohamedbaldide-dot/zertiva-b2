@@ -46,7 +46,8 @@
     <div class="hero-wrapper">
         <div class="hero-container">
             <div class="hero-image-side">
-                <div class="image-glow"></div>
+                <div class="image-glow">
+                </div>
                 <div class="image-card">
                     <img src="images/certificate-sample.jpg" alt="telc Deutsch B2 Zertifikat" class="certificate-img">
                 </div>
@@ -72,7 +73,7 @@
                     <span class="btn-arrow-icon">→</span>
                 </button>
                 
-                <!-- Floating Reviews Widget - يظهر أسفل الزر مباشرة -->
+                <!-- Floating Reviews Widget -->
                 <div id="reviewsWidget" class="reviews-widget collapsed">
                     <div class="widget-bubble">
                         <span class="widget-icon">💬</span>
@@ -238,7 +239,7 @@
         widgetSliderElem.innerHTML = items + items + items;
     }
     
-    // ========== التحكم في حركة السلايدر: يتحرك 10 ثواني، يتوقف 5 ثواني، ويتكرر ==========
+    // ========== التحكم في حركة السلايدر: 10 ثواني حركة - 5 ثواني توقف ==========
     let moveTimeout = null;
     let pauseTimeout = null;
     let isHovering = false;
@@ -294,7 +295,7 @@
         }, 500);
     }
 
-    // ========== Floating Reviews Widget مع الحركات ==========
+    // ========== Floating Reviews Widget ==========
     const widget = document.getElementById('reviewsWidget');
     
     if (widget) {
@@ -318,7 +319,7 @@
         });
     }
     
-    // ========== الـ Modal الكبير للشهادات ==========
+    // ========== الـ Modal الكبير ==========
     const reviewImages = [
         "images/review1.jpg",
         "images/review2.jpg",
