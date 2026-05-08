@@ -1125,17 +1125,20 @@ body {
     background: white;
     padding: 15px;
     margin-bottom: 10px;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.25s ease;
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
 }
 
 .item:hover {
-    background: #f0f0f0;
-    transform: translateX(3px);
+    background: #f8fafc;
+    transform: translateY(-3px) translateX(3px);
+    border-color: #2F80ED;
+    box-shadow: 0 8px 20px rgba(47, 128, 237, 0.12);
 }
 
 /* ========================================
