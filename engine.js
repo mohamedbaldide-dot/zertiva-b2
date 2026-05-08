@@ -48,7 +48,7 @@ function renderSchreibenExam() {
   leftColumn.style.border = "1px solid #ddd";
   leftColumn.style.maxHeight = "80vh";
   leftColumn.style.overflowY = "auto";
-  leftColumn.className = "left-column";
+
   const situationTitle = document.createElement("h3");
   situationTitle.innerHTML = "📌 SITUATION";
   situationTitle.style.color = "#2c3e66";
@@ -128,7 +128,7 @@ function renderSchreibenExam() {
   rightColumn.style.border = "1px solid #d0e0ff";
   rightColumn.style.maxHeight = "80vh";
   rightColumn.style.overflowY = "auto";
-  rightColumn.className = "right-column";
+  
   
   const templateTitle = document.createElement("div");
   let cleanTitle = data.template.title;
