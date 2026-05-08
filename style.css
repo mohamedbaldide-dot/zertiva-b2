@@ -1030,8 +1030,8 @@ body {
 }
 
 .teil-item {
-    background: #2c3e66;
-    color: white;
+    background: rgba(15, 23, 42, 0.75);
+    color: #e2e8f0;
     padding: 12px 20px;
     border-radius: 8px;
     cursor: pointer;
@@ -1039,11 +1039,15 @@ body {
     font-weight: bold;
     transition: 0.3s;
     min-width: 140px;
+    margin-bottom: 0;
+    border: 1px solid rgba(56, 189, 248, 0.15);
 }
 
 .teil-item:hover {
-    background: #1e2a45;
+    background: rgba(30, 41, 59, 0.95);
+    color: #38bdf8;
     transform: translateY(-2px);
+    border-color: #38bdf8;
 }
 
 .teile-row {
