@@ -346,27 +346,12 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 12px 30px;
+    background: #0a0e1a;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.15);
     direction: rtl;
     position: sticky;
     top: 0;
     z-index: 100;
-    transition: all 0.3s ease;
-}
-
-/* الوضع الداكن (الصفحة الرئيسية) */
-.top-bar.dark {
-    background: #0a0e1a;
-    border-bottom: 1px solid rgba(56, 189, 248, 0.15);
-}
-
-.top-bar.dark .btn-login-top {
-    border: 1.5px solid #38bdf8;
-    color: #38bdf8;
-}
-
-.top-bar.dark .btn-login-top:hover {
-    background: #38bdf8;
-    color: #0a0e1a;
 }
 
 /* الوضع الفاتح (صفحة القائمة والامتحانات) */
