@@ -517,106 +517,82 @@ function renderTeileList() {
 }
 
 async function renderExamListForSkill(skill, teilName) {
-  currentSkill = skill;
-  
-  const container = document.getElementById("examsList");
-  if (!container) return;
-  container.innerHTML = "";
-  
-  const headerDiv = document.createElement("div");
-  headerDiv.className = "teil-header";
-  headerDiv.innerHTML = `<strong>📚 ${teilName || getTeilNameBySkill(skill)}</strong>`;
-  container.appendChild(headerDiv);
-  
-  const exams = examsDatabase[skill] || [];
-  currentExamsList = exams;
-  
-  if (exams.length === 0) {
-    container.innerHTML += '<div class="item" style="text-align:center; color:#999;">⚠️ لا توجد امتحانات متاحة حالياً في هذا الجزء</div>';
-    return;
-  }
-  
-  const userStatus = await getUserStatusForExam();
-  const isPremium = (userStatus === 'premium');
-  
-  for (let i = 0; i < exams.length; i++) {
-    const exam = exams[i];
-    const examNumber = exam.id;
-    const isFirstExam = (examNumber === 1);
+    currentSkill = skill;
     
-    const div = document.createElement("div");
-    div.className = "item";
+    const container = document.getElementById("examsList");
+    if (!container) return;
+    container.innerHTML = "";
     
-    const titleSpan = document.createElement("span");
-    titleSpan.className = "exam-title";
-    titleSpan.innerHTML = `${exam.id}: ${exam.title}`;
-    div.appendChild(titleSpan);
+    const headerDiv = document.createElement("div");
+    headerDiv.className = "teil-header";
+    headerDiv.innerHTML = `<strong>${teilName || getTeilNameBySkill(skill)}</strong>`;
+    container.appendChild(headerDiv);
     
-        if (!isPremium && !isFirstExam) {
-      div.style.backgroundColor = "rgba(255,255,255,0.75)";
-      div.style.border = "1px solid #e2e8f0";
-      div.style.opacity = "1";
-      div.style.transition = "all 0.25s ease";
-      div.style.cursor = "pointer";
-      
-      const rightSide = document.createElement("span");
-      rightSide.className = "exam-right-icons";
-      rightSide.style.display = "flex";
-      rightSide.style.alignItems = "center";
-      rightSide.style.gap = "6px";
-      rightSide.style.transition = "all 0.25s ease";
-      
-      const lockSpan = document.createElement("span");
-      lockSpan.className = "lock-icon";
-      lockSpan.innerHTML = "🔒";
-      lockSpan.style.cssText = "font-size:13px; color:#60a5fa; margin-right:5px; transition:all 0.25s ease;";
-      rightSide.appendChild(lockSpan);
-      
-      const proSpan = document.createElement("span");
-      proSpan.className = "pro-badge";
-      proSpan.innerHTML = "PRO";
-      proSpan.style.cssText = "color:#2563eb; font-size:9px; font-weight:bold; letter-spacing:1px; transition:all 0.25s ease;";
-      rightSide.appendChild(proSpan);
-      
-      div.appendChild(rightSide);
-      titleSpan.style.color = "#6b7280";
-      titleSpan.style.transition = "color 0.25s ease";
-      
-      // تأثير hover
-      div.onmouseenter = function() {
-        this.style.backgroundColor = "rgba(255,255,255,0.95)";
-        this.style.transform = "translateX(5px)";
-        this.style.borderColor = "#60a5fa";
-        titleSpan.style.color = "#4b5563";
-        lockSpan.style.transform = "scale(1.1)";
-        proSpan.style.transform = "scale(1.05)";
-      };
-      
-      div.onmouseleave = function() {
-        this.style.backgroundColor = "rgba(255,255,255,0.75)";
-        this.style.transform = "translateX(0)";
-        this.style.borderColor = "#e2e8f0";
-        titleSpan.style.color = "#6b7280";
-        lockSpan.style.transform = "scale(1)";
-        proSpan.style.transform = "scale(1)";
-      };
-      
-      div.onclick = (function(title, id) {
-  return function() {
-    showLockedMessage(title + " (" + id + ")");
-  };
-})(exam.title, exam.id);
-    } else if (exam.hasFile) {
-      div.onclick = (function(id, title, skill) {
-        return function() { openExam(id, title, skill); };
-      })(exam.id, exam.title, skill);
-    } else {
-      div.style.opacity = "0.6";
-      div.style.backgroundColor = "#f8f9fa";
-      div.onclick = () => alert(`⚠️ الامتحان رقم ${exam.id} سيتم إضافته قريباً.`);
+    const exams = examsDatabase[skill] || [];
+    currentExamsList = exams;
+    
+    if (exams.length === 0) {
+        container.innerHTML += '<div class="item" style="text-align:center; color:#999;">⚠️ لا توجد امتحانات متاحة حالياً في هذا الجزء</div>';
+        return;
     }
-    container.appendChild(div);
-  }
+    
+    const userStatus = await getUserStatusForExam();
+    const isPremium = (userStatus === 'premium');
+    
+    for (let i = 0; i < exams.length; i++) {
+        const exam = exams[i];
+        const examNumber = exam.id;
+        const isFirstExam = (examNumber === 1);
+        
+        const div = document.createElement("div");
+        div.className = "item";
+        
+        const titleSpan = document.createElement("span");
+        titleSpan.className = "exam-title";
+        titleSpan.innerHTML = `${exam.id}: ${exam.title}`;
+        div.appendChild(titleSpan);
+        
+        if (!isPremium && !isFirstExam) {
+            div.style.backgroundColor = "rgba(255,255,255,0.75)";
+            div.style.border = "1px solid #e2e8f0";
+            div.style.cursor = "pointer";
+            
+            const rightSide = document.createElement("span");
+            rightSide.className = "exam-right-icons";
+            rightSide.style.display = "flex";
+            rightSide.style.alignItems = "center";
+            rightSide.style.gap = "6px";
+            
+            const lockSpan = document.createElement("span");
+            lockSpan.className = "lock-icon";
+            lockSpan.innerHTML = "🔒";
+            rightSide.appendChild(lockSpan);
+            
+            const proSpan = document.createElement("span");
+            proSpan.className = "pro-badge";
+            proSpan.innerHTML = "PRO";
+            rightSide.appendChild(proSpan);
+            
+            div.appendChild(rightSide);
+            titleSpan.style.color = "#6b7280";
+            
+            div.onclick = (function(title, id) {
+                return function() {
+                    showLockedMessage(title + " (" + id + ")");
+                };
+            })(exam.title, exam.id);
+        } else if (exam.hasFile) {
+            div.onclick = (function(id, title, skill) {
+                return function() { openExam(id, title, skill); };
+            })(exam.id, exam.title, skill);
+        } else {
+            div.style.opacity = "0.6";
+            div.style.backgroundColor = "#f8f9fa";
+            div.onclick = () => alert(`⚠️ الامتحان رقم ${exam.id} سيتم إضافته قريباً.`);
+        }
+        container.appendChild(div);
+    }
+}
   
   setTimeout(setupLockedNextButton, 100);
 }
@@ -909,10 +885,24 @@ document.addEventListener("DOMContentLoaded", function() {
     // فتح Hören Teil 1 مباشرة
     currentSkill = "hoeren1";
     const teilName = "Hören Teil 1";
+    
+    // عرض قائمة الامتحانات أولاً
     renderExamListForSkill("hoeren1", teilName);
+    
+    // إخفاء الصفحة الرئيسية وإظهار صفحة القائمة
     document.getElementById("home").classList.remove("active");
     document.getElementById("list").classList.add("active");
     document.getElementById("exam").classList.remove("active");
+    
+    // تحديد الجزء النشط في شريط الأجزاء
+    const teileItems = document.querySelectorAll('.teil-item');
+    teileItems.forEach(item => {
+        if (item.textContent === "Hören Teil 1") {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
 };
   if (backHomeBtn) backHomeBtn.onclick = function() { goHome(); };
   if (backToListBtn) backToListBtn.onclick = function() { goList(); };
