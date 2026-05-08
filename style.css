@@ -1121,24 +1121,61 @@ body {
     background: #5a6268 !important;
 }
 
+/* تحسين تفاعل خانات الامتحانات عند مرور الماوس */
 .item {
     background: white;
     padding: 15px;
     margin-bottom: 10px;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     border: 1px solid #e2e8f0;
 }
 
 .item:hover {
-    background: #f8fafc;
-    transform: translateY(-3px) translateX(3px);
+    background: #f1f5f9;
+    transform: translateX(5px);
     border-color: #2F80ED;
-    box-shadow: 0 8px 20px rgba(47, 128, 237, 0.12);
+    box-shadow: 0 2px 8px rgba(47, 128, 237, 0.15);
+}
+
+/* تحسين شكل القفل و PRO */
+.lock-icon {
+    font-size: 13px;
+    color: #60a5fa;
+    transition: transform 0.2s ease;
+}
+
+.item:hover .lock-icon {
+    transform: scale(1.1);
+}
+
+.pro-badge {
+    color: #2563eb;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+}
+
+.item:hover .pro-badge {
+    color: #2F80ED;
+    transform: scale(1.05);
+}
+
+/* تحسين عنوان الامتحان */
+.exam-title {
+    flex: 1;
+    transition: color 0.2s ease;
+    font-weight: 500;
+}
+
+.item:hover .exam-title {
+    color: #1e293b;
 }
 
 /* ========================================
