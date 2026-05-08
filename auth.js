@@ -124,16 +124,6 @@ function applyBlurEffect() {
     
     if (!isPremium) {
         document.body.classList.add('free-user');
-        
-        // إضافة الكلاسات للأعمدة في Schreiben إذا كانت موجودة
-        const schreibenContainer = document.getElementById('schreiben');
-        if (schreibenContainer) {
-            const leftColumn = schreibenContainer.querySelector('.left-column');
-            const rightColumn = schreibenContainer.querySelector('.right-column');
-            
-            if (leftColumn) leftColumn.classList.add('left-column');
-            if (rightColumn) rightColumn.classList.add('right-column');
-        }
     } else {
         document.body.classList.remove('free-user');
     }
