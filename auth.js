@@ -118,6 +118,27 @@ function showLockedMessage(examTitle) {
     };
 }
 
+// إضافة تأثير الضباب على Schreiben
+function applyBlurEffect() {
+    const isPremium = (currentUserStatus === 'premium');
+    
+    if (!isPremium) {
+        document.body.classList.add('free-user');
+        
+        // إضافة الكلاسات للأعمدة في Schreiben إذا كانت موجودة
+        const schreibenContainer = document.getElementById('schreiben');
+        if (schreibenContainer) {
+            const leftColumn = schreibenContainer.querySelector('.left-column');
+            const rightColumn = schreibenContainer.querySelector('.right-column');
+            
+            if (leftColumn) leftColumn.classList.add('left-column');
+            if (rightColumn) rightColumn.classList.add('right-column');
+        }
+    } else {
+        document.body.classList.remove('free-user');
+    }
+}
+
 async function updateProfileDropdown() {
     let email = getLoggedInEmail();
     let profileEmail = document.getElementById('profileEmail');
@@ -137,6 +158,7 @@ async function updateProfileDropdown() {
         
         let status = await getUserStatus();
         let expiry = currentExpiry;
+        currentUserStatus = status;
         
         profileEmail.innerHTML = `📧 ${email}`;
         
@@ -163,6 +185,7 @@ async function updateProfileDropdown() {
         profileEmail.innerHTML = '👤 غير مسجل';
         profileExpiry.innerHTML = 'الوصول محدود لبعض الامتحانات';
         profileStatus.innerHTML = '';
+        currentUserStatus = 'guest';
         
         // إضافة زر الترقية للمستخدم غير المسجل (لون رمادي مزرق)
         const upgradeBtn = document.createElement('button');
@@ -205,6 +228,9 @@ async function updateProfileDropdown() {
         if(navLoginBtn) navLoginBtn.style.display = 'inline-block';
         if (navSubscribeBtn) navSubscribeBtn.style.display = 'inline-flex';
     }
+    
+    // تطبيق تأثير الضباب
+    applyBlurEffect();
 }
 
 function toggleProfileDropdown() {
@@ -236,6 +262,8 @@ async function handleLogin() {
     setLoggedInUser(email, password);
     
     let status = await getUserStatus();
+    currentUserStatus = status;
+    
     if(status === 'premium') {
         let expiry = currentExpiry;
         let expiryDate = new Date(expiry);
@@ -249,6 +277,7 @@ async function handleLogin() {
     
     hideLoginPopup();
     await updateProfileDropdown();
+    applyBlurEffect();
     
     // إذا كان المستخدم مسجل (مجاني أو منتهي) نوجهه لصفحة الاشتراك
     if (status !== 'premium') {
@@ -332,6 +361,8 @@ function observePageChanges() {
         if(examPage && examPage.classList.contains('active')) {
             setTimeout(setupLockedNextButton, 300);
         }
+        // إعادة تطبيق تأثير الضباب عند تغيير الصفحة
+        applyBlurEffect();
     });
     
     observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
