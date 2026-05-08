@@ -17,7 +17,6 @@
         <button id="navSubscribeBtn" class="subscribe-icon-btn">
             <img src="images/kauf.png" alt="اشتراك" class="subscribe-icon-img">
         </button>
-        <button id="showReviewsBtn" class="btn-reviews-top">واش مازال متردد؟ 🤔</button>
         <div class="profile-icon" id="profileIcon" style="display: none;">👤</div>
     </div>
 </div>
@@ -25,7 +24,7 @@
 <div id="profileDropdown" class="profile-dropdown">
     <div id="profileEmail" class="profile-email">غير مسجل</div>
     <div id="profileExpiry" class="profile-expiry"></div>
-    <div id="profileStatus" class="profile-status"></div>
+<div id="profileStatus" class="profile-status"></div>
     <button id="profileLogoutBtn" class="profile-logout">🚪 تسجيل خروج</button>
 </div>
 
@@ -63,29 +62,6 @@
                     <p class="hero-desc second-desc">
                       الاجوبة صحيحة. <span class="blue-text">100%</span>
                     </p>
-                    <!-- Floating Reviews Slider -->
-                    <div class="floating-reviews">
-                        <div class="reviews-header">
-                            <span class="reviews-icon">🤔</span>
-                            <h3 class="reviews-title">مازال كتفكر واش تشترك؟</h3>
-                        </div>
-                        <p class="reviews-subtitle">شوف ناس سبقوك واستافدو من المنصة.</p>
-                        <div class="reviews-slider-container">
-                            <div class="reviews-slider" id="reviewsSlider">
-                                <div class="review-item"><img src="images/review1.jpg" alt="Review 1"></div>
-                                <div class="review-item"><img src="images/review2.jpg" alt="Review 2"></div>
-                                <div class="review-item"><img src="images/review3.jpg" alt="Review 3"></div>
-                                <div class="review-item"><img src="images/review4.jpg" alt="Review 4"></div>
-                                <div class="review-item"><img src="images/review5.jpg" alt="Review 5"></div>
-                                <div class="review-item"><img src="images/review6.jpg" alt="Review 6"></div>
-                                <div class="review-item"><img src="images/review7.jpg" alt="Review 7"></div>
-                                <div class="review-item"><img src="images/review8.jpg" alt="Review 8"></div>
-                                <div class="review-item"><img src="images/review9.jpg" alt="Review 9"></div>
-                                <div class="review-item"><img src="images/review10.jpg" alt="Review 10"></div>
-                                <div class="review-item"><img src="images/review11.jpg" alt="Review 11"></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="info-glass-card">
                     <div class="info-icon">💡</div>
@@ -95,6 +71,37 @@
                     اكتشف الامتحانات
                     <span class="btn-arrow-icon">→</span>
                 </button>
+                
+                <!-- Floating Reviews Widget - يظهر أسفل الزر مباشرة -->
+                <div id="reviewsWidget" class="reviews-widget collapsed">
+                    <div class="widget-bubble">
+                        <span class="widget-icon">💬</span>
+                        <span class="widget-text">تجارب المشتركين</span>
+                        <span class="widget-badge">+11</span>
+                    </div>
+                    <div class="widget-expanded-content">
+                        <div class="widget-header">
+                            <span class="widget-header-icon">🤔</span>
+                            <span class="widget-header-title">مازال كتفكر واش تشترك؟</span>
+                        </div>
+                        <p class="widget-subtitle">شوف ناس سبقوك واستافدو من المنصة.</p>
+                        <div class="widget-slider-container">
+                            <div class="widget-slider" id="widgetSlider">
+                                <div class="widget-slide"><img src="images/review1.jpg" alt="Review 1"></div>
+                                <div class="widget-slide"><img src="images/review2.jpg" alt="Review 2"></div>
+                                <div class="widget-slide"><img src="images/review3.jpg" alt="Review 3"></div>
+                                <div class="widget-slide"><img src="images/review4.jpg" alt="Review 4"></div>
+                                <div class="widget-slide"><img src="images/review5.jpg" alt="Review 5"></div>
+                                <div class="widget-slide"><img src="images/review6.jpg" alt="Review 6"></div>
+                                <div class="widget-slide"><img src="images/review7.jpg" alt="Review 7"></div>
+                                <div class="widget-slide"><img src="images/review8.jpg" alt="Review 8"></div>
+                                <div class="widget-slide"><img src="images/review9.jpg" alt="Review 9"></div>
+                                <div class="widget-slide"><img src="images/review10.jpg" alt="Review 10"></div>
+                                <div class="widget-slide"><img src="images/review11.jpg" alt="Review 11"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -224,91 +231,40 @@
         });
     }
 
-    // ========== Floating Reviews Slider Infinite Loop ==========
-    const slider = document.getElementById('reviewsSlider');
-    if (slider) {
-        const items = slider.innerHTML;
-        slider.innerHTML = items + items + items;
-    }
-
-    // ========== Modal Gallery for Reviews (الصور الصغيرة) ==========
-    const reviews = [
-        "images/review1.jpg",
-        "images/review2.jpg",
-        "images/review3.jpg",
-        "images/review4.jpg",
-        "images/review5.jpg",
-        "images/review6.jpg",
-        "images/review7.jpg",
-        "images/review8.jpg",
-        "images/review9.jpg",
-        "images/review10.jpg",
-        "images/review11.jpg"
-    ];
+    // ========== Floating Reviews Widget مع الحركات ==========
+    const widget = document.getElementById('reviewsWidget');
+    const widgetSlider = document.getElementById('widgetSlider');
     
-    let currentIndex = 0;
-    
-    const modal = document.createElement('div');
-    modal.className = 'review-modal';
-    modal.innerHTML = `
-        <div class="modal-content">
-            <button class="modal-close">✕</button>
-            <button class="modal-prev">❮</button>
-            <button class="modal-next">❯</button>
-            <img src="" alt="Review">
-            <div class="modal-counter"></div>
-        </div>
-    `;
-    document.body.appendChild(modal);
-    
-    const modalImg = modal.querySelector('img');
-    const modalClose = modal.querySelector('.modal-close');
-    const modalPrev = modal.querySelector('.modal-prev');
-    const modalNext = modal.querySelector('.modal-next');
-    const modalCounter = modal.querySelector('.modal-counter');
-    
-    function openModal(index) {
-        currentIndex = index;
-        modalImg.src = reviews[currentIndex];
-        modalCounter.textContent = `${currentIndex + 1} / ${reviews.length}`;
-        modal.classList.add('active');
+    // تكرار الصور لإنشاء Infinite Loop
+    if (widgetSlider) {
+        const items = widgetSlider.innerHTML;
+        widgetSlider.innerHTML = items + items + items;
     }
     
-    function closeModalFunc() {
-        modal.classList.remove('active');
+    // حركات الـ Widget
+    if (widget) {
+        // بعد ثانيتين، يتمدد الـ Widget
+        setTimeout(() => {
+            widget.classList.remove('collapsed');
+            widget.classList.add('expanded');
+        }, 2000);
+        
+        // بعد 6 ثواني من التمدد، يرجع للتصغير (لكن يبقى ظاهر)
+        setTimeout(() => {
+            if (widget.classList.contains('expanded')) {
+                widget.classList.remove('expanded');
+                widget.classList.add('collapsed-keep');
+            }
+        }, 8000);
+        
+        // عند الضغط على الـ Widget يفتح المودال
+        widget.addEventListener('click', function(e) {
+            // لمنع الفتح عند الضغط على الصور
+            if (e.target.tagName === 'IMG') return;
+            openReviewsModal();
+        });
     }
     
-    function nextImage() {
-        currentIndex = (currentIndex + 1) % reviews.length;
-        modalImg.src = reviews[currentIndex];
-        modalCounter.textContent = `${currentIndex + 1} / ${reviews.length}`;
-    }
-    
-    function prevImage() {
-        currentIndex = (currentIndex - 1 + reviews.length) % reviews.length;
-        modalImg.src = reviews[currentIndex];
-        modalCounter.textContent = `${currentIndex + 1} / ${reviews.length}`;
-    }
-    
-    document.querySelectorAll('.review-item').forEach((item, idx) => {
-        item.addEventListener('click', () => openModal(idx));
-    });
-    
-    modalClose.addEventListener('click', closeModalFunc);
-    modalNext.addEventListener('click', nextImage);
-    modalPrev.addEventListener('click', prevImage);
-    
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModalFunc();
-    });
-    
-    document.addEventListener('keydown', (e) => {
-        if (!modal.classList.contains('active')) return;
-        if (e.key === 'Escape') closeModalFunc();
-        if (e.key === 'ArrowRight') nextImage();
-        if (e.key === 'ArrowLeft') prevImage();
-    });
-
     // ========== الـ Modal الكبير للشهادات ==========
     const reviewImages = [
         "images/review1.jpg",
@@ -332,7 +288,6 @@
     const modalPrevBtn = document.getElementById('modalPrevBtn');
     const modalNextBtn = document.getElementById('modalNextBtn');
     const modalCounterSpan = document.getElementById('modalCounter');
-    const showReviewsBtn = document.getElementById('showReviewsBtn');
     
     function buildModalSlider() {
         modalSlider.innerHTML = '';
@@ -377,9 +332,6 @@
         reviewsModal.classList.remove('active');
     }
     
-    if (showReviewsBtn) {
-        showReviewsBtn.addEventListener('click', openReviewsModal);
-    }
     closeReviewsModal.addEventListener('click', closeReviewsModalFunc);
     modalPrevBtn.addEventListener('click', () => {
         if (currentModalIndex > 0) {
@@ -405,6 +357,74 @@
         if (e.key === 'Escape' && reviewsModal.classList.contains('active')) {
             closeReviewsModalFunc();
         }
+    });
+    
+    // ========== Modal للصور الصغيرة (عند الضغط على صورة في الـ Widget) ==========
+    const reviews = reviewImages;
+    let currentIndex = 0;
+    
+    const modal = document.createElement('div');
+    modal.className = 'review-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <button class="modal-close">✕</button>
+            <button class="modal-prev">❮</button>
+            <button class="modal-next">❯</button>
+            <img src="" alt="Review">
+            <div class="modal-counter"></div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    
+    const modalImg = modal.querySelector('img');
+    const modalClose = modal.querySelector('.modal-close');
+    const modalPrev = modal.querySelector('.modal-prev');
+    const modalNext = modal.querySelector('.modal-next');
+    const modalCounter = modal.querySelector('.modal-counter');
+    
+    function openImageModal(index) {
+        currentIndex = index;
+        modalImg.src = reviews[currentIndex];
+        modalCounter.textContent = `${currentIndex + 1} / ${reviews.length}`;
+        modal.classList.add('active');
+    }
+    
+    function closeImageModal() {
+        modal.classList.remove('active');
+    }
+    
+    function nextImageModal() {
+        currentIndex = (currentIndex + 1) % reviews.length;
+        modalImg.src = reviews[currentIndex];
+        modalCounter.textContent = `${currentIndex + 1} / ${reviews.length}`;
+    }
+    
+    function prevImageModal() {
+        currentIndex = (currentIndex - 1 + reviews.length) % reviews.length;
+        modalImg.src = reviews[currentIndex];
+        modalCounter.textContent = `${currentIndex + 1} / ${reviews.length}`;
+    }
+    
+    document.querySelectorAll('.widget-slide').forEach((item, idx) => {
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openImageModal(idx % reviewImages.length);
+        });
+    });
+    
+    modalClose.addEventListener('click', closeImageModal);
+    modalNext.addEventListener('click', nextImageModal);
+    modalPrev.addEventListener('click', prevImageModal);
+    
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeImageModal();
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('active')) return;
+        if (e.key === 'Escape') closeImageModal();
+        if (e.key === 'ArrowRight') nextImageModal();
+        if (e.key === 'ArrowLeft') prevImageModal();
     });
 </script>
 
