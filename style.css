@@ -352,6 +352,14 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: all 0.3s ease;
+}
+
+/* عندما تكون صفحة القائمة أو الامتحانات نشطة */
+body:has(#list.active) .top-bar,
+body:has(#exam.active) .top-bar {
+    background: #EFF6FF;
+    border-bottom: 1px solid #CBD5E1;
 }
 
 /* الوضع الفاتح (صفحة القائمة والامتحانات) */
