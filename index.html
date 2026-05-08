@@ -238,73 +238,62 @@
         widgetSliderElem.innerHTML = items + items + items;
     }
     
-    // ========== التحكم في حركة السلايدر: يتحرك 10 ثواني، يتوقف 5 ثواني ==========
-    let isPlaying = true;
+    // ========== التحكم في حركة السلايدر: يتحرك 10 ثواني، يتوقف 5 ثواني، ويتكرر ==========
     let moveTimeout = null;
     let pauseTimeout = null;
-    let animationRunning = false;
-    
+    let isHovering = false;
+
     function startMoveCycle() {
-        if (animationRunning) return;
-        animationRunning = true;
+        if (isHovering) return;
         
-        if (widgetSliderElem && !widgetSliderElem.matches(':hover')) {
+        if (widgetSliderElem) {
             widgetSliderElem.style.animationPlayState = 'running';
-            isPlaying = true;
             
             if (moveTimeout) clearTimeout(moveTimeout);
             moveTimeout = setTimeout(() => {
-                if (widgetSliderElem && !widgetSliderElem.matches(':hover')) {
+                if (!isHovering && widgetSliderElem) {
                     widgetSliderElem.style.animationPlayState = 'paused';
-                    isPlaying = false;
                     
                     if (pauseTimeout) clearTimeout(pauseTimeout);
                     pauseTimeout = setTimeout(() => {
-                        if (widgetSliderElem && !widgetSliderElem.matches(':hover')) {
-                            animationRunning = false;
+                        if (!isHovering && widgetSliderElem) {
                             startMoveCycle();
-                        } else {
-                            animationRunning = false;
                         }
                     }, 5000);
-                } else {
-                    animationRunning = false;
                 }
             }, 10000);
         }
     }
-    
+
     function stopMoveCycle() {
         if (moveTimeout) clearTimeout(moveTimeout);
         if (pauseTimeout) clearTimeout(pauseTimeout);
-        animationRunning = false;
         if (widgetSliderElem) {
             widgetSliderElem.style.animationPlayState = 'paused';
         }
     }
-    
+
+    if (widgetSliderElem) {
+        widgetSliderElem.addEventListener('mouseenter', () => {
+            isHovering = true;
+            stopMoveCycle();
+            widgetSliderElem.style.animationPlayState = 'paused';
+        });
+        
+        widgetSliderElem.addEventListener('mouseleave', () => {
+            isHovering = false;
+            startMoveCycle();
+        });
+    }
+
     function initSliderAnimation() {
         stopMoveCycle();
+        isHovering = false;
         setTimeout(() => {
             startMoveCycle();
         }, 500);
     }
-    
-    if (widgetSliderElem) {
-        widgetSliderElem.addEventListener('mouseenter', () => {
-            stopMoveCycle();
-            widgetSliderElem.style.animationPlayState = 'paused';
-            isPlaying = false;
-        });
-        
-        widgetSliderElem.addEventListener('mouseleave', () => {
-            if (!isPlaying) {
-                animationRunning = false;
-                startMoveCycle();
-            }
-        });
-    }
-    
+
     // ========== Floating Reviews Widget مع الحركات ==========
     const widget = document.getElementById('reviewsWidget');
     
