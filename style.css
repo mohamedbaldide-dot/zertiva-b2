@@ -1397,11 +1397,13 @@ body:has(#exam.active) .profile-icon {
    تأثير الضباب على الجهة اليسرى فقط في Schreiben (الوضع المجاني)
    ======================================== */
 
+/* ========================================
+   تأثير الضباب على الجهة اليسرى فقط في Schreiben (الوضع المجاني)
+   ======================================== */
+
 /* عندما يكون المستخدم غير Premium */
 body.free-user #schreiben .left-column {
     filter: blur(4px);
-    pointer-events: none;
-    user-select: none;
     transition: filter 0.3s ease;
     position: relative;
 }
@@ -1424,12 +1426,11 @@ body.free-user #schreiben .left-column::before {
     box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    pointer-events: none;
 }
 
 /* رسالة صغيرة أسفل الجهة اليسرى */
 body.free-user #schreiben .left-column::after {
-    content: "🔓 اشترك لفتح المحتوى";
+    content: "🔓 قم بالاشتراك لفتح المحتوى كاملاً";
     position: absolute;
     bottom: 15px;
     left: 50%;
@@ -1442,11 +1443,9 @@ body.free-user #schreiben .left-column::after {
     z-index: 10;
     white-space: nowrap;
     backdrop-filter: blur(4px);
-    pointer-events: none;
 }
 
 /* الجهة اليمنى تبقى واضحة (بدون ضباب) */
 body.free-user #schreiben .right-column {
     filter: none;
-    pointer-events: auto;
 }
