@@ -358,16 +358,45 @@ body {
 /* عندما تكون صفحة القائمة أو الامتحانات نشطة */
 body:has(#list.active) .top-bar,
 body:has(#exam.active) .top-bar {
-    background: rgba(45, 58, 82, 0.92);
-    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(45, 58, 82, 0.88);
+    backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
     box-shadow:
-        0 4px 18px rgba(0, 0, 0, 0.08),
+        0 6px 24px rgba(0, 0, 0, 0.08),
         0 1px 0 rgba(255, 255, 255, 0.03) inset;
 
     transition: all 0.3s ease;
+}
+
+
+/* الموجة الناعمة السفلية */
+body:has(#list.active) .top-bar::after,
+body:has(#exam.active) .top-bar::after {
+    content: "";
+
+    position: absolute;
+    left: -5%;
+    bottom: -22px;
+
+    width: 110%;
+    height: 45px;
+
+    background: #f5f7fb;
+
+    border-radius:
+        0 0 45% 45%
+        / 0 0 100% 100%;
+
+    box-shadow:
+        0 -1px 0 rgba(255,255,255,0.15),
+        0 -8px 20px rgba(255,255,255,0.04);
+
+    pointer-events: none;
 }
 
 /* الوضع الفاتح (صفحة القائمة والامتحانات) */
