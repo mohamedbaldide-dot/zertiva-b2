@@ -358,8 +358,10 @@ body {
 /* عندما تكون صفحة القائمة أو الامتحانات نشطة */
 body:has(#list.active) .top-bar,
 body:has(#exam.active) .top-bar {
-    background: #1E2A5E;
-    border-bottom: 1px solid #2D3A6E;
+    background: rgba(10, 14, 26, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* الوضع الفاتح (صفحة القائمة والامتحانات) */
