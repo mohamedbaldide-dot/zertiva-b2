@@ -17,6 +17,7 @@
         <button id="navSubscribeBtn" class="subscribe-icon-btn">
             <img src="images/kauf.png" alt="اشتراك" class="subscribe-icon-img">
         </button>
+        <button id="showReviewsBtn" class="btn-reviews-top">واش مازال متردد؟ 🤔</button>
         <div class="profile-icon" id="profileIcon" style="display: none;">👤</div>
     </div>
 </div>
@@ -63,28 +64,28 @@
                       الاجوبة صحيحة. <span class="blue-text">100%</span>
                     </p>
                     <!-- Floating Reviews Slider -->
-<div class="floating-reviews">
-    <div class="reviews-header">
-        <span class="reviews-icon">🤔</span>
-        <h3 class="reviews-title">مازال كتفكر واش تشترك؟</h3>
-    </div>
-    <p class="reviews-subtitle">شوف ناس سبقوك واستافدو من المنصة.</p>
-    <div class="reviews-slider-container">
-        <div class="reviews-slider" id="reviewsSlider">
-            <div class="review-item"><img src="images/review1.jpg" alt="Review 1"></div>
-            <div class="review-item"><img src="images/review2.jpg" alt="Review 2"></div>
-            <div class="review-item"><img src="images/review3.jpg" alt="Review 3"></div>
-            <div class="review-item"><img src="images/review4.jpg" alt="Review 4"></div>
-            <div class="review-item"><img src="images/review5.jpg" alt="Review 5"></div>
-            <div class="review-item"><img src="images/review6.jpg" alt="Review 6"></div>
-            <div class="review-item"><img src="images/review7.jpg" alt="Review 7"></div>
-            <div class="review-item"><img src="images/review8.jpg" alt="Review 8"></div>
-            <div class="review-item"><img src="images/review9.jpg" alt="Review 9"></div>
-            <div class="review-item"><img src="images/review10.jpg" alt="Review 10"></div>
-            <div class="review-item"><img src="images/review11.jpg" alt="Review 11"></div>
-        </div>
-    </div>
-</div>
+                    <div class="floating-reviews">
+                        <div class="reviews-header">
+                            <span class="reviews-icon">🤔</span>
+                            <h3 class="reviews-title">مازال كتفكر واش تشترك؟</h3>
+                        </div>
+                        <p class="reviews-subtitle">شوف ناس سبقوك واستافدو من المنصة.</p>
+                        <div class="reviews-slider-container">
+                            <div class="reviews-slider" id="reviewsSlider">
+                                <div class="review-item"><img src="images/review1.jpg" alt="Review 1"></div>
+                                <div class="review-item"><img src="images/review2.jpg" alt="Review 2"></div>
+                                <div class="review-item"><img src="images/review3.jpg" alt="Review 3"></div>
+                                <div class="review-item"><img src="images/review4.jpg" alt="Review 4"></div>
+                                <div class="review-item"><img src="images/review5.jpg" alt="Review 5"></div>
+                                <div class="review-item"><img src="images/review6.jpg" alt="Review 6"></div>
+                                <div class="review-item"><img src="images/review7.jpg" alt="Review 7"></div>
+                                <div class="review-item"><img src="images/review8.jpg" alt="Review 8"></div>
+                                <div class="review-item"><img src="images/review9.jpg" alt="Review 9"></div>
+                                <div class="review-item"><img src="images/review10.jpg" alt="Review 10"></div>
+                                <div class="review-item"><img src="images/review11.jpg" alt="Review 11"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="info-glass-card">
                     <div class="info-icon">💡</div>
@@ -178,6 +179,25 @@
     <img src="images/whatsapp.png" alt="WhatsApp" class="whatsapp-img">
 </a>
 
+<!-- Modal كبير للشهادات -->
+<div id="reviewsModal" class="reviews-modal">
+    <div class="reviews-modal-content">
+        <div class="reviews-modal-header">
+            <h3>🤔 مازال كتفكر واش تشترك؟</h3>
+            <p>شوف ناس سبقوك واستافدو من المنصة.</p>
+            <button id="closeReviewsModal" class="close-reviews-modal">✕</button>
+        </div>
+        <div class="reviews-modal-slider-container">
+            <div class="reviews-modal-slider" id="reviewsModalSlider"></div>
+        </div>
+        <div class="reviews-modal-controls">
+            <button id="modalPrevBtn" class="modal-control-btn">❮</button>
+            <span id="modalCounter" class="modal-counter-text">1 / 11</span>
+            <button id="modalNextBtn" class="modal-control-btn">❯</button>
+        </div>
+    </div>
+</div>
+
 <script src="helpSystem.js"></script>
 <script src="engine.js"></script>
 <script src="exams.js"></script>
@@ -203,8 +223,15 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
-    <script>
-    // Modal Gallery for Reviews
+
+    // ========== Floating Reviews Slider Infinite Loop ==========
+    const slider = document.getElementById('reviewsSlider');
+    if (slider) {
+        const items = slider.innerHTML;
+        slider.innerHTML = items + items + items;
+    }
+
+    // ========== Modal Gallery for Reviews (الصور الصغيرة) ==========
     const reviews = [
         "images/review1.jpg",
         "images/review2.jpg",
@@ -221,7 +248,6 @@
     
     let currentIndex = 0;
     
-    // إنشاء الـ Modal
     const modal = document.createElement('div');
     modal.className = 'review-modal';
     modal.innerHTML = `
@@ -248,7 +274,7 @@
         modal.classList.add('active');
     }
     
-    function closeModal() {
+    function closeModalFunc() {
         modal.classList.remove('active');
     }
     
@@ -264,34 +290,122 @@
         modalCounter.textContent = `${currentIndex + 1} / ${reviews.length}`;
     }
     
-    // ربط الأحداث
     document.querySelectorAll('.review-item').forEach((item, idx) => {
         item.addEventListener('click', () => openModal(idx));
     });
     
-    modalClose.addEventListener('click', closeModal);
+    modalClose.addEventListener('click', closeModalFunc);
     modalNext.addEventListener('click', nextImage);
     modalPrev.addEventListener('click', prevImage);
     
-    // إغلاق بالضغط خارج الصورة
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
+        if (e.target === modal) closeModalFunc();
     });
     
-    // Keyboard events
     document.addEventListener('keydown', (e) => {
         if (!modal.classList.contains('active')) return;
-        if (e.key === 'Escape') closeModal();
+        if (e.key === 'Escape') closeModalFunc();
         if (e.key === 'ArrowRight') nextImage();
         if (e.key === 'ArrowLeft') prevImage();
     });
-// تكرار الصور لإنشاء Infinite Loop
-const slider = document.getElementById('reviewsSlider');
-if (slider) {
-    // نسخ المحتوى عدة مرات لإنشاء حلقة لا نهائية
-    const items = slider.innerHTML;
-    slider.innerHTML = items + items + items;
-}
+
+    // ========== الـ Modal الكبير للشهادات ==========
+    const reviewImages = [
+        "images/review1.jpg",
+        "images/review2.jpg",
+        "images/review3.jpg",
+        "images/review4.jpg",
+        "images/review5.jpg",
+        "images/review6.jpg",
+        "images/review7.jpg",
+        "images/review8.jpg",
+        "images/review9.jpg",
+        "images/review10.jpg",
+        "images/review11.jpg"
+    ];
+    
+    let currentModalIndex = 0;
+    
+    const reviewsModal = document.getElementById('reviewsModal');
+    const modalSlider = document.getElementById('reviewsModalSlider');
+    const closeReviewsModal = document.getElementById('closeReviewsModal');
+    const modalPrevBtn = document.getElementById('modalPrevBtn');
+    const modalNextBtn = document.getElementById('modalNextBtn');
+    const modalCounterSpan = document.getElementById('modalCounter');
+    const showReviewsBtn = document.getElementById('showReviewsBtn');
+    
+    function buildModalSlider() {
+        modalSlider.innerHTML = '';
+        reviewImages.forEach((img, index) => {
+            const item = document.createElement('div');
+            item.className = 'reviews-modal-item';
+            item.innerHTML = `<img src="${img}" alt="Review ${index + 1}">`;
+            item.addEventListener('click', () => {
+                window.open(img, '_blank');
+            });
+            modalSlider.appendChild(item);
+        });
+    }
+    
+    function updateModalCounter() {
+        const container = document.querySelector('.reviews-modal-slider-container');
+        if (!container) return;
+        const scrollLeft = container.scrollLeft;
+        const itemWidth = 300;
+        const current = Math.round(scrollLeft / itemWidth);
+        currentModalIndex = Math.min(current, reviewImages.length - 1);
+        modalCounterSpan.textContent = `${currentModalIndex + 1} / ${reviewImages.length}`;
+    }
+    
+    function scrollToImage(index) {
+        const container = document.querySelector('.reviews-modal-slider-container');
+        const itemWidth = 300;
+        container.scrollTo({ left: index * itemWidth, behavior: 'smooth' });
+        currentModalIndex = index;
+        modalCounterSpan.textContent = `${currentModalIndex + 1} / ${reviewImages.length}`;
+    }
+    
+    function openReviewsModal() {
+        reviewsModal.classList.add('active');
+        buildModalSlider();
+        setTimeout(() => {
+            scrollToImage(0);
+        }, 100);
+    }
+    
+    function closeReviewsModalFunc() {
+        reviewsModal.classList.remove('active');
+    }
+    
+    if (showReviewsBtn) {
+        showReviewsBtn.addEventListener('click', openReviewsModal);
+    }
+    closeReviewsModal.addEventListener('click', closeReviewsModalFunc);
+    modalPrevBtn.addEventListener('click', () => {
+        if (currentModalIndex > 0) {
+            scrollToImage(currentModalIndex - 1);
+        }
+    });
+    modalNextBtn.addEventListener('click', () => {
+        if (currentModalIndex < reviewImages.length - 1) {
+            scrollToImage(currentModalIndex + 1);
+        }
+    });
+    
+    const modalContainerElem = document.querySelector('.reviews-modal-slider-container');
+    if (modalContainerElem) {
+        modalContainerElem.addEventListener('scroll', updateModalCounter);
+    }
+    
+    reviewsModal.addEventListener('click', (e) => {
+        if (e.target === reviewsModal) closeReviewsModalFunc();
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && reviewsModal.classList.contains('active')) {
+            closeReviewsModalFunc();
+        }
+    });
 </script>
 
 </body>
