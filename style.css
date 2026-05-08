@@ -283,7 +283,7 @@ body {
 /* ===== تحسين البطاقتين ===== */
 .features-images {
     flex: 1;
-    min-width: 900px;
+    min-width: 650px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -292,8 +292,8 @@ body {
 .image-stack {
     position: relative;
     width: 100%;
-    max-width: 900px;
-    min-height: 650px;
+    max-width: 700px;
+    min-height: 520px;
 }
 
 .image-card-feature {
@@ -330,9 +330,8 @@ body {
 }
 
 .feature-img {
-    width: 120%;
+    width: 100%;
     height: auto;
-    margin-left: -10%;
     border-radius: 16px;
     display: block;
     background: white;
@@ -764,7 +763,7 @@ body {
     }
     
     .features-images {
-        min-width: 600px;
+        min-width: 450px;
     }
     
     .image-stack {
@@ -818,7 +817,7 @@ body {
     }
     
     .features-images {
-        min-width: 444px;
+        min-width: 320px;
     }
     
     .image-stack {
