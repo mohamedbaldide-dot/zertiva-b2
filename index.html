@@ -203,6 +203,95 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+    <script>
+    // Modal Gallery for Reviews
+    const reviews = [
+        "images/review1.jpg",
+        "images/review2.jpg",
+        "images/review3.jpg",
+        "images/review4.jpg",
+        "images/review5.jpg",
+        "images/review6.jpg",
+        "images/review7.jpg",
+        "images/review8.jpg",
+        "images/review9.jpg",
+        "images/review10.jpg",
+        "images/review11.jpg"
+    ];
+    
+    let currentIndex = 0;
+    
+    // إنشاء الـ Modal
+    const modal = document.createElement('div');
+    modal.className = 'review-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <button class="modal-close">✕</button>
+            <button class="modal-prev">❮</button>
+            <button class="modal-next">❯</button>
+            <img src="" alt="Review">
+            <div class="modal-counter"></div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    
+    const modalImg = modal.querySelector('img');
+    const modalClose = modal.querySelector('.modal-close');
+    const modalPrev = modal.querySelector('.modal-prev');
+    const modalNext = modal.querySelector('.modal-next');
+    const modalCounter = modal.querySelector('.modal-counter');
+    
+    function openModal(index) {
+        currentIndex = index;
+        modalImg.src = reviews[currentIndex];
+        modalCounter.textContent = `${currentIndex + 1} / ${reviews.length}`;
+        modal.classList.add('active');
+    }
+    
+    function closeModal() {
+        modal.classList.remove('active');
+    }
+    
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % reviews.length;
+        modalImg.src = reviews[currentIndex];
+        modalCounter.textContent = `${currentIndex + 1} / ${reviews.length}`;
+    }
+    
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + reviews.length) % reviews.length;
+        modalImg.src = reviews[currentIndex];
+        modalCounter.textContent = `${currentIndex + 1} / ${reviews.length}`;
+    }
+    
+    // ربط الأحداث
+    document.querySelectorAll('.review-item').forEach((item, idx) => {
+        item.addEventListener('click', () => openModal(idx));
+    });
+    
+    modalClose.addEventListener('click', closeModal);
+    modalNext.addEventListener('click', nextImage);
+    modalPrev.addEventListener('click', prevImage);
+    
+    // إغلاق بالضغط خارج الصورة
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    
+    // Keyboard events
+    document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('active')) return;
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'ArrowLeft') prevImage();
+    });
+// تكرار الصور لإنشاء Infinite Loop
+const slider = document.getElementById('reviewsSlider');
+if (slider) {
+    // نسخ المحتوى عدة مرات لإنشاء حلقة لا نهائية
+    const items = slider.innerHTML;
+    slider.innerHTML = items + items + items;
+}
 </script>
 
 </body>
