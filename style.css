@@ -1393,36 +1393,3 @@ body:has(#exam.active) .profile-icon {
     transform: scale(1.02);
     box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
 }
-/* إخفاء نص المنهجية في الوضع المجاني */
-body.free-user #schreiben .left-column {
-    filter: blur(8px);
-    pointer-events: none;
-    user-select: none;
-    position: relative;
-}
-
-body.free-user #schreiben .left-column::after {
-    content: "🔒 هذا المحتوى متاح للمشتركين فقط";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.85);
-    color: white;
-    padding: 12px 20px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: bold;
-    white-space: nowrap;
-    z-index: 10;
-    font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-@media (max-width: 600px) {
-    body.free-user #schreiben .left-column::after {
-        white-space: normal;
-        text-align: center;
-        width: 80%;
-        font-size: 12px;
-    }
-}
