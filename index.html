@@ -10,7 +10,7 @@
 
 <div class="top-bar">
     <div class="logo-icon" id="logoHomeBtn">
-        <img src="images/logo.png" alt="Zertiva" class="logo-img">
+        <img src="images/logo.webp" loading="lazy" alt="Zertiva" class="logo-img">
     </div>
     <div class="right-buttons">
         <button id="navLoginBtn" class="btn-login-top">تسجيل الدخول</button>
@@ -45,7 +45,7 @@
             <div class="hero-image-side">
                 <div class="image-glow"></div>
                 <div class="image-card">
-                    <img src="images/certificate-sample.jpg" alt="telc Deutsch B2 Zertifikat" class="certificate-img">
+                    <img src="images/certificate-sample.webp" loading="lazy" alt="telc Deutsch B2 Zertifikat" class="certificate-img">
                 </div>
             </div>
             <div class="hero-content-side">
@@ -83,12 +83,12 @@
                         <p class="widget-subtitle">شوف ناس سبقوك واستافدو من المنصة.</p>
                         <div class="widget-slider-container">
                             <div class="widget-slider" id="widgetSlider">
-                                <div class="widget-slide"><img src="images/review1.png" alt="Review 1"></div>
-                                <div class="widget-slide"><img src="images/review2.png" alt="Review 2"></div>
-                                <div class="widget-slide"><img src="images/review3.png" alt="Review 3"></div>
-                                <div class="widget-slide"><img src="images/review4.png" alt="Review 4"></div>
-                                <div class="widget-slide"><img src="images/review5.png" alt="Review 5"></div>
-                                <div class="widget-slide"><img src="images/review6.png" alt="Review 6"></div>
+                                <div class="widget-slide"><img src="images/review1.webp" loading="lazy" alt="Review 1"></div>
+                                <div class="widget-slide"><img src="images/review2.webp" loading="lazy" alt="Review 2"></div>
+                                <div class="widget-slide"><img src="images/review3.webp" loading="lazy" alt="Review 3"></div>
+                                <div class="widget-slide"><img src="images/review4.webp" loading="lazy" alt="Review 4"></div>
+                                <div class="widget-slide"><img src="images/review5.webp" loading="lazy" alt="Review 5"></div>
+                                <div class="widget-slide"><img src="images/review6.webp" loading="lazy" alt="Review 6"></div>
                             </div>
                         </div>
                     </div>
@@ -119,10 +119,10 @@
             <div class="features-images">
                 <div class="image-stack">
                     <div class="image-card-feature image-top">
-                        <img src="images/f1.png" alt="Feature 1" class="feature-img">
+                        <img src="images/f1.webp" loading="lazy" alt="Feature 1" class="feature-img">
                     </div>
                     <div class="image-card-feature image-bottom">
-                        <img src="images/f2.png" alt="Feature 2" class="feature-img">
+                        <img src="images/f2.webp" loading="lazy" alt="Feature 2" class="feature-img">
                     </div>
                 </div>
             </div>
@@ -173,7 +173,7 @@
 </div>
 
 <a href="https://wa.me/212687561491" target="_blank" id="whatsappFloat" class="whatsapp-float">
-    <img src="images/whatsapp.png" alt="WhatsApp" class="whatsapp-img">
+    <img src="images/whatsapp.webp" loading="lazy" alt="WhatsApp" class="whatsapp-img">
 </a>
 
 <div id="reviewsModal" class="reviews-modal">
@@ -300,13 +300,13 @@
     }
     
     const reviewImages = [
-    "images/review1.png",
-    "images/review2.png",
-    "images/review3.png",
-    "images/review4.png",
-    "images/review5.png",
-    "images/review6.png"
-];
+        "images/review1.webp",
+        "images/review2.webp",
+        "images/review3.webp",
+        "images/review4.webp",
+        "images/review5.webp",
+        "images/review6.webp"
+    ];
     
     let currentModalIndex = 0;
     
@@ -322,7 +322,7 @@
         reviewImages.forEach((img, index) => {
             const item = document.createElement('div');
             item.className = 'reviews-modal-item';
-            item.innerHTML = `<img src="${img}" alt="Review ${index + 1}">`;
+            item.innerHTML = `<img src="${img}" loading="lazy" alt="Review ${index + 1}">`;
             item.addEventListener('click', () => {
                 window.open(img, '_blank');
             });
