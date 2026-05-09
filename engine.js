@@ -1007,18 +1007,9 @@ function checkSprach1Exam() {
   
   const finalScore = (score * pointsPerQuestion).toFixed(2);
   const resultDiv = document.getElementById("sprach1Result");
-  resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
-  resultDiv.style.display = "block";
-  
-  if (finalScore >= 20) {
-    resultDiv.style.backgroundColor = "#d4edda";
-    resultDiv.style.color = "#155724";
-  } else if (finalScore >= 15) {
-    resultDiv.style.backgroundColor = "#fff3cd";
-    resultDiv.style.color = "#856404";
-  } else {
-    resultDiv.style.backgroundColor = "#f8d7da";
-    resultDiv.style.color = "#721c24";
+  if (resultDiv) {
+    resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
+    resultDiv.style.display = "block";
   }
 }
 
@@ -1225,7 +1216,6 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
   let score = 0;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
-  let correctIndices = [];
   
   const cards = container.querySelectorAll('.question-card');
   
@@ -1243,7 +1233,6 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
     
     if (isCorrect && userAnswer !== undefined) {
       score++;
-      correctIndices.push(i + 1);
       card.classList.add('correct-answer-card');
     } else {
       card.classList.add('wrong-answer-card');
@@ -1284,10 +1273,17 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
   
   if (correctNumbersContainer) {
     correctNumbersContainer.style.display = 'block';
-    if (correctIndices.length > 0) {
-      correctNumbersContainer.innerHTML = `▸ : ${correctIndices.join(" ")}`;
+    // عرض الإجابات الصحيحة الأساسية للامتحان (بدون علاقة بإجابات المستخدم)
+    let originalCorrectIndices = [];
+    for (let i = 0; i < questions.length; i++) {
+        if (questions[i].correct === true) {
+            originalCorrectIndices.push(i + 1);
+        }
+    }
+    if (originalCorrectIndices.length > 0) {
+        correctNumbersContainer.innerHTML = `▸ الإجابات الصحيحة في الامتحان: ${originalCorrectIndices.join(" - ")}`;
     } else {
-      correctNumbersContainer.innerHTML = "▸ : لا توجد إجابات صحيحة";
+        correctNumbersContainer.innerHTML = "▸ لا توجد إجابات صحيحة في هذا الامتحان";
     }
   }
   
@@ -2534,9 +2530,8 @@ function checkMatchingExam() {
   resultDiv.innerHTML = "النتيجة: " + finalScore + " / 25";
   resultDiv.style.display = "block";
 }
-// ========== إضافة نظام القفل للامتحانات ==========
-// أضف هذا الكود في آخر ملف engine.js
 
+// ========== إضافة نظام القفل للامتحانات ==========
 const WA_NUMBER_FOR_LOCK = "212687561491";
 
 function showLockedMessageForExam(examTitle) {
