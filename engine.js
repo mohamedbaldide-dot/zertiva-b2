@@ -612,17 +612,7 @@ function checkSprach2Exam() {
 const resultDiv = document.getElementById("teil2Result");
 if (resultDiv) {
     resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
-    resultDiv.style.display = "block";
-    resultDiv.style.position = "fixed";
-    resultDiv.style.bottom = "30px";
-    resultDiv.style.left = "50%";
-    resultDiv.style.transform = "translateX(-50%)";
-    resultDiv.style.zIndex = "1000";
-    resultDiv.style.backgroundColor = "#ff6b6b";
-    resultDiv.style.color = "white";
-    resultDiv.style.padding = "12px 25px";
-    resultDiv.style.borderRadius = "40px";
-    resultDiv.style.margin = "0";
+   
 }
   
   if (finalScore >= 20) {
@@ -825,16 +815,10 @@ function renderSprach1Exam() {
   container.appendChild(buttonContainer);
   
   const resultDiv = document.createElement("div");
-  resultDiv.id = "sprach1Result";
-  resultDiv.className = "result-box";
-  resultDiv.style.display = "none";
-  resultDiv.style.marginTop = "20px";
-  resultDiv.style.padding = "15px";
-  resultDiv.style.borderRadius = "8px";
-  resultDiv.style.textAlign = "center";
-  resultDiv.style.fontWeight = "bold";
-  container.appendChild(resultDiv);
-}
+resultDiv.id = "sprach1Result";
+resultDiv.className = "result-box";
+resultDiv.style.display = "none";
+container.appendChild(resultDiv);
 
 let sprach1OpenDropdownId = null;
 
@@ -1300,22 +1284,22 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
   }
   
   const finalScore = (score * pointsPerQuestion).toFixed(2);
-  const resultDiv = document.getElementById('truefalseResult');
-  if (resultDiv) {
+const resultDiv = document.getElementById('truefalseResult');
+if (resultDiv) {
     resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
     resultDiv.style.display = 'block';
     
+    // تغيير اللون حسب النتيجة
     if (finalScore >= 20) {
-      resultDiv.style.backgroundColor = '#28a745';
-      resultDiv.style.color = 'white';
+        resultDiv.style.backgroundColor = '#28a745';
+        resultDiv.style.color = 'white';
     } else if (finalScore >= 15) {
-      resultDiv.style.backgroundColor = '#ffc107';
-      resultDiv.style.color = '#333';
+        resultDiv.style.backgroundColor = '#ffc107';
+        resultDiv.style.color = '#333';
     } else {
-      resultDiv.style.backgroundColor = '#dc3545';
-      resultDiv.style.color = 'white';
+        resultDiv.style.backgroundColor = '#dc3545';
+        resultDiv.style.color = 'white';
     }
-  }
 }
 
 // ========== نظام Teil 3 (معدل بالكامل) ==========
@@ -1876,16 +1860,6 @@ const resultDiv = document.getElementById("teil3Result");
 if (resultDiv) {
     resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
     resultDiv.style.display = "block";
-    resultDiv.style.position = "fixed";
-    resultDiv.style.bottom = "30px";
-    resultDiv.style.left = "50%";
-    resultDiv.style.transform = "translateX(-50%)";
-    resultDiv.style.zIndex = "1000";
-    resultDiv.style.backgroundColor = "#ff6b6b";
-    resultDiv.style.color = "white";
-    resultDiv.style.padding = "12px 25px";
-    resultDiv.style.borderRadius = "40px";
-    resultDiv.style.margin = "0";
 }
   
   if (finalScore >= 20) {
