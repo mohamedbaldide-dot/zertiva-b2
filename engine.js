@@ -1007,18 +1007,22 @@ function checkSprach1Exam() {
   
   const finalScore = (score * pointsPerQuestion).toFixed(2);
   const resultDiv = document.getElementById("sprach1Result");
-  resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
-  resultDiv.style.display = "block";
-  
-  if (finalScore >= 20) {
-    resultDiv.style.backgroundColor = "#d4edda";
-    resultDiv.style.color = "#155724";
-  } else if (finalScore >= 15) {
-    resultDiv.style.backgroundColor = "#fff3cd";
-    resultDiv.style.color = "#856404";
-  } else {
-    resultDiv.style.backgroundColor = "#f8d7da";
-    resultDiv.style.color = "#721c24";
+  if (resultDiv) {
+    resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
+    resultDiv.style.display = "block";
+    // تطبيق التنسيق المطلوب
+    resultDiv.style.position = "fixed";
+    resultDiv.style.bottom = "30px";
+    resultDiv.style.left = "50%";
+    resultDiv.style.transform = "translateX(-50%)";
+    resultDiv.style.zIndex = "1000";
+    resultDiv.style.backgroundColor = "#ff6b6b";
+    resultDiv.style.color = "white";
+    resultDiv.style.padding = "12px 25px";
+    resultDiv.style.borderRadius = "40px";
+    resultDiv.style.fontSize = "16px";
+    resultDiv.style.fontWeight = "bold";
+    resultDiv.style.margin = "0";
   }
 }
 
@@ -1238,6 +1242,16 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
     if (resultDiv) {
       resultDiv.innerHTML = "⚠️ لا توجد أسئلة في هذا الامتحان";
       resultDiv.style.display = 'block';
+      // تطبيق التنسيق المطلوب
+      resultDiv.style.position = "fixed";
+      resultDiv.style.bottom = "30px";
+      resultDiv.style.left = "50%";
+      resultDiv.style.transform = "translateX(-50%)";
+      resultDiv.style.zIndex = "1000";
+      resultDiv.style.backgroundColor = "#ff6b6b";
+      resultDiv.style.color = "white";
+      resultDiv.style.padding = "12px 25px";
+      resultDiv.style.borderRadius = "40px";
     }
     return;
   }
@@ -1304,6 +1318,38 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
   
   if (correctNumbersContainer) {
     correctNumbersContainer.style.display = 'block';
+    // عرض الإجابات الصحيحة الأساسية للامتحان
+    let originalCorrectIndices = [];
+    for (let i = 0; i < questions.length; i++) {
+        if (questions[i].correct === true) {
+            originalCorrectIndices.push(i + 1);
+        }
+    }
+    if (originalCorrectIndices.length > 0) {
+        correctNumbersContainer.innerHTML = `▸ الإجابات الصحيحة في الامتحان: ${originalCorrectIndices.join(" - ")}`;
+    } else {
+        correctNumbersContainer.innerHTML = "▸ لا توجد إجابات صحيحة في هذا الامتحان";
+    }
+  }
+  
+  const finalScore = (score * pointsPerQuestion).toFixed(2);
+  const resultDiv = document.getElementById('truefalseResult');
+  if (resultDiv) {
+    resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
+    resultDiv.style.display = 'block';
+    // تطبيق التنسيق المطلوب
+    resultDiv.style.position = "fixed";
+    resultDiv.style.bottom = "30px";
+    resultDiv.style.left = "50%";
+    resultDiv.style.transform = "translateX(-50%)";
+    resultDiv.style.zIndex = "1000";
+    resultDiv.style.backgroundColor = "#ff6b6b";
+    resultDiv.style.color = "white";
+    resultDiv.style.padding = "12px 25px";
+    resultDiv.style.borderRadius = "40px";
+    resultDiv.style.margin = "0";
+  }
+}
     // عرض الإجابات الصحيحة الأساسية للامتحان (بدون علاقة بإجابات المستخدم)
     let originalCorrectIndices = [];
     for (let i = 0; i < questions.length; i++) {
