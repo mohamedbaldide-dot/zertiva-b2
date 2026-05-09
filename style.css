@@ -1434,3 +1434,43 @@ body:has(#exam.active) .profile-icon {
         margin: -10px -12px 10px -12px;
     }
 }
+/* ========================================
+   حل الهاتف - إبقاء الفقاعة فقط بدون تمدد
+   ======================================== */
+
+@media (max-width: 768px) {
+    /* منع التمدد التلقائي على الهاتف نهائياً */
+    .reviews-widget.expanded .widget-expanded-content {
+        display: none !important;
+    }
+    
+    /* إزالة خاصية التمدد */
+    .reviews-widget.expanded .widget-bubble {
+        display: inline-flex !important;
+    }
+    
+    /* إعادة تعيين الحالة */
+    .reviews-widget {
+        cursor: pointer;
+    }
+    
+    /* تعديل حجم الفقاعة لتناسب الهاتف */
+    .widget-bubble {
+        padding: 5px 12px;
+        font-size: 0.75rem;
+        gap: 6px;
+    }
+    
+    .widget-icon {
+        font-size: 0.85rem;
+    }
+    
+    .widget-text {
+        font-size: 0.7rem;
+    }
+    
+    .widget-badge {
+        font-size: 0.6rem;
+        padding: 1px 6px;
+    }
+}
