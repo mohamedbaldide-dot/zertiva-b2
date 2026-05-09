@@ -609,9 +609,21 @@ function checkSprach2Exam() {
   }
   
   const finalScore = (score * pointsPerQuestion).toFixed(2);
-  const resultDiv = document.getElementById("sprach2Result");
-  resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
-  resultDiv.style.display = "block";
+const resultDiv = document.getElementById("teil2Result");
+if (resultDiv) {
+    resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
+    resultDiv.style.display = "block";
+    resultDiv.style.position = "fixed";
+    resultDiv.style.bottom = "30px";
+    resultDiv.style.left = "50%";
+    resultDiv.style.transform = "translateX(-50%)";
+    resultDiv.style.zIndex = "1000";
+    resultDiv.style.backgroundColor = "#ff6b6b";
+    resultDiv.style.color = "white";
+    resultDiv.style.padding = "12px 25px";
+    resultDiv.style.borderRadius = "40px";
+    resultDiv.style.margin = "0";
+}
   
   if (finalScore >= 20) {
     resultDiv.style.backgroundColor = "#d4edda";
@@ -1716,12 +1728,22 @@ function renderTeil3Exam() {
     for (let i = 0; i < items.length; i++) {
       if (teil3UserAnswers[i] === items[i].correct) score++;
     }
-    const finalScore = (score * 25 / items.length).toFixed(2);
-    const resultDiv = document.getElementById("teil3Result");
-    if (resultDiv) {
-      resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
-      resultDiv.style.display = "block";
-    }
+    const finalScore = (score * 25 / total).toFixed(2);
+const resultDiv = document.getElementById("teil3Result");
+if (resultDiv) {
+    resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
+    resultDiv.style.display = "block";
+    resultDiv.style.position = "fixed";
+    resultDiv.style.bottom = "30px";
+    resultDiv.style.left = "50%";
+    resultDiv.style.transform = "translateX(-50%)";
+    resultDiv.style.zIndex = "1000";
+    resultDiv.style.backgroundColor = "#ff6b6b";
+    resultDiv.style.color = "white";
+    resultDiv.style.padding = "12px 25px";
+    resultDiv.style.borderRadius = "40px";
+    resultDiv.style.margin = "0";
+}
   };
   buttonContainer.appendChild(checkBtn);
   
