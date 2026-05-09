@@ -1022,8 +1022,17 @@ function checkSprach1Exam() {
   }
 }
 
-// ========== نظام True/False ==========
+// ========== نظام True/False (معدل بالكامل - لـ Hören Teil 1,2,3) ==========
 window.buildTrueFalseExam = function(container, questions, note) {
+  // التحقق من وجود الأسئلة
+  if (!questions || !Array.isArray(questions) || questions.length === 0) {
+    console.error("❌ خطأ: لا توجد أسئلة في هذا الامتحان");
+    if (container) {
+      container.innerHTML = '<div style="text-align:center; color:#ff6b6b; padding:30px; background:#fff; border-radius:12px;">⚠️ حدث خطأ في تحميل الامتحان. يرجى المحاولة مرة أخرى.</div>';
+    }
+    return;
+  }
+  
   container.innerHTML = '';
   
   if (window._trueFalseUserAnswers) {
@@ -1222,6 +1231,17 @@ window.buildTrueFalseExam = function(container, questions, note) {
 };
 
 function checkTrueFalseExam(container, questions, answers, correctNumbersContainer) {
+  // التحقق من وجود الأسئلة
+  if (!questions || !Array.isArray(questions) || questions.length === 0) {
+    console.error("❌ خطأ: لا توجد أسئلة للتصحيح");
+    const resultDiv = document.getElementById('truefalseResult');
+    if (resultDiv) {
+      resultDiv.innerHTML = "⚠️ لا توجد أسئلة في هذا الامتحان";
+      resultDiv.style.display = 'block';
+    }
+    return;
+  }
+  
   let score = 0;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
@@ -1285,18 +1305,18 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
   if (correctNumbersContainer) {
     correctNumbersContainer.style.display = 'block';
     // عرض الإجابات الصحيحة الأساسية للامتحان (بدون علاقة بإجابات المستخدم)
-    // عرض الإجابات الصحيحة الأساسية للامتحان
-let originalCorrectIndices = [];
-for (let i = 0; i < questions.length; i++) {
-    if (questions[i].correct === true) {
-        originalCorrectIndices.push(i + 1);
+    let originalCorrectIndices = [];
+    for (let i = 0; i < questions.length; i++) {
+        if (questions[i].correct === true) {
+            originalCorrectIndices.push(i + 1);
+        }
     }
-}
-if (originalCorrectIndices.length > 0) {
-    correctNumbersContainer.innerHTML = `▸ الإجابات الصحيحة في الامتحان: ${originalCorrectIndices.join(" - ")}`;
-} else {
-    correctNumbersContainer.innerHTML = "▸ لا توجد إجابات صحيحة في هذا الامتحان";
-}
+    if (originalCorrectIndices.length > 0) {
+        correctNumbersContainer.innerHTML = `▸ الإجابات الصحيحة في الامتحان: ${originalCorrectIndices.join(" - ")}`;
+    } else {
+        correctNumbersContainer.innerHTML = "▸ لا توجد إجابات صحيحة في هذا الامتحان";
+    }
+  }
   
   const finalScore = (score * pointsPerQuestion).toFixed(2);
   const resultDiv = document.getElementById('truefalseResult');
@@ -2541,9 +2561,8 @@ function checkMatchingExam() {
   resultDiv.innerHTML = "النتيجة: " + finalScore + " / 25";
   resultDiv.style.display = "block";
 }
-// ========== إضافة نظام القفل للامتحانات ==========
-// أضف هذا الكود في آخر ملف engine.js
 
+// ========== إضافة نظام القفل للامتحانات ==========
 const WA_NUMBER_FOR_LOCK = "212687561491";
 
 function showLockedMessageForExam(examTitle) {
@@ -2619,3 +2638,5 @@ const lockObserver = new MutationObserver(() => {
         setTimeout(applyLockToExams, 300);
     }
 });
+
+console.log("✅ engine.js تم تحميله بالكامل");
