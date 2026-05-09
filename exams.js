@@ -12,7 +12,8 @@ const teile = [
   { id: 7, name: "Sprachbausteine Teil 1", container: "sprach1", skill: "sprach1" },
   { id: 8, name: "Sprachbausteine Teil 2", container: "sprach2", skill: "sprach2" },
   { id: 9, name: "Schreiben", container: "schreiben", skill: "schreiben" },
-  { id: 10, name: "Mündlich", container: "mündlich", skill: "mündlich" }
+  { id: 10, name: "Mündlich", container: "mündlich", skill: "mündlich" },
+  { id: 11, name: "Tips", container: "tips", skill: "tips" }
 ];
 
 // ========== دالة عرض نافذة القفل ==========
@@ -98,6 +99,11 @@ async function getUserStatusForExam() {
         return 'free';
     }
 }
+
+// ========== قائمة Tips (نصائح) ==========
+const tipsExams = [
+  { id: 1, title: "نصائح وإرشادات ذهبية – Mündlich B2", enabled: true, hasFile: true }
+];
 
 // ========== قائمة امتحانات Lesen Teil 1 ==========
 const lesenExams = [
@@ -509,7 +515,8 @@ const examsDatabase = {
     { id: 27, title: "Radio Konzert", enabled: true, hasFile: true }
   ],
   schreiben: schreibenExams,
-  mündlich: mündlichExams
+  mündlich: mündlichExams,
+  tips: tipsExams
 };
 
 // ========== الدوال الرئيسية ==========
@@ -758,8 +765,9 @@ async function openExam(examId, examTitle, skill) {
         buildTeil1(currentExamData.questions || []);
       }
     } else if (currentExamData.type === "mündlich") {
-      // معالجة الجزء الشفهي (Mündlich)
       renderMündlichExam(currentExamData);
+    } else if (currentExamData.type === "tips") {
+      renderTipsExam(currentExamData);
     } else {
       buildTeil1(currentExamData.questions || []);
     }
@@ -769,6 +777,48 @@ async function openExam(examId, examTitle, skill) {
   } catch(e) {
     console.error("❌ خطأ:", e);
     alert("خطأ في تحميل الامتحان: " + e.message);
+  }
+}
+
+// دالة عرض النصائح (Tips)
+function renderTipsExam(examData) {
+  const container = document.getElementById("tips");
+  if (!container) return;
+  container.innerHTML = "";
+  
+  const content = examData.content || "";
+  
+  // تقسيم النص إلى فقرات
+  const paragraphs = content.split('\n\n');
+  
+  for (let i = 0; i < paragraphs.length; i++) {
+    const p = paragraphs[i];
+    if (p.trim() === "") continue;
+    
+    const card = document.createElement("div");
+    card.style.cssText = `
+      background: #f8f9fa;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-right: 4px solid #28a745;
+      border-left: 1px solid #e0e0e0;
+      border-top: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e0e0e0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      font-size: 16px;
+      line-height: 1.7;
+      color: #333;
+      white-space: pre-wrap;
+    `;
+    
+    // تحويل النص لدعم الخط العريض والرموز
+    let formattedText = p;
+    formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    formattedText = formattedText.replace(/^(.*?):/gm, '<strong>$1:</strong>');
+    
+    card.innerHTML = formattedText;
+    container.appendChild(card);
   }
 }
 
@@ -1012,3 +1062,4 @@ console.log("🎧 Hören Teil 2:", examsDatabase.hoeren2.length, "امتحان")
 console.log("🎧 Hören Teil 3:", examsDatabase.hoeren3.length, "امتحان");
 console.log("✏️ Schreiben:", examsDatabase.schreiben.length, "امتحان");
 console.log("🗣️ Mündlich:", examsDatabase.mündlich.length, "امتحان");
+console.log("💡 Tips:", examsDatabase.tips.length, "قسم");
