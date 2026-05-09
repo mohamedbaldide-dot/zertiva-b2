@@ -1383,3 +1383,54 @@ body:has(#exam.active) .profile-icon {
         max-width: 240px;
     }
 }
+/* ========================================
+   حل جذري لمشكلة الهاتف - Reviews Widget
+   ======================================== */
+
+@media (max-width: 768px) {
+    /* تعطيل التمدد التلقائي على الهاتف */
+    .reviews-widget.expanded .widget-expanded-content {
+        display: none;
+    }
+    
+    .reviews-widget.collapsed .widget-bubble {
+        display: inline-flex;
+    }
+    
+    /* عند الضغط يظهر المحتوى في نافذة منبثقة أو أسفل */
+    .reviews-widget.active .widget-expanded-content {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        border-radius: 20px 20px 0 0;
+        max-height: 60vh;
+        overflow-y: auto;
+        animation: slideUp 0.3s ease;
+    }
+    
+    @keyframes slideUp {
+        from {
+            transform: translateY(100%);
+        }
+        to {
+            transform: translateY(0);
+        }
+    }
+    
+    /* زر إغلاق في النافذة المنبثقة */
+    .reviews-widget.active .widget-expanded-content::before {
+        content: "✕ اغلق";
+        display: block;
+        text-align: center;
+        padding: 10px;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        border-radius: 20px 20px 0 0;
+        font-size: 14px;
+        cursor: pointer;
+        margin: -10px -12px 10px -12px;
+    }
+}
