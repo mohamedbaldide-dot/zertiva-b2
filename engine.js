@@ -2617,4 +2617,4 @@ async function getUserStatusForLock() {
         return 'free';
     }
 }
-
+}
