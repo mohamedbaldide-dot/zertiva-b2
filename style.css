@@ -1475,10 +1475,10 @@ body:has(#exam.active) .profile-icon {
     }
 }
 /* ========================================
-   تنسيق مربع النتيجة لامتحانات Hören
+   تنسيق مربع النتيجة لامتحانات Hören فقط
    ======================================== */
 
-.result-box {
+#truefalseResult.result-box {
     position: fixed;
     bottom: 30px;
     left: 50%;
@@ -1495,6 +1495,7 @@ body:has(#exam.active) .profile-icon {
     width: auto;
     min-width: 180px;
     animation: fadeInUp 0.3s ease;
+    margin-top: 0 !important;
 }
 
 @keyframes fadeInUp {
@@ -1508,9 +1509,8 @@ body:has(#exam.active) .profile-icon {
     }
 }
 
-/* على الهواتف */
 @media (max-width: 600px) {
-    .result-box {
+    #truefalseResult.result-box {
         bottom: 15px;
         padding: 8px 16px;
         font-size: 13px;
