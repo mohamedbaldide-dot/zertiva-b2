@@ -1285,17 +1285,17 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
   if (correctNumbersContainer) {
     correctNumbersContainer.style.display = 'block';
     // عرض الإجابات الصحيحة الأساسية للامتحان (بدون علاقة بإجابات المستخدم)
-    let originalCorrectIndices = [];
-    for (let i = 0; i < questions.length; i++) {
-        if (questions[i].correct === true) {
-            originalCorrectIndices.push(i + 1);
-        }
+    // عرض الإجابات الصحيحة الأساسية للامتحان
+let originalCorrectIndices = [];
+for (let i = 0; i < questions.length; i++) {
+    if (questions[i].correct === true) {
+        originalCorrectIndices.push(i + 1);
     }
-    if (originalCorrectIndices.length > 0) {
-        correctNumbersContainer.innerHTML = `▸ الإجابات الصحيحة في الامتحان: ${originalCorrectIndices.join(" - ")}`;
-    } else {
-        correctNumbersContainer.innerHTML = "▸ لا توجد إجابات صحيحة في هذا الامتحان";
-    }
+}
+if (originalCorrectIndices.length > 0) {
+    correctNumbersContainer.innerHTML = `▸ الإجابات الصحيحة في الامتحان: ${originalCorrectIndices.join(" - ")}`;
+} else {
+    correctNumbersContainer.innerHTML = "▸ لا توجد إجابات صحيحة في هذا الامتحان";
 }
   
   const finalScore = (score * pointsPerQuestion).toFixed(2);
