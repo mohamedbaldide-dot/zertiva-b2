@@ -14871,10 +14871,224 @@ HELP_DATA["sprach2_exam45_q10"] = {
     simplified: "المنظمات الاستهلاكية موجودة لمساعدتك",
     imagine: "🏛️🤝 مبنى ومصافحة"
 };
+// ============================================
+// Mündlich (Teil 1-42) - السلسلة السحرية
+// ============================================
+
+// Exam 1: Antibiotika – Gibt es Alternativen?
+HELP_DATA["mündlich_exam1_q1"] = { text: "Antibiotika → Wirkung → früher viele Krankheiten → heute resistent → falsch verwendet → Heilpflanzen Alternative", meaning: "الموضوع يتحدث عن المضادات الحيوية وتأثيرها", keywords: ["Antibiotika", "Wirkung", "resistent", "Heilpflanzen"], simplified: "المضادات الحيوية كانت فعالة سابقاً لكن البكتيريا أصبحت مقاومة بسبب سوء الاستخدام، والنباتات الطبية بديل", imagine: "🧪💊" };
+HELP_DATA["mündlich_exam1_q2"] = { text: "Antibiotika nur wenn nötig → resistent → Heilpflanzen → gesunde Alternative", meaning: "المضادات الحيوية فقط عند الضرورة", keywords: ["nur wenn nötig", "resistent", "gesunde Alternative"], simplified: "يجب استخدام المضادات الحيوية فقط عند الحاجة لأن الاستخدام الزائد يسبب المقاومة", imagine: "⚠️💊" };
+HELP_DATA["mündlich_exam1_q3"] = { text: "Halsschmerzen → Arzt → Tee → Heilpflanzen → besser → nicht immer nötig", meaning: "تجربة شخصية مع التهاب الحلق", keywords: ["Halsschmerzen", "Arzt", "Tee", "Heilpflanzen"], simplified: "كان لدي التهاب حلق فنصحني الطبيب بالشاي والنباتات الطبية وتحسنت، وهذا يثبت أن المضادات الحيوية ليست دائماً ضرورية", imagine: "🍵🌿" };
+
+// Exam 2: Selbst gekocht
+HELP_DATA["mündlich_exam2_q1"] = { text: "Selber-Kochen → gesund → frisch → ohne Zusatzstoffe → wissen was drin → lohnt sich", meaning: "الطبخ المنزلي صحي وطازج", keywords: ["gesund", "frisch", "ohne Zusatzstoffe"], simplified: "الطبخ في المنزل صحي وطازج لأنك تعرف المكونات وتتجنب المواد المضافة", imagine: "👨‍🍳🥗" };
+HELP_DATA["mündlich_exam2_q2"] = { text: "selbst kochen → besser → gesünder → Kontrolle → Zutaten", meaning: "الطبخ المنزلي أفضل وأصح", keywords: ["besser", "gesünder", "Kontrolle"], simplified: "الطبخ بنفسك أفضل وأصح لأنك تتحكم في المكونات", imagine: "🫑🍅" };
+HELP_DATA["mündlich_exam2_q3"] = { text: "letzte Woche → selbst gekocht → Gemüse → Obst → gut geschmeckt → gesund → lecker", meaning: "تجربة طبخ منزلية ناجحة", keywords: ["selbst gekocht", "Gemüse", "Obst", "lecker"], simplified: "الأسبوع الماضي طهوت بنفسي باستخدام خضروات وفواكه طازجة وكان الطعام صحياً ولذيذاً", imagine: "🍲😋" };
+
+// Exam 3: Arbeiten bis 75
+HELP_DATA["mündlich_exam3_q1"] = { text: "Rentenalter → Lebenserwartung steigt → länger arbeiten → Experten → flexible Rente → selbst entscheiden", meaning: "سن التقاعد يزداد مع ارتفاع متوسط العمر", keywords: ["Rentenalter", "Lebenserwartung", "flexible Rente"], simplified: "سن التقاعد يتغير مع زيادة العمر المتوقع، والخبراء يوصون بتقاعد مرن يقرره الشخص بنفسه", imagine: "👴📅" };
+HELP_DATA["mündlich_exam3_q2"] = { text: "Rentenalter flexibel → entscheiden → in Rente gehen → Arbeitszeit einteilen", meaning: "سن التقاعد المرن يتيح لك الاختيار", keywords: ["flexibel", "entscheiden", "Arbeitszeit"], simplified: "سن التقاعد المرن يتيح لك حرية اختيار وقت التقاعد وتنظيم وقت عملك", imagine: "⚖️⏰" };
+HELP_DATA["mündlich_exam3_q3"] = { text: "Onkel → länger gearbeitet → Tischler → Arbeitszeiten selbst → zufrieden → sinnvoll", meaning: "تجربة العم مع ساعات العمل المرنة", keywords: ["Onkel", "länger gearbeitet", "zufrieden"], simplified: "عمي عمل لسنوات أطول كنجار باختياره وكان سعيداً، وهذا يثبت أن المرونة مفيدة", imagine: "🪚😊" };
+
+// Exam 4: Praktische Lerntipps
+HELP_DATA["mündlich_exam4_q1"] = { text: "Lernmethoden → mehrere Sinne → Hören 20% → Hören/Sehen/Reden/Tun 90% → Wiederholen → Zusammenfassen", meaning: "طرق التعلم الفعالة تعتمد على استخدام الحواس المتعددة", keywords: ["mehrere Sinne", "Wiederholen", "Zusammenfassen"], simplified: "استخدام أكثر من حاسة في التعلم يرفع النسبة من 20% إلى 90%، مع التكرار والتلخيص", imagine: "🧠👂👀🗣️✍️" };
+HELP_DATA["mündlich_exam4_q2"] = { text: "Lerntipps sinnvoll → mehrere Sinne → regelmäßig wiederholen → länger im Gedächtnis", meaning: "نصائح التعلم مفيدة جداً", keywords: ["sinnvoll", "regelmäßig wiederholen", "Gedächtnis"], simplified: "نصائح التعلم هذه مفيدة لأن التعلم بعدة حواس مع التكرار المنتظم يثبت المعلومات في الذاكرة", imagine: "📚💪" };
+HELP_DATA["mündlich_exam4_q3"] = { text: "letztes Jahr → Methode ausprobiert → Lernstoff zusammengefasst → wiederholt → besser erinnert → Prüfung bestanden", meaning: "تجربة شخصية مع طريقة التعلم الفعالة", keywords: ["Methode ausprobiert", "wiederholt", "Prüfung bestanden"], simplified: "جربت هذه الطريقة العام الماضي، لخصت وكررت المواد، فتذكرت بشكل أفضل ونجحت بسهولة", imagine: "🎓✅" };
+
+// Exam 5: Schuluniform – Pro und Kontra
+HELP_DATA["mündlich_exam5_q1"] = { text: "Schuluniformen → sozialer Druck → Integration → ohne Markenklamotten → ausgeschlossen → Probleme nicht vollständig lösen", meaning: "الزي المدرسي يقلل الضغط الاجتماعي ويعزز الاندماج", keywords: ["sozialer Druck", "Integration", "Markenklamotten"], simplified: "الزي المدرسي يقلل الضغط الاجتماعي ويمنع الاستبعاد بسبب الملابس، لكنه لا يحل جميع المشاكل", imagine: "👔🏫" };
+HELP_DATA["mündlich_exam5_q2"] = { text: "Schuluniformen helfen → sozialer Druck → Respekt → Kommunikation → wichtiger als Kleidung", meaning: "الزي المدرسي يساعد في تقليل الضغط الاجتماعي", keywords: ["helfen", "Respekt", "Kommunikation"], simplified: "الزي المدرسي يساعد في تقليل الضغط، لكن الاحترام والتواصل أهم من الملابس", imagine: "🤝💬" };
+HELP_DATA["mündlich_exam5_q3"] = { text: "Grundschule → Schürze → nicht schön → Mutter froh → keine teuren Klamotten → Vorteile", meaning: "تجربة شخصية مع الزي المدرسي", keywords: ["Schürze", "Mutter froh", "Vorteile"], simplified: "في الابتدائية لبست مريلة زرقاء، لم تعجبني لكن أمي كانت سعيدة لأنها وفرت مال الملابس الغالية، وأدركت فوائدها لاحقاً", imagine: "👗😊" };
+
+// Exam 6: Ist "bequemes Essen" gut für uns?
+HELP_DATA["mündlich_exam6_q1"] = { text: "Convenience Food → sparen Zeit → leicht zuzubereiten → Qualität → Bio → ungesunde Inhaltsstoffe → Müll → Kochwissen", meaning: "الوجبات الجاهزة توفر الوقت وسهلة التحضير لكن بها مواد غير صحية", keywords: ["Zeit sparen", "ungesunde Inhaltsstoffe", "Müll"], simplified: "الأغذية الجاهزة توفر الوقت وسهلة ولكنها تحتوي على مكونات غير صحية وتنتج نفايات وتفقد مهارات الطهي", imagine: "🍔⏰" };
+HELP_DATA["mündlich_exam6_q2"] = { text: "Fertigprodukte praktisch → sparen Zeit → selten essen → Gesundheit", meaning: "الوجبات الجاهزة عملية وتوفر الوقت", keywords: ["praktisch", "sparen Zeit", "selten essen"], simplified: "المنتجات الجاهزة عملية وتوفر الوقت لكن يجب تناولها نادراً للحفاظ على الصحة", imagine: "🥫⚠️" };
+HELP_DATA["mündlich_exam6_q3"] = { text: "früher Fertiggerichte → müde → letztes Jahr → selbst kochen → gesünder → energiegeladen", meaning: "تجربة شخصية مع الأغذية الجاهزة", keywords: ["Fertiggerichte", "müde", "selbst kochen"], simplified: "كنت أتناول الوجبات الجاهزة وأشعر بالتعب، ثم بدأت الطبخ المنزلي وأصبحت أكثر صحة وحيوية", imagine: "💪🔋" };
+
+// Exam 7: Alternative Lebensform im Alter
+HELP_DATA["mündlich_exam7_q1"] = { text: "Wohngemeinschaften → ältere Menschen → selbstbestimmt → soziale Kontakte → Konflikte → pflegebedürftig → überlegen", meaning: "مجتمعات سكنية لكبار السن توفر حياة مستقلة وعلاقات اجتماعية", keywords: ["selbstbestimmt", "soziale Kontakte", "Konflikte"], simplified: "المجتمعات السكنية لكبار السن توفر حياة مستقلة وعلاقات اجتماعية، لكن قد تحدث صراعات خاصة مع المحتاجين للرعاية", imagine: "🏠👴👵" };
+HELP_DATA["mündlich_exam7_q2"] = { text: "Pflege-WG positiv → unabhängig → Einsamkeit vermeiden → Hilfe → Bedürfnisse klären", meaning: "مجتمع الرعاية السكنية إيجابي", keywords: ["unabhängig", "Einsamkeit vermeiden", "Bedürfnisse klären"], simplified: "مجتمع الرعاية السكنية إيجابي: يبقيك مستقلاً، يمنع الوحدة، ويوفر المساعدة. من المهم توضيح احتياجاتك أولاً", imagine: "❤️🏠" };
+HELP_DATA["mündlich_exam7_q3"] = { text: "Großtante → WG → Schwierigkeiten → später gut eingelebt → nützlich", meaning: "تجربة الخالة مع المجتمع السكني", keywords: ["Großtante", "WG", "gut eingelebt"], simplified: "خالتي انتقلت لسكن مشترك، واجهت صعوبات أولاً ثم تأقلمت، وهذا يثبت فائدة هذه المساكن لكبار السن", imagine: "👵✅" };
+
+// Exam 8: Glücklich ohne Geld und Karriere
+HELP_DATA["mündlich_exam8_q1"] = { text: "Praktikanten → wenig Geld → trotzdem zufrieden → Branche → Qualifikation → nur wenige Branchen", meaning: "المتدربون راضون رغم قلة المال حسب القطاع والمؤهل", keywords: ["Praktikanten", "zufrieden", "Branche"], simplified: "المتدربون راضون رغم قلة الدخل، ويعتمد ذلك على القطاع والمؤهلات، ومشكلة 'جيل التدريب' موجودة فقط في قطاعات محددة", imagine: "👨‍🎓💼" };
+HELP_DATA["mündlich_exam8_q2"] = { text: "Praktika wichtig → Erfahrung → besser bezahlt → motiviert → fair behandelt", meaning: "التدريب العملي مهم للخبرة", keywords: ["wichtig", "Erfahrung", "fair behandelt"], simplified: "التدريب العملي مهم لاكتساب الخبرة، لكن يجب أن يكون الأجر أفضل ليبقى المتدربون متحمسين ويعاملوا بعدالة", imagine: "💰✅" };
+HELP_DATA["mündlich_exam8_q3"] = { text: "Freund → Praktikum → wenig Geld → viel gelernt → neue Erfahrungen → später geholfen", meaning: "تجربة صديق مع التدريب العملي", keywords: ["Praktikum", "viel gelernt", "später geholfen"], simplified: "صديق قال إنه تدرب براتب قليل لكنه تعلم كثيراً واكتسب خبرات جديدة ساعدته لاحقاً", imagine: "📚🔧" };
+
+// Exam 9: Schönheitsoperationen bei Minderjährigen
+HELP_DATA["mündlich_exam9_q1"] = { text: "Schönheitsoperationen → Minderjährige → unnötige Eingriffe → Ausnahmen → schwierig unterscheiden", meaning: "عمليات التجميل للقصر محدودة، يصعب التمييز بين الحاجات والرغبات", keywords: ["Minderjährige", "unnötige Eingriffe", "schwierig unterscheiden"], simplified: "الدول تريد منع العمليات غير الضرورية للقصر لكن يصعب التمييز بين مشكلة حقيقية ورغبة تجميلية", imagine: "🔪😷" };
+HELP_DATA["mündlich_exam9_q2"] = { text: "unnötige Operationen vermeiden → Notfälle okay → Kinder lernen → selbstbewusst umgehen", meaning: "تجنب العمليات غير الضرورية، الأطفال يحتاجون لتعلم الثقة", keywords: ["vermeiden", "Notfälle", "selbstbewusst"], simplified: "يجب تجنب العمليات غير الضرورية، أما الطوارئ فمسموحة. الأهم تعليم الطفل كيف يكون واثقاً من مظهره", imagine: "💪😊" };
+HELP_DATA["mündlich_exam9_q3"] = { text: "Mitschüler → schiefe Zähne → Zahnspange → unsicher → unterstützt → selbstbewusst", meaning: "تجربة زميل مع المشاكل الجمالية", keywords: ["schiefe Zähne", "Zahnspange", "selbstbewusst"], simplified: "زميلي كان يعاني من أسنان معوجة وارتدى تقويماً، كان غير واثق في البداية ولكن دعم الأهل والمعلمين ساعده ليصبح واثقاً", imagine: "🦷😁" };
+
+// Exam 10: Kinderuniversitäten
+HELP_DATA["mündlich_exam10_q1"] = { text: "Kinderuniversitäten → 2002 → Kinder 8–12 → Universität Tübingen → freiwillig → ohne Noten → beliebt → Ärzte → Bewegung", meaning: "جامعات الأطفال من 8-12 سنة في توبنغن منذ 2002", keywords: ["Kinderuniversitäten", "freiwillig", "ohne Noten"], simplified: "جامعات الأطفال بدأت في توبنغن 2002 للأعمار 8-12، طوعية وبدون درجات، لكن الأطباء ينتقدون قلة الحركة", imagine: "🎓👧🧒" };
+HELP_DATA["mündlich_exam10_q2"] = { text: "Kinderuniversitäten gute Idee → Interesse → Wissenschaft → Sport → Bewegung", meaning: "جامعات الأطفال فكرة جيدة تنمي الاهتمام بالعلم", keywords: ["gute Idee", "Interesse", "Wissenschaft"], simplified: "جامعات الأطفال فكرة جيدة لأنها تنمي الاهتمام بالعلم، لكن يجب أن يمارس الأطفال الرياضة أيضاً", imagine: "🔬⚽" };
+HELP_DATA["mündlich_exam10_q3"] = { text: "Sommerferien → Hallenbad → schwimmen → ohne Noten → ohne Stress → Neues gelernt", meaning: "تجربة تعلم بلا ضغط في العطلة الصيفية", keywords: ["Sommerferien", "schwimmen", "ohne Druck"], simplified: "تعلمت السباحة في العطلة الصيفية بالمسبح الداخلي بدون درجات وبدون ضغط، تعلمت شيئاً جديداً مثل أطفال الجامعة", imagine: "🏊‍♂️😎" };
+
+// Exam 11: Fast Food
+HELP_DATA["mündlich_exam11_q1"] = { text: "Fast Food → Sucht → Ratten → Kontrolle verloren → Menschen achten", meaning: "الوجبات السريعة قد تسبب الإدمان كما حدث مع الفئران", keywords: ["Fast Food", "Sucht", "Ratten"], simplified: "الوجبات السريعة تؤثر على الدماغ مثل المخدرات، وقد تتسبب في سلوك إدماني كما حدث مع الفئران", imagine: "🐀🍔" };
+HELP_DATA["mündlich_exam11_q2"] = { text: "Fast Food vermeiden → süchtig → Gesundheit schaden → gesunde Ernährung besser", meaning: "تجنب الوجبات السريعة لأنها تضر بالصحة", keywords: ["vermeiden", "süchtig", "gesunde Ernährung"], simplified: "تجنب الوجبات السريعة فهي تسبب الإدمان وتضر بالصحة، والأكل الصحي أفضل دائماً", imagine: "🥗✅" };
+HELP_DATA["mündlich_exam11_q3"] = { text: "Cousin → viel Fast Food → nicht aufhören → später gesünder → besser gefühlt", meaning: "تجربة ابن العم مع الوجبات السريعة", keywords: ["Cousin", "Fast Food", "besser gefühlt"], simplified: "ابن عمي كان يأكل كثيراً من الوجبات السريعة ولم يستطع التوقف، لكن عندما بدأ يأكل صحياً شعر بتحسن", imagine: "😊🍎" };
+
+// Exam 12: Zweisprachigkeit bei Kindern
+HELP_DATA["mündlich_exam12_q1"] = { text: "Zweisprachigkeit → Kinder → Vorteile Kultur → Denken → Zukunft", meaning: "تعدد اللغات عند الأطفال مفيد للثقافة والتفكير والمستقبل", keywords: ["Zweisprachigkeit", "Vorteile", "Kultur"], simplified: "الطفل الذي يتحدث لغتين يستفيد ثقافياً وفكرياً ومستقبلاً، رغم الاعتقاد القديم أنه مرهق", imagine: "🌍🗣️" };
+HELP_DATA["mündlich_exam12_q2"] = { text: "Zweisprachigkeit positiv → Kulturen → reisen → arbeiten → kommunizieren", meaning: "تعدد اللغات إيجابي للسفر والعمل والتواصل", keywords: ["positiv", "Kulturen", "kommunizieren"], simplified: "تعدد اللغات مفيد جداً لأنه يتيح تعلم ثقافات جديدة والسفر والعمل مع أشخاص من دول مختلفة", imagine: "✈️💼" };
+HELP_DATA["mündlich_exam12_q3"] = { text: "Freund → kleine Schwester → zwei Sprachen → schwierig → später gut gesprochen", meaning: "تجربة أخت صديق مع تعدد اللغات", keywords: ["kleine Schwester", "zwei Sprachen", "gut gesprochen"], simplified: "صديق أخبرني أن أخته الصغيرة تعلمت لغتين في المنزل، واجهت صعوبة لكنها أتقنتهما لاحقاً", imagine: "👧📖" };
+
+// Exam 13: Blutspende
+HELP_DATA["mündlich_exam13_q1"] = { text: "Blutspenden → Deutschland → 15.000 täglich → wenige spenden → Gesundheitscheck → Leben retten", meaning: "التبرع بالدم يحتاج 15,000 وحدة يومياً في ألمانيا", keywords: ["Blutspenden", "Gesundheitscheck", "Leben retten"], simplified: "ألمانيا تحتاج 15,000 تبرعاً يومياً لكن القليل فقط يتبرعون. الفحص الصحي مجاني والتبرع سهل وسريع وينقذ حياة", imagine: "🩸❤️" };
+HELP_DATA["mündlich_exam13_q2"] = { text: "Blutspenden wichtig → Leben retten → mehr Menschen spenden", meaning: "التبرع بالدم مهم جداً لإنقاذ الحياة", keywords: ["wichtig", "Leben retten", "mehr Menschen"], simplified: "التبرع بالدم مهم جداً لأنه ينقذ حياة، لذلك يجب أن يتبرع عدد أكبر من الأشخاص الأصحاء بانتظام", imagine: "🏥🩸" };
+HELP_DATA["mündlich_exam13_q3"] = { text: "Freund → Krankenhaus → Blutgruppe → eingeladen → gespendet", meaning: "تجربة التبرع بالدم", keywords: ["Krankenhaus", "Blutgruppe", "gespendet"], simplified: "صديق أخبرني أن المستشفى كان بحاجة للدم، أراد معرفة فصيلته ودعاني، ووجدت الفكرة جيدة وتبرعت أيضاً", imagine: "🤝🩸" };
+
+// Exam 14: Lachen und Gesundheit
+HELP_DATA["mündlich_exam14_q1"] = { text: "Lachen → Kinder → häufiger → Angst reduzieren → Immunsystem stärken → Therapie", meaning: "الضحك يقلل الخوف ويقوي المناعة ويستخدم كعلاج في المستشفيات", keywords: ["Lachen", "Immunsystem", "Therapie"], simplified: "الأطفال يضحكون أكثر من البالغين، والضحك يقلل الخوف والألم ويقوي المناعة ويستخدم كعلاج بالمستشفيات", imagine: "😂💪" };
+HELP_DATA["mündlich_exam14_q2"] = { text: "Lachen wichtig → Gesundheit → Alltag → vorsichtig → Auslachen verletzen", meaning: "الضحك مهم للصحة ولكن يجب الحذر", keywords: ["wichtig", "Gesundheit", "Auslachen"], simplified: "الضحك مهم للصحة والحياة اليومية، لكن يجب الحذر لأن السخرية من الآخرين تؤذيهم", imagine: "😊🚫😂" };
+HELP_DATA["mündlich_exam14_q3"] = { text: "Freunde → lustiger Film → viel gelacht → entspannter → Stress reduziert", meaning: "تجربة مشاهدة فيلم مضحك مضحك مع الأصدقاء", keywords: ["lustiger Film", "viel gelacht", "Stress reduziert"], simplified: "شاهدت فيلماً مضحكاً مع أصدقائي، ضحكنا كثيراً وشعرنا بالاسترخاء، هذا يؤكد أن الضحك يقلل التوتر", imagine: "🍿😂" };
+
+// Exam 15: Gefundene Sachen – behalten oder abgeben?
+HELP_DATA["mündlich_exam15_q1"] = { text: "Gefundene Sachen → nicht behalten → Besitzer finden → Belohnung", meaning: "الأشياء المفقودة لا يجب الاحتفاظ بها بل يجب إيجاد صاحبها", keywords: ["gefunden", "Besitzer finden", "Belohnung"], simplified: "لا يجوز الاحتفاظ بالأشياء المفقودة، بل يجب محاولة إيجاد صاحبها، وقد تحصل على مكافأة", imagine: "👛🔍" };
+HELP_DATA["mündlich_exam15_q2"] = { text: "Gefundene Sachen abgeben → ehrlich → fair → Recht des Besitzers", meaning: "إرجاع الأشياء المفقودة تصرف صادق وعادل", keywords: ["abgeben", "ehrlich", "fair"], simplified: "يجب إرجاع الأشياء المفقودة، فهذا تصرف صادق وعادل لأن المالك له الحق في استعادة ممتلكاته", imagine: "🤲✅" };
+HELP_DATA["mündlich_exam15_q3"] = { text: "Freund → Brieftasche → Polizei → abgegeben → Belohnung", meaning: "تجربة صديق مع محفظة نقود مفقودة", keywords: ["Brieftasche", "Polizei", "Belohnung"], simplified: "صديق وجد محفظة نقود في الشارع وذهب بها للشرطة، وشكره صاحبها لاحقاً وأعطاه مكافأة بسيطة", imagine: "👮💰" };
+
+// Exam 16: Tiere als Geschenk
+HELP_DATA["mündlich_exam16_q1"] = { text: "Tiere → Geschenk → Freude → Verantwortung → Zeit → Pflege", meaning: "الحيوانات كهدية تجلب الفرحة والمسؤولية وتحتاج وقتاً ورعاية طويلة", keywords: ["Tiere", "Verantwortung", "Zeit", "Pflege"], simplified: "الحيوان يجلب الفرحة والرفقة والمسؤولية لكن يجب التفكير جيداً لأنه يحتاج وقتاً ومكاناً ورعاية طويلة", imagine: "🐶🎁" };
+HELP_DATA["mündlich_exam16_q2"] = { text: "Tier kein spontanes Geschenk → sprechen → Verantwortung → Zeit", meaning: "الحيوان ليس هدية مفاجئة جيدة", keywords: ["kein Geschenk", "sprechen", "Verantwortung"], simplified: "الحيوان ليس هدية مفاجئة جيدة، يجب التحدث مع الشخص أولاً لأن الحيوان يتطلب مسؤولية ووقتاً كبيراً", imagine: "🗣️🐱" };
+HELP_DATA["mündlich_exam16_q3"] = { text: "Nachbar → Kind → Hund → glücklich → später kümmern", meaning: "تجربة الجار مع إهداء كلب لطفله", keywords: ["Nachbar", "Hund", "glücklich"], simplified: "جار أهدى ابنه كلباً، كان الطفل سعيداً جداً في البداية لكن العائلة اضطرت للعناية به يومياً لاحقاً", imagine: "🐕🏠" };
+
+// Exam 17: Hausaufgaben – notwendig oder nicht?
+HELP_DATA["mündlich_exam17_q1"] = { text: "Hausaufgaben → müde → keine Hilfe → Wiederholen wichtig → Selbstständigkeit fördern", meaning: "الواجبات المنزلية: البعض يرفضها لأن الطلاب متعبون، والبعض يرى أهميتها", keywords: ["Hausaufgaben", "müde", "Selbstständigkeit"], simplified: "البعض يرفض الواجبات لأن الطلاب متعبون وليس لديهم مساعدة، والبعض يقول إن التكرار مهم والواجبات تعزز الاستقلالية", imagine: "📚😴" };
+HELP_DATA["mündlich_exam17_q2"] = { text: "Hausaufgaben notwendig → helfen → zu viele → müde → Freizeit weg", meaning: "الواجبات المنزلية ضرورية أحياناً", keywords: ["notwendig", "helfen", "Freizeit"], simplified: "الواجبات ضرورية أحياناً لأنها تساعد في التعلم، لكن كثرة الواجبات تجعل الطلاب متعبين وتسلب أوقات فراغهم", imagine: "⏰😫" };
+HELP_DATA["mündlich_exam17_q3"] = { text: "Ich → viele Hausaufgaben → müde → Wiederholen → besser verstanden → Prüfungen", meaning: "تجربة شخصية مع الواجبات المنزلية", keywords: ["viele Hausaufgaben", "Wiederholen", "Prüfungen"], simplified: "كنت أحل واجبات كثيرة وأشعر بالتعب، لكن التكرار ساعدني على فهم المواد والاستعداد الجيد للامتحانات", imagine: "✍️📖" };
+
+// Exam 18: Wie lange dürfen Jugendliche abends ausgehen?
+HELP_DATA["mündlich_exam18_q1"] = { text: "Jugendliche → abends ausgehen → Eltern schützen → Freiheit → Vertrauen → Verantwortung", meaning: "خروج المراهقين مساءً: الآباء يريدون الحماية، المراهقون يريدون الحرية", keywords: ["ausgehen", "Eltern schützen", "Freiheit"], simplified: "الآباء يريدون حماية أبنائهم بينما المراهقون يريدون حرية أكثر. الثقة والمسؤولية هما مفتاح الحل", imagine: "🌙🚪" };
+HELP_DATA["mündlich_exam18_q2"] = { text: "Jugendliche Freiheit → Eltern Regeln → schützen → Vertrauen", meaning: "المراهقون يحتاجون حرية مع قواعد واضحة من الآباء", keywords: ["Freiheit", "Regeln", "Vertrauen"], simplified: "المراهقون يجب أن يحصلوا على بعض الحرية، ولكن على الآباء وضع قواعد واضحة للحماية وبناء الثقة", imagine: "📋🤝" };
+HELP_DATA["mündlich_exam18_q3"] = { text: "Ich → Eltern gefragt → länger draußen → vertraut → pünktlich zurück → sagen wo", meaning: "تجربة شخصية مع الخروج مساءً", keywords: ["länger draußen", "vertraut", "pünktlich"], simplified: "سألت والدي أن أبقى خارجاً لوقت أطول، وثقوا بي لكن اشترطوا العودة في الوقت المحدد وإخبارهم بمكاني دائماً", imagine: "🏠⏰" };
+
+// Exam 19: Rauchen
+HELP_DATA["mündlich_exam19_q1"] = { text: "Rauchen → Deutschland → 21 Millionen → Jugendliche → Werbung → cool → gefährlich", meaning: "التدخين في ألمانيا: 21 مليون مدخن، خاصة الشباب المتأثرين بالإعلانات", keywords: ["Rauchen", "Jugendliche", "gefährlich"], simplified: "في ألمانيا 21 مليون مدخن خصوصاً الشباب الذين يرون التدخين 'رائعاً' في الإعلانات والأفلام، لكنه خطر ويسبب الأمراض", imagine: "🚬😎❌" };
+HELP_DATA["mündlich_exam19_q2"] = { text: "Niemand rauchen → Geld kostet → Gesundheit schadet → Verantwortung → Aufhören beste Entscheidung", meaning: "لا أحد يجب أن يدخن، فهو يضيع المال ويضر بالصحة", keywords: ["Geld", "Gesundheit", "Aufhören"], simplified: "لا يجب أن يدخن أحد، فالتدخين يضيع المال ويضر بالصحة، والإقلاع عنه يظهر مسؤولية تجاه الأصدقاء، وهو أفضل قرار", imagine: "💸🫁💪" };
+HELP_DATA["mündlich_exam19_q3"] = { text: "Onkel → stark geraucht → Sohn geboren → aufgehört → Vorbild → gesünder", meaning: "تجربة العم مع الإقلاع عن التدخين", keywords: ["stark geraucht", "aufgehört", "gesünder"], simplified: "عمي كان يدخن كثيراً، وعندما ولد ابنه قرر الإقلاع ليكون قدوة حسنة، ومنذ ذلك الحين شعر بتحسن كبير في صحته", imagine: "👨‍👦💚" };
+
+// Exam 20: Hochbegabte Kinder – Spezialschulen oder Integration
+HELP_DATA["mündlich_exam20_q1"] = { text: "Hochbegabte Kinder → Förderung → Spezialschulen → Integration → soziale Entwicklung", meaning: "الأطفال الموهوبون: مدارس خاصة توفر دعماً مركزاً لكن الدمج مهم لنموهم الاجتماعي", keywords: ["Hochbegabte", "Spezialschulen", "Integration"], simplified: "الأطفال الموهوبون يحتاجون دعماً تعليمياً خاصاً، لكن الدمج مع أقرانهم مهم أيضاً لنموهم الاجتماعي والشخصي", imagine: "🧠👧" };
+HELP_DATA["mündlich_exam20_q2"] = { text: "Mischung am besten → Förderung → Kontakt mit anderen → soziale Fähigkeiten entwickeln", meaning: "المزج بين التعليم الخاص والدمج هو الأفضل", keywords: ["Mischung", "Förderung", "soziale Fähigkeiten"], simplified: "المزج بين التعليم الخاص والدمج هو الأفضل، فالطفل الموهوب يحتاج تحفيزاً عقلياً وتواصلاً اجتماعياً في نفس الوقت", imagine: "🎭🧪" };
+HELP_DATA["mündlich_exam20_q3"] = { text: "Mitschüler → sehr intelligent → zusätzliche Aufgaben → gleiche Klasse → gut entwickelt", meaning: "تجربة زميل موهوب في الفصل العادي", keywords: ["intelligent", "zusätzliche Aufgaben", "gut entwickelt"], simplified: "زميلي كان ذكياً جداً، فأعطاه المعلمون مهام إضافية لكنه بقي في نفس الفصل وتطور بشكل جيد جداً", imagine: "📖⭐" };
+
+// Exam 21: Hochzeit nur zu zweit
+HELP_DATA["mündlich_exam21_q1"] = { text: "Hochzeit → ohne Gäste → einfach → Geld sparen → ruhig genießen", meaning: "زواج بدون ضيوف بسيط يوفر المال ويسمح بالاستمتاع بهدوء", keywords: ["ohne Gäste", "einfach", "Geld sparen"], simplified: "الزواج بدون ضيوف يكون بسيطاً ويوفر المال ويسمح للزوجين بالاستمتاع باليوم بهدوء", imagine: "💍🏖️" };
+HELP_DATA["mündlich_exam21_q2"] = { text: "Kleine Hochzeit → gute Idee → Familie & Freunde wichtig", meaning: "الزفاف الصغير فكرة جيدة لكن وجود العائلة والأصدقاء مهم أيضاً", keywords: ["kleine Hochzeit", "gute Idee", "Familie wichtig"], simplified: "الزفاف الصغير فكرة جيدة، لكن وجود العائلة والأصدقاء في هذا اليوم المهم جميل أيضاً", imagine: "👪💒" };
+HELP_DATA["mündlich_exam21_q3"] = { text: "Freund → kleine Hochzeit → Geld sparen → ruhig genießen", meaning: "تجربة صديق يفضل الزفاف الصغير", keywords: ["Freund", "kleine Hochzeit", "ruhig genießen"], simplified: "صديق أخبرني أنه يفضل زفافاً صغيراً لتوفير المال وقضاء يوم هادئ مع شريكته", imagine: "💞💰" };
+
+// Exam 22: Hausaufgaben (مكرر Exam 17)
+HELP_DATA["mündlich_exam22_q1"] = { text: "Hausaufgaben → müde → keine Hilfe → Wiederholen wichtig → Selbstständigkeit fördern", meaning: "الواجبات المنزلية: البعض يرفضها لأن الطلاب متعبون، والبعض يرى أهميتها", keywords: ["Hausaufgaben", "müde", "Selbstständigkeit"], simplified: "البعض يرفض الواجبات لأن الطلاب متعبون وليس لديهم مساعدة، والبعض يقول إن التكرار مهم والواجبات تعزز الاستقلالية", imagine: "📚😴" };
+HELP_DATA["mündlich_exam22_q2"] = { text: "Hausaufgaben notwendig → helfen → zu viele → müde → Freizeit weg", meaning: "الواجبات المنزلية ضرورية أحياناً", keywords: ["notwendig", "helfen", "Freizeit"], simplified: "الواجبات ضرورية أحياناً لأنها تساعد في التعلم، لكن كثرة الواجبات تجعل الطلاب متعبين وتسلب أوقات فراغهم", imagine: "⏰😫" };
+HELP_DATA["mündlich_exam22_q3"] = { text: "Ich → viele Hausaufgaben → müde → Wiederholen → besser verstanden → Prüfungen", meaning: "تجربة شخصية مع الواجبات المنزلية", keywords: ["viele Hausaufgaben", "Wiederholen", "Prüfungen"], simplified: "كنت أحل واجبات كثيرة وأشعر بالتعب، لكن التكرار ساعدني على فهم المواد والاستعداد الجيد للامتحانات", imagine: "✍️📖" };
+
+// Exam 23: Stadtwohnung oder Haus im Grünen
+HELP_DATA["mündlich_exam23_q1"] = { text: "Stadtwohnung → Arbeit → Kultur → kurze Wege → Haus im Grünen → Ruhe → Natur → Umweltprobleme", meaning: "السكن في المدينة يوفر العمل والثقافة، والبيت في الريف يوفر الهدوء والطبيعة", keywords: ["Stadtwohnung", "Haus im Grünen", "Umweltprobleme"], simplified: "شقة المدينة توفر العمل والثقافة والطرق القصيرة، والمنزل في الريف يوفر الهدوء والطبيعة، لكن النقاد يحذرون من المشاكل البيئية", imagine: "🏢🌳" };
+HELP_DATA["mündlich_exam23_q2"] = { text: "Wohnformen Vorteile → Ruhe → Natur → Gesundheit → Familie", meaning: "لكل نمط سكن مزاياه، لكن الهدوء والطبيعة أفضل للصحة والأسرة", keywords: ["Ruhe", "Natur", "Gesundheit"], simplified: "لكل نمط سكن مزاياه، لكن الهدوء والطبيعة أفضل للصحة والأسرة", imagine: "🏞️❤️" };
+HELP_DATA["mündlich_exam23_q3"] = { text: "Familie → Wochenende Land → ruhig → spazieren → frische Luft → Landleben mögen", meaning: "تجربة قضاء عطلة نهاية الأسبوع في الريف", keywords: ["Wochenende Land", "frische Luft", "Landleben"], simplified: "قضيت مع عائلتي عطلة نهاية الأسبوع في الريف، كان المكان هادئاً واستمتعنا بالمشي والهواء النقي، وفهمت لماذا يحب الناس حياة الريف", imagine: "🌄🚶‍♂️" };
+
+// Exam 24: Leistungssport und Doping
+HELP_DATA["mündlich_exam24_q1"] = { text: "Doping → Leistungssport → erlauben oder verbieten → Fairness → Gesundheit → Kontrollen", meaning: "المنشطات في الرياضة التنافسية: البعض يريد السماح والبعض يريد المنع", keywords: ["Doping", "Fairness", "Gesundheit"], simplified: "جدل حول المنشطات: البعض يريد السماح والبعض يريد المنع، يتعلق الأمر بالعدالة والصحة والمراقبة، وهل المنشطات أمر شخصي؟", imagine: "💉🏆" };
+HELP_DATA["mündlich_exam24_q2"] = { text: "Doping verboten → unfair → ungesund → Sport Vorbild", meaning: "المنشطات يجب أن تبقى محظورة لأنها غير عادلة وغير صحية", keywords: ["verboten", "unfair", "Vorbild"], simplified: "المنشطات يجب أن تبقى محظورة لأنها غير عادلة وغير صحية، والرياضة يجب أن تكون قدوة للمجتمع", imagine: "🚫💊" };
+HELP_DATA["mündlich_exam24_q3"] = { text: "Schule → Mitschüler → viele Sportler → verbotene Mittel → überrascht → nachgedacht", meaning: "تجربة نقاش مدرسي عن المنشطات", keywords: ["verbotene Mittel", "überrascht", "nachgedacht"], simplified: "ناقشنا المنشطات في المدرسة، قال زميل إن كثيراً من الرياضيين يتعاطون مواد محظورة، فتفاجأت وأصبحت أفكر بالأمر", imagine: "🤔🏋️" };
+
+// Exam 25: Fernsehen bildet
+HELP_DATA["mündlich_exam25_q1"] = { text: "Fernsehen → Unterhaltung → Wissensprogramme → Auswahl → Selbstdisziplin → Kinder", meaning: "التلفاز: برامج المعرفة مفيدة، لكن يحتاج إلى اختيار واعٍ وانضباط ذاتي خاصة مع الأطفال", keywords: ["Wissensprogramme", "Selbstdisziplin", "Kinder"], simplified: "بعض البرامج تثقف لكن الكثير منها مجرد ترفيه، المهم هو الاختيار الواعي والانضباط الذاتي خاصة مع الأطفال", imagine: "📺🧠" };
+HELP_DATA["mündlich_exam25_q2"] = { text: "Fernsehen nützlich → bewusst wählen → nicht alle geeignet", meaning: "التلفاز مفيد لكن يجب اختيار البرامج بوعي", keywords: ["nützlich", "bewusst wählen", "nicht geeignet"], simplified: "التلفاز يمكن أن يكون مفيداً، لكن يجب اختيار البرامج بوعي لأن ليست كل البرامج تنقل المعرفة أو مناسبة للأطفال", imagine: "🎬✅" };
+HELP_DATA["mündlich_exam25_q3"] = { text: "Ich → Fernsehen → Dokumentationen → gelernt → Filme → keine Infos", meaning: "تجربة شخصية مع مشاهدة التلفاز", keywords: ["Dokumentationen", "gelernt", "keine Infos"], simplified: "كنت أشاهد التلفاز كثيراً، أحياناً شاهدت وثائقيات مفيدة وتعلمت منها، لكن غالباً شاهدت أفلاماً بدون معلومات جديدة", imagine: "📚📺" };
+
+// Exam 26: Kinderkonten
+HELP_DATA["mündlich_exam26_q1"] = { text: "Kinderkonten → früh Geld lernen → sparen → Bank → Vorteile → Kritik Banken → Verschuldung", meaning: "حسابات الأطفال تساعدهم على تعلم التعامل مع المال مبكراً", keywords: ["Kinderkonten", "Geld lernen", "Verschuldung"], simplified: "الأطفال يتعلمون التعامل مع المال مبكراً عبر حسابات التوفير، الآباء يرون فوائد في التربية المالية، لكن البنوك تنتقد المصالح والديون اللاحقة", imagine: "👧💰" };
+HELP_DATA["mündlich_exam26_q2"] = { text: "Kinderkonten sinnvoll → früh lernen → Eltern begleiten → kontrollieren", meaning: "حسابات الأطفال مفيدة لأن الطفل يتعلم مبكراً مع مراقبة الوالدين", keywords: ["sinnvoll", "Eltern begleiten", "kontrollieren"], simplified: "حسابات الأطفال مفيدة لأن الطفل يتعلم مبكراً، لكن يجب أن يرافق الوالدان ويشرفان على تعامله مع المال", imagine: "👪💶" };
+HELP_DATA["mündlich_exam26_q3"] = { text: "Freund → Sparkonto → Taschengeld sparen → Besonderes gekauft → verantwortungsvoll Geld", meaning: "تجربة صديق مع حساب توفير الطفولة", keywords: ["Sparkonto", "Taschengeld sparen", "verantwortungsvoll"], simplified: "صديق كان له حساب توفير خاص عندما كان طفلاً، ادخر مصروف جيبه واشترى شيئاً مميزاً لاحقاً، وتعلم بذلك كيفية التعامل المسؤول مع المال", imagine: "🏦🐖" };
+
+// Exam 27: Haustausch im Urlaub
+HELP_DATA["mündlich_exam27_q1"] = { text: "Haustausch → günstig → spannend → Kulturen → Nachteile → Sicherheit → Risiken", meaning: "تبادل المنازل في الإجازة: رخيص ومثير لكنه ينطوي على مخاطر أمنية وقانونية", keywords: ["Haustausch", "günstig", "Sicherheit"], simplified: "تبادل المنازل رخيص ومثير ويتيح التعرف على ثقافات جديدة، لكن عيوبه انعدام الأمان والمخاطر القانونية، لذا فالثقة والقواعد الواضحة مهمة", imagine: "🏠🔄" };
+HELP_DATA["mündlich_exam27_q2"] = { text: "Haustausch keine gute Idee → Risiken groß → Hotels sicherer", meaning: "تبادل المنازل ليس فكرة جيدة، المخاطر كبيرة والفنادق أكثر أماناً", keywords: ["keine gute Idee", "Risiken", "Hotels sicherer"], simplified: "تبادل المنازل ليس فكرة جيدة، المخاطر كبيرة خاصة بدون عقود، فالفنادق أو الشقق المفروشة أكثر أماناً وأفضل تنظيماً", imagine: "🏨🔒" };
+HELP_DATA["mündlich_exam27_q3"] = { text: "Bekannter → Haustausch → unsicher → Sicherheit → Hotel gewählt", meaning: "تجربة مع تبادل المنازل في الإجازة", keywords: ["Haustausch", "unsicher", "Hotel"], simplified: "أحد معارفي فكر بتبادل المنازل لكنه كان غير متأكد من الأمان، وقرر في النهاية حجز فندق", imagine: "🤔🏨" };
+
+// Exam 28: Solarium im Winter – gut oder schlecht
+HELP_DATA["mündlich_exam28_q1"] = { text: "Solarium → Gesundheit → Vitamin D → Hautschäden → Krebs", meaning: "أسرة التسمير في الشتاء: أشعة الشمس مهمة للصحة وفيتامين د، لكن الأسرة تضر البشرة وتسبب السرطان", keywords: ["Solarium", "Vitamin D", "Krebs"], simplified: "ضوء الشمس مهم للصحة وفيتامين د، لكن أسرة التسمير مضرة بالبشرة وقد تسبب السرطان خاصة للشباب", imagine: "☀️🛏️⚠️" };
+HELP_DATA["mündlich_exam28_q2"] = { text: "Solarien vermeiden → besser natürlich gesund bleiben", meaning: "تجنب أسرة التسمير، ومن الأفضل البقاء بصحة طبيعية", keywords: ["vermeiden", "natürlich", "gesund bleiben"], simplified: "يجب تجنب أسرة التسمير لأنها خطيرة، ومن الأفضل البقاء بصحة طبيعية والحذر في التعامل مع الشمس", imagine: "🌞😎" };
+HELP_DATA["mündlich_exam28_q3"] = { text: "Winter → müde → wenig Energie → Sonnenlicht fehlt", meaning: "تجربة شخصية مع نقص الشمس في الشتاء", keywords: ["Winter", "müde", "Sonnenlicht"], simplified: "ليس لدي خبرة شخصية مع أسرة التسمير، لكني أتذكر أني كنت متعباً وعديم الطاقة في الشتاء، وأدركت لاحقاً أن السبب ربما هو قلة ضوء الشمس", imagine: "🌨️😴" };
+
+// Exam 29: Ist Schulqualität messbar?
+HELP_DATA["mündlich_exam29_q1"] = { text: "Schulqualität → Tests → Deutsch → Mathematik → Kritik → Wohlbefinden → soziale Fähigkeiten", meaning: "جودة المدرسة: الاختبارات تقيس الأداء في اللغة والرياضيات، لكن النقاد يقولون إن الرفاهية والمهارات الاجتماعية لا تُقاس", keywords: ["Schulqualität", "Tests", "soziale Fähigkeiten"], simplified: "اختبارات جودة المدرسة تقيس أداء التلاميذ في الرياضيات والألمانية، لكن النقاد يعترضون لأن الرفاهية والمهارات الاجتماعية لا تُقاس", imagine: "📝🏫" };
+HELP_DATA["mündlich_exam29_q2"] = { text: "Tests hilfreich → nicht ausreichend → mehr als Noten", meaning: "الاختبارات مفيدة لكنها غير كافية، فالمدرسة أكثر من مجرد درجات", keywords: ["hilfreich", "nicht ausreichend", "mehr als Noten"], simplified: "الاختبارات مفيدة لكنها غير كافية، فالمدرسة أكثر من مجرد درجات، والمهارات الاجتماعية والرفاهية مهمة أيضاً", imagine: "📊❤️" };
+HELP_DATA["mündlich_exam29_q3"] = { text: "Ich → viele Tests → gute Noten → Stress → nicht alles zeigen", meaning: "تجربة شخصية مع الاختبارات المدرسية", keywords: ["viele Tests", "gute Noten", "Stress"], simplified: "أجرينا العديد من الاختبارات، حصلت على درجات جيدة لكني شعرت بالتوتر أحياناً، وهذا يثبت أن الاختبارات لا تظهر كل شيء", imagine: "😰📝" };
+
+// Exam 30: Hausfrau auf Lebenszeit
+HELP_DATA["mündlich_exam30_q1"] = { text: "Hausfrau → Familie → Kinder → Befürworter → Kritiker → Abhängigkeit → Rollenbilder", meaning: "الحياة كربة منزل: المؤيدون يرون وقتاً للعائلة، المعارضون يرون عدم التقدير والاعتماد وأدواراً تقليدية", keywords: ["Hausfrau", "Abhängigkeit", "Rollenbilder"], simplified: "المؤيدون لربة المنزل يرون أنها تكرس وقتها للأطفال، والمعارضون يرون عدم الاعتراف والاعتماد المالي وأدواراً تقليدية عفا عليها الزمن", imagine: "🏠👩" };
+HELP_DATA["mündlich_exam30_q2"] = { text: "Hausfrau Entscheidung → Unabhängigkeit wichtig", meaning: "ربة منزل قرار شخصي لكن الاستقلال المالي مهم", keywords: ["Entscheidung", "Unabhängigkeit", "wichtig"], simplified: "كون المرأة ربة منزل يمكن أن يكون قراراً شخصياً، لكن الاستقلال المالي والاعتراف بدورها يجب أن يظلا مهمين", imagine: "💪👩" };
+HELP_DATA["mündlich_exam30_q3"] = { text: "Bekannte → Hausfrau → Kinder → Haushalt → Unsicherheit", meaning: "تجربة صديقة ربة منزل مع عدم اليقين المهني", keywords: ["Bekannte", "Hausfrau", "Unsicherheit"], simplified: "أعرف صديقة للعائلة كانت ربة منزل، اعتنقت بالأطفال والمنزل لكنها كانت قلقة أحياناً بشأن مستقبلها المهني", imagine: "😟🏠" };
+
+// Exam 31: Fernsehen macht Kinder dumm
+HELP_DATA["mündlich_exam31_q1"] = { text: "Fernsehen → Kinder → schlechte Noten → weniger Bewegung → Gesundheit", meaning: "التلفاز للأطفال: المشاهدة الكثير تؤدي لدرجات أسوأ ونشاط أقل، وتؤثر سلباً على الصحة والتعلم", keywords: ["schlechte Noten", "weniger Bewegung", "Gesundheit"], simplified: "كثرة التلفاز تؤدي لدرجات مدرسية أسوأ وقلة حركة، والخبراء يؤكدون تأثيره السلبي على الصحة والتعلم", imagine: "📺🧒⚠️" };
+HELP_DATA["mündlich_exam31_q2"] = { text: "Zu viel Fernsehen schlecht → gute Programme manchmal nützlich", meaning: "كثرة التلفاز ضارة، لكن البرامج الجيدة مفيدة أحياناً", keywords: ["schlecht", "gute Programme", "nützlich"], simplified: "كثرة التلفاز مضرة للأطفال، لكن التلفاز يمكن أن يكون مفيداً إذا شاهدت برامج جيدة", imagine: "👌📺" };
+HELP_DATA["mündlich_exam31_q3"] = { text: "Ich → Kind → viel Fernsehen → Hausaufgaben schlecht → später besser konzentriert", meaning: "تجربة شخصية مع التلفاز في الطفولة", keywords: ["viel Fernsehen", "Hausaufgaben", "konzentriert"], simplified: "عندما كنت طفلاً شاهدت تلفازاً كثيراً، وكنت أترك واجباتي أحياناً. ولاحقاً عندما قللت من المشاهدة أصبح تركيزي أفضل", imagine: "🧘‍♂️📚" };
+
+// Exam 32: Kinder unterschätzen Gefahren von Handy und Internet
+HELP_DATA["mündlich_exam32_q1"] = { text: "Kinder → digitale Medien → täglich → Risiken → Gewalt → Cybermobbing → Fotos", meaning: "الأطفال والوسائط الرقمية: يستخدمونها يومياً لكنهم يقللون من مخاطر العنف والتنمر الإلكتروني وسوء استخدام الصور", keywords: ["digitale Medien", "Risiken", "Cybermobbing"], simplified: "كثير من الأطفال يستخدمون الوسائط الرقمية يومياً لكنهم يقللون من مخاطر محتوى العنف والتنمر الإلكتروني وإساءة استخدام الصور", imagine: "📱⚠️" };
+HELP_DATA["mündlich_exam32_q2"] = { text: "Nutzung wichtig → Gefahren erklären → Hilfe suchen", meaning: "الاستخدام مهم مع شرح المخاطر والبحث عن المساعدة", keywords: ["Nutzung wichtig", "Gefahren erklären", "Hilfe suchen"], simplified: "الاستخدام مهم، لكن يجب إطلاع الأطفال على المخاطر وتعليمهم طلب المساعدة عند مواجهة المشكلات", imagine: "👨‍👩‍👧💬" };
+HELP_DATA["mündlich_exam32_q3"] = { text: "Freund → Handy → unbekannte Nachrichten → Eltern gefragt", meaning: "تجربة صديق مع رسائل غير معروفة على الهاتف", keywords: ["Handy", "unbekannte Nachrichten", "Eltern"], simplified: "صديق كان يقضي وقتاً طويلاً على الهاتف، تلقى رسائل من أشخاص لا يعرفهم ولم يعرف كيف يتصرف حتى سأل والديه", imagine: "📱❓" };
+
+// Exam 33: Sind Klassenfahrten sinnvoll?
+HELP_DATA["mündlich_exam33_q1"] = { text: "Klassenfahrten → Gemeinschaft → Freundschaften → Lernen → Kosten → Organisation", meaning: "الرحلات المدرسية تقوي المجتمع وتعزز الصداقات وتسمح بالتعلم خارج المدرسة، لكن التكلفة والتنظيم مهمان", keywords: ["Klassenfahrten", "Gemeinschaft", "Lernen"], simplified: "الرحلات المدرسية تقوي الجماعة وتعزز الصداقات وتسمح بالتعلم خارج المدرسة، لكن التكاليف والتنظيم قضيتان مهمتان", imagine: "🚌👥" };
+HELP_DATA["mündlich_exam33_q2"] = { text: "Klassenfahrten sinnvoll → stärken Miteinander → gut planen", meaning: "الرحلات المدرسية مفيدة لأنها تقوي العلاقات بين الطلاب", keywords: ["sinnvoll", "Miteinander", "planen"], simplified: "الرحلات المدرسية مفيدة لأنها تقوي العلاقات الاجتماعية بين الطلاب، لكن يجب أن تكون جيدة التخطيط وألا تكون مكلفة جداً", imagine: "📋✈️" };
+HELP_DATA["mündlich_exam33_q3"] = { text: "Ich → Klassenreise → Orte besucht → Mitschüler kennengelernt", meaning: "تجربة شخصية مع رحلة مدرسية", keywords: ["Klassenreise", "Orte besucht", "Mitschüler"], simplified: "قمت مع صفي برحلة مدرسية، زرنا أماكن مختلفة وقضينا وقتاً ممتعاً، مما ساعدني على معرفة زملائي بشكل أفضل", imagine: "🏞️👋" };
+
+// Exam 34: Wo wohnt man am besten im Alter
+HELP_DATA["mündlich_exam34_q1"] = { text: "Alter → Zuhause → Seniorenresidenz → Vorteile → Nachteile", meaning: "السكن في الشيخوخة: في المنزل أو دار المسنين، الإيجابيات: الألفة والأمان والعلاقات، السلبيات: الوحدة أو قلة الخصوصية", keywords: ["Zuhause", "Seniorenresidenz", "Einsamkeit"], simplified: "أشكال السكن في الشيخوخة: البيت أو دار المسنين. الإيجابيات: الألفة والأمان والعلاقات الاجتماعية. السلبيات: الوحدة أو قلة الخصوصية", imagine: "🏡🏥" };
+HELP_DATA["mündlich_exam34_q2"] = { text: "Wohnform abhängig → Sicherheit → Kontakte → Selbstständigkeit", meaning: "أفضل شكل سكن يعتمد على الشخص، الأمان والعلاقات والاستقلالية مهمة", keywords: ["abhängig", "Kontakte", "Selbstständigkeit"], simplified: "أفضل شكل سكن يعتمد على الشخص نفسه. الأمان والعلاقات الاجتماعية والاستقلالية كلها عوامل مهمة", imagine: "⚖️🏠" };
+HELP_DATA["mündlich_exam34_q3"] = { text: "Großmutter → allein → Seniorenwohnung → sicherer → Kontakte", meaning: "تجربة الجدة مع الانتقال لشقة كبار السن", keywords: ["allein", "Seniorenwohnung", "sicherer"], simplified: "جدتي كانت تعيش وحدها لفترة طويلة. ثم انتقلت إلى شقة كبار السن وشعرت بأمان أكبر وبعلاقات اجتماعية أكثر", imagine: "👵🤝" };
+
+// Exam 35: Ganztagsschule – Pro und Contra
+HELP_DATA["mündlich_exam35_q1"] = { text: "Ganztagsschule → Schüler → Kosten → Chancengleichheit → Verantwortung", meaning: "المدارس النهارية: عدد الطلاب يزداد، لأسباب اقتصادية وتكافؤ الفرص والمسؤولية، لكن القواعد ليست موحدة", keywords: ["Ganztagsschule", "Kosten", "Chancengleichheit"], simplified: "المدارس النهارية يتزايد إقبال الطلاب عليها لأسباب اقتصادية وتكافؤ الفرص والمسؤولية، لكنها تأخذ أشكالاً مختلفة وليس لها قواعد موحدة", imagine: "🏫⏰" };
+HELP_DATA["mündlich_exam35_q2"] = { text: "Ganztagsschule praktisch → Eltern entscheiden", meaning: "المدارس النهارية عملية للعائلات، لكن القرار يعود للآباء", keywords: ["praktisch", "Eltern", "entscheiden"], simplified: "المدارس النهارية مفيدة للعائلات عملياً، لكن الآباء هم من يقررون ما هو أفضل لأطفالهم", imagine: "👪✅" };
+HELP_DATA["mündlich_exam35_q3"] = { text: "Freund → besucht → zufrieden → später Freizeit vermisst", meaning: "تجربة صديق مع المدرسة النهارية", keywords: ["besucht", "zufrieden", "Freizeit vermisst"], simplified: "صديق التحق بمدرسة نهارية، كان راضياً في البداية لكنه افتقد أوقات فراغه في المنزل لاحقاً", imagine: "🏠😔" };
+
+// Exam 36: Verbot von Gewaltspielen – Pro und Kontra
+HELP_DATA["mündlich_exam36_q1"] = { text: "Gewaltspiele → verbieten → dagegen → Familie wichtiger", meaning: "ألعاب العنف: البعض يريد منعها والبعض يرفض، العائلة والبيئة أهم، والطرفان لهما حجج", keywords: ["Gewaltspiele", "verbieten", "Familie"], simplified: "ألعاب العنف: البعض يريد منعها والبعض يرفض. البيئة الأسرية أهم من اللعبة، وكلا الطرفين له حجج مقنعة", imagine: "🎮❌" };
+HELP_DATA["mündlich_exam36_q2"] = { text: "Gewaltspiele eingeschränkt → Erziehung wichtiger", meaning: "ألعاب العنف يجب تقييدها، لكن التربية أهم لأن الأسرة لها تأثير كبير", keywords: ["eingeschränkt", "Erziehung", "wichtiger"], simplified: "ألعاب العنف يجب تقييدها، لكن التربية أهم لأن الأسرة هي المؤثر الأكبر على الأبناء", imagine: "👨‍👩‍👧❤️" };
+HELP_DATA["mündlich_exam36_q3"] = { text: "Freund → gespielt → aggressiv → Mutter sprach → ruhiger", meaning: "تجربة صديق مع ألعاب العنف", keywords: ["gespielt", "aggressiv", "Mutter sprach"], simplified: "صديق لي كان يلعب ألعاب عنف وأصبح عدوانياً. تحدثت معه أمه وقلل من اللعب، فهدأ واصبح أكثر اتزاناً", imagine: "🎮💬😌" };
+
+// Exam 37: Eine Woche ohne Internet
+HELP_DATA["mündlich_exam37_q1"] = { text: "Internet → Alltag → Einkaufen → Reisen → schwieriger → analoge Fähigkeiten", meaning: "الحياة بدون إنترنت: التسوق والسفر والمعلومات أصعب، وفي نفس الوقت يستعيد الناس مهاراتهم التناظرية", keywords: ["kein Internet", "analoge Fähigkeiten", "neue Möglichkeiten"], simplified: "بدون إنترنت تصبح التسوق والسفر والبحث عن المعلومات أصعب. لكن الناس يعودون لاستخدام مهاراتهم التقليدية ويكتشفون طرقاً جديدة بعيداً عن الشبكة", imagine: "🌍🔌" };
+HELP_DATA["mündlich_exam37_q2"] = { text: "Leben ohne Internet → kaum vorstellbar → Pause hilft", meaning: "الحياة بدون إنترنت صعبة التصور الآن، لكن فترة راحة قصيرة مفيدة", keywords: ["kaum vorstellbar", "Pause", "hilft"], simplified: "الحياة بدون إنترنت صعبة التصور في عصرنا، لكن استراحة قصيرة قد تساعد على أن تصبح أكثر وعياً واعتماداً على الذات", imagine: "📴🧘" };
+HELP_DATA["mündlich_exam37_q3"] = { text: "Ich → Tag ohne Internet → schwierig → später konzentriert", meaning: "تجربة يوم بدون إنترنت", keywords: ["Tag ohne Internet", "schwierig", "konzentriert"], simplified: "قضيت يوماً كاملاً بدون إنترنت، كان الأمر صعباً في البداية لكنني تعلمت لاحقاً البحث عن المعلومات بطرق أخرى وركزت بشكل أفضل", imagine: "🔍🧠" };
+
+// Exam 38: Tierversuche – Pro und Contra
+HELP_DATA["mündlich_exam38_q1"] = { text: "Tierversuche → Forschung → Medizin → Medikamente → Kritik → Tierleid → Ethik", meaning: "تجارب الحيوانات في الأبحاث: مؤيدوها يرون تقدماً في الطب والأدوية، والمعارضون يرون معاناة الحيوانات", keywords: ["Tierversuche", "Tierleid", "Ethik"], simplified: "المؤيدون لتجارب الحيوانات يرون فيها تقدماً للطب والأدوية، والمعارضون يؤكدون على معاناة الحيوانات والمشاكل الأخلاقية ومحدودية تطبيق النتائج على البشر", imagine: "🐇🔬" };
+HELP_DATA["mündlich_exam38_q2"] = { text: "Tierversuche erlaubt → nur ohne Alternativen → Schutz wichtig", meaning: "تجارب الحيوانات مسموحة فقط عند عدم وجود بديل، وحماية الحيوان مهمة جداً", keywords: ["Alternativen", "Schutz", "wichtig"], simplified: "تجارب الحيوانات يجب أن تكون مسموحة فقط عندما لا توجد بدائل ممكنة. الحماية والرفق بالحيوان أمران مهمان جداً", imagine: "🐭🛡️" };
+HELP_DATA["mündlich_exam38_q3"] = { text: "Biologieunterricht → Diskussion → Freund dagegen → andere dafür", meaning: "تجربة نقاش عن تجارب الحيوانات في حصة الأحياء", keywords: ["Biologieunterricht", "Diskussion", "dagegen"], simplified: "في حصة الأحياء ناقشنا تجارب الحيوانات. بعض الزملاء كانوا ضدها وآخرون رأوا أهميتها للطب، مما أثار نقاشاً مفيداً", imagine: "🗣️🔬" };
+
+// Exam 39: Englisch als weltweite Unternehmenssprache
+HELP_DATA["mündlich_exam39_q1"] = { text: "Englisch → internationale Firmen → Kommunikation → Missverständnisse → Akzent", meaning: "اللغة الإنجليزية كلغة شركات عالمية: تسهل التواصل لكن قد تسبب سوء فهم ومشاكل تتعلق باللكنة", keywords: ["Englisch", "Kommunikation", "Missverständnisse"], simplified: "الإنجليزية تستخدم كلغة رئيسية في الشركات الدولية. تسهل التواصل لكنها قد تسبب سوء فهم ومشاكل متعلقة باللكنة", imagine: "🌐💬" };
+HELP_DATA["mündlich_exam39_q2"] = { text: "Englisch praktisch → andere Sprachen respektieren", meaning: "الإنجليزية عملية، لكن يجب أيضاً احترام اللغات الأخرى", keywords: ["praktisch", "respektieren", "andere Sprachen"], simplified: "الإنجليزية عملية جداً للعمل مع زملاء من دول أخرى، ولكن يجب على الشركات أيضاً احترام اللغات الأخرى", imagine: "🗣️🤝" };
+HELP_DATA["mündlich_exam39_q3"] = { text: "Freund → Laden → Englisch → Missverständnisse → funktioniert", meaning: "تجربة صديق مع استخدام الإنجليزية في متجره", keywords: ["Laden", "Englisch", "Missverständnisse"], simplified: "صديق أخبرني أنه يستخدم الإنجليزية مع زبائنه في متجره كثيراً. كانت هناك بعض سوء الفهم لكن الأمور سارت بشكل جيد عموماً", imagine: "🏪✅" };
+
+// Exam 40: Trinkgeld geben
+HELP_DATA["mündlich_exam40_q1"] = { text: "Trinkgeld → Anerkennung → Service → Unterschiede Länder", meaning: "البقشيش: تقدير للخدمة الجيدة في المطاعم والفنادق وسيارات الأجرة، لكن العادات تختلف بين الدول، ويمكن الاستغناء عنه عند سوء الخدمة", keywords: ["Trinkgeld", "Anerkennung", "Unterschiede"], simplified: "البقشيش هو تقدير للخدمة الجيدة في المطاعم والفنادق وسيارات الأجرة. العادات تختلف بين الدول، والزبائن يمكنهم عدم إعطائه عند سوء الخدمة", imagine: "💰🍽️" };
+HELP_DATA["mündlich_exam40_q2"] = { text: "Trinkgeld zeigt Wertschätzung → nicht Pflicht", meaning: "البقشيش يظهر التقدير للخدمة، لكنه ليس إلزامياً", keywords: ["Wertschätzung", "nicht Pflicht", "Service"], simplified: "البقشيش يظهر تقديرك للخدمة، لكن لا يجب أن تتوقع أن يكون أمراً إلزامياً", imagine: "💶🙏" };
+HELP_DATA["mündlich_exam40_q3"] = { text: "Ich → Restaurant → Kellnerin freundlich → Trinkgeld → zufrieden", meaning: "تجربة شخصية مع البقشيش في مطعم", keywords: ["Restaurant", "Kellnerin", "Trinkgeld"], simplified: "تناولت الطعام الأسبوع الماضي في مطعم، وقدمت النادلة خدمة ودودة، لذا أعطيتها بقشيشاً وكنت سعيداً بذلك، وتعلمت هذه العادة وشعرت بالرضا", imagine: "😊🍝" };
+
+// Exam 41: Teilzeitarbeit für Männer
+HELP_DATA["mündlich_exam41_q1"] = { text: "Teilzeitarbeit → Männer → Familie → Flexibilität → Nachteile → Geld → Gesundheit", meaning: "العمل الجزئي للرجال: مزايا: وقت للعائلة ومرونة. مساوئ: مال أقل ومخاطر صحية", keywords: ["Teilzeitarbeit", "Familie", "Gesundheit"], simplified: "العمل بدوام جزئي للرجال: المزايا هي المزيد من الوقت للعائلة والمرونة. العيوب هي المال الأقل والمخاطر الصحية المحتملة", imagine: "👨‍👧‍👦⏰" };
+HELP_DATA["mündlich_exam41_q2"] = { text: "Teilzeitarbeit gut → Familie → achten auf Geld", meaning: "العمل الجزئي جيد للعائلة، لكن يجب الانتباه للمال والصحة", keywords: ["gut", "Familie", "Geld"], simplified: "العمل بدوام جزئي جيد لأن الرجال يكرسون وقتاً أكبر للعائلة. لكن يجب الانتباه إلى المسائل المالية والصحية", imagine: "💰⚖️" };
+HELP_DATA["mündlich_exam41_q3"] = { text: "Freund → Teilzeit → Kinder → glücklicher → weniger Geld", meaning: "تجربة صديق مع العمل الجزئي", keywords: ["Teilzeit", "Kinder", "glücklicher"], simplified: "صديق عمل في وظيفة بدوام جزئي. كان لديه وقت أكثر لأطفاله وكان أسعد، لكنه كان يشعر بالضغط أحياناً بسبب قلة المال", imagine: "👨‍👧😊💸" };
+
+// Exam 42: Nahrungsergänzungsmittel
+HELP_DATA["mündlich_exam42_q1"] = { text: "Vitamine → Mineralstoffe → Gesundheit → Ergänzung → ausgewogen → Ernährung → Experten → Stress → Zeitmangel", meaning: "مكملات غذائية تحتوي فيتامينات ومعادن، تدعم الصحة، الخبراء يقولون إن النظام الغذائي المتوازن كافٍ، وآخرون يذكرون ضيق الوقت والتوتر", keywords: ["Nahrungsergänzungsmittel", "Ernährung", "Stress"], simplified: "المكملات الغذائية تحتوي فيتامينات ومعادن لدعم الصحة. الخبراء يؤكدون أن الطعام المتوازن كافٍ، وآخرون يذكرون ضيق الوقت والإجهاد كأسباب لاستخدامها", imagine: "💊🥗" };
+HELP_DATA["mündlich_exam42_q2"] = { text: "nicht notwendig → gesunde Ernährung → wichtiger → manchmal sinnvoll", meaning: "المكملات ليست ضرورية دائماً، فالغذاء الصحي أهم، أحياناً تكون مفيدة لكن بحذر", keywords: ["nicht notwendig", "gesund", "vorsichtig"], simplified: "المكملات الغذائية ليست ضرورية دائماً. الغذاء الصحي أهم، لكنها قد تكون مفيدة في بعض الأحيان مع توخي الحذر", imagine: "🥦💊" };
+HELP_DATA["mündlich_exam42_q3"] = { text: "Vitamine → müde → genommen → kurz → besser → Ernährung → verbessert → Gefühl gut", meaning: "تجربة الفيتامينات عند الإرهاق، ثم تحسين النظام الغذائي", keywords: ["Vitamine", "müde", "Ernährung"], simplified: "تناولت فيتامينات لأني كنت أشعر بالإرهاق. لاحقاً حسنت نظامي الغذائي وشعرت بتحسن كبير بفضل ذلك", imagine: "🔋🍎" };
+
 
 // ============================================
 // helpSystem.js - نظام المساعدة المتكامل (الإصدار النهائي)
-// يدعم: hören1, hören2, hören3, lesen1, lesen2, lesen3, sprach1, sprach2
+// يدعم: hören1, hören2, hören3, lesen1, lesen2, lesen3, sprach1, sprach2, mündlich
 // ============================================
 
 let helpLayerActive = false;
@@ -15020,7 +15234,23 @@ function getCorrectQuestions(skill, examId) {
         'sprach2_exam39': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam40': [1,2,3,4,5,6,7,8,9,10],
         'sprach2_exam41': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam42': [1,2,3,4,5,6,7,8,9,10],
         'sprach2_exam43': [1,2,3,4,5,6,7,8,9,10], 'sprach2_exam44': [1,2,3,4,5,6,7,8,9,10],
-        'sprach2_exam45': [1,2,3,4,5,6,7,8,9,10]
+        'sprach2_exam45': [1,2,3,4,5,6,7,8,9,10],
+        
+        // Mündlich Teil 1-42 (42 امتحان - 3 أسئلة)
+        'mündlich_exam1': [1,2,3], 'mündlich_exam2': [1,2,3], 'mündlich_exam3': [1,2,3],
+        'mündlich_exam4': [1,2,3], 'mündlich_exam5': [1,2,3], 'mündlich_exam6': [1,2,3],
+        'mündlich_exam7': [1,2,3], 'mündlich_exam8': [1,2,3], 'mündlich_exam9': [1,2,3],
+        'mündlich_exam10': [1,2,3], 'mündlich_exam11': [1,2,3], 'mündlich_exam12': [1,2,3],
+        'mündlich_exam13': [1,2,3], 'mündlich_exam14': [1,2,3], 'mündlich_exam15': [1,2,3],
+        'mündlich_exam16': [1,2,3], 'mündlich_exam17': [1,2,3], 'mündlich_exam18': [1,2,3],
+        'mündlich_exam19': [1,2,3], 'mündlich_exam20': [1,2,3], 'mündlich_exam21': [1,2,3],
+        'mündlich_exam22': [1,2,3], 'mündlich_exam23': [1,2,3], 'mündlich_exam24': [1,2,3],
+        'mündlich_exam25': [1,2,3], 'mündlich_exam26': [1,2,3], 'mündlich_exam27': [1,2,3],
+        'mündlich_exam28': [1,2,3], 'mündlich_exam29': [1,2,3], 'mündlich_exam30': [1,2,3],
+        'mündlich_exam31': [1,2,3], 'mündlich_exam32': [1,2,3], 'mündlich_exam33': [1,2,3],
+        'mündlich_exam34': [1,2,3], 'mündlich_exam35': [1,2,3], 'mündlich_exam36': [1,2,3],
+        'mündlich_exam37': [1,2,3], 'mündlich_exam38': [1,2,3], 'mündlich_exam39': [1,2,3],
+        'mündlich_exam40': [1,2,3], 'mündlich_exam41': [1,2,3], 'mündlich_exam42': [1,2,3]
     };
     return correctMap[`${skill}_exam${examId}`] || [];
 }
@@ -15046,6 +15276,7 @@ function getCurrentSkill() {
     if (document.getElementById('teil3')?.style.display === 'block') return 'lesen3';
     if (document.getElementById('sprach1')?.style.display === 'block') return 'sprach1';
     if (document.getElementById('sprach2')?.style.display === 'block') return 'sprach2';
+    if (document.getElementById('mündlich')?.style.display === 'block') return 'mündlich';
     return 'hoeren1';
 }
 
@@ -15059,6 +15290,7 @@ function getActiveSection() {
     if (document.getElementById('teil3')?.style.display === 'block') return document.getElementById('teil3');
     if (document.getElementById('sprach1')?.style.display === 'block') return document.getElementById('sprach1');
     if (document.getElementById('sprach2')?.style.display === 'block') return document.getElementById('sprach2');
+    if (document.getElementById('mündlich')?.style.display === 'block') return document.getElementById('mündlich');
     return null;
 }
 
@@ -15298,4 +15530,4 @@ if (document.readyState === 'loading') {
     setupExamChangeListener();
 }
 
-console.log('✅ helpSystem.js تم التحميل بنجاح (يدعم hören1, hören2, hören3, lesen1, lesen2, lesen3, sprach1, sprach2)');
+console.log('✅ helpSystem.js تم التحميل بنجاح (يدعم hören1, hören2, hören3, lesen1, lesen2, lesen3, sprach1, sprach2, mündlich)');
