@@ -2618,10 +2618,3 @@ async function getUserStatusForLock() {
     }
 }
 
-// مراقبة الصفحة لتطبيق القفل عند تغيير المحتوى
-const lockObserver = new MutationObserver(() => {
-    let listPage = document.getElementById('list');
-    if (listPage && listPage.classList.contains('active')) {
-        setTimeout(applyLockToExams, 300);
-    }
-});
