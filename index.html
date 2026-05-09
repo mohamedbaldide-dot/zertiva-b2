@@ -463,6 +463,39 @@
         if (e.key === 'ArrowLeft') prevImageModal();
     });
 </script>
-
+<script>
+    // حل مشكلة الـ Widget على الهاتف
+    function fixMobileWidget() {
+        const widget = document.getElementById('reviewsWidget');
+        if (!widget) return;
+        
+        // إزالة التمدد التلقائي على الهاتف
+        if (window.innerWidth <= 768) {
+            // منع التمدد التلقائي بعد 2 ثانية
+            const originalTimeout = setTimeout;
+            clearTimeout(window.widgetTimeout);
+            if (widget.classList.contains('expanded')) {
+                widget.classList.remove('expanded');
+                widget.classList.add('collapsed');
+            }
+            
+            // عند الضغط على الـ Widget
+            widget.addEventListener('click', function(e) {
+                if (e.target.tagName === 'IMG') return;
+                e.stopPropagation();
+                
+                if (widget.classList.contains('active')) {
+                    widget.classList.remove('active');
+                } else {
+                    widget.classList.add('active');
+                }
+            });
+        }
+    }
+    
+    // تنفيذ عند التحميل وعند تغيير حجم الشاشة
+    fixMobileWidget();
+    window.addEventListener('resize', fixMobileWidget);
+</script>
 </body>
 </html>
