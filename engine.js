@@ -1011,6 +1011,15 @@ function checkSprach1Exam() {
 
 // ========== نظام True/False ==========
 window.buildTrueFalseExam = function(container, questions, note) {
+  // التحقق من وجود الأسئلة
+  if (!questions || !Array.isArray(questions) || questions.length === 0) {
+    console.error("❌ خطأ: لا توجد أسئلة في هذا الامتحان");
+    if (container) {
+      container.innerHTML = '<div style="text-align:center; color:#ff6b6b; padding:30px; background:#fff; border-radius:12px;">⚠️ حدث خطأ في تحميل الامتحان. يرجى المحاولة مرة أخرى.</div>';
+    }
+    return;
+  }
+  
   container.innerHTML = '';
   
   if (window._trueFalseUserAnswers) {
@@ -1209,6 +1218,17 @@ window.buildTrueFalseExam = function(container, questions, note) {
 };
 
 function checkTrueFalseExam(container, questions, answers, correctNumbersContainer) {
+  // التحقق من وجود الأسئلة
+  if (!questions || !Array.isArray(questions) || questions.length === 0) {
+    console.error("❌ خطأ: لا توجد أسئلة للتصحيح");
+    const resultDiv = document.getElementById('truefalseResult');
+    if (resultDiv) {
+      resultDiv.innerHTML = "⚠️ لا توجد أسئلة في هذا الامتحان";
+      resultDiv.style.display = 'block';
+    }
+    return;
+  }
+  
   let score = 0;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
