@@ -1899,49 +1899,25 @@ function renderTeil3Exam() {
     
     card.appendChild(select);
     
-    // إضافة خاصية النقر على الفقرة لربطها
+    // إضافة خاصية النقر على الفقرة لربطها (تحديد الفقرة أولاً)
     card.onclick = (function(idx) {
       return function(e) {
         e.stopPropagation();
         
-        if (window._selectedTeil3Item !== undefined) {
-          const selectedIdx = window._selectedTeil3Item;
-          const selectedAnswer = teil3UserAnswers[selectedIdx];
-          
-          let targetSitIdx = null;
-          for (let s = 0; s < situations.length; s++) {
-            let isUsed = false;
-            for (let j = 0; j < items.length; j++) {
-              if (teil3UserAnswers[j] === s) {
-                isUsed = true;
-                break;
-              }
-            }
-            if (!isUsed) {
-              targetSitIdx = s;
-              break;
-            }
-          }
-          
-          if (targetSitIdx !== null) {
-            teil3UserAnswers[selectedIdx] = targetSitIdx;
-            const selectElem = document.getElementById(`teil3_select_${selectedIdx}`);
-            if (selectElem) selectElem.value = targetSitIdx;
-            updateCardStyle(selectedIdx);
-            
-            const sitDiv = document.getElementById(`teil3_sit_${targetSitIdx}`);
-            if (sitDiv) {
-              sitDiv.style.backgroundColor = "#d4edda";
-              sitDiv.style.border = "2px solid #28a745";
-              sitDiv.classList.add('used');
-            }
-          }
-          
-          document.querySelectorAll('.question-card').forEach(c => c.style.border = "1px solid #e0e0e0");
+        // إلغاء تحديد أي عنصر محدد سابقاً
+        if (window._selectedTeil3Item !== undefined && window._selectedTeil3Item !== idx) {
+          const prevCard = document.getElementById(`teil3_card_${window._selectedTeil3Item}`);
+          if (prevCard) prevCard.style.border = "1px solid #e0e0e0";
+        }
+        
+        if (window._selectedTeil3Item === idx) {
+          // إلغاء التحديد إذا تم الضغط على نفس الفقرة
+          card.style.border = "1px solid #e0e0e0";
           delete window._selectedTeil3Item;
         } else {
-          window._selectedTeil3Item = idx;
+          // تحديد الفقرة الحالية
           card.style.border = "3px solid #007bff";
+          window._selectedTeil3Item = idx;
         }
       };
     })(i);
@@ -1982,54 +1958,6 @@ function renderTeil3Exam() {
   const situationsList = document.createElement("div");
   situationsList.id = "teil3_situations_list";
   
-  // إضافة خيار "لا يوجد عنوان" في القائمة اليمنى
-  const noTitleDiv = document.createElement("div");
-  noTitleDiv.className = "teil3-situation-item";
-  noTitleDiv.id = "teil3_sit_none";
-  noTitleDiv.style.padding = "10px 12px";
-  noTitleDiv.style.marginBottom = "8px";
-  noTitleDiv.style.backgroundColor = "#fff3cd";
-  noTitleDiv.style.borderRadius = "6px";
-  noTitleDiv.style.border = "1px solid #ffc107";
-  noTitleDiv.style.fontSize = "13px";
-  noTitleDiv.style.cursor = "pointer";
-  noTitleDiv.style.fontWeight = "bold";
-  noTitleDiv.innerHTML = "⚠️ هذه الفقرة لا يوجد لها عنوان";
-  
-  noTitleDiv.onclick = function(e) {
-    e.stopPropagation();
-    
-    if (window._selectedTeil3Item !== undefined) {
-      const selectedIdx = window._selectedTeil3Item;
-      teil3UserAnswers[selectedIdx] = null;
-      const selectElem = document.getElementById(`teil3_select_${selectedIdx}`);
-      if (selectElem) selectElem.value = "none";
-      updateCardStyle(selectedIdx);
-      
-      document.querySelectorAll('.question-card').forEach(c => c.style.border = "1px solid #e0e0e0");
-      delete window._selectedTeil3Item;
-    } else {
-      let emptyItemIndex = -1;
-      for (let j = 0; j < items.length; j++) {
-        if (teil3UserAnswers[j] === undefined || teil3UserAnswers[j] === null || teil3UserAnswers[j] === "") {
-          emptyItemIndex = j;
-          break;
-        }
-      }
-      
-      if (emptyItemIndex !== -1) {
-        teil3UserAnswers[emptyItemIndex] = null;
-        const selectElem = document.getElementById(`teil3_select_${emptyItemIndex}`);
-        if (selectElem) selectElem.value = "none";
-        updateCardStyle(emptyItemIndex);
-      } else {
-        alert("⚠️ جميع الفقرات تم ربطها بالفعل!");
-      }
-    }
-  };
-  
-  situationsList.appendChild(noTitleDiv);
-  
   for (let i = 0; i < situations.length; i++) {
     const sitDiv = document.createElement("div");
     sitDiv.className = "teil3-situation-item";
@@ -2068,15 +1996,24 @@ function renderTeil3Exam() {
           teil3UserAnswers[selectedIdx] = sitIdx;
           const selectElem = document.getElementById(`teil3_select_${selectedIdx}`);
           if (selectElem) selectElem.value = sitIdx;
-          updateCardStyle(selectedIdx);
           
+          // تحديث لون البطاقة
+          const cardElem = document.getElementById(`teil3_card_${selectedIdx}`);
+          if (cardElem) {
+            cardElem.style.backgroundColor = "#e8f5e9";
+            cardElem.style.border = "2px solid #28a745";
+          }
+          
+          // تحديث لون العنوان في القائمة اليمنى
           sitDiv.style.backgroundColor = "#d4edda";
           sitDiv.style.border = "2px solid #28a745";
           sitDiv.classList.add('used');
           
+          // إلغاء التحديد
           document.querySelectorAll('.question-card').forEach(c => c.style.border = "1px solid #e0e0e0");
           delete window._selectedTeil3Item;
         } else {
+          // إذا لم يكن هناك فقرة محددة، نبحث عن فقرة فارغة
           let emptyItemIndex = -1;
           for (let j = 0; j < items.length; j++) {
             if (teil3UserAnswers[j] === undefined || teil3UserAnswers[j] === null || teil3UserAnswers[j] === "") {
@@ -2089,7 +2026,12 @@ function renderTeil3Exam() {
             teil3UserAnswers[emptyItemIndex] = sitIdx;
             const selectElem = document.getElementById(`teil3_select_${emptyItemIndex}`);
             if (selectElem) selectElem.value = sitIdx;
-            updateCardStyle(emptyItemIndex);
+            
+            const cardElem = document.getElementById(`teil3_card_${emptyItemIndex}`);
+            if (cardElem) {
+              cardElem.style.backgroundColor = "#e8f5e9";
+              cardElem.style.border = "2px solid #28a745";
+            }
             
             sitDiv.style.backgroundColor = "#d4edda";
             sitDiv.style.border = "2px solid #28a745";
