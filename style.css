@@ -409,6 +409,13 @@ body:has(#exam.active) .top-bar {
     color: #38bdf8;
 }
 
+/* تنسيق تسجيل الدخول - رمادي غامق */
+.btn-login-top {
+    background: #2d3748;
+    color: white;
+    border: none;
+}
+
 .btn-login-top:hover {
     background: #38bdf8;
     color: #0a0e1a;
@@ -630,6 +637,48 @@ body:has(#exam.active) .top-bar {
     }
     100% {
         transform: translateX(-50%);
+    }
+}
+
+/* ========================================
+   إصلاح مشكلة الـ Widget على الهاتف - منع التمدد الزائد
+   ======================================== */
+
+@media (max-width: 768px) {
+    .reviews-widget.expanded .widget-expanded-content {
+        display: none !important;
+    }
+    
+    .reviews-widget.expanded .widget-bubble {
+        display: inline-flex !important;
+    }
+    
+    .reviews-widget.collapsed-keep .widget-expanded-content {
+        display: none !important;
+    }
+    
+    .reviews-widget.collapsed-keep .widget-bubble {
+        display: inline-flex !important;
+    }
+    
+    .reviews-widget {
+        cursor: pointer;
+    }
+    
+    .reviews-widget.active .widget-expanded-content {
+        display: block !important;
+        position: fixed;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 350px;
+        z-index: 1000;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    
+    .reviews-widget.active .widget-bubble {
+        display: none !important;
     }
 }
 
@@ -1262,56 +1311,6 @@ body:has(#exam.active) .profile-icon {
         text-align: center;
     }
     
-    /* إصلاح الـ Reviews Widget على الهاتف */
-    .reviews-widget {
-        margin-top: 20px;
-        width: 100%;
-    }
-    
-    .widget-bubble {
-        padding: 6px 12px;
-        font-size: 0.75rem;
-        margin: 0 auto;
-        display: inline-flex;
-    }
-    
-    .widget-expanded-content {
-        padding: 10px 12px;
-        width: 100%;
-        box-sizing: border-box;
-        max-height: 280px;
-        overflow-y: auto;
-    }
-    
-    .widget-header {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .widget-header-title {
-        font-size: 0.8rem;
-        text-align: center;
-    }
-    
-    .widget-subtitle {
-        font-size: 0.7rem;
-        text-align: center;
-    }
-    
-    .widget-slider-container {
-        width: 100%;
-        overflow-x: auto;
-    }
-    
-    .widget-slider {
-        gap: 8px;
-    }
-    
-    .widget-slide {
-        width: 50px;
-        height: 50px;
-    }
-    
     /* إصلاح الـ Features Section على الهاتف */
     .features-section {
         padding: 40px 5%;
@@ -1354,23 +1353,6 @@ body:has(#exam.active) .profile-icon {
 }
 
 @media (max-width: 480px) {
-    .widget-expanded-content {
-        max-height: 260px;
-    }
-    
-    .widget-slide {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .widget-header-title {
-        font-size: 0.7rem;
-    }
-    
-    .widget-subtitle {
-        font-size: 0.65rem;
-    }
-    
     .hero-title {
         font-size: 1.6rem;
     }
@@ -1385,40 +1367,27 @@ body:has(#exam.active) .profile-icon {
 }
 
 /* ========================================
-   تنسيق مربع النتيجة الجديد (بطاقة حمراء في وسط الشاشة)
+   تنسيق النتائج - الألوان
    ======================================== */
 
-.result-box {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ff6b6b;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 40px;
-    text-align: center;
+.correct-answer-card {
+    background-color: #d4edda !important;
+    border: 1px solid #28a745 !important;
+}
+
+.wrong-answer-card {
+    background-color: #fff3cd !important;
+    border: 1px solid #ffc107 !important;
+}
+
+.correct-message {
+    color: #28a745;
+    font-size: 13px;
+    margin-top: 8px;
     font-weight: bold;
-    font-size: 16px;
-    z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    width: auto;
-    min-width: 180px;
-    animation: fadeInUp 0.3s ease;
-    margin: 0 !important;
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-}
-
+/* تنسيق النتيجة */
 .result-box {
     position: fixed;
     bottom: 30px;
