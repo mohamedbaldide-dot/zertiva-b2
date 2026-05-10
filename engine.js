@@ -631,6 +631,11 @@ function checkSprach2Exam() {
     resultDiv.style.backgroundColor = "#f8d7da";
     resultDiv.style.color = "#721c24";
   }
+  
+  // حفظ النتيجة
+  if (typeof window.saveExamResultGlobal === "function") {
+    window.saveExamResultGlobal(currentSprach2Data.skill || "sprach2", currentSprach2Data.id || 1, parseFloat(finalScore));
+  }
 }
 
 // ========== نظام Sprachbausteine Teil 1 ==========
@@ -1019,6 +1024,11 @@ function checkSprach1Exam() {
     resultDiv.style.backgroundColor = "#f8d7da";
     resultDiv.style.color = "#721c24";
   }
+  
+  // حفظ النتيجة
+  if (typeof window.saveExamResultGlobal === "function") {
+    window.saveExamResultGlobal(currentSprach1Data.skill || "sprach1", currentSprach1Data.id || 1, parseFloat(finalScore));
+  }
 }
 
 // ========== نظام True/False (Hören Teil 1,2,3) ==========
@@ -1221,11 +1231,15 @@ window.buildTrueFalseExam = function(container, questions, note) {
   buttonContainer.appendChild(buttonsDiv);
   container.appendChild(buttonContainer);
   
-  const resultDiv = document.createElement('div');
-  resultDiv.id = 'truefalseResult';
-  resultDiv.className = 'result-box';
-  resultDiv.style.display = 'none';
-  container.appendChild(resultDiv);
+  // ✅ إنشاء resultDiv بشكل صحيح قبل التصحيح
+  let resultDiv = document.getElementById('truefalseResult');
+  if (!resultDiv) {
+    resultDiv = document.createElement('div');
+    resultDiv.id = 'truefalseResult';
+    resultDiv.className = 'result-box';
+    resultDiv.style.display = 'none';
+    container.appendChild(resultDiv);
+  }
 };
 
 function checkTrueFalseExam(container, questions, answers, correctNumbersContainer) {
@@ -1313,33 +1327,43 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
   }
   
   const finalScore = (score * pointsPerQuestion).toFixed(2);
-  const resultDiv = document.getElementById('truefalseResult');
-  if (resultDiv) {
-    resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
-    resultDiv.style.display = 'block';
-    resultDiv.style.backgroundColor = '#2c3e66';
-    resultDiv.style.color = 'white';
-    
-    if (finalScore >= 20) {
-      resultDiv.style.backgroundColor = '#28a745';
-    } else if (finalScore >= 15) {
-      resultDiv.style.backgroundColor = '#ffc107';
-      resultDiv.style.color = '#333';
-    } else {
-      resultDiv.style.backgroundColor = '#dc3545';
-    }
+  
+  // ✅ التأكد من وجود resultDiv وإظهاره بشكل صحيح
+  let resultDiv = document.getElementById('truefalseResult');
+  if (!resultDiv) {
+    resultDiv = document.createElement('div');
+    resultDiv.id = 'truefalseResult';
+    resultDiv.className = 'result-box';
+    container.appendChild(resultDiv);
   }
   
-  // ✅ إصلاح مشكلة Hören Teil 2 & 3: التأكد من ظهور النتيجة وجعلها مرئية
-  if (resultDiv) {
-    resultDiv.style.display = 'block';
-    resultDiv.style.visibility = 'visible';
-    resultDiv.style.opacity = '1';
-    // تمرير سلس لبطاقة النتيجة
-    setTimeout(() => {
-      resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 100);
+  resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
+  resultDiv.style.display = 'block';
+  resultDiv.style.visibility = 'visible';
+  resultDiv.style.opacity = '1';
+  
+  if (finalScore >= 20) {
+    resultDiv.style.backgroundColor = '#28a745';
+    resultDiv.style.color = 'white';
+  } else if (finalScore >= 15) {
+    resultDiv.style.backgroundColor = '#ffc107';
+    resultDiv.style.color = '#333';
+  } else {
+    resultDiv.style.backgroundColor = '#dc3545';
+    resultDiv.style.color = 'white';
   }
+  
+  // ✅ حفظ النتيجة
+  if (typeof window.saveExamResultGlobal === "function") {
+    const skill = container.id || "hoeren";
+    const examId = window.currentExamId || 1;
+    window.saveExamResultGlobal(skill, examId, parseFloat(finalScore));
+  }
+  
+  // ✅ التمرير إلى النتيجة
+  setTimeout(() => {
+    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 100);
 }
 
 // ========== نظام Teil 1 (Lesen Teil 1 - Matching) ==========
@@ -1544,6 +1568,11 @@ function checkMatchingExam() {
     resultDiv.style.backgroundColor = "#f8d7da";
     resultDiv.style.color = "#721c24";
   }
+  
+  // حفظ النتيجة
+  if (typeof window.saveExamResultGlobal === "function") {
+    window.saveExamResultGlobal("lesen1", currentMatchingExamData.id || 1, parseFloat(finalScore));
+  }
 }
 
 // ========== نظام Teil 2 (Lesen Teil 2) ==========
@@ -1694,7 +1723,6 @@ function renderTeil2Exam() {
   resetBtn.style.borderRadius = "6px";
   resetBtn.style.fontSize = "16px";
   resetBtn.style.fontWeight = "bold";
-  // ✅ إصلاح reset في Teil 2: حذف الألوان والعلامات بالكامل
   resetBtn.onclick = function() {
     teil2UserAnswers = {};
     questionsColumn.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
@@ -1702,13 +1730,11 @@ function renderTeil2Exam() {
       const card = document.getElementById(`teil2_q_${i}`);
       if (card) {
         card.classList.remove("correct-answer-card", "wrong-answer-card");
-        // إعادة الخلفية الأصلية للبطاقة
         card.style.backgroundColor = "#fafafa";
         card.style.border = "1px solid #e0e0e0";
       }
       const oldMsg = document.querySelector(`#teil2_q_${i} .correct-message`);
       if (oldMsg) oldMsg.remove();
-      // إعادة تعيين ألوان خيارات الإجابة
       const optionLabels = document.querySelectorAll(`#teil2_q_${i} .option-label`);
       optionLabels.forEach(label => {
         label.style.backgroundColor = "";
@@ -1809,45 +1835,27 @@ function checkTeil2Exam() {
     resultDiv.style.backgroundColor = "#f8d7da";
     resultDiv.style.color = "#721c24";
   }
+  
+  // حفظ النتيجة
+  if (typeof window.saveExamResultGlobal === "function") {
+    window.saveExamResultGlobal("lesen2", currentTeil2Data.id || 1, parseFloat(finalScore));
+  }
 }
 
-// ========== نظام Teil 3 (Lesen Teil 3) ==========
+// ========== نظام Teil 3 (Lesen Teil 3) - الطريقتان معًا ==========
 let currentTeil3Data = null;
-let teil3UserAnswers = {};
+let teil3UserAnswers = {};      // { itemIndex: situationIndex }
+let teil3SelectedItem = null;   // للربط: الفقرة المختارة أولاً
+let teil3SelectedSit = null;    // للربط: العنوان المختار أولاً
 
 window.loadTeil3Exam = function(examData) {
   console.log("🟢 loadTeil3Exam", examData.title);
   currentTeil3Data = examData;
   teil3UserAnswers = {};
+  teil3SelectedItem = null;
+  teil3SelectedSit = null;
   renderTeil3Exam();
 };
-
-// دالة مساعدة لتحديث حالة الألوان في القائمة اليمنى بناءً على الإجابات الحالية
-function updateTeil3SituationColors() {
-  const items = currentTeil3Data.items;
-  const situations = currentTeil3Data.situations;
-  for (let i = 0; i < situations.length; i++) {
-    const sitDiv = document.getElementById(`teil3_sit_${i}`);
-    if (sitDiv) {
-      let isUsed = false;
-      for (let j = 0; j < items.length; j++) {
-        if (teil3UserAnswers[j] === i) {
-          isUsed = true;
-          break;
-        }
-      }
-      if (isUsed) {
-        sitDiv.style.backgroundColor = "#d4edda";
-        sitDiv.style.border = "2px solid #28a745";
-        sitDiv.classList.add('used');
-      } else {
-        sitDiv.style.backgroundColor = "white";
-        sitDiv.style.border = "1px solid #ddd";
-        sitDiv.classList.remove('used');
-      }
-    }
-  }
-}
 
 function renderTeil3Exam() {
   const container = document.getElementById("teil3");
@@ -1889,6 +1897,7 @@ function renderTeil3Exam() {
     card.style.backgroundColor = "#fafafa";
     card.style.transition = "all 0.2s";
     card.style.cursor = "pointer";
+    card.setAttribute("data-item-index", i);
     
     const itemTitle = document.createElement("div");
     itemTitle.style.fontWeight = "bold";
@@ -1906,60 +1915,126 @@ function renderTeil3Exam() {
     itemText.innerHTML = item.text;
     card.appendChild(itemText);
     
-    // ✅ إضافة لون رمادي فاتح إذا كان هناك إجابة مختارة
-    const currentAnswer = teil3UserAnswers[i];
-    if (currentAnswer !== undefined && currentAnswer !== null && currentAnswer !== "") {
-      card.style.backgroundColor = "#e8f5e9";
-      card.style.border = "2px solid #28a745";
+    // ✅ الطريقة الأصلية: Select dropdown
+    const select = document.createElement("select");
+    select.className = "teil3-original-select";
+    select.style.width = "100%";
+    select.style.padding = "8px";
+    select.style.marginTop = "10px";
+    select.style.borderRadius = "8px";
+    select.style.border = "1px solid #ccc";
+    select.id = `teil3_select_${i}`;
+    
+    const defaultOption = document.createElement("option");
+    defaultOption.value = "";
+    defaultOption.textContent = "-- اختر العنوان --";
+    select.appendChild(defaultOption);
+    
+    const noTitleOption = document.createElement("option");
+    noTitleOption.value = "none";
+    noTitleOption.textContent = "⚠️ هذه الفقرة لا يوجد لها عنوان";
+    select.appendChild(noTitleOption);
+    
+    for (let s = 0; s < situations.length; s++) {
+      const option = document.createElement("option");
+      option.value = s;
+      option.textContent = `${String.fromCharCode(97+s)}. ${situations[s]}`;
+      select.appendChild(option);
     }
     
-    // ✅ النقر على الفقرة لربطها بأول عنوان غير مستخدم
-    card.onclick = (function(idx) {
+    const currentAnswer = teil3UserAnswers[i];
+    if (currentAnswer === null) {
+      select.value = "none";
+    } else if (currentAnswer !== undefined && currentAnswer !== "") {
+      select.value = currentAnswer;
+    }
+    
+    select.onchange = (function(idx) {
+      return function() {
+        let val = select.value;
+        if (val === "none") {
+          teil3UserAnswers[idx] = null;
+        } else if (val !== "") {
+          teil3UserAnswers[idx] = parseInt(val);
+        } else {
+          delete teil3UserAnswers[idx];
+        }
+        updateCardStyle(idx);
+      };
+    })(i);
+    
+    card.appendChild(select);
+    
+    // ✅ الطريقة الجديدة: النقر على الفقرة للربط (بدون auto matching)
+    card.onclick = (function(idx, event) {
       return function(e) {
         e.stopPropagation();
         
-        // إذا كانت الفقرة مرتبطة بالفعل، قم بإلغاء الربط
-        if (teil3UserAnswers[idx] !== undefined && teil3UserAnswers[idx] !== null && teil3UserAnswers[idx] !== "") {
-          const oldSitIdx = teil3UserAnswers[idx];
-          delete teil3UserAnswers[idx];
-          // إعادة حالة العنوان في القائمة اليمنى
-          const sitDiv = document.getElementById(`teil3_sit_${oldSitIdx}`);
-          if (sitDiv) {
-            sitDiv.style.backgroundColor = "white";
-            sitDiv.style.border = "1px solid #ddd";
-            sitDiv.classList.remove('used');
+        // منع إذا كان النقر على الـ select
+        if (e.target.tagName === 'SELECT') return;
+        
+        // حالة 1: يوجد عنوان مختار مسبقًا من القائمة اليمنى
+        if (teil3SelectedSit !== null) {
+          // لا نربط إذا كان هناك ربط موجود مسبقًا
+          if (teil3UserAnswers[idx] !== undefined && teil3UserAnswers[idx] !== null && teil3UserAnswers[idx] !== "") {
+            alert("⚠️ هذه الفقرة مرتبطة بالفعل بعنوان!");
+            teil3SelectedSit = null;
+            clearTeil3SituationSelection();
+            return;
           }
-          // إعادة حالة الفقرة
-          card.style.backgroundColor = "#fafafa";
-          card.style.border = "1px solid #e0e0e0";
+          // ربط العنوان المختار مع هذه الفقرة
+          teil3UserAnswers[idx] = teil3SelectedSit;
+          updateCardStyle(idx);
+          // تحديث القائمة اليمنى
+          const sitDiv = document.getElementById(`teil3_sit_${teil3SelectedSit}`);
+          if (sitDiv) {
+            sitDiv.style.backgroundColor = "#d4edda";
+            sitDiv.style.border = "2px solid #28a745";
+            sitDiv.classList.add('used');
+          }
+          // تحديث الـ select
+          const selectElem = document.getElementById(`teil3_select_${idx}`);
+          if (selectElem) selectElem.value = teil3SelectedSit;
+          // إلغاء التحديد
+          teil3SelectedSit = null;
+          clearTeil3SituationSelection();
           return;
         }
         
-        // البحث عن عنوان غير مستخدم لربطه
-        for (let s = 0; s < situations.length; s++) {
-          let isUsed = false;
-          for (let j = 0; j < items.length; j++) {
-            if (teil3UserAnswers[j] === s) {
-              isUsed = true;
-              break;
-            }
-          }
-          if (!isUsed) {
-            teil3UserAnswers[idx] = s;
-            card.style.backgroundColor = "#e8f5e9";
-            card.style.border = "2px solid #28a745";
-            
-            const sitDiv = document.getElementById(`teil3_sit_${s}`);
-            if (sitDiv) {
-              sitDiv.style.backgroundColor = "#d4edda";
-              sitDiv.style.border = "2px solid #28a745";
-              sitDiv.classList.add('used');
-            }
-            break;
-          }
+        // حالة 2: فقرة مختارة مسبقًا (نضغط على فقرة أخرى لربطها مع عنوان مختار لاحقًا)
+        if (teil3SelectedItem !== null) {
+          alert("⚠️ قم أولاً باختيار عنوان من القائمة اليمنى!");
+          return;
+        }
+        
+        // حالة 3: لا يوجد عنوان مختار، نختار هذه الفقرة وننتظر اختيار عنوان
+        if (teil3SelectedItem === null) {
+          // إلغاء تحديد أي فقرة أخرى
+          clearTeil3ItemSelection();
+          teil3SelectedItem = idx;
+          card.style.backgroundColor = "#c4b5fd";
+          card.style.border = "2px solid #7c6ce6";
         }
       };
     })(i);
+    
+    function updateCardStyle(idx) {
+      const answer = teil3UserAnswers[idx];
+      const cardDiv = document.getElementById(`teil3_card_${idx}`);
+      if (answer !== undefined && answer !== null && answer !== "") {
+        cardDiv.style.backgroundColor = "#e8f5e9";
+        cardDiv.style.border = "2px solid #28a745";
+      } else {
+        cardDiv.style.backgroundColor = "#fafafa";
+        cardDiv.style.border = "1px solid #e0e0e0";
+      }
+    }
+    
+    const currentAns = teil3UserAnswers[i];
+    if (currentAns !== undefined && currentAns !== null && currentAns !== "") {
+      card.style.backgroundColor = "#e8f5e9";
+      card.style.border = "2px solid #28a745";
+    }
     
     itemsGrid.appendChild(card);
   }
@@ -2015,16 +2090,18 @@ function renderTeil3Exam() {
       sitDiv.classList.add('used');
     }
     
-    // ✅ النقر على العنوان: إذا كان مستخدمًا → إلغاء الربط، وإلا → ربطه بأول فقرة فارغة
+    // ✅ الطريقة الجديدة: النقر على العنوان للربط مع فقرة مختارة مسبقًا
     sitDiv.onclick = (function(sitIdx) {
       return function(e) {
         e.stopPropagation();
         
-        // إذا كان العنوان مستخدمًا، قم بإلغاء ربطه
+        // إذا كان العنوان مستخدمًا بالفعل، إلغاء الربط
         if (sitDiv.classList.contains('used')) {
           for (let j = 0; j < items.length; j++) {
             if (teil3UserAnswers[j] === sitIdx) {
               delete teil3UserAnswers[j];
+              const selectElem = document.getElementById(`teil3_select_${j}`);
+              if (selectElem) selectElem.selectedIndex = 0;
               const cardElem = document.getElementById(`teil3_card_${j}`);
               if (cardElem) {
                 cardElem.style.backgroundColor = "#fafafa";
@@ -2039,38 +2116,50 @@ function renderTeil3Exam() {
           return;
         }
         
-        // البحث عن فقرة فارغة لربطها
-        let emptyItemIndex = -1;
-        for (let j = 0; j < items.length; j++) {
-          if (teil3UserAnswers[j] === undefined || teil3UserAnswers[j] === null || teil3UserAnswers[j] === "") {
-            emptyItemIndex = j;
-            break;
+        // حالة 1: يوجد فقرة مختارة مسبقًا
+        if (teil3SelectedItem !== null) {
+          // التحقق أن الفقرة ليست مرتبطة بالفعل
+          if (teil3UserAnswers[teil3SelectedItem] !== undefined && 
+              teil3UserAnswers[teil3SelectedItem] !== null && 
+              teil3UserAnswers[teil3SelectedItem] !== "") {
+            alert("⚠️ هذه الفقرة مرتبطة بالفعل!");
+            teil3SelectedItem = null;
+            clearTeil3ItemSelection();
+            return;
           }
-        }
-        
-        if (emptyItemIndex !== -1) {
-          teil3UserAnswers[emptyItemIndex] = sitIdx;
-          const cardElem = document.getElementById(`teil3_card_${emptyItemIndex}`);
-          if (cardElem) {
-            cardElem.style.backgroundColor = "#e8f5e9";
-            cardElem.style.border = "2px solid #28a745";
-          }
+          // ربط الفقرة المختارة مع هذا العنوان
+          teil3UserAnswers[teil3SelectedItem] = sitIdx;
+          updateCardStyle(teil3SelectedItem);
+          // تحديث الـ select
+          const selectElem = document.getElementById(`teil3_select_${teil3SelectedItem}`);
+          if (selectElem) selectElem.value = sitIdx;
+          // تحديث حالة العنوان
           sitDiv.style.backgroundColor = "#d4edda";
           sitDiv.style.border = "2px solid #28a745";
           sitDiv.classList.add('used');
-        } else {
-          alert("⚠️ جميع الفقرات تم ربطها بالفعل!");
+          // إلغاء التحديد
+          teil3SelectedItem = null;
+          clearTeil3ItemSelection();
+          return;
+        }
+        
+        // حالة 2: لا توجد فقرة مختارة، نختار هذا العنوان وننتظر اختيار فقرة
+        if (teil3SelectedSit === null) {
+          clearTeil3SituationSelection();
+          teil3SelectedSit = sitIdx;
+          sitDiv.style.backgroundColor = "#c4b5fd";
+          sitDiv.style.border = "2px solid #7c6ce6";
         }
       };
     })(i);
     
     sitDiv.onmouseenter = function() {
-      if (!this.classList.contains('used')) {
+      if (!this.classList.contains('used') && this.style.backgroundColor !== "#c4b5fd") {
         this.style.backgroundColor = "#e8e4ff";
       }
     };
     sitDiv.onmouseleave = function() {
-      if (!this.classList.contains('used')) {
+      if (!this.classList.contains('used') && this.style.backgroundColor !== "#c4b5fd") {
         this.style.backgroundColor = "white";
       }
     };
@@ -2111,20 +2200,32 @@ function renderTeil3Exam() {
   resetBtn.style.borderRadius = "6px";
   resetBtn.style.fontSize = "16px";
   resetBtn.style.fontWeight = "bold";
-  // ✅ إصلاح reset في Teil 3: إعادة كل شيء للحالة الأصلية
   resetBtn.onclick = function() {
     teil3UserAnswers = {};
+    teil3SelectedItem = null;
+    teil3SelectedSit = null;
+    
+    // إعادة تعيين الـ selects
+    document.querySelectorAll('#teil3 .teil3-original-select').forEach(select => {
+      select.selectedIndex = 0;
+    });
+    
     // إعادة تعيين الفقرات
     document.querySelectorAll('#teil3 .question-card').forEach(card => {
       card.style.backgroundColor = "#fafafa";
       card.style.border = "1px solid #e0e0e0";
     });
+    
     // إعادة تعيين العناوين في القائمة اليمنى
     document.querySelectorAll('#teil3_situations_list div').forEach(sitDiv => {
       sitDiv.style.backgroundColor = "white";
       sitDiv.style.border = "1px solid #ddd";
       sitDiv.classList.remove('used');
     });
+    
+    // ✅ حذف جميع رسائل التصحيح
+    document.querySelectorAll('#teil3 .correct-message').forEach(msg => msg.remove());
+    
     // إخفاء نتيجة التصحيح
     const resultDiv = document.getElementById("teil3Result");
     if (resultDiv) {
@@ -2143,10 +2244,38 @@ function renderTeil3Exam() {
   container.appendChild(resultDiv);
 }
 
+// دوال مساعدة لتنظيف التحديدات
+function clearTeil3ItemSelection() {
+  document.querySelectorAll('#teil3 .question-card').forEach(card => {
+    const idx = card.getAttribute('data-item-index');
+    if (teil3UserAnswers[idx] !== undefined && teil3UserAnswers[idx] !== null && teil3UserAnswers[idx] !== "") {
+      card.style.backgroundColor = "#e8f5e9";
+      card.style.border = "2px solid #28a745";
+    } else {
+      card.style.backgroundColor = "#fafafa";
+      card.style.border = "1px solid #e0e0e0";
+    }
+  });
+  teil3SelectedItem = null;
+}
+
+function clearTeil3SituationSelection() {
+  document.querySelectorAll('#teil3_situations_list div').forEach(sitDiv => {
+    if (!sitDiv.classList.contains('used')) {
+      sitDiv.style.backgroundColor = "white";
+      sitDiv.style.border = "1px solid #ddd";
+    }
+  });
+  teil3SelectedSit = null;
+}
+
 function checkTeil3Exam() {
   const items = currentTeil3Data.items;
   let score = 0;
   let total = items.length;
+  
+  // حذف رسائل التصحيح القديمة
+  document.querySelectorAll('#teil3 .correct-message').forEach(msg => msg.remove());
   
   for (let i = 0; i < total; i++) {
     const card = document.getElementById(`teil3_card_${i}`);
@@ -2165,8 +2294,6 @@ function checkTeil3Exam() {
     
     if (card) {
       card.classList.remove("correct-answer-card", "wrong-answer-card");
-      const oldMsg = card.querySelector(".correct-message");
-      if (oldMsg) oldMsg.remove();
       
       if (isCorrect && (userAnswer !== undefined && userAnswer !== null && userAnswer !== "")) {
         score++;
@@ -2184,6 +2311,18 @@ function checkTeil3Exam() {
         correctMsg.style.color = "#28a745";
         correctMsg.innerHTML = `✅ : ${correctText}`;
         card.appendChild(correctMsg);
+      }
+      
+      // تمييز الـ select إذا كان هناك خطأ
+      const selectElem = document.getElementById(`teil3_select_${i}`);
+      if (selectElem) {
+        if (isCorrect && userAnswer !== undefined && userAnswer !== null && userAnswer !== "") {
+          selectElem.style.backgroundColor = "#d4edda";
+          selectElem.style.border = "2px solid #28a745";
+        } else if (userAnswer !== undefined && userAnswer !== null && userAnswer !== "") {
+          selectElem.style.backgroundColor = "#fef0e0";
+          selectElem.style.border = "2px solid #e67e22";
+        }
       }
     }
   }
@@ -2204,6 +2343,11 @@ function checkTeil3Exam() {
   } else {
     resultDiv.style.backgroundColor = "#f8d7da";
     resultDiv.style.color = "#721c24";
+  }
+  
+  // حفظ النتيجة
+  if (typeof window.saveExamResultGlobal === "function") {
+    window.saveExamResultGlobal("lesen3", currentTeil3Data.id || 1, parseFloat(finalScore));
   }
 }
 
