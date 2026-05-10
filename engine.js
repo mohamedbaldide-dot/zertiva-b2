@@ -1959,9 +1959,9 @@ function updateTeil3CardStyle(idx) {
     card.style.backgroundColor = "#e9ecef";
     card.style.border = "1px solid #adb5bd";
   } else if (teil3SelectedItem === idx) {
-    // محددة حاليًا: أزرق فاتح
-    card.style.backgroundColor = "#a8d8ff";
-    card.style.border = "2px solid #4a90e2";
+    // ✅ محددة حاليًا: أزرق فاتح جدًا (مريح للعين)
+    card.style.backgroundColor = "#e0f2fe";
+    card.style.border = "1px solid #7dd3fc";
   } else {
     // افتراضي
     card.style.backgroundColor = "#fafafa";
@@ -2145,16 +2145,26 @@ function renderTeil3Exam() {
           return;
         }
         
-        // إذا كان هناك فقرة أخرى مختارة مسبقًا، قم بإلغاء تحديدها
+        // ✅ إذا كان هناك فقرة أخرى مختارة مسبقًا، قم بإلغاء تحديدها first
         if (teil3SelectedItem !== null && teil3SelectedItem !== idx) {
-          clearTeil3ItemSelection();
+          // إزالة التحديد من الفقرة السابقة
+          const prevCard = document.getElementById(`teil3_card_${teil3SelectedItem}`);
+          if (prevCard) {
+            const prevAnswer = teil3UserAnswers[teil3SelectedItem];
+            if (prevAnswer !== undefined && prevAnswer !== null && prevAnswer !== "") {
+              prevCard.style.backgroundColor = "#e9ecef";
+              prevCard.style.border = "1px solid #adb5bd";
+            } else {
+              prevCard.style.backgroundColor = "#fafafa";
+              prevCard.style.border = "1px solid #e0e0e0";
+            }
+          }
         }
         
         // تحديد الفقرة الحالية
         if (teil3SelectedItem === idx) {
           clearTeil3ItemSelection();
         } else {
-          clearTeil3ItemSelection();
           teil3SelectedItem = idx;
           updateTeil3CardStyle(idx);
         }
@@ -2247,30 +2257,33 @@ function renderTeil3Exam() {
           return;
         }
         
-        // إذا كان هناك عنوان آخر مختار مسبقًا، قم بإلغاء تحديده
+        // ✅ إذا كان هناك عنوان آخر مختار مسبقًا، قم بإلغاء تحديده
         if (teil3SelectedSit !== null && teil3SelectedSit !== sitIdx) {
-          clearTeil3SituationSelection();
+          const prevSitDiv = document.getElementById(`teil3_sit_${teil3SelectedSit}`);
+          if (prevSitDiv && !prevSitDiv.classList.contains('used')) {
+            prevSitDiv.style.backgroundColor = "white";
+            prevSitDiv.style.border = "1px solid #ddd";
+          }
         }
         
         // تحديد العنوان الحالي
         if (teil3SelectedSit === sitIdx) {
           clearTeil3SituationSelection();
         } else {
-          clearTeil3SituationSelection();
           teil3SelectedSit = sitIdx;
-          sitDiv.style.backgroundColor = "#a8d8ff";
-          sitDiv.style.border = "2px solid #4a90e2";
+          sitDiv.style.backgroundColor = "#e0f2fe";
+          sitDiv.style.border = "1px solid #7dd3fc";
         }
       };
     })(i);
     
     sitDiv.onmouseenter = function() {
-      if (!this.classList.contains('used') && this.style.backgroundColor !== "#a8d8ff") {
-        this.style.backgroundColor = "#e8e4ff";
+      if (!this.classList.contains('used') && this.style.backgroundColor !== "#e0f2fe") {
+        this.style.backgroundColor = "#f0f9ff";
       }
     };
     sitDiv.onmouseleave = function() {
-      if (!this.classList.contains('used') && this.style.backgroundColor !== "#a8d8ff") {
+      if (!this.classList.contains('used') && this.style.backgroundColor !== "#e0f2fe") {
         this.style.backgroundColor = "white";
       }
     };
