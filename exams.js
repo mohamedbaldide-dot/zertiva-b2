@@ -102,7 +102,7 @@ async function getUserStatusForExam() {
 
 // ========== قائمة Tips (نصائح) ==========
 const tipsExams = [
-  { id: 1, title: "نصائح وإرشادات ذهبية – Mündlich B2", enabled: true, hasFile: true }
+  { id: 1, title: "كيفاش تنجح بدكاء", enabled: true, hasFile: true }
 ];
 
 // ========== قائمة امتحانات Lesen Teil 1 ==========
