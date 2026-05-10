@@ -397,6 +397,27 @@ body:has(#exam.active) .top-bar {
     align-items: center;
 }
 
+/* ✅ زر الإعدادات الجديد */
+.settings-icon-btn {
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    font-size: 18px;
+    padding: 6px 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.settings-icon-btn:hover {
+    background: rgba(56, 189, 248, 0.2);
+    transform: scale(1.05);
+    border-color: #38bdf8;
+}
+
 .btn-login-top {
     padding: 6px 16px;
     border: 1.5px solid #38bdf8;
@@ -431,6 +452,131 @@ body:has(#exam.active) .top-bar {
 .profile-icon:hover {
     background: #334155;
     transform: scale(1.05);
+}
+
+/* ✅ نافذة إعدادات الحجم */
+.settings-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.settings-modal.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.settings-modal-content {
+    background: #0f172a;
+    border-radius: 28px;
+    padding: 25px 30px;
+    width: 90%;
+    max-width: 380px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    direction: rtl;
+}
+
+.settings-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.settings-modal-header h3 {
+    color: #38bdf8;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.close-settings-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    line-height: 1;
+}
+
+.close-settings-btn:hover {
+    color: #38bdf8;
+    transform: scale(1.1);
+}
+
+.settings-desc {
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.font-size-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.font-size-btn {
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid #38bdf8;
+    color: #38bdf8;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 8px 18px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.font-size-btn:hover {
+    background: #38bdf8;
+    color: #0a0e1a;
+    transform: scale(1.05);
+}
+
+.font-size-value {
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    background: #1e293b;
+    padding: 5px 15px;
+    border-radius: 30px;
+}
+
+.reset-font-btn {
+    background: rgba(100, 116, 139, 0.3);
+    border: 1px solid #64748b;
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    padding: 8px 18px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.reset-font-btn:hover {
+    background: #64748b;
+    color: white;
+    transform: scale(1.02);
 }
 
 /* ========================================
@@ -1188,9 +1334,9 @@ body:has(#exam.active) .top-bar {
    ======================================== */
 
 body:has(#list.active) .btn-login-top,
-body:has(#list.active) .subscribe-icon-btn,
+body:has(#list.active) .subscribe-text-btn,
 body:has(#exam.active) .btn-login-top,
-body:has(#exam.active) .subscribe-icon-btn {
+body:has(#exam.active) .subscribe-text-btn {
     display: none !important;
 }
 
@@ -1262,10 +1408,12 @@ body:has(#exam.active) .profile-icon {
         text-align: center;
     }
     
-    /* إصلاح الـ Reviews Widget على الهاتف */
+    /* إصلاح الـ Reviews Widget على الهاتف - منع التمدد والoverflow */
     .reviews-widget {
         margin-top: 20px;
         width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
     .widget-bubble {
@@ -1273,14 +1421,17 @@ body:has(#exam.active) .profile-icon {
         font-size: 0.75rem;
         margin: 0 auto;
         display: inline-flex;
+        max-width: calc(100% - 20px);
     }
     
     .widget-expanded-content {
         padding: 10px 12px;
         width: 100%;
+        max-width: 100%;
         box-sizing: border-box;
         max-height: 280px;
         overflow-y: auto;
+        overflow-x: hidden;
     }
     
     .widget-header {
@@ -1301,15 +1452,19 @@ body:has(#exam.active) .profile-icon {
     .widget-slider-container {
         width: 100%;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
     
     .widget-slider {
         gap: 8px;
+        animation: none !important;
+        transform: none !important;
     }
     
     .widget-slide {
         width: 50px;
         height: 50px;
+        flex-shrink: 0;
     }
     
     /* إصلاح الـ Features Section على الهاتف */
@@ -1351,6 +1506,11 @@ body:has(#exam.active) .profile-icon {
         min-height: 350px;
         margin: 0 auto;
     }
+    
+    /* إخفاء زر الإعدادات في صفحات الامتحانات (اختياري) */
+    body:has(#exam.active) .settings-icon-btn {
+        display: none;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1387,37 +1547,6 @@ body:has(#exam.active) .profile-icon {
 /* ========================================
    تنسيق مربع النتيجة الجديد (بطاقة حمراء في وسط الشاشة)
    ======================================== */
-
-.result-box {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ff6b6b;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 40px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 16px;
-    z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    width: auto;
-    min-width: 180px;
-    animation: fadeInUp 0.3s ease;
-    margin: 0 !important;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-}
 
 .result-box {
     position: fixed;
