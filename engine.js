@@ -1,16 +1,63 @@
 // ============================================
-// engine.js - محرك الامتحانات المتكامل (النسخة النهائية الشغالة)
-// يدعم: Matching + True/False + Teil 2 + Teil 3 + Sprachbausteine Teil 1 + Sprachbausteine Teil 2 + Schreiben
+// engine.js - محرك الامتحانات المتكامل
 // ============================================
 
-console.log("✅ engine.js تم تحميله (النسخة النهائية الشغالة)");
+console.log("✅ engine.js تم تحميله");
+
+// ========== حفظ نتائج الامتحانات ==========
+function saveExamResult(skill, examId, score, total) {
+    try {
+        let results = localStorage.getItem('zertiva_exam_results');
+        results = results ? JSON.parse(results) : {};
+        if (!results[skill]) results[skill] = {};
+        results[skill][examId] = { score: score, total: total, date: Date.now() };
+        localStorage.setItem('zertiva_exam_results', JSON.stringify(results));
+    } catch(e) { console.error("خطأ في حفظ النتيجة:", e); }
+}
+
+function getExamResult(skill, examId) {
+    try {
+        let results = localStorage.getItem('zertiva_exam_results');
+        if (!results) return null;
+        results = JSON.parse(results);
+        return results[skill]?.[examId] || null;
+    } catch(e) { return null; }
+}
+
+function updateExamResultDisplay() {
+    document.querySelectorAll('.exam-item').forEach(item => {
+        const skill = item.dataset.skill;
+        const examId = parseInt(item.dataset.examId);
+        if (skill && examId) {
+            const result = getExamResult(skill, examId);
+            if (result) {
+                let resultSpan = item.querySelector('.exam-result');
+                if (!resultSpan) {
+                    resultSpan = document.createElement('span');
+                    resultSpan.className = 'exam-result';
+                    item.appendChild(resultSpan);
+                }
+                const percent = (result.score / result.total * 100);
+                resultSpan.textContent = `${result.score} / ${result.total}`;
+                if (result.score >= 15 && result.score < 25) {
+                    resultSpan.style.color = '#10b981';
+                } else if (result.score === 25) {
+                    resultSpan.style.color = '#38bdf8';
+                } else {
+                    resultSpan.style.color = '#94a3b8';
+                }
+                resultSpan.style.marginRight = '15px';
+                resultSpan.style.fontSize = '12px';
+                resultSpan.style.fontWeight = 'bold';
+            }
+        }
+    });
+}
 
 window.loadExamFromFile = async function(skill, examId) {
   try {
     const response = await fetch(`data/${skill}/exam${examId}.json`);
-    if (response.ok) {
-      return await response.json();
-    }
+    if (response.ok) return await response.json();
     return null;
   } catch(e) {
     console.error("خطأ:", e);
@@ -20,7 +67,6 @@ window.loadExamFromFile = async function(skill, examId) {
 
 // ========== نظام Schreiben ==========
 let currentSchreibenData = null;
-
 window.loadSchreibenExam = function(examData) {
   console.log("🟢 loadSchreibenExam", examData.title);
   currentSchreibenData = examData;
@@ -31,9 +77,7 @@ function renderSchreibenExam() {
   const container = document.getElementById("schreiben");
   if (!container) return;
   container.innerHTML = "";
-  
   const data = currentSchreibenData;
-  
   const twoColumns = document.createElement("div");
   twoColumns.style.display = "flex";
   twoColumns.style.gap = "30px";
@@ -129,7 +173,6 @@ function renderSchreibenExam() {
   rightColumn.style.maxHeight = "80vh";
   rightColumn.style.overflowY = "auto";
   
-  
   const templateTitle = document.createElement("div");
   let cleanTitle = data.template.title;
   cleanTitle = cleanTitle.replace(/✦/g, '').trim();
@@ -155,14 +198,12 @@ function renderSchreibenExam() {
   
   let templateText = data.template.text;
   const bluePoints = data.template.colors.blue_points || [];
-  
   let htmlText = templateText.replace(/\n/g, '<br>');
   for (let i = 0; i < bluePoints.length; i++) {
     const point = bluePoints[i];
     const regex = new RegExp(`(${point.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'g');
     htmlText = htmlText.replace(regex, `<span style="color: ${data.template.colors.blue}; font-weight: bold;">$1</span>`);
   }
-  
   templateBox.innerHTML = htmlText;
   rightColumn.appendChild(templateBox);
   
@@ -188,9 +229,7 @@ window.loadSprach2Exam = function(examData) {
 
 function isSprach2WordUsed(word) {
   for (let key in sprach2UserAnswers) {
-    if (sprach2UserAnswers[key] === word) {
-      return true;
-    }
+    if (sprach2UserAnswers[key] === word) return true;
   }
   return false;
 }
@@ -264,11 +303,9 @@ function renderSprach2Exam() {
       btn.addEventListener('click', (function(qId) {
         return function(e) {
           e.stopPropagation();
-          
           if (sprach2UserAnswers[qId]) {
             const oldWord = sprach2UserAnswers[qId];
             delete sprach2UserAnswers[qId];
-            
             const wordCard = document.getElementById(`sprach2_word_${oldWord}`);
             if (wordCard) {
               wordCard.style.backgroundColor = "#ffffff";
@@ -277,10 +314,8 @@ function renderSprach2Exam() {
               wordCard.style.cursor = "pointer";
               wordCard.style.opacity = "1";
               wordCard.classList.remove('selected-for-link');
-              
               const newCard = wordCard.cloneNode(true);
               wordCard.parentNode.replaceChild(newCard, wordCard);
-              
               newCard.onclick = (function(w) {
                 return function() {
                   if (sprach2SelectedQuestionId) {
@@ -292,11 +327,7 @@ function renderSprach2Exam() {
                     }
                     sprach2UserAnswers[sprach2SelectedQuestionId] = w;
                     const targetBtn = document.getElementById(`sprach2_btn_${sprach2SelectedQuestionId}`);
-                    if (targetBtn) {
-                      targetBtn.textContent = w;
-                      targetBtn.style.backgroundColor = "#d4edda";
-                      targetBtn.style.color = "#155724";
-                    }
+                    if (targetBtn) targetBtn.textContent = w;
                     const cardEl = document.getElementById(`sprach2_word_${w}`);
                     if (cardEl) {
                       cardEl.style.backgroundColor = "#d4edda";
@@ -316,7 +347,6 @@ function renderSprach2Exam() {
                   }
                 };
               })(oldWord);
-              
               newCard.onmouseenter = function() {
                 if (!this.classList.contains('selected-for-link')) {
                   this.style.backgroundColor = "#e8e4ff";
@@ -330,19 +360,16 @@ function renderSprach2Exam() {
                 }
               };
             }
-            
             btn.textContent = `__( ${qId} )__`;
             btn.style.backgroundColor = "#e0e0e0";
             btn.style.color = "#333";
             btn.classList.remove('selected-for-link');
             btn.style.border = "none";
-            
             const parentDiv = btn.parentElement;
             const existingMsg = parentDiv.querySelector('.correct-answer-hint');
             if (existingMsg) existingMsg.remove();
             return;
           }
-          
           if (sprach2SelectedWordForLinking) {
             const word = sprach2SelectedWordForLinking;
             if (isSprach2WordUsed(word)) {
@@ -355,7 +382,6 @@ function renderSprach2Exam() {
             btn.textContent = word;
             btn.style.backgroundColor = "#d4edda";
             btn.style.color = "#155724";
-            
             const wordCard = document.getElementById(`sprach2_word_${word}`);
             if (wordCard) {
               wordCard.style.backgroundColor = "#d4edda";
@@ -376,7 +402,6 @@ function renderSprach2Exam() {
       })(i));
     }
   }
-  
   leftColumn.appendChild(textDiv);
   
   const rightColumn = document.createElement("div");
@@ -401,7 +426,6 @@ function renderSprach2Exam() {
   wordsGrid.style.gap = "12px";
   
   const sortedOptions = [...allOptions].sort();
-  
   for (let i = 0; i < sortedOptions.length; i++) {
     const word = sortedOptions[i];
     const wordCard = document.createElement("div");
@@ -436,11 +460,7 @@ function renderSprach2Exam() {
             }
             sprach2UserAnswers[sprach2SelectedQuestionId] = w;
             const targetBtn = document.getElementById(`sprach2_btn_${sprach2SelectedQuestionId}`);
-            if (targetBtn) {
-              targetBtn.textContent = w;
-              targetBtn.style.backgroundColor = "#d4edda";
-              targetBtn.style.color = "#155724";
-            }
+            if (targetBtn) targetBtn.textContent = w;
             const cardEl = document.getElementById(`sprach2_word_${w}`);
             if (cardEl) {
               cardEl.style.backgroundColor = "#d4edda";
@@ -474,10 +494,8 @@ function renderSprach2Exam() {
         }
       };
     }
-    
     wordsGrid.appendChild(wordCard);
   }
-  
   rightColumn.appendChild(wordsGrid);
   
   twoColumns.appendChild(leftColumn);
@@ -515,18 +533,12 @@ function renderSprach2Exam() {
   resetBtn.style.fontWeight = "bold";
   resetBtn.onclick = resetSprach2Exam;
   buttonContainer.appendChild(resetBtn);
-  
   container.appendChild(buttonContainer);
   
   const resultDiv = document.createElement("div");
   resultDiv.id = "sprach2Result";
   resultDiv.className = "result-box";
   resultDiv.style.display = "none";
-  resultDiv.style.marginTop = "20px";
-  resultDiv.style.padding = "15px";
-  resultDiv.style.borderRadius = "8px";
-  resultDiv.style.textAlign = "center";
-  resultDiv.style.fontWeight = "bold";
   container.appendChild(resultDiv);
 }
 
@@ -534,7 +546,6 @@ function resetSprach2Exam() {
   sprach2UserAnswers = {};
   sprach2SelectedQuestionId = null;
   sprach2SelectedWordForLinking = null;
-  
   for (let i = 1; i <= currentSprach2Data.options.length; i++) {
     const btn = document.getElementById(`sprach2_btn_${i}`);
     if (btn) {
@@ -545,7 +556,6 @@ function resetSprach2Exam() {
       btn.style.border = "none";
     }
   }
-  
   const allWords = document.querySelectorAll('.sprach2-word-card');
   allWords.forEach(card => {
     card.style.backgroundColor = "#ffffff";
@@ -555,10 +565,8 @@ function resetSprach2Exam() {
     card.style.opacity = "1";
     card.classList.remove('selected-for-link');
   });
-  
   const resultDiv = document.getElementById("sprach2Result");
   if (resultDiv) resultDiv.style.display = "none";
-  
   console.log("✅ تم إعادة تعيين Sprachbausteine Teil 2");
 }
 
@@ -567,7 +575,6 @@ function checkSprach2Exam() {
   let score = 0;
   const total = options.length;
   const pointsPerQuestion = 25 / total;
-  
   document.querySelectorAll('.correct-answer-hint').forEach(el => el.remove());
   
   for (let i = 0; i < options.length; i++) {
@@ -575,7 +582,6 @@ function checkSprach2Exam() {
     const userAnswer = sprach2UserAnswers[opt.id];
     const isCorrect = (userAnswer === opt.correct);
     const btn = document.getElementById(`sprach2_btn_${opt.id}`);
-    
     if (isCorrect) {
       score++;
       if (btn) {
@@ -591,11 +597,8 @@ function checkSprach2Exam() {
         btn.style.border = "1px solid #e67e22";
         btn.textContent = opt.correct;
         btn.style.opacity = "0.85";
-        if (userAnswer) {
-          btn.title = `إجابتك: ${userAnswer}`;
-        } else {
-          btn.title = "لم تجب على هذا السؤال";
-        }
+        if (userAnswer) btn.title = `إجابتك: ${userAnswer}`;
+        else btn.title = "لم تجب على هذا السؤال";
       }
     }
   }
@@ -618,7 +621,6 @@ function checkSprach2Exam() {
     resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
     resultDiv.style.display = "block";
   }
-  
   if (finalScore >= 20) {
     resultDiv.style.backgroundColor = "#d4edda";
     resultDiv.style.color = "#155724";
@@ -694,7 +696,6 @@ function renderSprach1Exam() {
       })(i);
     }
   }
-  
   leftColumn.appendChild(textDiv);
   
   const rightColumn = document.createElement("div");
@@ -715,7 +716,6 @@ function renderSprach1Exam() {
   
   const optionsContainer = document.createElement("div");
   optionsContainer.id = "sprach1_options_container";
-  
   for (let i = 0; i < options.length; i++) {
     const opt = options[i];
     const optDiv = document.createElement("div");
@@ -754,30 +754,21 @@ function renderSprach1Exam() {
       radio.name = `sprach1_q${opt.id}`;
       radio.value = opt.options[j];
       radio.id = `sprach1_opt_${opt.id}_${j}`;
-      
-      if (sprach1UserAnswers[opt.id] === opt.options[j]) {
-        radio.checked = true;
-      }
-      
+      if (sprach1UserAnswers[opt.id] === opt.options[j]) radio.checked = true;
       radio.onchange = (function(qId, selectedValue) {
-        return function() {
-          selectSprach1Option(qId, selectedValue);
-        };
+        return function() { selectSprach1Option(qId, selectedValue); };
       })(opt.id, opt.options[j]);
       
       const optionText = document.createElement("span");
       optionText.textContent = opt.options[j];
       optionText.style.fontSize = "13px";
-      
       optionLabel.appendChild(radio);
       optionLabel.appendChild(optionText);
       optList.appendChild(optionLabel);
     }
-    
     optDiv.appendChild(optList);
     optionsContainer.appendChild(optDiv);
   }
-  
   rightColumn.appendChild(optionsContainer);
   
   twoColumns.appendChild(leftColumn);
@@ -815,7 +806,6 @@ function renderSprach1Exam() {
   resetBtn.style.fontWeight = "bold";
   resetBtn.onclick = resetSprach1Exam;
   buttonContainer.appendChild(resetBtn);
-  
   container.appendChild(buttonContainer);
   
   const resultDiv = document.createElement("div");
@@ -832,10 +822,8 @@ function openSprach1Dropdown(questionId) {
     const oldList = document.getElementById(`sprach1_dropdown_list_${sprach1OpenDropdownId}`);
     if (oldList) oldList.remove();
   }
-  
   const btn = document.getElementById(`sprach1_btn_${questionId}`);
   if (!btn) return;
-  
   const oldList = document.getElementById(`sprach1_dropdown_list_${questionId}`);
   if (oldList) oldList.remove();
   
@@ -859,14 +847,8 @@ function openSprach1Dropdown(questionId) {
       optDiv.style.padding = "8px 12px";
       optDiv.style.cursor = "pointer";
       optDiv.style.transition = "background 0.2s";
-      
-      optDiv.addEventListener("mouseenter", function() {
-        this.style.backgroundColor = "#e8e4ff";
-      });
-      optDiv.addEventListener("mouseleave", function() {
-        this.style.backgroundColor = "white";
-      });
-      
+      optDiv.addEventListener("mouseenter", function() { this.style.backgroundColor = "#e8e4ff"; });
+      optDiv.addEventListener("mouseleave", function() { this.style.backgroundColor = "white"; });
       optDiv.addEventListener("click", (function(qId, selectedValue) {
         return function() {
           selectSprach1Option(qId, selectedValue);
@@ -874,19 +856,15 @@ function openSprach1Dropdown(questionId) {
           sprach1OpenDropdownId = null;
         };
       })(questionId, opt));
-      
       dropdownList.appendChild(optDiv);
     }
   }
-  
   const rect = btn.getBoundingClientRect();
   dropdownList.style.position = "fixed";
   dropdownList.style.top = `${rect.bottom + 5}px`;
   dropdownList.style.left = `${rect.left}px`;
-  
   document.body.appendChild(dropdownList);
   sprach1OpenDropdownId = questionId;
-  
   setTimeout(() => {
     document.addEventListener("click", function closeDropdown(e) {
       if (!dropdownList.contains(e.target) && e.target !== btn) {
@@ -900,22 +878,18 @@ function openSprach1Dropdown(questionId) {
 
 function selectSprach1Option(questionId, selectedValue) {
   sprach1UserAnswers[questionId] = selectedValue;
-  
   const btn = document.getElementById(`sprach1_btn_${questionId}`);
   if (btn) {
     btn.textContent = selectedValue;
     btn.style.backgroundColor = "#d4edda";
     btn.style.color = "#155724";
   }
-  
   for (let i = 0; i < currentSprach1Data.options.length; i++) {
     const opt = currentSprach1Data.options[i];
     if (opt.id === questionId) {
       for (let j = 0; j < opt.options.length; j++) {
         const radio = document.getElementById(`sprach1_opt_${questionId}_${j}`);
-        if (radio && radio.value === selectedValue) {
-          radio.checked = true;
-        }
+        if (radio && radio.value === selectedValue) radio.checked = true;
       }
       break;
     }
@@ -924,7 +898,6 @@ function selectSprach1Option(questionId, selectedValue) {
 
 function resetSprach1Exam() {
   sprach1UserAnswers = {};
-  
   for (let i = 1; i <= currentSprach1Data.options.length; i++) {
     const btn = document.getElementById(`sprach1_btn_${i}`);
     if (btn) {
@@ -932,7 +905,6 @@ function resetSprach1Exam() {
       btn.style.backgroundColor = "#e0e0e0";
       btn.style.color = "#333";
     }
-    
     for (let j = 0; j < currentSprach1Data.options.length; j++) {
       const opt = currentSprach1Data.options[j];
       if (opt.id === i) {
@@ -944,10 +916,8 @@ function resetSprach1Exam() {
       }
     }
   }
-  
   const resultDiv = document.getElementById("sprach1Result");
   if (resultDiv) resultDiv.style.display = "none";
-  
   console.log("✅ تم إعادة تعيين Sprachbausteine Teil 1");
 }
 
@@ -956,16 +926,11 @@ function checkSprach1Exam() {
   let score = 0;
   const total = options.length;
   const pointsPerQuestion = 25 / total;
-  
   for (let i = 0; i < options.length; i++) {
     const opt = options[i];
     const userAnswer = sprach1UserAnswers[opt.id];
     const isCorrect = (userAnswer === opt.options[opt.correct]);
-    
-    if (isCorrect) {
-      score++;
-    }
-    
+    if (isCorrect) score++;
     const btn = document.getElementById(`sprach1_btn_${opt.id}`);
     if (btn) {
       if (isCorrect) {
@@ -976,7 +941,6 @@ function checkSprach1Exam() {
         btn.style.color = "#e67e22";
       }
     }
-    
     const optGroup = document.getElementById(`sprach1_opt_group_${opt.id}`);
     if (optGroup) {
       if (isCorrect) {
@@ -987,7 +951,6 @@ function checkSprach1Exam() {
         optGroup.style.border = "2px solid #e67e22";
       }
     }
-    
     const correctAnswer = opt.options[opt.correct];
     const correctIndex = opt.options.indexOf(correctAnswer);
     const correctRadio = document.getElementById(`sprach1_opt_${opt.id}_${correctIndex}`);
@@ -999,14 +962,12 @@ function checkSprach1Exam() {
       }
     }
   }
-  
   const finalScore = (score * pointsPerQuestion).toFixed(2);
   const resultDiv = document.getElementById("sprach1Result");
   if (resultDiv) {
     resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
     resultDiv.style.display = "block";
   }
-  
   if (finalScore >= 20) {
     resultDiv.style.backgroundColor = "#d4edda";
     resultDiv.style.color = "#155724";
@@ -1020,7 +981,7 @@ function checkSprach1Exam() {
 }
 
 // ========== نظام True/False (Hören Teil 1,2,3) ==========
-window.buildTrueFalseExam = function(container, questions, note) {
+window.buildTrueFalseExam = function(container, questions, note, currentSkillName, currentExamIdNum) {
   if (!questions || !Array.isArray(questions) || questions.length === 0) {
     console.error("❌ خطأ: لا توجد أسئلة في هذا الامتحان");
     if (container) {
@@ -1030,10 +991,7 @@ window.buildTrueFalseExam = function(container, questions, note) {
   }
   
   container.innerHTML = '';
-  
-  if (window._trueFalseUserAnswers) {
-    delete window._trueFalseUserAnswers;
-  }
+  if (window._trueFalseUserAnswers) delete window._trueFalseUserAnswers;
   window._trueFalseUserAnswers = {};
   
   if (note) {
@@ -1082,13 +1040,7 @@ window.buildTrueFalseExam = function(container, questions, note) {
     radioTrue.name = `q${i}`;
     radioTrue.value = 'true';
     radioTrue.id = `q${i}_true`;
-    
-    radioTrue.onchange = (function(idx) {
-      return function() {
-        window._trueFalseUserAnswers[idx] = true;
-      };
-    })(i);
-    
+    radioTrue.onchange = (function(idx) { return function() { window._trueFalseUserAnswers[idx] = true; }; })(i);
     labelTrue.appendChild(radioTrue);
     labelTrue.appendChild(document.createTextNode(' Richtig'));
     
@@ -1108,13 +1060,7 @@ window.buildTrueFalseExam = function(container, questions, note) {
     radioFalse.name = `q${i}`;
     radioFalse.value = 'false';
     radioFalse.id = `q${i}_false`;
-    
-    radioFalse.onchange = (function(idx) {
-      return function() {
-        window._trueFalseUserAnswers[idx] = false;
-      };
-    })(i);
-    
+    radioFalse.onchange = (function(idx) { return function() { window._trueFalseUserAnswers[idx] = false; }; })(i);
     labelFalse.appendChild(radioFalse);
     labelFalse.appendChild(document.createTextNode(' Falsch'));
     
@@ -1126,11 +1072,10 @@ window.buildTrueFalseExam = function(container, questions, note) {
     div.appendChild(labelTrue);
     div.appendChild(labelFalse);
     div.appendChild(textSpan);
-    
     container.appendChild(div);
   }
   
-  const buttonContainer = document.createElement('div');
+  const buttonContainer = document.createElement("div");
   buttonContainer.style.display = "flex";
   buttonContainer.style.gap = "15px";
   buttonContainer.style.justifyContent = "space-between";
@@ -1165,7 +1110,7 @@ window.buildTrueFalseExam = function(container, questions, note) {
   checkBtn.style.fontSize = '16px';
   
   checkBtn.onclick = () => {
-    checkTrueFalseExam(container, questions, window._trueFalseUserAnswers, correctNumbersContainer);
+    checkTrueFalseExam(container, questions, window._trueFalseUserAnswers, correctNumbersContainer, currentSkillName, currentExamIdNum);
   };
   
   const resetBtn = document.createElement('button');
@@ -1180,31 +1125,22 @@ window.buildTrueFalseExam = function(container, questions, note) {
   resetBtn.style.fontWeight = 'bold';
   
   resetBtn.onclick = function() {
-    for (let key in window._trueFalseUserAnswers) {
-      delete window._trueFalseUserAnswers[key];
-    }
-    
+    for (let key in window._trueFalseUserAnswers) delete window._trueFalseUserAnswers[key];
     const allRadios = container.querySelectorAll('input[type="radio"]');
-    allRadios.forEach(radio => {
-      radio.checked = false;
-    });
-    
+    allRadios.forEach(radio => radio.checked = false);
     const cards = container.querySelectorAll('.question-card');
     cards.forEach(card => {
       card.classList.remove('correct-answer-card', 'wrong-answer-card');
+      card.style.backgroundColor = "#f9f9f9";
     });
-    
     const allMessages = container.querySelectorAll('.correct-message');
     allMessages.forEach(msg => msg.remove());
-    
     const optionLabels = container.querySelectorAll('.option-label');
     optionLabels.forEach(label => {
       label.style.backgroundColor = 'white';
       label.style.border = '1px solid #ccc';
     });
-    
     correctNumbersContainer.style.display = 'none';
-    
     const resultDiv = document.getElementById('truefalseResult');
     if (resultDiv) {
       resultDiv.style.display = 'none';
@@ -1214,7 +1150,6 @@ window.buildTrueFalseExam = function(container, questions, note) {
   
   buttonsDiv.appendChild(checkBtn);
   buttonsDiv.appendChild(resetBtn);
-  
   buttonContainer.appendChild(correctNumbersContainer);
   buttonContainer.appendChild(buttonsDiv);
   container.appendChild(buttonContainer);
@@ -1226,7 +1161,7 @@ window.buildTrueFalseExam = function(container, questions, note) {
   container.appendChild(resultDiv);
 };
 
-function checkTrueFalseExam(container, questions, answers, correctNumbersContainer) {
+function checkTrueFalseExam(container, questions, answers, correctNumbersContainer, currentSkillName, currentExamIdNum) {
   if (!questions || !Array.isArray(questions) || questions.length === 0) {
     console.error("❌ خطأ: لا توجد أسئلة للتصحيح");
     const resultDiv = document.getElementById('truefalseResult');
@@ -1240,7 +1175,6 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
   let score = 0;
   const total = questions.length;
   const pointsPerQuestion = 25 / total;
-  
   const cards = container.querySelectorAll('.question-card');
   
   for (let i = 0; i < questions.length; i++) {
@@ -1248,7 +1182,6 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
     const card = cards[i];
     const userAnswer = answers[i];
     const isCorrect = (userAnswer === q.correct);
-    
     if (!card) continue;
     
     card.classList.remove('correct-answer-card', 'wrong-answer-card');
@@ -1260,7 +1193,6 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
       card.classList.add('correct-answer-card');
     } else {
       card.classList.add('wrong-answer-card');
-      
       const correctMsg = document.createElement('div');
       correctMsg.className = 'correct-message';
       correctMsg.style.marginTop = '10px';
@@ -1276,7 +1208,6 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
       const radio = radios[r];
       const radioValue = radio.value === 'true';
       const parentLabel = radio.parentElement;
-      
       if (isCorrect && userAnswer !== undefined) {
         if (radio.checked) {
           parentLabel.style.backgroundColor = '#d4edda';
@@ -1299,9 +1230,7 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
     correctNumbersContainer.style.display = 'block';
     let originalCorrectIndices = [];
     for (let i = 0; i < questions.length; i++) {
-      if (questions[i].correct === true) {
-        originalCorrectIndices.push(i + 1);
-      }
+      if (questions[i].correct === true) originalCorrectIndices.push(i + 1);
     }
     if (originalCorrectIndices.length > 0) {
       correctNumbersContainer.innerHTML = `▸ الإجابات الصحيحة: ${originalCorrectIndices.join(" - ")}`;
@@ -1310,44 +1239,64 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
     }
   }
   
-  const finalScore = (score * pointsPerQuestion).toFixed(2);
+  const finalScoreValue = (score * pointsPerQuestion);
+  const finalScore = finalScoreValue.toFixed(2);
   const resultDiv = document.getElementById('truefalseResult');
   if (resultDiv) {
     resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
     resultDiv.style.display = 'block';
-    resultDiv.style.backgroundColor = '#2c3e66';
-    resultDiv.style.color = 'white';
-    
-    if (finalScore >= 20) {
+    if (finalScoreValue >= 20) {
       resultDiv.style.backgroundColor = '#28a745';
-    } else if (finalScore >= 15) {
+      resultDiv.style.color = 'white';
+    } else if (finalScoreValue >= 15) {
       resultDiv.style.backgroundColor = '#ffc107';
       resultDiv.style.color = '#333';
     } else {
       resultDiv.style.backgroundColor = '#dc3545';
+      resultDiv.style.color = 'white';
     }
+  }
+  
+  // حفظ النتيجة
+  if (currentSkillName && currentExamIdNum) {
+    saveExamResult(currentSkillName, currentExamIdNum, finalScoreValue, 25);
   }
 }
 
-// ========== نظام Teil 1 (Lesen Teil 1 - Matching) ==========
+// ========== نظام Teil 1 (Lesen Teil 1 - Matching) مع حفظ النتيجة ==========
 let currentMatchingExamData = null;
 let matchingSelectedAnswers = {};
 let matchingAvailableOptions = [];
 
-window.loadMatchingExam = function(examData) {
+window.loadMatchingExam = function(examData, currentSkillName, currentExamIdNum) {
   console.log("🟢 loadMatchingExam", examData.title);
   currentMatchingExamData = examData;
   matchingSelectedAnswers = {};
   matchingAvailableOptions = [...examData.sharedOptions];
-  renderMatchingQuestions();
+  renderMatchingQuestions(currentSkillName, currentExamIdNum);
 };
 
-function renderMatchingQuestions() {
+function renderMatchingQuestions(currentSkillName, currentExamIdNum) {
   const container = document.getElementById("teil1");
   if (!container) return;
   container.innerHTML = "";
   
   const questions = currentMatchingExamData.questions;
+  const savedAnswers = {};
+  try {
+    const saved = localStorage.getItem(`matching_answers_${currentSkillName}_${currentExamIdNum}`);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      Object.assign(matchingSelectedAnswers, parsed);
+      for (let key in parsed) {
+        const val = parsed[key];
+        if (val) {
+          const idx = matchingAvailableOptions.indexOf(val);
+          if (idx !== -1) matchingAvailableOptions.splice(idx, 1);
+        }
+      }
+    }
+  } catch(e) {}
   
   for (let i = 0; i < questions.length; i++) {
     const q = questions[i];
@@ -1379,6 +1328,14 @@ function renderMatchingQuestions() {
       select.appendChild(option);
     }
     
+    if (matchingSelectedAnswers[i]) {
+      const opt = document.createElement("option");
+      opt.value = matchingSelectedAnswers[i];
+      opt.textContent = matchingSelectedAnswers[i];
+      opt.selected = true;
+      select.appendChild(opt);
+    }
+    
     select.onchange = (function(idx) {
       return function() {
         const oldVal = matchingSelectedAnswers[idx];
@@ -1391,7 +1348,9 @@ function renderMatchingQuestions() {
         } else {
           delete matchingSelectedAnswers[idx];
         }
-        // تحديث كل القوائم
+        // حفظ الإجابات
+        localStorage.setItem(`matching_answers_${currentSkillName}_${currentExamIdNum}`, JSON.stringify(matchingSelectedAnswers));
+        // تحديث القوائم
         document.querySelectorAll('#teil1 select').forEach((sel, sidx) => {
           const currentVal = sel.value;
           sel.innerHTML = "";
@@ -1437,7 +1396,7 @@ function renderMatchingQuestions() {
   checkBtn.style.borderRadius = "8px";
   checkBtn.style.fontSize = "16px";
   checkBtn.onclick = () => {
-    checkMatchingExam();
+    checkMatchingExam(currentSkillName, currentExamIdNum);
   };
   buttonContainer.appendChild(checkBtn);
   
@@ -1453,10 +1412,12 @@ function renderMatchingQuestions() {
   resetBtn.onclick = () => {
     matchingSelectedAnswers = {};
     matchingAvailableOptions = [...currentMatchingExamData.sharedOptions];
-    renderMatchingQuestions();
+    localStorage.removeItem(`matching_answers_${currentSkillName}_${currentExamIdNum}`);
+    renderMatchingQuestions(currentSkillName, currentExamIdNum);
+    const resultDiv = document.getElementById("matchingResult");
+    if (resultDiv) resultDiv.style.display = "none";
   };
   buttonContainer.appendChild(resetBtn);
-  
   container.appendChild(buttonContainer);
   
   const resultDiv = document.createElement("div");
@@ -1466,7 +1427,7 @@ function renderMatchingQuestions() {
   container.appendChild(resultDiv);
 }
 
-function checkMatchingExam() {
+function checkMatchingExam(currentSkillName, currentExamIdNum) {
   const questions = currentMatchingExamData.questions;
   let score = 0;
   const total = questions.length;
@@ -1488,7 +1449,6 @@ function checkMatchingExam() {
         card.classList.add("correct-answer-card");
       } else {
         card.classList.add("wrong-answer-card");
-        
         const correctMsg = document.createElement("div");
         correctMsg.className = "correct-message";
         correctMsg.style.marginTop = "10px";
@@ -1514,37 +1474,43 @@ function checkMatchingExam() {
     }
   }
   
-  const finalScore = (score * pointsPerQuestion).toFixed(2);
+  const finalScoreValue = (score * pointsPerQuestion);
+  const finalScore = finalScoreValue.toFixed(2);
   const resultDiv = document.getElementById("matchingResult");
   if (resultDiv) {
     resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
     resultDiv.style.display = "block";
   }
   
-  if (finalScore >= 20) {
+  if (finalScoreValue >= 20) {
     resultDiv.style.backgroundColor = "#d4edda";
     resultDiv.style.color = "#155724";
-  } else if (finalScore >= 15) {
+  } else if (finalScoreValue >= 15) {
     resultDiv.style.backgroundColor = "#fff3cd";
     resultDiv.style.color = "#856404";
   } else {
     resultDiv.style.backgroundColor = "#f8d7da";
     resultDiv.style.color = "#721c24";
   }
+  
+  // حفظ النتيجة
+  if (currentSkillName && currentExamIdNum) {
+    saveExamResult(currentSkillName, currentExamIdNum, finalScoreValue, 25);
+  }
 }
 
-// ========== نظام Teil 2 (Lesen Teil 2) ==========
+// ========== نظام Teil 2 (Lesen Teil 2) مع حفظ النتيجة وإصلاح زر إعادة التعيين ==========
 let currentTeil2Data = null;
 let teil2UserAnswers = {};
 
-window.loadTeil2Exam = function(examData) {
+window.loadTeil2Exam = function(examData, currentSkillName, currentExamIdNum) {
   console.log("🟢 loadTeil2Exam", examData.title);
   currentTeil2Data = examData;
   teil2UserAnswers = {};
-  renderTeil2Exam();
+  renderTeil2Exam(currentSkillName, currentExamIdNum);
 };
 
-function renderTeil2Exam() {
+function renderTeil2Exam(currentSkillName, currentExamIdNum) {
   const container = document.getElementById("teil2");
   if (!container) return;
   container.innerHTML = "";
@@ -1627,11 +1593,14 @@ function renderTeil2Exam() {
       label.style.cursor = "pointer";
       label.style.padding = "8px 12px";
       label.style.borderRadius = "8px";
+      label.style.transition = "background 0.2s";
       
+      const radioId = `teil2_q${i}_opt${j}`;
       const radio = document.createElement("input");
       radio.type = "radio";
       radio.name = `teil2_q${i}`;
       radio.value = j;
+      radio.id = radioId;
       radio.style.cursor = "pointer";
       radio.onchange = (function(qIdx, ansIdx) { 
         return function() { 
@@ -1669,7 +1638,7 @@ function renderTeil2Exam() {
   checkBtn.style.border = "none";
   checkBtn.style.borderRadius = "8px";
   checkBtn.style.fontSize = "16px";
-  checkBtn.onclick = checkTeil2Exam;
+  checkBtn.onclick = () => checkTeil2Exam(currentSkillName, currentExamIdNum);
   buttonContainer.appendChild(checkBtn);
   
   const resetBtn = document.createElement("button");
@@ -1686,15 +1655,28 @@ function renderTeil2Exam() {
     questionsColumn.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
     for (let i = 0; i < questions.length; i++) {
       const card = document.getElementById(`teil2_q_${i}`);
-      if (card) card.classList.remove("correct-answer-card", "wrong-answer-card");
+      if (card) {
+        card.classList.remove("correct-answer-card", "wrong-answer-card");
+        card.style.backgroundColor = "#fafafa";
+        card.style.border = "1px solid #e0e0e0";
+      }
       const oldMsg = document.querySelector(`#teil2_q_${i} .correct-message`);
       if (oldMsg) oldMsg.remove();
+      const optionLabels = card.querySelectorAll('.option-label');
+      optionLabels.forEach(label => {
+        label.style.backgroundColor = "transparent";
+        label.style.border = "none";
+        const radio = label.querySelector('input');
+        if (radio) radio.checked = false;
+      });
     }
     const resultDiv = document.getElementById("teil2Result");
-    if (resultDiv) resultDiv.style.display = "none";
+    if (resultDiv) {
+      resultDiv.style.display = "none";
+      resultDiv.innerHTML = '';
+    }
   };
   buttonContainer.appendChild(resetBtn);
-  
   questionsColumn.appendChild(buttonContainer);
   
   const resultDiv = document.createElement("div");
@@ -1708,7 +1690,7 @@ function renderTeil2Exam() {
   container.appendChild(twoColumns);
 }
 
-function checkTeil2Exam() {
+function checkTeil2Exam(currentSkillName, currentExamIdNum) {
   const questions = currentTeil2Data.questions;
   let score = 0;
   const total = questions.length;
@@ -1764,37 +1746,45 @@ function checkTeil2Exam() {
     }
   }
   
-  const finalScore = (score * pointsPerQuestion).toFixed(2);
+  const finalScoreValue = (score * pointsPerQuestion);
+  const finalScore = finalScoreValue.toFixed(2);
   const resultDiv = document.getElementById("teil2Result");
   if (resultDiv) {
     resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
     resultDiv.style.display = "block";
   }
   
-  if (finalScore >= 20) {
+  if (finalScoreValue >= 20) {
     resultDiv.style.backgroundColor = "#d4edda";
     resultDiv.style.color = "#155724";
-  } else if (finalScore >= 15) {
+  } else if (finalScoreValue >= 15) {
     resultDiv.style.backgroundColor = "#fff3cd";
     resultDiv.style.color = "#856404";
   } else {
     resultDiv.style.backgroundColor = "#f8d7da";
     resultDiv.style.color = "#721c24";
   }
+  
+  // حفظ النتيجة
+  if (currentSkillName && currentExamIdNum) {
+    saveExamResult(currentSkillName, currentExamIdNum, finalScoreValue, 25);
+  }
 }
 
-// ========== نظام Teil 3 (Lesen Teil 3) ==========
+// ========== نظام Teil 3 (Lesen Teil 3) مع نظام الربط والسحب وإصلاح إعادة التعيين ==========
 let currentTeil3Data = null;
 let teil3UserAnswers = {};
+let teil3SelectedItem = null;
 
-window.loadTeil3Exam = function(examData) {
+window.loadTeil3Exam = function(examData, currentSkillName, currentExamIdNum) {
   console.log("🟢 loadTeil3Exam", examData.title);
   currentTeil3Data = examData;
   teil3UserAnswers = {};
-  renderTeil3Exam();
+  teil3SelectedItem = null;
+  renderTeil3Exam(currentSkillName, currentExamIdNum);
 };
 
-function renderTeil3Exam() {
+function renderTeil3Exam(currentSkillName, currentExamIdNum) {
   const container = document.getElementById("teil3");
   if (!container) return;
   container.innerHTML = "";
@@ -1807,6 +1797,7 @@ function renderTeil3Exam() {
   twoColumns.style.gap = "30px";
   twoColumns.style.flexWrap = "wrap";
   
+  // العمود الأيسر: الفقرات
   const leftColumn = document.createElement("div");
   leftColumn.style.flex = "2";
   leftColumn.style.minWidth = "500px";
@@ -1826,14 +1817,15 @@ function renderTeil3Exam() {
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
     const card = document.createElement("div");
-    card.className = "question-card";
+    card.className = "teil3-card";
     card.id = `teil3_card_${i}`;
+    card.setAttribute("data-item-index", i);
     card.style.padding = "15px";
     card.style.border = "1px solid #e0e0e0";
     card.style.borderRadius = "12px";
     card.style.backgroundColor = "#fafafa";
-    card.style.transition = "all 0.2s";
     card.style.cursor = "pointer";
+    card.style.transition = "all 0.2s";
     
     const itemTitle = document.createElement("div");
     itemTitle.style.fontWeight = "bold";
@@ -1846,28 +1838,23 @@ function renderTeil3Exam() {
     const itemText = document.createElement("div");
     itemText.style.fontSize = "13px";
     itemText.style.lineHeight = "1.5";
-    itemText.style.marginBottom = "12px";
+    itemText.style.marginBottom = "15px";
     itemText.style.color = "#555";
     itemText.innerHTML = item.text;
     card.appendChild(itemText);
     
     const select = document.createElement("select");
+    select.id = `teil3_select_${i}`;
     select.style.width = "100%";
     select.style.padding = "8px";
-    select.style.marginTop = "10px";
     select.style.borderRadius = "8px";
     select.style.border = "1px solid #ccc";
-    select.id = `teil3_select_${i}`;
+    select.style.backgroundColor = "white";
     
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
     defaultOption.textContent = "-- اختر العنوان --";
     select.appendChild(defaultOption);
-    
-    const noTitleOption = document.createElement("option");
-    noTitleOption.value = "none";
-    noTitleOption.textContent = "هذه الفقرة تبقى دون عنوان";
-    select.appendChild(noTitleOption);
     
     for (let s = 0; s < situations.length; s++) {
       const option = document.createElement("option");
@@ -1876,81 +1863,57 @@ function renderTeil3Exam() {
       select.appendChild(option);
     }
     
-    const currentAnswer = teil3UserAnswers[i];
-    if (currentAnswer === null) {
-      select.value = "none";
-    } else if (currentAnswer !== undefined && currentAnswer !== "") {
-      select.value = currentAnswer;
-    }
-    
     select.onchange = (function(idx) {
       return function() {
-        let val = select.value;
-        if (val === "none") {
-          teil3UserAnswers[idx] = null;
-        } else if (val !== "") {
-          teil3UserAnswers[idx] = parseInt(val);
+        const val = select.value;
+        if (val !== "") {
+          const sitIdx = parseInt(val);
+          teil3UserAnswers[idx] = sitIdx;
+          updateCardStyle(idx);
+          updateSituationStyle(sitIdx);
         } else {
           delete teil3UserAnswers[idx];
+          updateCardStyle(idx);
         }
-        updateCardStyle(idx);
+        // حفظ الإجابات
+        localStorage.setItem(`teil3_answers_${currentSkillName}_${currentExamIdNum}`, JSON.stringify(teil3UserAnswers));
       };
     })(i);
     
     card.appendChild(select);
     
-    // إضافة خاصية النقر على الفقرة لربطها (تحديد الفقرة أولاً)
+    // إضافة حدث النقر على الفقرة لتحديدها
     card.onclick = (function(idx) {
       return function(e) {
         e.stopPropagation();
-        e.preventDefault();
-        
-        // تأثير الضغط
-        this.style.transform = "scale(0.98)";
-        setTimeout(() => { this.style.transform = "scale(1)"; }, 150);
-        
-        // إلغاء تحديد أي عنصر محدد سابقاً
-        if (window._selectedTeil3Item !== undefined && window._selectedTeil3Item !== idx) {
-          const prevCard = document.getElementById(`teil3_card_${window._selectedTeil3Item}`);
-          if (prevCard) {
-            prevCard.style.backgroundColor = "#fafafa";
-            prevCard.style.border = "1px solid #e0e0e0";
-            prevCard.style.boxShadow = "none";
-          }
-        }
-        
-        if (window._selectedTeil3Item === idx) {
-          // إلغاء التحديد إذا تم الضغط على نفس الفقرة
+        if (teil3SelectedItem === idx) {
+          teil3SelectedItem = null;
           card.style.backgroundColor = "#fafafa";
           card.style.border = "1px solid #e0e0e0";
           card.style.boxShadow = "none";
-          delete window._selectedTeil3Item;
         } else {
-          // تحديد الفقرة الحالية
-          card.style.backgroundColor = "rgba(56, 189, 248, 0.12)";
-          card.style.border = "2px solid #38bdf8";
-          card.style.boxShadow = "0 2px 8px rgba(56, 189, 248, 0.15)";
-          window._selectedTeil3Item = idx;
+          if (teil3SelectedItem !== null) {
+            const prevCard = document.getElementById(`teil3_card_${teil3SelectedItem}`);
+            if (prevCard) {
+              prevCard.style.backgroundColor = "#fafafa";
+              prevCard.style.border = "1px solid #e0e0e0";
+              prevCard.style.boxShadow = "none";
+            }
+          }
+          teil3SelectedItem = idx;
+          card.style.backgroundColor = "#e8f0fe";
+          card.style.border = "2px solid #2c3e66";
+          card.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
         }
       };
     })(i);
-    
-    function updateCardStyle(idx) {
-      const answer = teil3UserAnswers[idx];
-      if (answer !== undefined && answer !== null && answer !== "") {
-        card.style.backgroundColor = "#e8f5e9";
-        card.style.border = "2px solid #28a745";
-      } else {
-        card.style.backgroundColor = "#fafafa";
-        card.style.border = "1px solid #e0e0e0";
-      }
-    }
     
     itemsGrid.appendChild(card);
   }
   
   leftColumn.appendChild(itemsGrid);
   
+  // العمود الأيمن: العناوين
   const rightColumn = document.createElement("div");
   rightColumn.style.flex = "1";
   rightColumn.style.minWidth = "250px";
@@ -1976,108 +1939,67 @@ function renderTeil3Exam() {
     sitDiv.className = "teil3-situation-item";
     sitDiv.id = `teil3_sit_${i}`;
     sitDiv.setAttribute("data-sit-index", i);
-    sitDiv.style.padding = "10px 12px";
-    sitDiv.style.marginBottom = "8px";
+    sitDiv.style.padding = "10px 15px";
+    sitDiv.style.marginBottom = "10px";
     sitDiv.style.backgroundColor = "white";
     sitDiv.style.borderRadius = "8px";
     sitDiv.style.border = "1px solid #ddd";
-    sitDiv.style.fontSize = "13px";
+    sitDiv.style.fontSize = "14px";
     sitDiv.style.cursor = "pointer";
-    sitDiv.style.transition = "all 0.2s ease";
-    sitDiv.style.boxShadow = "0 1px 2px rgba(0,0,0,0.05)";
+    sitDiv.style.transition = "all 0.2s";
     sitDiv.innerHTML = `${String.fromCharCode(97+i)}. ${situations[i]}`;
-    
-    let isUsed = false;
-    for (let j = 0; j < items.length; j++) {
-      if (teil3UserAnswers[j] === i) {
-        isUsed = true;
-        break;
-      }
-    }
-    
-    if (isUsed) {
-      sitDiv.style.backgroundColor = "#d4edda";
-      sitDiv.style.border = "2px solid #28a745";
-      sitDiv.classList.add('used');
-    }
     
     sitDiv.onclick = (function(sitIdx) {
       return function(e) {
         e.stopPropagation();
-        e.preventDefault();
-        
-        // تأثير الضغط
-        this.style.transform = "scale(0.98)";
-        setTimeout(() => { this.style.transform = "scale(1)"; }, 150);
-        
-        if (window._selectedTeil3Item !== undefined) {
-          const selectedIdx = window._selectedTeil3Item;
-          teil3UserAnswers[selectedIdx] = sitIdx;
-          const selectElem = document.getElementById(`teil3_select_${selectedIdx}`);
+        if (teil3SelectedItem !== null) {
+          teil3UserAnswers[teil3SelectedItem] = sitIdx;
+          const selectElem = document.getElementById(`teil3_select_${teil3SelectedItem}`);
           if (selectElem) selectElem.value = sitIdx;
-          
-          // تحديث لون البطاقة
-          const cardElem = document.getElementById(`teil3_card_${selectedIdx}`);
-          if (cardElem) {
-            cardElem.style.backgroundColor = "#e8f5e9";
-            cardElem.style.border = "2px solid #28a745";
-          }
-          
-          // تحديث لون العنوان في القائمة اليمنى
-          sitDiv.style.backgroundColor = "#d4edda";
-          sitDiv.style.border = "2px solid #28a745";
-          sitDiv.classList.add('used');
-          
+          updateCardStyle(teil3SelectedItem);
+          updateSituationStyle(sitIdx);
           // إلغاء التحديد
-          const prevCard = document.getElementById(`teil3_card_${selectedIdx}`);
-          if (prevCard) {
-            prevCard.style.backgroundColor = "#fafafa";
-            prevCard.style.border = "1px solid #e0e0e0";
-            prevCard.style.boxShadow = "none";
+          const card = document.getElementById(`teil3_card_${teil3SelectedItem}`);
+          if (card) {
+            card.style.backgroundColor = "#fafafa";
+            card.style.border = "1px solid #e0e0e0";
+            card.style.boxShadow = "none";
           }
-          delete window._selectedTeil3Item;
+          teil3SelectedItem = null;
+          // حفظ الإجابات
+          localStorage.setItem(`teil3_answers_${currentSkillName}_${currentExamIdNum}`, JSON.stringify(teil3UserAnswers));
         } else {
-          // إذا لم يكن هناك فقرة محددة، نبحث عن فقرة فارغة
-          let emptyItemIndex = -1;
+          // إذا لم تكن فقرة محددة، نبحث عن فقرة فارغة
+          let emptyItem = null;
           for (let j = 0; j < items.length; j++) {
-            if (teil3UserAnswers[j] === undefined || teil3UserAnswers[j] === null || teil3UserAnswers[j] === "") {
-              emptyItemIndex = j;
+            if (!teil3UserAnswers[j] && teil3UserAnswers[j] !== 0) {
+              emptyItem = j;
               break;
             }
           }
-          
-          if (emptyItemIndex !== -1) {
-            teil3UserAnswers[emptyItemIndex] = sitIdx;
-            const selectElem = document.getElementById(`teil3_select_${emptyItemIndex}`);
+          if (emptyItem !== null) {
+            teil3UserAnswers[emptyItem] = sitIdx;
+            const selectElem = document.getElementById(`teil3_select_${emptyItem}`);
             if (selectElem) selectElem.value = sitIdx;
-            
-            const cardElem = document.getElementById(`teil3_card_${emptyItemIndex}`);
-            if (cardElem) {
-              cardElem.style.backgroundColor = "#e8f5e9";
-              cardElem.style.border = "2px solid #28a745";
-            }
-            
-            sitDiv.style.backgroundColor = "#d4edda";
-            sitDiv.style.border = "2px solid #28a745";
-            sitDiv.classList.add('used');
+            updateCardStyle(emptyItem);
+            updateSituationStyle(sitIdx);
+            // حفظ الإجابات
+            localStorage.setItem(`teil3_answers_${currentSkillName}_${currentExamIdNum}`, JSON.stringify(teil3UserAnswers));
           }
-          // تم إزالة رسالة "جميع الفقرات تم ربطها بالفعل!"
         }
       };
     })(i);
     
     sitDiv.onmouseenter = function() {
-      if (!this.classList.contains('used')) {
-        this.style.backgroundColor = "rgba(56, 189, 248, 0.08)";
+      if (this.style.backgroundColor !== "rgb(212, 237, 218)") {
+        this.style.backgroundColor = "rgba(56, 189, 248, 0.1)";
         this.style.transform = "translateY(-2px)";
-        this.style.boxShadow = "0 4px 10px rgba(0,0,0,0.1)";
       }
     };
     sitDiv.onmouseleave = function() {
-      if (!this.classList.contains('used')) {
+      if (this.style.backgroundColor !== "rgb(212, 237, 218)") {
         this.style.backgroundColor = "white";
         this.style.transform = "translateY(0)";
-        this.style.boxShadow = "0 1px 2px rgba(0,0,0,0.05)";
       }
     };
     
@@ -2090,6 +2012,29 @@ function renderTeil3Exam() {
   twoColumns.appendChild(rightColumn);
   container.appendChild(twoColumns);
   
+  // تحديث الأنماط بناءً على الإجابات المحفوظة
+  function updateCardStyle(idx) {
+    const card = document.getElementById(`teil3_card_${idx}`);
+    if (card) {
+      if (teil3UserAnswers[idx] !== undefined) {
+        card.style.backgroundColor = "#e8f5e9";
+        card.style.border = "2px solid #28a745";
+      } else {
+        card.style.backgroundColor = "#fafafa";
+        card.style.border = "1px solid #e0e0e0";
+      }
+    }
+  }
+  
+  function updateSituationStyle(sitIdx) {
+    const sitDiv = document.getElementById(`teil3_sit_${sitIdx}`);
+    if (sitDiv) {
+      sitDiv.style.backgroundColor = "#d4edda";
+      sitDiv.style.border = "2px solid #28a745";
+    }
+  }
+  
+  // أزرار التحكم
   const buttonContainer = document.createElement("div");
   buttonContainer.style.display = "flex";
   buttonContainer.style.gap = "15px";
@@ -2105,7 +2050,7 @@ function renderTeil3Exam() {
   checkBtn.style.border = "none";
   checkBtn.style.borderRadius = "8px";
   checkBtn.style.fontSize = "16px";
-  checkBtn.onclick = checkTeil3Exam;
+  checkBtn.onclick = () => checkTeil3Exam(currentSkillName, currentExamIdNum);
   buttonContainer.appendChild(checkBtn);
   
   const resetBtn = document.createElement("button");
@@ -2119,22 +2064,30 @@ function renderTeil3Exam() {
   resetBtn.style.fontWeight = "bold";
   resetBtn.onclick = function() {
     teil3UserAnswers = {};
-    container.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
-    document.querySelectorAll('#teil3_situations_list div').forEach(sitDiv => {
-      sitDiv.style.backgroundColor = "white";
-      sitDiv.style.border = "1px solid #ddd";
-      sitDiv.style.cursor = "pointer";
-      sitDiv.classList.remove('used');
-    });
-    document.querySelectorAll('.question-card').forEach(card => {
-      card.style.backgroundColor = "#fafafa";
-      card.style.border = "1px solid #e0e0e0";
-    });
+    teil3SelectedItem = null;
+    for (let i = 0; i < items.length; i++) {
+      const selectElem = document.getElementById(`teil3_select_${i}`);
+      if (selectElem) selectElem.selectedIndex = 0;
+      const card = document.getElementById(`teil3_card_${i}`);
+      if (card) {
+        card.style.backgroundColor = "#fafafa";
+        card.style.border = "1px solid #e0e0e0";
+        card.style.boxShadow = "none";
+      }
+    }
+    for (let i = 0; i < situations.length; i++) {
+      const sitDiv = document.getElementById(`teil3_sit_${i}`);
+      if (sitDiv) {
+        sitDiv.style.backgroundColor = "white";
+        sitDiv.style.border = "1px solid #ddd";
+      }
+    }
     const resultDiv = document.getElementById("teil3Result");
     if (resultDiv) resultDiv.style.display = "none";
+    // حذف الإجابات المحفوظة
+    localStorage.removeItem(`teil3_answers_${currentSkillName}_${currentExamIdNum}`);
   };
   buttonContainer.appendChild(resetBtn);
-  
   container.appendChild(buttonContainer);
   
   const resultDiv = document.createElement("div");
@@ -2144,7 +2097,7 @@ function renderTeil3Exam() {
   container.appendChild(resultDiv);
 }
 
-function checkTeil3Exam() {
+function checkTeil3Exam(currentSkillName, currentExamIdNum) {
   const items = currentTeil3Data.items;
   let score = 0;
   let total = items.length;
@@ -2157,8 +2110,8 @@ function checkTeil3Exam() {
     let correctText = "";
     
     if (correctIndex === null || correctIndex === undefined) {
-      correctText = "هذه الفقرة تبقى دون عنوان";
-      isCorrect = (userAnswer === null || userAnswer === undefined || userAnswer === "");
+      correctText = "ليس لها عنوان";
+      isCorrect = (userAnswer === null || userAnswer === undefined);
     } else {
       correctText = `${String.fromCharCode(97 + correctIndex)}. ${currentTeil3Data.situations[correctIndex]}`;
       isCorrect = (userAnswer === correctIndex);
@@ -2169,7 +2122,7 @@ function checkTeil3Exam() {
       const oldMsg = card.querySelector(".correct-message");
       if (oldMsg) oldMsg.remove();
       
-      if (isCorrect && (userAnswer !== undefined && userAnswer !== null && userAnswer !== "")) {
+      if (isCorrect && userAnswer !== undefined && userAnswer !== null) {
         score++;
         card.classList.add("correct-answer-card");
       } else {
@@ -2189,7 +2142,7 @@ function checkTeil3Exam() {
       
       const selectElem = document.getElementById(`teil3_select_${i}`);
       if (selectElem) {
-        if (isCorrect && userAnswer !== undefined && userAnswer !== null && userAnswer !== "") {
+        if (isCorrect && userAnswer !== undefined && userAnswer !== null) {
           selectElem.style.backgroundColor = "#d4edda";
           selectElem.style.border = "2px solid #28a745";
         } else {
@@ -2200,22 +2153,28 @@ function checkTeil3Exam() {
     }
   }
   
-  const finalScore = (score * 25 / total).toFixed(2);
+  const finalScoreValue = (score * 25 / total);
+  const finalScore = finalScoreValue.toFixed(2);
   const resultDiv = document.getElementById("teil3Result");
   if (resultDiv) {
     resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
     resultDiv.style.display = "block";
   }
   
-  if (finalScore >= 20) {
+  if (finalScoreValue >= 20) {
     resultDiv.style.backgroundColor = "#d4edda";
     resultDiv.style.color = "#155724";
-  } else if (finalScore >= 15) {
+  } else if (finalScoreValue >= 15) {
     resultDiv.style.backgroundColor = "#fff3cd";
     resultDiv.style.color = "#856404";
   } else {
     resultDiv.style.backgroundColor = "#f8d7da";
     resultDiv.style.color = "#721c24";
+  }
+  
+  // حفظ النتيجة
+  if (currentSkillName && currentExamIdNum) {
+    saveExamResult(currentSkillName, currentExamIdNum, finalScoreValue, 25);
   }
 }
 
