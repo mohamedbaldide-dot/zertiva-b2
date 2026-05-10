@@ -1,5 +1,5 @@
 // ============================================
-// exams.js - نظام الامتحانات المتكامل مع نظام القفل
+// exams.js - نظام الامتحانات المتكامل مع نظام القفل وحفظ النتائج
 // ============================================
 
 const teile = [
@@ -15,6 +15,58 @@ const teile = [
   { id: 10, name: "Mündlich", container: "mündlich", skill: "mündlich" },
   { id: 11, name: "Tips", container: "tips", skill: "tips" }
 ];
+
+// ========== دالة حفظ آخر نتيجة ==========
+function saveExamResult(skill, examId, score) {
+  try {
+    const key = `exam_result_${skill}_${examId}`;
+    localStorage.setItem(key, score.toString());
+    console.log(`✅ تم حفظ النتيجة ${score} لـ ${skill} ${examId}`);
+  } catch(e) {
+    console.error("❌ خطأ في حفظ النتيجة:", e);
+  }
+}
+
+// ========== دالة استرجاع آخر نتيجة ==========
+function getExamResult(skill, examId) {
+  try {
+    const key = `exam_result_${skill}_${examId}`;
+    const result = localStorage.getItem(key);
+    return result ? parseFloat(result) : null;
+  } catch(e) {
+    console.error("❌ خطأ في استرجاع النتيجة:", e);
+    return null;
+  }
+}
+
+// ========== دالة الحصول على لون النتيجة ==========
+function getResultColor(score) {
+  if (score === 25) return "#17a2b8";      // أزرق فاتح
+  if (score >= 15) return "#28a745";       // أخضر
+  return "#adb5bd";                         // رمادي فاتح
+}
+
+// ========== دالة عرض النتيجة بجانب عنوان الامتحان ==========
+function createResultBadge(score) {
+  if (score === null) return null;
+  
+  const badge = document.createElement("span");
+  badge.className = "exam-result-badge";
+  badge.textContent = `${score} / 25`;
+  badge.style.cssText = `
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 20px;
+    color: white;
+    background-color: ${getResultColor(score)};
+    margin-left: 10px;
+    display: inline-block;
+    min-width: 55px;
+    text-align: center;
+  `;
+  return badge;
+}
 
 // ========== دالة عرض نافذة القفل ==========
 function showLockedMessage(examTitle) {
@@ -519,6 +571,20 @@ const examsDatabase = {
   tips: tipsExams
 };
 
+// ========== دالة عرض النتيجة المحفوظة ==========
+function displaySavedResult(skill, examId, titleSpan, containerDiv) {
+  const savedScore = getExamResult(skill, examId);
+  if (savedScore !== null) {
+    const badge = createResultBadge(savedScore);
+    if (badge) {
+      // إضافة البadge بجانب عنوان الامتحان
+      const existingBadge = titleSpan.querySelector('.exam-result-badge');
+      if (existingBadge) existingBadge.remove();
+      titleSpan.appendChild(badge);
+    }
+  }
+}
+
 // ========== الدوال الرئيسية ==========
 
 function renderTeileList() {
@@ -585,6 +651,9 @@ async function renderExamListForSkill(skill, teilName) {
     }
     
     div.appendChild(titleSpan);
+    
+    // ✅ عرض النتيجة المحفوظة بجانب عنوان الامتحان
+    displaySavedResult(skill, exam.id, titleSpan, div);
     
     if (!isPremium && !isFirstExam) {
       div.style.backgroundColor = "rgba(255,255,255,0.75)";
@@ -1036,7 +1105,24 @@ function checkTeil1(questions, answers) {
     resultDiv.innerHTML = "النتيجة: " + finalScore + " / 25";
     resultDiv.style.display = "block";
   }
+  
+  // ✅ حفظ النتيجة
+  saveExamResult(currentSkill, currentExamId, parseFloat(finalScore));
+  
+  // ✅ تحديث عرض النتيجة في القائمة إذا كانت مفتوحة
+  if (document.getElementById("list").classList.contains("active")) {
+    renderExamListForSkill(currentSkill, getTeilNameBySkill(currentSkill));
+  }
 }
+
+// ✅ دالة لحفظ النتيجة من أي جزء (يتم استدعاؤها من engine.js)
+window.saveExamResultGlobal = function(skill, examId, score) {
+  saveExamResult(skill, examId, score);
+  // تحديث القائمة إذا كانت مفتوحة
+  if (document.getElementById("list").classList.contains("active") && currentSkill === skill) {
+    renderExamListForSkill(currentSkill, getTeilNameBySkill(currentSkill));
+  }
+};
 
 function goHome() {
   document.getElementById("home").classList.add("active");
