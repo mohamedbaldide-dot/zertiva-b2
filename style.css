@@ -1062,6 +1062,10 @@ body:has(#exam.active) .top-bar {
     margin-top: 12px;
 }
 
+/* ========================================
+   عناوين الأجزاء (teile)
+   ======================================== */
+
 .teil-item {
     background: rgba(15, 23, 42, 0.75);
     color: #e2e8f0;
@@ -1090,6 +1094,31 @@ body:has(#exam.active) .top-bar {
     margin-bottom: 30px;
     justify-content: flex-start;
     direction: ltr;
+}
+
+/* تصغير حجم عناوين الأجزاء على الهواتف */
+@media (max-width: 768px) {
+    .teil-item {
+        padding: 8px 12px;
+        font-size: 12px;
+        min-width: 100px;
+    }
+    
+    .teile-row {
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .teil-item {
+        padding: 6px 10px;
+        font-size: 11px;
+        min-width: 85px;
+    }
+    
+    .teile-row {
+        gap: 6px;
+    }
 }
 
 .exam-box {
