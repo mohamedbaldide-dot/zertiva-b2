@@ -1306,7 +1306,7 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
       }
     }
     if (originalCorrectIndices.length > 0) {
-      correctNumbersContainer.innerHTML = `▸ الإجابات الصحيحة في الامتحان: ${originalCorrectIndices.join(" - ")}`;
+      correctNumbersContainer.innerHTML = `▸ الإجابات الصحيحة: ${originalCorrectIndices.join(" - ")}`;
     } else {
       correctNumbersContainer.innerHTML = "▸ لا توجد إجابات صحيحة في هذا الامتحان";
     }
