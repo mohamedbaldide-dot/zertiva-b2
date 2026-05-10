@@ -420,19 +420,20 @@ body:has(#exam.active) .top-bar {
 
 .btn-login-top {
     padding: 6px 16px;
-    border: 1.5px solid #38bdf8;
-    background: transparent;
+    border: 1px solid #6c757d;
+    background: rgba(108, 117, 125, 0.1);
     border-radius: 25px;
     font-weight: 500;
     font-size: 13px;
     cursor: pointer;
     transition: 0.3s;
-    color: #38bdf8;
+    color: #adb5bd;
 }
 
 .btn-login-top:hover {
-    background: #38bdf8;
-    color: #0a0e1a;
+    background: rgba(108, 117, 125, 0.25);
+    color: #f8f9fa;
+    border-color: #adb5bd;
 }
 
 .profile-icon {
