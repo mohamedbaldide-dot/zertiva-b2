@@ -106,10 +106,10 @@
                 </h2>
                 <p class="features-description">
                     كتتهنى من الاجوبة الخاطئة و التقلاب على التيمات،
-                    ...وزيد عليها كنقدمو مساعدة ذكية لمجربها أنا شخصياً واللي تخليك تعقل على الأجوبة بسهولة وهادشي فكل الأجزاء, منهجية فالشغايبن, نصائح للامتحان و
+                    وزيد عليها كنقدمو مساعدة ذكية لمجربها أنا شخصياً واللي تخليك تعقل على الأجوبة بسهولة وهادشي فكل الأجزاء.
                 </p>
                 <p class="features-description second">
-                    بالإضافة اجابات صحيحة 100%، وايضا اجابات الموندليش تايل 2 مع بطاقة هتخليك تتفكر بسهولة كبيرة.
+                    بالإضافة لمنهجية تهنيك من الامتحان الكتابي كامل، ونصائح مغاديش تسمعهم من عند حتى واحد آخر.
                 </p>
                 <button id="featuresSubscribeBtn" class="features-btn">
                     اشترك الآن
@@ -132,7 +132,7 @@
 
 <div id="list" class="page">
   <div class="teile-header-section">
-    <h3 id="teilHeaderTitle" style="display: none;">📌 اختر القسم (Teil)</h3>
+    <h3 id="teilHeaderTitle" style="display: none;">اختر القسم (Teil)</h3>
   </div>
   <div id="teileList" class="teile-row"></div>
   <div id="examsList" class="exams-container">
@@ -464,6 +464,21 @@
         if (e.key === 'ArrowRight') nextImageModal();
         if (e.key === 'ArrowLeft') prevImageModal();
     });
+
+    // تعديل: عند الضغط على زر "اكتشف الامتحانات" يظهر Hören Teil 1 مباشرة
+    const startBtn = document.getElementById('startBtn');
+    if(startBtn) {
+        startBtn.addEventListener('click', function() {
+            goList();
+            setTimeout(() => {
+                // محاكاة الضغط على Hören Teil 1
+                const hoerenTeil1 = document.querySelector('.teile-row .item:first-child');
+                if(hoerenTeil1 && hoerenTeil1.click) {
+                    hoerenTeil1.click();
+                }
+            }, 100);
+        });
+    }
 </script>
 <script>
     // حل مشكلة الـ Widget على الهاتف
@@ -474,7 +489,6 @@
         // إزالة التمدد التلقائي على الهاتف
         if (window.innerWidth <= 768) {
             // منع التمدد التلقائي بعد 2 ثانية
-            const originalTimeout = setTimeout;
             clearTimeout(window.widgetTimeout);
             if (widget.classList.contains('expanded')) {
                 widget.classList.remove('expanded');
