@@ -706,9 +706,9 @@ function getActualFileName(examId) {
   return `exam${examId}.json`;
 }
 
-// إخفاء زر المساعدة الذكية في أقسام معينة
+// إخفاء زر المساعدة الذكية في أقسام معينة (تم إزالة Mündlich من القائمة)
 function shouldHideHelpButton(skill) {
-  const hiddenSkills = ["schreiben", "mündlich", "tips"];
+  const hiddenSkills = ["schreiben", "tips"];
   return hiddenSkills.includes(skill);
 }
 
