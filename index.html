@@ -13,9 +13,30 @@
         <img src="images/logo.webp" loading="lazy" alt="Zertiva" class="logo-img">
     </div>
     <div class="right-buttons">
+        <!-- ✅ زر الإعدادات الجديد -->
+        <button id="settingsBtn" class="settings-icon-btn" title="إعدادات العرض">⚙️</button>
         <button id="navLoginBtn" class="btn-login-top">تسجيل الدخول</button>
         <button id="navSubscribeBtn" class="subscribe-text-btn">اشترك</button>
         <div class="profile-icon" id="profileIcon" style="display: none;">👤</div>
+    </div>
+</div>
+
+<!-- ✅ نافذة إعدادات الحجم -->
+<div id="settingsModal" class="settings-modal">
+    <div class="settings-modal-content">
+        <div class="settings-modal-header">
+            <h3>⚙️ إعدادات العرض</h3>
+            <button id="closeSettingsModal" class="close-settings-btn">✕</button>
+        </div>
+        <div class="settings-modal-body">
+            <p class="settings-desc">تحكم في حجم الموقع ليناسب راحتك</p>
+            <div class="font-size-controls">
+                <button id="decreaseFontBtn" class="font-size-btn" title="تصغير">A-</button>
+                <span id="fontSizeValue" class="font-size-value">100%</span>
+                <button id="increaseFontBtn" class="font-size-btn" title="تكبير">A+</button>
+            </div>
+            <button id="resetFontBtn" class="reset-font-btn" title="إعادة الحجم الطبيعي">↺ إعادة الضبط</button>
+        </div>
     </div>
 </div>
 
@@ -202,6 +223,81 @@
 <script src="auth.js"></script>
 
 <script>
+    // ✅ نظام تكبير وتصغير الموقع
+    (function() {
+        let currentScale = 100;
+        const MIN_SCALE = 80;
+        const MAX_SCALE = 150;
+        const STEP = 5;
+        
+        function updateFontSize(scale) {
+            document.documentElement.style.fontSize = (scale / 100) + 'rem';
+            const fontSizeValue = document.getElementById('fontSizeValue');
+            if (fontSizeValue) fontSizeValue.textContent = scale + '%';
+            localStorage.setItem('siteFontScale', scale);
+        }
+        
+        function increaseFont() {
+            if (currentScale < MAX_SCALE) {
+                currentScale += STEP;
+                updateFontSize(currentScale);
+            }
+        }
+        
+        function decreaseFont() {
+            if (currentScale > MIN_SCALE) {
+                currentScale -= STEP;
+                updateFontSize(currentScale);
+            }
+        }
+        
+        function resetFont() {
+            currentScale = 100;
+            updateFontSize(currentScale);
+        }
+        
+        // استرجاع الإعدادات المحفوظة
+        const savedScale = localStorage.getItem('siteFontScale');
+        if (savedScale) {
+            currentScale = parseInt(savedScale);
+            if (currentScale >= MIN_SCALE && currentScale <= MAX_SCALE) {
+                updateFontSize(currentScale);
+            } else {
+                currentScale = 100;
+                updateFontSize(100);
+            }
+        }
+        
+        // إعدادات النافذة المنبثقة
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsModal = document.getElementById('settingsModal');
+        const closeSettingsModal = document.getElementById('closeSettingsModal');
+        const increaseBtn = document.getElementById('increaseFontBtn');
+        const decreaseBtn = document.getElementById('decreaseFontBtn');
+        const resetBtn = document.getElementById('resetFontBtn');
+        
+        if (settingsBtn && settingsModal) {
+            settingsBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                settingsModal.classList.add('active');
+            });
+            
+            closeSettingsModal.addEventListener('click', function() {
+                settingsModal.classList.remove('active');
+            });
+            
+            settingsModal.addEventListener('click', function(e) {
+                if (e.target === settingsModal) {
+                    settingsModal.classList.remove('active');
+                }
+            });
+        }
+        
+        if (increaseBtn) increaseBtn.addEventListener('click', increaseFont);
+        if (decreaseBtn) decreaseBtn.addEventListener('click', decreaseFont);
+        if (resetBtn) resetBtn.addEventListener('click', resetFont);
+    })();
+
     const subscribeBtn = document.getElementById('featuresSubscribeBtn');
     if(subscribeBtn) {
         subscribeBtn.addEventListener('click', function() {
@@ -281,19 +377,26 @@
 
     const widget = document.getElementById('reviewsWidget');
     if (widget) {
-        setTimeout(() => {
-            widget.classList.remove('collapsed');
-            widget.classList.add('expanded');
-            initSliderAnimation();
-        }, 2000);
+        // ✅ إصلاح مشكلة الهاتف: منع التمدد التلقائي
+        const isMobile = window.innerWidth <= 768;
         
-        setTimeout(() => {
-            if (widget.classList.contains('expanded')) {
-                widget.classList.remove('expanded');
-                widget.classList.add('collapsed-keep');
-                stopMoveCycle();
-            }
-        }, 10000);
+        if (!isMobile) {
+            setTimeout(() => {
+                if (widget.classList.contains('collapsed')) {
+                    widget.classList.remove('collapsed');
+                    widget.classList.add('expanded');
+                    initSliderAnimation();
+                }
+            }, 2000);
+            
+            setTimeout(() => {
+                if (widget.classList.contains('expanded')) {
+                    widget.classList.remove('expanded');
+                    widget.classList.add('collapsed-keep');
+                    stopMoveCycle();
+                }
+            }, 10000);
+        }
         
         widget.addEventListener('click', function(e) {
             if (e.target.tagName === 'IMG') return;
@@ -481,31 +584,36 @@
     }
 </script>
 <script>
-    // حل مشكلة الـ Widget على الهاتف
+    // ✅ حل مشكلة الـ Widget على الهاتف (منع overflow وتمدد)
     function fixMobileWidget() {
         const widget = document.getElementById('reviewsWidget');
         if (!widget) return;
         
-        // إزالة التمدد التلقائي على الهاتف
         if (window.innerWidth <= 768) {
-            // منع التمدد التلقائي بعد 2 ثانية
+            // منع التمدد التلقائي على الهاتف
             clearTimeout(window.widgetTimeout);
-            if (widget.classList.contains('expanded')) {
-                widget.classList.remove('expanded');
-                widget.classList.add('collapsed');
+            widget.classList.remove('expanded', 'collapsed-keep');
+            widget.classList.add('collapsed');
+            
+            // إزالة الرسوم المتحركة على الهاتف
+            const slider = document.getElementById('widgetSlider');
+            if (slider) {
+                slider.style.animation = 'none';
+                slider.style.transform = 'none';
             }
             
-            // عند الضغط على الـ Widget
-            widget.addEventListener('click', function(e) {
-                if (e.target.tagName === 'IMG') return;
-                e.stopPropagation();
-                
-                if (widget.classList.contains('active')) {
-                    widget.classList.remove('active');
-                } else {
-                    widget.classList.add('active');
-                }
-            });
+            // إضافة overflow-x مخفي للحاوية
+            const sliderContainer = document.querySelector('.widget-slider-container');
+            if (sliderContainer) {
+                sliderContainer.style.overflowX = 'auto';
+                sliderContainer.style.webkitOverflowScrolling = 'touch';
+            }
+        } else {
+            // على الحاسوب، إعادة التنسيق الطبيعي
+            const slider = document.getElementById('widgetSlider');
+            if (slider && !slider.style.animation) {
+                slider.style.animation = '';
+            }
         }
     }
     
