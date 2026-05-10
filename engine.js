@@ -265,7 +265,6 @@ function renderSprach2Exam() {
         return function(e) {
           e.stopPropagation();
           
-          // التراجع عن الإجابة إذا كانت موجودة
           if (sprach2UserAnswers[qId]) {
             const oldWord = sprach2UserAnswers[qId];
             delete sprach2UserAnswers[qId];
@@ -563,48 +562,46 @@ function resetSprach2Exam() {
   console.log("✅ تم إعادة تعيين Sprachbausteine Teil 2");
 }
 
+// دالة checkSprach2Exam المعدلة (إظهار الإجابات في مكان الأرقام)
 function checkSprach2Exam() {
   const options = currentSprach2Data.options;
   let score = 0;
   const total = options.length;
   const pointsPerQuestion = 25 / total;
   
+  // إزالة رسائل "الإجابة الصحيحة" السابقة
+  document.querySelectorAll('.correct-answer-hint').forEach(el => el.remove());
+  
   for (let i = 0; i < options.length; i++) {
     const opt = options[i];
     const userAnswer = sprach2UserAnswers[opt.id];
     const isCorrect = (userAnswer === opt.correct);
+    const btn = document.getElementById(`sprach2_btn_${opt.id}`);
     
     if (isCorrect) {
       score++;
-    }
-    
-    const btn = document.getElementById(`sprach2_btn_${opt.id}`);
-    if (btn) {
-      if (isCorrect) {
+      if (btn) {
+        btn.textContent = opt.correct;
         btn.style.backgroundColor = "#28a745";
         btn.style.color = "white";
-      } else if (userAnswer) {
-        btn.style.backgroundColor = "#e67e22";
-        btn.style.color = "white";
-      } else {
-        btn.style.backgroundColor = "#e67e22";
-        btn.style.color = "white";
       }
-    }
-    
-    if (btn && !isCorrect) {
-      const parentDiv = btn.parentElement;
-      let existingMsg = parentDiv.querySelector('.correct-answer-hint');
-      if (existingMsg) existingMsg.remove();
-      
-      const correctMsg = document.createElement('div');
-      correctMsg.className = 'correct-answer-hint';
-      correctMsg.style.marginTop = '5px';
-      correctMsg.style.fontSize = '12px';
-      correctMsg.style.color = '#28a745';
-      correctMsg.style.fontWeight = 'bold';
-      correctMsg.innerHTML = `✅ الإجابة الصحيحة: ${opt.correct}`;
-      parentDiv.appendChild(correctMsg);
+    } else {
+      if (btn) {
+        // تغيير لون الزر إلى البرتقالي الفاتح
+        btn.style.backgroundColor = "#fef0e0";
+        btn.style.color = "#e67e22";
+        btn.style.border = "1px solid #e67e22";
+        
+        // عرض الإجابة الصحيحة داخل الزر نفسه
+        btn.textContent = opt.correct;
+        
+        // إضافة رمز أو تغيير اللون للدلالة على التصحيح
+        if (userAnswer) {
+          btn.title = `إجابتك: ${userAnswer}`;
+        } else {
+          btn.title = "لم تجب على هذا السؤال";
+        }
+      }
     }
   }
   
@@ -968,11 +965,11 @@ function checkSprach1Exam() {
         btn.style.backgroundColor = "#28a745";
         btn.style.color = "white";
       } else if (userAnswer) {
-        btn.style.backgroundColor = "#e67e22";
-        btn.style.color = "white";
+        btn.style.backgroundColor = "#fef0e0";
+        btn.style.color = "#e67e22";
       } else {
-        btn.style.backgroundColor = "#e67e22";
-        btn.style.color = "white";
+        btn.style.backgroundColor = "#fef0e0";
+        btn.style.color = "#e67e22";
       }
     }
     
@@ -1023,7 +1020,6 @@ function checkSprach1Exam() {
 
 // ========== نظام True/False ==========
 window.buildTrueFalseExam = function(container, questions, note) {
-  // التحقق من وجود الأسئلة
   if (!questions || !Array.isArray(questions) || questions.length === 0) {
     console.error("❌ خطأ: لا توجد أسئلة في هذا الامتحان");
     if (container) {
@@ -1230,7 +1226,6 @@ window.buildTrueFalseExam = function(container, questions, note) {
 };
 
 function checkTrueFalseExam(container, questions, answers, correctNumbersContainer) {
-  // التحقق من وجود الأسئلة
   if (!questions || !Array.isArray(questions) || questions.length === 0) {
     console.error("❌ خطأ: لا توجد أسئلة للتصحيح");
     const resultDiv = document.getElementById('truefalseResult');
@@ -1301,7 +1296,6 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
   
   if (correctNumbersContainer) {
     correctNumbersContainer.style.display = 'block';
-    // عرض الإجابات الصحيحة الأساسية للامتحان (بدون علاقة بإجابات المستخدم)
     let originalCorrectIndices = [];
     for (let i = 0; i < questions.length; i++) {
       if (questions[i].correct === true) {
@@ -1321,7 +1315,6 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
     resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
     resultDiv.style.display = 'block';
     
-    // تغيير اللون حسب النتيجة
     if (finalScore >= 20) {
       resultDiv.style.backgroundColor = '#28a745';
       resultDiv.style.color = 'white';
@@ -1335,7 +1328,7 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
   }
 }
 
-// ========== نظام Teil 2 (Lesen Teil 2 - ليس Hören) ==========
+// ========== نظام Teil 2 (Lesen Teil 2) ==========
 let currentTeil2Data = null;
 let teil2UserAnswers = {};
 
@@ -1551,7 +1544,7 @@ function checkTeil2Exam() {
   }
 }
 
-// ========== نظام Teil 3 (Lesen Teil 3 - ليس Hören) ==========
+// ========== نظام Teil 3 (Lesen Teil 3) ==========
 let currentTeil3Data = null;
 let teil3UserAnswers = {};
 
@@ -1628,6 +1621,12 @@ function renderTeil3Exam() {
     defaultOption.textContent = "-- اختر العنوان --";
     select.appendChild(defaultOption);
     
+    // إضافة خيار "لا يوجد لها عنوان"
+    const noTitleOption = document.createElement("option");
+    noTitleOption.value = "none";
+    noTitleOption.textContent = "⚠️ لا يوجد لها عنوان";
+    select.appendChild(noTitleOption);
+    
     for (let s = 0; s < situations.length; s++) {
       const option = document.createElement("option");
       option.value = s;
@@ -1637,7 +1636,12 @@ function renderTeil3Exam() {
     
     select.onchange = (function(idx) {
       return function() {
-        teil3UserAnswers[idx] = parseInt(select.value);
+        let val = select.value;
+        if (val === "none") {
+          teil3UserAnswers[idx] = null;
+        } else {
+          teil3UserAnswers[idx] = parseInt(val);
+        }
       };
     })(i);
     
@@ -1674,6 +1678,25 @@ function renderTeil3Exam() {
     sitDiv.style.border = "1px solid #ddd";
     sitDiv.style.fontSize = "13px";
     sitDiv.innerHTML = `${String.fromCharCode(97+i)}. ${situations[i]}`;
+    
+    // إمكانية النقر على العنوان لربطه
+    sitDiv.style.cursor = "pointer";
+    sitDiv.onclick = (function(sitIdx) {
+      return function() {
+        // البحث عن أول سؤال لم يتم اختيار عنوان له
+        for (let j = 0; j < items.length; j++) {
+          if (teil3UserAnswers[j] === undefined || teil3UserAnswers[j] === null || teil3UserAnswers[j] === "") {
+            const selectElem = document.querySelector(`#teil3 select:nth-child(${j+1})`);
+            if (selectElem) {
+              selectElem.value = sitIdx;
+              teil3UserAnswers[j] = sitIdx;
+              break;
+            }
+          }
+        }
+      };
+    })(i);
+    
     situationsList.appendChild(sitDiv);
   }
   rightColumn.appendChild(situationsList);
@@ -1730,12 +1753,27 @@ function checkTeil3Exam() {
   const items = currentTeil3Data.items;
   let score = 0;
   let total = items.length;
+  let results = [];
   
   for (let i = 0; i < total; i++) {
     const userAnswer = teil3UserAnswers[i];
-    const correctIndex = items[i].correct;
-    const isCorrect = (userAnswer === correctIndex);
-    if (isCorrect) score++;
+    let correctIndex = items[i].correct;
+    let isCorrect = false;
+    let correctText = "";
+    
+    if (correctIndex === null || correctIndex === undefined) {
+      correctText = "لا يوجد لها عنوان";
+      isCorrect = (userAnswer === null || userAnswer === undefined || userAnswer === "");
+    } else {
+      correctText = `${String.fromCharCode(97 + correctIndex)}. ${currentTeil3Data.situations[correctIndex]}`;
+      isCorrect = (userAnswer === correctIndex);
+    }
+    
+    if (isCorrect) {
+      score++;
+    }
+    
+    results.push({ index: i, isCorrect: isCorrect, correctText: correctText });
   }
   
   const finalScore = (score * 25 / total).toFixed(2);
@@ -1744,7 +1782,24 @@ function checkTeil3Exam() {
     resultDiv.innerHTML = `النتيجة: ${finalScore} / 25`;
     resultDiv.style.display = "block";
   }
+  
+  if (finalScore >= 20) {
+    resultDiv.style.backgroundColor = "#d4edda";
+    resultDiv.style.color = "#155724";
+  } else if (finalScore >= 15) {
+    resultDiv.style.backgroundColor = "#fff3cd";
+    resultDiv.style.color = "#856404";
+  } else {
+    resultDiv.style.backgroundColor = "#f8d7da";
+    resultDiv.style.color = "#721c24";
+  }
 }
+
+// ========== نظام Hören Teil 2 و Teil 3 (إظهار النتيجة) ==========
+// تم تعديل دوال Hören Teil 2 و Teil 3 لإظهار النتيجة
+
+// Hören Teil 2 و Teil 3 يستخدمان نفس نظام True/False
+// الدوال checkTrueFalseExam موجودة أعلاه وتظهر النتيجة بشكل صحيح
 
 // ========== نظام Matching (Teil 1) ==========
 let currentMatchingExamData = null;
