@@ -1127,3 +1127,14 @@ console.log("🎧 Hören Teil 3:", examsDatabase.hoeren3.length, "امتحان")
 console.log("✏️ Schreiben:", examsDatabase.schreiben.length, "امتحان");
 console.log("🗣️ Mündlich:", examsDatabase.mündlich.length, "امتحان");
 console.log("💡 Tips:", examsDatabase.tips.length, "قسم");
+/* تصغير حجم عناوين الأجزاء على الهواتف */
+@media (max-width: 768px) {
+    .teil-item {
+        padding: 5px 8px;
+        font-size: 11px;
+        min-width: 75px;
+    }
+    .teile-row {
+        gap: 6px;
+    }
+}
