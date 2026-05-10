@@ -1866,7 +1866,7 @@ function renderTeil3Exam() {
     
     const noTitleOption = document.createElement("option");
     noTitleOption.value = "none";
-    noTitleOption.textContent = "⚠️ هذه الفقرة لا يوجد لها عنوان";
+    noTitleOption.textContent = "هذه الفقرة تبقى دون عنوان";
     select.appendChild(noTitleOption);
     
     for (let s = 0; s < situations.length; s++) {
@@ -1903,20 +1903,33 @@ function renderTeil3Exam() {
     card.onclick = (function(idx) {
       return function(e) {
         e.stopPropagation();
+        e.preventDefault();
+        
+        // تأثير الضغط
+        this.style.transform = "scale(0.98)";
+        setTimeout(() => { this.style.transform = "scale(1)"; }, 150);
         
         // إلغاء تحديد أي عنصر محدد سابقاً
         if (window._selectedTeil3Item !== undefined && window._selectedTeil3Item !== idx) {
           const prevCard = document.getElementById(`teil3_card_${window._selectedTeil3Item}`);
-          if (prevCard) prevCard.style.border = "1px solid #e0e0e0";
+          if (prevCard) {
+            prevCard.style.backgroundColor = "#fafafa";
+            prevCard.style.border = "1px solid #e0e0e0";
+            prevCard.style.boxShadow = "none";
+          }
         }
         
         if (window._selectedTeil3Item === idx) {
           // إلغاء التحديد إذا تم الضغط على نفس الفقرة
+          card.style.backgroundColor = "#fafafa";
           card.style.border = "1px solid #e0e0e0";
+          card.style.boxShadow = "none";
           delete window._selectedTeil3Item;
         } else {
           // تحديد الفقرة الحالية
-          card.style.border = "3px solid #007bff";
+          card.style.backgroundColor = "rgba(56, 189, 248, 0.12)";
+          card.style.border = "2px solid #38bdf8";
+          card.style.boxShadow = "0 2px 8px rgba(56, 189, 248, 0.15)";
           window._selectedTeil3Item = idx;
         }
       };
@@ -1966,11 +1979,12 @@ function renderTeil3Exam() {
     sitDiv.style.padding = "10px 12px";
     sitDiv.style.marginBottom = "8px";
     sitDiv.style.backgroundColor = "white";
-    sitDiv.style.borderRadius = "6px";
+    sitDiv.style.borderRadius = "8px";
     sitDiv.style.border = "1px solid #ddd";
     sitDiv.style.fontSize = "13px";
     sitDiv.style.cursor = "pointer";
-    sitDiv.style.transition = "all 0.2s";
+    sitDiv.style.transition = "all 0.2s ease";
+    sitDiv.style.boxShadow = "0 1px 2px rgba(0,0,0,0.05)";
     sitDiv.innerHTML = `${String.fromCharCode(97+i)}. ${situations[i]}`;
     
     let isUsed = false;
@@ -1990,6 +2004,11 @@ function renderTeil3Exam() {
     sitDiv.onclick = (function(sitIdx) {
       return function(e) {
         e.stopPropagation();
+        e.preventDefault();
+        
+        // تأثير الضغط
+        this.style.transform = "scale(0.98)";
+        setTimeout(() => { this.style.transform = "scale(1)"; }, 150);
         
         if (window._selectedTeil3Item !== undefined) {
           const selectedIdx = window._selectedTeil3Item;
@@ -2010,7 +2029,12 @@ function renderTeil3Exam() {
           sitDiv.classList.add('used');
           
           // إلغاء التحديد
-          document.querySelectorAll('.question-card').forEach(c => c.style.border = "1px solid #e0e0e0");
+          const prevCard = document.getElementById(`teil3_card_${selectedIdx}`);
+          if (prevCard) {
+            prevCard.style.backgroundColor = "#fafafa";
+            prevCard.style.border = "1px solid #e0e0e0";
+            prevCard.style.boxShadow = "none";
+          }
           delete window._selectedTeil3Item;
         } else {
           // إذا لم يكن هناك فقرة محددة، نبحث عن فقرة فارغة
@@ -2036,21 +2060,24 @@ function renderTeil3Exam() {
             sitDiv.style.backgroundColor = "#d4edda";
             sitDiv.style.border = "2px solid #28a745";
             sitDiv.classList.add('used');
-          } else {
-            alert("⚠️ جميع الفقرات تم ربطها بالفعل!");
           }
+          // تم إزالة رسالة "جميع الفقرات تم ربطها بالفعل!"
         }
       };
     })(i);
     
     sitDiv.onmouseenter = function() {
       if (!this.classList.contains('used')) {
-        this.style.backgroundColor = "#e8e4ff";
+        this.style.backgroundColor = "rgba(56, 189, 248, 0.08)";
+        this.style.transform = "translateY(-2px)";
+        this.style.boxShadow = "0 4px 10px rgba(0,0,0,0.1)";
       }
     };
     sitDiv.onmouseleave = function() {
       if (!this.classList.contains('used')) {
         this.style.backgroundColor = "white";
+        this.style.transform = "translateY(0)";
+        this.style.boxShadow = "0 1px 2px rgba(0,0,0,0.05)";
       }
     };
     
