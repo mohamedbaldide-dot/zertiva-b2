@@ -16,6 +16,57 @@ const teile = [
   { id: 11, name: "Tips", container: "tips", skill: "tips" }
 ];
 
+// ========== حفظ وعرض نتائج الامتحانات ==========
+function saveExamResult(skill, examId, score, total) {
+    try {
+        let results = localStorage.getItem('zertiva_exam_results');
+        results = results ? JSON.parse(results) : {};
+        if (!results[skill]) results[skill] = {};
+        results[skill][examId] = { score: score, total: total, date: Date.now() };
+        localStorage.setItem('zertiva_exam_results', JSON.stringify(results));
+    } catch(e) { console.error("خطأ في حفظ النتيجة:", e); }
+}
+
+function getExamResult(skill, examId) {
+    try {
+        let results = localStorage.getItem('zertiva_exam_results');
+        if (!results) return null;
+        results = JSON.parse(results);
+        return results[skill]?.[examId] || null;
+    } catch(e) { return null; }
+}
+
+function updateExamResultDisplay() {
+    document.querySelectorAll('.exam-item').forEach(item => {
+        const skill = item.dataset.skill;
+        const examId = parseInt(item.dataset.examId);
+        if (skill && examId) {
+            const result = getExamResult(skill, examId);
+            if (result) {
+                let resultSpan = item.querySelector('.exam-result');
+                if (!resultSpan) {
+                    resultSpan = document.createElement('span');
+                    resultSpan.className = 'exam-result';
+                    item.appendChild(resultSpan);
+                }
+                resultSpan.textContent = `${Math.round(result.score)} / ${result.total}`;
+                if (result.score >= 15 && result.score < 25) {
+                    resultSpan.style.color = '#10b981';
+                } else if (result.score === 25) {
+                    resultSpan.style.color = '#38bdf8';
+                } else {
+                    resultSpan.style.color = '#94a3b8';
+                }
+                resultSpan.style.marginRight = '15px';
+                resultSpan.style.fontSize = '12px';
+                resultSpan.style.fontWeight = 'bold';
+                resultSpan.style.direction = 'ltr';
+                resultSpan.style.display = 'inline-block';
+            }
+        }
+    });
+}
+
 // ========== دالة عرض نافذة القفل ==========
 function showLockedMessage(examTitle) {
     let modal = document.createElement('div');
@@ -569,12 +620,13 @@ async function renderExamListForSkill(skill, teilName) {
     const isFirstExam = (examNumber === 1);
     
     const div = document.createElement("div");
-    div.className = "item";
+    div.className = "item exam-item";
+    div.setAttribute('data-skill', skill);
+    div.setAttribute('data-exam-id', exam.id);
     
     const titleSpan = document.createElement("span");
     titleSpan.className = "exam-title";
     
-    // إزالة الترقيم من قسم Tips فقط وعرض العنوان في المنتصف
     if (skill === "tips") {
       titleSpan.textContent = `${exam.title}`;
       titleSpan.style.textAlign = "center";
@@ -651,6 +703,9 @@ async function renderExamListForSkill(skill, teilName) {
     container.appendChild(div);
   }
   
+  // عرض النتائج المحفوظة
+  updateExamResultDisplay();
+  
   setTimeout(setupLockedNextButton, 100);
 }
 
@@ -706,7 +761,7 @@ function getActualFileName(examId) {
   return `exam${examId}.json`;
 }
 
-// إخفاء زر المساعدة الذكية في أقسام معينة (تم إزالة Mündlich من القائمة)
+// إخفاء زر المساعدة الذكية في أقسام معينة
 function shouldHideHelpButton(skill) {
   const hiddenSkills = ["schreiben", "tips"];
   return hiddenSkills.includes(skill);
@@ -748,26 +803,26 @@ async function openExam(examId, examTitle, skill) {
     // معالجة أنواع الامتحانات المختلفة
     if (currentExamData.type === "matching") {
       if (typeof window.loadMatchingExam === "function") {
-        window.loadMatchingExam(currentExamData);
+        window.loadMatchingExam(currentExamData, skill, examId);
       } else {
         buildTeil1(currentExamData.questions || []);
       }
     } else if (currentExamData.type === "truefalse") {
       const container = document.getElementById(currentSkill);
       if (container && typeof window.buildTrueFalseExam === "function") {
-        window.buildTrueFalseExam(container, currentExamData.questions, currentExamData.note);
+        window.buildTrueFalseExam(container, currentExamData.questions, currentExamData.note, skill, examId);
       } else {
         buildTeil1(currentExamData.questions || []);
       }
     } else if (currentExamData.type === "teil2") {
       if (typeof window.loadTeil2Exam === "function") {
-        window.loadTeil2Exam(currentExamData);
+        window.loadTeil2Exam(currentExamData, skill, examId);
       } else {
         buildTeil1(currentExamData.questions || []);
       }
     } else if (currentExamData.type === "teil3") {
       if (typeof window.loadTeil3Exam === "function") {
-        window.loadTeil3Exam(currentExamData);
+        window.loadTeil3Exam(currentExamData, skill, examId);
       } else {
         buildTeil1(currentExamData.questions || []);
       }
