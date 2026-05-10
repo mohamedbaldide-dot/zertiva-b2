@@ -530,7 +530,7 @@ function renderTeileList() {
     const teil = teile[i];
     const div = document.createElement("div");
     div.className = "item teil-item";
-    div.innerHTML = teil.name;
+    div.textContent = teil.name;
     div.onclick = (function(skill, teilName) {
       return function() { 
         renderExamListForSkill(skill, teilName);
@@ -574,14 +574,14 @@ async function renderExamListForSkill(skill, teilName) {
     const titleSpan = document.createElement("span");
     titleSpan.className = "exam-title";
     
-    // تعديل: إزالة الترقيم من قسم Tips فقط
+    // إزالة الترقيم من قسم Tips فقط وعرض العنوان في المنتصف
     if (skill === "tips") {
-      titleSpan.innerHTML = `${exam.title}`;
+      titleSpan.textContent = `${exam.title}`;
       titleSpan.style.textAlign = "center";
       titleSpan.style.display = "block";
       titleSpan.style.width = "100%";
     } else {
-      titleSpan.innerHTML = `${exam.id}: ${exam.title}`;
+      titleSpan.textContent = `${exam.id}: ${exam.title}`;
     }
     
     div.appendChild(titleSpan);
@@ -710,19 +710,6 @@ function getActualFileName(examId) {
 function shouldHideHelpButton(skill) {
   const hiddenSkills = ["schreiben", "tips"];
   return hiddenSkills.includes(skill);
-}
-
-// تعديل دالة إضافة زر المساعدة
-function addHelpButtonIfNeeded() {
-  const currentSkillForHelp = getCurrentSkill();
-  if (shouldHideHelpButton(currentSkillForHelp)) {
-    const existingBtn = document.getElementById('globalHelpButton');
-    if (existingBtn) existingBtn.style.display = "none";
-    return;
-  }
-  
-  const existingBtn = document.getElementById('globalHelpButton');
-  if (existingBtn) existingBtn.style.display = "block";
 }
 
 async function openExam(examId, examTitle, skill) {
@@ -1093,16 +1080,24 @@ document.addEventListener("DOMContentLoaded", function() {
   // تعديل: زر الرجوع يعود إلى قائمة الامتحانات الخاصة بالجزء الحالي
   if (backArrowFromExam) {
     backArrowFromExam.onclick = function() { 
-      document.getElementById("home").classList.remove("active");
-      document.getElementById("exam").classList.remove("active");
-      document.getElementById("list").classList.add("active");
-      renderTeileList();
-      // إعادة عرض قائمة الامتحانات للقسم الحالي
       if (currentSkill) {
         const teil = teile.find(t => t.skill === currentSkill);
         if (teil) {
+          document.getElementById("home").classList.remove("active");
+          document.getElementById("exam").classList.remove("active");
+          document.getElementById("list").classList.add("active");
           renderExamListForSkill(teil.skill, teil.name);
+        } else {
+          document.getElementById("home").classList.remove("active");
+          document.getElementById("exam").classList.remove("active");
+          document.getElementById("list").classList.add("active");
+          renderTeileList();
         }
+      } else {
+        document.getElementById("home").classList.remove("active");
+        document.getElementById("exam").classList.remove("active");
+        document.getElementById("list").classList.add("active");
+        renderTeileList();
       }
     };
   }
@@ -1127,14 +1122,3 @@ console.log("🎧 Hören Teil 3:", examsDatabase.hoeren3.length, "امتحان")
 console.log("✏️ Schreiben:", examsDatabase.schreiben.length, "امتحان");
 console.log("🗣️ Mündlich:", examsDatabase.mündlich.length, "امتحان");
 console.log("💡 Tips:", examsDatabase.tips.length, "قسم");
-/* تصغير حجم عناوين الأجزاء على الهواتف */
-@media (max-width: 768px) {
-    .teil-item {
-        padding: 5px 8px;
-        font-size: 11px;
-        min-width: 75px;
-    }
-    .teile-row {
-        gap: 6px;
-    }
-}
