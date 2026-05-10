@@ -246,10 +246,6 @@
         return localStorage.getItem('zertiva_email');
     }
     
-    function getLoggedInPassword() {
-        return localStorage.getItem('zertiva_password');
-    }
-    
     function sendWhatsApp(plan, duration, price) {
         let email = getLoggedInEmail();
         
@@ -259,12 +255,12 @@
             return;
         }
         
-        let message = `📩 *Neue Abonnementanfrage – Zertiva B2*%0A%0A`;
-        message += `👤 *E-Mail:* ${encodeURIComponent(email)}%0A`;
-        message += `💎 *Paket:* VIP%0A`;
-        message += `💰 *Preis:* ${price} DH%0A`;
-        message += `⏳ *Dauer:* ${duration}%0A%0A`;
-        message += `📌 *Hinweis:* Bitte aktivieren Sie mein Konto nach Zahlungseingang.`;
+        let message = `[NEW] Neue Abonnementanfrage – Zertiva B2%0A%0A`;
+        message += `[USR] E-Mail: ${encodeURIComponent(email)}%0A`;
+        message += `[PLN] Paket: VIP%0A`;
+        message += `[PRC] Preis: ${price} DH%0A`;
+        message += `[TM] Dauer: ${duration}%0A%0A`;
+        message += `[NT] Bitte aktivieren Sie mein Konto nach Zahlungseingang.`;
         
         window.open(`https://wa.me/${WA_NUMBER}?text=${message}`, '_blank');
         
