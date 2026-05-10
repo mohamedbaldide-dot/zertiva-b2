@@ -530,7 +530,7 @@ function renderTeileList() {
     const teil = teile[i];
     const div = document.createElement("div");
     div.className = "item teil-item";
-    div.innerHTML = teil.name;
+    div.textContent = teil.name;
     div.onclick = (function(skill, teilName) {
       return function() { 
         renderExamListForSkill(skill, teilName);
@@ -573,7 +573,17 @@ async function renderExamListForSkill(skill, teilName) {
     
     const titleSpan = document.createElement("span");
     titleSpan.className = "exam-title";
-    titleSpan.innerHTML = `${exam.id}: ${exam.title}`;
+    
+    // إزالة الترقيم من قسم Tips فقط وعرض العنوان في المنتصف
+    if (skill === "tips") {
+      titleSpan.textContent = `${exam.title}`;
+      titleSpan.style.textAlign = "center";
+      titleSpan.style.display = "block";
+      titleSpan.style.width = "100%";
+    } else {
+      titleSpan.textContent = `${exam.id}: ${exam.title}`;
+    }
+    
     div.appendChild(titleSpan);
     
     if (!isPremium && !isFirstExam) {
@@ -696,9 +706,24 @@ function getActualFileName(examId) {
   return `exam${examId}.json`;
 }
 
+// إخفاء زر المساعدة الذكية في أقسام معينة (تم إزالة Mündlich من القائمة)
+function shouldHideHelpButton(skill) {
+  const hiddenSkills = ["schreiben", "tips"];
+  return hiddenSkills.includes(skill);
+}
+
 async function openExam(examId, examTitle, skill) {
   currentExamId = examId;
   currentSkill = skill;
+  
+  // إخفاء أو إظهار زر المساعدة حسب القسم
+  if (shouldHideHelpButton(skill)) {
+    const helpBtn = document.getElementById('globalHelpButton');
+    if (helpBtn) helpBtn.style.display = "none";
+  } else {
+    const helpBtn = document.getElementById('globalHelpButton');
+    if (helpBtn) helpBtn.style.display = "block";
+  }
   
   const fileName = getActualFileName(examId);
   
@@ -1028,7 +1053,7 @@ function goList() {
   
   const examsContainer = document.getElementById("examsList");
   if (examsContainer) {
-    examsContainer.innerHTML = '<div class="welcome-message">👈 اختر القسم (Teil) من الأعلى لعرض الامتحانات</div>';
+    examsContainer.innerHTML = '';
   }
 }
 
@@ -1038,14 +1063,48 @@ document.addEventListener("DOMContentLoaded", function() {
   const backToListBtn = document.getElementById("backToListBtn");
   const backArrowFromExam = document.getElementById("backArrowFromExam");
   
-  if (startBtn) startBtn.onclick = function() { goList(); };
+  if (startBtn) startBtn.onclick = function() { 
+    goList(); 
+    // محاكاة الضغط على Hören Teil 1 بعد تحميل القائمة
+    setTimeout(() => {
+      const hoerenTeil1 = document.querySelector('.teile-row .item:first-child');
+      if(hoerenTeil1 && hoerenTeil1.click) {
+        hoerenTeil1.click();
+      }
+    }, 100);
+  };
+  
   if (backHomeBtn) backHomeBtn.onclick = function() { goHome(); };
   if (backToListBtn) backToListBtn.onclick = function() { goList(); };
-  if (backArrowFromExam) backArrowFromExam.onclick = function() { goList(); };
+  
+  // تعديل: زر الرجوع يعود إلى قائمة الامتحانات الخاصة بالجزء الحالي
+  if (backArrowFromExam) {
+    backArrowFromExam.onclick = function() { 
+      if (currentSkill) {
+        const teil = teile.find(t => t.skill === currentSkill);
+        if (teil) {
+          document.getElementById("home").classList.remove("active");
+          document.getElementById("exam").classList.remove("active");
+          document.getElementById("list").classList.add("active");
+          renderExamListForSkill(teil.skill, teil.name);
+        } else {
+          document.getElementById("home").classList.remove("active");
+          document.getElementById("exam").classList.remove("active");
+          document.getElementById("list").classList.add("active");
+          renderTeileList();
+        }
+      } else {
+        document.getElementById("home").classList.remove("active");
+        document.getElementById("exam").classList.remove("active");
+        document.getElementById("list").classList.add("active");
+        renderTeileList();
+      }
+    };
+  }
   
   const examsContainer = document.getElementById("examsList");
   if (examsContainer) {
-    examsContainer.innerHTML = '<div class="welcome-message">👈 اختر القسم (Teil) من الأعلى لعرض الامتحانات</div>';
+    examsContainer.innerHTML = '';
   }
 });
 
