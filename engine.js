@@ -1289,15 +1289,19 @@ window.buildTrueFalseExam = function(container, questions, note) {
     container.appendChild(resultDiv);
   }
 };
-
 function checkTrueFalseExam(container, questions, answers, correctNumbersContainer) {
   if (!questions || !Array.isArray(questions) || questions.length === 0) {
     console.error("❌ خطأ: لا توجد أسئلة للتصحيح");
-    const resultDiv = document.getElementById('truefalseResult');
-    if (resultDiv) {
-      resultDiv.innerHTML = "⚠️ لا توجد أسئلة في هذا الامتحان";
-      resultDiv.style.display = 'block';
+    // ✅ البحث عن resultDiv داخل container بدلاً من document
+    let resultDiv = container.querySelector('#truefalseResult');
+    if (!resultDiv) {
+      resultDiv = document.createElement('div');
+      resultDiv.id = 'truefalseResult';
+      resultDiv.className = 'result-box';
+      container.appendChild(resultDiv);
     }
+    resultDiv.innerHTML = "⚠️ لا توجد أسئلة في هذا الامتحان";
+    resultDiv.style.display = 'block';
     return;
   }
   
@@ -1376,8 +1380,8 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
   
   const finalScore = (score * pointsPerQuestion).toFixed(2);
   
-  // ✅ التأكد من وجود resultDiv وإظهاره بشكل صحيح
-  let resultDiv = document.getElementById('truefalseResult');
+  // ✅ البحث عن resultDiv داخل container فقط
+  let resultDiv = container.querySelector('#truefalseResult');
   if (!resultDiv) {
     resultDiv = document.createElement('div');
     resultDiv.id = 'truefalseResult';
@@ -1401,14 +1405,14 @@ function checkTrueFalseExam(container, questions, answers, correctNumbersContain
     resultDiv.style.color = 'white';
   }
   
-  // ✅ حفظ النتيجة
+  // حفظ النتيجة
   if (typeof window.saveExamResultGlobal === "function") {
     const skill = container.id || "hoeren";
     const examId = window.currentExamId || 1;
     window.saveExamResultGlobal(skill, examId, parseFloat(finalScore));
   }
   
-  // ✅ التمرير إلى النتيجة
+  // التمرير إلى النتيجة
   setTimeout(() => {
     resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }, 100);
