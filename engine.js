@@ -170,7 +170,6 @@ function renderSchreibenExam() {
   twoColumns.appendChild(rightColumn);
   container.appendChild(twoColumns);
 }
-
 // ========== نظام Sprachbausteine Teil 2 ==========
 let currentSprach2Data = null;
 let sprach2UserAnswers = {};
@@ -197,8 +196,16 @@ function isSprach2WordUsed(word) {
 
 function clearSprach2WordSelection() {
   document.querySelectorAll('.sprach2-word-card').forEach(card => {
-    card.style.backgroundColor = "#ffffff";
-    card.style.border = "1px solid #7c6ce6";
+    // إذا كانت الكلمة مستخدمة، تبقى بلونها الأخضر الفاتح
+    if (isSprach2WordUsed(card.textContent)) {
+      card.style.backgroundColor = "#d4edda";
+      card.style.border = "2px solid #28a745";
+      card.style.opacity = "0.85";
+    } else {
+      card.style.backgroundColor = "#ffffff";
+      card.style.border = "1px solid #7c6ce6";
+      card.style.opacity = "1";
+    }
     card.classList.remove('selected-for-link');
   });
 }
@@ -207,6 +214,16 @@ function clearSprach2ButtonSelection() {
   document.querySelectorAll('.sprach2-gap-btn').forEach(btn => {
     btn.classList.remove('selected-for-link');
     btn.style.border = "none";
+    // إذا كان الزر يحتوي على إجابة صحيحة محفوظة، لا نغير لونه
+    const btnId = btn.id;
+    const match = btnId.match(/sprach2_btn_(\d+)/);
+    if (match) {
+      const qId = parseInt(match[1]);
+      if (sprach2UserAnswers[qId]) {
+        btn.style.backgroundColor = "#d4edda";
+        btn.style.border = "2px solid #28a745";
+      }
+    }
   });
 }
 
@@ -245,7 +262,14 @@ function renderSprach2Exam() {
     const btnId = `sprach2_btn_${i}`;
     const currentAnswer = sprach2UserAnswers[i];
     const btnText = currentAnswer || `__( ${i} )__`;
-    const btnHtml = `<button id="${btnId}" class="sprach2-gap-btn" data-qid="${i}" style="background-color: #e0e0e0; border: none; padding: 4px 12px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: bold; margin: 0 2px;">${btnText}</button>`;
+    let btnStyle = "background-color: #e0e0e0; border: none; padding: 4px 12px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: bold; margin: 0 2px;";
+    
+    // إذا كان هناك إجابة محفوظة، نعطيها لونًا مختلفًا
+    if (currentAnswer) {
+      btnStyle = "background-color: #d4edda; border: 2px solid #28a745; padding: 4px 12px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: bold; margin: 0 2px; color: #155724;";
+    }
+    
+    const btnHtml = `<button id="${btnId}" class="sprach2-gap-btn" data-qid="${i}" style="${btnStyle}">${btnText}</button>`;
     htmlText = htmlText.replace(`__( ${i} )__`, btnHtml);
     htmlText = htmlText.replace(`......(${i})......`, btnHtml);
     htmlText = htmlText.replace(`......(${i})`, btnHtml);
@@ -271,8 +295,9 @@ function renderSprach2Exam() {
             
             const wordCard = document.getElementById(`sprach2_word_${oldWord}`);
             if (wordCard) {
-              wordCard.style.backgroundColor = "#ffffff";
-              wordCard.style.border = "1px solid #7c6ce6";
+              // ✅ تغيير اللون إلى الأزرق الفاتح (غير مستخدم، يمكن اختياره مرة أخرى)
+              wordCard.style.backgroundColor = "#e0f2fe";
+              wordCard.style.border = "1px solid #7dd3fc";
               wordCard.style.color = "#4a4a4a";
               wordCard.style.cursor = "pointer";
               wordCard.style.opacity = "1";
@@ -294,38 +319,42 @@ function renderSprach2Exam() {
                     const targetBtn = document.getElementById(`sprach2_btn_${sprach2SelectedQuestionId}`);
                     if (targetBtn) {
                       targetBtn.textContent = w;
+                      // ✅ بعد الربط: لون أخضر فاتح مع border أخضر
                       targetBtn.style.backgroundColor = "#d4edda";
+                      targetBtn.style.border = "2px solid #28a745";
                       targetBtn.style.color = "#155724";
                     }
                     const cardEl = document.getElementById(`sprach2_word_${w}`);
                     if (cardEl) {
+                      // ✅ الكلمة المستخدمة: لون أخضر فاتح مع border أخضر
                       cardEl.style.backgroundColor = "#d4edda";
                       cardEl.style.border = "2px solid #28a745";
                       cardEl.style.color = "#155724";
                       cardEl.style.cursor = "default";
-                      cardEl.style.opacity = "0.6";
+                      cardEl.style.opacity = "0.85";
                     }
                     sprach2SelectedQuestionId = null;
                     clearSprach2ButtonSelection();
                   } else {
                     clearSprach2WordSelection();
                     newCard.classList.add('selected-for-link');
-                    newCard.style.backgroundColor = "#c4b5fd";
-                    newCard.style.border = "2px solid #7c6ce6";
+                    // ✅ العنصر المحدد حاليًا: أزرق فاتح
+                    newCard.style.backgroundColor = "#e0f2fe";
+                    newCard.style.border = "2px solid #7dd3fc";
                     sprach2SelectedWordForLinking = w;
                   }
                 };
               })(oldWord);
               
               newCard.onmouseenter = function() {
-                if (!this.classList.contains('selected-for-link')) {
-                  this.style.backgroundColor = "#e8e4ff";
+                if (!this.classList.contains('selected-for-link') && !isSprach2WordUsed(this.textContent)) {
+                  this.style.backgroundColor = "#f0f9ff";
                   this.style.transform = "scale(1.02)";
                 }
               };
               newCard.onmouseleave = function() {
-                if (!this.classList.contains('selected-for-link')) {
-                  this.style.backgroundColor = "#ffffff";
+                if (!this.classList.contains('selected-for-link') && !isSprach2WordUsed(this.textContent)) {
+                  this.style.backgroundColor = "#e0f2fe";
                   this.style.transform = "scale(1)";
                 }
               };
@@ -353,7 +382,9 @@ function renderSprach2Exam() {
             }
             sprach2UserAnswers[qId] = word;
             btn.textContent = word;
+            // ✅ بعد الربط: لون أخضر فاتح
             btn.style.backgroundColor = "#d4edda";
+            btn.style.border = "2px solid #28a745";
             btn.style.color = "#155724";
             
             const wordCard = document.getElementById(`sprach2_word_${word}`);
@@ -362,14 +393,16 @@ function renderSprach2Exam() {
               wordCard.style.border = "2px solid #28a745";
               wordCard.style.color = "#155724";
               wordCard.style.cursor = "default";
-              wordCard.style.opacity = "0.6";
+              wordCard.style.opacity = "0.85";
             }
             sprach2SelectedWordForLinking = null;
             clearSprach2WordSelection();
           } else {
             clearSprach2ButtonSelection();
             btn.classList.add('selected-for-link');
-            btn.style.border = "2px solid #7c6ce6";
+            // ✅ العنصر المحدد حاليًا: أزرق فاتح
+            btn.style.border = "2px solid #7dd3fc";
+            btn.style.backgroundColor = "#e0f2fe";
             sprach2SelectedQuestionId = qId;
           }
         };
@@ -408,23 +441,27 @@ function renderSprach2Exam() {
     wordCard.className = "sprach2-word-card";
     wordCard.id = `sprach2_word_${word}`;
     wordCard.textContent = word;
-    wordCard.style.backgroundColor = "#ffffff";
-    wordCard.style.border = "1px solid #7c6ce6";
     wordCard.style.borderRadius = "8px";
     wordCard.style.padding = "8px 12px";
     wordCard.style.textAlign = "center";
-    wordCard.style.cursor = "pointer";
     wordCard.style.transition = "all 0.2s";
     wordCard.style.fontWeight = "500";
-    wordCard.style.color = "#4a4a4a";
     
     if (isSprach2WordUsed(word)) {
+      // ✅ الكلمة المستخدمة: لون أخضر فاتح مع border أخضر
       wordCard.style.backgroundColor = "#d4edda";
       wordCard.style.border = "2px solid #28a745";
       wordCard.style.color = "#155724";
       wordCard.style.cursor = "default";
-      wordCard.style.opacity = "0.6";
+      wordCard.style.opacity = "0.85";
     } else {
+      // ✅ الكلمة غير المستخدمة: لون أبيض مع border أرجواني فاتح
+      wordCard.style.backgroundColor = "#ffffff";
+      wordCard.style.border = "1px solid #7c6ce6";
+      wordCard.style.color = "#4a4a4a";
+      wordCard.style.cursor = "pointer";
+      wordCard.style.opacity = "1";
+      
       wordCard.onclick = (function(w) {
         return function() {
           if (sprach2SelectedQuestionId) {
@@ -439,6 +476,7 @@ function renderSprach2Exam() {
             if (targetBtn) {
               targetBtn.textContent = w;
               targetBtn.style.backgroundColor = "#d4edda";
+              targetBtn.style.border = "2px solid #28a745";
               targetBtn.style.color = "#155724";
             }
             const cardEl = document.getElementById(`sprach2_word_${w}`);
@@ -447,28 +485,29 @@ function renderSprach2Exam() {
               cardEl.style.border = "2px solid #28a745";
               cardEl.style.color = "#155724";
               cardEl.style.cursor = "default";
-              cardEl.style.opacity = "0.6";
+              cardEl.style.opacity = "0.85";
             }
             sprach2SelectedQuestionId = null;
             clearSprach2ButtonSelection();
           } else {
             clearSprach2WordSelection();
             wordCard.classList.add('selected-for-link');
-            wordCard.style.backgroundColor = "#c4b5fd";
-            wordCard.style.border = "2px solid #7c6ce6";
+            // ✅ العنصر المحدد حاليًا: أزرق فاتح
+            wordCard.style.backgroundColor = "#e0f2fe";
+            wordCard.style.border = "2px solid #7dd3fc";
             sprach2SelectedWordForLinking = w;
           }
         };
       })(word);
       
       wordCard.onmouseenter = function() {
-        if (!this.classList.contains('selected-for-link')) {
-          this.style.backgroundColor = "#e8e4ff";
+        if (!this.classList.contains('selected-for-link') && !isSprach2WordUsed(this.textContent)) {
+          this.style.backgroundColor = "#f0f9ff";
           this.style.transform = "scale(1.02)";
         }
       };
       wordCard.onmouseleave = function() {
-        if (!this.classList.contains('selected-for-link')) {
+        if (!this.classList.contains('selected-for-link') && !isSprach2WordUsed(this.textContent)) {
           this.style.backgroundColor = "#ffffff";
           this.style.transform = "scale(1)";
         }
@@ -562,7 +601,7 @@ function resetSprach2Exam() {
   console.log("✅ تم إعادة تعيين Sprachbausteine Teil 2");
 }
 
-// دالة checkSprach2Exam المعدلة مع إضافة شفافية لأدوات الربط
+// دالة checkSprach2Exam المعدلة مع تحسين الألوان
 function checkSprach2Exam() {
   const options = currentSprach2Data.options;
   let score = 0;
@@ -581,15 +620,18 @@ function checkSprach2Exam() {
       score++;
       if (btn) {
         btn.textContent = opt.correct;
-        btn.style.backgroundColor = "#28a745";
-        btn.style.color = "white";
+        // ✅ الإجابة الصحيحة: لون أخضر فاتح مع border أخضر
+        btn.style.backgroundColor = "#d4edda";
+        btn.style.border = "2px solid #28a745";
+        btn.style.color = "#155724";
         btn.style.opacity = "0.85";
       }
     } else {
       if (btn) {
-        btn.style.backgroundColor = "#fef0e0";
-        btn.style.color = "#e67e22";
-        btn.style.border = "1px solid #e67e22";
+        // ✅ الإجابة الخاطئة: لون أحمر فاتح
+        btn.style.backgroundColor = "#fee2e2";
+        btn.style.color = "#dc2626";
+        btn.style.border = "1px solid #dc2626";
         btn.textContent = opt.correct;
         btn.style.opacity = "0.85";
         if (userAnswer) {
@@ -601,16 +643,22 @@ function checkSprach2Exam() {
     }
   }
   
-  // إضافة شفافية لأدوات الربط (الكلمات) التي تم استخدامها
+  // تحديث ألوان الكلمات المستخدمة
   const usedWords = Object.values(sprach2UserAnswers);
   document.querySelectorAll('.sprach2-word-card').forEach(card => {
     const word = card.textContent;
     if (usedWords.includes(word)) {
-      card.style.opacity = "0.7";
-      card.style.filter = "grayscale(0.2)";
+      // ✅ الكلمة المستخدمة: لون أخضر فاتح
+      card.style.backgroundColor = "#d4edda";
+      card.style.border = "2px solid #28a745";
+      card.style.color = "#155724";
+      card.style.opacity = "0.85";
     } else {
+      // ✅ الكلمة غير المستخدمة: لون أبيض مع border أرجواني
+      card.style.backgroundColor = "#ffffff";
+      card.style.border = "1px solid #7c6ce6";
+      card.style.color = "#4a4a4a";
       card.style.opacity = "1";
-      card.style.filter = "none";
     }
   });
   
