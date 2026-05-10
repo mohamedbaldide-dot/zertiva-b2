@@ -69,8 +69,8 @@
             position: absolute;
             top: -12px;
             right: 20px;
-            background: #a855f7;
-            color: white;
+            background: #38bdf8;
+            color: #0a0e1a;
             font-size: 12px;
             font-weight: 600;
             padding: 5px 16px;
@@ -189,8 +189,8 @@
     <h1>💰 اختر الباقة المناسبة لك</h1>
     <div class="plans">
 
-        <!-- الباقة الشهرية (عادية) -->
-        <div class="plan-card" data-plan="1month" data-price="149" data-duration="شهر واحد">
+        <!-- الباقة الشهرية -->
+        <div class="plan-card" data-plan="1month" data-price="149" data-duration="1 Monat">
             <div class="plan-name">🌙 شهر واحد</div>
             <div class="price">149 <small>درهم</small></div>
             <div class="duration">لمدة شهر واحد</div>
@@ -210,8 +210,8 @@
             <button class="btn-select">اشترك الآن</button>
         </div>
 
-        <!-- الباقة المميزة (شهرين + VIP) -->
-        <div class="plan-card vip" data-plan="2months" data-price="249" data-duration="شهران">
+        <!-- الباقة المميزة (شهرين) -->
+        <div class="plan-card vip" data-plan="2months" data-price="249" data-duration="2 Monate">
             <div class="vip-badge">الأكثر اختياراً</div>
             <div class="plan-name">✨ شهرين</div>
             <div class="price">249 <small>درهم</small></div>
@@ -252,7 +252,6 @@
     
     function sendWhatsApp(plan, duration, price) {
         let email = getLoggedInEmail();
-        let password = getLoggedInPassword();
         
         if(!email) {
             alert("⚠️ يجب تسجيل الدخول أولاً!\nسيتم توجيهك إلى صفحة تسجيل الدخول.");
@@ -260,17 +259,16 @@
             return;
         }
         
-        let durationText = (plan === '1month') ? 'شهر واحد' : 'شهران';
-        let message = `🟢 *طلب اشتراك جديد - Zertiva B2*%0A%0A`;
-        message += `📧 *البريد الإلكتروني:* ${encodeURIComponent(email)}%0A`;
-        message += `🔑 *كلمة السر:* ${encodeURIComponent(password)}%0A`;
-        message += `💰 *المبلغ:* ${price} درهم%0A`;
-        message += `📆 *المدة:* ${durationText}%0A%0A`;
-        message += `🔹 *الرجاء تفعيل حسابي بعد استلام الدفع* 🔹`;
+        let message = `📩 *Neue Abonnementanfrage – Zertiva B2*%0A%0A`;
+        message += `👤 *E-Mail:* ${encodeURIComponent(email)}%0A`;
+        message += `💎 *Paket:* VIP%0A`;
+        message += `💰 *Preis:* ${price} DH%0A`;
+        message += `⏳ *Dauer:* ${duration}%0A%0A`;
+        message += `📌 *Hinweis:* Bitte aktivieren Sie mein Konto nach Zahlungseingang.`;
         
         window.open(`https://wa.me/${WA_NUMBER}?text=${message}`, '_blank');
         
-        alert(`✅ تم إرسال طلب الاشتراك إلى الواتساب\n📧 بريدك: ${email}\n📆 المدة: ${durationText}\n💰 المبلغ: ${price} درهم\n\nسأتصل بك لإتمام الدفع.`);
+        alert(`✅ تم إرسال طلب الاشتراك إلى الواتساب\n📧 بريدك: ${email}\n📆 المدة: ${duration}\n💰 المبلغ: ${price} درهم\n\nسأتصل بك لإتمام الدفع.`);
     }
     
     document.querySelectorAll('.plan-card').forEach(card => {
