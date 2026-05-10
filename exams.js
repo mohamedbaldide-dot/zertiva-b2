@@ -573,7 +573,17 @@ async function renderExamListForSkill(skill, teilName) {
     
     const titleSpan = document.createElement("span");
     titleSpan.className = "exam-title";
-    titleSpan.innerHTML = `${exam.id}: ${exam.title}`;
+    
+    // تعديل: إزالة الترقيم من قسم Tips فقط
+    if (skill === "tips") {
+      titleSpan.innerHTML = `${exam.title}`;
+      titleSpan.style.textAlign = "center";
+      titleSpan.style.display = "block";
+      titleSpan.style.width = "100%";
+    } else {
+      titleSpan.innerHTML = `${exam.id}: ${exam.title}`;
+    }
+    
     div.appendChild(titleSpan);
     
     if (!isPremium && !isFirstExam) {
@@ -696,9 +706,37 @@ function getActualFileName(examId) {
   return `exam${examId}.json`;
 }
 
+// إخفاء زر المساعدة الذكية في أقسام معينة
+function shouldHideHelpButton(skill) {
+  const hiddenSkills = ["schreiben", "mündlich", "tips"];
+  return hiddenSkills.includes(skill);
+}
+
+// تعديل دالة إضافة زر المساعدة
+function addHelpButtonIfNeeded() {
+  const currentSkillForHelp = getCurrentSkill();
+  if (shouldHideHelpButton(currentSkillForHelp)) {
+    const existingBtn = document.getElementById('globalHelpButton');
+    if (existingBtn) existingBtn.style.display = "none";
+    return;
+  }
+  
+  const existingBtn = document.getElementById('globalHelpButton');
+  if (existingBtn) existingBtn.style.display = "block";
+}
+
 async function openExam(examId, examTitle, skill) {
   currentExamId = examId;
   currentSkill = skill;
+  
+  // إخفاء أو إظهار زر المساعدة حسب القسم
+  if (shouldHideHelpButton(skill)) {
+    const helpBtn = document.getElementById('globalHelpButton');
+    if (helpBtn) helpBtn.style.display = "none";
+  } else {
+    const helpBtn = document.getElementById('globalHelpButton');
+    if (helpBtn) helpBtn.style.display = "block";
+  }
   
   const fileName = getActualFileName(examId);
   
@@ -1028,7 +1066,7 @@ function goList() {
   
   const examsContainer = document.getElementById("examsList");
   if (examsContainer) {
-    examsContainer.innerHTML = '<div class="welcome-message">👈 اختر القسم (Teil) من الأعلى لعرض الامتحانات</div>';
+    examsContainer.innerHTML = '';
   }
 }
 
@@ -1038,14 +1076,40 @@ document.addEventListener("DOMContentLoaded", function() {
   const backToListBtn = document.getElementById("backToListBtn");
   const backArrowFromExam = document.getElementById("backArrowFromExam");
   
-  if (startBtn) startBtn.onclick = function() { goList(); };
+  if (startBtn) startBtn.onclick = function() { 
+    goList(); 
+    // محاكاة الضغط على Hören Teil 1 بعد تحميل القائمة
+    setTimeout(() => {
+      const hoerenTeil1 = document.querySelector('.teile-row .item:first-child');
+      if(hoerenTeil1 && hoerenTeil1.click) {
+        hoerenTeil1.click();
+      }
+    }, 100);
+  };
+  
   if (backHomeBtn) backHomeBtn.onclick = function() { goHome(); };
   if (backToListBtn) backToListBtn.onclick = function() { goList(); };
-  if (backArrowFromExam) backArrowFromExam.onclick = function() { goList(); };
+  
+  // تعديل: زر الرجوع يعود إلى قائمة الامتحانات الخاصة بالجزء الحالي
+  if (backArrowFromExam) {
+    backArrowFromExam.onclick = function() { 
+      document.getElementById("home").classList.remove("active");
+      document.getElementById("exam").classList.remove("active");
+      document.getElementById("list").classList.add("active");
+      renderTeileList();
+      // إعادة عرض قائمة الامتحانات للقسم الحالي
+      if (currentSkill) {
+        const teil = teile.find(t => t.skill === currentSkill);
+        if (teil) {
+          renderExamListForSkill(teil.skill, teil.name);
+        }
+      }
+    };
+  }
   
   const examsContainer = document.getElementById("examsList");
   if (examsContainer) {
-    examsContainer.innerHTML = '<div class="welcome-message">👈 اختر القسم (Teil) من الأعلى لعرض الامتحانات</div>';
+    examsContainer.innerHTML = '';
   }
 });
 
