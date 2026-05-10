@@ -2141,7 +2141,7 @@ function checkTeil3Exam() {
     let correctText = "";
     
     if (correctIndex === null || correctIndex === undefined) {
-      correctText = "⚠️ هذه الفقرة لا يوجد لها عنوان";
+      correctText = " هذه الفقرة تبقى دون عنوان ";
       isCorrect = (userAnswer === null || userAnswer === undefined || userAnswer === "");
     } else {
       correctText = `${String.fromCharCode(97 + correctIndex)}. ${currentTeil3Data.situations[correctIndex]}`;
