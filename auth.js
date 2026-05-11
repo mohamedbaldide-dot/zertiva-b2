@@ -1,5 +1,6 @@
 /**
  * auth.js - نظام إدارة تسجيل الدخول والاشتراك لموقع Zertiva B2
+ * مع نظام الإشعارات المتكامل
  */
 
 const WA_NUMBER = "212687561491";
@@ -7,6 +8,229 @@ const WA_URL = `https://wa.me/${WA_NUMBER}`;
 
 let currentUserStatus = 'guest';
 let currentExpiry = null;
+
+// ========== نظام الإشعارات ==========
+let notificationsData = null;
+let unreadCount = 0;
+
+// تحميل الإشعارات من الملف
+async function loadNotifications() {
+    try {
+        const response = await fetch('notifications.json?_=' + Date.now());
+        if (!response.ok) {
+            console.warn("⚠️ ملف الإشعارات غير موجود");
+            return null;
+        }
+        const data = await response.json();
+        notificationsData = data;
+        
+        // استعادة حالة القراءة من localStorage
+        restoreReadStatus();
+        updateUnreadCount();
+        return data;
+    } catch(e) {
+        console.error("❌ خطأ في تحميل الإشعارات:", e);
+        return null;
+    }
+}
+
+// استعادة حالة القراءة من localStorage
+function restoreReadStatus() {
+    const savedStatus = localStorage.getItem('zertiva_notifications_read');
+    if (savedStatus && notificationsData && notificationsData.notifications) {
+        const readStatus = JSON.parse(savedStatus);
+        for (const notification of notificationsData.notifications) {
+            if (readStatus[notification.id] !== undefined) {
+                notification.read = readStatus[notification.id];
+            }
+        }
+    }
+}
+
+// حفظ حالة القراءة في localStorage
+function saveReadStatus() {
+    if (!notificationsData || !notificationsData.notifications) return;
+    const readStatus = {};
+    for (const notification of notificationsData.notifications) {
+        readStatus[notification.id] = notification.read;
+    }
+    localStorage.setItem('zertiva_notifications_read', JSON.stringify(readStatus));
+}
+
+// تحديث عدد الإشعارات غير المقروءة
+function updateUnreadCount() {
+    if (!notificationsData || !notificationsData.notifications) {
+        unreadCount = 0;
+    } else {
+        unreadCount = notificationsData.notifications.filter(n => !n.read).length;
+    }
+    
+    const badge = document.getElementById('notificationBadge');
+    if (badge) {
+        if (unreadCount > 0) {
+            badge.textContent = unreadCount > 9 ? '9+' : unreadCount;
+            badge.style.display = 'flex';
+        } else {
+            badge.style.display = 'none';
+        }
+    }
+}
+
+// تنسيق التاريخ
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
+    
+    if (diffDays === 0) return 'اليوم';
+    if (diffDays === 1) return 'أمس';
+    if (diffDays < 7) return `قبل ${diffDays} أيام`;
+    
+    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+}
+
+// الحصول على لون الخلفية حسب نوع الإشعار
+function getNotificationStyle(type) {
+    switch(type) {
+        case 'sale':
+            return { bg: '#fef3c7', border: '#f59e0b', icon: '🛒' };
+        case 'success':
+            return { bg: '#d1fae5', border: '#10b981', icon: '✅' };
+        case 'warning':
+            return { bg: '#fee2e2', border: '#ef4444', icon: '⚠️' };
+        case 'challenge':
+            return { bg: '#e0e7ff', border: '#6366f1', icon: '🏆' };
+        default:
+            return { bg: '#eff6ff', border: '#3b82f6', icon: '📢' };
+    }
+}
+
+// عرض قائمة الإشعارات
+async function renderNotificationsDropdown() {
+    const dropdown = document.getElementById('notificationsDropdown');
+    const listContainer = document.getElementById('notificationsList');
+    
+    if (!dropdown || !listContainer) return;
+    
+    if (!notificationsData) {
+        await loadNotifications();
+    }
+    
+    if (!notificationsData || !notificationsData.notifications || notificationsData.notifications.length === 0) {
+        listContainer.innerHTML = `
+            <div class="notifications-empty">
+                <div class="empty-icon">🔔</div>
+                <div>لا توجد إشعارات</div>
+            </div>
+        `;
+        dropdown.classList.add('show');
+        return;
+    }
+    
+    const sortedNotifications = [...notificationsData.notifications].sort((a, b) => b.id - a.id);
+    
+    let html = '';
+    for (const notif of sortedNotifications) {
+        const style = getNotificationStyle(notif.type);
+        const dateFormatted = formatDate(notif.date);
+        const isUnread = !notif.read;
+        
+        html += `
+            <div class="notification-item ${isUnread ? 'unread' : 'read'}" data-id="${notif.id}" data-link="${notif.link || ''}">
+                <div class="notification-icon" style="background: ${style.bg}; border-color: ${style.border};">
+                    ${style.icon}
+                </div>
+                <div class="notification-content">
+                    <div class="notification-title">${notif.title}</div>
+                    <div class="notification-message">${notif.message}</div>
+                    <div class="notification-date">📅 ${dateFormatted}</div>
+                </div>
+                ${isUnread ? '<div class="notification-unread-dot"></div>' : ''}
+            </div>
+        `;
+    }
+    
+    listContainer.innerHTML = html;
+    
+    // إضافة حدث النقر على كل إشعار
+    document.querySelectorAll('.notification-item').forEach(item => {
+        item.addEventListener('click', async (e) => {
+            if (e.target.closest('a')) return;
+            const id = parseInt(item.dataset.id);
+            const link = item.dataset.link;
+            
+            await markNotificationAsRead(id);
+            
+            if (link && link !== 'null' && link !== '') {
+                window.location.href = link;
+            } else {
+                await renderNotificationsDropdown();
+            }
+        });
+    });
+    
+    dropdown.classList.add('show');
+}
+
+// تحديث إشعار كمقروء
+async function markNotificationAsRead(notificationId) {
+    if (!notificationsData) return;
+    
+    const notification = notificationsData.notifications.find(n => n.id === notificationId);
+    if (notification && !notification.read) {
+        notification.read = true;
+        saveReadStatus();
+        updateUnreadCount();
+    }
+}
+
+// تحديث كل الإشعارات كمقروءة
+async function markAllAsRead() {
+    if (!notificationsData) return;
+    
+    let changed = false;
+    for (const notification of notificationsData.notifications) {
+        if (!notification.read) {
+            notification.read = true;
+            changed = true;
+        }
+    }
+    
+    if (changed) {
+        saveReadStatus();
+        updateUnreadCount();
+        await renderNotificationsDropdown();
+    }
+}
+
+// toggle القائمة المنسدلة
+function toggleNotificationsDropdown() {
+    const dropdown = document.getElementById('notificationsDropdown');
+    if (!dropdown) return;
+    
+    if (dropdown.classList.contains('show')) {
+        dropdown.classList.remove('show');
+    } else {
+        renderNotificationsDropdown();
+    }
+}
+
+// إغلاق القائمة عند النقر خارجها
+function setupNotificationsCloseOnClick() {
+    document.addEventListener('click', function(e) {
+        const notificationBtn = document.getElementById('notificationBtn');
+        const notificationWrapper = document.getElementById('notificationBtnWrapper');
+        const dropdown = document.getElementById('notificationsDropdown');
+        
+        if (dropdown && dropdown.classList.contains('show')) {
+            if (!notificationWrapper?.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.remove('show');
+            }
+        }
+    });
+}
+
+// ========== دوال المصادقة الأساسية ==========
 
 function getLoggedInEmail() {
     return localStorage.getItem('zertiva_email');
@@ -24,6 +248,7 @@ function setLoggedInUser(email, password) {
 function logoutUser() {
     localStorage.removeItem('zertiva_email');
     localStorage.removeItem('zertiva_password');
+    localStorage.removeItem('zertiva_notifications_read');
     alert("تم تسجيل الخروج بنجاح");
     location.reload();
 }
@@ -131,7 +356,6 @@ async function updateProfileDropdown() {
     if(!profileEmail) return;
     
     if(email) {
-        // حذف زر الترقية إذا كان موجوداً (للمستخدم المسجل)
         const oldUpgradeBtn = document.getElementById('dropdownUpgradeBtn');
         if (oldUpgradeBtn) oldUpgradeBtn.remove();
         
@@ -164,7 +388,6 @@ async function updateProfileDropdown() {
         profileExpiry.innerHTML = 'الوصول محدود لبعض الامتحانات';
         profileStatus.innerHTML = '';
         
-        // إضافة زر الترقية للمستخدم غير المسجل (لون رمادي مزرق)
         const upgradeBtn = document.createElement('button');
         upgradeBtn.id = 'dropdownUpgradeBtn';
         upgradeBtn.innerHTML = 'الترقية إلى الحساب الكامل →';
@@ -188,13 +411,11 @@ async function updateProfileDropdown() {
             this.style.background = '#64748B';
         };
         upgradeBtn.onclick = function() {
-            // فتح نافذة تسجيل الدخول أولاً
             showLoginPopup();
         };
         
         const dropdown = document.getElementById('profileDropdown');
         if (dropdown) {
-            // حذف الزر القديم إذا كان موجوداً
             const oldBtn = document.getElementById('dropdownUpgradeBtn');
             if (oldBtn) oldBtn.remove();
             dropdown.appendChild(upgradeBtn);
@@ -250,7 +471,6 @@ async function handleLogin() {
     hideLoginPopup();
     await updateProfileDropdown();
     
-    // إذا كان المستخدم مسجل (مجاني أو منتهي) نوجهه لصفحة الاشتراك
     if (status !== 'premium') {
         window.location.href = 'subscribe.html';
     } else {
@@ -313,6 +533,17 @@ function bindAuthEvents() {
         });
     }
     
+    // أحداث الإشعارات
+    const notificationBtn = document.getElementById('notificationBtn');
+    if (notificationBtn) {
+        notificationBtn.addEventListener('click', toggleNotificationsDropdown);
+    }
+    
+    const markAllReadBtn = document.getElementById('markAllReadBtn');
+    if (markAllReadBtn) {
+        markAllReadBtn.addEventListener('click', markAllAsRead);
+    }
+    
     document.addEventListener('click', function(e) {
         let dropdown = document.getElementById('profileDropdown');
         let profileIconElem = document.getElementById('profileIcon');
@@ -320,6 +551,8 @@ function bindAuthEvents() {
             dropdown.classList.remove('show');
         }
     });
+    
+    setupNotificationsCloseOnClick();
 }
 
 function observePageChanges() {
@@ -340,6 +573,7 @@ function observePageChanges() {
 async function initAuth() {
     bindAuthEvents();
     await updateProfileDropdown();
+    await loadNotifications();  // تحميل الإشعارات
     observePageChanges();
     setTimeout(setupLockedNextButton, 800);
 }
