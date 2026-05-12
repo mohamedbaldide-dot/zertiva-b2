@@ -715,9 +715,9 @@ function renderMündlichPartTabs() {
   `;
   
   const parts = [
-    { id: 1, name: "Teil 1 📖", skill: "mündlich1" },
-    { id: 2, name: "Teil 2 🗣️", skill: "mündlich2" },
-    { id: 3, name: "Teil 3 🎯", skill: "mündlich3" }
+    { id: 1, name: "Teil 1 ", skill: "mündlich1" },
+    { id: 2, name: "Teil 2 ", skill: "mündlich2" },
+    { id: 3, name: "Teil 3 ", skill: "mündlich3" }
   ];
   
   parts.forEach(part => {
