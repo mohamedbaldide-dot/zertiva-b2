@@ -1056,19 +1056,42 @@ async function openExam(examId, examTitle, skill) {
 // دالة العودة إلى قائمة الامتحانات حسب القسم الحالي
 function goBackToExamsList() {
   if (currentSkill) {
-    const teil = teile.find(t => t.skill === currentSkill);
-    
-    if (teil) {
-      if (currentSkill.startsWith('mündlich')) {
-        renderExamListForSkill('mündlich', getTeilNameBySkill('mündlich'));
-      } else {
+    // إذا كان skill هو mündlich1
+    if (currentSkill === "mündlich1") {
+      document.getElementById("home").classList.remove("active");
+      document.getElementById("exam").classList.remove("active");
+      document.getElementById("list").classList.add("active");
+      renderExamListForSkill("mündlich1", "Mündlich - Teil 1 📖");
+    } 
+    // إذا كان skill هو mündlich2
+    else if (currentSkill === "mündlich2") {
+      document.getElementById("home").classList.remove("active");
+      document.getElementById("exam").classList.remove("active");
+      document.getElementById("list").classList.add("active");
+      renderExamListForSkill("mündlich2", "Mündlich - Teil 2 🗣️");
+    }
+    // إذا كان skill هو mündlich3
+    else if (currentSkill === "mündlich3") {
+      document.getElementById("home").classList.remove("active");
+      document.getElementById("exam").classList.remove("active");
+      document.getElementById("list").classList.add("active");
+      renderExamListForSkill("mündlich3", "Mündlich - Teil 3 🎯");
+    }
+    // لأي مündlich آخر (احتياطي)
+    else if (currentSkill.startsWith('mündlich')) {
+      renderExamListForSkill('mündlich', getTeilNameBySkill('mündlich'));
+    }
+    // لبقية الأقسام (Hören, Lesen, Sprachbausteine, Schreiben, Tips)
+    else {
+      const teil = teile.find(t => t.skill === currentSkill);
+      if (teil) {
         document.getElementById("home").classList.remove("active");
         document.getElementById("exam").classList.remove("active");
         document.getElementById("list").classList.add("active");
         renderExamListForSkill(teil.skill, teil.name);
+      } else {
+        goList();
       }
-    } else {
-      goList();
     }
   } else {
     goList();
