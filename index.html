@@ -11,7 +11,6 @@
 <body>
 
 <div class="top-bar">
-    <!-- الجهة اليسرى: إعدادات + بروفايل + اشتراك + دخول -->
     <div class="left-side">
         <div class="profile-icon" id="profileIcon" style="display: none;">👤</div>
         <button id="navSubscribeBtn" class="subscribe-text-btn">اشترك</button>
@@ -19,9 +18,7 @@
         <button id="settingsBtn" class="settings-icon-btn" title="إعدادات العرض">⚙️</button>
     </div>
     
-    <!-- الجهة اليمنى: إشعارات + شعار -->
     <div class="right-side">
-        <!-- 🔔 زر الإشعارات -->
         <div class="notification-container">
             <button id="notificationBell" class="notification-bell">
                 🔔
@@ -39,15 +36,12 @@
                 </div>
             </div>
         </div>
-        
-        <!-- الشعار -->
         <div class="logo-icon" id="logoHomeBtn">
             <img src="images/logo.webp" loading="lazy" alt="Zertiva" class="logo-img">
         </div>
     </div>
 </div>
 
-<!-- ✅ نافذة إعدادات الحجم -->
 <div id="settingsModal" class="settings-modal">
     <div class="settings-modal-content">
         <div class="settings-modal-header">
@@ -183,26 +177,22 @@
   </div>
   <div id="teileList" class="teile-row"></div>
   <div id="examsList" class="exams-container">
-    <div class="welcome-message">
-    </div>
+    <div class="welcome-message"></div>
   </div>
   <button id="backHomeBtn" class="back-home-btn">الرئيسية</button>
 </div>
 
 <div id="exam" class="page">
 <div class="exam-box">
-  
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
     <button id="backArrowFromExam" class="arrow-back-btn">↰</button>
     <h2 id="examTitle" style="margin: 0; flex: 1; text-align: center;"></h2>
     <div style="width: 40px;"></div>
   </div>
-
   <div id="examNavButtons" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 20px;">
     <button id="prevExamBtn" class="nav-exam-btn">◀ السابق</button>
     <button id="nextExamBtn" class="nav-exam-btn">التالي ▶</button>
   </div>
-
   <div id="teil1" style="display:none;"></div>
   <div id="teil2" style="display:none;"></div>
   <div id="teil3" style="display:none;"></div>
@@ -212,17 +202,11 @@
   <div id="hoeren2" style="display:none;"></div>
   <div id="hoeren3" style="display:none;"></div>
   <div id="schreiben" style="display:none;"></div>
-  
-  <!-- حاويات Mündlich 1, 2, 3 -->
   <div id="mündlich1" style="display:none;"></div>
   <div id="mündlich2" style="display:none;"></div>
   <div id="mündlich3" style="display:none;"></div>
-  
-  <!-- الحاوية القديمة للتوافق -->
   <div id="mündlich" style="display:none;"></div>
-  
   <div id="tips" style="display:none;"></div>
-
   <div style="display: flex; justify-content: center; margin-top: 25px;">
     <button id="backToListBtn" class="back-list-btn">عودة إلى القائمة</button>
   </div>
@@ -251,19 +235,57 @@
     </div>
 </div>
 
+<!-- ========== الـ Scripts ========== -->
 <script src="helpSystem.js"></script>
 <script src="engine.js"></script>
 <script src="exams.js"></script>
 <script src="auth.js"></script>
 <script src="notifications.js"></script>
+<script src="rapidGame.js"></script>
+<script src="audioMemory.js"></script> 
+<script>
+// ============================================
+// لعبة التحدي السريع - كود مباشر
+// ============================================
+(function() {
+    "use strict";
+    
+    function addGameButton() {
+        var nav = document.getElementById('examNavButtons');
+        if (!nav) {
+            setTimeout(addGameButton, 500);
+            return;
+        }
+        if (document.getElementById('rapidGameBtn')) return;
+        
+        var btn = document.createElement('button');
+        btn.id = 'rapidGameBtn';
+        btn.innerHTML = '⚡ التحدي السريع';
+        btn.style.cssText = 'background:#2c3e66;color:white;border:none;border-radius:30px;padding:8px 20px;font-size:14px;font-weight:500;cursor:pointer;margin-left:10px';
+        btn.onclick = function() {
+            alert("🎮 لعبة التحدي السريع\nسيتم إطلاقها قريباً إن شاء الله!");
+        };
+        nav.appendChild(btn);
+        console.log('🎮 زر التحدي السريع جاهز');
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(addGameButton, 500);
+        });
+    } else {
+        setTimeout(addGameButton, 500);
+    }
+})();
+</script>
 
 <script>
     // ✅ نظام تكبير وتصغير الموقع
-(function() {
-    let currentScale = 90;
-    const MIN_SCALE = 60;
-    const MAX_SCALE = 150;
-    const STEP = 5;
+    (function() {
+        let currentScale = 90;
+        const MIN_SCALE = 60;
+        const MAX_SCALE = 150;
+        const STEP = 5;
         
         function updateFontSize(scale) {
             document.documentElement.style.fontSize = (scale / 100) + 'rem';
@@ -612,8 +634,7 @@
             }, 100);
         });
     }
-</script>
-<script>
+    
     function fixMobileWidget() {
         const widget = document.getElementById('reviewsWidget');
         if (!widget) return;
@@ -644,6 +665,8 @@
     
     fixMobileWidget();
     window.addEventListener('resize', fixMobileWidget);
+    
+    console.log("✅ جميع الـ Scripts تم تحميلها مرة واحدة فقط");
 </script>
 </body>
 </html>
