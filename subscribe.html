@@ -83,17 +83,38 @@
             color: #1a1a2e;
             margin-bottom: 20px;
         }
-        .price {
+        /* السعر القديم (مشطوب) */
+        .old-price {
+            font-size: 18px;
+            color: #999;
+            text-decoration: line-through;
+            margin-bottom: 5px;
+        }
+        /* السعر الجديد */
+        .new-price {
             font-size: 52px;
             font-weight: 700;
             color: #0a0e1a;
-            margin-bottom: 8px;
             letter-spacing: -1px;
+            line-height: 1.1;
         }
-        .price small {
+        .new-price small {
             font-size: 18px;
             font-weight: 400;
             color: #666;
+        }
+        /* نص العرض الصغير */
+        .offer-small {
+            font-size: 11px;
+            color: #888;
+            margin-top: 6px;
+        }
+        /* نص التوفير */
+        .saving-text {
+            font-size: 12px;
+            color: #10b981;
+            font-weight: 500;
+            margin-top: 6px;
         }
         .duration {
             color: #888;
@@ -175,8 +196,11 @@
                 max-width: 320px;
                 padding: 30px 20px;
             }
-            .price {
+            .new-price {
                 font-size: 44px;
+            }
+            .old-price {
+                font-size: 16px;
             }
             h1 {
                 font-size: 26px;
@@ -190,10 +214,11 @@
     <div class="plans">
 
         <!-- الباقة الشهرية -->
-        <div class="plan-card" data-plan="1month" data-price="149" data-duration="1 Monat">
+        <div class="plan-card" data-plan="1month" data-price="89" data-duration="1 Monat">
             <div class="plan-name">🌙 شهر واحد</div>
-            <div class="price">149 <small>درهم</small></div>
-            <div class="duration">لمدة شهر واحد</div>
+            <div class="old-price">149 درهم</div>
+            <div class="new-price">89 <small>درهم</small></div>
+            <div class="offer-small">صالح لمدة 10 أيام</div>
             <div class="divider"></div>
             <ul class="features">
                 <li><span>✅</span> الوصول الكامل إلى جميع الامتحانات</li>
@@ -211,12 +236,13 @@
         </div>
 
         <!-- الباقة المميزة (شهرين) -->
-        <div class="plan-card vip" data-plan="2months" data-price="249" data-duration="2 Monate">
+        <div class="plan-card vip" data-plan="2months" data-price="149" data-duration="2 Monate">
             <div class="vip-badge">الأكثر اختياراً</div>
             <div class="plan-name">✨ شهرين</div>
-            <div class="price">249 <small>درهم</small></div>
-            <div class="duration">لمدة شهرين (توفير 49 درهم)</div>
-            <div class="saving-badge">عرض مميز</div>
+            <div class="old-price">249 درهم</div>
+            <div class="new-price">149 <small>درهم</small></div>
+            <div class="saving-text">وفر 100 درهم</div>
+            <div class="offer-small">صالح لمدة 10 أيام</div>
             <div class="divider"></div>
             <ul class="features">
                 <li><span>✅</span> الوصول الكامل إلى جميع الامتحانات</li>
@@ -257,7 +283,7 @@
         
         let message = `[NEW] Neue Abonnementanfrage – Zertiva B2%0A%0A`;
         message += `[USR] E-Mail: ${encodeURIComponent(email)}%0A`;
-        message += `[PLN] Paket: VIP%0A`;
+        message += `[PLN] Paket: ${plan === '2months' ? '2 Monate (VIP)' : '1 Monat'}%0A`;
         message += `[PRC] Preis: ${price} DH%0A`;
         message += `[TM] Dauer: ${duration}%0A%0A`;
         message += `[NT] Bitte aktivieren Sie mein Konto nach Zahlungseingang.`;
