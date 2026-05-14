@@ -1,14 +1,15 @@
 // ============================================
 // rapidGame.js - لعبة التحدي السريع
-// يدعم: Lesen Teil 1, Lesen Teil 3, Hören Teil 1
+// يدعم: Hören Teil 1,2,3 | Lesen Teil 1,2,3 | Sprachbausteine Teil 1,2
+// نظام الألوان: أخضر فاتح ✅ | برتقالي فاتح ❌
+// المسار: data/games/المهارة/examX.json
 // ============================================
 
 (function() {
     "use strict";
     
-    // إعدادات اللعبة
-    const SETTINGS = {
-        timePerQuestion: 2.2,
+    // إعدادات اللعبة الأساسية
+    const BASE_SETTINGS = {
         transitionDelay: 250,
         firstWordsLength: 8,
         titleLength: 7,
@@ -17,9 +18,19 @@
         maxWrongRepeatDelay: 5
     };
     
+    // أوضاع السرعة
+    const SPEED_MODES = {
+        reflex: { name: "Reflex", timePerQuestion: 2.2, icon: "⚡⚡⚡", display: "⚡⚡⚡ Reflex" },
+        focus: { name: "Focus", timePerQuestion: 5.0, icon: "⚡", display: "⚡ Focus" }
+    };
+    
+    let currentSpeedMode = "reflex";
+    let SETTINGS = { ...BASE_SETTINGS, timePerQuestion: SPEED_MODES.reflex.timePerQuestion };
+    
     // متغيرات اللعبة
     let gameActive = false;
     let gamePaused = false;
+    let gameStarted = false;
     let gameOverlay = null;
     let currentGameData = null;
     let originalQuestions = [];
@@ -36,16 +47,232 @@
     
     let questionStats = {};
     
-    function shortenText(text, maxWords) {
+    let currentSkill = null;
+    let currentExamId = null;
+
+    // متغير خاص بـ Hören و Lesen 2 لحفظ الجمل الأصلية
+    let reflexSentences = [];
+    
+    // دالة استخراج أول 7-9 كلمات من النص
+    function extractFirstWords(text, maxWords) {
         if (!text) return "";
-        const words = text.split(' ');
-        if (words.length <= maxWords) return text;
-        let shortened = words.slice(0, maxWords).join(' ');
-        shortened += '...';
-        return shortened;
+        let cleanText = text.replace(/^Text \d+:\s*/, '');
+        const words = cleanText.split(' ');
+        const wordCount = Math.min(maxWords, words.length);
+        let result = words.slice(0, wordCount).join(' ');
+        if (words.length > wordCount) result += '...';
+        return result;
     }
     
-    // دالة رسم المؤقت الدائري
+    // عرض شاشة اختيار الوضع
+    function showModeSelectionScreen() {
+        if (gameOverlay) gameOverlay.remove();
+        
+        gameOverlay = document.createElement('div');
+        gameOverlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:10000;display:flex;justify-content:center;align-items:center;backdrop-filter:blur(4px)';
+        
+        const container = document.createElement('div');
+        container.style.cssText = 'background:white;border-radius:28px;padding:30px;width:90%;max-width:450px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,0.2);position:relative';
+        
+        const title = document.createElement('div');
+        title.textContent = '🎮 اختر الوضع المناسب لك';
+        title.style.cssText = 'font-size:18px;font-weight:600;color:#2c3e66;margin-bottom:20px';
+        container.appendChild(title);
+        
+        const modesContainer = document.createElement('div');
+        modesContainer.style.cssText = 'display:flex;justify-content:center;gap:15px;margin-bottom:20px';
+        
+        const reflexBtn = document.createElement('button');
+        reflexBtn.id = 'modeSelectReflex';
+        reflexBtn.textContent = '⚡⚡⚡ Reflex';
+        reflexBtn.style.cssText = 'padding:10px 20px;border-radius:30px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid #ccc;background:#e8e8e8;color:#333;transition:all 0.1s ease';
+        reflexBtn.onclick = () => {
+            setSpeedMode('reflex');
+            updateModeSelectionUI(reflexBtn, focusBtn);
+        };
+        
+        const focusBtn = document.createElement('button');
+        focusBtn.id = 'modeSelectFocus';
+        focusBtn.textContent = '⚡ Focus';
+        focusBtn.style.cssText = 'padding:10px 20px;border-radius:30px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid #ccc;background:#e8e8e8;color:#333;transition:all 0.1s ease';
+        focusBtn.onclick = () => {
+            setSpeedMode('focus');
+            updateModeSelectionUI(reflexBtn, focusBtn);
+        };
+        
+        modesContainer.appendChild(reflexBtn);
+        modesContainer.appendChild(focusBtn);
+        container.appendChild(modesContainer);
+        
+        const buttonsContainer = document.createElement('div');
+        buttonsContainer.style.cssText = 'display:flex;justify-content:center;gap:12px;margin-top:15px';
+        
+        const startBtn = document.createElement('button');
+        startBtn.textContent = '▶ ابدأ التحدي';
+        startBtn.style.cssText = 'background:#2c3e66;color:white;border:none;border-radius:40px;padding:12px 28px;font-size:14px;font-weight:500;cursor:pointer;transition:all 0.15s';
+        startBtn.onmouseenter = () => { startBtn.style.background = '#1a2a4a'; };
+        startBtn.onmouseleave = () => { startBtn.style.background = '#2c3e66'; };
+        startBtn.onclick = () => {
+            gameOverlay.remove();
+            startGameAfterModeSelection();
+        };
+        buttonsContainer.appendChild(startBtn);
+        
+        const cancelBtn = document.createElement('button');
+        cancelBtn.textContent = 'ليس الان';
+        cancelBtn.style.cssText = 'background:#f0f0f0;color:#888;border:none;border-radius:40px;padding:12px 20px;font-size:13px;font-weight:400;cursor:pointer;transition:all 0.15s';
+        cancelBtn.onmouseenter = () => { cancelBtn.style.background = '#e0e0e0'; cancelBtn.style.color = '#666'; };
+        cancelBtn.onmouseleave = () => { cancelBtn.style.background = '#f0f0f0'; cancelBtn.style.color = '#888'; };
+        cancelBtn.onclick = () => {
+            gameOverlay.remove();
+            gameStarted = false;
+        };
+        buttonsContainer.appendChild(cancelBtn);
+        
+        container.appendChild(buttonsContainer);
+        gameOverlay.appendChild(container);
+        document.body.appendChild(gameOverlay);
+        
+        function updateModeSelectionUI(reflex, focus) {
+            if (currentSpeedMode === 'reflex') {
+                reflex.style.background = '#d4e8ff';
+                reflex.style.border = '1px solid #4a90e2';
+                reflex.style.color = '#2c3e66';
+                focus.style.background = '#e8e8e8';
+                focus.style.border = '1px solid #ccc';
+                focus.style.color = '#333';
+            } else {
+                focus.style.background = '#d4e8ff';
+                focus.style.border = '1px solid #4a90e2';
+                focus.style.color = '#2c3e66';
+                reflex.style.background = '#e8e8e8';
+                reflex.style.border = '1px solid #ccc';
+                reflex.style.color = '#333';
+            }
+        }
+        updateModeSelectionUI(reflexBtn, focusBtn);
+    }
+    
+    function startGameAfterModeSelection() {
+        if (gameStarted) return;
+        gameStarted = true;
+        gamePaused = false;
+        
+        loadGameData(currentSkill, currentExamId).then(loaded => {
+            if (!loaded) { showNotAvailableMessage(); return; }
+            if (originalQuestions.length === 0) {
+                showNotAvailableMessage();
+                return;
+            }
+            currentRound = generateSmartRound(originalQuestions, questionStats);
+            currentIndex = 0;
+            userAnswers = [];
+            combo = 0;
+            bestCombo = 0;
+            showCountdown();
+        });
+    }
+    
+    function restartGameOnModeChange() {
+        if (!gameStarted) return;
+        
+        currentRound = generateSmartRound(originalQuestions, questionStats);
+        currentIndex = 0;
+        userAnswers = [];
+        combo = 0;
+        bestCombo = 0;
+        gameActive = false;
+        gameStarted = false;
+        gamePaused = true;
+        
+        if (timerInterval) clearInterval(timerInterval);
+        if (transitionTimeout) clearTimeout(transitionTimeout);
+        
+        if (gameOverlay) {
+            const container = gameOverlay.querySelector('.game-container-inner');
+            if (container) {
+                const progressDiv = container.querySelector('.game-progress');
+                if (progressDiv) progressDiv.textContent = `1 / ${currentRound.length}`;
+                
+                const existingMsg = container.querySelector('.mode-change-message');
+                if (!existingMsg) {
+                    const bottomBar = container.querySelector('.bottom-bar');
+                    if (bottomBar) {
+                        const msg = document.createElement('div');
+                        msg.className = 'mode-change-message';
+                        msg.style.cssText = 'display:flex;align-items:center;gap:6px;background:#4a90e2;color:white;padding:6px 12px;border-radius:30px;font-size:12px;margin-right:10px';
+                        msg.innerHTML = '← تم تغيير الوضع';
+                        bottomBar.insertBefore(msg, bottomBar.querySelector('.control-btns'));
+                    }
+                }
+                
+                const pauseBtn = container.querySelector('#gamePauseBtn');
+                if (pauseBtn) pauseBtn.textContent = '▶ Resume';
+            }
+        }
+        
+        console.log('🔄 تم إعادة تعيين اللعبة بسبب تغيير الوضع');
+    }
+    
+    function setSpeedMode(mode) {
+        if (!SPEED_MODES[mode]) return;
+        const oldMode = currentSpeedMode;
+        currentSpeedMode = mode;
+        SETTINGS.timePerQuestion = SPEED_MODES[mode].timePerQuestion;
+        
+        const reflexBtn = document.getElementById('modeReflexBtn');
+        const focusBtn = document.getElementById('modeFocusBtn');
+        if (reflexBtn && focusBtn) {
+            if (mode === 'reflex') {
+                reflexBtn.style.background = '#3a3a3a';
+                reflexBtn.style.color = '#fff';
+                reflexBtn.style.border = '1px solid #555';
+                reflexBtn.style.boxShadow = '0 0 4px rgba(100,100,100,0.3)';
+                focusBtn.style.background = '#2a2a2a';
+                focusBtn.style.color = '#888';
+                focusBtn.style.border = '1px solid #3a3a3a';
+                focusBtn.style.boxShadow = 'none';
+            } else {
+                focusBtn.style.background = '#3a3a3a';
+                focusBtn.style.color = '#fff';
+                focusBtn.style.border = '1px solid #555';
+                focusBtn.style.boxShadow = '0 0 4px rgba(100,100,100,0.3)';
+                reflexBtn.style.background = '#2a2a2a';
+                reflexBtn.style.color = '#888';
+                reflexBtn.style.border = '1px solid #3a3a3a';
+                reflexBtn.style.boxShadow = 'none';
+            }
+        }
+        
+        if (gameStarted && oldMode !== mode) {
+            restartGameOnModeChange();
+        }
+        
+        console.log(`🎮 تم التبديل إلى وضع ${SPEED_MODES[mode].name} - الوقت: ${SETTINGS.timePerQuestion} ثانية`);
+    }
+    
+    function createSpeedModeSelector() {
+        const container = document.createElement('div');
+        container.style.cssText = 'display:flex;justify-content:center;gap:8px;margin:15px 0 10px 0';
+        
+        const reflexBtn = document.createElement('button');
+        reflexBtn.id = 'modeReflexBtn';
+        reflexBtn.textContent = '⚡⚡⚡ Reflex';
+        reflexBtn.style.cssText = 'padding:5px 14px;border-radius:25px;font-size:12px;font-weight:500;cursor:pointer;transition:all 0.1s ease;border:1px solid #3a3a3a;background:#2a2a2a;color:#888;box-shadow:none';
+        reflexBtn.onclick = () => { setSpeedMode('reflex'); };
+        
+        const focusBtn = document.createElement('button');
+        focusBtn.id = 'modeFocusBtn';
+        focusBtn.textContent = '⚡ Focus';
+        focusBtn.style.cssText = 'padding:5px 14px;border-radius:25px;font-size:12px;font-weight:500;cursor:pointer;transition:all 0.1s ease;border:1px solid #3a3a3a;background:#2a2a2a;color:#888;box-shadow:none';
+        focusBtn.onclick = () => { setSpeedMode('focus'); };
+        
+        container.appendChild(reflexBtn);
+        container.appendChild(focusBtn);
+        
+        return container;
+    }
+    
     function createCircularTimer(percent) {
         const radius = 18;
         const circumference = 2 * Math.PI * radius;
@@ -77,16 +304,6 @@
         svg.appendChild(fillCircle);
         
         return { svg, fillCircle };
-    }
-    
-    function updateCircularTimer(fillCircle, percent) {
-        const radius = 18;
-        const circumference = 2 * Math.PI * radius;
-        fillCircle.setAttribute("stroke-dashoffset", circumference * (1 - percent / 100));
-        
-        if (percent <= 30) fillCircle.setAttribute("stroke", "#7cb3f0");
-        if (percent <= 15) fillCircle.setAttribute("stroke", "#a8c8f5");
-        if (percent > 30) fillCircle.setAttribute("stroke", "#4a90e2");
     }
     
     function generateSmartRound(questions, stats) {
@@ -198,70 +415,151 @@
         overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
     }
     
+    // ==================== دالة تحميل البيانات ====================
     function loadGameData(skill, examId) {
-        return fetch(`data/games/${skill}_exam${examId}.json`)
+        currentSkill = skill;
+        currentExamId = examId;
+        
+        let filePath = `data/games/${skill}/exam${examId}.json`;
+        
+        console.log(`📂 جاري تحميل: ${filePath}`);
+        
+        return fetch(filePath)
             .then(response => {
-                if (!response.ok) throw new Error('الملف غير موجود');
+                if (!response.ok) {
+                    console.error(`❌ الملف غير موجود: ${filePath}`);
+                    throw new Error('الملف غير موجود');
+                }
                 return response.json();
             })
             .then(data => {
-                currentGameData = data;
-                let allQuestions = data.questions;
-                
-                // لـ Lesen Teil 3: إزالة الفقرات التي ليس لها عنوان صحيح
-                if (skill === 'lesen3') {
-                    allQuestions = allQuestions.filter(q => q.correctTitle !== null && q.correctTitle !== undefined);
-                }
-                
-                // تحويل الأسئلة إلى صيغة موحدة
-                originalQuestions = allQuestions.map(q => {
-                    if (q.correctAnswerIndex !== undefined) {
-                        // Hören Teil 1: يحتوي على options و correctAnswerIndex
-                        return {
-                            firstWords: q.firstWords || shortenText(q.fullText, SETTINGS.firstWordsLength),
-                            fullText: q.fullText,
-                            isHören: true,
-                            options: q.options,
-                            correctAnswerIndex: q.correctAnswerIndex
-                        };
-                    } else {
-                        // Lesen Teil 1/3
-                        return {
-                            firstWords: shortenText(q.firstWords || q.fullText, SETTINGS.firstWordsLength),
-                            fullText: q.fullText,
-                            isHören: false,
-                            shortCorrectTitle: q.shortCorrectTitle || (q.correctTitle ? shortenText(q.correctTitle, SETTINGS.titleLength) : null),
-                            shortWrongTitles: q.shortWrongTitles || (q.wrongTitles ? q.wrongTitles.map(t => shortenText(t, SETTINGS.titleLength)) : []),
-                            correctTitle: q.correctTitle
-                        };
-                    }
-                });
-                
-                questionStats = {};
-                originalQuestions.forEach((_, idx) => {
-                    questionStats[idx] = { timesWrong: 0, wasSlow: false, lastWrongAt: -999 };
-                });
-                return true;
+                return processGameData(data, skill, filePath);
             })
-            .catch(() => false);
+            .catch(error => {
+                console.error(`❌ خطأ في تحميل الملف:`, error);
+                return false;
+            });
+    }
+    
+    function processGameData(data, skill, filePath) {
+        console.log(`✅ تم تحميل الملف بنجاح: ${filePath}`, data);
+        currentGameData = data;
+        
+        // ==================== نظام Reflex Modus (Hören 1,2,3 و Lesen 2) ====================
+        if (skill === 'hoeren1' || skill === 'hoeren2' || skill === 'hoeren3' || skill === 'lesen2') {
+            reflexSentences = data.sentences || [];
+            console.log(`📝 تم تحميل ${reflexSentences.length} جملة لـ ${skill.toUpperCase()} (Exam ${currentExamId})`);
+            
+            const totalRounds = SETTINGS.roundLength;
+            originalQuestions = [];
+            for (let i = 0; i < totalRounds; i++) {
+                originalQuestions.push({
+                    type: "reflex_mode",
+                    id: i,
+                    questionText: "اختر الإجابة الصحيحة",
+                    examId: currentExamId
+                });
+            }
+        }
+        // ==================== نظام Lesen Teil 1,3 (Matching) ====================
+        else if (skill === 'lesen1' || skill === 'lesen3') {
+            if (data.sharedOptions) {
+                const sharedOptions = data.sharedOptions;
+                originalQuestions = data.questions.map((q, idx) => {
+                    const correctTitle = sharedOptions[q.correct];
+                    const cleanCorrectTitle = correctTitle.replace(/^[a-z]\.\s*/, '');
+                    const wrongTitles = sharedOptions
+                        .filter((_, index) => index !== q.correct)
+                        .map(title => title.replace(/^[a-z]\.\s*/, ''));
+                    const shuffledWrongs = [...wrongTitles];
+                    for (let i = shuffledWrongs.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [shuffledWrongs[i], shuffledWrongs[j]] = [shuffledWrongs[j], shuffledWrongs[i]];
+                    }
+                    const selectedWrongTitles = shuffledWrongs.slice(0, 2);
+                    const firstWords = q.firstWords || extractFirstWords(q.text, SETTINGS.firstWordsLength);
+                    
+                    return {
+                        type: "lesen_matching",
+                        id: idx,
+                        firstWords: firstWords,
+                        shortCorrectTitle: cleanCorrectTitle,
+                        shortWrongTitles: selectedWrongTitles,
+                        correctTitle: cleanCorrectTitle
+                    };
+                });
+            } else {
+                originalQuestions = data.questions.map((q, idx) => {
+                    const firstWords = q.firstWords || extractFirstWords(q.text, SETTINGS.firstWordsLength);
+                    const wrongTitlesList = q.wrongTitles || [];
+                    const selectedWrongTitles = wrongTitlesList.slice(0, 2);
+                    
+                    return {
+                        type: "lesen_matching",
+                        id: idx,
+                        firstWords: firstWords,
+                        shortCorrectTitle: q.correctTitle || "",
+                        shortWrongTitles: selectedWrongTitles,
+                        correctTitle: q.correctTitle || ""
+                    };
+                });
+            }
+            console.log(`📝 تم تحميل ${originalQuestions.length} سؤال لـ ${skill.toUpperCase()}`);
+        }
+        // ==================== نظام Sprachbausteine Teil 1 و 2 ====================
+        else if (skill === 'sprach1' || skill === 'sprach2') {
+            let allQuestions = data.questions;
+            originalQuestions = allQuestions.map(q => {
+                return {
+                    type: "sprach",
+                    id: q.id,
+                    before: q.before || "",
+                    after: q.after || "",
+                    options: q.options,
+                    correct: q.correct,
+                    displayText: `${q.before} _____ (${q.id}) _____ ${q.after}`
+                };
+            });
+            console.log(`📝 تم تحميل ${originalQuestions.length} سؤال لـ ${skill.toUpperCase()}`);
+        }
+        // ==================== نظام Hören القديم (للتوافق) ====================
+        else if (data.questions) {
+            let allQuestions = data.questions;
+            originalQuestions = allQuestions.map(q => {
+                if (q.correctAnswerIndex !== undefined) {
+                    return {
+                        type: "hoeren_old",
+                        firstWords: q.firstWords || extractFirstWords(q.fullText, SETTINGS.firstWordsLength),
+                        fullText: q.fullText,
+                        options: q.options,
+                        correctAnswerIndex: q.correctAnswerIndex
+                    };
+                } 
+                else {
+                    return {
+                        type: "lesen_matching",
+                        firstWords: q.firstWords || extractFirstWords(q.text, SETTINGS.firstWordsLength),
+                        shortCorrectTitle: q.correctTitle || "",
+                        shortWrongTitles: q.wrongTitles || [],
+                        correctTitle: q.correctTitle || ""
+                    };
+                }
+            });
+        }
+        
+        questionStats = {};
+        originalQuestions.forEach((_, idx) => {
+            questionStats[idx] = { timesWrong: 0, wasSlow: false, lastWrongAt: -999 };
+        });
+        return true;
     }
     
     function startGame(skill, examId) {
-        if (gameActive) return;
-        loadGameData(skill, examId).then(loaded => {
-            if (!loaded) { showNotAvailableMessage(); return; }
-            if (originalQuestions.length === 0) {
-                showNotAvailableMessage();
-                return;
-            }
-            currentRound = generateSmartRound(originalQuestions, questionStats);
-            currentIndex = 0;
-            userAnswers = [];
-            combo = 0;
-            bestCombo = 0;
-            gamePaused = false;
-            showCountdown();
-        });
+        if (gameStarted) return;
+        currentSkill = skill;
+        currentExamId = examId;
+        setSpeedMode('reflex');
+        showModeSelectionScreen();
     }
     
     function pauseGame() {
@@ -282,6 +580,9 @@
         const pauseBtn = document.getElementById('gamePauseBtn');
         if (pauseBtn) pauseBtn.textContent = '⏸ Pause';
         
+        const msg = document.querySelector('.mode-change-message');
+        if (msg) msg.remove();
+        
         currentStartTime = Date.now() - (SETTINGS.timePerQuestion - remainingTime) * 1000;
         startTimer();
     }
@@ -289,6 +590,7 @@
     function exitGame() {
         gameActive = false;
         gamePaused = false;
+        gameStarted = false;
         if (timerInterval) clearInterval(timerInterval);
         if (transitionTimeout) clearTimeout(transitionTimeout);
         if (gameOverlay) gameOverlay.remove();
@@ -298,10 +600,7 @@
         if (timerInterval) clearInterval(timerInterval);
         
         const timerCircle = document.querySelector('.circular-timer-fill');
-        
-        if (!timerCircle) {
-            return;
-        }
+        if (!timerCircle) return;
         
         const radius = 18;
         const circumference = 2 * Math.PI * radius;
@@ -330,27 +629,15 @@
                     questionStats[q.originalIndex].timesWrong++;
                     questionStats[q.originalIndex].wasSlow = true;
                     questionStats[q.originalIndex].lastWrongAt = currentIndex;
-                    userAnswers.push({ isCorrect: false, originalIndex: q.originalIndex, selectedIndex: -1 });
+                    userAnswers.push({ isCorrect: false, originalIndex: q.originalIndex });
                     combo = 0;
                     
                     const btns = document.querySelectorAll('.game-option-btn');
-                    btns.forEach((btn, idx) => {
-                        if (q.isHören) {
-                            if (idx === q.correctAnswerIndex) {
-                                btn.style.background = '#d4edda';
-                                btn.style.borderColor = '#28a745';
-                            } else {
-                                btn.style.background = '#fff3e0';
-                                btn.style.borderColor = '#fd7e14';
-                            }
-                        } else {
-                            if (btn.getAttribute('data-correct') === 'true') {
-                                btn.style.background = '#d4edda';
-                                btn.style.borderColor = '#28a745';
-                            } else {
-                                btn.style.background = '#fff3e0';
-                                btn.style.borderColor = '#fd7e14';
-                            }
+                    btns.forEach(btn => {
+                        if (btn.getAttribute('data-correct') === 'true') {
+                            btn.style.background = '#e6f4ea';
+                            btn.style.borderColor = '#8bc34a';
+                            btn.style.color = '#2e7d32';
                         }
                     });
                     
@@ -403,9 +690,9 @@
         gameOverlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:10000;display:flex;justify-content:center;align-items:center;backdrop-filter:blur(4px)';
         
         const container = document.createElement('div');
+        container.className = 'game-container-inner';
         container.style.cssText = 'background:white;border-radius:28px;padding:30px;width:90%;max-width:700px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,0.2);position:relative';
         
-        // المؤقت الدائري
         const timerContainer = document.createElement('div');
         timerContainer.className = 'circular-timer-container';
         timerContainer.style.cssText = 'position:absolute;top:8px;left:8px;width:40px;height:40px';
@@ -413,65 +700,113 @@
         timerContainer.appendChild(timerSvg.svg);
         container.appendChild(timerContainer);
         
-        // السؤال
         const questionDiv = document.createElement('div');
-        questionDiv.style.cssText = 'font-size:24px;font-weight:500;padding:20px 30px;background:#f5f7fc;border-radius:20px;margin-bottom:25px;color:#1a1a2e;line-height:1.4';
+        questionDiv.style.cssText = 'font-size:20px;font-weight:500;padding:20px 30px;background:#f5f7fc;border-radius:20px;margin-bottom:25px;color:#1a1a2e;line-height:1.5';
         
-        if (q.isHören) {
-            questionDiv.textContent = `من هي الإجابة الصحيحة؟`;
+        // عرض النص حسب نوع السؤال
+        if (q.type === "sprach") {
+            questionDiv.textContent = q.displayText;
+        } else if (q.type === "reflex_mode") {
+            questionDiv.textContent = "اختر الإجابة الصحيحة";
+        } else if (q.type === "hoeren_old") {
+            questionDiv.textContent = "اختر الإجابة الصحيحة";
         } else {
-            questionDiv.textContent = `❝ ${q.firstWords} ❞`;
+            // Lesen Matching: عرض أول 7-9 كلمات
+            questionDiv.textContent = q.firstWords;
         }
         container.appendChild(questionDiv);
         
-        // الخيارات
         const optionsDiv = document.createElement('div');
-        optionsDiv.style.cssText = 'display:flex;flex-direction:column;gap:12px;margin-bottom:30px';
+        optionsDiv.className = 'game-options-div';
+        optionsDiv.style.cssText = 'display:flex;flex-direction:column;gap:12px;margin-bottom:20px';
         
-        if (q.isHören) {
-            // Hören Teil 1: عرض الخيارات كاملة
+        // ==================== Reflex Modus (Hören و Lesen 2) ====================
+        if (q.type === "reflex_mode") {
+            const correctSentences = reflexSentences.filter(s => s.correct === true);
+            const incorrectSentences = reflexSentences.filter(s => s.correct === false);
+            
+            const selectedCorrect = correctSentences.length > 0 
+                ? correctSentences[Math.floor(Math.random() * correctSentences.length)]
+                : null;
+            
+            let selectedIncorrects = [];
+            if (incorrectSentences.length >= 2) {
+                const shuffledIncorrects = [...incorrectSentences];
+                for (let i = shuffledIncorrects.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [shuffledIncorrects[i], shuffledIncorrects[j]] = [shuffledIncorrects[j], shuffledIncorrects[i]];
+                }
+                selectedIncorrects = shuffledIncorrects.slice(0, 2);
+            } else {
+                selectedIncorrects = [...incorrectSentences];
+                while(selectedIncorrects.length < 2) {
+                    selectedIncorrects.push({ text: "خيار إضافي", correct: false, id: -1 });
+                }
+            }
+            
+            const allOptions = [
+                { text: selectedCorrect.text, isCorrect: true },
+                { text: selectedIncorrects[0].text, isCorrect: false },
+                { text: selectedIncorrects[1].text, isCorrect: false }
+            ];
+            
+            for (let i = allOptions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [allOptions[i], allOptions[j]] = [allOptions[j], allOptions[i]];
+            }
+            
+            q.currentOptions = allOptions;
+            
+            allOptions.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = 'game-option-btn';
+                optBtn.textContent = `${String.fromCharCode(65+idx)}. ${opt.text}`;
+                optBtn.setAttribute('data-correct', opt.isCorrect);
+                optBtn.setAttribute('data-value', opt.text);
+                optBtn.style.cssText = 'padding:14px 20px;background:#ffffff;border:1px solid #e0e0e0;border-radius:60px;font-size:15px;text-align:left;cursor:pointer;transition:all 0.05s ease;color:#333;width:100%;box-shadow:none';
+                optBtn.onclick = () => checkAnswer(opt.isCorrect, opt.text, null, q);
+                optionsDiv.appendChild(optBtn);
+            });
+        }
+        // ==================== Sprachbausteine ====================
+        else if (q.type === "sprach") {
             q.options.forEach((opt, idx) => {
                 const optBtn = document.createElement('button');
                 optBtn.className = 'game-option-btn';
                 optBtn.textContent = `${String.fromCharCode(65+idx)}. ${opt}`;
-                optBtn.setAttribute('data-opt-index', idx);
-                optBtn.setAttribute('data-correct', idx === q.correctAnswerIndex);
+                optBtn.setAttribute('data-correct', opt === q.correct);
+                optBtn.setAttribute('data-value', opt);
                 optBtn.style.cssText = 'padding:14px 20px;background:#ffffff;border:1px solid #e0e0e0;border-radius:60px;font-size:15px;text-align:left;cursor:pointer;transition:all 0.05s ease;color:#333;width:100%;box-shadow:none';
-                optBtn.onmouseenter = () => { 
-                    optBtn.style.boxShadow = '0 1px 2px rgba(0,0,0,0.06)';
-                    optBtn.style.transform = 'translateY(-0.5px)';
-                };
-                optBtn.onmouseleave = () => { 
-                    optBtn.style.boxShadow = 'none';
-                    optBtn.style.transform = 'translateY(0)';
-                };
-                optBtn.onclick = () => checkHörenAnswer(idx === q.correctAnswerIndex, idx);
+                optBtn.onclick = () => checkAnswer(opt === q.correct, opt, null, q);
                 optionsDiv.appendChild(optBtn);
             });
-        } else {
-            // Lesen Teil 1/3: بناء الخيارات من العناوين
-            const options = [];
+        } 
+        // ==================== Hören القديم ====================
+        else if (q.type === "hoeren_old") {
+            q.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = 'game-option-btn';
+                optBtn.textContent = `${String.fromCharCode(65+idx)}. ${opt}`;
+                optBtn.setAttribute('data-correct', idx === q.correctAnswerIndex);
+                optBtn.style.cssText = 'padding:14px 20px;background:#ffffff;border:1px solid #e0e0e0;border-radius:60px;font-size:15px;text-align:left;cursor:pointer;transition:all 0.05s ease;color:#333;width:100%;box-shadow:none';
+                optBtn.onclick = () => checkAnswer(idx === q.correctAnswerIndex, null, idx, q);
+                optionsDiv.appendChild(optBtn);
+            });
+        } 
+        // ==================== Lesen Matching (Teil 1 و 3) ====================
+        else {
+            const options = [
+                { text: q.shortCorrectTitle, isCorrect: true }
+            ];
             
-            if (q.correctTitle) {
-                options.push({ text: q.shortCorrectTitle, isCorrect: true });
+            if (q.shortWrongTitles && q.shortWrongTitles.length >= 2) {
+                options.push({ text: q.shortWrongTitles[0], isCorrect: false });
+                options.push({ text: q.shortWrongTitles[1], isCorrect: false });
             } else {
-                options.push({ text: "⚠️ هذه الفقرة لا يوجد لها عنوان", isCorrect: true });
+                options.push({ text: "عنوان تجريبي 1", isCorrect: false });
+                options.push({ text: "عنوان تجريبي 2", isCorrect: false });
             }
             
-            const wrongs = [...q.shortWrongTitles];
-            if (wrongs.length > 0) {
-                for (let i = wrongs.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [wrongs[i], wrongs[j]] = [wrongs[j], wrongs[i]];
-                }
-                options.push({ text: wrongs[0], isCorrect: false });
-                if (wrongs[1]) options.push({ text: wrongs[1], isCorrect: false });
-            } else if (q.correctTitle) {
-                options.push({ text: "عنوان تجريبي", isCorrect: false });
-                options.push({ text: "عنوان آخر", isCorrect: false });
-            }
-            
-            // خلط الخيارات
             for (let i = options.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [options[i], options[j]] = [options[j], options[i]];
@@ -482,49 +817,44 @@
                 optBtn.className = 'game-option-btn';
                 optBtn.textContent = `${String.fromCharCode(65+idx)}. ${opt.text}`;
                 optBtn.setAttribute('data-correct', opt.isCorrect);
+                optBtn.setAttribute('data-value', opt.text);
                 optBtn.style.cssText = 'padding:14px 20px;background:#ffffff;border:1px solid #e0e0e0;border-radius:60px;font-size:15px;text-align:left;cursor:pointer;transition:all 0.05s ease;color:#333;width:100%;box-shadow:none';
-                optBtn.onmouseenter = () => { 
-                    optBtn.style.boxShadow = '0 1px 2px rgba(0,0,0,0.06)';
-                    optBtn.style.transform = 'translateY(-0.5px)';
-                };
-                optBtn.onmouseleave = () => { 
-                    optBtn.style.boxShadow = 'none';
-                    optBtn.style.transform = 'translateY(0)';
-                };
-                optBtn.onclick = () => checkLesenAnswer(opt.isCorrect, opt.text);
+                optBtn.onclick = () => checkAnswer(opt.isCorrect, opt.text, null, q);
                 optionsDiv.appendChild(optBtn);
             });
         }
         
         container.appendChild(optionsDiv);
         
-        // كومبو
-        if (combo >= 3) {
-            const comboDiv = document.createElement('div');
-            comboDiv.style.cssText = 'font-size:18px;font-weight:500;margin-bottom:15px;color:#2c3e66';
-            comboDiv.textContent = `${combo >= 10 ? '⚡' : (combo >= 6 ? '🔥' : '✓')} COMBO x${combo}`;
-            container.appendChild(comboDiv);
-        }
-        
-        // التقدم وأزرار التحكم
+        // أزرار التحكم
         const bottomBar = document.createElement('div');
-        bottomBar.style.cssText = 'display:flex;justify-content:space-between;align-items:center;margin-top:10px';
+        bottomBar.className = 'bottom-bar';
+        bottomBar.style.cssText = 'display:flex;justify-content:space-between;align-items:center;margin-top:10px;flex-wrap:wrap;gap:10px';
         
         const progressDiv = document.createElement('div');
+        progressDiv.className = 'game-progress';
         progressDiv.style.cssText = 'font-size:13px;color:#999';
         progressDiv.textContent = `${currentIndex + 1} / ${currentRound.length}`;
         bottomBar.appendChild(progressDiv);
         
+        const speedSelector = createSpeedModeSelector();
+        bottomBar.appendChild(speedSelector);
+        
         const controlBtns = document.createElement('div');
+        controlBtns.className = 'control-btns';
         controlBtns.style.cssText = 'display:flex;gap:12px';
         
         const pauseBtn = document.createElement('button');
         pauseBtn.id = 'gamePauseBtn';
-        pauseBtn.textContent = '⏸ Pause';
+        pauseBtn.textContent = gameStarted ? '⏸ Pause' : '▶ Start';
         pauseBtn.style.cssText = 'background:#e8e8e8;color:#333;border:none;border-radius:30px;padding:6px 16px;font-size:12px;cursor:pointer;transition:all 0.15s';
         pauseBtn.onclick = () => {
-            if (gamePaused) resumeGame();
-            else pauseGame();
+            if (gameStarted) {
+                if (gamePaused) resumeGame();
+                else pauseGame();
+            } else {
+                startGameAfterModeSelection();
+            }
         };
         controlBtns.appendChild(pauseBtn);
         
@@ -540,103 +870,93 @@
         gameOverlay.appendChild(container);
         document.body.appendChild(gameOverlay);
         
-        gameActive = true;
-        gamePaused = false;
-        currentStartTime = Date.now();
-        currentOptionsDiv = optionsDiv;
-        
-        const timerCircleSvg = timerContainer.querySelector('circle:last-of-type');
-        if (timerCircleSvg) {
-            timerCircleSvg.classList.add('circular-timer-fill');
+        if (gameStarted) {
+            gameActive = true;
+            gamePaused = false;
+            currentStartTime = Date.now();
+            currentOptionsDiv = optionsDiv;
+            
+            const timerCircleSvg = timerContainer.querySelector('circle:last-of-type');
+            if (timerCircleSvg) {
+                timerCircleSvg.classList.add('circular-timer-fill');
+            }
+            
+            startTimer();
+        } else {
+            gameActive = false;
+            gamePaused = true;
         }
-        
-        startTimer();
     }
     
-    function checkHörenAnswer(isCorrect, selectedIndex) {
+    // دالة تطبيق الألوان والإجابة
+    function checkAnswer(isCorrect, selectedValue, selectedIndex, q) {
         if (!gameActive || gamePaused) return;
         gameActive = false;
         if (timerInterval) clearInterval(timerInterval);
         
-        const q = currentRound[currentIndex];
+        const question = currentRound[currentIndex];
         const elapsed = (Date.now() - currentStartTime) / 1000;
         const isFast = elapsed < 1.5;
         
         if (isCorrect) {
-            if (!isFast) questionStats[q.originalIndex].wasSlow = true;
+            if (!isFast) questionStats[question.originalIndex].wasSlow = true;
             combo++;
             if (combo > bestCombo) bestCombo = combo;
         } else {
-            questionStats[q.originalIndex].timesWrong++;
-            questionStats[q.originalIndex].wasSlow = true;
-            questionStats[q.originalIndex].lastWrongAt = currentIndex;
+            questionStats[question.originalIndex].timesWrong++;
+            questionStats[question.originalIndex].wasSlow = true;
+            questionStats[question.originalIndex].lastWrongAt = currentIndex;
             combo = 0;
         }
         
+        // تطبيق الألوان
         const btns = currentOptionsDiv.querySelectorAll('.game-option-btn');
         btns.forEach((btn, idx) => {
-            if (idx === q.correctAnswerIndex) {
-                btn.style.background = '#d4edda';
-                btn.style.borderColor = '#28a745';
-                btn.style.color = '#155724';
-            } else if (idx === selectedIndex && !isCorrect) {
-                btn.style.background = '#fff3e0';
-                btn.style.borderColor = '#fd7e14';
-                btn.style.color = '#e67e22';
+            let isCorrectBtn = false;
+            
+            if (q.type === "sprach") {
+                isCorrectBtn = btn.getAttribute('data-correct') === 'true';
+            } else if (q.type === "hoeren_old") {
+                isCorrectBtn = idx === q.correctAnswerIndex;
+            } else if (q.type === "reflex_mode" && q.currentOptions) {
+                isCorrectBtn = q.currentOptions[idx]?.isCorrect === true;
+            } else {
+                isCorrectBtn = btn.getAttribute('data-correct') === 'true';
+            }
+            
+            // الإجابة الصحيحة دائماً باللون الأخضر الفاتح
+            if (isCorrectBtn) {
+                btn.style.background = '#e6f4ea';
+                btn.style.borderColor = '#8bc34a';
+                btn.style.color = '#2e7d32';
+            }
+            
+            // إذا كانت الإجابة خاطئة، نلون اختيار المستخدم بالبرتقالي الفاتح
+            if (!isCorrect) {
+                if ((q.type === "sprach" || q.type === "reflex_mode" || q.type === "lesen_matching") && btn.getAttribute('data-value') === selectedValue) {
+                    btn.style.background = '#fef5e7';
+                    btn.style.borderColor = '#f5b042';
+                    btn.style.color = '#b45f06';
+                } else if (q.type === "hoeren_old" && idx === selectedIndex) {
+                    btn.style.background = '#fef5e7';
+                    btn.style.borderColor = '#f5b042';
+                    btn.style.color = '#b45f06';
+                }
+            } else {
+                // إذا كانت الإجابة صحيحة، نلون اختيار المستخدم باللون الأخضر
+                if ((q.type === "sprach" || q.type === "reflex_mode" || q.type === "lesen_matching") && btn.getAttribute('data-value') === selectedValue) {
+                    btn.style.background = '#e6f4ea';
+                    btn.style.borderColor = '#8bc34a';
+                    btn.style.color = '#2e7d32';
+                } else if (q.type === "hoeren_old" && idx === selectedIndex) {
+                    btn.style.background = '#e6f4ea';
+                    btn.style.borderColor = '#8bc34a';
+                    btn.style.color = '#2e7d32';
+                }
             }
         });
         
-        userAnswers.push({ 
-            isCorrect: isCorrect, 
-            originalIndex: q.originalIndex,
-            selectedIndex: selectedIndex
-        });
-        
-        if (transitionTimeout) clearTimeout(transitionTimeout);
-        transitionTimeout = setTimeout(() => {
-            currentIndex++;
-            showQuestion();
-        }, SETTINGS.transitionDelay);
-    }
-    
-    function checkLesenAnswer(isCorrect, selectedTitle) {
-        if (!gameActive || gamePaused) return;
-        gameActive = false;
-        if (timerInterval) clearInterval(timerInterval);
-        
-        const q = currentRound[currentIndex];
-        const elapsed = (Date.now() - currentStartTime) / 1000;
-        const isFast = elapsed < 1.5;
-        
-        if (isCorrect) {
-            if (!isFast) questionStats[q.originalIndex].wasSlow = true;
-            combo++;
-            if (combo > bestCombo) bestCombo = combo;
-        } else {
-            questionStats[q.originalIndex].timesWrong++;
-            questionStats[q.originalIndex].wasSlow = true;
-            questionStats[q.originalIndex].lastWrongAt = currentIndex;
-            combo = 0;
-        }
-        
-        const btns = currentOptionsDiv.querySelectorAll('.game-option-btn');
-        btns.forEach(btn => {
-            if (btn.getAttribute('data-correct') === 'true') {
-                btn.style.background = '#d4edda';
-                btn.style.borderColor = '#28a745';
-                btn.style.color = '#155724';
-            } else if (!isCorrect && btn.textContent.includes(selectedTitle)) {
-                btn.style.background = '#fff3e0';
-                btn.style.borderColor = '#fd7e14';
-                btn.style.color = '#e67e22';
-            }
-        });
-        
-        userAnswers.push({ 
-            isCorrect: isCorrect, 
-            originalIndex: q.originalIndex,
-            selectedIndex: -1
-        });
+        userAnswers.push({ isCorrect: isCorrect, originalIndex: question.originalIndex });
         
         if (transitionTimeout) clearTimeout(transitionTimeout);
         transitionTimeout = setTimeout(() => {
@@ -648,63 +968,44 @@
     function showResults() {
         if (gameOverlay) gameOverlay.remove();
         gameActive = false;
+        gameStarted = false;
         
         const correct = userAnswers.filter(a => a.isCorrect).length;
         const total = userAnswers.length;
-        const accuracy = total > 0 ? ((correct / total) * 100).toFixed(1) : 0;
-        
-        const questionResults = {};
-        originalQuestions.forEach((q, idx) => {
-            const userAttempts = userAnswers.filter(a => a.originalIndex === idx);
-            const correctAttempts = userAttempts.filter(a => a.isCorrect).length;
-            questionResults[idx] = {
-                title: q.firstWords || "فقرة",
-                attempts: userAttempts.length,
-                correct: correctAttempts,
-                wrong: userAttempts.length - correctAttempts
-            };
-        });
-        
-        let gradeText = '', gradeColor = '', gradeTextColor = '';
-        if (accuracy >= 80) { gradeText = '🧠 ممتاز! أنت جاهز للامتحان'; gradeColor = '#d4edda'; gradeTextColor = '#155724'; }
-        else if (accuracy >= 60) { gradeText = '👍 جيد جداً، واصل التدريب'; gradeColor = '#fff3cd'; gradeTextColor = '#856404'; }
-        else { gradeText = '💪 لا تستسلم! أعد المحاولة'; gradeColor = '#f8d7da'; gradeTextColor = '#721c24'; }
+        const accuracy = total > 0 ? ((correct / total) * 100).toFixed(0) : 0;
         
         const overlay = document.createElement('div');
-        overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:10000;display:flex;justify-content:center;align-items:center;backdrop-filter:blur(4px)';
+        overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:10000;display:flex;justify-content:center;align-items:center;backdrop-filter:blur(2px)';
         
         const container = document.createElement('div');
-        container.style.cssText = 'background:white;border-radius:28px;padding:35px;width:90%;max-width:500px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,0.2);max-height:80vh;overflow-y:auto';
+        container.style.cssText = 'background:white;border-radius:16px;padding:16px 20px;width:90%;max-width:320px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.08);border:1px solid rgba(0,0,0,0.05)';
         
-        let statsHtml = '';
-        for (let idx in questionResults) {
-            const stat = questionResults[idx];
-            if (stat.attempts > 0) {
-                const icon = stat.wrong === 0 ? '✅' : (stat.correct > stat.wrong ? '⚠️' : '❌');
-                statsHtml += `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #eee"><span style="font-size:13px;text-align:left;flex:2">${stat.title}</span><span style="font-size:13px;color:${stat.wrong === 0 ? '#28a745' : (stat.correct > stat.wrong ? '#fd7e14' : '#dc3545')}">${icon} ${stat.correct}/${stat.attempts}</span></div>`;
-            }
-        }
+        let gradeIcon = '';
+        let gradeColor = '';
+        if (accuracy >= 80) { gradeIcon = '🧠'; gradeColor = '#2e7d32'; }
+        else if (accuracy >= 60) { gradeIcon = '👍'; gradeColor = '#b45f06'; }
+        else { gradeIcon = '💪'; gradeColor = '#b45f06'; }
         
         container.innerHTML = `
-            <div style="font-size:48px;margin-bottom:10px">🏆</div>
-            <h2 style="margin-bottom:20px;color:#2c3e66">نهاية التحدي</h2>
-            <div style="font-size:52px;font-weight:600;color:#2c3e66;margin-bottom:8px">${correct}/${total}</div>
-            <div style="font-size:15px;color:#666;margin-bottom:25px">الدقة: ${accuracy}%</div>
-            <div style="display:flex;justify-content:center;gap:40px;margin-bottom:25px">
-                <div><div style="font-size:28px;font-weight:600;color:#fd7e14">${bestCombo}</div><div style="font-size:12px;color:#999">أفضل كومبو</div></div>
-                <div><div style="font-size:28px;font-weight:600;color:#2c3e66">${total}</div><div style="font-size:12px;color:#999">إجمالي</div></div>
+            <div style="font-size:24px;margin-bottom:4px">${gradeIcon}</div>
+            <div style="font-size:28px;font-weight:600;color:#2c3e66;margin:4px 0">${correct}/${total}</div>
+            <div style="font-size:13px;color:${gradeColor};margin-bottom:12px">${accuracy}%</div>
+            <div style="display:flex;justify-content:center;gap:24px;margin-bottom:16px">
+                <div><div style="font-size:20px;font-weight:600;color:#f5b042">${bestCombo}</div><div style="font-size:10px;color:#999">combo</div></div>
             </div>
-            ${statsHtml ? `<div style="background:#f8f9fa;border-radius:16px;padding:15px;margin-bottom:25px;max-height:200px;overflow-y:auto"><div style="font-size:13px;font-weight:bold;margin-bottom:10px">📊 تفاصيل كل فقرة:</div>${statsHtml}</div>` : ''}
-            <div style="background:${gradeColor};padding:14px;border-radius:16px;margin-bottom:25px;color:${gradeTextColor};font-weight:500">${gradeText}</div>
-            <div style="display:flex;gap:15px;justify-content:center">
-                <button id="restartGameBtn" style="background:#2c3e66;color:white;border:none;border-radius:40px;padding:12px 28px;font-size:14px;cursor:pointer">🔄 تحدٍّ جديد</button>
-                <button id="closeGameBtn" style="background:#e8e8e8;color:#333;border:none;border-radius:40px;padding:12px 28px;font-size:14px;cursor:pointer">✖ إغلاق</button>
+            <div style="display:flex;gap:10px;justify-content:center">
+                <button id="restartGameBtn" style="background:#2c3e66;color:white;border:none;border-radius:24px;padding:8px 16px;font-size:12px;cursor:pointer">↺ تحدٍّ جديد</button>
+                <button id="closeGameBtn" style="background:#f0f0f0;color:#666;border:none;border-radius:24px;padding:8px 16px;font-size:12px;cursor:pointer">✖ إغلاق</button>
             </div>
         `;
+        
         overlay.appendChild(container);
         document.body.appendChild(overlay);
         
-        document.getElementById('restartGameBtn').onclick = () => { overlay.remove(); startGame(currentGameData.skill, currentGameData.examId); };
+        document.getElementById('restartGameBtn').onclick = () => {
+            overlay.remove();
+            startGame(currentSkill, currentExamId);
+        };
         document.getElementById('closeGameBtn').onclick = () => overlay.remove();
         overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
     }
