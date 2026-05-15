@@ -3,10 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zertiva B2 - أدكى منصة للتحضير لامتحان Telc B2</title>
-<link rel="stylesheet" href="style.css">
+
+<!-- SEO & Open Graph - نظيف واحترافي -->
+<title>Zertiva B2</title>
+<meta property="og:title" content="Zertiva B2">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zertivab2.online/">
+<meta property="og:image" content="https://zertivab2.online/images/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Zertiva B2">
+<meta name="twitter:image" content="https://zertivab2.online/images/preview.png">
+
 <link rel="icon" type="image/webp" href="images/favicon.webp">
 <link rel="shortcut icon" type="image/webp" href="images/favicon.webp">
+<link rel="stylesheet" href="style.css">
+
 <style>
     /* تنسيق زر كفاش */
     .tips-trigger-btn {
@@ -308,6 +319,36 @@
 
     body.dark-mode .option-label {
         color: #c0c0c0;
+    }
+
+    /* تنسيق عناوين الأجزاء في الهواتف - حجم صغير جداً */
+    @media (max-width: 768px) {
+        .teile-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .teile-row .teil-item,
+        .teile-row .item {
+            font-size: 0.55rem !important;
+            padding: 8px 3px !important;
+            text-align: center;
+            line-height: 1.3;
+            white-space: normal;
+            word-break: break-word;
+            min-height: auto;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .teile-row .teil-item,
+        .teile-row .item {
+            font-size: 0.5rem !important;
+            padding: 6px 2px !important;
+        }
     }
 
     @media (max-width: 768px) {
