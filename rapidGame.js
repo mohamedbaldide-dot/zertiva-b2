@@ -1017,7 +1017,7 @@
         
         const btn = document.createElement('button');
         btn.id = 'rapidGameBtn';
-        btn.innerHTML = '⚡ التحدي السريع';
+        btn.innerHTML = '⚡ العب';
         btn.style.cssText = 'background:#2c3e66;color:white;border:none;border-radius:30px;padding:8px 20px;font-size:14px;font-weight:500;cursor:pointer;margin-left:10px';
         btn.onclick = () => {
             const currentSkill = typeof getCurrentSkill === 'function' ? getCurrentSkill() : 'lesen1';
@@ -1025,7 +1025,7 @@
             startGame(currentSkill, currentExamId);
         };
         nav.appendChild(btn);
-        console.log('🎮 زر التحدي السريع جاهز');
+        console.log('🎮 زر العب جاهز');
     }
     
     if (document.readyState === 'loading') {
