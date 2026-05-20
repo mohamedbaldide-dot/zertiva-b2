@@ -72,49 +72,72 @@ async function getExpiryDate(email) {
     }
 }
 
+// ========== نافذة Premium Access الاحترافية ==========
 function showLockedMessage(examTitle) {
-    let modal = document.createElement('div');
-    modal.id = 'lockedModal';
-    modal.style.cssText = `
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.85); z-index: 100000;
-        display: flex; justify-content: center; align-items: center;
-        direction: rtl;
-    `;
+    let cleanTitle = examTitle.replace(/\s*\(\d+\)\s*$/, '').trim();
     
+    // إزالة أي modal موجود مسبقاً
+    const existingModal = document.getElementById('premiumModal');
+    if (existingModal) existingModal.remove();
+    
+    // إنشاء الـ Modal
+    const modal = document.createElement('div');
+    modal.id = 'premiumModal';
+    modal.className = 'premium-modal';
     modal.innerHTML = `
-        <div style="background:white; border-radius:28px; padding:35px; max-width:360px; width:85%; text-align:center; box-shadow:0 25px 50px rgba(0,0,0,0.3); direction:rtl;">
-            <div style="font-size:55px; margin-bottom:15px;">🔒</div>
-            <h2 style="color:#2b5876; margin-bottom:12px; font-size:24px;">محـتوى مقفل</h2>
-            <p style="color:#555; margin-bottom:20px;">المرجو ترقية الحساب للوصول لهذا المحتوى</p>
-            <div style="background:#e9d5ff; padding:12px; border-radius:18px; margin-bottom:20px; color:#6b21a5; font-weight:bold;">📚 ${examTitle}</div>
-            <p style="color:#888; margin-bottom:25px; font-size:14px;">يتطلب باقة: <strong style="color:#2b5876;">Pro</strong></p>
-            <div style="display:flex; flex-direction:column; gap:12px; justify-content:center; align-items:center; margin-top:10px;">
-                <button id="upgradeNowBtnModal" style="background:linear-gradient(135deg, #2b5876, #4e4376); color:white; border:none; padding:12px 28px; border-radius:50px; cursor:pointer; font-weight:bold; font-size:15px; width:80%;">🚀 ترقية الحساب الآن</button>
-                <button id="closeModalBtn" style="background:#e2e8f0; border:none; padding:12px 28px; border-radius:50px; cursor:pointer; font-weight:bold; font-size:15px; color:#4a5568; width:80%;">ليس الآن</button>
+        <div class="premium-card">
+            <div class="premium-card-header">
+                <div class="premium-badge">
+                    <span class="premium-icon">✦</span>
+                    <span>PREMIUM ACCESS</span>
+                </div>
+                <h2 class="premium-title">Exclusive Content</h2>
+                <p class="premium-subtitle">هذا المحتوى متاح للمشتركين</p>
+            </div>
+            <div class="premium-card-body">
+                <ul class="premium-features">
+                    <li><span class="check">✓</span> وصول كامل للمحتوى B2</li>
+                    <li><span class="check">✓</span>  100% الاجابات صحيحة</li>
+                    <li><span class="check">✓</span> بطاقات ذكية </li>
+                    <li><span class="check">✓</span> لعبة التحدي السريع</li>
+                    <li><span class="check">✓</span> التخلص من ارهاق Pdf </li>
+                </ul>
+                <button id="premiumUpgradeBtn" class="premium-btn">
+                    ✦ Join Premium
+                    <span>→</span>
+                </button>
+                <button id="premiumLaterBtn" class="premium-later">ليس الآن</button>
             </div>
         </div>
     `;
     
     document.body.appendChild(modal);
     
-    let upgradeBtn = document.getElementById('upgradeNowBtnModal');
-    let closeBtn = document.getElementById('closeModalBtn');
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 10);
     
-    if(upgradeBtn) {
-        upgradeBtn.onclick = function() {
+    const upgradeBtn = document.getElementById('premiumUpgradeBtn');
+    const laterBtn = document.getElementById('premiumLaterBtn');
+    
+    if (upgradeBtn) {
+        upgradeBtn.onclick = () => {
             window.location.href = 'subscribe.html';
         };
     }
     
-    if(closeBtn) {
-        closeBtn.onclick = function() {
-            modal.remove();
+    if (laterBtn) {
+        laterBtn.onclick = () => {
+            modal.classList.remove('active');
+            setTimeout(() => modal.remove(), 300);
         };
     }
     
-    modal.onclick = function(e) {
-        if(e.target === modal) modal.remove();
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            setTimeout(() => modal.remove(), 300);
+        }
     };
 }
 
@@ -348,4 +371,120 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initAuth);
 } else {
     initAuth();
+}
+// ============================================
+// تحسين مظهر الهواتف في auth.js
+// ============================================
+
+function applyMobileAuthStyles() {
+    if (window.innerWidth <= 768) {
+        // تصغير نافذة تسجيل الدخول
+        const loginPopupContent = document.querySelector('.login-popup-content');
+        if (loginPopupContent) {
+            loginPopupContent.style.padding = '20px';
+            loginPopupContent.style.width = '280px';
+            loginPopupContent.style.borderRadius = '20px';
+        }
+        
+        // تصغير العناوين
+        const popupTitle = document.querySelector('.login-popup-content h3');
+        if (popupTitle) popupTitle.style.fontSize = '1rem';
+        
+        const popupText = document.querySelector('.login-popup-content p');
+        if (popupText) popupText.style.fontSize = '11px';
+        
+        // تصغير حقول الإدخال
+        const inputs = document.querySelectorAll('.login-popup-content input');
+        inputs.forEach(input => {
+            input.style.padding = '8px';
+            input.style.fontSize = '12px';
+        });
+        
+        // تصغير الأزرار
+        const btns = document.querySelectorAll('.btn-popup-login, .btn-popup-close');
+        btns.forEach(btn => {
+            btn.style.padding = '8px';
+            btn.style.fontSize = '12px';
+        });
+        
+        // تصغير نافذة القفل (الامتحانات المقفلة)
+        const lockedModal = document.querySelector('#lockedModal > div');
+        if (lockedModal) {
+            lockedModal.style.padding = '20px';
+            lockedModal.style.maxWidth = '280px';
+            lockedModal.style.borderRadius = '24px';
+        }
+        
+        const lockedTitle = document.querySelector('#lockedModal h2');
+        if (lockedTitle) lockedTitle.style.fontSize = '18px';
+        
+        const lockedText = document.querySelector('#lockedModal p');
+        if (lockedText) lockedText.style.fontSize = '11px';
+        
+        const lockedButtons = document.querySelectorAll('#lockedModal button');
+        lockedButtons.forEach(btn => {
+            btn.style.padding = '8px 16px';
+            btn.style.fontSize = '12px';
+        });
+        
+        // تصغير القائمة المنسدلة للملف الشخصي
+        const profileDropdown = document.querySelector('.profile-dropdown');
+        if (profileDropdown) {
+            profileDropdown.style.minWidth = '220px';
+            profileDropdown.style.padding = '12px 15px';
+        }
+        
+        const profileEmail = document.querySelector('.profile-email');
+        if (profileEmail) profileEmail.style.fontSize = '11px';
+        
+        const profileExpiry = document.querySelector('.profile-expiry');
+        if (profileExpiry) profileExpiry.style.fontSize = '10px';
+        
+        const profileStatus = document.querySelector('.profile-status');
+        if (profileStatus) profileStatus.style.fontSize = '10px';
+        
+        const profileLogout = document.querySelector('.profile-logout');
+        if (profileLogout) {
+            profileLogout.style.padding = '6px 12px';
+            profileLogout.style.fontSize = '11px';
+        }
+        
+        const dropdownUpgradeBtn = document.getElementById('dropdownUpgradeBtn');
+        if (dropdownUpgradeBtn) {
+            dropdownUpgradeBtn.style.padding = '8px 12px';
+            dropdownUpgradeBtn.style.fontSize = '11px';
+        }
+    }
+}
+
+// استدعاء الدالة عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    applyMobileAuthStyles();
+});
+
+// استدعاء الدالة بعد فتح نافذة تسجيل الدخول
+const originalShowLoginPopup = window.showLoginPopup;
+if (originalShowLoginPopup) {
+    window.showLoginPopup = function() {
+        originalShowLoginPopup();
+        setTimeout(applyMobileAuthStyles, 50);
+    };
+}
+
+// استدعاء الدالة بعد فتح نافذة القفل
+const originalShowLockedMessage = window.showLockedMessage;
+if (originalShowLockedMessage) {
+    window.showLockedMessage = function(examTitle) {
+        originalShowLockedMessage(examTitle);
+        setTimeout(applyMobileAuthStyles, 50);
+    };
+}
+
+// استدعاء الدالة بعد تحديث القائمة المنسدلة
+const originalUpdateProfileDropdown = window.updateProfileDropdown;
+if (originalUpdateProfileDropdown) {
+    window.updateProfileDropdown = async function() {
+        await originalUpdateProfileDropdown();
+        setTimeout(applyMobileAuthStyles, 50);
+    };
 }
