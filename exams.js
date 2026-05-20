@@ -46,100 +46,97 @@ function getResultColor(score) {
   return "#adb5bd";
 }
 
-// ========== دالة عرض النتيجة بجانب عنوان الامتحان ==========
+// ========== دالة عرض النتيجة بجانب عنوان الامتحان (معدلة للهواتف) ==========
 function createResultBadge(score) {
   if (score === null) return null;
   
   const badge = document.createElement("span");
   badge.className = "exam-result-badge";
   badge.textContent = `${score} / 25`;
+  
+  // الكشف عن الهاتف وجعل الحجم أصغر
+  const isMobile = window.innerWidth <= 768;
   badge.style.cssText = `
-    font-size: 11px;
+    font-size: ${isMobile ? '8px' : '11px'};
     font-weight: bold;
-    padding: 3px 8px;
+    padding: ${isMobile ? '2px 5px' : '3px 8px'};
     border-radius: 20px;
     color: white;
     background-color: ${getResultColor(score)};
-    margin-left: 10px;
+    margin-left: 8px;
     display: inline-block;
-    min-width: 55px;
+    min-width: ${isMobile ? '40px' : '55px'};
     text-align: center;
   `;
   return badge;
 }
 
-// ========== دالة عرض نافذة القفل ==========
-function showLockedMessage(examTitle) {
-    // إزالة الأرقام من اسم الامتحان (مثل " (10)" أو " (12)")
+ function showLockedMessage(examTitle) {
     let cleanTitle = examTitle.replace(/\s*\(\d+\)\s*$/, '').trim();
     
-    let modal = document.createElement('div');
-    modal.id = 'lockedModal';
-    modal.style.cssText = `
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
-        z-index: 100000;
-        display: flex; justify-content: center; align-items: center;
-        direction: rtl;
-    `;
+    const existingModal = document.getElementById('premiumModal');
+    if (existingModal) existingModal.remove();
     
+    const modal = document.createElement('div');
+    modal.id = 'premiumModal';
+    modal.className = 'premium-modal';
     modal.innerHTML = `
-        <div style="background: #f8fafc; border-radius: 32px; padding: 32px; max-width: 360px; width: 85%; text-align: center; box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25); direction: rtl; border: 1px solid #e2e8f0;">
-            <div style="margin-bottom: 20px;">
-                <div style="font-size: 48px; margin-bottom: 8px;">⭐</div>
+        <div class="premium-card">
+            <div class="premium-card-header">
+                <div class="premium-badge">
+                    <span class="premium-icon">✦</span>
+                    <span>PREMIUM ACCESS</span>
+                </div>
+                <h2 class="premium-title">Exclusive Content</h2>
+                <p class="premium-subtitle">هذا المحتوى متاح للمشتركين  </p>
             </div>
-            <h2 style="color: #1e293b; margin-bottom: 8px; font-size: 22px; font-weight: 600;">هذا المحتوى مخصص للمشتركين</h2>
-            <div style="background: #f1f5f9; padding: 12px; border-radius: 20px; margin: 16px 0; color: #334155; font-weight: 500; font-size: 15px;">📚 ${cleanTitle}</div>
-            <p style="color: #475569; margin-bottom: 8px; font-size: 14px;">يتطلب باقة: <strong style="color: #3b82f6;">Premium</strong></p>
-            <p style="color: #64748b; margin-bottom: 28px; font-size: 13px;">للوصول إلى هذا الامتحان، قم بترقية حسابك</p>
-            <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center; align-items: center; margin-top: 0;">
-                <button id="upgradeNowBtnModal" style="background: #3b82f6; color: white; border: none; padding: 12px 24px; border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 14px; width: 100%; transition: all 0.2s ease;">🚀 ترقية الحساب</button>
-                <button id="closeModalBtn" style="background: #f1f5f9; border: 1px solid #e2e8f0; padding: 12px 24px; border-radius: 50px; cursor: pointer; font-weight: 500; font-size: 14px; color: #64748b; width: 100%; transition: all 0.2s ease;">ليس الآن</button>
+            <div class="premium-card-body">
+                <ul class="premium-features">
+                    <li><span class="check">✓</span> جميع امتحانات B2</li>
+                    <li><span class="check">✓</span> اجوبة صحيحة 100% </li>
+                    <li><span class="check">✓</span> بطاقات ذكية للحفظ السريع</li>
+                    <li><span class="check">✓</span> لعبة التحدي السريع</li>
+                    <li><span class="check">✓</span> التخلص من ارهاق Pdf </li>
+                </ul>
+                <button id="premiumUpgradeBtn" class="premium-btn">
+                    ✦ Join Premium
+                    <span>→</span>
+                </button>
+                <button id="premiumLaterBtn" class="premium-later">ليس الآن</button>
             </div>
         </div>
     `;
     
     document.body.appendChild(modal);
     
-    let upgradeBtn = document.getElementById('upgradeNowBtnModal');
-    let closeBtn = document.getElementById('closeModalBtn');
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 10);
     
-    // تأثير hover على زر الترقية
-    upgradeBtn.onmouseenter = function() {
-        this.style.background = '#2563eb';
-        this.style.transform = 'scale(1.02)';
-    };
-    upgradeBtn.onmouseleave = function() {
-        this.style.background = '#3b82f6';
-        this.style.transform = 'scale(1)';
-    };
+    const upgradeBtn = document.getElementById('premiumUpgradeBtn');
+    const laterBtn = document.getElementById('premiumLaterBtn');
     
-    // تأثير hover على زر الإغلاق
-    closeBtn.onmouseenter = function() {
-        this.style.background = '#e2e8f0';
-        this.style.transform = 'scale(1.02)';
-    };
-    closeBtn.onmouseleave = function() {
-        this.style.background = '#f1f5f9';
-        this.style.transform = 'scale(1)';
-    };
-    
-    if(upgradeBtn) {
-        upgradeBtn.onclick = function() {
+    if (upgradeBtn) {
+        upgradeBtn.onclick = () => {
             window.location.href = 'subscribe.html';
         };
     }
     
-    if(closeBtn) {
-        closeBtn.onclick = function() {
-            modal.remove();
+    if (laterBtn) {
+        laterBtn.onclick = () => {
+            modal.classList.remove('active');
+            setTimeout(() => modal.remove(), 300);
         };
     }
     
-    modal.onclick = function(e) {
-        if(e.target === modal) modal.remove();
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            setTimeout(() => modal.remove(), 300);
+        }
     };
 }
+
 
 let currentExamData = null;
 let currentSkill = "lesen1";
