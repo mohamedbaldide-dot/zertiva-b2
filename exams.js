@@ -268,8 +268,8 @@ const schreibenExams = [
   { id: 32, title: "SPORTHEINPARKPLATZ FÜR KINDER", enabled: true, hasFile: true },
   { id: 33, title: "Online-Training für guten Schlaf", enabled: true, hasFile: true },
   { id: 34, title: "Hollandblumen-Onlineshop", enabled: true, hasFile: true },
-  { id: 35, title: "In Offenbach zu Hause", enabled: true, hasFile: true }
-  
+  { id: 35, title: "In Offenbach zu Hause", enabled: true, hasFile: true },
+  { id: 36, title: "Nachbarschaft.net", enabled: true, hasFile: true }
 ];
 
 // ========== قائمة امتحانات Mündlich Teil 1 (دليل تعريفي) ==========
