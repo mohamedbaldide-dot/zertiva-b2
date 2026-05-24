@@ -413,6 +413,73 @@
         display: none !important;
     }
 }
+/* حل مشكلة ظهور بطاقة "علاش حنا؟" - تظهر أسفل الزر ومتصلة به */
+@media (max-width: 509px) {
+    .why-premium-btn {
+        position: relative !important;
+    }
+    
+    .premium-info-card {
+        position: absolute !important;
+        top: 100% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 280px !important;
+        max-width: 85vw !important;
+        margin-top: 8px !important;
+        right: auto !important;
+        bottom: auto !important;
+        z-index: 10000 !important;
+    }
+    
+    /* السهم يشير للزر */
+    .premium-info-card::before {
+        content: '' !important;
+        position: absolute !important;
+        top: -8px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 0 !important;
+        height: 0 !important;
+        border-left: 8px solid transparent !important;
+        border-right: 8px solid transparent !important;
+        border-bottom: 8px solid #1a1a2e !important;
+        display: block !important;
+    }
+}
+    /* تصغير نافذة الإشعارات في الهواتف */
+@media (max-width: 768px) {
+    .notification-dropdown {
+        width: 280px !important;
+        max-width: 85vw !important;
+        right: -20px !important;
+        left: auto !important;
+    }
+    
+    .notification-dropdown::before {
+        right: 30px !important;
+        left: auto !important;
+    }
+    
+    .notification-header {
+        font-size: 0.8rem !important;
+        padding: 10px 12px !important;
+    }
+    
+    .notification-list {
+        max-height: 300px !important;
+    }
+    
+    .notification-item {
+        padding: 10px 12px !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .mark-all-read {
+        font-size: 0.65rem !important;
+        padding: 4px 8px !important;
+    }
+}
     /* ============================================
    Banner تحسين تجربة الهاتف - يظهر فقط في الهواتف
    ============================================ */
