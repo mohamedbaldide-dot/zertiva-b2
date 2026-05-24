@@ -7,9 +7,9 @@
     
     // ========== البيانات الافتراضية ==========
     let reviewStats = {
-        average: 4.5,
-        total: 71
-    };
+    average: 4.9,
+    total: 119
+};
     
     let userHasRated = false;
     
