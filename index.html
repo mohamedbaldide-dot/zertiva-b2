@@ -514,6 +514,13 @@ body.dark-mode .mobile-banner span {
     </div>
     
     <div class="right-side">
+        <button id="whyPremiumBtn" class="why-premium-btn">
+    💎 لماذا؟
+    <div class="premium-info-card">
+        <span class="card-icon">✨</span>
+        <span class="card-text">هذا الموقع مصمم ليقدم أكبر قدر ممكن من الراحة والمساعدة للمستخدم، مع تجربة سهلة، سريعة، وبدون أي تعقيد.</span>
+    </div>
+</button>
         <!-- زر كفاش مع بطاقته الصغيرة -->
         <div class="tips-trigger-btn" id="tipsTriggerBtn">
             💡 كفاش؟
@@ -1374,6 +1381,53 @@ if (showCardsBtn) {
         banner.classList.add('hide');
     }, 5000);
 })();
+        // ============================================
+// زر 💎 لماذا؟ - بطاقة منبثقة أنيقة
+// ============================================
+const whyPremiumBtn = document.getElementById('whyPremiumBtn');
+if (whyPremiumBtn) {
+    whyPremiumBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.classList.toggle('active');
+    });
+    
+    // إغلاق البطاقة عند الضغط خارجها
+    document.addEventListener('click', function(e) {
+        if (!whyPremiumBtn.contains(e.target)) {
+            whyPremiumBtn.classList.remove('active');
+        }
+    });
+}
+
+// ============================================
+// إخفاء زر 💎 لماذا؟ في الصفحة الرئيسية فقط
+// ============================================
+function toggleWhyPremiumBtn() {
+    const whyBtn = document.getElementById('whyPremiumBtn');
+    if (!whyBtn) return;
+    
+    const homePage = document.getElementById('home');
+    if (homePage && homePage.classList.contains('active')) {
+        whyBtn.style.display = 'none';
+    } else {
+        whyBtn.style.display = 'flex';
+    }
+}
+
+// استدعاء الدالة عند تحميل الصفحة
+toggleWhyPremiumBtn();
+// مراقبة تغيير الصفحة (لزر 💎)
+const observerPremium = new MutationObserver(function() {
+    toggleWhyPremiumBtn();
+});
+
+const homePage2 = document.getElementById('home');
+const listPage2 = document.getElementById('list');
+const examPage2 = document.getElementById('exam');
+
+if (homePage2) observerPremium.observe(homePage2, { attributes: true, attributeFilter: ['class'] });
+if (listPage2) observerPremium.observe(listPage2, { attributes: true, attributeFilter: ['class'] });
+if (examPage2) observerPremium.observe(examPage2, { attributes: true, attributeFilter: ['class'] });
 </script>
     <script src="reviews-simple.js"></script>
 </body>
