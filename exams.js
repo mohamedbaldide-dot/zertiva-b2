@@ -439,7 +439,8 @@ const examsDatabase = {
   { id: 33, title: "ein paar Tage in Berlin", enabled: true, hasFile: true },
   { id: 34, title: "ein paar Tage in Berlin (معدل)", enabled: true, hasFile: true },
   { id: 35, title: "Autos", enabled: true, hasFile: true },
-  { id: 36, title: "Möbel für die neue Wohnung", enabled: true, hasFile: true }
+  { id: 36, title: "Möbel für die neue Wohnung", enabled: true, hasFile: true },
+  { id: 37, title: "Geschäftsreisen - رحلات العمل", enabled: true, hasFile: true }
 ],
   sprach1: [
     { id: 1, title: "Hallo Ferdinand", enabled: true, hasFile: true },
@@ -627,7 +628,9 @@ const examsDatabase = {
     { id: 46, title: "Wohnmobilen (مواضيع تركيا)", enabled: true, hasFile: true },
     { id: 47, title: "Bibliothek (مواضيع تركيا)", enabled: true, hasFile: true },
     { id: 48, title: "Eisschwimmen (مواضيع تركيا)", enabled: true, hasFile: true },
-    { id: 49, title: "Die Ausbildung (مواضيع تركيا)", enabled: true, hasFile: true }
+    { id: 49, title: "Die Ausbildung (مواضيع تركيا)", enabled: true, hasFile: true },
+    { id: 50, title: "Thomas", enabled: true, hasFile: true },
+    { id: 51, title: "Frau Kiddar 3", enabled: true, hasFile: true }
   ],
   hoeren3: [
     { id: 1, title: "Telefon", enabled: true, hasFile: true },
@@ -676,7 +679,8 @@ const examsDatabase = {
     { id: 44, title: "Ein Teil der kostenlosen Veranstaltungen (مواضيع تركيا)", enabled: true, hasFile: true },
     { id: 45, title: "Auf der Viktoriabrücke (مواضيع تركيا)", enabled: true, hasFile: true },
     { id: 46, title: "Die Buchpräsentation (مواضيع تركيا)", enabled: true, hasFile: true },
-    { id: 47, title: "Beim Klassik-Radio (مواضيع تركيا)", enabled: true, hasFile: true }
+    { id: 47, title: "Beim Klassik-Radio (مواضيع تركيا)", enabled: true, hasFile: true },
+    { id: 48, title: "Sie Hören Den Anrufbeantworter-Buchhandlung", enabled: true, hasFile: true }
   ],
   schreiben: schreibenExams,
   mündlich: mündlich2Exams,
