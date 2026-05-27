@@ -60,7 +60,7 @@
     },
     {
       "id": "l",
-      "text": "„Die WK weiß, wie Vater Staat meine Rente fördert.“ Und das ist auch gut so, denn die Rentenreform lässt mehr Fragen offen, als sie beantwortet. Mit der Förder-Invest-Rente der WK können Sie das Beste aus dieser Reform machen. Wir sagen Ihnen, wie Sie heute Ihre gesetzliche Rente ergänzen, damit Sie nach Ihrem Arbeitsleben mit Mitte sechzig eine optimale Rente erhalten. Jahr für Jahr erhalten Sie außerdem Zulagen von Vater Staat. Viel Arbeitnehmer in der gesetzlichen Rentenversicherung können die staatliche Förderung in Anspruch nehmen – und sie sollten es, damit private Vorsorge nicht nur auf dem Papier Zukunft hat. www.wk.de",
+      "text": "„Die WK weiß, wie Vater Staat meine Rente fördert.“ Und das ist auch gut so, denn die Rentenreform lässt mehr Fragen offen, als sie beantwortet. Mit der Förder-Invest-Rente der WK können Sie das Beste aus dieser Reform machen. Wir sagen Ihnen, wie Sie heute Ihre gesetzliche Rente ergänzen, damit Sie nach Ihrem Arbeitsleben mit Mitte sechzig eine optimale Rente erhalten. Jahr für Jahr erhalten Sie außerdem Zulagen von Vater Staat. Viele Arbeitnehmer in der gesetzlichen Rentenversicherung können die staatliche Förderung in Anspruch nehmen – und sie sollten es, damit private Vorsorge nicht nur auf dem Papier Zukunft hat. www.wk.de",
       "correct": null
     }
   ],
@@ -76,5 +76,5 @@
     "Sie möchten vor einer Auslandsreise eine Auslandskrankenversicherung für die ganze Familie abschließen.",
     "Eine bekannte Familie möchte einen Urlaub machen, der auch für ihre 3- und 5-jährigen Kinder interessant ist."
   ],
-  "note": "⚠️ تم تصحيح قيم correct لتناسب مؤشرات المواقف (0-9). الفقرات (a, g, j, l) ليس لها موقف مناسب."
+  "note": "✅ تم تصحيح الخطأ الوحيد: الفقرة h (AXIS.de) أصبحت correct: 2 لأنها تتحدث عن Altersvorsorge (تأمين تقاعدي)."
 }
