@@ -1,6 +1,7 @@
 {
   "title": "Teil 3 – Geschäftsreisen - رحلات العمل",
   "skill": "lesen3",
+
   "type": "teil3",
   "items": [
     {
@@ -11,27 +12,27 @@
     {
       "id": "b",
       "text": "Ein Fest für die Sinne! Bleiben Sie sich in den besten Jahren Ihres Lebens mit einer traumhaften Reise. Luxus ist, was man daraus macht! Und bei uns heißt das: eine Schiffsreise der absoluten Extraklasse – so traumhaft, wie man es sich immer gewünscht hat. Bereisen Sie damit die ganze Welt oder einen kleinen Teil von ihr – wählen Sie Ihr Lieblingsziel aus unserer vielfältigen Angebot. Natürlich inklusive Spitzengastronomie, Kino, Theater und Wellnessbereich – und das auf Flüssen sowie Meeren. Ganz locker und selbstverständlich ohne Kleiderzwang. www.a-rosa.de",
-      "correct": 14
+      "correct": 4
     },
     {
       "id": "c",
       "text": "Trigana bietet die komplette Reisewelt auf einen Klick! Von der Pauschalreise oder attraktiven Last-Minute-Angeboten bis hin zu Flügen, Hotels und Mietwagen: einfach online vergleichen, nach Belieben kombinieren und direkt buchen. Bequem von zu Hause aus – rund um die Uhr. Natürlich erfahren Sie bei Trigana auch alles Wissenswerte zu Ihrem Urlaubsziel: das Wetter, die schönsten Sehenswürdigkeiten, beste Restaurants und vieles mehr. Reisen Sie nicht auf gut Glück, sondern mit Trigana. Infos: www.trigana.de",
-      "correct": 13
+      "correct": 3
     },
     {
       "id": "d",
       "text": "EINFACH GUT STATT NUR GÜNSTIG. Was passiert, wenn sich Ihr Kind beim Spielen verletzt und zum Arzt muss, vielleicht sogar ins Krankenhaus? Selbstverständlich nicht die Krankenkasse die Kosten. Aber Sie möchten mehr – eine optimale Versorgung nicht nur für sich selbst, sondern die ganze Familie. Dann wählen Sie die Fürther Allgemeine als Ihre neue Krankenversicherung. Die Fürther Allgemeine mit dem Rundum-sorglos-Paket für die ganze Familie. Bleiben Sie bei Ihrem Kind, wenn es ins Krankenhaus muss – wir stehen Ihnen auch 24 Stunden am Tag unterstützend zur Seite – das und vieles mehr leistet die Fürther Allgemeine. Bei uns erhalten Sie nicht den günstigsten Tarif, sondern die beste Versorgung. www.fuerther-allgemeine.org",
-      "correct": 11
+      "correct": 1
     },
     {
       "id": "e",
       "text": "Leb wohl, Stau. Leb wohl, erfolglose Hotelsuche. Leb wohl, schlechter Restaurant-Tipp. Denn dank der aktiven Unterstützung von Assist müssen Sie als Fahrer viele unerfreuliche Seiten der Mobilität nicht mehr erleben. Assist informiert über aktuelle Verkehrssituation, gibt Stauwarnungen und empfiehlt Alternativrouten. Mit dem Mobilfunknetz ermittelt das System sogar Ihren Standort und leistet automatisch Hilfe. Gewünschte Informationen wie z. B. 3 Multirouten-Vergleiche mit aktueller Stauwarnung oder Branchenbuchs werden Ihnen per Datenübertragung direkt in Ihr Navigationssystem gesendet. Sie sehen: Als Fahrer auf das Wesentliche konzentrieren – mit Assist – jetzt bei Ihrem Autohändler.",
-      "correct": 10
+      "correct": 0
     },
     {
       "id": "f",
       "text": "SCHIFFSREISE ... mal anders! Entdecken Sie mit der ganzen Familie Deutschland neu. Auf unserem modernen Ausflugsschiff „Pippi Langstrumpf“ gibt es kleine wie große Tanzeinlagen, Restaurants, in denen man Anzug tragen muss – nein, das müssen Sie sich nicht vorstellen! Sie schippern ganz locker auf einem Schiff, ein Entdeckermuseum, in dem die Kleinen alles selbst machen können und Flüsse in Deutschland entdecken, während Sie sich eine echte Piratenrestaurant, in dem die kleinen Seeräuber kochen können. Da wird es nie langweilig! Und während sich unsere erfahrenen Betreuer um Ihre kleinen kümmern, können die Eltern ganz entspannt die Landschaft bewundern – oder doch mal einen Tee trinken. Nehmen Sie über Ihre Reisen mit der „Pippi Langstrumpf“ in Ihrem Reisebüro!",
-      "correct": 19
+      "correct": 9
     },
     {
       "id": "g",
@@ -41,12 +42,12 @@
     {
       "id": "h",
       "text": "Statistisch gesehen arbeitet ein Mensch 35,7 Jahre seines Lebens. Für uns ist Ihr Leben schon ein Startwerk. Es ist einzigartig. Daher bieten wir Ihnen eine Altersvorsorge, die sich persönlich auf Ihr Leben abstimmt ist. Gehen Sie an den Ruhestand wie Sie es wollen. Bauen Sie jederzeit Vermögen nach Ihren Vorstellungen auf. Sprechen Sie mit unseren kompetenten Partnern und entscheiden Sie selbst, wie lange Sie arbeiten wollen. Wir begleiten Sie. Wir sichern Sie. Ein Leben lang. www.AXIS.de",
-      "correct": 12
+      "correct": null
     },
     {
       "id": "i",
       "text": "Für alle, die in Kellern nicht nur Discos suchen. Tauchen Sie dann doch einfach mal zur Historie von Speyer im Keller des Speyrer Doms. Oder besuchen Sie einer der zahlreichen Weinkeller, um ein gutes Glas zu trinken. Die Pfalz. www.suedlicheweinstrasse.de",
-      "correct": 16
+      "correct": 6
     },
     {
       "id": "j",
@@ -56,7 +57,7 @@
     {
       "id": "k",
       "text": "Was immer Sie von einem kompakten Automobil erwarten – der Jazz übertrifft Ihre Vorstellungen. Angefangen bei seinem neuen 1.4 i-DSI-Motor, der auch äußerst niedrigen Kraftstoffverbrauch aufweist. Deshalb könnte der Tank besonders flach ausfallen – das bedeutet: weniger Gewicht, wo man ihn wohl am wenigsten erwartet: unter dem Fahrersitz. So gewinnen Sie enorm viel Platz spart. Und das ist der Grund, warum Ihnen der neue Jazz den größten und flexibelsten Innenraum seiner Klasse bietet – nicht nur für Sie selbst, sondern für die ganze Familie. Mehr Informationen dürfen Sie unter www.jazz.de erwarten.",
-      "correct": 17
+      "correct": 7
     },
     {
       "id": "l",
@@ -76,5 +77,5 @@
     "Sie möchten vor einer Auslandsreise eine Auslandskrankenversicherung für die ganze Familie abschließen.",
     "Eine bekannte Familie möchte einen Urlaub machen, der auch für ihre 3- und 5-jährigen Kinder interessant ist."
   ],
-  "note": "⚠️ ملاحظة: الفقرات التي تحمل قيمة null (a, g, j, l) لا تناسب أي موقف. الموقف 10 يتطابق مع Anzeige e، الموقف 11 مع Anzeige d، الموقف 12 مع Anzeige h، الموقف 13 مع Anzeige c، الموقف 14 مع Anzeige b، الموقف 15 ليس له إعلان مناسب، الموقف 16 مع Anzeige i، الموقف 17 مع Anzeige k، الموقف 18 ليس له إعلان مناسب، الموقف 19 مع Anzeige f."
+  "note": "⚠️ تم تصحيح قيم correct لتناسب مؤشرات المواقف (0-9). الفقرات (a, g, h, j, l) ليس لها موقف مناسب."
 }
