@@ -10770,6 +10770,79 @@ HELP_DATA["lesen3_exam36_q8"] = {
     correct: 9
 };
 
+// ========== Exam: Geschäftsreisen (الصحيح: 0,1,2,3,4,6,7,9) ==========
+
+HELP_DATA["lesen3_geschaeftsreisen_q1"] = {
+    text: "Leb wohl, Stau. Leb wohl, erfolglose Hotelsuche - Ein Bekannter möchte auf seinen Geschäftsreisen mit seinem Auto immer schnell vorankommen.",
+    meaning: "نظام ملاحة ذكي يحذر من الازدحام ويقترح طرق بديلة",
+    keywords: ["Stau = زحمة", "Alternativrouten = طرق بديلة", "Navigationssystem = نظام ملاحة", "Assist = مساعد"],
+    simplified: "تجنب الزحام والفنادق غير المناسبة عبر نظام مساعدة ذكي",
+    imagine: "رجل يقود سيارة ويبتسم والشاشة أمامه تعرض خريطة",
+    correct: 0
+};
+
+HELP_DATA["lesen3_geschaeftsreisen_q2"] = {
+    text: "EINFACH GUT STATT NUR GÜNSTIG - Eine bekannte Familie sucht eine leistungsstarke Krankenversicherung.",
+    meaning: "تأمين صحي عائلي متميز يوفر رعاية مثالية وليس فقط أرخص سعر",
+    keywords: ["Krankenversicherung = تأمين صحي", "Familie = عائلة", "optimale Versorgung = رعاية مثالية", "24 Stunden = 24 ساعة"],
+    simplified: "تأمين صحي للعائلة يركز على الجودة وليس السعر فقط",
+    imagine: "عائلة تجلس في غرفة انتظار المستشفى وأم تحتضن طفلاً",
+    correct: 1
+};
+
+HELP_DATA["lesen3_geschaeftsreisen_q3"] = {
+    text: "Statistisch gesehen arbeitet ein Mensch 35,7 Jahre - Ein Bekannter sucht eine private Rentenversicherung, die ihm etwas auszahlt, wenn er 50 ist.",
+    meaning: "تأمين تقاعدي يتيح لك تقرير متى تريد التقاعد وبناء ثروتك بنفسك",
+    keywords: ["Altersvorsorge = تأمين تقاعدي", "Ruhestand = تقاعد", "Vermögen = ثروة", "entscheiden selbst = تقرر بنفسك"],
+    simplified: "خطة تقاعد مرنة تسمح بالتقاعد المبكر حسب رغبتك",
+    imagine: "رجل في بداية الخمسينيات يستلم مظروفاً مالياً ويبتسم",
+    correct: 2
+};
+
+HELP_DATA["lesen3_geschaeftsreisen_q4"] = {
+    text: "Trigana bietet die komplette Reisewelt auf einen Klick - Eine Bekannte möchte sich über Urlaubsangebote informieren, hat aber keine Zeit, in ein Reisebüro zu gehen.",
+    meaning: "موقع سفر شامل للحجز والاستعلام أونلاين دون الحاجة لزيارة مكتب",
+    keywords: ["online vergleichen = مقارنة أونلاين", "buchen = حجز", "Reisebüro = مكتب سفر", "von zu Hause = من المنزل"],
+    simplified: "حجز رحلات ومقارنة عروض السفر من المنزل",
+    imagine: "امرأة تجلس على أريكها وتحمل حاسوباً محمولاً",
+    correct: 3
+};
+
+HELP_DATA["lesen3_geschaeftsreisen_q5"] = {
+    text: "Ein Fest für die Sinne! - Ihre Eltern möchten eine Kreuzfahrt im Mittelmeer unternehmen.",
+    meaning: "رحلة بحرية فاخرة تشمل مطاعم راقية ومسرح وسبا على الأنهار والبحار",
+    keywords: ["Schiffsreise = رحلة بحرية", "Kreuzfahrt = كروز", "Mittelmeer = البحر المتوسط", "Luxus = فخامة", "ohne Kleiderzwang = بدون قواعد ملابس صارمة"],
+    simplified: "رحلة بحرية فاخرة في المتوسط بدون قيود",
+    imagine: "زوجان مسنان يقفان على سطح سفينة وينظران إلى البحر",
+    correct: 4
+};
+
+HELP_DATA["lesen3_geschaeftsreisen_q6"] = {
+    text: "Für alle, die in Kellern nicht nur Discos suchen - Ein Bekannter interessiert sich für Geschichte sowie Kultur und möchte Urlaub in einer deutschen Weinregion machen.",
+    meaning: "سياحة ثقافية وتاريخية في منطقة Pfalz الألمانية مع زيارات لبيوت النبيذ",
+    keywords: ["Historie = تاريخ", "Speyerer Dom = كاتدرائية", "Weinkeller = أقبية نبيذ", "Pfalz = منطقة بالاتينات", "Weinregion = منطقة نبيذ"],
+    simplified: "رحلة للتاريخ والثقافة والنبيذ في جنوب ألمانيا",
+    imagine: "رجل يحمل كأس نبيذ ويقف أمام مبنى أثري",
+    correct: 6
+};
+
+HELP_DATA["lesen3_geschaeftsreisen_q7"] = {
+    text: "Was immer Sie von einem kompakten Automobil erwarten - Sie suchen ein Auto mit Platz für bis zu 5 Personen, aber einem möglichst geringen Benzinverbrauch.",
+    meaning: "سيارة مدمجة موفرة للوقود مع مساحة داخلية كبيرة لخمسة أشخاص",
+    keywords: ["niedrigen Kraftstoffverbrauch = استهلاك وقود منخفض", "Platz = مساحة", "Familie = عائلة", "kompakten Automobil = سيارة مدمجة"],
+    simplified: "سيارة صغيرة الحجم موفرة للبنزين وتتسع لعائلة",
+    imagine: "عائلة من خمسة أفراد تقف بجانب سيارة صغيرة الحجم",
+    correct: 7
+};
+
+HELP_DATA["lesen3_geschaeftsreisen_q8"] = {
+    text: "SCHIFFSREISE ... mal anders! - Eine bekannte Familie möchte einen Urlaub machen, der auch für ihre 3- und 5-jährigen Kinder interessant ist.",
+    meaning: "رحلة بحرية عائلية مع برامج أطفال ومتحف تفاعلي ومطعم للقراصنة",
+    keywords: ["Familie = عائلة", "Kinder = أطفال", "Entdeckermuseum = متحف استكشافي", "Betreuer = مشرفين", "Pippi Langstrumpf = بيبي لونغسترومب"],
+    simplified: "رحلة نهرية عائلية ممتعة للأطفال الصغار",
+    imagine: "أب وأم وطفلان يضحكون على متن قارب",
+    correct: 9
+};
 
 // ============================================
 // Exam 1 (exam1.json) - Hallo Ferdinand
