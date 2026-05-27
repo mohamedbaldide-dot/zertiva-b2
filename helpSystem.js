@@ -10696,83 +10696,83 @@ HELP_DATA["lesen3_exam35_q8"] = {
     correct: 9
 };
 
-// ========== Exam 36: Möbel für die neue Wohnung ==========
+// ========== Exam 35: Möbel für die neue Wohnung (الصحيح: 0,1,2,3,5,6,7,9) ==========
 
-HELP_DATA["lesen3_exam36_q1"] = {
-    text: "Ihr Kleiderschrank platzt aus allen Nähten - Eine Bekannte sucht Möbel für ihre neue Wohnung und wünscht sich viel Platz für ihre Kleidung.",
-    meaning: "خزانة ملابس مخصصة بالقياس مع نظام داخلي متغير حسب احتياجاتك",
-    keywords: ["Kleiderschrank = خزانة ملابس", "begehbarer Kleiderschrank = خزانة ملابس قابلة للمشي", "Innenausstattung = تجهيز داخلي", "Beratungstermin = موعد استشارة", "kostenlos = مجاني"],
-    simplified: "خزانة ملابس مصممة حسب رغبتك تتسع لكل ملابسك",
-    imagine: "امرأة تقف في غرفة كبيرة والجدران كلها أرفف معلقة ودرج ومرآة",
+HELP_DATA["lesen3_exam35_q1"] = {
+    text: "Ihr Kleiderschrank platzt aus allen Nähten? Kein Problem! - Eine Bekannte sucht Möbel für ihre neue Wohnung und wünscht sich viel Platz für ihre Kleidung.",
+    meaning: "نظام خزانة ملابس متكامل قابل للتوسيع مع خدمة استشارة منزلية مجانية",
+    keywords: ["begehbarer Kleiderschrank = خزانة ملابس يمكن المشي فيها", "flexibles Schranksystem = نظام خزانة مرن", "Beratungstermin kostenlos = استشارة مجانية", "Platz = مساحة"],
+    simplified: "خزانة ملابس كبيرة الحجم قابلة للتعديل حسب الرغبة",
+    imagine: "امرأة تقف أمام خزانة ملابس واسعة وتبتسم",
     correct: 0
 };
 
-HELP_DATA["lesen3_exam36_q2"] = {
-    text: "Der perfekte Kleiderschrank - Eine Freundin hat viele Sachen zum Anziehen, die sie nie trägt. Sie möchte einen guten Kleidungsstيل entwickeln.",
-    meaning: "كتاب عن الموضة يساعدك على اكتشاف ما يناسب شكلك وما لا يناسب وبناء خزانة أساسية مثالية",
-    keywords: ["Kleiderschrank = خزانة ملابس", "Modetrends = صيحات موضة", "Typ = شخصية", "Qualität = جودة", "Garderobe = خزانة ملابس"],
-    simplified: "دليل لبناء خزانة ملابس عصرية تناسب شخصيتك وميزانيتك",
-    imagine: "امرأة تقف أمام خزانة ملابسها كاملة وتختار قطعة واحدة وقالت هذا أنا",
+HELP_DATA["lesen3_exam35_q2"] = {
+    text: "Der perfekte Kleiderschrank - Eine Freundin hat viele Sachen zum Anziehen, die sie nie trägt. Sie möchte einen guten Kleidungsstil entwickeln.",
+    meaning: "كتاب يساعدك على اكتشاف ما يناسبك وما لا يناسبك لبناء خزانة ملابس مثالية",
+    keywords: ["Kleiderschrank = خزانة ملابس", "Modetrends = صيحات الموضة", "Qualität erkennen = التعرف على الجودة", "Garderobe = خزانة ملابس"],
+    simplified: "دليل لاختيار الملابس المناسبة لشخصيتك",
+    imagine: "امرأة تقف أمام المرآة وهي تمسك بكتاب",
     correct: 1
 };
 
-HELP_DATA["lesen3_exam36_q3"] = {
+HELP_DATA["lesen3_exam35_q3"] = {
     text: "www.selbstgemacht-info.net - Eine Nachbarin ist sehr kreativ und stellt Kleidung selbst her. Sie überlegt, ob sie diese auch verkaufen könnte.",
-    meaning: "موقع يوفر معلومات عن أفضل منصات البيع لمنتجات يدوية وقوانين التجارة الإلكترونية",
-    keywords: ["selbstgemacht = مصنوع يدويا", "vermarkten = تسويق", "Online-Shop = متجر إلكتروني", "rechtliche Bestimmungen = أحكام قانونية", "Internetplattformen = منصات إنترنت"],
-    simplified: "دليل لبيع المشغولات اليدوية أونلاين من منصات إلى قوانين البيع",
-    imagine: "امرأة تحمل حقيبة يد من القماش من تصميمها وتلتقط صورة لها بهاتفها",
+    meaning: "موقع إلكتروني يعلمك كيفية تسويق وبيع المنتجات اليدوية عبر الإنترنت",
+    keywords: ["selbstgemacht = صنع يدوي", "online vermarkten = تسويق عبر الإنترنت", "eigenen Online-Shop = متجر إلكتروني خاص", "rechtliche Bestimmungen = القوانين"],
+    simplified: "كيفية بيع المشغولات اليدوية والأشغال المنزلية أونلاين",
+    imagine: "امرأة تجلس أمام حاسوبها وتعرض منتجات يدوية على الشاشة",
     correct: 2
 };
 
-HELP_DATA["lesen3_exam36_q4"] = {
-    text: "Regionale Musicalstars gesucht - Ihr 18-jähriger Bruder singt gerne في seiner Freizeit und träumt davon, mal auf der Bühne zu stehen.",
-    meaning: "اختبارات أداء لموسيقيال جديد يبحث عن ممثلين للرقص والغناء والتمثيل من الهواة والمحترفين",
-    keywords: ["Musical = مسرح غنائي", "Casting = اختبار أداء", "Tanz = رقص", "Gesang = غناء", "Schauspiel = تمثيل"],
-    simplified: "فرصة للمواهب الشابة للانضمام إلى فريق عمل مسرحية غنائية جديدة",
-    imagine: "شاب يقف على خشبة المسرح ويغني بكل قوته ولجنة الاختيار تنصت بتركيز",
+HELP_DATA["lesen3_exam35_q4"] = {
+    text: "Regionale Musicalstars gesucht - Ihr 18-jähriger Bruder singt gerne in seiner Freizeit und träumt davon, mal auf der Bühne zu stehen.",
+    meaning: "فرصة للمواهب الشابة للمشاركة في أوبرا موسيقية جديدة من خلال اختبارات أداء",
+    keywords: ["Casting = اختبار أداء", "Musical = أوبرا موسيقية", "talentiere Anfänger = مبتدئين موهوبين", "Bühne = خشبة المسرح"],
+    simplified: "اختيار ممثلين لهواة ومحترفين لأوبرا موسيقية جديدة",
+    imagine: "شاب يقف على خشبة المسرح ويغني والجمهور يصفق",
     correct: 3
 };
 
-HELP_DATA["lesen3_exam36_q5"] = {
+HELP_DATA["lesen3_exam35_q5"] = {
     text: "25 Jahre in Hamburg - Ihre Cousine schaut sich gerne Bühnenshows an und möchte wissen, welche Arbeiten hinter den Kulissen erledigt werden.",
-    meaning: "جولة خلف الكواليس في مسرحية غنائية ناجحة مدتها 25 سنة مع فريق العمل وشرح مهامهم",
-    keywords: ["Bühnenshow = عرض مسرحي", "hinter der Bühne = خلف الكواليس", "Mitarbeiter = موظفين", "Vorstellung = عرض", "Jubiläum = ذكرى سنوية"],
-    simplified: "رحلة خلف ستار مسرح غنائي لرؤية أسرار الصنعة",
-    imagine: "فتاة تضع سماعة رأس وتمسك بجهاز إضاءة ملون وممثلون خلفها على المسرح",
+    meaning: "جولة خلف كواليس عرض موسيقي ناجح للاطلاع على كيفية عمل 200 موظف",
+    keywords: ["hinter die Bühne = خلف الكواليس", "Mitarbeiter = موظفين", "Show entsteht = كيف تُصنع", "Einblicke = نظرة خلف الستار"],
+    simplified: "زيارة خلف كواليس مسرحية موسيقية ناجحة",
+    imagine: "مجموعة من الناس تتجول خلف المسرح وتنظر إلى المعدات",
     correct: 5
 };
 
-HELP_DATA["lesen3_exam36_q6"] = {
+HELP_DATA["lesen3_exam35_q6"] = {
     text: "Streifzug durch die Modewelt - Ihre Schwester studiert Geschichte und interessiert sich für Zeitschriften von früher.",
-    meaning: "معرض لأزياء باريس القديمة من القرن العشرين مع ملابس أصلية وصور وتسجيلات نادرة",
-    keywords: ["Ausstellung = معرض", "Mode = موضة", "Paris = باريس", "historische Kleidungsstücke = ملابس تاريخية", "Accessoires = إكسسوارات", "Tonaufnahmen = تسجيلات صوتية"],
-    simplified: "معرض فني لتطور أزياء النساء في باريس قبل 100 سنة",
-    imagine: "امرأة تقف أمام فستان عتيق طويل في زجاج شفاف ومصباح عليها",
+    meaning: "معرض للأزياء التاريخية من عام 1900 مع وثائق وتسجيلات وصور قديمة",
+    keywords: ["Pariser Mode = أزياء باريسية", "historische Kleidungsstücke = ملابس تاريخية", "Dokumente = وثائق", "Museum = متحف", "um 1900 = حوالي 1900"],
+    simplified: "معرض للأزياء التاريخية والاكسسوارات القديمة في المتحف",
+    imagine: "فتاة تقف أمام فستان قديم داخل صندوق زجاجي في متحف",
     correct: 6
 };
 
-HELP_DATA["lesen3_exam36_q7"] = {
-    text: "Mode, Stars, Lifestyle - Ihre Tochter ist Studentin und würde gerne Moderedakteurin werden. Sie möchte erste Erfahrungen في diesem Beruf sammeln.",
-    meaning: "فرصة تدريب في مجلة أزياء دولية لاكتشاف صناعة المحتوى الإعلامي والموضة",
-    keywords: ["Praktikum = تدريب", "Moderedakteurin = محررة أزياء", "Magazin = مجلة", "Trends = صيحات", "Medien = وسائل إعلام"],
-    simplified: "تدريب في مجلة أزياء عالمية لمحبي الموضة والإعلام",
-    imagine: "فتاة تقف أمام حاسوبها وفي يدها مجلة مفتوحة وصور ملابس ملونة خلفها",
+HELP_DATA["lesen3_exam35_q7"] = {
+    text: "Mode, Stars, Lifestyle - Ihre Tochter ist Studentin und würde gerne Moderedakteurin werden. Sie möchte erste Erfahrungen in diesem Beruf sammeln.",
+    meaning: "فرصة تدريب في مجلة أزياء عالمية للتعرف على العمل في مجال الإعلام",
+    keywords: ["Praktikum = تدريب", "Moderedakteurin = محررة أزياء", "Medien = إعلام", "Trends = صيحات", "Bewerbung = تقديم طلب"],
+    simplified: "تدريب في مجلة أزياء دولية لبدء مسيرتك المهنية",
+    imagine: "فتاة تحمل مجلة أزياء وتقف أمام مبنى كبير",
     correct: 7
 };
 
-HELP_DATA["lesen3_exam36_q8"] = {
+HELP_DATA["lesen3_exam35_q8"] = {
     text: "Filmhit als Musikspektakel - Sie möchten sich eine unterhaltsame Bühnenshow ansehen.",
-    meaning: "مسرحية غنائية مستوحاة من فيلم كوميدي ناجح عن امرأة رئيسة تحرير متسلطة وموظفتها الجديدة",
-    keywords: ["Musical = مسرحية غنائية", "Filmhit = فيلم ناجح", "Komödie = كوميديا", "Pop-Weltstar = نجم بوب عالمي", "Chefredakteurin = رئيسة تحرير"],
-    simplified: "مسرحية غنائية كوميدية عن عالم المجلات والموضة بنجوم عالميين",
-    imagine: "جمهور يصفق وامرأة ترتدي فستانا أنيقا تغني على المسرح وأضواء ملونة",
+    meaning: "تحويل فيلم كوميدي ناجح إلى أوبرا موسيقية من إعداد نجم موسيقي عالمي",
+    keywords: ["Musical = أوبرا موسيقية", "Komödie = كوميديا", "Pop-Weltstar = نجم بوب عالمي", "Bühne = خشبة المسرح"],
+    simplified: "أوبرا موسيقية مأخوذة عن فيلم كوميدي ناجح",
+    imagine: "جمهور يصفق ومسرح مضيء في الخلف",
     correct: 9
 };
 
 // ========== Exam: Geschäftsreisen (الصحيح: 0,1,2,3,4,6,7,9) ==========
 
-HELP_DATA["lesen3_geschaeftsreisen_q1"] = {
+HELP_DATA["lesen3_exam36_q1"] = {
     text: "Leb wohl, Stau. Leb wohl, erfolglose Hotelsuche - Ein Bekannter möchte auf seinen Geschäftsreisen mit seinem Auto immer schnell vorankommen.",
     meaning: "نظام ملاحة ذكي يحذر من الازدحام ويقترح طرق بديلة",
     keywords: ["Stau = زحمة", "Alternativrouten = طرق بديلة", "Navigationssystem = نظام ملاحة", "Assist = مساعد"],
@@ -10781,7 +10781,7 @@ HELP_DATA["lesen3_geschaeftsreisen_q1"] = {
     correct: 0
 };
 
-HELP_DATA["lesen3_geschaeftsreisen_q2"] = {
+HELP_DATA["lesen3_exam36_q2"] = {
     text: "EINFACH GUT STATT NUR GÜNSTIG - Eine bekannte Familie sucht eine leistungsstarke Krankenversicherung.",
     meaning: "تأمين صحي عائلي متميز يوفر رعاية مثالية وليس فقط أرخص سعر",
     keywords: ["Krankenversicherung = تأمين صحي", "Familie = عائلة", "optimale Versorgung = رعاية مثالية", "24 Stunden = 24 ساعة"],
@@ -10790,7 +10790,7 @@ HELP_DATA["lesen3_geschaeftsreisen_q2"] = {
     correct: 1
 };
 
-HELP_DATA["lesen3_geschaeftsreisen_q3"] = {
+HELP_DATA["lesen3_exam36_q3"] = {
     text: "Statistisch gesehen arbeitet ein Mensch 35,7 Jahre - Ein Bekannter sucht eine private Rentenversicherung, die ihm etwas auszahlt, wenn er 50 ist.",
     meaning: "تأمين تقاعدي يتيح لك تقرير متى تريد التقاعد وبناء ثروتك بنفسك",
     keywords: ["Altersvorsorge = تأمين تقاعدي", "Ruhestand = تقاعد", "Vermögen = ثروة", "entscheiden selbst = تقرر بنفسك"],
@@ -10799,7 +10799,7 @@ HELP_DATA["lesen3_geschaeftsreisen_q3"] = {
     correct: 2
 };
 
-HELP_DATA["lesen3_geschaeftsreisen_q4"] = {
+HELP_DATA["lesen3_exam36_q4"] = {
     text: "Trigana bietet die komplette Reisewelt auf einen Klick - Eine Bekannte möchte sich über Urlaubsangebote informieren, hat aber keine Zeit, in ein Reisebüro zu gehen.",
     meaning: "موقع سفر شامل للحجز والاستعلام أونلاين دون الحاجة لزيارة مكتب",
     keywords: ["online vergleichen = مقارنة أونلاين", "buchen = حجز", "Reisebüro = مكتب سفر", "von zu Hause = من المنزل"],
@@ -10808,7 +10808,7 @@ HELP_DATA["lesen3_geschaeftsreisen_q4"] = {
     correct: 3
 };
 
-HELP_DATA["lesen3_geschaeftsreisen_q5"] = {
+HELP_DATA["lesen3_exam36_q5"] = {
     text: "Ein Fest für die Sinne! - Ihre Eltern möchten eine Kreuzfahrt im Mittelmeer unternehmen.",
     meaning: "رحلة بحرية فاخرة تشمل مطاعم راقية ومسرح وسبا على الأنهار والبحار",
     keywords: ["Schiffsreise = رحلة بحرية", "Kreuzfahrt = كروز", "Mittelmeer = البحر المتوسط", "Luxus = فخامة", "ohne Kleiderzwang = بدون قواعد ملابس صارمة"],
@@ -10817,7 +10817,7 @@ HELP_DATA["lesen3_geschaeftsreisen_q5"] = {
     correct: 4
 };
 
-HELP_DATA["lesen3_geschaeftsreisen_q6"] = {
+HELP_DATA["lesen3_exam36_q6"] = {
     text: "Für alle, die in Kellern nicht nur Discos suchen - Ein Bekannter interessiert sich für Geschichte sowie Kultur und möchte Urlaub in einer deutschen Weinregion machen.",
     meaning: "سياحة ثقافية وتاريخية في منطقة Pfalz الألمانية مع زيارات لبيوت النبيذ",
     keywords: ["Historie = تاريخ", "Speyerer Dom = كاتدرائية", "Weinkeller = أقبية نبيذ", "Pfalz = منطقة بالاتينات", "Weinregion = منطقة نبيذ"],
@@ -10826,7 +10826,7 @@ HELP_DATA["lesen3_geschaeftsreisen_q6"] = {
     correct: 6
 };
 
-HELP_DATA["lesen3_geschaeftsreisen_q7"] = {
+HELP_DATA["lesen3_exam36_q7"] = {
     text: "Was immer Sie von einem kompakten Automobil erwarten - Sie suchen ein Auto mit Platz für bis zu 5 Personen, aber einem möglichst geringen Benzinverbrauch.",
     meaning: "سيارة مدمجة موفرة للوقود مع مساحة داخلية كبيرة لخمسة أشخاص",
     keywords: ["niedrigen Kraftstoffverbrauch = استهلاك وقود منخفض", "Platz = مساحة", "Familie = عائلة", "kompakten Automobil = سيارة مدمجة"],
@@ -10835,7 +10835,7 @@ HELP_DATA["lesen3_geschaeftsreisen_q7"] = {
     correct: 7
 };
 
-HELP_DATA["lesen3_geschaeftsreisen_q8"] = {
+HELP_DATA["lesen3_exam36_q8"] = {
     text: "SCHIFFSREISE ... mal anders! - Eine bekannte Familie möchte einen Urlaub machen, der auch für ihre 3- und 5-jährigen Kinder interessant ist.",
     meaning: "رحلة بحرية عائلية مع برامج أطفال ومتحف تفاعلي ومطعم للقراصنة",
     keywords: ["Familie = عائلة", "Kinder = أطفال", "Entdeckermuseum = متحف استكشافي", "Betreuer = مشرفين", "Pippi Langstrumpf = بيبي لونغسترومب"],
