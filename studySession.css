@@ -2,29 +2,32 @@
    studySession.css - جلسة مراجعة
    ============================================ */
 
-/* زر جلسة المراجعة - بجانب زر الإعدادات */
+/* زر العداد - مثل زر الإشعارات */
 .study-session-btn {
-    background: #3b475c;
-    border: 1px solid rgba(100, 150, 200, 0.3);
-    border-radius: 30px;
-    padding: 8px 12px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #ffffff;
-    cursor: pointer;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-    font-family: inherit;
-    width: 38px;
-    height: 38px;
-    margin-left: 0;
+
+    color: #38bdf8;
+    font-size: 20px;
+    cursor: pointer;
+
+    transition: all 0.25s ease;
 }
 
+/* تأثير hover */
 .study-session-btn:hover {
-    background: #4a5a72;
-    transform: translateY(-1px);
+    background: rgba(56, 189, 248, 0.18);
+    border-color: #38bdf8;
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
 }
 
 /* نافذة اختيار المدة */
