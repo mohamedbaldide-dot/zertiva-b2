@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="reviews.css">
 <link rel="stylesheet" href="studySession.css">
+    
 <style>
     /* تنسيق زر كفاش */
     .tips-trigger-btn {
@@ -569,6 +570,257 @@ body.dark-mode .mobile-banner {
 body.dark-mode .mobile-banner span {
     color: #94a3b8;
 }
+        /* زر 💡 طريقة الاشتراك الجديد */
+    .subscribe-guide-btn {
+        background: #0f2f57;
+        border: 1px solid rgba(59, 174, 245, 0.4);
+        border-radius: 50%;
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        font-size: 24px;
+        color: #ffd54f;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .subscribe-guide-btn:hover {
+        transform: translateY(-2px) scale(1.02);
+        background: #173b6c;
+        box-shadow: 0 0 12px rgba(59, 174, 245, 0.3);
+        border-color: rgba(59, 174, 245, 0.6);
+    }
+
+    .subscribe-guide-btn:active {
+        transform: scale(0.98);
+    }
+
+    /* للهواتف */
+    @media (max-width: 768px) {
+        .subscribe-guide-btn {
+            width: 44px;
+            height: 44px;
+            font-size: 20px;
+        }
+    }
+
+    /* ============================================
+       نافذة طريقة الاشتراك
+    ============================================ */
+    .subscribe-guide-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 14, 26, 0.92);
+        backdrop-filter: blur(12px);
+        z-index: 20001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .subscribe-guide-modal.active {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .subscribe-guide-modal .modal-container {
+        background: rgba(15, 23, 42, 0.95);
+        border-radius: 32px;
+        width: 90%;
+        max-width: 800px;
+        max-height: 85vh;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        transform: scale(0.95);
+        transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    .subscribe-guide-modal.active .modal-container {
+        transform: scale(1);
+    }
+
+    .subscribe-guide-modal .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 24px;
+        background: linear-gradient(135deg, #2c3e66, #1a2a4a);
+        border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .subscribe-guide-modal .modal-header h3 {
+        margin: 0;
+        color: #38bdf8;
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .subscribe-guide-modal .close-modal-btn {
+        background: none;
+        border: none;
+        color: #94a3b8;
+        font-size: 28px;
+        cursor: pointer;
+        transition: all 0.2s;
+        padding: 0;
+        line-height: 1;
+    }
+
+    .subscribe-guide-modal .close-modal-btn:hover {
+        color: #38bdf8;
+        transform: scale(1.1);
+    }
+
+    /* سلايدر الصور */
+    .subscribe-slider-container {
+        position: relative;
+        padding: 30px 20px;
+    }
+
+    .subscribe-slider {
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        white-space: nowrap;
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
+        padding: 10px 0;
+    }
+
+    .subscribe-slider::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .subscribe-slider::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+    }
+
+    .subscribe-slider::-webkit-scrollbar-thumb {
+        background: #38bdf8;
+        border-radius: 10px;
+    }
+
+    .subscribe-slide {
+        display: inline-block;
+        width: 280px;
+        margin-right: 20px;
+        vertical-align: top;
+        white-space: normal;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .subscribe-slide:hover {
+        transform: translateY(-5px);
+    }
+
+    .subscribe-slide img {
+        width: 100%;
+        border-radius: 20px;
+        border: 2px solid rgba(56, 189, 248, 0.3);
+        background: #1e293b;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .subscribe-slide-caption {
+        text-align: center;
+        margin-top: 8px;
+        font-size: 0.75rem;
+        color: #cbd5e1;
+    }
+
+    /* أزرار التنقل */
+    .slider-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(56, 189, 248, 0.2);
+        border: 1px solid #38bdf8;
+        color: #38bdf8;
+        font-size: 1.5rem;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        z-index: 10;
+    }
+
+    .slider-nav-btn:hover {
+        background: #38bdf8;
+        color: #0a0e1a;
+    }
+
+    .slider-nav-prev {
+        left: 5px;
+    }
+
+    .slider-nav-next {
+        right: 5px;
+    }
+
+    /* تكبير الصورة */
+    .image-lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 20002;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .image-lightbox.active {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .image-lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 16px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* للهواتف */
+    @media (max-width: 768px) {
+        .subscribe-slide {
+            width: 220px;
+            margin-right: 15px;
+        }
+        
+        .slider-nav-btn {
+            width: 32px;
+            height: 32px;
+            font-size: 1rem;
+        }
+        
+        .subscribe-guide-modal .modal-header h3 {
+            font-size: 1rem;
+        }
+    }
 </style>
 </head>
 <body>
@@ -772,11 +1024,17 @@ body.dark-mode .mobile-banner span {
                 <p class="features-description second">
                     بالإضافة لمنهجية جيدة، ونصائح يومية عبر الواتساب.
                 </p>
-                <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+               <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
     <button id="featuresSubscribeBtn" class="features-btn">
         اشترك الآن
         <span class="btn-arrow">→</span>
     </button>
+    
+    <!-- زر 💡 طريقة الاشتراك الجديد -->
+    <button id="subscribeGuideBtn" class="subscribe-guide-btn" title="طريقة الاشتراك">
+        💡
+    </button>
+    
     <button id="showCardsBtn" class="show-cards-btn" style="display: none; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 50px; padding: 12px 20px; font-size: 0.9rem; font-weight: 500; color: #334155; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;">
         👁️ عرض البطاقات
     </button>
@@ -859,14 +1117,6 @@ body.dark-mode .mobile-banner span {
         </div>
     </div>
 </div>
-
-<!-- ========== الـ Scripts ========== -->
-<script src="helpSystem.js"></script>
-<script src="engine.js"></script>
-<script src="exams.js"></script>
-<script src="auth.js"></script>
-<script src="notifications.js"></script>
-<script src="rapidGame.js"></script>
 
 <script>
 // ============================================
@@ -1554,8 +1804,12 @@ if (examPage2) observerPremium.observe(examPage2, { attributes: true, attributeF
         <button id="closeEndOverlayBtn" class="end-overlay-btn">حسناً</button>
     </div>
 </div>
+<!-- ========== عناصر جلسة المراجعة ========== -->
+<div id="studySessionModal" class="session-modal">...</div>
+<div id="sessionTimerBar" class="session-timer-bar" style="display: none;">...</div>
+<div id="sessionEndOverlay" class="session-end-overlay" style="display: none;">...</div>
 
-<!-- ========== الـ Scripts ========== -->
+<!-- ========== الـ Scripts (مرة واحدة فقط) ========== -->
 <script src="helpSystem.js"></script>
 <script src="engine.js"></script>
 <script src="exams.js"></script>
@@ -1564,6 +1818,170 @@ if (examPage2) observerPremium.observe(examPage2, { attributes: true, attributeF
 <script src="rapidGame.js"></script>
 <script src="studySession.js"></script>
 <script src="reviews-simple.js"></script>
+ر<!-- نافذة خطوات الاشتراك -->
+<div id="subscribeGuideModal" class="subscribe-guide-modal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3>💡 طريقة الاشتراك</h3>
+            <button class="close-modal-btn" id="closeGuideModal">✕</button>
+        </div>
+        <div class="subscribe-slider-container">
+            <button class="slider-nav-btn slider-nav-prev" id="sliderPrevBtn">❮</button>
+            <button class="slider-nav-btn slider-nav-next" id="sliderNextBtn">❯</button>
+            <div class="subscribe-slider" id="subscribeSlider">
+                <div class="subscribe-slide">
+                    <img src="images/step1.webp" loading="lazy" alt="الخطوة 1" onerror="this.src='https://placehold.co/280x200/1e293b/38bdf8?text=Step+1'">
+                    <div class="subscribe-slide-caption">📝 1. إنشاء حساب</div>
+                </div>
+                <div class="subscribe-slide">
+                    <img src="images/step2.webp" loading="lazy" alt="الخطوة 2" onerror="this.src='https://placehold.co/280x200/1e293b/38bdf8?text=Step+2'">
+                    <div class="subscribe-slide-caption">💳 2. اختيار الباقة</div>
+                </div>
+                <div class="subscribe-slide">
+                    <img src="images/step3.webp" loading="lazy" alt="الخطوة 3" onerror="this.src='https://placehold.co/280x200/1e293b/38bdf8?text=Step+3'">
+                    <div class="subscribe-slide-caption">🔐 3. إتمام الدفع</div>
+                </div>
+                <div class="subscribe-slide">
+                    <img src="images/step4.webp" loading="lazy" alt="الخطوة 4" onerror="this.src='https://placehold.co/280x200/1e293b/38bdf8?text=Step+4'">
+                    <div class="subscribe-slide-caption">✅ 4. تفعيل الاشتراك</div>
+                </div>
+                <div class="subscribe-slide">
+                    <img src="images/step5.webp" loading="lazy" alt="الخطوة 5" onerror="this.src='https://placehold.co/280x200/1e293b/38bdf8?text=Step+5'">
+                    <div class="subscribe-slide-caption">🚀 5. بدء المراجعة</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+// ============================================
+// زر 💡 طريقة الاشتراك الجديد
+// ============================================
+(function() {
+    const guideBtn = document.getElementById('subscribeGuideBtn');
+    const guideModal = document.getElementById('subscribeGuideModal');
+    const closeModalBtn = document.getElementById('closeGuideModal');
+    const slider = document.getElementById('subscribeSlider');
+    const prevBtn = document.getElementById('sliderPrevBtn');
+    const nextBtn = document.getElementById('sliderNextBtn');
+    const lightbox = document.getElementById('imageLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    
+    if (!guideBtn) return;
+    
+    function openModal() {
+        if (guideModal) {
+            guideModal.classList.add('active');
+            if (slider) slider.scrollLeft = 0;
+        }
+    }
+    
+    function closeModal() {
+        if (guideModal) {
+            guideModal.classList.remove('active');
+        }
+    }
+    
+    function scrollSlider(direction) {
+        if (!slider) return;
+        const slideWidth = document.querySelector('.subscribe-slide')?.offsetWidth || 280;
+        const gap = 20;
+        const scrollAmount = slideWidth + gap;
+        
+        if (direction === 'next') {
+            slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        } else {
+            slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        }
+    }
+    
+    function setupLightbox() {
+        if (!slider) return;
+        const slides = slider.querySelectorAll('.subscribe-slide');
+        slides.forEach(slide => {
+            const img = slide.querySelector('img');
+            if (img) {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (lightbox && lightboxImg) {
+                        lightboxImg.src = img.src;
+                        lightbox.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+    
+    function closeLightbox() {
+        if (lightbox) lightbox.classList.remove('active');
+    }
+    
+    const sliderObserver = new MutationObserver(() => setupLightbox());
+    if (slider) sliderObserver.observe(slider, { childList: true, subtree: true });
+    
+    guideBtn.addEventListener('click', openModal);
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if (prevBtn) prevBtn.addEventListener('click', () => scrollSlider('prev'));
+    if (nextBtn) nextBtn.addEventListener('click', () => scrollSlider('next'));
+    if (lightbox) lightbox.addEventListener('click', closeLightbox);
+    
+    if (guideModal) {
+        guideModal.addEventListener('click', (e) => {
+            if (e.target === guideModal) closeModal();
+        });
+    }
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+            closeLightbox();
+        }
+    });
+    
+    setTimeout(setupLightbox, 500);
+    
+    console.log("✅ زر 💡 طريقة الاشتراك الجديد جاهز");
+})();
+</script>
+    <!-- نافذة خطوات الاشتراك -->
+<div id="subscribeGuideModal" class="subscribe-guide-modal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3>💡 طريقة الاشتراك</h3>
+            <button class="close-modal-btn" id="closeGuideModal">✕</button>
+        </div>
+        <div class="subscribe-slider-container">
+            <button class="slider-nav-btn slider-nav-prev" id="sliderPrevBtn">❮</button>
+            <button class="slider-nav-btn slider-nav-next" id="sliderNextBtn">❯</button>
+            <div class="subscribe-slider" id="subscribeSlider">
+                <div class="subscribe-slide">
+                    <img src="images/step1.webp" loading="lazy" alt="الخطوة 1">
+                    <div class="subscribe-slide-caption">📝 1. إنشاء حساب</div>
+                </div>
+                <div class="subscribe-slide">
+                    <img src="images/step2.webp" loading="lazy" alt="الخطوة 2">
+                    <div class="subscribe-slide-caption">💳 2. اختيار الباقة</div>
+                </div>
+                <div class="subscribe-slide">
+                    <img src="images/step3.webp" loading="lazy" alt="الخطوة 3">
+                    <div class="subscribe-slide-caption">🔐 3. إتمام الدفع</div>
+                </div>
+                <div class="subscribe-slide">
+                    <img src="images/step4.webp" loading="lazy" alt="الخطوة 4">
+                    <div class="subscribe-slide-caption">✅ 4. تفعيل الاشتراك</div>
+                </div>
+                <div class="subscribe-slide">
+                    <img src="images/step5.webp" loading="lazy" alt="الخطوة 5">
+                    <div class="subscribe-slide-caption">🚀 5. بدء المراجعة</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- نافذة تكبير الصورة -->
+<div id="imageLightbox" class="image-lightbox">
+    <img id="lightboxImg" src="" alt="صورة مكبرة">
+</div>
 </body>
 </html>
