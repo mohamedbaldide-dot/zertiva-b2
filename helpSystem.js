@@ -6164,12 +6164,12 @@ HELP_DATA["lesen1_exam43_q3"] = {
 };
 
 HELP_DATA["lesen1_exam43_q4"] = {
-    text: "In einigen asiatischen Ländern investieren wohlhabende Familien - Reiche Familien züchten exotische Tiere في Asien",
+    text: "In einigen asiatischen Ländern investieren wohlhabende Familien - Löwen als Haustier",
     meaning: "عائلات غنية في آسيا تقتني الحيوانات المفترسة كالأسود في قصورها",
     keywords: ["exotische Tiere = حيوانات غريبة", "Löwen = أسود", "artgerechte Haltung = تربية لائقة", "Tierschutzorganisationen = منظمات حماية حيوان"],
     simplified: "أثرياء آسيا يشترون الأسود والفهود كحيوانات أليفة في قصورهم",
     imagine: "رجل غني يجلس إلى جانب أسد مربوط في حديقة قصره",
-    correct: "j"
+    correct: "h"
 };
 
 HELP_DATA["lesen1_exam43_q5"] = {
@@ -6311,7 +6311,7 @@ HELP_DATA["lesen1_exam46_q4"] = {
 };
 
 HELP_DATA["lesen1_exam46_q5"] = {
-    text: "Kinder essen zu viel Fast Food, aber zu wenig Obst - Studie: Schulkinder treiben zu wenig Sport",
+    text: "Kinder essen zu viel Fast Food, aber zu wenig Obst - Kinder und Jugendliche: Risikofaktor Übergewicht",
     meaning: "الأطفال يعانون السمنة بسبب قلة الرياضة وكثرة الوجبات السريعة",
     keywords: ["übergewichtig = زيادة وزن", "Fast Food = وجبات سريعة", "Bewegungsmangel = قلة حركة", "Folgeerkrankungen = أمراض لاحقة"],
     simplified: "نقص الحركة والأكل السريع يجعل أطفال المدارس بدناء",
