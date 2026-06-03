@@ -6165,10 +6165,10 @@ HELP_DATA["lesen1_exam43_q3"] = {
 
 HELP_DATA["lesen1_exam43_q4"] = {
     text: "In einigen asiatischen Ländern investieren wohlhabende Familien - Löwen als Haustier",
-    meaning: "عائلات غنية في آسيا تقتني الحيوانات المفترسة كالأسود في قصورها",
-    keywords: ["exotische Tiere = حيوانات غريبة", "Löwen = أسود", "artgerechte Haltung = تربية لائقة", "Tierschutzorganisationen = منظمات حماية حيوان"],
-    simplified: "أثرياء آسيا يشترون الأسود والفهود كحيوانات أليفة في قصورهم",
-    imagine: "رجل غني يجلس إلى جانب أسد مربوط في حديقة قصره",
+    meaning: "عائلات غنية في آسيا تقتني الأسود كحيوانات أليفة في قصورها الفاخرة",
+    keywords: ["Löwen als Haustier = أسود كحيوانات أليفة", "reiche Familien = عائلات غنية", "Paläste = قصور", "exotische Tiere = حيوانات غريبة", "Tierschutz = حماية الحيوان"],
+    simplified: "الأثرياء في آسيا يشترون الأسود ويقتنونها كحيوانات أليفة في قصورهم",
+    imagine: "رجل ثري يمشي مع أسد مربوط بسلسلة في حديقة قصره الفاخر كأنه كلب",
     correct: "h"
 };
 
@@ -6312,10 +6312,10 @@ HELP_DATA["lesen1_exam46_q4"] = {
 
 HELP_DATA["lesen1_exam46_q5"] = {
     text: "Kinder essen zu viel Fast Food, aber zu wenig Obst - Kinder und Jugendliche: Risikofaktor Übergewicht",
-    meaning: "الأطفال يعانون السمنة بسبب قلة الرياضة وكثرة الوجبات السريعة",
-    keywords: ["übergewichtig = زيادة وزن", "Fast Food = وجبات سريعة", "Bewegungsmangel = قلة حركة", "Folgeerkrankungen = أمراض لاحقة"],
-    simplified: "نقص الحركة والأكل السريع يجعل أطفال المدارس بدناء",
-    imagine: "طفل سمين يجلس على أريكة يأكل برغر وشاشة التلفاز أمامه",
+    meaning: "السمنة عامل خطر رئيسي على صحة الأطفال والمراهقين",
+    keywords: ["Übergewicht = سمنة", "Risikofaktor = عامل خطر", "Kinder und Jugendliche = أطفال ومراهقون", "Ernährung = تغذية", "Gesundheit = صحة"],
+    simplified: "زيادة الوزن عند الأطفال والمراهقين خطر كبير على صحتهم",
+    imagine: "طفل يعرض عليه طبق سلعة صحية وطبق برغر في حيرة من أمره",
     correct: "i"
 };
 
