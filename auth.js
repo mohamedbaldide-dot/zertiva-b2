@@ -188,8 +188,31 @@ function hideLoginPopup() {
 }
 
 async function handleLogin() {
-    // تم تعطيل عملية تسجيل الدخول القديمة وسيتم التوجيه المباشر
-    window.location.href = YOUCAN_STORE_URL;
+    let email = document.getElementById('popupEmail').value.trim();
+    let password = document.getElementById('popupPassword').value.trim();
+    
+    if(!email || !password) {
+        alert("يرجى إدخال البريد الإلكتروني وكلمة السر");
+        return;
+    }
+    
+    setLoggedInUser(email, password);
+    
+    let status = await getUserStatus();
+    if(status === 'premium') {
+        let expiry = currentExpiry;
+        let expiryDate = new Date(expiry);
+        let formattedExpiry = `${expiryDate.getDate()}/${expiryDate.getMonth()+1}/${expiryDate.getFullYear()}`;
+        alert(`✅ مرحباً ${email}\n🎉 حسابك مفعل حتى ${formattedExpiry}\nجميع الامتحانات متاحة لك.`);
+    } else if(status === 'expired') {
+        alert(`⚠️ مرحباً ${email}\n⏰ انتهت صلاحية اشتراكك.\n✨ يرجى الاشتراك مرة أخرى.`);
+    } else {
+        alert(`✅ مرحباً ${email}\n📖 حسابك مجاني حالياً.\n✨ متاح لك فقط الامتحان الأول من كل قسم.\nللوصول إلى كل الامتحانات، اضغط "اشتراك" ثم ادفع.`);
+    }
+    
+    hideLoginPopup();
+    await updateProfileDropdown();
+    location.reload();
 }
 
 async function setupLockedNextButton() {
