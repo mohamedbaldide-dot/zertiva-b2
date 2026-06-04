@@ -178,8 +178,8 @@ function toggleProfileDropdown() {
 }
 
 function showLoginPopup() {
-    // تم تعطيل نافذة تسجيل الدخول القديمة وسيتم التوجيه المباشر
-    window.location.href = YOUCAN_STORE_URL;
+    let popup = document.getElementById('loginPopup');
+    if(popup) popup.style.display = 'flex';
 }
 
 function hideLoginPopup() {
