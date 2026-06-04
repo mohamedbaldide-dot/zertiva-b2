@@ -120,11 +120,13 @@ function showLockedMessage(examTitle) {
     const upgradeBtn = document.getElementById('premiumUpgradeBtn');
     const laterBtn = document.getElementById('premiumLaterBtn');
     
-    if (upgradeBtn) {
-        upgradeBtn.onclick = () => {
-            window.location.href = 'subscribe.html';
-        };
-    }
+   if (upgradeBtn) {
+    upgradeBtn.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = 'https://zertivab2.youcan.store/';
+    };
+}
     
     if (laterBtn) {
         laterBtn.onclick = () => {
@@ -273,10 +275,9 @@ async function handleLogin() {
     hideLoginPopup();
     await updateProfileDropdown();
     
-    // إذا كان المستخدم مسجل (مجاني أو منتهي) نوجهه لصفحة الاشتراك
-    if (status !== 'premium') {
-        window.location.href = 'subscribe.html';
-    } else {
+   if (status !== 'premium') {
+    window.location.href = 'https://zertivab2.youcan.store/';
+} else {
         location.reload();
     }
 }
@@ -289,11 +290,11 @@ async function setupLockedNextButton() {
         nextBtn.classList.add('locked-nav');
         let oldClick = nextBtn.onclick;
         nextBtn.onclick = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            showLockedMessage("الامتحان التالي (يتطلب ترقية)");
-            return false;
-        };
+    e.preventDefault();
+    e.stopPropagation();
+    window.location.href = 'https://zertivab2.youcan.store/';
+    return false;
+};
     }
 }
 
@@ -301,14 +302,19 @@ function bindAuthEvents() {
     let navLoginBtn = document.getElementById('navLoginBtn');
     if(navLoginBtn) navLoginBtn.addEventListener('click', showLoginPopup);
     
-    let navSubscribeBtn = document.getElementById('navSubscribeBtn');
-    if(navSubscribeBtn) navSubscribeBtn.addEventListener('click', () => {
+   let navSubscribeBtn = document.getElementById('navSubscribeBtn');
+if(navSubscribeBtn) {
+    // تم تعطيل الكود لأن الزر أصبح رابطاً مباشراً لـ YouCan
+    /*
+    navSubscribeBtn.addEventListener('click', () => {
         if(isUserLoggedIn()) {
             window.location.href = 'subscribe.html';
         } else {
             showLoginPopup();
         }
     });
+    */
+}
     
     let popupLoginBtn = document.getElementById('popupLoginBtn');
     if(popupLoginBtn) popupLoginBtn.addEventListener('click', handleLogin);
