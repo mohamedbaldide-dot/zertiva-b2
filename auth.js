@@ -8,6 +8,8 @@ const WA_URL = `https://wa.me/${WA_NUMBER}`;
 let currentUserStatus = 'guest';
 let currentExpiry = null;
 
+const YOUCAN_STORE_URL = 'https://zertivab2.youcan.store/';
+
 function getLoggedInEmail() {
     return localStorage.getItem('zertiva_email');
 }
@@ -73,74 +75,10 @@ async function getExpiryDate(email) {
 }
 
 // ========== نافذة Premium Access الاحترافية ==========
+// تم تعطيل هذه النافذة وسيتم التوجيه المباشر بدلاً منها
 function showLockedMessage(examTitle) {
-    let cleanTitle = examTitle.replace(/\s*\(\d+\)\s*$/, '').trim();
-    
-    // إزالة أي modal موجود مسبقاً
-    const existingModal = document.getElementById('premiumModal');
-    if (existingModal) existingModal.remove();
-    
-    // إنشاء الـ Modal
-    const modal = document.createElement('div');
-    modal.id = 'premiumModal';
-    modal.className = 'premium-modal';
-    modal.innerHTML = `
-        <div class="premium-card">
-            <div class="premium-card-header">
-                <div class="premium-badge">
-                    <span class="premium-icon">✦</span>
-                    <span>PREMIUM ACCESS</span>
-                </div>
-                <h2 class="premium-title">Exclusive Content</h2>
-                <p class="premium-subtitle" style="font-size: 0.75rem; line-height: 1.5;">هدفنا أن نجعل <span style="color: #8bb8ff;">نجاحك</span> أسهل وأكثر راحة… لذلك صُمم الموقع ليقدّم تجربة مفيدة فعلًا، وليس مجرد محتوى <span style="color: #6ee7b7;">مجاني</span> عشوائي.</p>
-            </div>
-            <div class="premium-card-body">
-                <ul class="premium-features">
-                    <li><span class="check">✓</span> وصول كامل للمحتوى B2</li>
-                    <li><span class="check">✓</span>  100% الاجابات صحيحة</li>
-                    <li><span class="check">✓</span> بطاقات ذكية </li>
-                    <li><span class="check">✓</span> لعبة التحدي السريع</li>
-                    <li><span class="check">✓</span> التخلص من ارهاق Pdf </li>
-                </ul>
-                <button id="premiumUpgradeBtn" class="premium-btn">
-                    ✦ Join Premium
-                    <span>→</span>
-                </button>
-                <button id="premiumLaterBtn" class="premium-later">ليس الآن</button>
-            </div>
-        </div>
-    `;
-    
-    document.body.appendChild(modal);
-    
-    setTimeout(() => {
-        modal.classList.add('active');
-    }, 10);
-    
-    const upgradeBtn = document.getElementById('premiumUpgradeBtn');
-    const laterBtn = document.getElementById('premiumLaterBtn');
-    
-   if (upgradeBtn) {
-    upgradeBtn.onclick = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        window.location.href = 'https://zertivab2.youcan.store/';
-    };
-}
-    
-    if (laterBtn) {
-        laterBtn.onclick = () => {
-            modal.classList.remove('active');
-            setTimeout(() => modal.remove(), 300);
-        };
-    }
-    
-    modal.onclick = (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('active');
-            setTimeout(() => modal.remove(), 300);
-        }
-    };
+    // التوجيه المباشر إلى YouCan بدون عرض أي نافذة
+    window.location.href = YOUCAN_STORE_URL;
 }
 
 async function updateProfileDropdown() {
@@ -213,8 +151,8 @@ async function updateProfileDropdown() {
             this.style.background = '#64748B';
         };
         upgradeBtn.onclick = function() {
-            // فتح نافذة تسجيل الدخول أولاً
-            showLoginPopup();
+            // التوجيه المباشر إلى YouCan
+            window.location.href = YOUCAN_STORE_URL;
         };
         
         const dropdown = document.getElementById('profileDropdown');
@@ -240,8 +178,8 @@ function toggleProfileDropdown() {
 }
 
 function showLoginPopup() {
-    let popup = document.getElementById('loginPopup');
-    if(popup) popup.style.display = 'flex';
+    // تم تعطيل نافذة تسجيل الدخول القديمة وسيتم التوجيه المباشر
+    window.location.href = YOUCAN_STORE_URL;
 }
 
 function hideLoginPopup() {
@@ -250,36 +188,8 @@ function hideLoginPopup() {
 }
 
 async function handleLogin() {
-    let email = document.getElementById('popupEmail').value.trim();
-    let password = document.getElementById('popupPassword').value.trim();
-    
-    if(!email || !password) {
-        alert("يرجى إدخال البريد الإلكتروني وكلمة السر");
-        return;
-    }
-    
-    setLoggedInUser(email, password);
-    
-    let status = await getUserStatus();
-    if(status === 'premium') {
-        let expiry = currentExpiry;
-        let expiryDate = new Date(expiry);
-        let formattedExpiry = `${expiryDate.getDate()}/${expiryDate.getMonth()+1}/${expiryDate.getFullYear()}`;
-        alert(`✅ مرحباً ${email}\n🎉 حسابك مفعل حتى ${formattedExpiry}\nجميع الامتحانات متاحة لك.`);
-    } else if(status === 'expired') {
-        alert(`⚠️ مرحباً ${email}\n⏰ انتهت صلاحية اشتراكك.\n✨ يرجى الاشتراك مرة أخرى.`);
-    } else {
-        alert(`✅ مرحباً ${email}\n📖 حسابك مجاني حالياً.\n✨ متاح لك فقط الامتحان الأول من كل قسم.\nللوصول إلى كل الامتحانات، اضغط "اشتراك" ثم ادفع.`);
-    }
-    
-    hideLoginPopup();
-    await updateProfileDropdown();
-    
-   if (status !== 'premium') {
-    window.location.href = 'https://zertivab2.youcan.store/';
-} else {
-        location.reload();
-    }
+    // تم تعطيل عملية تسجيل الدخول القديمة وسيتم التوجيه المباشر
+    window.location.href = YOUCAN_STORE_URL;
 }
 
 async function setupLockedNextButton() {
@@ -288,13 +198,13 @@ async function setupLockedNextButton() {
     
     if(nextBtn && status !== 'premium') {
         nextBtn.classList.add('locked-nav');
-        let oldClick = nextBtn.onclick;
         nextBtn.onclick = function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    window.location.href = 'https://zertivab2.youcan.store/';
-    return false;
-};
+            e.preventDefault();
+            e.stopPropagation();
+            // التوجيه المباشر إلى YouCan
+            window.location.href = YOUCAN_STORE_URL;
+            return false;
+        };
     }
 }
 
@@ -302,19 +212,10 @@ function bindAuthEvents() {
     let navLoginBtn = document.getElementById('navLoginBtn');
     if(navLoginBtn) navLoginBtn.addEventListener('click', showLoginPopup);
     
-   let navSubscribeBtn = document.getElementById('navSubscribeBtn');
-if(navSubscribeBtn) {
-    // تم تعطيل الكود لأن الزر أصبح رابطاً مباشراً لـ YouCan
-    /*
-    navSubscribeBtn.addEventListener('click', () => {
-        if(isUserLoggedIn()) {
-            window.location.href = 'subscribe.html';
-        } else {
-            showLoginPopup();
-        }
-    });
-    */
-}
+    let navSubscribeBtn = document.getElementById('navSubscribeBtn');
+    if(navSubscribeBtn) {
+        // تم تعطيل الكود القديم لأن الزر أصبح رابطاً مباشراً لـ YouCan
+    }
     
     let popupLoginBtn = document.getElementById('popupLoginBtn');
     if(popupLoginBtn) popupLoginBtn.addEventListener('click', handleLogin);
