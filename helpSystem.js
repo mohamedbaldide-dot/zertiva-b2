@@ -1224,6 +1224,15 @@ HELP_DATA["hoeren2_exam8_q7"] = {
     correct: true
 };
 
+HELP_DATA["hoeren2_exam1_q8"] = {
+    text: "Der Koch hat eine gesunde Einstellung zum Thema Wettbewerb.",
+    meaning: "الطاهي لديه نظرة صحية تجاه موضوع المنافسة",
+    keywords: ["Koch = طاهي", "gesunde Einstellung = نظرة صحية", "Wettbewerb = منافسة", "Thema = موضوع"],
+    simplified: "الطاهي لا يخاف المنافسة بل ينظر إليها بإيجابية",
+    imagine: "طاهٍ يبتسم أثناء مشاهدة طباخ آخر يطبخ في المسابقة",
+    correct: true
+};
+
 HELP_DATA["hoeren2_exam8_q9"] = {
     text: "Anton Laurito lehnt Fastfood nicht grundsätzlich ab.",
     meaning: "أنطون لايريتو لا يرفض الوجبات السريعة من حيث المبدأ",
@@ -1233,14 +1242,7 @@ HELP_DATA["hoeren2_exam8_q9"] = {
     correct: true
 };
 
-HELP_DATA["hoeren2_exam8_q10"] = {
-    text: "Der Koch hat eine gesunde Einstellung zum Thema Wettbewerb.",
-    meaning: "الطباخ لديه نظرة صحية تجاه موضوع المنافسة",
-    keywords: ["Koch = طباخ", "gesunde Einstellung = نظرة صحية", "Wettbewerb = منافسة", "Thema = موضوع"],
-    simplified: "الطباخ ينظر للمنافسة بنظرة إيجابية",
-    imagine: "طباخ يصافح طباخا آخر بمطبخ كبير",
-    correct: true
-};
+
 
 // ========== Exam 9: Julia (صحيح: 0,2,3,4,7) ==========
 HELP_DATA["hoeren2_exam9_q1"] = {
