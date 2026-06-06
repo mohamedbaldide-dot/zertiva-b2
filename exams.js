@@ -229,7 +229,8 @@ const lesenExams = [
   { id: 44, title: "Fisch", enabled: true, hasFile: true },
   { id: 45, title: "Frauen im Arbeitsmarkt", enabled: true, hasFile: true },
   { id: 46, title: "Baby TV", enabled: true, hasFile: true },
-  { id: 47, title: "Bäder", enabled: true, hasFile: true }
+  { id: 47, title: "Bäder", enabled: true, hasFile: true },
+  { id: 48, title: "Farben", enabled: true, hasFile: true }
 ];
 
 // ========== قائمة امتحانات Schreiben ==========
