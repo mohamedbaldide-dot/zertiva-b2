@@ -982,18 +982,18 @@ body.dark-mode .mobile-banner span {
                     <span class="btn-arrow-icon">→</span>
                 </button>
                 
-                <div id="reviewsWidget" class="reviews-widget collapsed">
+                <div id="reviewsWidget" class="reviews-widget collapsed-keep">
                     <div class="widget-bubble">
                         <span class="widget-icon">💬</span>
-                        <span class="widget-text">تجارب المشتركين</span>
+                        <span class="widget-text">ثقة المستخدمين</span>
                         <span class="widget-badge">+6</span>
                     </div>
                     <div class="widget-expanded-content">
                         <div class="widget-header">
-                            <span class="widget-header-icon">🤔</span>
-                            <span class="widget-header-title">مازال كتفكر واش تشترك؟</span>
+                            <span class="widget-header-icon">🏆</span>
+                            <span class="widget-header-title">جزء من المستفيدين من المنصة</span>
                         </div>
-                        <p class="widget-subtitle">شوف ناس سبقوك واستافدو من المنصة.</p>
+                       
                         <div class="widget-slider-container">
                             <div class="widget-slider" id="widgetSlider">
                                 <div class="widget-slide"><img src="images/review1.webp" loading="lazy" alt="Review 1"></div>
@@ -1099,12 +1099,10 @@ body.dark-mode .mobile-banner span {
 <a href="https://wa.me/212687561491" target="_blank" id="whatsappFloat" class="whatsapp-float">
     <img src="images/whatsapp.png" loading="lazy" alt="WhatsApp" class="whatsapp-img">
 </a>
-
 <div id="reviewsModal" class="reviews-modal">
     <div class="reviews-modal-content">
         <div class="reviews-modal-header">
-            <h3>🤔 مازال كتفكر واش تشترك؟</h3>
-            <p>شوف ناس سبقوك واستافدو من المنصة.</p>
+            <h3>🏆 ثقة المستخدمين في المنصة</h3>
             <button id="closeReviewsModal" class="close-reviews-modal">✕</button>
         </div>
         <div class="reviews-modal-slider-container">
@@ -1326,23 +1324,11 @@ body.dark-mode .mobile-banner span {
     let isHovering = false;
 
     function startMoveCycle() {
-        if (isHovering) return;
-        if (widgetSliderElem) {
-            widgetSliderElem.style.animationPlayState = 'running';
-            if (moveTimeout) clearTimeout(moveTimeout);
-            moveTimeout = setTimeout(() => {
-                if (!isHovering && widgetSliderElem) {
-                    widgetSliderElem.style.animationPlayState = 'paused';
-                    if (pauseTimeout) clearTimeout(pauseTimeout);
-                    pauseTimeout = setTimeout(() => {
-                        if (!isHovering && widgetSliderElem) {
-                            startMoveCycle();
-                        }
-                    }, 5000);
-                }
-            }, 10000);
-        }
+    // تم إيقاف التمرير التلقائي للصور
+    if (widgetSliderElem) {
+        widgetSliderElem.style.animationPlayState = 'paused';
     }
+}
 
     function stopMoveCycle() {
         if (moveTimeout) clearTimeout(moveTimeout);
@@ -1942,7 +1928,8 @@ if (examPage2) observerPremium.observe(examPage2, { attributes: true, attributeF
             <button class="close-modal-btn" id="closeGuideModal">✕</button>
         </div>
         <div class="subscribe-slider-container">
-            <button class="slider-nav-btn slider-nav-prev" id="sliderPrevBtn">❮</button>
+            <button class="slider-nav-btn slider-nav-prev" id="sliderPrevB
+                tn">❮</button>
             <button class="slider-nav-btn slider-nav-next" id="sliderNextBtn">❯</button>
             <div class="subscribe-slider" id="subscribeSlider">
                 <div class="subscribe-slide">
