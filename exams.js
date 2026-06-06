@@ -1,19 +1,18 @@
 // ============================================
 // exams.js - نظام الامتحانات المتكامل مع نظام القفل وحفظ النتائج
 // ============================================
-
 const teile = [
-  { id: 1, name: "Hören Teil 1", container: "hoeren1", skill: "hoeren1" },
-  { id: 2, name: "Hören Teil 2", container: "hoeren2", skill: "hoeren2" },
-  { id: 3, name: "Hören Teil 3", container: "hoeren3", skill: "hoeren3" },
-  { id: 4, name: "Lesen Teil 1", container: "teil1", skill: "lesen1" },
-  { id: 5, name: "Lesen Teil 2", container: "teil2", skill: "lesen2" },
-  { id: 6, name: "Lesen Teil 3", container: "teil3", skill: "lesen3" },
-  { id: 7, name: "Sprachbausteine Teil 1", container: "sprach1", skill: "sprach1" },
-  { id: 8, name: "Sprachbausteine Teil 2", container: "sprach2", skill: "sprach2" },
+  { id: 1, name: "Hören 1", container: "hoeren1", skill: "hoeren1" },
+  { id: 2, name: "Hören 2", container: "hoeren2", skill: "hoeren2" },
+  { id: 3, name: "Hören 3", container: "hoeren3", skill: "hoeren3" },
+  { id: 4, name: "Lesen 1", container: "teil1", skill: "lesen1" },
+  { id: 5, name: "Lesen 2", container: "teil2", skill: "lesen2" },
+  { id: 6, name: "Lesen 3", container: "teil3", skill: "lesen3" },
+  { id: 7, name: "Sprach 1", container: "sprach1", skill: "sprach1" },
+  { id: 8, name: "Sprach 2", container: "sprach2", skill: "sprach2" },
   { id: 9, name: "Schreiben", container: "schreiben", skill: "schreiben" },
   { id: 10, name: "Mündlich", container: "mündlich", skill: "mündlich" },
-  { id: 11, name: "Tips", container: "tips", skill: "tips" }
+  { id: 11, name: "Tipps", container: "tips", skill: "tips" }
 ];
 
 // ========== دالة حفظ آخر نتيجة ==========
@@ -708,24 +707,68 @@ function displaySavedResult(skill, examId, titleSpan, containerDiv) {
   }
 }
 
-// ========== الدوال الرئيسية ==========
+let activeTeilId = null;
 
 function renderTeileList() {
   const container = document.getElementById("teileList");
   if (!container) return;
   container.innerHTML = "";
   
+  // حاوية الأزرار (Tabs) - محاذاة لليسار
+  container.style.cssText = `
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 30px;
+  `;
+  
   for (let i = 0; i < teile.length; i++) {
     const teil = teile[i];
-    const div = document.createElement("div");
-    div.className = "item teil-item";
-    div.textContent = teil.name;
-    div.onclick = (function(skill, teilName) {
-      return function() { 
+    const isActive = (activeTeilId === i);
+    
+    const btn = document.createElement("button");
+    btn.textContent = teil.name;
+    btn.style.cssText = `
+      height: 42px;
+      padding: 0 18px;
+      background: ${isActive ? '#FFFFFF' : '#161922'};
+      border: ${isActive ? '1px solid #E2E8F0' : 'none'};
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      color: ${isActive ? '#161922' : '#BFC6D4'};
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      white-space: nowrap;
+    `;
+    
+    // Hover effect
+    btn.onmouseenter = () => {
+      if (!isActive) {
+        btn.style.background = '#202534';
+        btn.style.color = '#FFFFFF';
+      }
+    };
+    
+    btn.onmouseleave = () => {
+      if (!isActive) {
+        btn.style.background = '#161922';
+        btn.style.color = '#BFC6D4';
+      }
+    };
+    
+    btn.onclick = (function(skill, teilName, index) {
+      return function() {
+        activeTeilId = index;
+        renderTeileList();
         renderExamListForSkill(skill, teilName);
       };
-    })(teil.skill, teil.name);
-    container.appendChild(div);
+    })(teil.skill, teil.name, i);
+    
+    container.appendChild(btn);
   }
 }
 
@@ -1425,10 +1468,18 @@ function goList() {
   
   renderTeileList();
   
-  const examsContainer = document.getElementById("examsList");
-  if (examsContainer) {
-    examsContainer.innerHTML = '<div class="welcome-message">👈 اختر القسم (Teil) من الأعلى لعرض الامتحانات</div>';
-  }
+  // عرض امتحانات Hören Teil 1 مباشرة
+  setTimeout(() => {
+    const examsContainer = document.getElementById("examsList");
+    if (examsContainer) {
+      const hoeren1Teil = teile.find(t => t.skill === "hoeren1");
+      if (hoeren1Teil) {
+        renderExamListForSkill(hoeren1Teil.skill, hoeren1Teil.name);
+      } else {
+        examsContainer.innerHTML = '<div class="welcome-message">👈 اختر القسم (Teil) من الأعلى لعرض الامتحانات</div>';
+      }
+    }
+  }, 50);
 }
 
 function buildTeil1(questions) {
@@ -1564,6 +1615,32 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 renderTeileList();
+
+// ========== إظهار امتحانات Hören 1 تلقائياً ==========
+(function() {
+    const originalGoList = goList;
+    
+    goList = function() {
+        originalGoList();
+        
+        setTimeout(function() {
+            const hoeren1Teil = teile.find(t => t.skill === "hoeren1");
+            if (hoeren1Teil && document.getElementById("list").classList.contains("active")) {
+                renderExamListForSkill(hoeren1Teil.skill, hoeren1Teil.name);
+            }
+        }, 150);
+    };
+    
+    if (document.getElementById("list").classList.contains("active")) {
+        setTimeout(function() {
+            const hoeren1Teil = teile.find(t => t.skill === "hoeren1");
+            if (hoeren1Teil) {
+                renderExamListForSkill(hoeren1Teil.skill, hoeren1Teil.name);
+            }
+        }, 100);
+    }
+})();
+
 
 console.log("✅ exams.js تم تحميله بنجاح");
 console.log("📚 Lesen Teil 1:", examsDatabase.lesen1.length, "امتحان");
