@@ -74,11 +74,10 @@ async function getExpiryDate(email) {
     }
 }
 
-// ========== نافذة Premium Access الاحترافية ==========
-// تم تعطيل هذه النافذة وسيتم التوجيه المباشر بدلاً منها
+// ========== نافذة الاشتراك المنبثقة ==========
 function showLockedMessage(examTitle) {
-    // التوجيه المباشر إلى YouCan بدون عرض أي نافذة
-    window.location.href = YOUCAN_STORE_URL;
+    const modal = document.getElementById('subscriptionModal');
+    if (modal) modal.classList.add('active');
 }
 
 async function updateProfileDropdown() {
@@ -94,7 +93,6 @@ async function updateProfileDropdown() {
     if(!profileEmail) return;
     
     if(email) {
-        // حذف زر الترقية إذا كان موجوداً (للمستخدم المسجل)
         const oldUpgradeBtn = document.getElementById('dropdownUpgradeBtn');
         if (oldUpgradeBtn) oldUpgradeBtn.remove();
         
@@ -127,7 +125,7 @@ async function updateProfileDropdown() {
         profileExpiry.innerHTML = 'الوصول محدود لبعض الامتحانات';
         profileStatus.innerHTML = '';
         
-        // إضافة زر الترقية للمستخدم غير المسجل (لون رمادي مزرق)
+        // إضافة زر الترقية للمستخدم غير المسجل
         const upgradeBtn = document.createElement('button');
         upgradeBtn.id = 'dropdownUpgradeBtn';
         upgradeBtn.innerHTML = 'الترقية إلى الحساب الكامل →';
@@ -151,13 +149,12 @@ async function updateProfileDropdown() {
             this.style.background = '#64748B';
         };
         upgradeBtn.onclick = function() {
-            // التوجيه المباشر إلى YouCan
-            window.location.href = YOUCAN_STORE_URL;
+            const modal = document.getElementById('subscriptionModal');
+            if (modal) modal.classList.add('active');
         };
         
         const dropdown = document.getElementById('profileDropdown');
         if (dropdown) {
-            // حذف الزر القديم إذا كان موجوداً
             const oldBtn = document.getElementById('dropdownUpgradeBtn');
             if (oldBtn) oldBtn.remove();
             dropdown.appendChild(upgradeBtn);
@@ -224,8 +221,8 @@ async function setupLockedNextButton() {
         nextBtn.onclick = function(e) {
             e.preventDefault();
             e.stopPropagation();
-            // التوجيه المباشر إلى YouCan
-            window.location.href = YOUCAN_STORE_URL;
+            const modal = document.getElementById('subscriptionModal');
+            if (modal) modal.classList.add('active');
             return false;
         };
     }
@@ -234,11 +231,6 @@ async function setupLockedNextButton() {
 function bindAuthEvents() {
     let navLoginBtn = document.getElementById('navLoginBtn');
     if(navLoginBtn) navLoginBtn.addEventListener('click', showLoginPopup);
-    
-    let navSubscribeBtn = document.getElementById('navSubscribeBtn');
-    if(navSubscribeBtn) {
-        // تم تعطيل الكود القديم لأن الزر أصبح رابطاً مباشراً لـ YouCan
-    }
     
     let popupLoginBtn = document.getElementById('popupLoginBtn');
     if(popupLoginBtn) popupLoginBtn.addEventListener('click', handleLogin);
@@ -302,13 +294,13 @@ if (document.readyState === 'loading') {
 } else {
     initAuth();
 }
+
 // ============================================
 // تحسين مظهر الهواتف في auth.js
 // ============================================
 
 function applyMobileAuthStyles() {
     if (window.innerWidth <= 768) {
-        // تصغير نافذة تسجيل الدخول
         const loginPopupContent = document.querySelector('.login-popup-content');
         if (loginPopupContent) {
             loginPopupContent.style.padding = '20px';
@@ -316,48 +308,24 @@ function applyMobileAuthStyles() {
             loginPopupContent.style.borderRadius = '20px';
         }
         
-        // تصغير العناوين
         const popupTitle = document.querySelector('.login-popup-content h3');
         if (popupTitle) popupTitle.style.fontSize = '1rem';
         
         const popupText = document.querySelector('.login-popup-content p');
         if (popupText) popupText.style.fontSize = '11px';
         
-        // تصغير حقول الإدخال
         const inputs = document.querySelectorAll('.login-popup-content input');
         inputs.forEach(input => {
             input.style.padding = '8px';
             input.style.fontSize = '12px';
         });
         
-        // تصغير الأزرار
         const btns = document.querySelectorAll('.btn-popup-login, .btn-popup-close');
         btns.forEach(btn => {
             btn.style.padding = '8px';
             btn.style.fontSize = '12px';
         });
         
-        // تصغير نافذة القفل (الامتحانات المقفلة)
-        const lockedModal = document.querySelector('#lockedModal > div');
-        if (lockedModal) {
-            lockedModal.style.padding = '20px';
-            lockedModal.style.maxWidth = '280px';
-            lockedModal.style.borderRadius = '24px';
-        }
-        
-        const lockedTitle = document.querySelector('#lockedModal h2');
-        if (lockedTitle) lockedTitle.style.fontSize = '18px';
-        
-        const lockedText = document.querySelector('#lockedModal p');
-        if (lockedText) lockedText.style.fontSize = '11px';
-        
-        const lockedButtons = document.querySelectorAll('#lockedModal button');
-        lockedButtons.forEach(btn => {
-            btn.style.padding = '8px 16px';
-            btn.style.fontSize = '12px';
-        });
-        
-        // تصغير القائمة المنسدلة للملف الشخصي
         const profileDropdown = document.querySelector('.profile-dropdown');
         if (profileDropdown) {
             profileDropdown.style.minWidth = '220px';
@@ -387,12 +355,10 @@ function applyMobileAuthStyles() {
     }
 }
 
-// استدعاء الدالة عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
     applyMobileAuthStyles();
 });
 
-// استدعاء الدالة بعد فتح نافذة تسجيل الدخول
 const originalShowLoginPopup = window.showLoginPopup;
 if (originalShowLoginPopup) {
     window.showLoginPopup = function() {
@@ -401,7 +367,6 @@ if (originalShowLoginPopup) {
     };
 }
 
-// استدعاء الدالة بعد فتح نافذة القفل
 const originalShowLockedMessage = window.showLockedMessage;
 if (originalShowLockedMessage) {
     window.showLockedMessage = function(examTitle) {
@@ -410,7 +375,6 @@ if (originalShowLockedMessage) {
     };
 }
 
-// استدعاء الدالة بعد تحديث القائمة المنسدلة
 const originalUpdateProfileDropdown = window.updateProfileDropdown;
 if (originalUpdateProfileDropdown) {
     window.updateProfileDropdown = async function() {
