@@ -25,7 +25,6 @@
 <link rel="icon" type="image/webp" href="images/favicon.webp">
 <link rel="shortcut icon" type="image/webp" href="images/favicon.webp">
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="reviews.css">
 <link rel="stylesheet" href="studySession.css">
     
 <style>
@@ -828,7 +827,7 @@ body.dark-mode .mobile-banner span {
 <div class="top-bar">
     <div class="left-side">
     <div class="profile-icon" id="profileIcon" style="display: none;">👤</div>
-    <a href="https://zertivab2.youcan.store/" id="navSubscribeBtn" class="subscribe-text-btn" style="text-decoration: none; display: inline-block;">اشترك</a>
+    <button id="navSubscribeBtn" class="subscribe-text-btn" style="background: linear-gradient(135deg, #10b981, #059669); border: none; border-radius: 25px; padding: 8px 20px; font-weight: 600; font-size: 13px; cursor: pointer; color: white;">اشترك</button>
     <button id="navLoginBtn" class="btn-login-top">تسجيل الدخول</button>
     <button id="settingsBtn" class="settings-icon-btn" title="إعدادات العرض">⚙️</button>
 </div>
@@ -1025,17 +1024,17 @@ body.dark-mode .mobile-banner span {
                     بالإضافة لمنهجية جيدة، ونصائح يومية عبر الواتساب.
                 </p>
                <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
-        <a href="https://zertivab2.youcan.store/" id="featuresSubscribeBtn" class="features-btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+       <button id="featuresSubscribeBtn" class="features-btn" style="background: linear-gradient(135deg, #38bdf8, #0ea5e9); border: none; padding: 14px 32px; border-radius: 50px; font-size: 1rem; font-weight: 700; color: #0a0e1a; cursor: pointer; display: inline-flex; align-items: center; gap: 12px;">
     اشترك الآن
     <span class="btn-arrow">→</span>
-</a>
+</button>
     
     <!-- زر 💡 طريقة الاشتراك الجديد -->
     <button id="subscribeGuideBtn" class="subscribe-guide-btn" title="طريقة الاشتراك">
         💡
     </button>
     
-    <button id="showCardsBtn" class="show-cards-btn" style="display: none; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 50px; padding: 12px 20px; font-size: 0.9rem; font-weight: 500; color: #334155; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;">
+    <button id="showCardsBtn" class="show-cards-btn" style="display: none; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 50px; padding: 12px 20px; font-size: 0.9rem; font-weight: 500; color: #334155; cursor: pointer; transition: all 0.3s ease; align-items: center; gap: 8px;">
         👁️ عرض البطاقات
     </button>
 </div>
@@ -1794,7 +1793,7 @@ if (examPage2) observerPremium.observe(examPage2, { attributes: true, attributeF
 <script src="rapidGame.js"></script>
 <script src="studySession.js"></script>
 
-ر<!-- نافذة خطوات الاشتراك -->
+<!-- نافذة خطوات الاشتراك<!-- نافذة خطوات الاشتراك -->
 <div id="subscribeGuideModal" class="subscribe-guide-modal">
     <div class="modal-container">
         <div class="modal-header">
@@ -1919,47 +1918,95 @@ if (examPage2) observerPremium.observe(examPage2, { attributes: true, attributeF
     
     console.log("✅ زر 💡 طريقة الاشتراك الجديد جاهز");
 })();
+ // ============================================
+// نظام الاشتراك المنبثق (Subscription Modal) - النسخة القوية
+// ============================================
+(function() {
+    function initSubscriptionModal() {
+        const modal = document.getElementById('subscriptionModal');
+        const closeBtn = document.getElementById('closeSubscriptionBtn');
+        
+        if (!modal) {
+            console.log("⏳ Modal not found yet, waiting...");
+            setTimeout(initSubscriptionModal, 500);
+            return;
+        }
+        
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+        
+        function openModal() {
+            modal.classList.add('active');
+        }
+        
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) closeModal();
+        });
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeModal);
+        } else {
+            console.log("⚠️ closeSubscriptionBtn not found");
+        }
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+        
+        const navSubscribeBtn = document.getElementById('navSubscribeBtn');
+        const featuresSubscribeBtn = document.getElementById('featuresSubscribeBtn');
+        
+        if (navSubscribeBtn) {
+            navSubscribeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openModal();
+                console.log("✅ navSubscribeBtn clicked, modal opened");
+            });
+        } else {
+            console.log("⚠️ navSubscribeBtn not found");
+        }
+        
+        if (featuresSubscribeBtn) {
+            featuresSubscribeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openModal();
+                console.log("✅ featuresSubscribeBtn clicked, modal opened");
+            });
+        } else {
+            console.log("⚠️ featuresSubscribeBtn not found");
+        }
+        
+        console.log("✅ نظام الاشتراك المنبثق جاهز");
+    }
+    
+    // تأخير التنفيذ للتأكد من تحميل جميع العناصر
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(initSubscriptionModal, 300);
+        });
+    } else {
+        setTimeout(initSubscriptionModal, 300);
+    }
+})();
 </script>
-    <!-- نافذة خطوات الاشتراك -->
-<div id="subscribeGuideModal" class="subscribe-guide-modal">
-    <div class="modal-container">
-        <div class="modal-header">
-            <h3>💡 طريقة الاشتراك</h3>
-            <button class="close-modal-btn" id="closeGuideModal">✕</button>
+<!-- نافذة الاشتراك المنبثقة -->
+<div id="subscriptionModal" class="subscription-modal">
+    <div class="subscription-card">
+        <div class="subscription-title">اختر طريقة الاشتراك</div>
+        <div class="subscription-subtitle">يمكنك الاشتراك عبر المنصة أو التواصل مباشرة عبر واتساب</div>
+        <div class="subscription-buttons">
+            <a href="subscribe.html" id="subscriptionPlatformBtn" class="subscription-btn primary">
+                🛒 الاشتراك عبر المنصة
+            </a>
+            <a href="https://wa.me/212687561491?text=مرحباً، أنا مهتم بالاشتراك في منصة التحضير لامتحان B2 وأرغب في معرفة الباقات المتاحة." id="subscriptionWhatsappBtn" class="subscription-btn whatsapp" target="_blank">
+                💬 التواصل عبر واتساب
+            </a>
         </div>
-        <div class="subscribe-slider-container">
-            <button class="slider-nav-btn slider-nav-prev" id="sliderPrevB
-                tn">❮</button>
-            <button class="slider-nav-btn slider-nav-next" id="sliderNextBtn">❯</button>
-            <div class="subscribe-slider" id="subscribeSlider">
-                <div class="subscribe-slide">
-                    <img src="images/step1.webp" loading="lazy" alt="الخطوة 1">
-                    <div class="subscribe-slide-caption">📝 1. إنشاء حساب</div>
-                </div>
-                <div class="subscribe-slide">
-                    <img src="images/step2.webp" loading="lazy" alt="الخطوة 2">
-                    <div class="subscribe-slide-caption">💳 2. اختيار الباقة</div>
-                </div>
-                <div class="subscribe-slide">
-                    <img src="images/step3.webp" loading="lazy" alt="الخطوة 3">
-                    <div class="subscribe-slide-caption">🔐 3. إتمام الدفع</div>
-                </div>
-                <div class="subscribe-slide">
-                    <img src="images/step4.webp" loading="lazy" alt="الخطوة 4">
-                    <div class="subscribe-slide-caption">✅ 4. تفعيل الاشتراك</div>
-                </div>
-                <div class="subscribe-slide">
-                    <img src="images/step5.webp" loading="lazy" alt="الخطوة 5">
-                    <div class="subscribe-slide-caption">🚀 5. بدء المراجعة</div>
-                </div>
-            </div>
-        </div>
+        <button id="closeSubscriptionBtn" class="close-subscription-btn">✕ إغلاق</button>
     </div>
-</div>
-
-<!-- نافذة تكبير الصورة -->
-<div id="imageLightbox" class="image-lightbox">
-    <img id="lightboxImg" src="" alt="صورة مكبرة">
 </div>
 </body>
 </html>
