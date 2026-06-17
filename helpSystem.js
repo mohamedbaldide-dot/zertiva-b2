@@ -5439,7 +5439,9 @@ HELP_DATA["lesen1_exam27_q5"] = {
     correct: "i"
 };
 
-// ========== Exam 28: Kinder und Schulen (صحيح: 5,4,6,1,7) ==========
+// ========== Exam 28: Kinder und Schulen ==========
+
+// السؤال 1: Traditionen zum Schulanfang
 HELP_DATA["lesen1_exam28_q1"] = {
     text: "Nach der englischen Bezeichnung für 'Schultüte' - Traditionen zum Schulanfang",
     meaning: "تقاليد مختلفة حول العالم لبدء العام الدراسي",
@@ -5449,7 +5451,8 @@ HELP_DATA["lesen1_exam28_q1"] = {
     correct: "f"
 };
 
-HELP_DATA["lesen1_exam28_q4"] = {
+// السؤال 2: Neues Buch für kleine Leseanfänger
+HELP_DATA["lesen1_exam28_q2"] = {
     text: "Raban Rabovic ist ein kleiner Rabe - Neues Buch für kleine Leseanfänger",
     meaning: "كتاب جديد لمساعدة الأطفال الصغار على القراءة",
     keywords: ["Erstlesebuch = كتاب قراءة أول", "Bilder = صور", "Rabe = غراب", "Schulanfang = بداية مدرسة"],
@@ -5458,6 +5461,7 @@ HELP_DATA["lesen1_exam28_q4"] = {
     correct: "e"
 };
 
+// السؤال 3: Vorsicht an Haltestellen!
 HELP_DATA["lesen1_exam28_q3"] = {
     text: "Auf den Straßen sind ab Schulbeginn - Vorsicht an Haltestellen!",
     meaning: "الحذر في مواقف الحافلات مع بداية العام الدراسي",
@@ -5467,6 +5471,7 @@ HELP_DATA["lesen1_exam28_q3"] = {
     correct: "g"
 };
 
+// السؤال 4: Das richtige Alter für die Einschulung
 HELP_DATA["lesen1_exam28_q4"] = {
     text: "In Deutschland herrscht Schulpflicht - Das richtige Alter für die Einschulung",
     meaning: "العمر المناسب لدخول المدرسة يختلف حسب الرأي والولاية",
@@ -5476,6 +5481,7 @@ HELP_DATA["lesen1_exam28_q4"] = {
     correct: "b"
 };
 
+// السؤال 5: Weniger Fahrten in den Schulferien
 HELP_DATA["lesen1_exam28_q5"] = {
     text: "Ein Großteil des Busverkehrs dient dem Schulverkehr - Weniger Fahrten in den Schulferien",
     meaning: "عدد رحلات الحافلات يقل في العطل المدرسية",
@@ -5484,6 +5490,7 @@ HELP_DATA["lesen1_exam28_q5"] = {
     imagine: "جدول مواعيد باص وعليه علامة تعليمية وحرف S",
     correct: "h"
 };
+
 
 // ========== Exam 29: Kindertelefon (صحيح: 2,5,4,1,9) ==========
 HELP_DATA["lesen1_exam29_q1"] = {
