@@ -1,5 +1,8 @@
 /**
- * auth.js - نظام إدارة تسجيل الدخول والاشتراك لموقع Zertiva B2
+ * auth.js - نظام إدارة تسجيل الدخول والجلسات
+ * ✅ بطاقة ترحيب بسيطة وحديثة
+ * ✅ Loading Spinner داخل الزر
+ * ✅ Toast Notifications حديثة (أعلى الشاشة)
  */
 
 const WA_NUMBER = "212687561491";
@@ -7,125 +10,446 @@ const WA_URL = `https://wa.me/${WA_NUMBER}`;
 
 let currentUserStatus = 'guest';
 let currentExpiry = null;
+let isLoggingIn = false;
+let sessionChecked = false;
 
-const YOUCAN_STORE_URL = 'https://zertivab2.youcan.store/';
+// ============================================
+// دوال الجلسة (localStorage)
+// ============================================
 
 function getLoggedInEmail() {
     return localStorage.getItem('zertiva_email');
 }
 
-function getLoggedInPassword() {
-    return localStorage.getItem('zertiva_password');
+function getSessionToken() {
+    return localStorage.getItem('zertiva_session_token');
 }
 
-function setLoggedInUser(email, password) {
+function getDeviceId() {
+    return localStorage.getItem('zertiva_device_id');
+}
+
+function setSessionData(email, sessionToken, deviceId) {
     localStorage.setItem('zertiva_email', email);
-    localStorage.setItem('zertiva_password', password);
+    localStorage.setItem('zertiva_session_token', sessionToken);
+    localStorage.setItem('zertiva_device_id', deviceId);
 }
 
-function logoutUser() {
+function clearSessionData() {
     localStorage.removeItem('zertiva_email');
-    localStorage.removeItem('zertiva_password');
-    alert("تم تسجيل الخروج بنجاح");
-    location.reload();
+    localStorage.removeItem('zertiva_session_token');
+    localStorage.removeItem('zertiva_device_id');
 }
 
 function isUserLoggedIn() {
-    return getLoggedInEmail() !== null;
+    return getLoggedInEmail() !== null && getSessionToken() !== null;
 }
 
-async function getPremiumUsers() {
-    try {
-        const response = await fetch('premium.json?_=' + Date.now());
-        return await response.json();
-    } catch(e) {
-        return {};
+// ============================================
+// Toast Notifications - نظام حديث
+// ============================================
+
+function showToast(message, type = 'info', duration = 3000) {
+    // إزالة Toast القديم
+    const existing = document.querySelector('.zertiva-center-toast');
+    if (existing) existing.remove();
+    
+    // إنشاء الحاوية إذا لم تكن موجودة
+    let container = document.querySelector('.toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.className = 'toast-container';
+        document.body.appendChild(container);
+    }
+    
+    // إنشاء عنصر Toast
+    const toast = document.createElement('div');
+    toast.className = `toast-item ${type}`;
+    
+    // الأيقونات حسب النوع
+    const icons = {
+        success: '✅',
+        warning: '⚠️',
+        error: '❌',
+        info: 'ℹ️'
+    };
+    
+    const titles = {
+        success: 'نجاح',
+        warning: 'تنبيه',
+        error: 'خطأ',
+        info: 'معلومات'
+    };
+    
+    // تقسيم الرسالة إلى عنوان ونص
+    let titleText = titles[type] || 'معلومات';
+    let messageText = message;
+    
+    // إذا كانت الرسالة تحتوي على سطرين، استخدم الأول كعنوان
+    const lines = message.split('\n');
+    if (lines.length > 1) {
+        titleText = lines[0];
+        messageText = lines.slice(1).join('\n');
+    }
+    
+    toast.innerHTML = `
+        <span class="toast-icon">${icons[type] || 'ℹ️'}</span>
+        <div class="toast-content">
+            <div class="toast-title">${titleText}</div>
+            ${messageText ? `<div class="toast-message">${messageText}</div>` : ''}
+        </div>
+        <button class="toast-close">✕</button>
+    `;
+    
+    container.appendChild(toast);
+    
+    // إغلاق بالضغط على ×
+    const closeBtn = toast.querySelector('.toast-close');
+    closeBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        removeToast(toast);
+    });
+    
+    // إغلاق بالضغط على Toast نفسه
+    toast.addEventListener('click', function(e) {
+        if (e.target !== closeBtn) {
+            removeToast(toast);
+        }
+    });
+    
+    // إغلاق تلقائي
+    const timeout = setTimeout(() => {
+        removeToast(toast);
+    }, duration);
+    
+    // حفظ timeout للإلغاء
+    toast._timeout = timeout;
+}
+
+function removeToast(toast) {
+    if (toast._removing) return;
+    toast._removing = true;
+    clearTimeout(toast._timeout);
+    toast.classList.add('removing');
+    setTimeout(() => {
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+        // حذف الحاوية إذا كانت فارغة
+        const container = document.querySelector('.toast-container');
+        if (container && container.children.length === 0) {
+            container.remove();
+        }
+    }, 250);
+}
+
+// ============================================
+// بطاقة ترحيب بسيطة وحديثة ✅
+// ============================================
+
+function showWelcomeCard(email, isPremium, expiryDate) {
+    // إزالة البطاقة القديمة إن وجدت
+    const existing = document.querySelector('.welcome-overlay');
+    if (existing) existing.remove();
+    
+    // تنسيق التاريخ بالصيغة المطلوبة: DD-MM-YYYY
+    function formatDateSimple(dateString) {
+        if (!dateString) return 'غير محدد';
+        try {
+            const date = new Date(dateString);
+            if (isNaN(date.getTime())) return dateString;
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}-${month}-${year}`;
+        } catch(e) {
+            return dateString;
+        }
+    }
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'welcome-overlay';
+    
+    const card = document.createElement('div');
+    card.className = 'welcome-card';
+    
+    // ===== بناء المحتوى =====
+    let statusText = '';
+    let statusColor = '';
+    let expiryText = '';
+    let buttonText = '';
+    let buttonAction = '';
+    
+    if (isPremium && expiryDate) {
+        statusText = '✅ الحساب مفعل';
+        statusColor = '#22c55e'; // أخضر
+        expiryText = `📅 صالح حتى ${formatDateSimple(expiryDate)}`;
+        buttonText = '🚀 ابدأ المراجعة';
+        buttonAction = 'review';
+    } else {
+        statusText = '📖 حساب مجاني';
+        statusColor = '#38bdf8'; // أزرق
+        expiryText = '📚 متاح بعض الامتحانات';
+        buttonText = '✨ اشترك للوصول الكامل';
+        buttonAction = 'subscribe';
+    }
+    
+    // ===== بناء البطاقة الجديدة =====
+    card.innerHTML = `
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="color: #38bdf8; font-size: 0.85rem; font-weight: 500; word-break: break-all; direction: ltr; text-align: left;">
+                📧 ${email}
+            </div>
+            <div style="color: ${statusColor}; font-size: 0.9rem; font-weight: 600;">
+                ${statusText}
+            </div>
+            <div style="color: #d1d5db; font-size: 0.8rem; font-weight: 400;">
+                ${expiryText}
+            </div>
+            <button class="welcome-subscribe-btn" id="welcomeSubscribeBtn" style="
+                margin-top: 6px;
+                background: #38bdf8;
+                color: #0a0e1a;
+                border: none;
+                border-radius: 12px;
+                padding: 10px 0;
+                width: 100%;
+                font-size: 0.85rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                font-family: inherit;
+            ">
+                ${buttonText}
+            </button>
+        </div>
+    `;
+    
+    overlay.appendChild(card);
+    document.body.appendChild(overlay);
+    
+    // إظهار البطاقة مع Animation
+    requestAnimationFrame(() => {
+        overlay.classList.add('active');
+    });
+    
+    // إغلاق عند النقر خارج البطاقة
+    overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+            closeWelcomeCard(overlay);
+        }
+    });
+    
+    // زر البطاقة
+    const subscribeBtn = document.getElementById('welcomeSubscribeBtn');
+    if (subscribeBtn) {
+        subscribeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeWelcomeCard(overlay);
+            
+            if (buttonAction === 'review') {
+                // المستخدم Premium -> يذهب إلى قائمة الامتحانات
+                window.location.href = 'index.html#list';
+            } else {
+                // المستخدم مجاني -> يذهب إلى صفحة الاشتراك
+                window.location.href = 'subscribe.html';
+            }
+        });
     }
 }
 
+function closeWelcomeCard(overlay) {
+    if (!overlay) return;
+    overlay.classList.remove('active');
+    setTimeout(() => {
+        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+    }, 250);
+}
+
+// ============================================
+// نافذة Premium Access
+// ============================================
+
+function showPremiumModal(examTitle) {
+    const existing = document.getElementById('premiumModal');
+    if (existing) existing.remove();
+    
+    const modal = document.createElement('div');
+    modal.id = 'premiumModal';
+    modal.className = 'premium-modal';
+    modal.innerHTML = `
+        <div class="premium-card">
+            <div class="premium-card-header">
+                <div class="premium-badge">
+                    <span class="premium-icon">✦</span>
+                    <span>PREMIUM ACCESS</span>
+                </div>
+                <h2 class="premium-title">Exclusive Content</h2>
+                <p class="premium-subtitle">هذا المحتوى متاح للمشتركين</p>
+            </div>
+            <div class="premium-card-body">
+                <ul class="premium-features">
+                    <li><span class="check">✓</span> جميع امتحانات B2</li>
+                    <li><span class="check">✓</span> اجوبة صحيحة 100%</li>
+                    <li><span class="check">✓</span> بطاقات ذكية للحفظ السريع</li>
+                    <li><span class="check">✓</span> لعبة التحدي السريع</li>
+                    <li><span class="check">✓</span> التخلص من ارهاق Pdf</li>
+                </ul>
+                <button id="premiumUpgradeBtn" class="premium-btn">
+                    ✦ Join Premium
+                    <span>→</span>
+                </button>
+                <button id="premiumLaterBtn" class="premium-later">ليس الآن</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    setTimeout(() => modal.classList.add('active'), 10);
+    
+    document.getElementById('premiumUpgradeBtn').onclick = () => {
+        window.location.href = 'subscribe.html';
+    };
+    
+    document.getElementById('premiumLaterBtn').onclick = () => {
+        modal.classList.remove('active');
+        setTimeout(() => modal.remove(), 300);
+    };
+    
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            setTimeout(() => modal.remove(), 300);
+        }
+    };
+}
+
+// ============================================
+// نافذة انتهاء الجلسة
+// ============================================
+
+function showSessionExpiredModal() {
+    const existing = document.getElementById('sessionExpiredModal');
+    if (existing) existing.remove();
+    
+    const modal = document.createElement('div');
+    modal.id = 'sessionExpiredModal';
+    modal.className = 'zertiva-modal';
+    modal.innerHTML = `
+        <div class="zertiva-modal-content">
+            <div class="modal-icon">🔐</div>
+            <h3 class="modal-title">تم تسجيل الدخول من جهاز آخر</h3>
+            <p class="modal-text">تم تسجيل الدخول إلى هذا الحساب من جهاز آخر.<br>يرجى إدخال البريد الإلكتروني مرة أخرى.</p>
+            <div class="modal-buttons">
+                <button class="modal-btn primary" id="sessionExpiredOkBtn">حسناً</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    setTimeout(() => modal.classList.add('active'), 10);
+    
+    document.getElementById('sessionExpiredOkBtn').onclick = () => {
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.remove();
+            clearSessionData();
+            location.reload();
+        }, 300);
+    };
+}
+
+// ============================================
+// الحصول على حالة المستخدم
+// ============================================
+
 async function getUserStatus() {
-    let email = getLoggedInEmail();
-    if(!email) return 'guest';
+    const email = getLoggedInEmail();
+    if (!email) return 'guest';
     
     try {
-        const premium = await getPremiumUsers();
-        if(premium[email]) {
-            let expiry = premium[email];
-            let today = new Date().toISOString().slice(0,10);
-            if(today <= expiry) {
-                currentExpiry = expiry;
+        const result = await checkUser(email);
+        if (result && result.exists && result.expiry) {
+            const today = new Date().toISOString().slice(0, 10);
+            if (today <= result.expiry) {
+                currentExpiry = result.expiry;
                 return 'premium';
             } else {
-                return 'expired';
+                return 'free';
             }
         }
         return 'free';
-    } catch(e) {
+    } catch (e) {
         return 'free';
     }
 }
 
 async function getExpiryDate(email) {
     try {
-        const premium = await getPremiumUsers();
-        return premium[email] || null;
-    } catch(e) {
+        const result = await checkUser(email);
+        if (result && result.exists && result.expiry) {
+            return result.expiry;
+        }
+        return null;
+    } catch (e) {
         return null;
     }
 }
 
-// ========== نافذة الاشتراك المنبثقة ==========
-function showLockedMessage(examTitle) {
-    const modal = document.getElementById('subscriptionModal');
-    if (modal) modal.classList.add('active');
+function formatDate(dateString) {
+    if (!dateString) return 'غير محدد';
+    try {
+        const date = new Date(dateString);
+        if (isNaN(date.getTime())) return dateString;
+        return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
+    } catch(e) {
+        return dateString;
+    }
 }
 
+// ============================================
+// تحديث القائمة المنسدلة للمستخدم
+// ============================================
+
 async function updateProfileDropdown() {
-    let email = getLoggedInEmail();
-    let profileEmail = document.getElementById('profileEmail');
-    let profileExpiry = document.getElementById('profileExpiry');
-    let profileStatus = document.getElementById('profileStatus');
-    let profileLogoutBtn = document.getElementById('profileLogoutBtn');
-    let profileIcon = document.getElementById('profileIcon');
-    let navLoginBtn = document.getElementById('navLoginBtn');
-    let navSubscribeBtn = document.getElementById('navSubscribeBtn');
+    const email = getLoggedInEmail();
+    const profileEmail = document.getElementById('profileEmail');
+    const profileExpiry = document.getElementById('profileExpiry');
+    const profileStatus = document.getElementById('profileStatus');
+    const profileLogoutBtn = document.getElementById('profileLogoutBtn');
+    const profileIcon = document.getElementById('profileIcon');
+    const navLoginBtn = document.getElementById('navLoginBtn');
+    const navSubscribeBtn = document.getElementById('navSubscribeBtn');
     
-    if(!profileEmail) return;
+    if (!profileEmail) return;
     
-    if(email) {
+    if (email) {
         const oldUpgradeBtn = document.getElementById('dropdownUpgradeBtn');
         if (oldUpgradeBtn) oldUpgradeBtn.remove();
         
-        let status = await getUserStatus();
-        let expiry = currentExpiry;
+        const status = await getUserStatus();
+        const expiry = currentExpiry;
         
         profileEmail.innerHTML = `📧 ${email}`;
         
-        if(status === 'premium' && expiry) {
-            let expiryDate = new Date(expiry);
-            let formattedExpiry = `${expiryDate.getDate()}/${expiryDate.getMonth()+1}/${expiryDate.getFullYear()}`;
+        if (status === 'premium' && expiry) {
+            const expiryDate = new Date(expiry);
+            const formattedExpiry = `${expiryDate.getDate()}/${expiryDate.getMonth()+1}/${expiryDate.getFullYear()}`;
             profileExpiry.innerHTML = `📅 الصلاحية: حتى ${formattedExpiry}`;
-            profileStatus.innerHTML = `✅ الحالة: <span class="status-premium">مشترك (Pro)</span>`;
+            profileStatus.innerHTML = `✅ <span style="color: #10b981;">مشترك (Pro)</span>`;
             if (navSubscribeBtn) navSubscribeBtn.style.display = 'none';
-        } else if(status === 'expired') {
-            profileExpiry.innerHTML = `⏰ انتهت الصلاحية`;
-            profileStatus.innerHTML = `⚠️ الحالة: <span class="status-free">منتهي</span>`;
-            if (navSubscribeBtn) navSubscribeBtn.style.display = 'inline-flex';
         } else {
-            profileExpiry.innerHTML = `📖 الوضع المجاني`;
-            profileStatus.innerHTML = `⭐ الحالة: <span class="status-free">مجاني</span>`;
+            profileExpiry.innerHTML = `⏰ انتهت الصلاحية`;
+            profileStatus.innerHTML = `📖 <span style="color: #94a3b8;">مجاني</span>`;
             if (navSubscribeBtn) navSubscribeBtn.style.display = 'inline-flex';
         }
         
-        if(profileLogoutBtn) profileLogoutBtn.style.display = 'block';
-        if(profileIcon) profileIcon.style.display = 'flex';
-        if(navLoginBtn) navLoginBtn.style.display = 'none';
+        if (profileLogoutBtn) profileLogoutBtn.style.display = 'block';
+        if (profileIcon) profileIcon.style.display = 'flex';
+        if (navLoginBtn) navLoginBtn.style.display = 'none';
     } else {
         profileEmail.innerHTML = '👤 غير مسجل';
         profileExpiry.innerHTML = 'الوصول محدود لبعض الامتحانات';
         profileStatus.innerHTML = '';
         
-        // إضافة زر الترقية للمستخدم غير المسجل
         const upgradeBtn = document.createElement('button');
         upgradeBtn.id = 'dropdownUpgradeBtn';
         upgradeBtn.innerHTML = 'الترقية إلى الحساب الكامل →';
@@ -142,15 +466,8 @@ async function updateProfileDropdown() {
             font-weight: bold;
             transition: all 0.3s ease;
         `;
-        upgradeBtn.onmouseenter = function() {
-            this.style.background = '#475569';
-        };
-        upgradeBtn.onmouseleave = function() {
-            this.style.background = '#64748B';
-        };
-        upgradeBtn.onclick = function() {
-            const modal = document.getElementById('subscriptionModal');
-            if (modal) modal.classList.add('active');
+        upgradeBtn.onclick = () => {
+            window.location.href = 'subscribe.html';
         };
         
         const dropdown = document.getElementById('profileDropdown');
@@ -160,133 +477,299 @@ async function updateProfileDropdown() {
             dropdown.appendChild(upgradeBtn);
         }
         
-        if(profileLogoutBtn) profileLogoutBtn.style.display = 'none';
-        if(profileIcon) profileIcon.style.display = 'none';
-        if(navLoginBtn) navLoginBtn.style.display = 'inline-block';
+        if (profileLogoutBtn) profileLogoutBtn.style.display = 'none';
+        if (profileIcon) profileIcon.style.display = 'none';
+        if (navLoginBtn) navLoginBtn.style.display = 'inline-block';
         if (navSubscribeBtn) navSubscribeBtn.style.display = 'inline-flex';
     }
 }
 
 function toggleProfileDropdown() {
-    let dropdown = document.getElementById('profileDropdown');
-    if(dropdown) {
-        dropdown.classList.toggle('show');
-    }
+    const dropdown = document.getElementById('profileDropdown');
+    if (dropdown) dropdown.classList.toggle('show');
 }
 
 function showLoginPopup() {
-    let popup = document.getElementById('loginPopup');
-    if(popup) popup.style.display = 'flex';
+    const popup = document.getElementById('loginPopup');
+    if (popup) popup.style.display = 'flex';
 }
 
 function hideLoginPopup() {
-    let popup = document.getElementById('loginPopup');
-    if(popup) popup.style.display = 'none';
+    const popup = document.getElementById('loginPopup');
+    if (popup) popup.style.display = 'none';
 }
 
+// ============================================
+// تسجيل الخروج
+// ============================================
+
+function logoutUser(showMessage = true) {
+    const email = getLoggedInEmail();
+    if (email) {
+        logoutWithGoogleSheets(email);
+    }
+    clearSessionData();
+    sessionChecked = false;
+    if (showMessage) {
+        showToast('تم تسجيل الخروج بنجاح', 'success', 3000);
+    }
+    setTimeout(() => location.reload(), 300);
+}
+
+// ============================================
+// نافذة الاشتراك - توجيه إلى subscribe.html
+// ============================================
+
+function showLockedMessage(examTitle) {
+    showPremiumModal(examTitle);
+}
+
+// ============================================
+// معالجة تسجيل الدخول - مع Loading Spinner ✅ معدل
+// ============================================
+
 async function handleLogin() {
-    let email = document.getElementById('popupEmail').value.trim();
-    let password = document.getElementById('popupPassword').value.trim();
+    if (isLoggingIn) return;
     
-    if(!email || !password) {
-        alert("يرجى إدخال البريد الإلكتروني وكلمة السر");
+    const email = document.getElementById('popupEmail').value.trim();
+    const password = document.getElementById('popupPassword').value.trim();
+    
+    if (!email || !password) {
+        showToast('يرجى إدخال البريد الإلكتروني وكلمة السر', 'info', 3000);
         return;
     }
     
-    setLoggedInUser(email, password);
+    isLoggingIn = true;
+    const loginBtn = document.getElementById('popupLoginBtn');
+    const originalText = loginBtn ? loginBtn.textContent : 'دخول / إنشاء حساب';
     
-    let status = await getUserStatus();
-    if(status === 'premium') {
-        let expiry = currentExpiry;
-        let expiryDate = new Date(expiry);
-        let formattedExpiry = `${expiryDate.getDate()}/${expiryDate.getMonth()+1}/${expiryDate.getFullYear()}`;
-        alert(`✅ مرحباً ${email}\n🎉 حسابك مفعل حتى ${formattedExpiry}\nجميع الامتحانات متاحة لك.`);
-    } else if(status === 'expired') {
-        alert(`⚠️ مرحباً ${email}\n⏰ انتهت صلاحية اشتراكك.\n✨ يرجى الاشتراك مرة أخرى.`);
-    } else {
-        alert(`✅ مرحباً ${email}\n📖 حسابك مجاني حالياً.\n✨ متاح لك فقط الامتحان الأول من كل قسم.\nللوصول إلى كل الامتحانات، اضغط "اشتراك" ثم ادفع.`);
+    if (loginBtn) {
+        loginBtn.innerHTML = `<span class="spinner"></span> جاري التحميل...`;
+        loginBtn.disabled = true;
+        loginBtn.style.opacity = '0.7';
+        loginBtn.style.cursor = 'wait';
     }
     
-    hideLoginPopup();
-    await updateProfileDropdown();
-    location.reload();
+    try {
+        let result = await loginWithGoogleSheets(email);
+        
+        // ✅ التحقق من وجود result
+        if (!result) {
+            showToast('⚠️ لم يتم استلام رد من الخادم', 'error', 3000);
+            restoreLoginButton(loginBtn, originalText);
+            return;
+        }
+        
+        console.log('LOGIN RESULT:', result);
+        
+        // ✅ معالجة الأخطاء
+        if (!result.success) {
+            // ✅ إذا كان الخطأ متعلق بالجلسة، حاول مرة أخرى
+            if (result.status === 'already_logged_in' || 
+                result.status === 'session_expired' || 
+                result.status === 'already_exists') {
+                
+                // ✅ محاولة تسجيل الدخول مرة أخرى
+                const retryResult = await loginWithGoogleSheets(email);
+                
+                if (retryResult && retryResult.success) {
+                    result = retryResult;
+                } else {
+                    const errorMsg = retryResult?.message || 'تعذر تسجيل الدخول';
+                    showToast('⚠️ ' + errorMsg, 'error', 3000);
+                    restoreLoginButton(loginBtn, originalText);
+                    return;
+                }
+            } else if (result.status === 'expired') {
+                showToast('⏰ انتهت صلاحية اشتراكك.', 'warning', 3000);
+                restoreLoginButton(loginBtn, originalText);
+                return;
+            } else if (result.status === 'connection_error') {
+                showToast('⚠️ خطأ في الاتصال. حاول مرة أخرى.', 'error', 3000);
+                restoreLoginButton(loginBtn, originalText);
+                return;
+            } else if (result.status === 'user_not_found') {
+                showToast('❌ البريد الإلكتروني غير مسجل.', 'error', 3000);
+                restoreLoginButton(loginBtn, originalText);
+                return;
+            } else if (result.status === 'wrong_password') {
+                showToast('❌ كلمة السر غير صحيحة.', 'error', 3000);
+                restoreLoginButton(loginBtn, originalText);
+                return;
+            } else if (result.status === 'no_data') {
+                showToast('⚠️ لا توجد بيانات في الورقة.', 'error', 3000);
+                restoreLoginButton(loginBtn, originalText);
+                return;
+            } else if (result.status === 'invalid_expiry') {
+                showToast('⚠️ تاريخ الصلاحية غير صحيح.', 'error', 3000);
+                restoreLoginButton(loginBtn, originalText);
+                return;
+            } else {
+                const errorMsg = result.message || 'حدث خطأ غير متوقع';
+                showToast('⚠️ ' + errorMsg, 'error', 3000);
+                restoreLoginButton(loginBtn, originalText);
+                return;
+            }
+        }
+        
+        // ✅ تخزين بيانات الجلسة
+        if (result.sessionToken) {
+            setSessionData(email, result.sessionToken, getDeviceId());
+        } else {
+            const tempToken = 'temp-' + Date.now() + '-' + Math.random().toString(36).substr(2, 8);
+            setSessionData(email, tempToken, getDeviceId());
+        }
+        
+        sessionChecked = false;
+        await updateProfileDropdown();
+        hideLoginPopup();
+        
+        // ✅ عرض البطاقة المناسبة
+        const status = await getUserStatus();
+        if (status === 'premium') {
+            showWelcomeCard(email, true, result.expiry);
+        } else {
+            showWelcomeCard(email, false, null);
+        }
+        
+        // ✅ رسالة نجاح
+        showToast(`✅ مرحباً ${email}`, 'success', 3000);
+        
+        // ✅ إعادة الزر بعد ظهور الرسالة
+        setTimeout(() => {
+            restoreLoginButton(loginBtn, originalText);
+        }, 500);
+        
+    } catch (error) {
+        console.error('Login Error:', error);
+        showToast('⚠️ خطأ في الاتصال: ' + error.message, 'error', 3000);
+        restoreLoginButton(loginBtn, originalText);
+    } finally {
+        isLoggingIn = false;
+    }
 }
 
-async function setupLockedNextButton() {
-    let status = await getUserStatus();
-    let nextBtn = document.getElementById('nextExamBtn');
-    
-    if(nextBtn && status !== 'premium') {
-        nextBtn.classList.add('locked-nav');
-        nextBtn.onclick = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            const modal = document.getElementById('subscriptionModal');
-            if (modal) modal.classList.add('active');
-            return false;
-        };
+// ============================================
+// دالة مساعدة لإعادة زر تسجيل الدخول
+// ============================================
+
+function restoreLoginButton(loginBtn, originalText) {
+    if (loginBtn) {
+        loginBtn.innerHTML = originalText;
+        loginBtn.disabled = false;
+        loginBtn.style.opacity = '1';
+        loginBtn.style.cursor = 'pointer';
     }
 }
+
+// ============================================
+// ربط الأحداث
+// ============================================
 
 function bindAuthEvents() {
-    let navLoginBtn = document.getElementById('navLoginBtn');
-    if(navLoginBtn) navLoginBtn.addEventListener('click', showLoginPopup);
+    const navLoginBtn = document.getElementById('navLoginBtn');
+    if (navLoginBtn) navLoginBtn.onclick = showLoginPopup;
     
-    let popupLoginBtn = document.getElementById('popupLoginBtn');
-    if(popupLoginBtn) popupLoginBtn.addEventListener('click', handleLogin);
+    const popupLoginBtn = document.getElementById('popupLoginBtn');
+    if (popupLoginBtn) popupLoginBtn.onclick = handleLogin;
     
-    let closePopupBtn = document.getElementById('closePopupBtn');
-    if(closePopupBtn) closePopupBtn.addEventListener('click', hideLoginPopup);
+    const closePopupBtn = document.getElementById('closePopupBtn');
+    if (closePopupBtn) closePopupBtn.onclick = hideLoginPopup;
     
-    let loginPopup = document.getElementById('loginPopup');
-    if(loginPopup) {
-        loginPopup.addEventListener('click', function(e) {
-            if(e.target === loginPopup) hideLoginPopup();
-        });
+    const loginPopup = document.getElementById('loginPopup');
+    if (loginPopup) {
+        loginPopup.onclick = function(e) {
+            if (e.target === loginPopup) hideLoginPopup();
+        };
     }
     
-    let profileIcon = document.getElementById('profileIcon');
-    if(profileIcon) profileIcon.addEventListener('click', toggleProfileDropdown);
+    const profileIcon = document.getElementById('profileIcon');
+    if (profileIcon) profileIcon.onclick = toggleProfileDropdown;
     
-    let profileLogoutBtn = document.getElementById('profileLogoutBtn');
-    if(profileLogoutBtn) profileLogoutBtn.addEventListener('click', logoutUser);
+    const profileLogoutBtn = document.getElementById('profileLogoutBtn');
+    if (profileLogoutBtn) profileLogoutBtn.onclick = () => logoutUser(true);
     
-    let logoHomeBtn = document.getElementById('logoHomeBtn');
-    if(logoHomeBtn) {
-        logoHomeBtn.addEventListener('click', function() {
+    const logoBtn = document.getElementById('logoHomeBtn');
+    if (logoBtn) {
+        logoBtn.onclick = function(e) {
+            e.preventDefault();
             window.location.href = 'index.html';
-        });
+        };
+    }
+    
+    const notificationBell = document.getElementById('notificationBell');
+    if (notificationBell) {
+        notificationBell.onclick = function(e) {
+            e.preventDefault();
+            const dropdown = document.getElementById('notificationDropdown');
+            if (dropdown) dropdown.classList.toggle('active');
+        };
+    }
+    
+    const settingsBtn = document.getElementById('settingsBtn');
+    if (settingsBtn) {
+        settingsBtn.onclick = function(e) {
+            e.preventDefault();
+            const modal = document.getElementById('settingsModal');
+            if (modal) modal.classList.add('active');
+        };
+    }
+    
+    const navSubscribeBtn = document.getElementById('navSubscribeBtn');
+    if (navSubscribeBtn) {
+        navSubscribeBtn.onclick = function(e) {
+            e.preventDefault();
+            window.location.href = 'subscribe.html';
+        };
+    }
+    
+    const featuresSubscribeBtn = document.getElementById('featuresSubscribeBtn');
+    if (featuresSubscribeBtn) {
+        featuresSubscribeBtn.onclick = function(e) {
+            e.preventDefault();
+            window.location.href = 'subscribe.html';
+        };
     }
     
     document.addEventListener('click', function(e) {
-        let dropdown = document.getElementById('profileDropdown');
-        let profileIconElem = document.getElementById('profileIcon');
-        if(dropdown && profileIconElem && !profileIconElem.contains(e.target) && !dropdown.contains(e.target)) {
+        const dropdown = document.getElementById('profileDropdown');
+        const profileIconElem = document.getElementById('profileIcon');
+        if (dropdown && profileIconElem && !profileIconElem.contains(e.target) && !dropdown.contains(e.target)) {
             dropdown.classList.remove('show');
         }
     });
 }
 
-function observePageChanges() {
-    const observer = new MutationObserver(() => {
-        let listPage = document.getElementById('list');
-        if(listPage && listPage.classList.contains('active')) {
-            setTimeout(setupLockedNextButton, 300);
-        }
-        let examPage = document.getElementById('exam');
-        if(examPage && examPage.classList.contains('active')) {
-            setTimeout(setupLockedNextButton, 300);
-        }
-    });
-    
-    observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
-}
+// ============================================
+// تهيئة النظام
+// ============================================
 
 async function initAuth() {
     bindAuthEvents();
     await updateProfileDropdown();
-    observePageChanges();
-    setTimeout(setupLockedNextButton, 800);
+    await validateDevice();
+}
+
+async function validateDevice() {
+    const email = getLoggedInEmail();
+    const sessionToken = getSessionToken();
+    
+    if (!email || !sessionToken) return true;
+    if (sessionChecked) return true;
+    
+    try {
+        const result = await checkSession(email, sessionToken);
+        sessionChecked = true;
+        
+        if (result && result.valid) {
+            return true;
+        } else {
+            showSessionExpiredModal();
+            return false;
+        }
+    } catch (error) {
+        return true;
+    }
 }
 
 if (document.readyState === 'loading') {
@@ -295,63 +778,20 @@ if (document.readyState === 'loading') {
     initAuth();
 }
 
-// ============================================
-// تحسين مظهر الهواتف في auth.js
-// ============================================
-
 function applyMobileAuthStyles() {
     if (window.innerWidth <= 768) {
         const loginPopupContent = document.querySelector('.login-popup-content');
         if (loginPopupContent) {
-            loginPopupContent.style.padding = '20px';
-            loginPopupContent.style.width = '280px';
-            loginPopupContent.style.borderRadius = '20px';
+            loginPopupContent.style.padding = '18px';
+            loginPopupContent.style.width = '260px';
+            loginPopupContent.style.borderRadius = '18px';
         }
-        
-        const popupTitle = document.querySelector('.login-popup-content h3');
-        if (popupTitle) popupTitle.style.fontSize = '1rem';
-        
-        const popupText = document.querySelector('.login-popup-content p');
-        if (popupText) popupText.style.fontSize = '11px';
         
         const inputs = document.querySelectorAll('.login-popup-content input');
         inputs.forEach(input => {
             input.style.padding = '8px';
             input.style.fontSize = '12px';
         });
-        
-        const btns = document.querySelectorAll('.btn-popup-login, .btn-popup-close');
-        btns.forEach(btn => {
-            btn.style.padding = '8px';
-            btn.style.fontSize = '12px';
-        });
-        
-        const profileDropdown = document.querySelector('.profile-dropdown');
-        if (profileDropdown) {
-            profileDropdown.style.minWidth = '220px';
-            profileDropdown.style.padding = '12px 15px';
-        }
-        
-        const profileEmail = document.querySelector('.profile-email');
-        if (profileEmail) profileEmail.style.fontSize = '11px';
-        
-        const profileExpiry = document.querySelector('.profile-expiry');
-        if (profileExpiry) profileExpiry.style.fontSize = '10px';
-        
-        const profileStatus = document.querySelector('.profile-status');
-        if (profileStatus) profileStatus.style.fontSize = '10px';
-        
-        const profileLogout = document.querySelector('.profile-logout');
-        if (profileLogout) {
-            profileLogout.style.padding = '6px 12px';
-            profileLogout.style.fontSize = '11px';
-        }
-        
-        const dropdownUpgradeBtn = document.getElementById('dropdownUpgradeBtn');
-        if (dropdownUpgradeBtn) {
-            dropdownUpgradeBtn.style.padding = '8px 12px';
-            dropdownUpgradeBtn.style.fontSize = '11px';
-        }
     }
 }
 
@@ -359,26 +799,9 @@ document.addEventListener('DOMContentLoaded', function() {
     applyMobileAuthStyles();
 });
 
-const originalShowLoginPopup = window.showLoginPopup;
-if (originalShowLoginPopup) {
-    window.showLoginPopup = function() {
-        originalShowLoginPopup();
-        setTimeout(applyMobileAuthStyles, 50);
-    };
-}
-
-const originalShowLockedMessage = window.showLockedMessage;
-if (originalShowLockedMessage) {
-    window.showLockedMessage = function(examTitle) {
-        originalShowLockedMessage(examTitle);
-        setTimeout(applyMobileAuthStyles, 50);
-    };
-}
-
-const originalUpdateProfileDropdown = window.updateProfileDropdown;
-if (originalUpdateProfileDropdown) {
-    window.updateProfileDropdown = async function() {
-        await originalUpdateProfileDropdown();
-        setTimeout(applyMobileAuthStyles, 50);
-    };
-}
+window.getUserStatusGlobal = getUserStatus;
+window.getLoggedInEmailGlobal = getLoggedInEmail;
+window.logoutUserGlobal = logoutUser;
+window.showWelcomeCard = showWelcomeCard;
+window.showLockedMessage = showLockedMessage;
+window.showPremiumModal = showPremiumModal;
