@@ -2,7 +2,7 @@
 // Google Sheets API Configuration - JSONP Version
 // ============================================
 
-const API_URL = 'https://script.google.com/macros/s/AKfycbwp14kvkAzTvmYEyUzD92AVb4SrzD0os7pl85Ka8ZD_OTLVREl0JGAKrfUX7ANyE3hBOA/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbwyA85zRuuQlVMOoP8dAZEawXczpADtCBaZ06qsfyqU1WvXF8QE-dualtaOUpRR3Ecu7g/exec';
 
 // ============================================
 // دالة JSONP للاتصال بالـ API
