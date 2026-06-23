@@ -2,7 +2,7 @@
 // Google Sheets API Configuration - JSONP Version
 // ============================================
 
-const API_URL = 'https://script.google.com/macros/s/AKfycbwyA85zRuuQlVMOoP8dAZEawXczpADtCBaZ06qsfyqU1WvXF8QE-dualtaOUpRR3Ecu7g/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbwp14kvkAzTvmYEyUzD92AVb4SrzD0os7pl85Ka8ZD_OTLVREl0JGAKrfUX7ANyE3hBOA/exec';
 
 // ============================================
 // دالة JSONP للاتصال بالـ API
@@ -16,20 +16,20 @@ function callJSONP(action, email) {
         let url = `${API_URL}?action=${action}&callback=${callbackName}`;
         if (email) url += `&email=${encodeURIComponent(email)}`;
         
-        // ✅ إضافة طابع زمني لمنع التخزين المؤقت
+        // ✅ منع التخزين المؤقت
         url += `&_=${Date.now()}`;
         
         console.log(`📡 [${action}] Calling API:`, url);
         
         let isResolved = false;
         
-        // ✅ مهلة زمنية 15 ثانية
+        // ✅ مهلة 15 ثانية
         const timeout = setTimeout(() => {
             if (!isResolved) {
                 isResolved = true;
                 delete window[callbackName];
                 if (script.parentNode) script.parentNode.removeChild(script);
-                reject(new Error('⏰ انتهت مهلة الاتصال بالخادم'));
+                reject(new Error('انتهت مهلة الاتصال بالخادم'));
             }
         }, 15000);
         
@@ -50,7 +50,7 @@ function callJSONP(action, email) {
             clearTimeout(timeout);
             delete window[callbackName];
             if (script.parentNode) script.parentNode.removeChild(script);
-            reject(new Error('🌐 فشل الاتصال بالخادم'));
+            reject(new Error('فشل الاتصال بالخادم'));
         };
         
         document.body.appendChild(script);
@@ -61,7 +61,7 @@ function callJSONP(action, email) {
 // دوال API (مبسطة)
 // ============================================
 
-// 1. تسجيل الدخول - بدون deviceId
+// 1. تسجيل الدخول
 async function loginWithGoogleSheets(email) {
     try {
         console.log('🔑 محاولة تسجيل الدخول:', email);
@@ -82,13 +82,13 @@ async function loginWithGoogleSheets(email) {
         console.error('❌ خطأ في تسجيل الدخول:', error.message);
         return {
             success: false,
-            message: error.message || 'حدث خطأ في الاتصال',
+            message: 'خطأ في الاتصال: ' + error.message,
             status: 'connection_error'
         };
     }
 }
 
-// 2. التحقق من المستخدم (للحالة فقط)
+// 2. التحقق من المستخدم
 async function checkUser(email) {
     try {
         console.log('👤 التحقق من المستخدم:', email);
@@ -102,15 +102,15 @@ async function checkUser(email) {
             };
         }
         
-        console.log('✅ نتيجة التحقق من المستخدم:', data);
+        console.log('✅ نتيجة التحقق:', data);
         return data;
         
     } catch (error) {
-        console.error('❌ خطأ في التحقق من المستخدم:', error.message);
+        console.error('❌ خطأ في التحقق:', error.message);
         return { 
             success: false, 
             exists: false,
-            message: error.message || 'حدث خطأ في الاتصال'
+            message: 'خطأ في الاتصال: ' + error.message
         };
     }
 }
@@ -127,7 +127,7 @@ async function logoutWithGoogleSheets(email) {
         console.error('❌ خطأ في تسجيل الخروج:', error.message);
         return { 
             success: false, 
-            message: error.message || 'حدث خطأ في الاتصال' 
+            message: 'خطأ في الاتصال: ' + error.message
         };
     }
 }
