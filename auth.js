@@ -1,8 +1,8 @@
 /**
- * auth.js - نظام إدارة تسجيل الدخول والجلسات (مبسط ومستقر)
+ * auth.js - نظام إدارة تسجيل الدخول والجلسات
  * ✅ بطاقة ترحيب بسيطة وحديثة
  * ✅ Loading Spinner داخل الزر
- * ✅ Toast Notifications حديثة
+ * ✅ Toast Notifications حديثة (أعلى الشاشة)
  */
 
 const WA_NUMBER = "212687561491";
@@ -11,29 +11,38 @@ const WA_URL = `https://wa.me/${WA_NUMBER}`;
 let currentUserStatus = 'guest';
 let currentExpiry = null;
 let isLoggingIn = false;
+let sessionChecked = false;
 
 // ============================================
-// دوال الجلسة (localStorage) - مبسطة
+// دوال الجلسة (localStorage)
 // ============================================
 
 function getLoggedInEmail() {
     return localStorage.getItem('zertiva_email');
 }
 
-function setLoggedInEmail(email) {
-    if (email) {
-        localStorage.setItem('zertiva_email', email);
-    } else {
-        localStorage.removeItem('zertiva_email');
-    }
+function getSessionToken() {
+    return localStorage.getItem('zertiva_session_token');
+}
+
+function getDeviceId() {
+    return localStorage.getItem('zertiva_device_id');
+}
+
+function setSessionData(email, sessionToken, deviceId) {
+    localStorage.setItem('zertiva_email', email);
+    localStorage.setItem('zertiva_session_token', sessionToken);
+    localStorage.setItem('zertiva_device_id', deviceId);
 }
 
 function clearSessionData() {
     localStorage.removeItem('zertiva_email');
+    localStorage.removeItem('zertiva_session_token');
+    localStorage.removeItem('zertiva_device_id');
 }
 
 function isUserLoggedIn() {
-    return getLoggedInEmail() !== null;
+    return getLoggedInEmail() !== null && getSessionToken() !== null;
 }
 
 // ============================================
@@ -41,9 +50,11 @@ function isUserLoggedIn() {
 // ============================================
 
 function showToast(message, type = 'info', duration = 3000) {
+    // إزالة Toast القديم
     const existing = document.querySelector('.zertiva-center-toast');
     if (existing) existing.remove();
     
+    // إنشاء الحاوية إذا لم تكن موجودة
     let container = document.querySelector('.toast-container');
     if (!container) {
         container = document.createElement('div');
@@ -51,9 +62,11 @@ function showToast(message, type = 'info', duration = 3000) {
         document.body.appendChild(container);
     }
     
+    // إنشاء عنصر Toast
     const toast = document.createElement('div');
     toast.className = `toast-item ${type}`;
     
+    // الأيقونات حسب النوع
     const icons = {
         success: '✅',
         warning: '⚠️',
@@ -68,9 +81,11 @@ function showToast(message, type = 'info', duration = 3000) {
         info: 'معلومات'
     };
     
+    // تقسيم الرسالة إلى عنوان ونص
     let titleText = titles[type] || 'معلومات';
     let messageText = message;
     
+    // إذا كانت الرسالة تحتوي على سطرين، استخدم الأول كعنوان
     const lines = message.split('\n');
     if (lines.length > 1) {
         titleText = lines[0];
@@ -88,22 +103,26 @@ function showToast(message, type = 'info', duration = 3000) {
     
     container.appendChild(toast);
     
+    // إغلاق بالضغط على ×
     const closeBtn = toast.querySelector('.toast-close');
     closeBtn.addEventListener('click', function(e) {
         e.stopPropagation();
         removeToast(toast);
     });
     
+    // إغلاق بالضغط على Toast نفسه
     toast.addEventListener('click', function(e) {
         if (e.target !== closeBtn) {
             removeToast(toast);
         }
     });
     
+    // إغلاق تلقائي
     const timeout = setTimeout(() => {
         removeToast(toast);
     }, duration);
     
+    // حفظ timeout للإلغاء
     toast._timeout = timeout;
 }
 
@@ -114,6 +133,7 @@ function removeToast(toast) {
     toast.classList.add('removing');
     setTimeout(() => {
         if (toast.parentNode) toast.parentNode.removeChild(toast);
+        // حذف الحاوية إذا كانت فارغة
         const container = document.querySelector('.toast-container');
         if (container && container.children.length === 0) {
             container.remove();
@@ -122,13 +142,15 @@ function removeToast(toast) {
 }
 
 // ============================================
-// بطاقة ترحيب بسيطة وحديثة
+// بطاقة ترحيب بسيطة وحديثة ✅
 // ============================================
 
 function showWelcomeCard(email, isPremium, expiryDate) {
+    // إزالة البطاقة القديمة إن وجدت
     const existing = document.querySelector('.welcome-overlay');
     if (existing) existing.remove();
     
+    // تنسيق التاريخ بالصيغة المطلوبة: DD-MM-YYYY
     function formatDateSimple(dateString) {
         if (!dateString) return 'غير محدد';
         try {
@@ -149,6 +171,7 @@ function showWelcomeCard(email, isPremium, expiryDate) {
     const card = document.createElement('div');
     card.className = 'welcome-card';
     
+    // ===== بناء المحتوى =====
     let statusText = '';
     let statusColor = '';
     let expiryText = '';
@@ -157,18 +180,19 @@ function showWelcomeCard(email, isPremium, expiryDate) {
     
     if (isPremium && expiryDate) {
         statusText = '✅ الحساب مفعل';
-        statusColor = '#22c55e';
+        statusColor = '#22c55e'; // أخضر
         expiryText = `📅 صالح حتى ${formatDateSimple(expiryDate)}`;
         buttonText = '🚀 ابدأ المراجعة';
         buttonAction = 'review';
     } else {
         statusText = '📖 حساب مجاني';
-        statusColor = '#38bdf8';
+        statusColor = '#38bdf8'; // أزرق
         expiryText = '📚 متاح بعض الامتحانات';
         buttonText = '✨ اشترك للوصول الكامل';
         buttonAction = 'subscribe';
     }
     
+    // ===== بناء البطاقة الجديدة =====
     card.innerHTML = `
         <div style="display: flex; flex-direction: column; gap: 8px;">
             <div style="color: #38bdf8; font-size: 0.85rem; font-weight: 500; word-break: break-all; direction: ltr; text-align: left;">
@@ -202,16 +226,19 @@ function showWelcomeCard(email, isPremium, expiryDate) {
     overlay.appendChild(card);
     document.body.appendChild(overlay);
     
+    // إظهار البطاقة مع Animation
     requestAnimationFrame(() => {
         overlay.classList.add('active');
     });
     
+    // إغلاق عند النقر خارج البطاقة
     overlay.addEventListener('click', function(e) {
         if (e.target === overlay) {
             closeWelcomeCard(overlay);
         }
     });
     
+    // زر البطاقة
     const subscribeBtn = document.getElementById('welcomeSubscribeBtn');
     if (subscribeBtn) {
         subscribeBtn.addEventListener('click', function(e) {
@@ -219,8 +246,10 @@ function showWelcomeCard(email, isPremium, expiryDate) {
             closeWelcomeCard(overlay);
             
             if (buttonAction === 'review') {
+                // المستخدم Premium -> يذهب إلى قائمة الامتحانات
                 window.location.href = 'index.html#list';
             } else {
+                // المستخدم مجاني -> يذهب إلى صفحة الاشتراك
                 window.location.href = 'subscribe.html';
             }
         });
@@ -294,6 +323,41 @@ function showPremiumModal(examTitle) {
 }
 
 // ============================================
+// نافذة انتهاء الجلسة
+// ============================================
+
+function showSessionExpiredModal() {
+    const existing = document.getElementById('sessionExpiredModal');
+    if (existing) existing.remove();
+    
+    const modal = document.createElement('div');
+    modal.id = 'sessionExpiredModal';
+    modal.className = 'zertiva-modal';
+    modal.innerHTML = `
+        <div class="zertiva-modal-content">
+            <div class="modal-icon">🔐</div>
+            <h3 class="modal-title">تم تسجيل الدخول من جهاز آخر</h3>
+            <p class="modal-text">تم تسجيل الدخول إلى هذا الحساب من جهاز آخر.<br>يرجى إدخال البريد الإلكتروني مرة أخرى.</p>
+            <div class="modal-buttons">
+                <button class="modal-btn primary" id="sessionExpiredOkBtn">حسناً</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    setTimeout(() => modal.classList.add('active'), 10);
+    
+    document.getElementById('sessionExpiredOkBtn').onclick = () => {
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.remove();
+            clearSessionData();
+            location.reload();
+        }, 300);
+    };
+}
+
+// ============================================
 // الحصول على حالة المستخدم
 // ============================================
 
@@ -314,8 +378,19 @@ async function getUserStatus() {
         }
         return 'free';
     } catch (e) {
-        console.error('Error checking user status:', e);
         return 'free';
+    }
+}
+
+async function getExpiryDate(email) {
+    try {
+        const result = await checkUser(email);
+        if (result && result.exists && result.expiry) {
+            return result.expiry;
+        }
+        return null;
+    } catch (e) {
+        return null;
     }
 }
 
@@ -434,18 +509,23 @@ function logoutUser(showMessage = true) {
         logoutWithGoogleSheets(email);
     }
     clearSessionData();
+    sessionChecked = false;
     if (showMessage) {
         showToast('تم تسجيل الخروج بنجاح', 'success', 3000);
     }
     setTimeout(() => location.reload(), 300);
 }
 
+// ============================================
+// نافذة الاشتراك - توجيه إلى subscribe.html
+// ============================================
+
 function showLockedMessage(examTitle) {
     showPremiumModal(examTitle);
 }
 
 // ============================================
-// معالجة تسجيل الدخول - مبسطة ومستقرة ✅
+// معالجة تسجيل الدخول - مع Loading Spinner ✅ معدل
 // ============================================
 
 async function handleLogin() {
@@ -471,9 +551,9 @@ async function handleLogin() {
     }
     
     try {
-        // ✅ تسجيل الدخول
-        const result = await loginWithGoogleSheets(email);
+        let result = await loginWithGoogleSheets(email);
         
+        // ✅ التحقق من وجود result
         if (!result) {
             showToast('⚠️ لم يتم استلام رد من الخادم', 'error', 3000);
             restoreLoginButton(loginBtn, originalText);
@@ -484,33 +564,70 @@ async function handleLogin() {
         
         // ✅ معالجة الأخطاء
         if (!result.success) {
-            // ✅ رسائل خطأ محددة
-            const errorMessages = {
-                'expired': '⏰ انتهت صلاحية اشتراكك.',
-                'connection_error': '⚠️ خطأ في الاتصال. حاول مرة أخرى.',
-                'no_response': '⚠️ لم يتم استلام رد من الخادم.',
-                'server_error': '⚠️ حدث خطأ في الخادم.'
-            };
-            
-            const errorMsg = errorMessages[result.status] || (result.message || '⚠️ حدث خطأ غير متوقع');
-            showToast(errorMsg, 'error', 3000);
-            restoreLoginButton(loginBtn, originalText);
-            return;
+            // ✅ إذا كان الخطأ متعلق بالجلسة، حاول مرة أخرى
+            if (result.status === 'already_logged_in' || 
+                result.status === 'session_expired' || 
+                result.status === 'already_exists') {
+                
+                // ✅ محاولة تسجيل الدخول مرة أخرى
+                const retryResult = await loginWithGoogleSheets(email);
+                
+                if (retryResult && retryResult.success) {
+                    result = retryResult;
+                } else {
+                    const errorMsg = retryResult?.message || 'تعذر تسجيل الدخول';
+                    showToast('⚠️ ' + errorMsg, 'error', 3000);
+                    restoreLoginButton(loginBtn, originalText);
+                    return;
+                }
+            } else if (result.status === 'expired') {
+                showToast('⏰ انتهت صلاحية اشتراكك.', 'warning', 3000);
+                restoreLoginButton(loginBtn, originalText);
+                return;
+            } else if (result.status === 'connection_error') {
+                showToast('⚠️ خطأ في الاتصال. حاول مرة أخرى.', 'error', 3000);
+                restoreLoginButton(loginBtn, originalText);
+                return;
+            } else if (result.status === 'user_not_found') {
+                showToast('❌ البريد الإلكتروني غير مسجل.', 'error', 3000);
+                restoreLoginButton(loginBtn, originalText);
+                return;
+            } else if (result.status === 'wrong_password') {
+                showToast('❌ كلمة السر غير صحيحة.', 'error', 3000);
+                restoreLoginButton(loginBtn, originalText);
+                return;
+            } else if (result.status === 'no_data') {
+                showToast('⚠️ لا توجد بيانات في الورقة.', 'error', 3000);
+                restoreLoginButton(loginBtn, originalText);
+                return;
+            } else if (result.status === 'invalid_expiry') {
+                showToast('⚠️ تاريخ الصلاحية غير صحيح.', 'error', 3000);
+                restoreLoginButton(loginBtn, originalText);
+                return;
+            } else {
+                const errorMsg = result.message || 'حدث خطأ غير متوقع';
+                showToast('⚠️ ' + errorMsg, 'error', 3000);
+                restoreLoginButton(loginBtn, originalText);
+                return;
+            }
         }
         
-        // ✅ حفظ البريد الإلكتروني فقط
-        setLoggedInEmail(email);
+        // ✅ تخزين بيانات الجلسة
+        if (result.sessionToken) {
+            setSessionData(email, result.sessionToken, getDeviceId());
+        } else {
+            const tempToken = 'temp-' + Date.now() + '-' + Math.random().toString(36).substr(2, 8);
+            setSessionData(email, tempToken, getDeviceId());
+        }
         
-        // ✅ تحديث الواجهة
+        sessionChecked = false;
         await updateProfileDropdown();
         hideLoginPopup();
         
         // ✅ عرض البطاقة المناسبة
-        const isPremium = result.isPremium || false;
-        const expiry = result.expiry || null;
-        
-        if (isPremium) {
-            showWelcomeCard(email, true, expiry);
+        const status = await getUserStatus();
+        if (status === 'premium') {
+            showWelcomeCard(email, true, result.expiry);
         } else {
             showWelcomeCard(email, false, null);
         }
@@ -518,7 +635,7 @@ async function handleLogin() {
         // ✅ رسالة نجاح
         showToast(`✅ مرحباً ${email}`, 'success', 3000);
         
-        // ✅ إعادة الزر
+        // ✅ إعادة الزر بعد ظهور الرسالة
         setTimeout(() => {
             restoreLoginButton(loginBtn, originalText);
         }, 500);
@@ -531,6 +648,10 @@ async function handleLogin() {
         isLoggingIn = false;
     }
 }
+
+// ============================================
+// دالة مساعدة لإعادة زر تسجيل الدخول
+// ============================================
 
 function restoreLoginButton(loginBtn, originalText) {
     if (loginBtn) {
@@ -620,13 +741,35 @@ function bindAuthEvents() {
 }
 
 // ============================================
-// تهيئة النظام - مبسطة
+// تهيئة النظام
 // ============================================
 
 async function initAuth() {
     bindAuthEvents();
     await updateProfileDropdown();
-    // ✅ تم إزالة validateDevice() تماماً
+    await validateDevice();
+}
+
+async function validateDevice() {
+    const email = getLoggedInEmail();
+    const sessionToken = getSessionToken();
+    
+    if (!email || !sessionToken) return true;
+    if (sessionChecked) return true;
+    
+    try {
+        const result = await checkSession(email, sessionToken);
+        sessionChecked = true;
+        
+        if (result && result.valid) {
+            return true;
+        } else {
+            showSessionExpiredModal();
+            return false;
+        }
+    } catch (error) {
+        return true;
+    }
 }
 
 if (document.readyState === 'loading') {
