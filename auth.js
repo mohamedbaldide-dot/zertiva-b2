@@ -1,6 +1,5 @@
 /**
- * auth.js - نظام إدارة تسجيل الدخول والجلسات (نسخة مبسطة)
- * ✅ نظام مستقر بدون Device ID
+ * auth.js - نظام إدارة تسجيل الدخول والجلسات (مبسط ومستقر)
  * ✅ بطاقة ترحيب بسيطة وحديثة
  * ✅ Loading Spinner داخل الزر
  * ✅ Toast Notifications حديثة
@@ -42,11 +41,9 @@ function isUserLoggedIn() {
 // ============================================
 
 function showToast(message, type = 'info', duration = 3000) {
-    // إزالة Toast القديم
     const existing = document.querySelector('.zertiva-center-toast');
     if (existing) existing.remove();
     
-    // إنشاء الحاوية إذا لم تكن موجودة
     let container = document.querySelector('.toast-container');
     if (!container) {
         container = document.createElement('div');
@@ -54,11 +51,9 @@ function showToast(message, type = 'info', duration = 3000) {
         document.body.appendChild(container);
     }
     
-    // إنشاء عنصر Toast
     const toast = document.createElement('div');
     toast.className = `toast-item ${type}`;
     
-    // الأيقونات حسب النوع
     const icons = {
         success: '✅',
         warning: '⚠️',
@@ -73,7 +68,6 @@ function showToast(message, type = 'info', duration = 3000) {
         info: 'معلومات'
     };
     
-    // تقسيم الرسالة إلى عنوان ونص
     let titleText = titles[type] || 'معلومات';
     let messageText = message;
     
@@ -94,21 +88,18 @@ function showToast(message, type = 'info', duration = 3000) {
     
     container.appendChild(toast);
     
-    // إغلاق بالضغط على ×
     const closeBtn = toast.querySelector('.toast-close');
     closeBtn.addEventListener('click', function(e) {
         e.stopPropagation();
         removeToast(toast);
     });
     
-    // إغلاق بالضغط على Toast نفسه
     toast.addEventListener('click', function(e) {
         if (e.target !== closeBtn) {
             removeToast(toast);
         }
     });
     
-    // إغلاق تلقائي
     const timeout = setTimeout(() => {
         removeToast(toast);
     }, duration);
@@ -131,15 +122,13 @@ function removeToast(toast) {
 }
 
 // ============================================
-// بطاقة ترحيب بسيطة وحديثة ✅
+// بطاقة ترحيب بسيطة وحديثة
 // ============================================
 
 function showWelcomeCard(email, isPremium, expiryDate) {
-    // إزالة البطاقة القديمة إن وجدت
     const existing = document.querySelector('.welcome-overlay');
     if (existing) existing.remove();
     
-    // تنسيق التاريخ بالصيغة المطلوبة: DD-MM-YYYY
     function formatDateSimple(dateString) {
         if (!dateString) return 'غير محدد';
         try {
@@ -305,10 +294,11 @@ function showPremiumModal(examTitle) {
 }
 
 // ============================================
-// الحصول على حالة المستخدم - مباشرة من API
+// الحصول على حالة المستخدم
 // ============================================
 
-async function getUserStatus(email) {
+async function getUserStatus() {
+    const email = getLoggedInEmail();
     if (!email) return 'guest';
     
     try {
@@ -360,7 +350,7 @@ async function updateProfileDropdown() {
         const oldUpgradeBtn = document.getElementById('dropdownUpgradeBtn');
         if (oldUpgradeBtn) oldUpgradeBtn.remove();
         
-        const status = await getUserStatus(email);
+        const status = await getUserStatus();
         const expiry = currentExpiry;
         
         profileEmail.innerHTML = `📧 ${email}`;
@@ -435,7 +425,7 @@ function hideLoginPopup() {
 }
 
 // ============================================
-// تسجيل الخروج - مبسط
+// تسجيل الخروج
 // ============================================
 
 function logoutUser(showMessage = true) {
@@ -481,7 +471,7 @@ async function handleLogin() {
     }
     
     try {
-        // ✅ 1. محاولة تسجيل الدخول
+        // ✅ تسجيل الدخول
         const result = await loginWithGoogleSheets(email);
         
         if (!result) {
@@ -492,16 +482,14 @@ async function handleLogin() {
         
         console.log('LOGIN RESULT:', result);
         
-        // ✅ 2. التحقق من النجاح
+        // ✅ معالجة الأخطاء
         if (!result.success) {
-            // رسائل خطأ محددة
+            // ✅ رسائل خطأ محددة
             const errorMessages = {
                 'expired': '⏰ انتهت صلاحية اشتراكك.',
                 'connection_error': '⚠️ خطأ في الاتصال. حاول مرة أخرى.',
-                'user_not_found': '❌ البريد الإلكتروني غير مسجل.',
-                'wrong_password': '❌ كلمة السر غير صحيحة.',
-                'no_data': '⚠️ لا توجد بيانات في الورقة.',
-                'invalid_expiry': '⚠️ تاريخ الصلاحية غير صحيح.'
+                'no_response': '⚠️ لم يتم استلام رد من الخادم.',
+                'server_error': '⚠️ حدث خطأ في الخادم.'
             };
             
             const errorMsg = errorMessages[result.status] || (result.message || '⚠️ حدث خطأ غير متوقع');
@@ -510,25 +498,27 @@ async function handleLogin() {
             return;
         }
         
-        // ✅ 3. حفظ البريد الإلكتروني فقط (بدون sessionToken أو deviceId)
+        // ✅ حفظ البريد الإلكتروني فقط
         setLoggedInEmail(email);
         
-        // ✅ 4. تحديث الواجهة
+        // ✅ تحديث الواجهة
         await updateProfileDropdown();
         hideLoginPopup();
         
-        // ✅ 5. عرض البطاقة المناسبة
-        const status = await getUserStatus(email);
-        if (status === 'premium') {
-            showWelcomeCard(email, true, result.expiry);
+        // ✅ عرض البطاقة المناسبة
+        const isPremium = result.isPremium || false;
+        const expiry = result.expiry || null;
+        
+        if (isPremium) {
+            showWelcomeCard(email, true, expiry);
         } else {
             showWelcomeCard(email, false, null);
         }
         
-        // ✅ 6. رسالة نجاح
+        // ✅ رسالة نجاح
         showToast(`✅ مرحباً ${email}`, 'success', 3000);
         
-        // ✅ 7. إعادة الزر
+        // ✅ إعادة الزر
         setTimeout(() => {
             restoreLoginButton(loginBtn, originalText);
         }, 500);
@@ -630,13 +620,13 @@ function bindAuthEvents() {
 }
 
 // ============================================
-// تهيئة النظام
+// تهيئة النظام - مبسطة
 // ============================================
 
 async function initAuth() {
     bindAuthEvents();
     await updateProfileDropdown();
-    // ✅ إزالة validateDevice() تماماً
+    // ✅ تم إزالة validateDevice() تماماً
 }
 
 if (document.readyState === 'loading') {
