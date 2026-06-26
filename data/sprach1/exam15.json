@@ -17,7 +17,7 @@
     {
       "id": 3,
       "options": ["als", "da", "wenn"],
-      "correct": 0
+      "correct": 2
     },
     {
       "id": 4,
@@ -32,12 +32,12 @@
     {
       "id": 6,
       "options": ["Darauf", "Danach", "Davon"],
-      "correct": 2
+      "correct": 0
     },
     {
       "id": 7,
       "options": ["darüber", "davon", "dazu"],
-      "correct": 2
+      "correct": 1
     },
     {
       "id": 8,
