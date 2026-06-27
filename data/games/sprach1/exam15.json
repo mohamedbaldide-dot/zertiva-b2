@@ -50,7 +50,7 @@
       "before": "Was hältst du",
       "after": "",
       "options": ["dazu", "darüber", "davon"],
-      "correct": "dazu"
+      "correct": "davon"
     },
     {
       "id": 8,
