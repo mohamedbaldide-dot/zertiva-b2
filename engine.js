@@ -666,8 +666,10 @@ function checkSprach2Exam() {
     resultDiv.style.color = "#721c24";
   }
   
+  // ✅ حفظ النتيجة مع examId الصحيح
   if (typeof window.saveExamResultGlobal === "function") {
-    window.saveExamResultGlobal(currentSprach2Data.skill || "sprach2", currentSprach2Data.id || 1, parseFloat(finalScore));
+    const examId = currentSprach2Data.id || window.currentExamId || 1;
+    window.saveExamResultGlobal("sprach2", examId, parseFloat(finalScore));
   }
 }
 
@@ -1058,8 +1060,10 @@ function checkSprach1Exam() {
     resultDiv.style.color = "#721c24";
   }
   
+  // ✅ حفظ النتيجة مع examId الصحيح
   if (typeof window.saveExamResultGlobal === "function") {
-    window.saveExamResultGlobal(currentSprach1Data.skill || "sprach1", currentSprach1Data.id || 1, parseFloat(finalScore));
+    const examId = currentSprach1Data.id || window.currentExamId || 1;
+    window.saveExamResultGlobal("sprach1", examId, parseFloat(finalScore));
   }
 }
 
@@ -1557,18 +1561,17 @@ function checkMatchingExam() {
         score++;
         card.classList.add("correct-answer-card");
         if (selectElem) {
-          selectElem.style.backgroundColor = "#d4edda";  // أخضر فاتح
+          selectElem.style.backgroundColor = "#d4edda";
           selectElem.style.border = "2px solid #28a745";
           selectElem.style.color = "#155724";
         }
       } else {
         card.classList.add("wrong-answer-card");
         if (selectElem) {
-          selectElem.style.backgroundColor = "#fef0e0";  // برتقالي فاتح
+          selectElem.style.backgroundColor = "#fef0e0";
           selectElem.style.border = "2px solid #e67e22";
-          selectElem.style.color = "#155724";  // النص أخضر غامق
+          selectElem.style.color = "#155724";
           
-          // ✅ وضع الإجابة الصحيحة داخل الخانة مع علامة صح
           selectElem.value = correctAnswer;
           for (let j = 0; j < selectElem.options.length; j++) {
             if (selectElem.options[j].value === correctAnswer) {
@@ -1602,8 +1605,10 @@ function checkMatchingExam() {
     resultDiv.style.color = "#721c24";
   }
 
+  // ✅ حفظ النتيجة مع examId الصحيح
   if (typeof window.saveExamResultGlobal === "function") {
-    window.saveExamResultGlobal("lesen1", currentMatchingExamData.id || 1, parseFloat(finalScore));
+    const examId = currentMatchingExamData.id || window.currentExamId || 1;
+    window.saveExamResultGlobal("lesen1", examId, parseFloat(finalScore));
   }
 }
 
@@ -1868,8 +1873,10 @@ function checkTeil2Exam() {
     resultDiv.style.color = "#721c24";
   }
   
+  // ✅ حفظ النتيجة مع examId الصحيح
   if (typeof window.saveExamResultGlobal === "function") {
-    window.saveExamResultGlobal("lesen2", currentTeil2Data.id || 1, parseFloat(finalScore));
+    const examId = currentTeil2Data.id || window.currentExamId || 1;
+    window.saveExamResultGlobal("lesen2", examId, parseFloat(finalScore));
   }
 }
 
@@ -2331,25 +2338,23 @@ function checkTeil3Exam() {
         // ✅ إجابة صحيحة
         score++;
         card.classList.add("correct-answer-card");
-        card.style.backgroundColor = "#d4edda";  // أخضر فاتح
+        card.style.backgroundColor = "#d4edda";
         card.style.border = "2px solid #28a745";
         if (selectElem) {
           selectElem.style.backgroundColor = "#d4edda";
           selectElem.style.border = "2px solid #28a745";
           selectElem.style.color = "#155724";
-          // لا نغير النص، يبقى اختيار المستخدم
         }
       } else {
         // ❌ إجابة خاطئة أو لم يجب
         card.classList.add("wrong-answer-card");
-        card.style.backgroundColor = "#fef0e0";  // برتقالي فاتح
+        card.style.backgroundColor = "#fef0e0";
         card.style.border = "2px solid #e67e22";
         if (selectElem) {
           selectElem.style.backgroundColor = "#fef0e0";
           selectElem.style.border = "2px solid #e67e22";
-          selectElem.style.color = "#155724";  // النص أخضر غامق
+          selectElem.style.color = "#155724";
           
-          // ✅ وضع الإجابة الصحيحة داخل الخانة مع علامة صح
           selectElem.value = correctValue;
           
           for (let j = 0; j < selectElem.options.length; j++) {
@@ -2387,8 +2392,10 @@ function checkTeil3Exam() {
     resultDiv.style.color = "#721c24";
   }
 
+  // ✅ حفظ النتيجة مع examId الصحيح
   if (typeof window.saveExamResultGlobal === "function") {
-    window.saveExamResultGlobal("lesen3", currentTeil3Data.id || 1, parseFloat(finalScore));
+    const examId = currentTeil3Data.id || window.currentExamId || 1;
+    window.saveExamResultGlobal("lesen3", examId, parseFloat(finalScore));
   }
 }
 
