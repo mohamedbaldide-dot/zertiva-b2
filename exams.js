@@ -174,7 +174,14 @@ const lesenExams = [
   { id: 45, title: "Frauen im Arbeitsmarkt", enabled: true, hasFile: true },
   { id: 46, title: "Baby TV", enabled: true, hasFile: true },
   { id: 47, title: "Bäder", enabled: true, hasFile: true },
-  { id: 48, title: "Farben", enabled: true, hasFile: true }
+  { id: 48, title: "Farben", enabled: true, hasFile: true },
+  { id: 49, title: "Wetter", enabled: true, hasFile: true },
+  { id: 50, title: "Computer", enabled: true, hasFile: true },
+  { id: 51, title: "Nordsee", enabled: true, hasFile: true },
+  { id: 52, title: "Autos", enabled: true, hasFile: true },
+  { id: 53, title: "Evolution", enabled: true, hasFile: true },
+  { id: 54, title: "Gedächtnis", enabled: true, hasFile: true },
+  { id: 55, title: "Wohnen", enabled: true, hasFile: true }
 ];
 
 // ========== قائمة امتحانات Schreiben ==========
