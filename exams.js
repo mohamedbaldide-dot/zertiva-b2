@@ -484,7 +484,9 @@ const examsDatabase = {
     { id: 44, title: "Die Katzen", enabled: true, hasFile: true },
     { id: 45, title: "Teleshopping – nicht immer gut und günstig", enabled: true, hasFile: true },
     { id: 46, title: "Die Rückkehr des Nachtzugs", enabled: true, hasFile: true },
-    { id: 47, title: "Die Reise im Schlafwagen", enabled: true, hasFile: true }
+    { id: 47, title: "Die Reise im Schlafwagen", enabled: true, hasFile: true },
+    { id: 48, title: "Theaterprojekt für Kinder (المعدل 1)", enabled: true, hasFile: true },
+{ id: 49, title: "Theater für Kinder und Jugendliche (المعدل 2)", enabled: true, hasFile: true }
   ],
   hoeren1: [
     { id: 1, title: "Die Deutsche Lufthansa", enabled: true, hasFile: true },
