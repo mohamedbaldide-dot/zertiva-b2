@@ -87,39 +87,47 @@ let currentSkill = "lesen1";
 let currentExamId = null;
 let currentExamsList = [];
 let currentMündlichPart = 2;
-let userStatusCache = null;
-let lastStatusCheck = 0;
-// ========== دوال التحقق من حالة المستخدم ==========
+let examUserStatusCache = null;
+let examLastStatusCheck = 0;
+// ========== دوال التحقق من حالة المستخدم - مع تحسين Cache ==========
 async function getUserStatusForExam() {
     let email = localStorage.getItem('zertiva_email');
     if (!email) return 'guest';
     
     let now = Date.now();
-    if (userStatusCache && (now - lastStatusCheck) < 5000) {
-        return userStatusCache;
+    // ✅ زيادة مدة Cache إلى 60 ثانية بدلاً من 5 ثوانٍ
+    if (examUserStatusCache && (now - examLastStatusCheck) < 60000) {
+        return examUserStatusCache;
     }
     
     try {
-        // ✅ فقط من Google Sheets
+        // ✅ استخدام getUserStatus من auth.js مع Cache مدمج
+        if (typeof window.getUserStatusGlobal === 'function') {
+            const status = await window.getUserStatusGlobal();
+            examUserStatusCache = status;
+            examLastStatusCheck = now;
+            return status;
+        }
+        
+        // ✅ حل احتياطي: استخدام checkUser مباشرة
         const result = await checkUser(email);
         if (result && result.exists && result.expiry) {
             let today = new Date().toISOString().slice(0,10);
             if (today <= result.expiry) {
-                userStatusCache = 'premium';
-                lastStatusCheck = now;
+                examUserStatusCache = 'premium';
+                examLastStatusCheck = now;
                 return 'premium';
             }
         }
-        userStatusCache = 'free';
-        lastStatusCheck = now;
+        examUserStatusCache = 'free';
+        examLastStatusCheck = now;
         return 'free';
     } catch(e) {
-        userStatusCache = 'free';
-        lastStatusCheck = now;
+        examUserStatusCache = 'free';
+        examLastStatusCheck = now;
         return 'free';
     }
 }
-
 // ========== قائمة Tips (نصائح) ==========
 const tipsExams = [
   { id: 1, title: "كيفاش تنجح بدكاء", enabled: true, hasFile: true }
