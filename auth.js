@@ -3,6 +3,8 @@
  * ✅ بطاقة ترحيب بسيطة وحديثة
  * ✅ Loading Spinner داخل الزر
  * ✅ Toast Notifications حديثة (أعلى الشاشة)
+ * ✅ نظام Caching لتقليل طلبات API
+ * ✅ التحقق فقط عند فتح الموقع أو تحديثه
  */
 
 const WA_NUMBER = "212687561491";
@@ -12,6 +14,14 @@ let currentUserStatus = 'guest';
 let currentExpiry = null;
 let isLoggingIn = false;
 let sessionChecked = false;
+
+// ============================================
+// نظام Caching لتقليل طلبات API
+// ============================================
+let userStatusCache = null;
+let userStatusCacheTime = 0;
+const CACHE_DURATION = 10 * 60 * 1000; // 10 دقائق
+let isCheckingStatus = false;
 
 // ============================================
 // دوال الجلسة (localStorage)
@@ -33,12 +43,22 @@ function setSessionData(email, sessionToken, deviceId) {
     localStorage.setItem('zertiva_email', email);
     localStorage.setItem('zertiva_session_token', sessionToken);
     localStorage.setItem('zertiva_device_id', deviceId);
+    
+    // ✅ تحديث الكاش عند تسجيل الدخول
+    userStatusCache = null;
+    userStatusCacheTime = 0;
 }
 
 function clearSessionData() {
     localStorage.removeItem('zertiva_email');
     localStorage.removeItem('zertiva_session_token');
     localStorage.removeItem('zertiva_device_id');
+    localStorage.removeItem('zertiva_last_session_check');
+    
+    // ✅ مسح الكاش عند الخروج
+    userStatusCache = null;
+    userStatusCacheTime = 0;
+    sessionChecked = false;
 }
 
 function isUserLoggedIn() {
@@ -358,12 +378,33 @@ function showSessionExpiredModal() {
 }
 
 // ============================================
-// الحصول على حالة المستخدم
+// الحصول على حالة المستخدم - مع Caching
 // ============================================
 
-async function getUserStatus() {
+async function getUserStatus(forceRefresh = false) {
     const email = getLoggedInEmail();
     if (!email) return 'guest';
+    
+    // ✅ استخدام الكاش إذا كان حديثاً
+    const now = Date.now();
+    if (!forceRefresh && userStatusCache && (now - userStatusCacheTime) < CACHE_DURATION) {
+        return userStatusCache;
+    }
+    
+    // ✅ منع الطلبات المتزامنة المتعددة
+    if (isCheckingStatus) {
+        await new Promise(resolve => {
+            const checkInterval = setInterval(() => {
+                if (!isCheckingStatus) {
+                    clearInterval(checkInterval);
+                    resolve();
+                }
+            }, 100);
+        });
+        return userStatusCache || 'free';
+    }
+    
+    isCheckingStatus = true;
     
     try {
         const result = await checkUser(email);
@@ -371,21 +412,33 @@ async function getUserStatus() {
             const today = new Date().toISOString().slice(0, 10);
             if (today <= result.expiry) {
                 currentExpiry = result.expiry;
+                userStatusCache = 'premium';
+                userStatusCacheTime = now;
                 return 'premium';
-            } else {
-                return 'free';
             }
         }
+        userStatusCache = 'free';
+        userStatusCacheTime = now;
         return 'free';
     } catch (e) {
+        userStatusCache = 'free';
+        userStatusCacheTime = now;
         return 'free';
+    } finally {
+        isCheckingStatus = false;
     }
 }
 
 async function getExpiryDate(email) {
+    // ✅ استخدام الكاش أولاً
+    if (currentExpiry) {
+        return currentExpiry;
+    }
+    
     try {
         const result = await checkUser(email);
         if (result && result.exists && result.expiry) {
+            currentExpiry = result.expiry;
             return result.expiry;
         }
         return null;
@@ -409,7 +462,7 @@ function formatDate(dateString) {
 // تحديث القائمة المنسدلة للمستخدم
 // ============================================
 
-async function updateProfileDropdown() {
+async function updateProfileDropdown(forceRefresh = false) {
     const email = getLoggedInEmail();
     const profileEmail = document.getElementById('profileEmail');
     const profileExpiry = document.getElementById('profileExpiry');
@@ -425,7 +478,8 @@ async function updateProfileDropdown() {
         const oldUpgradeBtn = document.getElementById('dropdownUpgradeBtn');
         if (oldUpgradeBtn) oldUpgradeBtn.remove();
         
-        const status = await getUserStatus();
+        // ✅ استخدم الكاش
+        const status = await getUserStatus(forceRefresh);
         const expiry = currentExpiry;
         
         profileEmail.innerHTML = `📧 ${email}`;
@@ -510,6 +564,13 @@ function logoutUser(showMessage = true) {
     }
     clearSessionData();
     sessionChecked = false;
+    
+    // ✅ مسح الكاش
+    userStatusCache = null;
+    userStatusCacheTime = 0;
+    currentExpiry = null;
+    localStorage.removeItem('zertiva_last_session_check');
+    
     if (showMessage) {
         showToast('تم تسجيل الخروج بنجاح', 'success', 3000);
     }
@@ -553,7 +614,6 @@ async function handleLogin() {
     try {
         let result = await loginWithGoogleSheets(email);
         
-        // ✅ التحقق من وجود result
         if (!result) {
             showToast('⚠️ لم يتم استلام رد من الخادم', 'error', 3000);
             restoreLoginButton(loginBtn, originalText);
@@ -562,14 +622,11 @@ async function handleLogin() {
         
         console.log('LOGIN RESULT:', result);
         
-        // ✅ معالجة الأخطاء
         if (!result.success) {
-            // ✅ إذا كان الخطأ متعلق بالجلسة، حاول مرة أخرى
             if (result.status === 'already_logged_in' || 
                 result.status === 'session_expired' || 
                 result.status === 'already_exists') {
                 
-                // ✅ محاولة تسجيل الدخول مرة أخرى
                 const retryResult = await loginWithGoogleSheets(email);
                 
                 if (retryResult && retryResult.success) {
@@ -620,22 +677,25 @@ async function handleLogin() {
             setSessionData(email, tempToken, getDeviceId());
         }
         
+        // ✅ تحديث الكاش بعد تسجيل الدخول
+        userStatusCache = result.isPremium ? 'premium' : 'free';
+        userStatusCacheTime = Date.now();
+        currentExpiry = result.expiry;
+        
         sessionChecked = false;
-        await updateProfileDropdown();
+        await updateProfileDropdown(true);
         hideLoginPopup();
         
         // ✅ عرض البطاقة المناسبة
-        const status = await getUserStatus();
+        const status = await getUserStatus(true);
         if (status === 'premium') {
             showWelcomeCard(email, true, result.expiry);
         } else {
             showWelcomeCard(email, false, null);
         }
         
-        // ✅ رسالة نجاح
         showToast(`✅ مرحباً ${email}`, 'success', 3000);
         
-        // ✅ إعادة الزر بعد ظهور الرسالة
         setTimeout(() => {
             restoreLoginButton(loginBtn, originalText);
         }, 500);
@@ -741,25 +801,46 @@ function bindAuthEvents() {
 }
 
 // ============================================
-// تهيئة النظام
+// تهيئة النظام - التحقق عند فتح الموقع فقط
 // ============================================
 
 async function initAuth() {
     bindAuthEvents();
-    await updateProfileDropdown();
-    await validateDevice();
+    
+    // ✅ التحقق عند فتح الموقع فقط (مع forceRefresh)
+    await getUserStatus(true);
+    await updateProfileDropdown(true);
+    await validateDevice(true);
+    
+    // ❌ تم إزالة setInterval - لا نريد تحقق دوري
+    // يتم التحقق فقط عند فتح الموقع أو تحديثه
 }
 
-async function validateDevice() {
+// ============================================
+// التحقق من الجلسة
+// ============================================
+
+async function validateDevice(forceCheck = false) {
     const email = getLoggedInEmail();
     const sessionToken = getSessionToken();
     
     if (!email || !sessionToken) return true;
-    if (sessionChecked) return true;
+    
+    // ✅ إذا تم التحقق مسبقاً وليس هناك طلب قسري، استخدم الكاش
+    if (sessionChecked && !forceCheck) return true;
+    
+    // ✅ لا تتحقق أكثر من مرة كل 5 دقائق (فقط إذا كان هناك طلب قسري)
+    const lastCheck = parseInt(localStorage.getItem('zertiva_last_session_check') || '0');
+    const now = Date.now();
+    if (!forceCheck && (now - lastCheck) < 5 * 60 * 1000) {
+        sessionChecked = true;
+        return true;
+    }
     
     try {
         const result = await checkSession(email, sessionToken);
         sessionChecked = true;
+        localStorage.setItem('zertiva_last_session_check', now.toString());
         
         if (result && result.valid) {
             return true;
@@ -771,6 +852,34 @@ async function validateDevice() {
         return true;
     }
 }
+
+// ============================================
+// ✅ التحقق عند العودة للمتصفح (بعد تصغيره)
+// ============================================
+
+document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) {
+        // المستخدم عاد للمتصفح - تحقق من الحالة
+        getUserStatus(true);
+        updateProfileDropdown(true);
+    }
+});
+
+// ============================================
+// ✅ التحقق عند إعادة فتح المتصفح (pageshow)
+// ============================================
+
+window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+        // الصفحة تم تحميلها من Cache المتصفح
+        getUserStatus(true);
+        updateProfileDropdown(true);
+    }
+});
+
+// ============================================
+// بدء التشغيل
+// ============================================
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initAuth);
@@ -798,6 +907,10 @@ function applyMobileAuthStyles() {
 document.addEventListener('DOMContentLoaded', function() {
     applyMobileAuthStyles();
 });
+
+// ============================================
+// تصدير الدوال للاستخدام الخارجي
+// ============================================
 
 window.getUserStatusGlobal = getUserStatus;
 window.getLoggedInEmailGlobal = getLoggedInEmail;
