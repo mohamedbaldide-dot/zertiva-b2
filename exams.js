@@ -89,21 +89,21 @@ let currentExamsList = [];
 let currentMündlichPart = 2;
 let examUserStatusCache = null;
 let examLastStatusCheck = 0;
-// ========== دوال التحقق من حالة المستخدم - مع تحسين Cache ==========
 async function getUserStatusForExam() {
     let email = localStorage.getItem('zertiva_email');
     if (!email) return 'guest';
     
     let now = Date.now();
-    // ✅ زيادة مدة Cache إلى 60 ثانية بدلاً من 5 ثوانٍ
-    if (examUserStatusCache && (now - examLastStatusCheck) < 60000) {
+    // ✅ إذا كان الكاش موجوداً ولم يمر أكثر من 5 دقائق، استخدمه
+    if (examUserStatusCache && (now - examLastStatusCheck) < 300000) {
         return examUserStatusCache;
     }
     
     try {
-        // ✅ استخدام getUserStatus من auth.js مع Cache مدمج
+        // ✅ استخدم getUserStatus من auth.js مع Cache مدمج
         if (typeof window.getUserStatusGlobal === 'function') {
-            const status = await window.getUserStatusGlobal();
+            // ✅ تمرير true لتحديث الكاش
+            const status = await window.getUserStatusGlobal(true);
             examUserStatusCache = status;
             examLastStatusCheck = now;
             return status;
@@ -123,6 +123,10 @@ async function getUserStatusForExam() {
         examLastStatusCheck = now;
         return 'free';
     } catch(e) {
+        // ✅ في حالة الخطأ، استخدم الحالة المخزنة إن وجدت
+        if (examUserStatusCache) {
+            return examUserStatusCache;
+        }
         examUserStatusCache = 'free';
         examLastStatusCheck = now;
         return 'free';
