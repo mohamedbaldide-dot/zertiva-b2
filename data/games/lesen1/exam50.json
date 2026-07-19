@@ -1,0 +1,52 @@
+{
+  "title": "Lesen Teil 1 - Exam 50: Computer",
+  "skill": "lesen1",
+  "type": "matching",
+  "questions": [
+    {
+      "firstWords": "‚Auf meinen elektronischen Steuerberater kann ich mich hundertprozentig",
+      "correctTitle": "Elektronischer Weg aus dem Steuerlabyrinth",
+      "shortCorrectTitle": "Elektronischer Weg aus dem Steuerlabyrinth",
+      "wrongTitles": [
+        "Verschenken Sie Ihr Geld nicht an den Staat!",
+        "Neuer Computerkurs an der Volkshochschule"
+      ]
+    },
+    {
+      "firstWords": "Kundenberaterin Sabine E. ist ständig auf Achse. Als Repräsentantin",
+      "correctTitle": "Neues Hotelangebot spart Geschäftsleuten Zeit",
+      "shortCorrectTitle": "Neues Hotelangebot spart Geschäftsleuten Zeit",
+      "wrongTitles": [
+        "Hotels online vermarkten",
+        "Jeder kann Netzreporter werden"
+      ]
+    },
+    {
+      "firstWords": "Ein Referat für den Geschichtsunterricht über Karl den Großen",
+      "correctTitle": "Pädagogen gegen Internetdienste",
+      "shortCorrectTitle": "Pädagogen gegen Internetdienste",
+      "wrongTitles": [
+        "Onlinebibliothek für Referate und Kurznachrichten",
+        "Historisches Wissen ohne Mühe"
+      ]
+    },
+    {
+      "firstWords": "Wer könnte interessantere Meldungen aus allen Ecken des World",
+      "correctTitle": "Jeder kann Netzreporter werden",
+      "shortCorrectTitle": "Jeder kann Netzreporter werden",
+      "wrongTitles": [
+        "Onlinebibliothek für Referate und Kurznachrichten",
+        "Pädagogen gegen Internetdienste"
+      ]
+    },
+    {
+      "firstWords": "Zu Beginn des Englischkurses fragt Verena Baum ihre Mitlernenden",
+      "correctTitle": "Sprachen lernen per Computer",
+      "shortCorrectTitle": "Sprachen lernen per Computer",
+      "wrongTitles": [
+        "Neuer Computerkurs an der Volkshochschule",
+        "Historisches Wissen ohne Mühe"
+      ]
+    }
+  ]
+}

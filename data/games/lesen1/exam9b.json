@@ -1,0 +1,52 @@
+{
+  "title": "Lesen Teil 1 - Exam 6: Grundschule (معدل)",
+  "skill": "lesen1",
+  "type": "matching",
+  "questions": [
+    {
+      "firstWords": "Berlin wird in 10 Jahren rund 5.000 Lehrkräfte weniger",
+      "correctTitle": "GEW befürchtet Abwanderung von gut ausgebildeten Lehrkräften aus Berlin",
+      "shortCorrectTitle": "GEW befürchtet Abwanderung von gut ausgebildeten Lehrkräften aus Berlin",
+      "wrongTitles": [
+        "Experten befürchten zunehmenden Lehrermangel in Deutschland",
+        "Gewerkschaft erwartet Lehrermangel in Berlin"
+      ]
+    },
+    {
+      "firstWords": "Wer sich in Berlin um eine Stelle als Lehrer",
+      "correctTitle": "GEW befürchtet Abwanderung von gut ausgebildeten Lehrkräften aus Berlin",
+      "shortCorrectTitle": "GEW befürchtet Abwanderung von gut ausgebildeten Lehrkräften aus Berlin",
+      "wrongTitles": [
+        "Immer mehr Berliner wandern aus",
+        "Bildungsexperten warnen: Deutsche Lehrer sind schlecht ausgebildet"
+      ]
+    },
+    {
+      "firstWords": "Eltern über Stundenausfall und Schulleiter über fehlende Bewerber.",
+      "correctTitle": "Experten befürchten zunehmenden Lehrermangel in Deutschland",
+      "shortCorrectTitle": "Experten befürchten zunehmenden Lehrermangel in Deutschland",
+      "wrongTitles": [
+        "Bildungforscher: Lehrermangel nicht in solchen Bereichen bestehen",
+        "Gewerkschaft erwartet Lehrermangel in Berlin"
+      ]
+    },
+    {
+      "firstWords": "Bildungspolitiker und Lehrervertreter wollen Abiturienten scharenweise in den",
+      "correctTitle": "Bildungforscher: Lehrermangel nicht in solchen Bereichen bestehen",
+      "shortCorrectTitle": "Bildungforscher: Lehrermangel nicht in solchen Bereichen bestehen",
+      "wrongTitles": [
+        "Experten befürchten zunehmenden Lehrermangel in Deutschland",
+        "Vorausschauende Politiker verhindern Lehrermangel in Berlin"
+      ]
+    },
+    {
+      "firstWords": "Mädchen haben tendenziell bessere Noten und stellen 56 Prozent",
+      "correctTitle": "An deutschen Grundschulen sind männliche Lehrkräfte selten",
+      "shortCorrectTitle": "An deutschen Grundschulen sind männliche Lehrkräfte selten",
+      "wrongTitles": [
+        "Die Zahl der männlichen Lehrkräfte an Grundschulen nimmt zu",
+        "Immer weniger Frauen machen ein Grundschullehrer-Studium"
+      ]
+    }
+  ]
+}

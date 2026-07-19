@@ -1,0 +1,52 @@
+{
+  "title": "Lesen Teil 1 - Exam 51: Nordsee",
+  "skill": "lesen1",
+  "type": "matching",
+  "questions": [
+    {
+      "firstWords": "Wer sportlich aktiv sein möchte, fragt sich zu Beginn",
+      "correctTitle": "Sport-Empfehlung: Schwimmen, Gehen, Radfahren",
+      "shortCorrectTitle": "Sport-Empfehlung: Schwimmen, Gehen, Radfahren",
+      "wrongTitles": [
+        "TENNIS FÜR ANFÄNGER",
+        "Unser Gesundheits-Tipp: Nordsee!"
+      ]
+    },
+    {
+      "firstWords": "Köstliches Deutschland (Südwest, 192 S., 19,50 Euro) – ein",
+      "correctTitle": "Kochen und Reisen in Deutschland",
+      "shortCorrectTitle": "Kochen und Reisen in Deutschland",
+      "wrongTitles": [
+        "Unser Tipp: Goethes Kochbuch",
+        "Beispiel Rhön: Das Land nutzen und die Natur erhalten"
+      ]
+    },
+    {
+      "firstWords": "Behutsame Landnutzung im Einklang mit der Natur hat die",
+      "correctTitle": "Beispiel Rhön: Das Land nutzen und die Natur erhalten",
+      "shortCorrectTitle": "Beispiel Rhön: Das Land nutzen und die Natur erhalten",
+      "wrongTitles": [
+        "Rhön-Verein bildet Bauern aus",
+        "Kochen und Reisen in Deutschland"
+      ]
+    },
+    {
+      "firstWords": "Allein in Salzluft, Sonne und Seewind bekommen Körper und",
+      "correctTitle": "Unser Gesundheits-Tipp: Nordsee!",
+      "shortCorrectTitle": "Unser Gesundheits-Tipp: Nordsee!",
+      "wrongTitles": [
+        "Beispiel Nordsee: Immer mehr einsame Menschen im Urlaub",
+        "Sport-Empfehlung: Schwimmen, Gehen, Radfahren"
+      ]
+    },
+    {
+      "firstWords": "Dass die Stimme – vornehmlich von Männern – im",
+      "correctTitle": "Andere Stimme ab 70?",
+      "shortCorrectTitle": "Andere Stimme ab 70?",
+      "wrongTitles": [
+        "Ältere Männer verlieren Kraft und Dynamik",
+        "Unser Gesundheits-Tipp: Nordsee!"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Lesen Teil 1 - Exam 55: Wohnen",
+  "skill": "lesen1",
+  "type": "matching",
+  "questions": [
+    {
+      "firstWords": "Wer im Alter nicht mehr alleine ein eigenständiges und",
+      "correctTitle": "Selbstbestimmtes Leben im Alter für viele zu teuer",
+      "shortCorrectTitle": "Selbstbestimmtes Leben im Alter für viele zu teuer",
+      "wrongTitles": [
+        "Experte sagt Wohnungsnot in Städten voraus",
+        "Ansprüche an Wohnfläche altersabhängig"
+      ]
+    },
+    {
+      "firstWords": "Als junger Mensch in Wien auf Wohnungssuche zu sein",
+      "correctTitle": "Wohnbedürfnisse der Jugend bisher vernachlässigt",
+      "shortCorrectTitle": "Wohnbedürfnisse der Jugend bisher vernachlässigt",
+      "wrongTitles": [
+        "Für leistbares Wohnen werden lange Wartezeiten akzeptiert",
+        "Selbstbestimmtes Leben im Alter für viele zu teuer"
+      ]
+    },
+    {
+      "firstWords": "Wohnen wie immer? Laut Ansicht des renommierten Zukunftsforschers Adrian",
+      "correctTitle": "Wohnentwürfe so divers wie die Menschen",
+      "shortCorrectTitle": "Wohnentwürfe so divers wie die Menschen",
+      "wrongTitles": [
+        "Experte sagt Wohnungsnot in Städten voraus",
+        "Ansprüche an Wohnfläche altersabhängig"
+      ]
+    },
+    {
+      "firstWords": "Dass sich die Menschen einmal danach sehnen würden, möglichst",
+      "correctTitle": "Neuer Trend könnte für Steigerung der Einwohnerzahl sorgen",
+      "shortCorrectTitle": "Neuer Trend könnte für Steigerung der Einwohnerzahl sorgen",
+      "wrongTitles": [
+        "Wie man zusätzlichen Wohnraum nutzen kann",
+        "Landleben gibt neue Energie"
+      ]
+    },
+    {
+      "firstWords": "Wer hat insgeheim nicht jenen Tag herbeigesehnt, an dem",
+      "correctTitle": "Ansprüche an Wohnfläche altersabhängig",
+      "shortCorrectTitle": "Ansprüche an Wohnfläche altersabhängig",
+      "wrongTitles": [
+        "Selbstbestimmtes Leben im Alter für viele zu teuer",
+        "Hausbesitz schränkt in der Mobilität ein"
+      ]
+    }
+  ]
+}
