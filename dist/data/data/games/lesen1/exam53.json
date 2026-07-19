@@ -1,0 +1,52 @@
+{
+  "title": "Lesen Teil 1 - Exam 53: Evolution",
+  "skill": "lesen1",
+  "type": "matching",
+  "questions": [
+    {
+      "firstWords": "Die zunehmende Klimaveränderung macht sich bereits in der Tierwelt",
+      "correctTitle": "Störungen des biologischen Rhythmus von Zugvögeln",
+      "shortCorrectTitle": "Störungen des biologischen Rhythmus von Zugvögeln",
+      "wrongTitles": [
+        "Veränderte Wanderwege von Zugvögeln",
+        "Klimawandel erschwerte die Evolution"
+      ]
+    },
+    {
+      "firstWords": "Das Klima hatte einen entscheidenden Einfluss auf die Entwicklung",
+      "correctTitle": "Evolution durch klimatische Veränderungen begünstigt",
+      "shortCorrectTitle": "Evolution durch klimatische Veränderungen begünstigt",
+      "wrongTitles": [
+        "Klimawandel erschwerte die Evolution",
+        "Neue Studie belegt Verwandtschaft zwischen Säugetieren"
+      ]
+    },
+    {
+      "firstWords": "Fast dreizehn Jahrhunderte lang blühte die Hochkultur der Maya",
+      "correctTitle": "Wetterbedingungen könnten den Zerfall von Hochkulturen beschleunigt haben",
+      "shortCorrectTitle": "Wetterbedingungen könnten den Zerfall von Hochkulturen beschleunigt haben",
+      "wrongTitles": [
+        "Keine neuen Erkenntnisse über den Niedergang der Hochkultur",
+        "Klimawandel erschwerte die Evolution"
+      ]
+    },
+    {
+      "firstWords": "Experten nehmen an, dass Tag für Tag rund 100",
+      "correctTitle": "Der Mensch ist am Aussterben von Tierarten schuld",
+      "shortCorrectTitle": "Der Mensch ist am Aussterben von Tierarten schuld",
+      "wrongTitles": [
+        "Optimistische Projekte, um das Artensterben aufzuhalten",
+        "Anzahl und Rolle der Arten noch unklar"
+      ]
+    },
+    {
+      "firstWords": "Wie eng eine Art mit ihrem Lebensraum verbunden ist",
+      "correctTitle": "Anzahl und Rolle der Arten noch unklar",
+      "shortCorrectTitle": "Anzahl und Rolle der Arten noch unklar",
+      "wrongTitles": [
+        "Der Mensch ist am Aussterben von Tierarten schuld",
+        "Optimistische Projekte, um das Artensterben aufzuhalten"
+      ]
+    }
+  ]
+}

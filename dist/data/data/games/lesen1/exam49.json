@@ -1,0 +1,52 @@
+{
+  "title": "Lesen Teil 1 - Exam 49: Wetter",
+  "skill": "lesen1",
+  "type": "matching",
+  "questions": [
+    {
+      "firstWords": "Kyrill, Friederike, Lothar oder Xaver – all dies sind",
+      "correctTitle": "Eine ungewöhnliche Geschenkidee",
+      "shortCorrectTitle": "Eine ungewöhnliche Geschenkidee",
+      "wrongTitles": [
+        "Warum Tiefs immer weibliche Namen haben",
+        "Präzise Vorhersage von Stürmen durch neue Messinstrumente"
+      ]
+    },
+    {
+      "firstWords": "Der Jugendwettbewerb ‚Naturwissenschaft & Technik‘ geht in die",
+      "correctTitle": "Schüler erfinden App und gewinnen Wettbewerb",
+      "shortCorrectTitle": "Schüler erfinden App und gewinnen Wettbewerb",
+      "wrongTitles": [
+        "Junge Erfinder zeigen ihr Können",
+        "Gut informiert mit neuer Wetter-App"
+      ]
+    },
+    {
+      "firstWords": "Am gestrigen Abend fegte Sturmtief Charlotte über Deutschland hinweg",
+      "correctTitle": "Heftiger Sturm sorgt für Verkehrschaos in Deutschland",
+      "shortCorrectTitle": "Heftiger Sturm sorgt für Verkehrschaos in Deutschland",
+      "wrongTitles": [
+        "Sturm richtet schwere Schäden an Flughäfen an",
+        "Präzise Vorhersage von Stürmen durch neue Messinstrumente"
+      ]
+    },
+    {
+      "firstWords": "Soll ich einen Pullover anziehen oder reicht ein T-Shirt?",
+      "correctTitle": "Gut informiert mit neuer Wetter-App",
+      "shortCorrectTitle": "Gut informiert mit neuer Wetter-App",
+      "wrongTitles": [
+        "Kostenlose Wetter-Apps sind nicht empfehlenswert",
+        "Schüler erfinden App und gewinnen Wettbewerb"
+      ]
+    },
+    {
+      "firstWords": "Zehn Jahre ist es her, dass sich aus einem scheinbar",
+      "correctTitle": "Vorhersage von Stürmen ist schwierig",
+      "shortCorrectTitle": "Vorhersage von Stürmen ist schwierig",
+      "wrongTitles": [
+        "Präzise Vorhersage von Stürmen durch neue Messinstrumente",
+        "Heftiger Sturm sorgt für Verkehrschaos in Deutschland"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "title": "Lesen Teil 1 - Exam 48: Farben in der Wohnung",
+  "skill": "lesen1",
+  "type": "matching",
+  "questions": [
+    {
+      "firstWords": "Wohnen in Harmonie mit den Kräften der Natur. Feng",
+      "correctTitle": "Wohnen in Harmonie mit den Kräften der Natur",
+      "shortCorrectTitle": "Wohnen in Harmonie mit den Kräften der Natur",
+      "wrongTitles": [
+        "Farbberatung durch den Gärtner oder die Floristin",
+        "Möbel als Energiequellen der Zukunft"
+      ]
+    },
+    {
+      "firstWords": "Farben in der Wohnung als Therapie. Farben haben eine",
+      "correctTitle": "Farben in der Wohnung als Therapie",
+      "shortCorrectTitle": "Farben in der Wohnung als Therapie",
+      "wrongTitles": [
+        "Gesünder durch kräftige, leuchtende Farben in der Wohnung",
+        "Zimmerpflanzen sorgen für gute Stimmung bei Menschen"
+      ]
+    },
+    {
+      "firstWords": "Pflanzen machen den Wohnraum gesünder. Wert so hohen natürlichen",
+      "correctTitle": "Pflanzen machen den Wohnraum gesünder",
+      "shortCorrectTitle": "Pflanzen machen den Wohnraum gesünder",
+      "wrongTitles": [
+        "Kräuter bringen Farbe in Wohnräume",
+        "Zimmerpflanzen sorgen für gute Stimmung bei Menschen"
+      ]
+    },
+    {
+      "firstWords": "Kräuter als Zimmerpflanzen. Frische Kräuter machen jedes Essen",
+      "correctTitle": "Kräuter als Zimmerpflanzen",
+      "shortCorrectTitle": "Kräuter als Zimmerpflanzen",
+      "wrongTitles": [
+        "Kräuter bringen Farbe in Wohnräume",
+        "Farbberatung durch den Gärtner oder die Floristin"
+      ]
+    },
+    {
+      "firstWords": "Zimmerpflanzen sorgen für gute Stimmung bei Menschen. Bei der",
+      "correctTitle": "Zimmerpflanzen sorgen für gute Stimmung bei Menschen",
+      "shortCorrectTitle": "Zimmerpflanzen sorgen für gute Stimmung bei Menschen",
+      "wrongTitles": [
+        "Gesünder durch kräftige, leuchtende Farben in der Wohnung",
+        "Pflanzen machen den Wohnraum gesünder"
+      ]
+    }
+  ]
+}
