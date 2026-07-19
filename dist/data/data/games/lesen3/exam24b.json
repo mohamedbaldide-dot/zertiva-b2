@@ -1,0 +1,61 @@
+{
+  "title": "Lesen Teil 3 - Exam 24: المرشد السياحي (معدل)",
+  "skill": "lesen3",
+  "type": "matching",
+  "questions": [
+    {
+      "firstWords": "Das Museum der Badekultur lädt große und kleine Besucher...",
+      "correctTitle": "Eine Frau möchte mit ihrem 10-jährigen Sohn eine Aktivität durchführen und erhält bei dieser Aktivität Ermäßigungen.",
+      "shortCorrectTitle": "Eine Frau möchte mit ihrem Sohn eine Aktivität machen.",
+      "wrongTitles": [
+        "Sie möchten einen Urlaub mit besonderen Aktivitäten verbringen.",
+        "Ihre Tante möchte bekannte Unterhaltungsmöglichkeiten in Rom sehen."
+      ]
+    },
+    {
+      "firstWords": "Die Badrenovierung steht vor der Tür? Dann besuchen Sie...",
+      "correctTitle": "Ihre Schwester erneuert ihr Badezimmer und sucht nach modernen Badezimmermodellen.",
+      "shortCorrectTitle": "Ihre Schwester sucht moderne Badezimmermodelle.",
+      "wrongTitles": [
+        "Sie möchten wissen, wie man Kosmetik zubereitet.",
+        "Ihre Bekannte ist Köchin und sucht einen Job."
+      ]
+    },
+    {
+      "firstWords": "Ein Blick hinter die Kulissen Entdecken Sie die Welt...",
+      "correctTitle": "Sie möchten wissen, wie man aus der Natur gewonnene Kosmetik zubereitet.",
+      "shortCorrectTitle": "Sie möchten wissen, wie man Kosmetik herstellt.",
+      "wrongTitles": [
+        "Ihre Schwester erneuert ihr Badezimmer.",
+        "Ihre Bekannte ist Köchin und sucht einen Job."
+      ]
+    },
+    {
+      "firstWords": "Rom bei Nacht Erleben Sie die Ewige Stadt nach...",
+      "correctTitle": "Sie möchten irgendwo einen Urlaub mit besonderen Aktivitäten verbringen.",
+      "shortCorrectTitle": "Sie möchten einen Urlaub mit besonderen Aktivitäten.",
+      "wrongTitles": [
+        "Ihre Tante möchte bekannte Unterhaltungsmöglichkeiten in Rom sehen.",
+        "Sie möchten Ihren Urlaub in Berlin verbringen."
+      ]
+    },
+    {
+      "firstWords": "Werden Sie Botschafter unserer Stadt! Sie kennen sich gut...",
+      "correctTitle": "Ihr Freund möchte als Stadtführer arbeiten und hat keine Erfahrungen.",
+      "shortCorrectTitle": "Ihr Freund möchte als Stadtführer arbeiten.",
+      "wrongTitles": [
+        "Sie möchten Ihren Urlaub in Berlin verbringen.",
+        "Ihr Bruder möchte etwas über historische Geschichten hören."
+      ]
+    },
+    {
+      "firstWords": "Zwei Meister am Herd in der Filmkomödie 'Zwei Meister...",
+      "correctTitle": "Sie mögen leichte Unterhaltung und würden gerne mal wieder richtig lachen.",
+      "shortCorrectTitle": "Sie möchten eine lustige Komödie sehen.",
+      "wrongTitles": [
+        "Ihre Bekannte ist Köchin und sucht einen Job.",
+        "Sie möchten einen Urlaub mit besonderen Aktivitäten verbringen."
+      ]
+    }
+  ]
+}

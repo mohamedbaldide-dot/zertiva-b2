@@ -1,0 +1,79 @@
+{
+  "title": "Lesen Teil 3 - Exam 6: Musik und Gitarre (معدل)",
+  "skill": "lesen3",
+  "type": "matching",
+  "questions": [
+    {
+      "firstWords": "Die Veranstaltungsprofis Seit mehr als zwanzig Jahren organisieren...",
+      "correctTitle": "Ein Bekannter hat bei der Veranstaltung Frankfurt gearbeitet und sucht eine andere Stelle in diesem Bereich.",
+      "shortCorrectTitle": "Ein Bekannter sucht eine Stelle im Veranstaltungsbereich.",
+      "wrongTitles": [
+        "Sie mögen Musik und möchten in diesem Bereich einen Job.",
+        "Ein Kollege möchte eine mehrtägige Musikveranstaltung besuchen."
+      ]
+    },
+    {
+      "firstWords": "Gemeinsam mehr erleben Gruppenreisen bieten wir Ihnen bereits...",
+      "correctTitle": "Ein Kollege möchte mit sechs Freunden eine mehrtägige Musikveranstaltung besuchen.",
+      "shortCorrectTitle": "Ein Kollege möchte mit Freunden eine Musikveranstaltung besuchen.",
+      "wrongTitles": [
+        "Sie möchten einer Freundin Eintrittskarten schenken.",
+        "Eine Bekannte ist Musikerin und sucht Auftrittsmöglichkeiten."
+      ]
+    },
+    {
+      "firstWords": "Musikfestival Taubertal: 24. Juli bis 3. August Auch...",
+      "correctTitle": "Sie mögen Musik und möchten in diesem Bereich einen Job.",
+      "shortCorrectTitle": "Sie mögen Musik und suchen einen Job.",
+      "wrongTitles": [
+        "Ein Bekannter sucht eine Stelle im Veranstaltungsbereich.",
+        "Ein Bekannter spielt Gitarre und möchte ein weiteres Instrument lernen."
+      ]
+    },
+    {
+      "firstWords": "Alle Veranstaltungen aus einer Hand Ob Jazz, Rock,...",
+      "correctTitle": "Sie möchten einer Freundin Eintrittskarten für eine Musikveranstaltung schenken.",
+      "shortCorrectTitle": "Sie möchten Eintrittskarten verschenken.",
+      "wrongTitles": [
+        "Ein Kollege möchte eine mehrtägige Musikveranstaltung besuchen.",
+        "Sie interessieren sich für Bücher und möchten eine Messe besuchen."
+      ]
+    },
+    {
+      "firstWords": "Wir organisieren Veranstaltungen in verschiedenen Größenordnungen - von...",
+      "correctTitle": "Ein Bekannter muss eine Jubiläumsfeier organisieren und sucht Unterstützung.",
+      "shortCorrectTitle": "Ein Bekannter sucht Unterstützung für eine Jubiläumsfeier.",
+      "wrongTitles": [
+        "Ein Bekannter sucht eine Stelle im Veranstaltungsbereich.",
+        "Sie möchten einer Freundin Eintrittskarten schenken."
+      ]
+    },
+    {
+      "firstWords": "I Gitarre, Violine & Co. Im Musikverein Wohlklang lernen...",
+      "correctTitle": "Die sechsjährige Tochter eines Nachbarn würde gerne mit anderen Kindern Musik machen.",
+      "shortCorrectTitle": "Ein Kind möchte mit anderen Kindern Musik machen.",
+      "wrongTitles": [
+        "Ein Bekannter spielt Gitarre und möchte ein weiteres Instrument lernen.",
+        "Sie mögen Musik und möchten in diesem Bereich einen Job."
+      ]
+    },
+    {
+      "firstWords": "Rhein/Ruhr-Festival Im kommenden Herbst findet zum ersten...",
+      "correctTitle": "Eine Bekannte ist Musikerin und sucht Möglichkeiten, mit ihrer Gruppe aufzutreten.",
+      "shortCorrectTitle": "Eine Bekannte sucht Auftrittsmöglichkeiten.",
+      "wrongTitles": [
+        "Sie mögen Musik und möchten in diesem Bereich einen Job.",
+        "Ein Bekannter sucht Unterstützung für eine Jubiläumsfeier."
+      ]
+    },
+    {
+      "firstWords": "Musiker gesucht Seit einem Jahr vermitteln wir 'Musiktandems'...",
+      "correctTitle": "Ein Bekannter 55 Jahre alt spielt Gitarre und möchte ein weiteres Instrument lernen.",
+      "shortCorrectTitle": "Ein Bekannter möchte ein weiteres Instrument lernen.",
+      "wrongTitles": [
+        "Die sechsjährige Tochter eines Nachbarn möchte mit anderen Kindern Musik machen.",
+        "Ihre Nachbarin möchte ihre Violine verkaufen."
+      ]
+    }
+  ]
+}
