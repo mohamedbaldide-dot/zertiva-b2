@@ -2285,10 +2285,54 @@ console.log("✅ Firebase initialized");
     
     console.log("✅ زر 💡 طريقة الاشتراك الجديد جاهز");
 })();
- // ============================================
-// نظام الاشتراك المنبثق (Subscription Modal) - تم إلغاؤه
-// ============================================
-// جميع أزرار الاشتراك تذهب الآن إلى subscribe.html
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // دالة الانتقال لصفحة الاشتراك
+    function goSubscribe(e) {
+        if (e) e.preventDefault();
+        window.location.href = "subscribe.html";
+    }
+
+    // قائمة بجميع أزرار الاشتراك
+    var subscribeButtons = [
+        "navSubscribeBtn",
+        "featuresSubscribeBtn",
+        "subscribeGuideBtn",
+        "dropdownUpgradeBtn"
+    ];
+
+    // ربط كل زر بالدالة
+    subscribeButtons.forEach(function(id) {
+        var btn = document.getElementById(id);
+        if (btn) {
+            // إزالة أي مستمعات قديمة لمنع التعارض
+            btn.onclick = null;
+            btn.addEventListener('click', goSubscribe);
+            console.log('✅ تم ربط زر:', id);
+        } else {
+            console.warn('⚠️ الزر غير موجود:', id);
+        }
+    });
+
+    // 🔄 إعادة الربط بعد تحميل أي محتوى ديناميكي
+    var observer = new MutationObserver(function() {
+        subscribeButtons.forEach(function(id) {
+            var btn = document.getElementById(id);
+            if (btn && !btn._subscribed) {
+                btn.addEventListener('click', goSubscribe);
+                btn._subscribed = true;
+                console.log('✅ تم ربط زر ديناميكي:', id);
+            }
+        });
+    });
+
+    // مراقبة إضافة عناصر جديدة
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('🚀 نظام الاشتراك جاهز');
+});
 </script>
 
 </body>
