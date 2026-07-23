@@ -1,6 +1,20 @@
 {
   "notifications": [
     {
+      "id": 27,
+      "title": "🔄 تحديث نظام Memory Trainer",
+      "message": "تم تعديل نظام ميزة memorytrainer في أقسام Lesen Teil 1 و Teil 3 لتحسين الأداء والدقة. يُرجى تحديث الصفحة (Actualiser) لتطبيق التغييرات الجديدة.",
+      "time": "23 يوليوز 2026",
+      "unread": true
+    },
+    {
+      "id": 26,
+      "title": "⚠️ مشكلة في رقم واتساب",
+      "message": "نواجه حالياً مشكلة تقنية في رقم واتساب الخاص بنا. نعمل على حلها في أقرب وقت، وسنقوم بتحديثكم حال انتهاء الإصلاح. شكراً لتفهمكم.",
+      "time": "23 يوليوز 2026",
+      "unread": true
+    },
+    {
       "id": 25,
       "title": "✍️ تحديث Schreiben",
       "message": "السلام الخوت، تزادو مجموعة جديدة من المواضيع فـ Schreiben B2. ضروري تخدموهم وتركزو عليهم مزيان حيت راه كاينين فهاد الأيام. لي ما بانتش ليه فالموقع يدير تحديث للصفحة 📝",
@@ -117,62 +131,6 @@
       "title": "✍️ تحديث Schreiben",
       "message": "الخوت راه تزادت تيما جديدة سميتها 'SPORTHEINPARKPLATZ FÜR KINDER'، حاولو تخدموها. لي ما بانتش ليه يدير غير تحديث للصفحة.",
       "time": "7 ماي 2026",
-      "unread": true
-    },
-    {
-      "id": 8,
-      "title": "📚 تحديث شامل للمنصة",
-      "message": "تقدروا تخدمو هاد 3 مواضيع: Frauen im Arbeitsmarkt, Baby Tv, و Bäder. Sprachbaustein 1: موضوع 'Herr Wenzel'. Sprachbaustein 2: موضوع 'Teleshopping' تصححو كاع الأخطاء. Schreiben: FITWATCH Smartwatch, Rundum sorglos unterwegs, DIGIBIKE.",
-      "time": "26 أبريل 2026",
-      "unread": true
-    },
-    {
-      "id": 7,
-      "title": "🐟 تحديث Lesen Teil 1",
-      "message": "الخوت راه تزادت Lesen Teil 1 جديدة ديال 'السمك - Fische'. ركزو عليها مزيان حيت عاد تحطات مؤخرا. بالتوفيق 🐟",
-      "time": "19 أبريل 2026",
-      "unread": true
-    },
-    {
-      "id": 6,
-      "title": "🐱 تحديث Sprachbausteine 2",
-      "message": "تمت إضافة sprachbaustein 2 قديم أصبح يظهر في الإمتحانات و إسمه Katzen - القطط",
-      "time": "18 أبريل 2026",
-      "unread": true
-    },
-    {
-      "id": 5,
-      "title": "⚠️ تنبيه مهم",
-      "message": "قم فقط بتحديث (Actualise) الموقع ليظهر لك كل جديد ✨",
-      "time": "17 أبريل 2026",
-      "unread": true
-    },
-    {
-      "id": 4,
-      "title": "🦁 تحديثات جديدة",
-      "message": "تمت اضافه تعديل موضوع 'Liebe Agnieszka' باسم 'Liebe Anna'، كما تمت إضافة 'Liebe Sandra'. كما تمت إضافة أحدث تسريب للجزء الأول (Teil 1) المتعلق بموضوع 'الأسود - Löwen'.",
-      "time": "17 أبريل 2026",
-      "unread": true
-    },
-    {
-      "id": 3,
-      "title": "🪑 تحديث Lesen Teil 3",
-      "message": "تمت إضافة Teil 3 جديدة بعنوان 'Möbel für ihre neue Wohnung' في قسم القراءة (Lesen). اضغط هنا للبدء في التمرين",
-      "time": "13 أبريل 2026",
-      "unread": true
-    },
-    {
-      "id": 2,
-      "title": "🚗 تحديث Lesen Teil 3",
-      "message": "تمت إضافة Teil 3 جديدة بعنوان 'السيارات - Autos' في قسم القراءة (Lesen). اضغط هنا للبدء في التمرين 🚗",
-      "time": "13 أبريل 2026",
-      "unread": true
-    },
-    {
-      "id": 1,
-      "title": "🦁 تحديث شامل للمنصة",
-      "message": "تمت إضافة موضوع 'الأُسود' (Löwen) في Lesen. تمت إضافة جميع المواضيع الجديدة في Hören (مواضيع تركيا). تمت إضافة مواضيع الكتابة الجديدة: Fotobuch, Kosmetik-Shop, Abenteuer TIKKI TAKKA, Informatik, Partyservice.",
-      "time": "12 أبريل 2026",
       "unread": true
     }
   ]
