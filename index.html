@@ -2285,53 +2285,54 @@ console.log("✅ Firebase initialized");
     
     console.log("✅ زر 💡 طريقة الاشتراك الجديد جاهز");
 })();
+ // ============================================
+// نظام الاشتراك المنبثق (Subscription Modal) - تم إلغاؤه
+// ============================================
+// جميع أزرار الاشتراك تذهب الآن إلى subscribe.html
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+// ============================================
+// 🔗 ربط أزرار الاشتراك (navSubscribeBtn + featuresSubscribeBtn)
+// ============================================
+document.addEventListener("DOMContentLoaded", function() {
 
-    // دالة الانتقال لصفحة الاشتراك
-    function goSubscribe(e) {
+    // دالة الانتقال إلى صفحة الاشتراك (نفس المنطق المستخدم في زر الترقية)
+    function goToSubscribe(e) {
         if (e) e.preventDefault();
         window.location.href = "subscribe.html";
     }
 
-    // قائمة بجميع أزرار الاشتراك
+    // قائمة بأزرار الاشتراك
     var subscribeButtons = [
         "navSubscribeBtn",
-        "featuresSubscribeBtn",
-        "subscribeGuideBtn",
-        "dropdownUpgradeBtn"
+        "featuresSubscribeBtn"
     ];
 
-    // ربط كل زر بالدالة
     subscribeButtons.forEach(function(id) {
         var btn = document.getElementById(id);
         if (btn) {
-            // إزالة أي مستمعات قديمة لمنع التعارض
+            // إزالة أي مستمعات قديمة
             btn.onclick = null;
-            btn.addEventListener('click', goSubscribe);
+            btn.addEventListener('click', goToSubscribe);
             console.log('✅ تم ربط زر:', id);
         } else {
             console.warn('⚠️ الزر غير موجود:', id);
         }
     });
 
-    // 🔄 إعادة الربط بعد تحميل أي محتوى ديناميكي
+    // ✅ مراقبة إضافة أزرار ديناميكية (للتأكد من ربطها لاحقاً)
     var observer = new MutationObserver(function() {
         subscribeButtons.forEach(function(id) {
             var btn = document.getElementById(id);
             if (btn && !btn._subscribed) {
-                btn.addEventListener('click', goSubscribe);
+                btn.addEventListener('click', goToSubscribe);
                 btn._subscribed = true;
                 console.log('✅ تم ربط زر ديناميكي:', id);
             }
         });
     });
-
-    // مراقبة إضافة عناصر جديدة
     observer.observe(document.body, { childList: true, subtree: true });
 
-    console.log('🚀 نظام الاشتراك جاهز');
+    console.log('🚀 أزرار الاشتراك جاهزة');
 });
 </script>
 
