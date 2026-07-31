@@ -1,15 +1,13 @@
-{
+ {
   "notifications": [
-        {
+       {
       "id": 29,
       "title": "سلام. نمرة احتياط بينما نجيبو نمرة جديدة",
       "message": "نمرة القديمة اللي كتسالي ب 91 مبقاتش عندنا. النمرة اللي خدامة هي 0665881925",
       "time": "31 يوليوز 2026",
       "unread": true
-    },
+    },  
     {
-  "notifications": [
-        {
       "id": 28,
       "title": "زدنا ميزة اجي ضحط وفهم لامتحان hören3",
       "message": "زدنا ميزة اجي ضحط وفهم لامتحان hören3, اللي سميتو Sie Hören Den Anrufbeantworter-Buchhandlung",
