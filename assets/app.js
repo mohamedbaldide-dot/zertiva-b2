@@ -24551,35 +24551,6 @@ var MyApp = (() => {
       return null;
     }
   }
-  function getResultColor(score) {
-    if (score === 25) return "#17a2b8";
-    if (score >= 15) return "#28a745";
-    return "#adb5bd";
-  }
-  function createResultBadge(score) {
-    if (score === null) return null;
-    const badge = document.createElement("span");
-    badge.className = "exam-result-badge";
-    badge.textContent = `${score} / 25`;
-    const isMobile = window.innerWidth <= 768;
-    const fs = isMobile ? "8px" : "11px";
-    const pad = isMobile ? "2px 5px" : "3px 8px";
-    const minW = isMobile ? "40px" : "55px";
-    badge.style.cssText = `
-    font-size: ${fs};
-    font-weight: bold;
-    padding: ${pad};
-    border-radius: 20px;
-    color: white;
-    background-color: ${getResultColor(score)};
-    display: inline-block;
-    min-width: ${minW};
-    text-align: center;
-    line-height: 1.4;
-    margin-left: 6px;
-  `;
-    return badge;
-  }
   function saveRetryCount(skill, examId, count) {
     try {
       const key = `exam_retry_${skill}_${examId}`;
@@ -24860,15 +24831,6 @@ var MyApp = (() => {
         titleSpan.textContent = `${exam.id}: ${exam.title}`;
       }
       div.appendChild(titleSpan);
-      const savedScore = getExamResult(skill, exam.id);
-      if (savedScore !== null) {
-        const badge = createResultBadge(savedScore);
-        if (badge) {
-          const existingBadge = titleSpan.querySelector(".exam-result-badge");
-          if (existingBadge) existingBadge.remove();
-          titleSpan.appendChild(badge);
-        }
-      }
       const forbiddenChipsSkills = ["schreiben", "m\xFCndlich", "m\xFCndlich1", "m\xFCndlich2", "m\xFCndlich3"];
       if (!forbiddenChipsSkills.includes(targetSkill)) {
         let getScoreColor = function(score2) {
