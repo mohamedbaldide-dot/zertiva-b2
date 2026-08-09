@@ -5236,7 +5236,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        // ⏳ 1. التحقق من الحد اليومي (قبل أي شيء)
+        //  1. التحقق من الحد اليومي (قبل أي شيء)
         const canProceed = await checkAndIncrementUsage();
         if (!canProceed) {
             showDailyLimitModal(); // رسالة جميلة
@@ -5308,7 +5308,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         console.log('📤 إرسال طلب:', { question: text, context: promptData });
 
-        // ⏳ 5. عرض التحميل
+        //  5. عرض التحميل
         showLoading();
 
         let reply = null;
