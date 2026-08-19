@@ -23065,11 +23065,7 @@ var MyApp = (() => {
         }
         if (key === "Enter") {
           e.preventDefault();
-          if (isCorrectionVisible()) {
-            triggerNextExam();
-          } else {
-            triggerCorrection();
-          }
+          triggerCorrection();
           return;
         }
         if (key === "ArrowRight") {
