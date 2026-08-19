@@ -1312,7 +1312,7 @@ var MyApp = (() => {
     const btn = document.createElement("button");
     btn.id = "globalHelpButton";
     btn.className = "memory-btn btn-blue";
-    btn.textContent = "\u{1F602} \u0627\u062C\u064A \u0636\u062D\u0643 \u0648\u0641\u0647\u0645";
+    btn.textContent = "\u0645\u0633\u0627\u0639\u062F\u0629 \u0644\u0644\u0641\u0647\u0645";
     btn.onmouseenter = () => {
       btn.style.transform = "scale(1.02)";
       btn.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
@@ -18488,7 +18488,7 @@ var MyApp = (() => {
       console.error("\u274C \u062E\u0637\u0623 \u0641\u064A \u062D\u0641\u0638 \u0648\u0642\u062A \u0627\u0644\u0627\u0645\u062A\u062D\u0627\u0646:", e);
     }
   }
-  function getExamTime(skill, examId) {
+  function getExamTime2(skill, examId) {
     try {
       const key = `exam_time_${skill}_${examId}`;
       const val = localStorage.getItem(key);
@@ -22463,7 +22463,7 @@ var MyApp = (() => {
       };
       window.examTimer = examTimer2;
       window.saveExamTime = saveExamTime;
-      window.getExamTime = getExamTime;
+      window.getExamTime = getExamTime2;
       window.formatTime = formatTime;
       window.getTimeColor = getTimeColor;
       window.updateExamTimeInList = updateExamTimeInList;
@@ -25063,6 +25063,8 @@ var MyApp = (() => {
   async function renderExamListForSkill(skill, teilName) {
     currentSkill2 = skill;
     window.currentSkill = skill;
+    const ORDER_MODE_KEY = "examOrderMode";
+    localStorage.removeItem(ORDER_MODE_KEY);
     const container = document.getElementById("examsList");
     if (!container) return;
     container.innerHTML = "";
@@ -25314,6 +25316,10 @@ var MyApp = (() => {
       if (typeof window.applyExamColors === "function") {
         setTimeout(window.applyExamColors, 50);
       }
+    }
+    const savedOrder = localStorage.getItem("examOrderMode");
+    if (savedOrder === "1" && typeof applyLeaderboardOrder === "function") {
+      applyLeaderboardOrder();
     }
   }
   function showVersionsPopup(exam, skill) {
@@ -25730,24 +25736,29 @@ var MyApp = (() => {
     if (oldBtn1) oldBtn1.remove();
     const oldBtn2 = document.getElementById("viewModeToggleBtn2");
     if (oldBtn2) oldBtn2.remove();
-    let currentIndex1 = 0;
+    let currentState = 2;
+    const ICONS_CYCLE = ["leaderboard", "timer_arrow_down", "123"];
     const btn1 = document.createElement("button");
     btn1.id = "viewModeToggleBtn1";
     btn1.className = "view-mode-toggle-btn-1";
     btn1.title = "\u062A\u0628\u062F\u064A\u0644 \u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0642\u0627\u0626\u0645\u0629";
-    const iconName1 = currentIndex1 === 0 ? "leaderboard" : "123";
-    btn1.innerHTML = `<span class="material-symbols-outlined">${iconName1}</span>`;
+    const nextIconIndex = (currentState + 1) % 3;
+    btn1.innerHTML = `<span class="material-symbols-outlined">${ICONS_CYCLE[nextIconIndex]}</span>`;
     btn1.onclick = function(e) {
       e.stopPropagation();
-      currentIndex1 = currentIndex1 === 0 ? 1 : 0;
+      let nextState = (currentState + 1) % 3;
+      currentState = nextState;
       const span = this.querySelector(".material-symbols-outlined");
       if (span) {
-        span.textContent = currentIndex1 === 0 ? "leaderboard" : "123";
+        let nextIconIndex2 = (currentState + 1) % 3;
+        span.textContent = ICONS_CYCLE[nextIconIndex2];
       }
-      if (currentIndex1 === 0) {
-        restoreOriginalOrder();
-      } else {
+      if (currentState === 0) {
         applyLeaderboardOrder();
+      } else if (currentState === 1) {
+        applyTimeOrder();
+      } else {
+        restoreOriginalOrder();
       }
     };
     header.appendChild(btn1);
@@ -25793,11 +25804,35 @@ var MyApp = (() => {
       }
       oldGrid.remove();
     }
-    [...list.querySelectorAll(".item")].forEach((el) => {
-      el.style.cssText = "";
-    });
     if (mode === "list") {
-      console.log("\u{1F4C4} List View");
+      [...list.querySelectorAll(".item")].forEach((el) => {
+        el.style.cssText = `
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: flex-start !important; /* \u2190 \u062A\u063A\u064A\u064A\u0631 \u0645\u0646 space-between \u0625\u0644\u0649 flex-start */
+                align-items: center !important;
+                height: auto !important;
+                padding: 8px 12px !important;
+                margin-bottom: 8px !important;
+                background: white !important;
+                border: 1px solid #e2e8f0 !important;
+                border-radius: 10px !important;
+                box-shadow: none !important;
+                min-height: 44px !important;
+                font-size: 0.65rem !important;
+                cursor: pointer !important;
+            `;
+        const title = el.querySelector(".exam-title");
+        if (title) {
+          title.style.textAlign = "left";
+          title.style.marginRight = "auto";
+        }
+        const rightSide = el.querySelector(".exam-right-icons");
+        if (rightSide) {
+          rightSide.style.marginLeft = "auto";
+        }
+      });
+      console.log("\u{1F4C4} List View (\u0645\u062D\u0627\u0630\u0627\u0629 \u064A\u0633\u0627\u0631)");
       return;
     }
     const exams = [...list.querySelectorAll(".item")].filter(
@@ -26568,39 +26603,9 @@ var MyApp = (() => {
       resetSkillProgress("hoeren1");
     }
   }
-  function saveOriginalOrder() {
-    const list = document.getElementById("examsList");
-    if (!list) return;
-    const gridContainer = document.getElementById("examGridContainer");
-    const targetContainer = gridContainer || list;
-    const exams = [...targetContainer.querySelectorAll(".item")].filter(
-      (el) => !el.classList.contains("teil-header") && !el.classList.contains("memory-progress-bar-container")
-    );
-    if (exams.length === 0) {
-      console.warn("\u26A0\uFE0F saveOriginalOrder: \u0644\u0627 \u062A\u0648\u062C\u062F \u0639\u0646\u0627\u0635\u0631 \u0644\u0644\u062D\u0641\u0638");
-      return;
-    }
-    originalOrderNumbers = exams.map((el) => {
-      const title = el.querySelector(".exam-title");
-      if (!title) return null;
-      const text = title.textContent || "";
-      const match = text.match(/^(\d+):/);
-      return match ? parseInt(match[1], 10) : null;
-    }).filter((num) => num !== null);
-    if (originalOrderNumbers.length === 0) {
-      console.warn("\u26A0\uFE0F saveOriginalOrder: \u0644\u0645 \u064A\u062A\u0645 \u0627\u0644\u0639\u062B\u0648\u0631 \u0639\u0644\u0649 \u0623\u0631\u0642\u0627\u0645\u060C \u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0627\u0644\u0641\u0647\u0631\u0633");
-      originalOrderNumbers = exams.map((_, index) => index + 1);
-    }
-    console.log("\u{1F4CB} \u062A\u0645 \u062D\u0641\u0638 \u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0623\u0635\u0644\u064A:", originalOrderNumbers);
-  }
   function restoreOriginalOrder() {
     const list = document.getElementById("examsList");
     if (!list) return;
-    if (originalOrderNumbers.length === 0) {
-      console.warn("\u26A0\uFE0F restoreOriginalOrder: \u0644\u0627 \u062A\u0648\u062C\u062F \u0623\u0631\u0642\u0627\u0645 \u0645\u062D\u0641\u0648\u0638\u0629\u060C \u0645\u062D\u0627\u0648\u0644\u0629 \u0627\u0644\u062D\u0641\u0638 \u0645\u062C\u062F\u062F\u0627\u064B");
-      saveOriginalOrder();
-      return;
-    }
     const gridContainer = document.getElementById("examGridContainer");
     const targetContainer = gridContainer || list;
     const exams = [...targetContainer.querySelectorAll(".item")].filter(
@@ -26621,36 +26626,21 @@ var MyApp = (() => {
         examMap[num] = el;
       }
     });
-    if (Object.keys(examMap).length === 0) {
-      console.warn("\u26A0\uFE0F restoreOriginalOrder: \u0644\u0645 \u064A\u062A\u0645 \u0627\u0644\u0639\u062B\u0648\u0631 \u0639\u0644\u0649 \u0623\u0631\u0642\u0627\u0645\u060C \u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0627\u0644\u0641\u0647\u0631\u0633");
-      exams.forEach((el, index) => {
-        el.dataset.originalIndex = index;
-      });
-      originalOrderNumbers = exams.map((_, index) => index + 1);
-      exams.forEach((el) => {
-        const idx = parseInt(el.dataset.originalIndex);
-        examMap[idx + 1] = el;
-      });
-    }
+    const sortedKeys = Object.keys(examMap).map(Number).sort((a, b) => a - b);
     const fragment = document.createDocumentFragment();
-    let foundCount = 0;
-    originalOrderNumbers.forEach((num) => {
+    sortedKeys.forEach((num) => {
       if (examMap[num]) {
         fragment.appendChild(examMap[num]);
-        delete examMap[num];
-        foundCount++;
       }
     });
-    Object.keys(examMap).map(Number).sort((a, b) => a - b).forEach((num) => {
-      fragment.appendChild(examMap[num]);
-      foundCount++;
+    exams.forEach((el) => {
+      if (!fragment.contains(el)) {
+        fragment.appendChild(el);
+      }
     });
-    if (foundCount > 0) {
+    if (fragment.childNodes.length > 0) {
       targetContainer.appendChild(fragment);
-      console.log(`\u{1F4CB} \u062A\u0645 \u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0623\u0635\u0644\u064A (${foundCount} \u0639\u0646\u0635\u0631)`);
-    } else {
-      console.warn("\u26A0\uFE0F restoreOriginalOrder: \u0644\u0645 \u064A\u062A\u0645 \u0627\u0644\u0639\u062B\u0648\u0631 \u0639\u0644\u0649 \u0623\u064A \u0639\u0646\u0635\u0631 \u0644\u0644\u0645\u0637\u0627\u0628\u0642\u0629");
-      exams.forEach((el) => targetContainer.appendChild(el));
+      console.log(`\u{1F4CB} \u062A\u0645 \u0627\u0633\u062A\u0639\u0627\u062F\u0629 \u0627\u0644\u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0623\u0635\u0644\u064A (123) \u0628\u0646\u062C\u0627\u062D (${sortedKeys.length} \u0639\u0646\u0635\u0631)`);
     }
   }
   function applyLeaderboardOrder() {
@@ -26666,28 +26656,52 @@ var MyApp = (() => {
       return;
     }
     const data = exams.map((el, index) => {
-      const badge = el.querySelector(".exam-result-badge");
       let score = Infinity;
       let hasResult = false;
-      if (badge) {
-        const txt = badge.textContent.trim();
-        const m = txt.match(/^(\d+)\s*\/\s*\d+/);
-        if (m) {
-          score = parseInt(m[1], 10);
-          hasResult = true;
+      const chips = el.querySelectorAll(".exam-chip");
+      for (let chip of chips) {
+        const icon = chip.querySelector(".material-symbols-outlined");
+        if (icon && icon.textContent === "bar_chart") {
+          const txt = chip.textContent.replace(icon.textContent, "").trim();
+          if (txt !== "\u2014") {
+            const m = txt.match(/^(\d+)\s*\/\s*\d+/);
+            if (m) {
+              score = parseInt(m[1], 10);
+              hasResult = true;
+            }
+          }
+          break;
+        }
+      }
+      if (!hasResult) {
+        const skill = currentSkill2 || "";
+        const title = el.querySelector(".exam-title");
+        let examId = null;
+        if (title) {
+          const match = title.textContent.match(/^(\d+):/);
+          if (match) examId = parseInt(match[1]);
+        }
+        if (skill && examId) {
+          const stored = getExamResult(skill, examId);
+          if (stored !== null) {
+            score = stored;
+            hasResult = true;
+          }
         }
       }
       return { el, score, hasResult, originalIndex: index };
     });
     data.sort((a, b) => {
-      if (!a.hasResult && !b.hasResult) return a.originalIndex - b.originalIndex;
-      if (!a.hasResult) return 1;
-      if (!b.hasResult) return -1;
-      if (a.score === b.score) return a.originalIndex - b.originalIndex;
-      return a.score - b.score;
+      if (a.hasResult && b.hasResult) {
+        if (a.score === b.score) return a.originalIndex - b.originalIndex;
+        return a.score - b.score;
+      }
+      if (!a.hasResult && b.hasResult) return -1;
+      if (a.hasResult && !b.hasResult) return 1;
+      return a.originalIndex - b.originalIndex;
     });
     data.forEach((item) => targetContainer.appendChild(item.el));
-    console.log("\u2705 \u062A\u0645 \u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0627\u0645\u062A\u062D\u0627\u0646\u0627\u062A \u0645\u0646 \u0627\u0644\u0623\u0636\u0639\u0641 \u0625\u0644\u0649 \u0627\u0644\u0623\u0642\u0648\u0649");
+    console.log("\u2705 \u062A\u0645 \u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0627\u0645\u062A\u062D\u0627\u0646\u0627\u062A \u062D\u0633\u0628 \u0627\u0644\u0646\u062A\u064A\u062C\u0629 (\u2014 \u0623\u0648\u0644\u0627\u064B\u060C \u062B\u0645 \u0627\u0644\u0623\u0636\u0639\u0641 \u0641\u0627\u0644\u0623\u0642\u0648\u0649)");
   }
   function getViewModeIndex2() {
     try {
@@ -26695,7 +26709,7 @@ var MyApp = (() => {
       if (saved !== null) return parseInt(saved);
     } catch {
     }
-    return 1;
+    return 0;
   }
   function setViewModeIndex2(index) {
     try {
@@ -26704,7 +26718,7 @@ var MyApp = (() => {
     }
   }
   function getExamListMode() {
-    return localStorage.getItem(EXAM_LIST_MODE_KEY) || "grid";
+    return localStorage.getItem(EXAM_LIST_MODE_KEY) || "list";
   }
   function setExamListMode(mode) {
     localStorage.setItem(EXAM_LIST_MODE_KEY, mode);
@@ -27032,7 +27046,66 @@ var MyApp = (() => {
       timeBox.style.textAlign = "right";
     }
   }
-  var teile, currentExamData, currentSkill2, currentExamId, currentExamsList, currentM\u00FCndlichPart, tipsExams, lesenExams, lesen2Exams, lesen3Exams, sprach1Exams, sprach2Exams, schreibenExams, m\u00FCndlich1Exams, m\u00FCndlich2Exams, m\u00FCndlich3Exams, examsDatabase, activeTeilId, SKILL_CONFIG, LEVELS_KEY, MAX_LEVEL, originalOrderNumbers, VIEW_ICONS_2, VIEW_MODE_KEY_2, EXAM_LIST_MODE_KEY;
+  function applyTimeOrder() {
+    const list = document.getElementById("examsList");
+    if (!list) return;
+    const gridContainer = document.getElementById("examGridContainer");
+    const targetContainer = gridContainer || list;
+    const exams = [...targetContainer.querySelectorAll(".item")].filter(
+      (el) => !el.classList.contains("teil-header") && !el.classList.contains("memory-progress-bar-container")
+    );
+    if (exams.length === 0) {
+      console.warn("\u26A0\uFE0F applyTimeOrder: \u0644\u0627 \u062A\u0648\u062C\u062F \u0639\u0646\u0627\u0635\u0631");
+      return;
+    }
+    const data = exams.map((el, index) => {
+      let timeMs = null;
+      const chips = el.querySelectorAll(".exam-chip");
+      for (let chip of chips) {
+        const icon = chip.querySelector(".material-symbols-outlined");
+        if (icon && icon.textContent === "timer") {
+          const text = chip.textContent.replace(icon.textContent, "").trim();
+          if (text === "\u2014") {
+            timeMs = null;
+          } else if (text.includes("\u062B\u0627\u0646\u064A\u0629")) {
+            const secs = parseFloat(text.replace("\u062B\u0627\u0646\u064A\u0629", "").trim());
+            timeMs = isNaN(secs) ? null : secs * 1e3;
+          } else if (text.includes("\u062F\u0642\u064A\u0642\u0629")) {
+            const mins = parseFloat(text.replace("\u062F\u0642\u064A\u0642\u0629", "").trim());
+            timeMs = isNaN(mins) ? null : mins * 60 * 1e3;
+          } else {
+            const num = parseFloat(text);
+            timeMs = isNaN(num) ? null : num * 1e3;
+          }
+          break;
+        }
+      }
+      if (timeMs === null) {
+        const skill = currentSkill2 || "";
+        const title = el.querySelector(".exam-title");
+        let examId = null;
+        if (title) {
+          const match = title.textContent.match(/^(\d+):/);
+          if (match) examId = parseInt(match[1]);
+        }
+        if (skill && examId) {
+          const stored = getExamTime(skill, examId);
+          if (stored !== null) timeMs = stored;
+        }
+      }
+      return { el, timeMs, originalIndex: index };
+    });
+    data.sort((a, b) => {
+      if (a.timeMs === null && b.timeMs === null) return a.originalIndex - b.originalIndex;
+      if (a.timeMs === null) return -1;
+      if (b.timeMs === null) return 1;
+      if (a.timeMs === b.timeMs) return a.originalIndex - b.originalIndex;
+      return a.timeMs - b.timeMs;
+    });
+    data.forEach((item) => targetContainer.appendChild(item.el));
+    console.log("\u2705 \u062A\u0645 \u062A\u0631\u062A\u064A\u0628 \u0627\u0644\u0627\u0645\u062A\u062D\u0627\u0646\u0627\u062A \u062D\u0633\u0628 \u0627\u0644\u0648\u0642\u062A (\u0645\u0646 \u0627\u0644\u0623\u0636\u0639\u0641 \u0625\u0644\u0649 \u0627\u0644\u0623\u0642\u0648\u0649)");
+  }
+  var teile, currentExamData, currentSkill2, currentExamId, currentExamsList, currentM\u00FCndlichPart, tipsExams, lesenExams, lesen2Exams, lesen3Exams, sprach1Exams, sprach2Exams, schreibenExams, m\u00FCndlich1Exams, m\u00FCndlich2Exams, m\u00FCndlich3Exams, examsDatabase, activeTeilId, SKILL_CONFIG, LEVELS_KEY, MAX_LEVEL, VIEW_ICONS_2, VIEW_MODE_KEY_2, EXAM_LIST_MODE_KEY;
   var init_exams = __esm({
     "exams.js"() {
       window.isInterleavingActive = false;
@@ -28352,7 +28425,6 @@ var MyApp = (() => {
       window.renderInitialExamList = renderInitialExamList;
       console.log("\u{1F9E0} \u0646\u0638\u0627\u0645 \u0627\u0644\u062A\u0642\u062F\u0645 \u0627\u0644\u0645\u062A\u0648\u0627\u0632\u0646 (\u0627\u0644\u0645\u0631\u0627\u062D\u0644 \u0644\u0643\u0644 \u0645\u0647\u0627\u0631\u0629) \u062A\u0645 \u062A\u062D\u0645\u064A\u0644\u0647 \u0628\u0646\u062C\u0627\u062D");
       console.log("\u{1F4CA} \u0639\u062F\u062F \u0627\u0644\u0645\u0631\u0627\u062D\u0644:", Object.keys(SKILL_CONFIG).map((s) => `${s}: ${getTotalStages(s)}`).join(", "));
-      originalOrderNumbers = [];
       VIEW_ICONS_2 = ["view_day", "grid_view"];
       VIEW_MODE_KEY_2 = "viewModeIconIndex2";
       EXAM_LIST_MODE_KEY = "examListViewMode";
@@ -28402,6 +28474,130 @@ var MyApp = (() => {
       } catch (e) {
         console.log("\u2139\uFE0F \u0645\u062A\u063A\u064A\u0631\u0627\u062A Lesen1 \u0633\u062A\u064F\u0635\u062F\u0651\u0631 \u0645\u0646 engine.js");
       }
+      window.applyTimeOrder = applyTimeOrder;
+      (function() {
+        const btn = document.getElementById("checkCircleBtn");
+        const tooltip = document.getElementById("checkCircleTooltip");
+        if (!btn || !tooltip) return;
+        let isOpen = false;
+        const isMobile = () => window.innerWidth <= 768;
+        function repositionButton() {
+          const wrapper = document.querySelector(".check-circle-wrapper");
+          const header = document.querySelector(".teil-header");
+          if (isMobile()) {
+            if (header) {
+              if (wrapper && wrapper.contains(btn)) {
+                const notice = document.getElementById("topicsNotice");
+                if (notice && header.contains(notice)) {
+                  header.insertBefore(btn, notice);
+                } else {
+                  header.prepend(btn);
+                }
+              }
+              btn.classList.add("in-header");
+              btn.style.display = "inline-flex";
+              btn.style.opacity = "1";
+              btn.style.visibility = "visible";
+            } else {
+              if (wrapper && wrapper.contains(btn)) {
+                btn.style.display = "none";
+              }
+            }
+            if (wrapper) wrapper.style.display = "none";
+          } else {
+            if (wrapper && !wrapper.contains(btn)) {
+              wrapper.appendChild(btn);
+              btn.classList.remove("in-header");
+              btn.style.display = "inline-flex";
+              btn.style.opacity = "1";
+              btn.style.visibility = "visible";
+            }
+            if (wrapper) wrapper.style.display = "flex";
+          }
+          if (isOpen) {
+            if (isMobile()) {
+              setTimeout(updateTooltipPosition, 10);
+            } else {
+              tooltip.style.top = "";
+              tooltip.style.left = "";
+            }
+          }
+        }
+        function updateTooltipPosition() {
+          if (!isMobile()) {
+            return;
+          }
+          const rect = btn.getBoundingClientRect();
+          let top = rect.bottom + 6;
+          let left = rect.left;
+          const tw = tooltip.offsetWidth || 200;
+          if (left + tw > window.innerWidth - 10) {
+            left = window.innerWidth - tw - 10;
+          }
+          if (left < 10) left = 10;
+          tooltip.style.top = top + "px";
+          tooltip.style.left = left + "px";
+        }
+        btn.addEventListener("click", function(e) {
+          e.stopPropagation();
+          isOpen = !isOpen;
+          const icon = this.querySelector(".material-symbols-outlined");
+          if (isOpen) {
+            tooltip.style.display = "flex";
+            if (icon) icon.style.animation = "none";
+            if (isMobile()) {
+              setTimeout(updateTooltipPosition, 10);
+            }
+          } else {
+            tooltip.style.display = "none";
+            if (icon) icon.style.animation = "";
+          }
+        });
+        document.addEventListener("click", function(e) {
+          if (isOpen && !btn.contains(e.target) && !tooltip.contains(e.target)) {
+            isOpen = false;
+            tooltip.style.display = "none";
+            const icon = btn.querySelector(".material-symbols-outlined");
+            if (icon) icon.style.animation = "";
+          }
+        });
+        window.addEventListener("scroll", function() {
+          if (isOpen && isMobile()) updateTooltipPosition();
+        });
+        window.addEventListener("resize", function() {
+          repositionButton();
+          if (isOpen && isMobile()) setTimeout(updateTooltipPosition, 50);
+        });
+        const observer = new MutationObserver(function(mutations) {
+          for (const mutation of mutations) {
+            if (mutation.type === "childList") {
+              for (const node of mutation.addedNodes) {
+                if (node.nodeType === 1) {
+                  const header = node.querySelector ? node.querySelector(".teil-header") : null;
+                  if (header || node.classList && node.classList.contains("teil-header")) {
+                    if (isMobile()) {
+                      repositionButton();
+                      console.log("\u2705 \u062A\u0645 \u0627\u0643\u062A\u0634\u0627\u0641 .teil-header\u060C \u062A\u0645 \u0646\u0642\u0644 \u0627\u0644\u0632\u0631.");
+                    }
+                    break;
+                  }
+                }
+              }
+            }
+          }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+        function tryPlace() {
+          if (document.querySelector(".teil-header") || document.getElementById("examsList")) {
+            repositionButton();
+            console.log("\u2705 \u0632\u0631 check_circle \u0645\u0648\u0636\u0639 (\u0645\u062D\u0627\u0648\u0644\u0629 \u0646\u0627\u062C\u062D\u0629).");
+          } else {
+            setTimeout(tryPlace, 200);
+          }
+        }
+        setTimeout(tryPlace, 100);
+        console.log("\u2705 \u0632\u0631 check_circle \u062C\u0627\u0647\u0632 (\u0645\u0639 \u0646\u0642\u0644 \u062F\u064A\u0646\u0627\u0645\u064A\u0643\u064A \u0644\u0644\u0647\u0627\u062A\u0641).");
+      })();
     }
   });
 
