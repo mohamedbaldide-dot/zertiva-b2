@@ -131,157 +131,393 @@
     }
 }
 
-/* ========================================
-   Profile Dropdown (التصميم القديم)
-   ======================================== */
 .profile-dropdown {
-    position: absolute;
-    top: 60px;
-    left: 10px;
-    left: auto;
-    background: #0f172a;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    padding: 15px 20px;
-    min-width: 250px;
-    z-index: 9999;
-    display: none;
+    position: fixed;
+    top: clamp(8px, 1.4vh, 24px);
+    left: clamp(6px, 1.2vw, 20px);
+    width: clamp(240px, 28vw, 380px);
+    box-sizing: border-box;
+    padding: clamp(7px, .75vw, 11px) clamp(7px, .75vw, 11px) clamp(7px, .65vw, 9px);
+    display: flex;
+    flex-direction: column;
     direction: rtl;
-    border: 1px solid rgba(56, 189, 248, 0.2);
+    color: #ffffff;
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    background:
+        radial-gradient(190px 120px at 8% 5%, rgba(49,100,230,.14), transparent 72%),
+        radial-gradient(200px 120px at 94% 4%, rgba(102,45,220,.18), transparent 72%),
+        linear-gradient(145deg, #111621 0%, #0d121d 52%, #0a1019 100%);
+    border: 1px solid rgba(148,163,184,.18);
+    border-radius: clamp(11px, 1.15vw, 17px);
+    box-shadow: 0 clamp(12px, 1.5vw, 20px) clamp(30px, 3vw, 45px) rgba(0,0,0,.58), 0 5px 20px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.055);
+    z-index: 100000;
+    overflow: hidden;
+    animation: shape2Appear .25s cubic-bezier(.2,.8,.2,1);
+    display: none;
 }
-
+@keyframes shape2Appear {
+    from { opacity: 0; transform: translateY(-7px) scale(.985); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
 .profile-dropdown.show {
-    display: block;
+    display: flex;
 }
-.profile-email {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-weight: 500;
-    font-size: 14px;
+.shape2-sparkles {
+    position: absolute;
+    top: 18px;
+    right: 12px;
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    width: auto;
+    height: auto;
+    pointer-events: none;
+    z-index: 5;
+}
+.shape2-sparkles .star-big {
+    position: relative;
+    top: auto;
+    right: auto;
+    color: #e8ebf2;
+    font-size: 16px;
+    line-height: 1;
+    transform: rotate(-5deg);
+    text-shadow: 0 0 5px rgba(255,255,255,.45), 0 0 13px rgba(148,163,184,.28);
+}
+.shape2-sparkles .star-small {
+    position: relative;
+    top: auto;
+    right: auto;
+    color: #aeb6c4;
+    font-size: 9px;
+    line-height: 1;
+    text-shadow: 0 0 7px rgba(255,255,255,.35);
+}
+
+.shape2-settings {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    cursor: pointer;
+    color: #94a3b8;
+    transition: all 0.2s;
+    z-index: 5;
+}
+.shape2-settings:hover {
     color: #38bdf8;
-    margin-bottom: 10px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #334155;
-    line-height: 1.4;
+    transform: rotate(45deg);
 }
 
-.profile-expiry {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    font-size: 13px;
-    color: #94a3b8;
-    margin-bottom: 8px;
-    line-height: 1.5;
-}
-
-.profile-status {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-weight: 500;
-    font-size: 13px;
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px solid #334155;
-    line-height: 1.5;
-}
-
-.profile-uid {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    color: #94a3b8;
-    margin-top: 8px;
-    padding: 6px 0;
-    border-top: 1px solid #334155;
+.shape2-left {
+    position: relative;
+    width: 100%;
+    height: clamp(42px, 4.2vw, 55px);
+    min-height: clamp(42px, 4.2vw, 55px);
     display: flex;
     align-items: center;
-    gap: 6px;
-    line-height: 1.5;
+    justify-content: flex-start;
+    direction: ltr;
+    padding-left: clamp(2px, .3vw, 4px);
+    box-sizing: border-box;
 }
-
-.profile-uid .uid-label {
-    font-weight: 500;
-    color: #64748b;
-}
-
-.profile-uid .uid-value {
-    font-family: "SF Mono", "Menlo", "Monaco", monospace;
-    font-size: 11px;
-    letter-spacing: 0.02em;
-    color: #cbd5e1;
-    word-break: break-all;
-}
-
-.profile-logout {
-    margin-top: 12px;
-    background: #ef4444;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 25px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 13px;
-    transition: background 0.2s;
-}
-
-.profile-logout:hover {
-    background: #dc2626;
-}
-
-/* زر الترقية (يظهر فقط عند عدم تسجيل الدخول) */
-#dropdownUpgradeBtn {
-    margin-top: 12px;
-    background: #64748B;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 25px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 13px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-#dropdownUpgradeBtn:hover {
-    background: #475569;
-}
-
-/* زر تحميل التقرير */
-.profile-report-btn {
-    margin-top: 12px;
-    background: rgba(56, 189, 248, 0.12);
-    color: #38bdf8;
-    border: 1px solid rgba(56, 189, 248, 0.2);
-    padding: 10px 15px;
-    border-radius: 25px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 13px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+.shape2-avatar {
+    width: clamp(32px, 3.15vw, 44px);
+    height: clamp(32px, 3.15vw, 44px);
+    flex-shrink: 0;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    color: #ffffff;
+    font-size: clamp(15px, 1.5vw, 21px);
+    font-weight: 500;
+    background: radial-gradient(circle at 35% 28%, #7c3aed 0%, #5b21b6 40%, #35147c 72%, #241050 100%);
+    border: clamp(1px, .15vw, 2px) solid rgba(99,102,241,.25);
+    box-shadow: 0 0 0 1px rgba(255,255,255,.025), 0 5px 16px rgba(79,70,229,.22), inset 0 2px 7px rgba(255,255,255,.10);
+    margin-right: clamp(5px, .55vw, 8px);
+}
+.shape2-user {
+    min-width: 0;
+    margin: 0;
+    text-align: left;
+    direction: ltr;
+}
+.shape2-email {
+    display: flex;
+    align-items: center;
+    gap: clamp(3px, .4vw, 5px);
+    color: #f1f5f9;
+    font-size: clamp(9px, .92vw, 12.5px);
+    line-height: 1.4;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.shape2-email-text {
+    max-width: clamp(120px, 17vw, 220px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.shape2-check {
+    flex-shrink: 0;
+    width: clamp(10px, .95vw, 13px);
+    height: clamp(10px, .95vw, 13px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #3bd477;
+    color: #ffffff;
+    font-size: clamp(7px, .65vw, 9px);
+    font-weight: 800;
+    box-shadow: 0 0 8px rgba(59,212,119,.18);
+}
+.shape2-status {
+    margin-top: 1px;
+    color: #9099a9;
+    font-size: clamp(7px, .75vw, 10px);
+    line-height: 1.3;
+    direction: rtl;
+    text-align: left;
 }
 
-.profile-report-btn:hover {
-    background: rgba(56, 189, 248, 0.2);
-    border-color: #38bdf8;
-    transform: translateY(-1px);
+.shape2-right {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    direction: ltr;
 }
-
-.profile-report-btn:active {
-    transform: scale(0.98);
+.shape2-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3px, .3vw, 4px);
+    margin-bottom: clamp(4px, .45vw, 6px);
 }
-
-/* حالة التحميل (يُضاف عبر JS) */
-.profile-report-btn.loading {
-    opacity: 0.7;
+.shape2-info-row {
+    position: relative;
+    width: 100%;
+    height: clamp(25px, 2.25vw, 31px);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    direction: ltr;
+    padding: 0 clamp(4px, .55vw, 7px) 0 clamp(5px, .65vw, 8px);
+    border-radius: clamp(6px, .6vw, 8px);
+    background: linear-gradient(180deg, rgba(27,33,45,.90), rgba(18,24,35,.93));
+    border: 1px solid rgba(148,163,184,.11);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.035), inset 0 0 16px rgba(59,130,246,.025), 0 2px 7px rgba(0,0,0,.12);
+    overflow: hidden;
+    transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.shape2-info-row::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -25%;
+    width: 50%;
+    background: linear-gradient(90deg, transparent, rgba(59,130,246,.045), transparent);
     pointer-events: none;
 }
+.shape2-info-row:hover {
+    border-color: rgba(96,165,250,.22);
+    background: linear-gradient(180deg, rgba(31,38,52,.95), rgba(21,27,39,.95));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.045), inset 0 0 20px rgba(59,130,246,.045), 0 4px 12px rgba(0,0,0,.15);
+}
+.shape2-icon {
+    position: relative;
+    width: clamp(17px, 1.55vw, 22px);
+    min-width: clamp(17px, 1.55vw, 22px);
+    height: clamp(17px, 1.55vw, 22px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aeb8c7;
+    margin-right: clamp(2px, .3vw, 4px);
+}
+.shape2-icon .material-symbols-outlined {
+    font-size: clamp(12px, 1.15vw, 16px);
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+.shape2-label {
+    position: relative;
+    color: #a6afbd;
+    font-size: clamp(7px, .68vw, 9.5px);
+    font-weight: 400;
+    white-space: nowrap;
+    direction: rtl;
+}
+.shape2-value {
+    position: relative;
+    margin-left: auto;
+    min-width: 0;
+    max-width: clamp(120px, 18vw, 250px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #e7eaf0;
+    font-size: clamp(7px, .68vw, 9.5px);
+    font-weight: 500;
+    direction: rtl;
+    text-align: right;
+}
+.shape2-value.green {
+    color: #49d982;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(74,222,128,.15);
+}
+.shape2-value.uid {
+    direction: ltr;
+    font-size: clamp(6px, .6vw, 8.5px);
+    color: #c0c8d4;
+    text-align: right;
+}
+.shape2-chevron {
+    position: relative;
+    width: clamp(8px, .85vw, 12px);
+    min-width: clamp(8px, .85vw, 12px);
+    margin-left: clamp(2px, .3vw, 4px);
+    color: #606b7c;
+    font-size: clamp(11px, .95vw, 15px);
+    line-height: 1;
+    text-align: center;
+}
 
+.shape2-stats {
+    position: relative;
+    width: 100%;
+    height: clamp(27px, 2.5vw, 34px);
+    padding: 0;
+    margin: 0 0 clamp(3px, .4vw, 5px) 0;
+    border: 1px solid rgba(96,165,250,.18);
+    border-radius: clamp(6px, .7vw, 9px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(4px, .55vw, 7px);
+    color: #ffffff;
+    background: linear-gradient(105deg, #1677dc 0%, #2563eb 38%, #4f35e7 72%, #6420d9 100%);
+    box-shadow: 0 5px 16px rgba(37,99,235,.20), inset 0 1px 0 rgba(255,255,255,.15), inset 0 -1px 0 rgba(0,0,0,.14);
+    font-family: inherit;
+    font-size: clamp(9px, .8vw, 11.5px);
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+}
+.shape2-stats::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+    transform: skewX(-20deg);
+    transition: left .55s ease;
+    pointer-events: none;
+}
+.shape2-stats:hover::before { left: 125%; }
+.shape2-stats:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 22px rgba(37,99,235,.30), 0 0 18px rgba(79,70,229,.10), inset 0 1px 0 rgba(255,255,255,.17);
+}
+.shape2-stats:active { transform: scale(.985); }
+.shape2-stats .material-symbols-outlined {
+    position: relative;
+    z-index: 2;
+    font-size: clamp(13px, 1.25vw, 17px);
+    color: #ffffff;
+}
+.shape2-stats span:last-child {
+    position: relative;
+    z-index: 2;
+}
+
+.shape2-logout {
+    position: relative;
+    width: 100%;
+    height: clamp(26px, 2.4vw, 33px);
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border-radius: clamp(7px, .7vw, 10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(5px, .55vw, 8px);
+    color: #f87171;
+    background: radial-gradient(120px 35px at 50% 100%, rgba(239,68,68,.07), transparent 75%), linear-gradient(180deg, rgba(29,32,43,.92), rgba(17,21,31,.96));
+    border: 1px solid rgba(148,163,184,.14);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.045), inset 0 0 20px rgba(239,68,68,.018), 0 3px 10px rgba(0,0,0,.18);
+    font-family: inherit;
+    font-size: clamp(9px, .8vw, 11.5px);
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: color .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.shape2-logout::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.055), rgba(239,68,68,.035), transparent);
+    transform: skewX(-20deg);
+    transition: left .55s cubic-bezier(.2,.8,.2,1);
+    pointer-events: none;
+}
+.shape2-logout::after {
+    content: "";
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    bottom: -18px;
+    height: 28px;
+    background: radial-gradient(ellipse, rgba(239,68,68,.13), transparent 70%);
+    filter: blur(7px);
+    opacity: .45;
+    transition: opacity .2s ease;
+    pointer-events: none;
+}
+.shape2-logout:hover {
+    color: #ff8585;
+    background: radial-gradient(150px 45px at 50% 100%, rgba(239,68,68,.10), transparent 75%), linear-gradient(180deg, rgba(35,31,41,.96), rgba(20,20,29,.98));
+    border-color: rgba(239,68,68,.30);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.055), inset 0 0 22px rgba(239,68,68,.035), 0 5px 16px rgba(0,0,0,.22), 0 0 12px rgba(239,68,68,.045);
+    transform: translateY(-1px);
+}
+.shape2-logout:hover::before { left: 125%; }
+.shape2-logout:hover::after { opacity: .8; }
+.shape2-logout:active { transform: translateY(0) scale(.985); }
+.shape2-logout .material-symbols-outlined {
+    position: relative;
+    z-index: 2;
+    font-size: clamp(12px, 1.15vw, 16px);
+    color: #f87171;
+    transition: color .2s ease, transform .2s ease;
+}
+.shape2-logout:hover .material-symbols-outlined {
+    color: #ff8585;
+    transform: translateX(-1px);
+}
+.shape2-logout span:last-child {
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 330px) {
+    .profile-dropdown {
+        width: calc(100vw - 10px);
+        left: 5px;
+        top: 5px;
+    }
+}
 
     /* البطاقة الصغيرة المنبثقة */
     .tips-mini-card {
@@ -1928,80 +2164,44 @@ body.dark-mode .mobile-banner span {
 <body class="home-page">
 <div class="top-bar">
 <div class="left-side">
-    <!-- بما أننا استخدمنا direction: ltr في CSS، الترتيب من اليسار إلى اليمين هو: -->
-    <!-- 👤 (profile)  ->  ⚙️ (settings)  ->  🎮 (game)  ->  (باقي الأزرار غير الظاهرة حالياً) -->
-  <img src="images/profile.png" id="profileIcon" class="profile-icon" alt="Profile" style="display: none;">
-<button id="settingsBtn" class="settings-icon-btn" title="إعدادات العرض">
-    <img src="images/settings.png" alt="Settings" class="icon-img">
-</button>
+    <img src="images/profile.png" id="profileIcon" class="profile-icon" alt="Profile" style="display: none;">
+    <button id="settingsBtn" class="settings-icon-btn" title="إعدادات العرض">
+        <img src="images/settings.png" alt="Settings" class="icon-img">
+    </button>
     <button id="studyPlannerBtn" class="study-planner-icon-btn" title="خطة اليوم الذكية">
         <img src="images/game.png" alt="خطة اليوم" class="planner-icon-img">
     </button>
-<!-- زر تسجيل الدخول الجديد (تصميم Uiverse مع عزل تام) -->
-<div class="login-uiverse-wrapper" dir="rtl">
-  <div class="login-uiverse-glow"></div>
-  <button id="navLoginBtn" class="login-uiverse-btn" role="button">
-    تسجيل الدخول
-    <svg aria-hidden="true" viewBox="0 0 10 10" height="10" width="10" fill="none" class="login-uiverse-arrow">
-      <path d="M0 5h7" class="login-uiverse-arrow-stroke"></path>
-      <path d="M9 1l-4 4 4 4" class="login-uiverse-arrow-head"></path>
-    </svg>
-  </button>
-</div>
 
-<!-- زر اشترك الجديد (تصميم Uiverse مع عزل تام) -->
-<button id="navSubscribeBtn" class="subscribe-uiverse-btn">
-  <span class="subscribe-uiverse-text">اشترك</span>
-  <div class="subscribe-uiverse-icon-container">
-    <!-- الأيقونات المتنوعة -->
-    <svg viewBox="0 0 24 24" class="subscribe-uiverse-icon subscribe-uiverse-card-icon">
-      <path d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18C2,19.11 2.89,20 4,20H20C21.11,20 22,19.11 22,18V6C22,4.89 21.11,4 20,4Z" fill="currentColor"></path>
-    </svg>
-    <svg viewBox="0 0 24 24" class="subscribe-uiverse-icon subscribe-uiverse-payment-icon">
-      <path d="M2,17H22V21H2V17M6.25,7H9V6H6V3H18V6H15V7H17.75L19,17H5L6.25,7M9,10H15V8H9V10M9,13H15V11H9V13Z" fill="currentColor"></path>
-    </svg>
-    <svg viewBox="0 0 24 24" class="subscribe-uiverse-icon subscribe-uiverse-dollar-icon">
-      <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" fill="currentColor"></path>
-    </svg>
-    <svg viewBox="0 0 24 24" class="subscribe-uiverse-icon subscribe-uiverse-wallet-icon subscribe-uiverse-default-icon">
-      <path d="M21,18V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V6H12C10.89,6 10,6.9 10,8V16A2,2 0 0,0 12,18M12,16H22V8H12M16,13.5A1.5,1.5 0 0,1 14.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,12A1.5,1.5 0 0,1 16,13.5Z" fill="currentColor"></path>
-    </svg>
-    <svg viewBox="0 0 24 24" class="subscribe-uiverse-icon subscribe-uiverse-check-icon">
-      <path d="M9,16.17L4.83,12L3.41,13.41L9,19L21,7L19.59,5.59L9,16.17Z" fill="currentColor"></path>
-    </svg>
-  </div>
-</button>
-</div>
+    <div class="login-uiverse-wrapper" dir="rtl">
+        <button id="navLoginBtn" class="login-uiverse-btn" role="button" onclick="openAuthModal('login')">
+            تسجيل الدخول
+            <svg aria-hidden="true" viewBox="0 0 10 10" height="10" width="10" fill="none" class="login-uiverse-arrow">
+                <path d="M0 5h7" class="login-uiverse-arrow-stroke"></path>
+                <path d="M9 1l-4 4 4 4" class="login-uiverse-arrow-head"></path>
+            </svg>
+        </button>
+    </div>
+
+    <button id="navSignupBtn" class="login-uiverse-btn" role="button" onclick="openAuthModal('signup')" style="background: #1a3a8a !important; border: none !important; color: #e5e7eb !important; box-shadow: 0 0 20px rgba(26,58,138,0.3), 0 4px 12px rgba(26,58,138,0.2) !important; border-radius: 10px !important; transition: all 0.25s ease !important;">
+        إنشاء حساب
+        <svg aria-hidden="true" viewBox="0 0 10 10" height="10" width="10" fill="none" class="login-uiverse-arrow">
+            <path d="M0 5h7" class="login-uiverse-arrow-stroke"></path>
+            <path d="M9 1l-4 4 4 4" class="login-uiverse-arrow-head"></path>
+        </svg>
+    </button>
+    <!-- تم إزالة زر اشترك -->
+</div>   <!-- إغلاق left-side -->
     
    <div class="right-side">
-    <!-- 💎 علاش حنا؟ - زر Info في المكان الجديد -->
-    <button id="whyPremiumIconBtn" class="why-premium-icon-btn" title="علاش غتنجح معانا؟">
-        <span class="material-symbols-outlined">info</span>
-        <div class="premium-info-card">
-            <span class="card-icon">✨</span>
-            <span class="card-text">هذا <span style="color: #38bdf8;">الموقع</span> مصمم ليقدم أكبر قدر ممكن من الراحة والمساعدة للمستخدم، مع تجربة سهلة، سريعة، وبدون أي تعقيد. وليس مجرد <span style="color: #4ade80;">فوضى</span> جميلة <span style="color: #4ade80;">كالباقي</span>.</span>
-        </div>
-    </button>
+    <!-- تم إزالة زر info بناءً على الطلب -->
     
-    <!-- 🔔 الإشعارات -->
-    <div class="notification-container">
+ <div class="notification-container">
      <button id="notificationBell" class="notification-bell">
     <svg viewBox="0 0 448 512" class="bell-icon">
         <path d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"/>
     </svg>
     <span id="notificationBadge" class="notification-badge" style="display: none;">0</span>
 </button>
-        <div id="notificationDropdown" class="notification-dropdown">
-            <div class="notification-header">
-                <span>📬 الإشعارات</span>
-                <button id="markAllReadBtn" class="mark-all-read">تحديد الكل كمقروء</button>
-            </div>
-            <div id="notificationsList" class="notification-list">
-                <div class="notification-empty">
-                    <span>📭 لا توجد إشعارات جديدة</span>
-                </div>
-            </div>
-        </div>
     </div>
 <!-- ⏰ جلسة مراجعة -->
 <button id="studySessionBtn" class="study-session-btn" title="جلسة مراجعة">
@@ -2015,45 +2215,86 @@ body.dark-mode .mobile-banner span {
   </div>
 </div>
 
-<!-- ===== الملف الشخصي (التصميم القديم مع إضافة UID) ===== -->
+<!-- ===== الملف الشخصي (الشكل 2 النهائي - دائم) ===== -->
 <div id="profileDropdown" class="profile-dropdown">
- <div id="profileEmail" class="profile-email">
-    <span class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle; margin-left: 4px;">mark_email_read</span>
-    <span id="profileEmailText">غير مسجل</span>
-</div>
-   <div id="profileExpiry" class="profile-expiry">
-    <span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle; margin-left: 4px; color: #94a3b8;">calendar_month</span>
-    <span id="profileExpiryText">حساب مجاني</span>
-</div>
-    <div id="profileStatus" class="profile-status"></div>
-    
-    <!-- ✅ سطر الـ UID -->
-    <div id="profileUid" class="profile-uid">
-        <span class="uid-label">ID:</span>
-        <span class="uid-value" id="profileUidValue">---</span>
+    <!-- النجوم -->
+    <div class="shape2-sparkles">
+        <span class="star-big">✧</et currentScale = 105span>
+        <span class="star-small">✦</span>
     </div>
-    <!-- ✅ سطر الخطة اليومية (عرض فقط - بدون زر إعدادات) -->
-    <div id="profilePlannerRow" class="profile-uid" style="display: flex; align-items: center; padding: 6px 0; border-top: 1px solid #334155; gap: 6px; position: relative;">
-        <span class="material-symbols-outlined" style="font-size: 16px; color: #94a3b8;">schedule</span>
-        <span id="profilePlannerText" style="color: #94a3b8; font-size: 12px;">لم يتم إعداد الخطة اليومية بعد.</span>
-        <span id="plannerInfoIcon" class="material-symbols-outlined planner-info-icon">info</span>
-        <div id="plannerTooltip" class="planner-tooltip">
-            هذه ليست مدة اشتراكك،<br>
-            بل هي المدة المتبقية حتى تاريخ امتحانك.<br>
-            إذا أردت إضافة أو تعديل موعد الامتحان،<br>
-            اذهب إلى ميزة "الخطة اليومية".
+    <!-- (تم حذف زر الإعدادات) -->
+
+    <!-- الأفاتار والمعلومات -->
+    <div class="shape2-left">
+        <div class="shape2-avatar" id="profileAvatar">G</div>
+        <div class="shape2-user">
+            <div class="shape2-email">
+                <span class="shape2-email-text" id="profileEmailText">غير مسجل</span>
+                <span class="shape2-check">✓</span>
+            </div>
+            <div class="shape2-status" id="profileStatus"></div>
         </div>
     </div>
 
-    <!-- زر تحميل معلوماتي (PDF) -->
-    <button id="downloadReportBtn" class="profile-report-btn">
-        📄 تحميل معلوماتي
-    </button>
-    
-    <button id="profileLogoutBtn" class="profile-logout" style="display: none;"> تسجيل لخروج</button>
-    
-    <!-- زر الترقية (يتم إضافته بواسطة JavaScript عند الحاجة) -->
+    <!-- صفوف المعلومات -->
+    <div class="shape2-right">
+        <div class="shape2-info">
+            <div class="shape2-info-row">
+                <div class="shape2-icon"><span class="material-symbols-outlined">calendar_month</span></div>
+                <div class="shape2-label">الصلاحية حتى</div>
+                <div class="shape2-value" id="profileExpiryText">حساب مجاني</div>
+                <div class="shape2-chevron">›</div>
+            </div>
+            <div class="shape2-info-row">
+                <div class="shape2-icon"><span class="material-symbols-outlined">workspace_premium</span></div>
+                <div class="shape2-label">المراجعة المميزة</div>
+                <div class="shape2-value green" id="profilePremiumStatus">غير مفعلة</div>
+                <div class="shape2-chevron">›</div>
+            </div>
+            <div class="shape2-info-row">
+                <div class="shape2-icon"><span class="material-symbols-outlined">person</span></div>
+                <div class="shape2-label">معرف المستخدم</div>
+                <div class="shape2-value uid" id="profileUidValue">---</div>
+                <div class="shape2-chevron">›</div>
+            </div>
+                     <div class="shape2-info-row" id="profilePlannerRowClickable">
+                <div class="shape2-icon"><span class="material-symbols-outlined">schedule</span></div>
+                <div class="shape2-label">لديك</div>
+                <div class="shape2-value" id="profilePlannerText">0 يوم</div>
+                <div class="shape2-chevron">›</div>
+            </div>
+        </div>
+        <!-- زر إحصائياتي -->
+        <button id="downloadReportBtn" class="shape2-stats">
+            <span class="material-symbols-outlined">monitoring</span> إحصائياتي
+        </button>
+            <!-- زر تسجيل خروج -->
+        <button id="profileLogoutBtn" class="shape2-logout">
+            <span class="material-symbols-outlined">logout</span> تسجيل خروج
+        </button>
+    </div>
 </div>
+</div>
+
+<!-- ===== نافذة تعديل المعلومات (فتح من صف لديك) ===== -->
+<div id="editInfoModal" class="edit-info-overlay" style="display:none;">
+    <div class="edit-info-card">
+        <div class="edit-info-header">
+            <span>تعديل المعلومات الخاصة بي</span>
+            <button id="closeEditInfoModal" class="close-edit-modal">✕</button>
+        </div>
+        <div class="edit-info-body">
+            <div style="margin-bottom:14px;">
+                <label style="display:block; font-size:13px; color:#a6afbd; margin-bottom:4px;">تاريخ الامتحان</label>
+                <input type="date" id="editExamDateInput" style="width:100%; padding:10px; border-radius:8px; border:1px solid #2a3042; background:#111621; color:#e7eaf0;">
+            </div>
+            <div style="margin-bottom:20px;">
+                <label style="display:block; font-size:13px; color:#a6afbd; margin-bottom:4px;">كم ساعة تراجع يومياً</label>
+                <input type="number" id="editDailyHoursInput" min="1" max="12" value="4" style="width:100%; padding:10px; border-radius:8px; border:1px solid #2a3042; background:#111621; color:#e7eaf0;">
+            </div>
+            <button id="saveEditInfoBtn" class="save-edit-btn">فحص</button>
+        </div>
+    </div>
 </div>
 
 <!-- ===== نافذة تسجيل الدخول / إنشاء حساب / نسيت كلمة المرور (مودال موحد) ===== -->
@@ -2089,7 +2330,7 @@ body.dark-mode .mobile-banner span {
             <div id="signupForm" style="display:none;">
                 <div style="margin-bottom:10px;">
                     <label style="display:block; font-size:13px; color:#94a3b8; margin-bottom:4px;">اسم المستخدم</label>
-                    <input type="text" id="signupUsername" placeholder="أحمد" style="width:100%; padding:10px 12px; border:1px solid #334155; border-radius:10px; background:#1e293b; color:white; font-size:14px; box-sizing:border-box;">
+                  <input type="text" id="signupUsername" placeholder="الاسم المستعار" style="width:100%; padding:10px 12px; border:1px solid #334155; border-radius:10px; background:#1e293b; color:white; font-size:14px; box-sizing:border-box;">
                 </div>
                 <div style="margin-bottom:10px;">
                     <label style="display:block; font-size:13px; color:#94a3b8; margin-bottom:4px;">الإسم العائلي</label>
@@ -2232,15 +2473,7 @@ body.dark-mode .mobile-banner span {
   </div>
   <div id="teileList" class="teile-row"></div>
   
-  <!-- حاوية الزر والخانة (تظهر في الكمبيوتر فقط، وفي الهاتف يُنقل الزر إلى .teil-header) -->
-  <div class="check-circle-wrapper">
-    <button id="checkCircleBtn" class="check-circle-btn" title="جميع المواضيع القديمة والجديدة موجودة هنا">
-      <span class="material-symbols-outlined">check_circle</span>
-    </button>
-    <div id="checkCircleTooltip" class="check-circle-tooltip">
-      جميع المواضيع القديمة والجديدة موجودة هنا
-    </div>
-  </div>
+
 
   <div id="examsList" class="exams-container">
     <div class="welcome-message"></div>
@@ -2913,48 +3146,6 @@ if (showCardsBtn) {
     }, 5000);
 })();
 
-        // ============================================
-// زر 💎 لماذا؟ (أيقونة Info) - بطاقة منبثقة أنيقة
-// ============================================
-const whyPremiumIconBtn = document.getElementById('whyPremiumIconBtn');
-if (whyPremiumIconBtn) {
-    whyPremiumIconBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        this.classList.toggle('active');
-    });
-    
-    // إغلاق البطاقة عند الضغط خارجها
-    document.addEventListener('click', function(e) {
-        if (!whyPremiumIconBtn.contains(e.target)) {
-            whyPremiumIconBtn.classList.remove('active');
-        }
-    });
-}
-
-// ============================================
-// إظهار/إخفاء أيقونة Info (تظهر فقط في صفحة القائمة)
-// ============================================
-function toggleWhyPremiumBtn() {
-    const whyBtn = document.getElementById('whyPremiumIconBtn');
-    if (!whyBtn) return;
-    
-    const listPage = document.getElementById('list');
-    if (listPage && listPage.classList.contains('active')) {
-        whyBtn.style.display = 'inline-flex';
-    } else {
-        whyBtn.style.display = 'none';
-    }
-}
-
-toggleWhyPremiumBtn();
-
-const observerPremium = new MutationObserver(function() {
-    toggleWhyPremiumBtn();
-});
-
-const listPage2 = document.getElementById('list');
-
-if (listPage2) observerPremium.observe(listPage2, { attributes: true, attributeFilter: ['class'] });
 // ============================================
 // وضع القراءة (Reading Mode) - 4 درجات
 // ============================================
@@ -3072,7 +3263,47 @@ if (listPage2) observerPremium.observe(listPage2, { attributes: true, attributeF
         }, 1500);
     }
 })();
+
+// =========================================================
+// معالجة طلب إنشاء حساب من صفحة الاشتراك
+// =========================================================
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const action = urlParams.get('action');
+    
+    if (action === 'signup') {
+        // فتح نافذة إنشاء الحساب
+        if (typeof openAuthModal === 'function') {
+            openAuthModal('signup');
+        }
+        // إزالة المعلمة من الرابط لتجنب إعادة الفتح عند التحديث
+        if (window.history && window.history.replaceState) {
+            const newUrl = window.location.pathname + window.location.hash;
+            window.history.replaceState({}, document.title, newUrl);
+        }
+    }
+
+    // مراقبة تسجيل الدخول للتعامل مع الخطة المعلقة
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            const pending = localStorage.getItem('pendingSubscription');
+            if (pending) {
+                // إذا كان هناك خطة معلقة، نفتح واتساب ونمسح الخطة
+                try {
+                    const data = JSON.parse(pending);
+                    // الانتقال إلى subscribe.html مع فتح واتساب مباشرة
+                    window.location.href = 'subscribe.html?auto_whatsapp=true';
+                    // (سنقوم بمعالجة auto_whatsapp في subscribe.html)
+                } catch (e) {
+                    localStorage.removeItem('pendingSubscription');
+                }
+            }
+        }
+    });
+});
 </script>
+
+
 
 <!-- تم نقل نافذة الجلسة إلى أسفل الملف -->
 
@@ -4695,6 +4926,19 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log('🚀 أزرار الاشتراك جاهزة');
 });
 </script>
+
+<!-- ===== نافذة الإشعارات (منقولة إلى أعلى مستوى) ===== -->
+<div id="notificationDropdown" class="notification-dropdown">
+    <div class="notification-header">
+        <span>📬 الإشعارات</span>
+        <button id="markAllReadBtn" class="mark-all-read">تحديد الكل كمقروء</button>
+    </div>
+    <div id="notificationsList" class="notification-list">
+        <div class="notification-empty">
+            <span>📭 لا توجد إشعارات جديدة</span>
+        </div>
+    </div>
+</div>
 
 <!-- ===== زر Ask AI العائم ===== -->
 <button id="askAIFloatingBtn">
@@ -6564,6 +6808,10 @@ if (expiryText) {
         }
 
 
+        /* =====================================================
+           قسم الصور
+           ===================================================== */
+
         .zertiva-photo-placeholder {
 
             width:
@@ -6671,6 +6919,11 @@ if (expiryText) {
                     1vw,
                     0.8rem
                 );
+        }
+
+        /* إضافة مسافة بين البادج والعنوان الذي يليه */
+        .zertiva-photo-placeholder .zs-badge {
+            margin-bottom: 8px;
         }
 
 
@@ -8708,9 +8961,7 @@ if (expiryText) {
                     </a>
 
 
-                    <a id="footerUpgradeBtn">
-                        الترقية
-                    </a>
+                                     <!-- تم حذف زر الترقية من الفوتر -->
 
                 </nav>
 
@@ -8821,6 +9072,7 @@ if (expiryText) {
 
 })();
 
+
 </script>
 </body>
-</html>  
+</html>
