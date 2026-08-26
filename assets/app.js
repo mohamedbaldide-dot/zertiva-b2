@@ -23352,9 +23352,20 @@ var MyApp = (() => {
                   this.showNotAvailable("\u0644\u0627 \u062A\u0648\u062C\u062F \u0623\u0633\u0626\u0644\u0629 \u0635\u0627\u0644\u062D\u0629 \u0644\u0644\u062A\u062F\u0631\u064A\u0628 \u0641\u064A \u0647\u0630\u0647 \u0627\u0644\u0645\u0631\u062D\u0644\u0629");
                   return;
                 }
-                this.questions = this.shuffleArray(allQuestions);
+                let selectedQuestions = [];
+                if (examIds.length > 5) {
+                  const shuffledExamIds = this.shuffleArray([...examIds]);
+                  const selectedExamIds = shuffledExamIds.slice(0, 5);
+                  selectedQuestions = allQuestions.filter((q) => selectedExamIds.includes(q.examId));
+                  if (selectedQuestions.length === 0) {
+                    selectedQuestions = allQuestions;
+                  }
+                } else {
+                  selectedQuestions = allQuestions;
+                }
+                this.questions = this.shuffleArray(selectedQuestions);
                 this.allQuestions = this.questions.slice();
-                console.log(`\u{1F4CA} \u062A\u0645 \u062C\u0645\u0639 ${this.questions.length} \u0633\u0624\u0627\u0644 \u0645\u0646 ${examIds.length} \u0627\u0645\u062A\u062D\u0627\u0646`);
+                console.log(`\u{1F4CA} \u062A\u0645 \u062C\u0645\u0639 ${this.questions.length} \u0633\u0624\u0627\u0644 \u0645\u0646 ${examIds.length} \u0627\u0645\u062A\u062D\u0627\u0646 (\u062A\u0645 \u0627\u062E\u062A\u064A\u0627\u0631 ${Math.min(examIds.length, 5)} \u0627\u0645\u062A\u062D\u0627\u0646 \u0639\u0634\u0648\u0627\u0626\u064A\u0627)`);
                 if (this.sharedOptions.length === 0 && examIds.length > 0) {
                   const firstId = examIds[0];
                   if (this.examSharedOptionsMap[firstId]) {
@@ -23767,7 +23778,7 @@ var MyApp = (() => {
             this.updateCard(`
                 <div class="memory-trainer-intro">
                     <h2>\u0627\u0633\u062A\u062F\u0639\u0627\u0621 \u0645\u062A\u0642\u062F\u0645 \u{1F9E9}</h2>
-                    <p style="font-size:14px;color:#334155;margin:4px 0 2px 0;">\u0647\u0627\u062F \u0627\u0644\u0645\u064A\u0632\u0629 \u063A\u062F\u064A \u062A\u062E\u0644\u064A\u0643 \u062A\u062A\u062F\u0631\u0628 \u0639\u0644\u0649 \u062C\u0645\u064A\u0639 \u0623\u0633\u0626\u0644\u0629 \u0627\u0645\u062A\u062D\u0627\u0646\u0627\u062A \u0627\u0644\u0645\u0631\u062D\u0644\u0629 ${currentStage} \u0645\u0646 ${skillLabel}.</p>
+                    <p style="font-size:14px;color:#334155;margin:4px 0 2px 0;">\u0647\u0627\u062F \u0627\u0644\u0645\u064A\u0632\u0629 \u063A\u062F\u064A \u062A\u062E\u0644\u064A\u0643 \u062A\u0631\u0627\u062C\u0639 5 \u0627\u0645\u062A\u062D\u0627\u0646\u0627\u062A \u0641\u064A \u0643\u0644 \u0645\u0631\u0629 \u0645\u0646 \u0627\u0644\u0645\u0631\u062D\u0644\u0629 ${currentStage} \u0641\u064A ${skillLabel}.</p>
                     <p style="font-size:13px;color:#64748B;margin:2px 0 12px 0;">\u0643\u0644\u0645\u0627 \u062A\u062F\u0631\u0628\u062A \u0623\u0643\u062B\u0631\u060C \u0623\u0635\u0628\u062D \u0627\u0644\u0646\u0638\u0627\u0645 \u0623\u0643\u062B\u0631 \u0630\u0643\u0627\u0621\u064B \u0641\u064A \u0627\u062E\u062A\u064A\u0627\u0631 \u0627\u0644\u0623\u0633\u0626\u0644\u0629.</p>
                     <div style="margin:10px 0 14px 0;background:#FFFFFF;border:1px solid #E8EEF5;border-radius:6px;padding:6px 10px;text-align:left;">
                         <div style="display:flex;align-items:center;gap:10px;">
@@ -23779,6 +23790,7 @@ var MyApp = (() => {
                     </div>
                     <p style="font-size:12px;color:#94A3B8;margin:4px 0 4px 0;">${total} \u0646\u0635 \u0644\u0644\u062A\u062F\u0631\u064A\u0628</p>
                     <p style="font-size:11px;color:#94A3B8;margin:0 0 12px 0;">\u0627\u0644\u0645\u0631\u062D\u0644\u0629 ${currentStage} / ${totalStages}</p>
+                    <p style="font-size:11px;color:#94A3B8;margin:0 0 6px 0;">\u0641\u064A \u0643\u0644 \u0645\u0631\u0629: 5 \u0627\u0645\u062A\u062D\u0627\u0646\u0627\u062A \u0641\u0642\u0637</p>
                     ${buttonHtml}
                 </div>
             `);
@@ -23786,7 +23798,7 @@ var MyApp = (() => {
             this.updateCard(`
                 <div class="memory-trainer-intro">
                     <h2>\u0627\u0633\u062A\u062F\u0639\u0627\u0621 \u0645\u062A\u0642\u062F\u0645 \u{1F9E9}</h2>
-                    <p style="font-size:14px;color:#334155;margin:4px 0 2px 0;">\u0647\u0627\u062F \u0627\u0644\u0645\u064A\u0632\u0629 \u063A\u062F\u064A \u062A\u062E\u0644\u064A\u0643 \u062A\u062A\u062F\u0631\u0628 \u0639\u0644\u0649 \u062C\u0645\u064A\u0639 \u0623\u0633\u0626\u0644\u0629 \u0627\u0645\u062A\u062D\u0627\u0646\u0627\u062A \u0627\u0644\u0645\u0631\u062D\u0644\u0629.</p>
+                    <p style="font-size:14px;color:#334155;margin:4px 0 2px 0;">\u0647\u0627\u062F \u0627\u0644\u0645\u064A\u0632\u0629 \u063A\u062F\u064A \u062A\u062E\u0644\u064A\u0643 \u062A\u0631\u0627\u062C\u0639 5 \u0627\u0645\u062A\u062D\u0627\u0646\u0627\u062A \u0641\u064A \u0643\u0644 \u0645\u0631\u0629 \u0645\u0646 \u0627\u0644\u0645\u0631\u062D\u0644\u0629 \u0627\u0644\u062D\u0627\u0644\u064A\u0629.</p>
                     <p style="font-size:13px;color:#64748B;margin:2px 0 12px 0;">\u0643\u0644\u0645\u0627 \u062A\u062F\u0631\u0628\u062A \u0623\u0643\u062B\u0631\u060C \u0623\u0635\u0628\u062D \u0627\u0644\u0646\u0638\u0627\u0645 \u0623\u0643\u062B\u0631 \u0630\u0643\u0627\u0621\u064B \u0641\u064A \u0627\u062E\u062A\u064A\u0627\u0631 \u0627\u0644\u0623\u0633\u0626\u0644\u0629.</p>
                     <div style="margin:10px 0 14px 0;background:#FFFFFF;border:1px solid #E8EEF5;border-radius:6px;padding:6px 10px;text-align:left;">
                         <div style="display:flex;align-items:center;gap:10px;">
@@ -23797,6 +23809,7 @@ var MyApp = (() => {
                         </div>
                     </div>
                     <p style="font-size:12px;color:#94A3B8;margin:4px 0 4px 0;">\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...</p>
+                    <p style="font-size:11px;color:#94A3B8;margin:0 0 6px 0;">\u0641\u064A \u0643\u0644 \u0645\u0631\u0629: 5 \u0627\u0645\u062A\u062D\u0627\u0646\u0627\u062A \u0641\u0642\u0637</p>
                     <button class="memory-trainer-btn locked" onclick="window.location.href='subscribe.html'" style="padding:8px 20px;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;margin-top:12px;background:#64748B;color:#cbd5e1;opacity:0.7;">\u{1F512} \u0645\u062A\u0627\u062D \u0644\u0644\u062D\u0633\u0627\u0628 \u0627\u0644\u0643\u0627\u0645\u0644</button>
                 </div>
             `);
@@ -25252,20 +25265,19 @@ var MyApp = (() => {
           premiumSpan.innerHTML = "Premium";
           rightSide.appendChild(premiumSpan);
           div.appendChild(rightSide);
-          titleSpan.style.color = "#6b7280";
-          titleSpan.style.transition = "color 0.25s ease";
+          titleSpan.style.color = "#4b5563";
+          titleSpan.style.transition = "none";
+          titleSpan.classList.add("locked-title");
           div.onmouseenter = function() {
             this.style.backgroundColor = "rgba(255,255,255,0.95)";
             this.style.transform = "translateX(5px)";
             this.style.borderColor = "#60a5fa";
-            titleSpan.style.color = "#4b5563";
             if (premiumSpan) premiumSpan.style.transform = "scale(1.02)";
           };
           div.onmouseleave = function() {
             this.style.backgroundColor = "rgba(255,255,255,0.75)";
             this.style.transform = "translateX(0)";
             this.style.borderColor = "#e2e8f0";
-            titleSpan.style.color = "#6b7280";
             if (premiumSpan) premiumSpan.style.transform = "scale(1)";
           };
           div.onclick = function(e) {
@@ -25292,26 +25304,25 @@ var MyApp = (() => {
         premiumSpan.innerHTML = "Premium";
         rightSide.appendChild(premiumSpan);
         div.appendChild(rightSide);
-        titleSpan.style.color = "#6b7280";
-        titleSpan.style.transition = "color 0.25s ease";
+        titleSpan.style.color = "#4b5563";
+        titleSpan.style.transition = "none";
+        titleSpan.classList.add("locked-title");
         div.onmouseenter = function() {
           this.style.backgroundColor = "rgba(255,255,255,0.95)";
           this.style.transform = "translateX(5px)";
           this.style.borderColor = "#60a5fa";
-          titleSpan.style.color = "#4b5563";
           if (premiumSpan) premiumSpan.style.transform = "scale(1.02)";
         };
         div.onmouseleave = function() {
           this.style.backgroundColor = "rgba(255,255,255,0.75)";
           this.style.transform = "translateX(0)";
           this.style.borderColor = "#e2e8f0";
-          titleSpan.style.color = "#6b7280";
           if (premiumSpan) premiumSpan.style.transform = "scale(1)";
         };
         div.onclick = /* @__PURE__ */ (function(title, id) {
           return function() {
-            if (typeof window.showPremiumModal === "function") {
-              window.showPremiumModal(title + " (" + id + ")");
+            if (typeof window.showLockedCard === "function") {
+              window.showLockedCard(title + " (" + id + ")");
             } else {
               window.location.href = "subscribe.html";
             }
@@ -25347,7 +25358,6 @@ var MyApp = (() => {
       applyExamListView("list");
     }
     addVersionBadgesFixed();
-    setupLockedNextButton();
     if (localStorage.getItem("plannerToggleState") === "true") {
       if (typeof window.applyExamColors === "function") {
         setTimeout(window.applyExamColors, 50);
@@ -25517,8 +25527,8 @@ var MyApp = (() => {
     const isPremium = userStatus === "premium";
     const isFree = isExamFree(skill, examId);
     if (!isPremium && !isFree) {
-      if (typeof window.showPremiumModal === "function") {
-        window.showPremiumModal(examTitle + " (" + examId + ")");
+      if (typeof window.showLockedCard === "function") {
+        window.showLockedCard(examTitle + " (" + examId + ")");
       } else {
         window.location.href = "subscribe.html";
       }
@@ -26039,37 +26049,26 @@ var MyApp = (() => {
       if (versionBadge) {
         const vSize = 8 * contentMultiplier;
         versionBadge.style.cssText = `
-                display: inline-flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                gap: 1px !important;
-                background: linear-gradient(135deg, #334155, #1e293b) !important;
-                color: #f1f5f9 !important;
-                border-radius: 999px !important;
-                padding: 0 4px 0 2px !important;
-                height: ${Math.max(10, Math.min(18, 14 * contentMultiplier))}px !important;
-                flex-shrink: 0 !important;
-                pointer-events: none !important;
-                user-select: none !important;
-                line-height: 1 !important;
-                border: 1px solid #475569 !important;
                 font-size: ${vSize}px !important;
+                height: ${Math.max(10, Math.min(18, 14 * contentMultiplier))}px !important;
+                padding: 0 5px !important;
+                line-height: 1 !important;
+                /* \u0644\u0627 \u0646\u0636\u0639 background, color, border, box-shadow \u0647\u0646\u0627\u060C \u062A\u062A\u0631\u0643 \u0644\u0644\u0640 CSS */
             `;
-        const icon = versionBadge.querySelector(".material-symbols-outlined");
-        if (icon) {
-          icon.style.cssText = `
-                    font-size: ${vSize}px !important;
-                    line-height: 1 !important;
-                `;
-        }
         const numSpan = versionBadge.querySelector("span:last-child");
         if (numSpan) {
           numSpan.style.cssText = `
-                    font-size: ${vSize * 0.85}px !important;
+                    font-size: ${vSize}px !important;
                     font-weight: 600 !important;
                     line-height: 1 !important;
                 `;
         }
+        versionBadge.style.removeProperty("background");
+        versionBadge.style.removeProperty("background-color");
+        versionBadge.style.removeProperty("color");
+        versionBadge.style.removeProperty("border");
+        versionBadge.style.removeProperty("box-shadow");
+        versionBadge.style.removeProperty("border-radius");
       }
     });
     console.log("\u{1F7E6} Grid View \u0645\u0639 \u0646\u0638\u0627\u0645 \u0627\u0644\u062D\u062C\u0645 \u0627\u0644\u0645\u062A\u062F\u0631\u062C (60%-150%)");
@@ -26100,24 +26099,7 @@ var MyApp = (() => {
       badge = document.createElement("span");
       badge.className = "custom-badge";
       badge.innerHTML = `
-            <span class="material-symbols-outlined" style="font-size:12px; line-height:1;">layers</span>
-            <span style="font-size:9px; font-weight:600;">${exam.versions.length}</span>
-        `;
-      badge.style.cssText = `
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 2px !important;
-            background: linear-gradient(135deg, #334155, #1e293b) !important;
-            color: #f1f5f9 !important;
-            border-radius: 999px !important;
-            padding: 0 8px 0 4px !important;
-            height: 22px !important;
-            flex-shrink: 0 !important;
-            pointer-events: none !important;
-            user-select: none !important;
-            line-height: 1 !important;
-            border: 1px solid #475569 !important;
+            <span>${exam.versions.length} \u062A\u0639\u062F\u064A\u0644\u0627\u062A</span>
         `;
       badge.title = `${exam.versions.length} \u062A\u0639\u062F\u064A\u0644\u0627\u062A`;
       let rightSide = el.querySelector(".exam-right-icons");
@@ -27210,6 +27192,132 @@ var MyApp = (() => {
             console.log("[EXAMS] \u062A\u0648\u0642\u0641 \u0627\u0644\u0645\u0631\u0627\u0642\u0628\u0629 \u0628\u0639\u062F \u0627\u0644\u0645\u0647\u0644\u0629");
           }, 5e3);
         }
+      };
+      window.showLockedCard = function(examTitle) {
+        document.getElementById("site-locked-content-card")?.remove();
+        document.getElementById("site-locked-content-style")?.remove();
+        const style = document.createElement("style");
+        style.id = "site-locked-content-style";
+        style.textContent = `
+        #site-locked-content-card {
+            display: block;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(320px, calc(100vw - 30px));
+            box-sizing: border-box;
+            padding: 20px 18px 17px;
+            direction: rtl;
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            color: #ffffff;
+            background:
+                radial-gradient(180px 120px at 0% 0%, rgba(37, 99, 235, .13), transparent 72%),
+                radial-gradient(180px 120px at 100% 100%, rgba(59, 130, 246, .08), transparent 72%),
+                linear-gradient(145deg, #121a2a 0%, #0d1422 48%, #090f1b 100%);
+            border: 1px solid rgba(148, 163, 184, .20);
+            border-radius: 19px;
+            box-shadow:
+                0 25px 65px rgba(0, 0, 0, .65),
+                0 8px 25px rgba(0, 0, 0, .35),
+                0 0 35px rgba(37, 99, 235, .07),
+                inset 0 1px 0 rgba(255, 255, 255, .055);
+            overflow: hidden;
+            z-index: 999999;
+            animation: siteLockedAppear .26s cubic-bezier(.2,.8,.2,1);
+        }
+        @keyframes siteLockedAppear {
+            from { opacity: 0; transform: translate(-50%, -47%) scale(.96); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        .site-locked-icon-box {
+            width: 56px; height: 56px;
+            margin: 0 auto 12px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 15px;
+            background: linear-gradient(145deg, #25344a, #151f30);
+            border: 1px solid rgba(148,163,184,.28);
+            box-shadow: 0 8px 22px rgba(0,0,0,.35), 0 0 18px rgba(37,99,235,.10), inset 0 1px 0 rgba(255,255,255,.09), inset 0 -8px 20px rgba(0,0,0,.16);
+        }
+        .site-locked-icon {
+            color: #dbeafe; font-size: 30px;
+            text-shadow: 0 0 7px rgba(255,255,255,.40), 0 0 14px rgba(96,165,250,.45), 0 0 25px rgba(37,99,235,.22);
+            animation: sparkleGlow 2.8s ease-in-out infinite;
+        }
+        @keyframes sparkleGlow {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(96,165,250,.28)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 9px rgba(96,165,250,.50)); }
+        }
+        .site-locked-title { text-align: center; color: #f1f5f9; font-size: 19px; font-weight: 600; margin-bottom: 3px; }
+        .site-locked-description { text-align: center; color: #7f8da1; font-size: 11px; margin-bottom: 14px; }
+        .site-locked-plan {
+            width: 100%; min-height: 41px;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            border-radius: 12px;
+            background: linear-gradient(180deg, rgba(31,41,55,.92), rgba(20,28,40,.94));
+            border: 1px solid rgba(148,163,184,.18);
+            color: #cbd5e1; font-size: 11px; font-weight: 500; margin-bottom: 11px;
+        }
+        .site-locked-pro { color: #60a5fa; font-weight: 700; }
+        .site-locked-pro-sparkle { color: #bfdbfe; font-size: 15px; }
+        .site-locked-upgrade {
+            width: 100%; height: 44px; border: 0; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            color: #ffffff;
+            background: linear-gradient(100deg, #1d4ed8 0%, #2563eb 45%, #3157dc 72%, #3730a3 100%);
+            font-family: inherit; font-size: 13px; font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 7px 18px rgba(37,99,235,.20), inset 0 1px 0 rgba(255,255,255,.13), inset 0 -2px 0 rgba(0,0,0,.12);
+        }
+        .site-locked-upgrade:hover { filter: brightness(1.08); }
+        .site-locked-upgrade:active { transform: scale(.985); }
+        .site-locked-upgrade-icon { color: #e0edff; font-size: 18px; }
+        .site-locked-footer { margin-top: 9px; text-align: center; color: #566276; font-size: 9px; }
+        @media (max-width: 500px) {
+            #site-locked-content-card { width: min(310px, calc(100vw - 26px)); padding: 18px 16px 15px; border-radius: 18px; }
+            .site-locked-icon-box { width: 52px; height: 52px; margin-bottom: 10px; }
+            .site-locked-title { font-size: 18px; }
+            .site-locked-description { font-size: 10px; margin-bottom: 12px; }
+            .site-locked-upgrade { height: 42px; font-size: 12px; }
+        }
+        @media (max-width: 340px) {
+            #site-locked-content-card { width: calc(100vw - 22px); padding: 16px 14px 13px; }
+            .site-locked-icon-box { width: 48px; height: 48px; border-radius: 13px; }
+            .site-locked-title { font-size: 17px; }
+            .site-locked-plan { min-height: 39px; font-size: 10px; }
+            .site-locked-upgrade { height: 40px; border-radius: 11px; }
+        }
+    `;
+        document.head.appendChild(style);
+        const card = document.createElement("div");
+        card.id = "site-locked-content-card";
+        card.innerHTML = `
+        <div class="site-locked-icon-box"><span class="material-symbols-outlined site-locked-icon">auto_awesome</span></div>
+        <div class="site-locked-title">\u0645\u062D\u062A\u0648\u0649 \u0645\u0642\u0641\u0644</div>
+        <div class="site-locked-description">\u062A\u0631\u0642\u064A\u0629 \u0627\u0644\u062D\u0633\u0627\u0628 \u0644\u0644\u0648\u0635\u0648\u0644 \u0625\u0644\u0649 \u0647\u0630\u0627 \u0627\u0644\u0645\u062D\u062A\u0648\u0649</div>
+        <div class="site-locked-plan">
+            <span>\u064A\u062A\u0637\u0644\u0628 \u0628\u0627\u0642\u0629:</span>
+            <span class="site-locked-pro">Pro</span>
+            <span class="material-symbols-outlined site-locked-pro-sparkle">auto_awesome</span>
+        </div>
+        <button type="button" id="siteLockedUpgrade" class="site-locked-upgrade">
+            <span class="material-symbols-outlined site-locked-upgrade-icon">auto_awesome</span>
+            <span class="site-locked-upgrade-text">\u062A\u0631\u0642\u064A\u0629 \u0627\u0644\u062D\u0633\u0627\u0628 \u0627\u0644\u0622\u0646</span>
+        </button>
+        <div class="site-locked-footer">\u0627\u0641\u062A\u062D \u0627\u0644\u0645\u064A\u0632\u0627\u062A \u0648\u0627\u0644\u0645\u062D\u062A\u0648\u0649 \u0627\u0644\u0645\u0645\u064A\u0632</div>
+    `;
+        document.body.appendChild(card);
+        document.getElementById("siteLockedUpgrade")?.addEventListener("click", function() {
+          window.location.href = "subscribe.html";
+        });
+        setTimeout(() => {
+          document.addEventListener("click", function close(e) {
+            if (!card.contains(e.target) && e.target.id !== "siteLockedUpgrade") {
+              card.remove();
+              document.removeEventListener("click", close);
+            }
+          });
+        }, 100);
       };
       currentExamData = null;
       currentSkill2 = "lesen1";
@@ -29224,6 +29332,10 @@ var MyApp = (() => {
       if (profileUidValue) profileUidValue.textContent = "---";
       if (profileLogoutBtn2) profileLogoutBtn2.style.display = "none";
       if (navLoginBtn2) navLoginBtn2.style.display = "inline-block";
+      if (navSignupBtn) {
+        navSignupBtn.style.display = "inline-flex";
+        navSignupBtn.style.removeProperty("display");
+      }
       if (navSubscribeBtn2) navSubscribeBtn2.style.display = "inline-flex";
       if (featuresSubscribeBtn) featuresSubscribeBtn.style.display = "inline-flex";
       if (profileIcon2) profileIcon2.style.display = "none";
@@ -29248,41 +29360,38 @@ var MyApp = (() => {
     if (profileUidValue) profileUidValue.textContent = user.uid;
     if (profileLogoutBtn2) profileLogoutBtn2.style.display = "block";
     if (navLoginBtn2) navLoginBtn2.style.display = "none";
+    if (navSignupBtn) {
+      navSignupBtn.style.display = "none";
+      navSignupBtn.style.setProperty("display", "none", "important");
+    }
     if (profileIcon2) profileIcon2.style.display = "flex";
     if (studyPlannerBtn) studyPlannerBtn.style.display = isHomePage ? "none" : "inline-flex";
     const isPremium = data && data.plan === "premium" && (!data.premiumUntil || new Date(data.premiumUntil).getTime() > Date.now());
     _currentUserStatus = isPremium ? "premium" : "free";
     if (isPremium) {
-      if (profileStatus) profileStatus.innerHTML = `<span class="status-premium">\u2705 \u0645\u0634\u062A\u0631\u0643 (Pro)</span>`;
+      if (profileStatus) profileStatus.textContent = "\u0645\u0634\u062A\u0631\u0643 (Pro)";
       if (profileExpiryText && data.premiumUntil) {
-        profileExpiryText.textContent = `\u0627\u0644\u0635\u0644\u0627\u062D\u064A\u0629: \u062D\u062A\u0649 ${new Date(data.premiumUntil).toLocaleDateString("ar-EG")}`;
+        profileExpiryText.textContent = new Date(data.premiumUntil).toLocaleDateString("ar-EG");
       } else if (profileExpiryText) {
-        profileExpiryText.textContent = `\u0627\u0644\u0635\u0644\u0627\u062D\u064A\u0629: \u062D\u0633\u0627\u0628 \u062F\u0627\u0626\u0645`;
+        profileExpiryText.textContent = "\u062D\u0633\u0627\u0628 \u062F\u0627\u0626\u0645";
       }
+      const premiumStatus = document.getElementById("profilePremiumStatus");
+      if (premiumStatus) premiumStatus.textContent = "\u0645\u0641\u0639\u0644\u0629";
       if (navSubscribeBtn2) navSubscribeBtn2.style.display = "none";
       if (featuresSubscribeBtn) featuresSubscribeBtn.style.display = "none";
       if (settingsBtn2) settingsBtn2.style.display = "inline-flex";
-      const oldBtn = document.getElementById("dropdownUpgradeBtn");
-      if (oldBtn) oldBtn.remove();
     } else {
-      if (profileStatus) profileStatus.innerHTML = `<span class="status-free"><span class="material-symbols-outlined" style="font-size: 16px; vertical-align: middle; margin-left: 4px;">credit_card_off</span> \u0645\u062C\u0627\u0646\u064A</span>`;
-      if (profileExpiryText) profileExpiryText.textContent = "\u062D\u0633\u0627\u0628 \u0645\u062C\u0627\u0646\u064A / \u0627\u0646\u062A\u0647\u062A \u0627\u0644\u0635\u0644\u0627\u062D\u064A\u0629";
+      if (profileStatus) profileStatus.textContent = "\u0645\u062C\u0627\u0646\u064A";
+      if (profileExpiryText) profileExpiryText.textContent = "\u062D\u0633\u0627\u0628 \u0645\u062C\u0627\u0646\u064A";
+      const premiumStatus = document.getElementById("profilePremiumStatus");
+      if (premiumStatus) premiumStatus.textContent = "\u063A\u064A\u0631 \u0645\u0641\u0639\u0644\u0629";
       if (navSubscribeBtn2) navSubscribeBtn2.style.display = "inline-flex";
       if (featuresSubscribeBtn) featuresSubscribeBtn.style.display = "inline-flex";
       if (settingsBtn2) settingsBtn2.style.display = "none";
-      const oldBtn = document.getElementById("dropdownUpgradeBtn");
-      if (!oldBtn && profileDropdown2) {
-        const upgradeBtn = document.createElement("button");
-        upgradeBtn.id = "dropdownUpgradeBtn";
-        upgradeBtn.innerHTML = "\u0627\u0644\u062A\u0631\u0642\u064A\u0629 \u0625\u0644\u0649 \u0627\u0644\u062D\u0633\u0627\u0628 \u0627\u0644\u0643\u0627\u0645\u0644 \u2192";
-        upgradeBtn.style.cssText = `
-                margin-top: 12px; background: #64748B; color: white; border: none;
-                padding: 10px 15px; border-radius: 25px; cursor: pointer; width: 100%;
-                font-size: 13px; font-weight: bold; transition: all 0.3s ease;
-            `;
-        upgradeBtn.onclick = () => window.location.href = "subscribe.html";
-        profileDropdown2.appendChild(upgradeBtn);
-      }
+    }
+    const avatarEl = document.getElementById("profileAvatar");
+    if (avatarEl && user.email) {
+      avatarEl.textContent = user.email.charAt(0).toUpperCase();
     }
     if (typeof window.renderInitialExamList === "function") {
       const listPage = document.getElementById("list");
@@ -29740,6 +29849,14 @@ var MyApp = (() => {
           if (profileDropdown) profileDropdown.classList.toggle("show");
         });
         if (profileLogoutBtn) profileLogoutBtn.addEventListener("click", () => handleLogout(true));
+        const profileSettingsIcon = document.getElementById("profileSettingsIcon");
+        if (profileSettingsIcon) {
+          profileSettingsIcon.addEventListener("click", (e) => {
+            e.stopPropagation();
+            settingsModal.classList.add("active");
+            if (profileDropdown) profileDropdown.classList.remove("show");
+          });
+        }
         if (settingsBtn && settingsModal) {
           settingsBtn.addEventListener("click", (e) => {
             e.stopPropagation();
@@ -29753,6 +29870,63 @@ var MyApp = (() => {
             profileDropdown.classList.remove("show");
           }
         });
+        const plannerRow = document.getElementById("profilePlannerRowClickable");
+        const editInfoModal = document.getElementById("editInfoModal");
+        const closeEditInfoModal = document.getElementById("closeEditInfoModal");
+        const saveEditInfoBtn = document.getElementById("saveEditInfoBtn");
+        const examDateInput = document.getElementById("editExamDateInput");
+        const dailyHoursInput = document.getElementById("editDailyHoursInput");
+        if (plannerRow) {
+          plannerRow.addEventListener("click", function(e) {
+            e.stopPropagation();
+            profileDropdown.classList.remove("show");
+            let savedDate = localStorage.getItem("zertiva_exam_date");
+            let savedHours = parseInt(localStorage.getItem("zertiva_daily_hours")) || 4;
+            if (savedDate) examDateInput.value = savedDate;
+            else {
+              const today = /* @__PURE__ */ new Date();
+              today.setDate(today.getDate() + 30);
+              examDateInput.value = today.toISOString().split("T")[0];
+            }
+            dailyHoursInput.value = savedHours;
+            editInfoModal.style.display = "flex";
+          });
+        }
+        if (closeEditInfoModal) {
+          closeEditInfoModal.addEventListener("click", function() {
+            editInfoModal.style.display = "none";
+          });
+        }
+        if (editInfoModal) {
+          editInfoModal.addEventListener("click", function(e) {
+            if (e.target === editInfoModal) editInfoModal.style.display = "none";
+          });
+        }
+        if (saveEditInfoBtn) {
+          saveEditInfoBtn.addEventListener("click", function() {
+            const date = examDateInput.value;
+            const hours = parseInt(dailyHoursInput.value) || 4;
+            if (!date) {
+              alert("\u064A\u0631\u062C\u0649 \u0627\u062E\u062A\u064A\u0627\u0631 \u062A\u0627\u0631\u064A\u062E \u0627\u0644\u0627\u0645\u062A\u062D\u0627\u0646.");
+              return;
+            }
+            if (hours < 1 || hours > 12) {
+              alert("\u0639\u062F\u062F \u0627\u0644\u0633\u0627\u0639\u0627\u062A \u0628\u064A\u0646 1 \u0648 12.");
+              return;
+            }
+            localStorage.setItem("zertiva_exam_date", date);
+            localStorage.setItem("zertiva_daily_hours", String(hours));
+            const today = /* @__PURE__ */ new Date();
+            today.setHours(0, 0, 0, 0);
+            const examDate = new Date(date);
+            examDate.setHours(0, 0, 0, 0);
+            const diff = Math.ceil((examDate - today) / (1e3 * 60 * 60 * 24));
+            const remaining = Math.max(diff, 0);
+            const profilePlannerText = document.getElementById("profilePlannerText");
+            if (profilePlannerText) profilePlannerText.textContent = remaining + " \u064A\u0648\u0645";
+            editInfoModal.style.display = "none";
+          });
+        }
         const loginInputs = [authEmail, authPassword];
         loginInputs.forEach((input) => {
           if (input) {
@@ -29796,6 +29970,9 @@ var MyApp = (() => {
         }
         originalUpdateUI(user, data);
       };
+      window.openAuthModal = openAuthModal;
+      window.closeAuthModalFunc = closeAuthModalFunc;
+      window.showForm = showForm;
       console.log("\u{1F389} \u062A\u0645 \u0627\u0639\u062A\u0645\u0627\u062F \u0627\u0644\u0628\u0646\u064A\u0629 \u0627\u0644\u0646\u0647\u0627\u0626\u064A\u0629 \u0644\u0640 Zertiva \u0628\u0646\u0633\u0628\u0629 100/100.");
     }
   });
