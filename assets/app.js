@@ -739,6 +739,13 @@ var MyApp = (() => {
       "hoeren2_exam47": [2, 3, 5, 9],
       "hoeren2_exam48": [3, 5, 6, 9, 10],
       "hoeren2_exam49": [1, 2, 4, 6, 8, 10],
+      // Hören Teil 2 - Exam 50-55 (المضافة حديثاً)
+      "hoeren2_exam50": [1, 3, 9],
+      "hoeren2_exam51": [2, 3, 6, 7, 9],
+      "hoeren2_exam52": [1, 4, 5, 7, 9],
+      "hoeren2_exam53": [1, 2, 3, 7, 8],
+      "hoeren2_exam54": [4, 5, 6, 7, 10],
+      "hoeren2_exam55": [5, 6, 7, 8, 9, 10],
       // Hören Teil 3 (27 أساسي + 20 جديد = 47 امتحان)
       "hoeren3_exam1": [1],
       "hoeren3_exam2": [1, 3],
