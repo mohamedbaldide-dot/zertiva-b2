@@ -607,7 +607,6 @@
     .home .tips-trigger-btn {
         display: none;
     }
-
     /* ===== تنسيق أزرار الأجزاء (Teile) في الهاتف ===== */
     @media (max-width: 768px) {
         .teile-row {
@@ -637,6 +636,46 @@
             font-size: 0.5rem !important;
             padding: 8px 2px !important;
             min-height: 40px !important;
+        }
+    }
+
+    /* ===== تنسيق أزرار التصحيح وإعادة التعيين في Lesen 1 و Lesen 3 للشاشات الصغيرة (داخل media query) ===== */
+    @media (max-width: 770px) {
+        #teil1 .teil1-controls,
+        #teil3 .teil3-controls {
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 8px !important;
+            flex-wrap: nowrap !important;
+            margin-top: 12px !important;
+        }
+
+        #teil1 .teil1-controls .check-btn,
+        #teil3 .teil3-controls .check-btn,
+        #teil1 .teil1-controls .reset-btn,
+        #teil3 .teil3-controls .reset-btn {
+            padding: 6px 14px !important;
+            font-size: 13px !important;
+            min-height: 34px !important;
+            height: auto !important;
+            border-radius: 20px !important;
+            white-space: nowrap !important;
+            flex: 0 1 auto !important;
+            min-width: unset !important;
+            width: auto !important;
+        }
+
+        #teil1 .teil1-controls .check-btn,
+        #teil3 .teil3-controls .check-btn {
+            background: #2c3e66 !important;
+            color: white !important;
+        }
+        #teil1 .teil1-controls .reset-btn,
+        #teil3 .teil3-controls .reset-btn {
+            background: #6c757d !important;
+            color: white !important;
         }
     }
 
@@ -743,123 +782,124 @@
     }
 }
 
-    /* ===== نافذة الإشعارات - تحسين الهاتف (على اليمين) ===== */
-    @media (max-width: 768px) {
-        .notification-dropdown {
-            position: fixed !important;
-            top: 60px !important;
-            left: auto !important;
-            right: 12px !important;
-            transform: none !important;
-            bottom: auto !important;
-            width: 92% !important;
-            max-width: 360px !important;
-            min-width: 280px !important;
-            max-height: 70vh !important;
-            height: auto !important;
-            border-radius: 18px !important;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.35) !important;
-            border: 1px solid rgba(56, 189, 248, 0.15) !important;
-            box-sizing: border-box !important;
-            flex-shrink: 0 !important;
-            overflow-y: auto !important;
-            overflow-x: hidden !important;
-            z-index: 99999 !important;
-            background: #0f172a !important;
-        }
-        
-        .notification-dropdown::before {
-            display: none !important;
-        }
-        
-        .notification-header {
-            font-size: 0.8rem !important;
-            padding: 12px 16px !important;
-            flex-wrap: wrap !important;
-            gap: 6px !important;
-            flex-shrink: 0 !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: center !important;
-        }
-        
-        .notification-header span {
-            font-size: 13px !important;
-        }
-        
-        .notification-list {
-            max-height: none !important;
-            padding: 4px 0 !important;
-            overflow-y: auto !important;
-            flex: 1 !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-        }
-        
-        .notification-item {
-            padding: 12px 14px !important;
-            font-size: 0.75rem !important;
-            gap: 10px !important;
-            border-bottom: 1px solid rgba(255,255,255,0.05) !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-            flex-wrap: wrap !important;
-            word-break: break-word !important;
-        }
-        
-        .notification-item .notification-icon {
-            font-size: 16px !important;
-            min-width: 24px !important;
-            margin-left: 6px !important;
-        }
-        
-        .notification-item .notification-title {
-            font-size: 13px !important;
-            font-weight: 600 !important;
-            margin-bottom: 2px !important;
-        }
-        
-        .notification-item .notification-message {
-            font-size: 11px !important;
-            line-height: 1.4 !important;
-        }
-        
-        .notification-item .notification-time {
-            font-size: 9px !important;
-            margin-top: 2px !important;
-        }
-        
-        .mark-all-read {
-            font-size: 0.7rem !important;
-            padding: 6px 12px !important;
-            min-height: 32px !important;
-            border-radius: 20px !important;
-            flex-shrink: 0 !important;
-        }
-        
-        .notification-empty {
-            padding: 24px 16px !important;
-            font-size: 12px !important;
-        }
-        
-        .notification-show-all,
-        .notification-show-less {
-            padding: 10px 12px !important;
-            flex-shrink: 0 !important;
-            width: 100% !important;
-            box-sizing: border-box !important;
-        }
-        
-        .show-all-btn,
-        .show-less-btn {
-            font-size: 11px !important;
-            padding: 8px 12px !important;
-            min-height: 36px !important;
-            width: 100% !important;
-        }
+@media (max-width: 768px) {
+    .notification-dropdown {
+        position: fixed !important;
+        top: 60px !important;
+        left: auto !important;
+        right: 12px !important;
+        transform: none !important;
+        bottom: auto !important;
+        width: 92% !important;
+        max-width: 360px !important;
+        min-width: 280px !important;
+        max-height: 70vh !important;
+        height: auto !important;
+        border-radius: 18px !important;
+        box-shadow: 0 20px 45px rgba(0,0,0,0.35) !important;
+        border: 1px solid rgba(56, 189, 248, 0.15) !important;
+        box-sizing: border-box !important;
+        flex-shrink: 0 !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        z-index: 99999 !important;
+        background: #0f172a !important;
+        display: none;   /* ← تم إزالة !important */
     }
+    
+    /* باقي الكود يبقى كما هو تماماً */
+    .notification-dropdown::before {
+        display: none !important;
+    }
+    
+    .notification-header {
+        font-size: 0.8rem !important;
+        padding: 12px 16px !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+        flex-shrink: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+    
+    .notification-header span {
+        font-size: 13px !important;
+    }
+    
+    .notification-list {
+        max-height: none !important;
+        padding: 4px 0 !important;
+        overflow-y: auto !important;
+        flex: 1 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .notification-item {
+        padding: 12px 14px !important;
+        font-size: 0.75rem !important;
+        gap: 10px !important;
+        border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        flex-wrap: wrap !important;
+        word-break: break-word !important;
+    }
+    
+    .notification-item .notification-icon {
+        font-size: 16px !important;
+        min-width: 24px !important;
+        margin-left: 6px !important;
+    }
+    
+    .notification-item .notification-title {
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        margin-bottom: 2px !important;
+    }
+    
+    .notification-item .notification-message {
+        font-size: 11px !important;
+        line-height: 1.4 !important;
+    }
+    
+    .notification-item .notification-time {
+        font-size: 9px !important;
+        margin-top: 2px !important;
+    }
+    
+    .mark-all-read {
+        font-size: 0.7rem !important;
+        padding: 6px 12px !important;
+        min-height: 32px !important;
+        border-radius: 20px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .notification-empty {
+        padding: 24px 16px !important;
+        font-size: 12px !important;
+    }
+    
+    .notification-show-all,
+    .notification-show-less {
+        padding: 10px 12px !important;
+        flex-shrink: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .show-all-btn,
+    .show-less-btn {
+        font-size: 11px !important;
+        padding: 8px 12px !important;
+        min-height: 36px !important;
+        width: 100% !important;
+    }
+}
         
 
     /* ============================================
@@ -2157,6 +2197,7 @@ body.dark-mode .mobile-banner span {
     .zs-title { font-size: 20px !important; }
     .zs-desc { font-size: 13px !important; line-height: 1.7 !important; }
 }
+    
 </style>
     
 </head>
@@ -2165,54 +2206,56 @@ body.dark-mode .mobile-banner span {
 <div class="top-bar">
 <div class="left-side">
     <img src="images/profile.png" id="profileIcon" class="profile-icon" alt="Profile" style="display: none;">
-    <button id="settingsBtn" class="settings-icon-btn" title="إعدادات العرض">
-        <img src="images/settings.png" alt="Settings" class="icon-img">
-    </button>
-    <button id="studyPlannerBtn" class="study-planner-icon-btn" title="خطة اليوم الذكية">
-        <img src="images/game.png" alt="خطة اليوم" class="planner-icon-img">
-    </button>
+ <button id="settingsBtn" class="settings-icon-btn" style="display: none;" title="إعدادات العرض">
+    <img src="images/settings.png" alt="Settings" class="icon-img">
+</button>
+   <button id="myInfoBtn" class="settings-icon-btn" style="display: none;" title="إحصائياتي">
+    <img src="images/myinfo.png" alt="إحصائياتي" class="icon-img">
+</button>
+<button id="studyPlannerBtn" class="study-planner-icon-btn" style="display: none;" title="خطة اليوم الذكية">
+    <img src="images/game.png" alt="خطة اليوم" class="planner-icon-img">
+</button>
 
     <div class="login-uiverse-wrapper" dir="rtl">
-        <button id="navLoginBtn" class="login-uiverse-btn" role="button" onclick="openAuthModal('login')">
-            تسجيل الدخول
-            <svg aria-hidden="true" viewBox="0 0 10 10" height="10" width="10" fill="none" class="login-uiverse-arrow">
-                <path d="M0 5h7" class="login-uiverse-arrow-stroke"></path>
-                <path d="M9 1l-4 4 4 4" class="login-uiverse-arrow-head"></path>
+  <button id="navLoginBtn" class="login-uiverse-btn" style="display: none;" role="button" onclick="openAuthModal('login')">
+    تسجيل الدخول
+    <svg aria-hidden="true" viewBox="0 0 10 10" height="10" width="10" fill="none" class="login-uiverse-arrow">
+        <path d="M0 5h7" class="login-uiverse-arrow-stroke"></path>
+        <path d="M9 1l-4 4 4 4" class="login-uiverse-arrow-head"></path>
+    </svg>
+</button>
+    </div>
+
+ <button id="navSignupBtn" class="login-uiverse-btn" style="display: none; background: #1a3a8a !important; border: none !important; color: #e5e7eb !important; box-shadow: 0 0 20px rgba(26,58,138,0.3), 0 4px 12px rgba(26,58,138,0.2) !important; border-radius: 10px !important; transition: all 0.25s ease !important;" role="button" onclick="openAuthModal('signup')">
+    إنشاء حساب
+    <svg aria-hidden="true" viewBox="0 0 10 10" height="10" width="10" fill="none" class="login-uiverse-arrow">
+        <path d="M0 5h7" class="login-uiverse-arrow-stroke"></path>
+        <path d="M9 1l-4 4 4 4" class="login-uiverse-arrow-head"></path>
+    </svg>
+</button>
+    <!-- تم إزالة زر اشترك -->
+</div>   <!-- إغلاق left-side -->
+<div class="right-side">
+    <!-- ✅ الزر الجديد: Why Zertiva (مطابق لزر خطة اليوم) -->
+    <button class="study-planner-icon-btn" id="whyZertivaBtn" title="لماذا Zertiva؟">
+        <img src="images/why.png" alt="لماذا Zertiva؟" class="planner-icon-img">
+    </button>
+
+    <div class="notification-container">
+        <button id="notificationBell" class="notification-bell">
+            <svg viewBox="0 0 448 512" class="bell-icon">
+                <path d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"/>
             </svg>
+            <span id="notificationBadge" class="notification-badge" style="display: none;">0</span>
         </button>
     </div>
 
-    <button id="navSignupBtn" class="login-uiverse-btn" role="button" onclick="openAuthModal('signup')" style="background: #1a3a8a !important; border: none !important; color: #e5e7eb !important; box-shadow: 0 0 20px rgba(26,58,138,0.3), 0 4px 12px rgba(26,58,138,0.2) !important; border-radius: 10px !important; transition: all 0.25s ease !important;">
-        إنشاء حساب
-        <svg aria-hidden="true" viewBox="0 0 10 10" height="10" width="10" fill="none" class="login-uiverse-arrow">
-            <path d="M0 5h7" class="login-uiverse-arrow-stroke"></path>
-            <path d="M9 1l-4 4 4 4" class="login-uiverse-arrow-head"></path>
-        </svg>
-    </button>
-    <!-- تم إزالة زر اشترك -->
-</div>   <!-- إغلاق left-side -->
-    
-   <div class="right-side">
-    <!-- تم إزالة زر info بناءً على الطلب -->
-    
- <div class="notification-container">
-     <button id="notificationBell" class="notification-bell">
-    <svg viewBox="0 0 448 512" class="bell-icon">
-        <path d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"/>
-    </svg>
-    <span id="notificationBadge" class="notification-badge" style="display: none;">0</span>
-</button>
-    </div>
-<!-- ⏰ جلسة مراجعة -->
-<button id="studySessionBtn" class="study-session-btn" title="جلسة مراجعة">
+<button id="studySessionBtn" class="study-session-btn" style="display: none;" title="جلسة مراجعة">
     <img src="images/clock.png" alt="Timer" class="icon-img">
 </button>
-
-<!-- Logo -->
-<div class="logo-icon" id="logoHomeBtn">
-    <img src="images/logo.webp" loading="lazy" alt="Zertiva" class="logo-img">
-</div>
-  </div>
+    <div class="logo-icon" id="logoHomeBtn">
+        <img src="images/logo.webp" loading="lazy" alt="Zertiva" class="logo-img">
+    </div>
 </div>
 
 <!-- ===== الملف الشخصي (الشكل 2 النهائي - دائم) ===== -->
@@ -2264,11 +2307,22 @@ body.dark-mode .mobile-banner span {
                 <div class="shape2-chevron">›</div>
             </div>
         </div>
-        <!-- زر إحصائياتي -->
+               <!-- زر إحصائياتي -->
         <button id="downloadReportBtn" class="shape2-stats">
             <span class="material-symbols-outlined">monitoring</span> إحصائياتي
         </button>
-            <!-- زر تسجيل خروج -->
+
+        <!-- زر اشترك (يظهر حسب الحالة) -->
+        <button id="profileSubscribeBtn" class="shape2-stats" style="display: none; background: linear-gradient(135deg, #2d6a4f, #1b4d3d); border-color: rgba(45, 106, 79, 0.3); box-shadow: 0 5px 16px rgba(45, 106, 79, 0.2);">
+            <span class="material-symbols-outlined">auto_awesome</span> اشترك
+        </button>
+
+        <!-- زر إنشاء حساب (يظهر حسب الحالة) -->
+        <button id="profileSignupBtn" class="shape2-logout" style="display: none; background: radial-gradient(120px 35px at 50% 100%, rgba(59,130,246,.07), transparent 75%), linear-gradient(180deg, rgba(29,32,43,.92), rgba(17,21,31,.96)); color: #60a5fa; border-color: rgba(59,130,246,.2);">
+            <span class="material-symbols-outlined">person_add</span> إنشاء حساب
+        </button>
+
+        <!-- زر تسجيل خروج -->
         <button id="profileLogoutBtn" class="shape2-logout">
             <span class="material-symbols-outlined">logout</span> تسجيل خروج
         </button>
@@ -4928,6 +4982,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 
 <!-- ===== نافذة الإشعارات (منقولة إلى أعلى مستوى) ===== -->
+<!-- ===== نافذة الإشعارات (منقولة إلى أعلى مستوى) ===== -->
 <div id="notificationDropdown" class="notification-dropdown">
     <div class="notification-header">
         <span>📬 الإشعارات</span>
@@ -4939,7 +4994,158 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
     </div>
 </div>
+<!-- ===== Why Zertiva Popup ===== -->
+<div class="why-zertiva-popup" id="whyZertivaPopup">
+    <div style="padding: 2px 12px; width: 100%; max-width: 560px; box-sizing: border-box; border-radius: 8px; font-family: 'Segoe UI', system-ui, sans-serif; direction: rtl; color: #e2e8f0; margin: 0 auto;">
+        <div style="font-size: 13px; font-weight: 600; color: #f1f5f9; letter-spacing: 0.2px; margin-bottom: 1px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 1px;">علاش غتنجح معانا؟</div>
+        <div style="font-size: 12px; line-height: 1.25; color: #cbd5e1;">
+            <p style="margin: 0 0 0px 0;">
+                <span style="color: #94a3b8;">›</span>
+                <strong style="color: #f1f5f9;">أولاً وأهم شيء:</strong>
+                <span style="margin-right: 4px;">غتستافد  من <span style="color: #38A9E8; font-weight: 500;">كل التيمات القدام والجداد</span>، وحتى مواضيع تركيا، الاجوبة صحيحة. وأي موضوع جديد كنزيدوه مباشرة وكتخروكوم بيه فقائمة الإشعارات.</span>
+            </p>
+            <p style="margin: 0 0 0px 0;">
+                <span style="color: #94a3b8;">›</span>
+                <strong style="color: #f1f5f9;">ثانياً:</strong>
+                <span style="margin-right: 4px;">هنا غتلاقا <span style="color: #2386B8; font-weight: 500;">ميزات متطورة</span> الهدف ديالها الأول انك نتا تراجع بسرعة وكفاءة أكثر وافضل من أي شخص او موقع آخر. وهنا كيبان الفرق بين المراجع من ملفات البيدي وبين موقع مصمم باش يسهل ويسرع المهمة عليك</span>
+            </p>
+            <p style="margin: 0 0 0px 0;">
+                <span style="color: #94a3b8;">›</span>
+                <strong style="color: #f1f5f9;">ثالثاً:</strong>
+                <span style="margin-right: 4px;">هنيناك وعتيناك غير الحوايج المهمة، متلا فالمراجعة باش تدوز امتحان فيه جميع الاجزاء. هوغن، ليزن، شبخاخ، باوشتاين وشخايبن فمرة وحدة، أو حتى أوديوات الهوغن أو بزاااف دالحوايج الآخرين، هما فقط <span style="color: #D96B7B; font-weight: 500;">مضيعة للوقت</span>. وماشي غير هدشي، فراه بزاف دالحوايج الآخرين مكيزيدو حتى إضافة حقيقية.</span>
+            </p>
+            <p style="margin: 0;">
+                <span style="color: #94a3b8;">›</span>
+                <strong style="color: #f1f5f9;">وأخيراً:</strong>
+                <span style="margin-right: 4px;">نتا مكتراجعش ففوضى، بل<span style="color: #4FA67A; font-weight: 500;">فنظام متطور، سلس، سريع</span>، وأهم شيء أنه <span style="color: #C4963A; font-weight: 500;">موثوق</span>.</span>
+            </p>
+        </div>
+    </div>
+</div>
 
+<!-- ===== My Info Popup ===== -->
+<div class="myinfo-popup-overlay" id="myInfoPopup">
+    <div class="myinfo-popup">
+        <div class="myinfo-popup-title"> هل تريد رؤية معلوماتك؟</div>
+        <div class="myinfo-popup-sub">سيتم نقلك إلى صفحة إحصائياتك الشخصية.</div>
+        <div class="myinfo-popup-buttons">
+            <button class="myinfo-popup-btn yes" id="myInfoPopupYes">نعم</button>
+            <button class="myinfo-popup-btn no" id="myInfoPopupNo">ليس الآن</button>
+        </div>
+    </div>
+</div>
+<script>
+    
+// ============================================
+// Why Zertiva Button & Popup
+// ============================================
+(function initWhyZertiva() {
+    const btn = document.getElementById('whyZertivaBtn');
+    const popup = document.getElementById('whyZertivaPopup');
+    
+    if (!btn || !popup) {
+        console.warn('⚠️ Why Zertiva: الزر أو النافذة غير موجودة');
+        return;
+    }
+
+    let isOpen = false;
+
+    function togglePopup(e) {
+        e.stopPropagation();
+        isOpen = !isOpen;
+        popup.classList.toggle('active', isOpen);
+    }
+
+    function closePopup() {
+        isOpen = false;
+        popup.classList.remove('active');
+    }
+
+    btn.addEventListener('click', togglePopup);
+
+    document.addEventListener('click', function(e) {
+        if (isOpen && !popup.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+            closePopup();
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isOpen) {
+            closePopup();
+        }
+    });
+
+    window.addEventListener('scroll', function() {
+        if (isOpen) {
+            closePopup();
+        }
+    });
+
+    console.log('✅ Why Zertiva: الزر والنافذة جاهزان');
+})();
+
+// ============================================
+// My Info Button & Popup
+// ============================================
+(function initMyInfo() {
+    const btn = document.getElementById('myInfoBtn');
+    const popup = document.getElementById('myInfoPopup');
+    const yesBtn = document.getElementById('myInfoPopupYes');
+    const noBtn = document.getElementById('myInfoPopupNo');
+
+    if (!btn || !popup || !yesBtn || !noBtn) {
+        console.warn('⚠️ My Info: بعض العناصر غير موجودة');
+        return;
+    }
+
+    let isOpen = false;
+
+    function openPopup(e) {
+        e.stopPropagation();
+        isOpen = true;
+        popup.classList.add('active');
+    }
+
+    function closePopup() {
+        isOpen = false;
+        popup.classList.remove('active');
+    }
+
+    function openReport() {
+        if (typeof window.openReportPage === 'function') {
+            window.openReportPage();
+        } else {
+            const reportBtn = document.getElementById('downloadReportBtn');
+            if (reportBtn) {
+                reportBtn.click();
+            } else {
+                window.open('report.html', '_blank');
+            }
+        }
+        closePopup();
+    }
+
+    btn.addEventListener('click', openPopup);
+
+    yesBtn.addEventListener('click', openReport);
+    noBtn.addEventListener('click', closePopup);
+
+    popup.addEventListener('click', function(e) {
+        if (e.target === popup) {
+            closePopup();
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isOpen) {
+            closePopup();
+        }
+    });
+
+    console.log('✅ My Info: الزر والنافذة جاهزان');
+})();
+    
+</script>
 <!-- ===== زر Ask AI العائم ===== -->
 <button id="askAIFloatingBtn">
     <img src="images/stars.png" alt="Ask AI" class="ask-ai-img">
@@ -5933,38 +6139,63 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log('✅ Ask AI جاهز (يدعم 6 مزودات + حد يومي 15 رسالة + Prompt مختصر)');
 })();
 
+function calculateRemainingDays(examDateStr) {
+    if (!examDateStr) return 0;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const examDay = new Date(examDateStr);
+    examDay.setHours(0, 0, 0, 0);
+    const diff = Math.ceil((examDay - today) / (1000 * 60 * 60 * 24));
+    return Math.max(diff, 0);
+}
+
+function calculateRemainingDays(examDateStr) {
+    if (!examDateStr) return 0;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const examDay = new Date(examDateStr);
+    examDay.setHours(0, 0, 0, 0);
+    const diff = Math.ceil((examDay - today) / (1000 * 60 * 60 * 24));
+    return Math.max(diff, 0);
+}
+
+
 function updateProfilePlannerStatus() {
     const textEl = document.getElementById('profilePlannerText');
-    const statusRow = document.getElementById('profilePlannerRow');
-    if (!statusRow) return;
+    if (!textEl) return;
 
     const examDateStr = localStorage.getItem('zertiva_exam_date');
     if (examDateStr) {
-        // استخدام نفس دالة Study Planner للحساب (مصدر واحد للحقيقة)
-        if (typeof window.calculateWorkingDays === 'function') {
-            const examDate = new Date(examDateStr);
-            const result = window.calculateWorkingDays(examDate);
-            const remaining = result.remainingDays;
-            textEl.textContent = `لديك ${remaining} يوم${remaining > 1 ? 'اً' : ''}`;
-            textEl.className = 'profile-planner-text-active';
-        } else {
-            // في حالة عدم توفر الدالة (حماية احتياطية)
-            const today = new Date(); today.setHours(0,0,0,0);
-            const examDay = new Date(examDateStr); examDay.setHours(0,0,0,0);
-            const diff = Math.ceil((examDay - today) / (1000 * 60 * 60 * 24));
-            const remaining = Math.max(diff, 0);
-            textEl.textContent = `لديك ${remaining} يوم${remaining > 1 ? 'اً' : ''}`;
-            textEl.className = 'profile-planner-text-active';
-        }
+        const remaining = calculateRemainingDays(examDateStr);
+        // تحديث الرقم فقط، مع الحفاظ على class الأصلي
+        textEl.textContent = `${remaining} يوم`;
+        // نضمن أن class هو shape2-value (التصميم الأصلي)
+        textEl.className = 'shape2-value';
     } else {
+        // في حالة عدم وجود تاريخ، نعرض النص المناسب
         textEl.textContent = 'لم يتم إعداد الخطة اليومية بعد.';
-        textEl.className = '';
+        // نستخدم class فارغ أو shape2-value حسب التصميم الأصلي
+        textEl.className = 'shape2-value';
     }
 }
 
 // تحديث النص عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', updateProfilePlannerStatus);
+document.addEventListener('DOMContentLoaded', function() {
+    // تحديث حالة المستخدم
+    if (typeof updateProfilePlannerStatus === 'function') {
+        updateProfilePlannerStatus();
+    }
+});
 
+// أيضًا نستدعي التحديث عند تغير حالة المستخدم (تسجيل دخول/خروج)
+// نضيف مستمعًا للتغيير في localStorage (للتحديث عند تغير التاريخ من أي مكان)
+window.addEventListener('storage', function(e) {
+    if (e.key === 'zertiva_exam_date' || e.key === 'zertiva_daily_hours') {
+        if (typeof updateProfilePlannerStatus === 'function') {
+            updateProfilePlannerStatus();
+        }
+    }
+});
 // تحديث النص تلقائياً عند حفظ البيانات (من خلال localStorage)
 window.addEventListener('storage', function(e) {
     if (e.key === 'zertiva_exam_date' || e.key === 'zertiva_daily_hours') {
