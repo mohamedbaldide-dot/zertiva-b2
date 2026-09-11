@@ -30981,6 +30981,10 @@ var MyApp = (() => {
               memoryToggleBtn.style.display = "";
             }
           }
+          this._matches.clear();
+          this._titleToText.clear();
+          this._selectedText = null;
+          this._selectedTitle = null;
           this.isActive = false;
           console.log(`\u2705 Help Mode deactivated for ${this.modeName}`);
           const helpBtn = document.getElementById("matchingToggleBtn");
