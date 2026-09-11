@@ -36469,7 +36469,7 @@ var MyApp = (() => {
         { id: 11, title: "Autovermietung Neustadt", enabled: true, hasFile: true },
         { id: 12, title: "Freizeitverein", enabled: true, hasFile: true },
         { id: 13, title: "Naturmuseum", enabled: true, hasFile: true },
-        { id: 14, title: "Backstage-Musical-Tour", enabled: true, hasFile: true },
+        { id: 14, title: "Backstage- Musical-Tour", enabled: true, hasFile: true },
         { id: 15, title: "KULTUR UND KULINARIK", enabled: true, hasFile: true },
         { id: 16, title: "Mehr bewegen - aber wie? (Fahrradtour)", enabled: true, hasFile: true },
         { id: 17, title: "Super Clean-Staubsaugroboter", enabled: true, hasFile: true },
@@ -36485,7 +36485,7 @@ var MyApp = (() => {
         { id: 27, title: "Reiseb\xFCro Sonnenschein", enabled: true, hasFile: true },
         { id: 28, title: "Kursbeschreibung (sich vorstellen)", enabled: true, hasFile: true },
         { id: 29, title: "FITWATCH Smartwatch", enabled: true, hasFile: true },
-        { id: 30, title: "Securvia Reisegep\xE4ckversicherung", enabled: true, hasFile: true },
+        { id: 30, title: "Securvia Reisegep\xE4ck- versicherung", enabled: true, hasFile: true },
         { id: 31, title: "DIGIBIKE - Das smarte Hightech-Fahrrad", enabled: true, hasFile: true },
         { id: 32, title: "SPORTHEINPARKPLATZ F\xDCR KINDER", enabled: true, hasFile: true },
         { id: 33, title: "Online-Training f\xFCr guten Schlaf", enabled: true, hasFile: true },
@@ -36496,7 +36496,7 @@ var MyApp = (() => {
         { id: 38, title: "Fotografieren f\xFCr Fortgeschrittene", enabled: true, hasFile: true },
         { id: 39, title: "Umzugsunternehmen B\xFChler", enabled: true, hasFile: true },
         { id: 40, title: "Schl\xFCsseldienst", enabled: true, hasFile: true },
-        { id: 41, title: "T & W Elektronikversicherung", enabled: true, hasFile: true },
+        { id: 41, title: "T & W Elektronik- versicherung", enabled: true, hasFile: true },
         { id: 42, title: "Waldschwimmbad Langen", enabled: true, hasFile: true }
       ];
       m\u00FCndlich1Exams = [
@@ -36587,8 +36587,8 @@ var MyApp = (() => {
           { id: 29, title: "BILD AM SONNTAG (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
           { id: 30, title: "Studentenparty in Frankreich (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
           { id: 31, title: "Deutsche Filmmuseum (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
-          { id: 32, title: "Ein Treffen bei der Integrationsbeauftragten (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
-          { id: 33, title: "die Konjunkturentwicklung negativ (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
+          { id: 32, title: "Ein Treffen bei der Integrations- beauftragten (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
+          { id: 33, title: "die Konjunkturent- wicklung negativ (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
           { id: 34, title: "internationalen Konferenz (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
           { id: 35, title: "Um Tickets zu gewinnen (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
           { id: 36, title: "Die tschechische Stadt Pilsen (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
@@ -36597,7 +36597,7 @@ var MyApp = (() => {
           { id: 39, title: "F\xFCr die Polizei in Berlin (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
           { id: 40, title: "Die Sprecherin ist verheiratet (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
           { id: 41, title: "Bei der Sportveranstaltung (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
-          { id: 42, title: "Das Bundesfamilienministerium (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
+          { id: 42, title: "Das Bundesfamilien- ministerium (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
           { id: 43, title: "Meeresk\xFCsten (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
           { id: 44, title: "Bauern warnen (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true },
           { id: 45, title: "Nach Ansicht mancher (\u062A\u0631\u0643\u064A\u0627)", enabled: true, hasFile: true }
