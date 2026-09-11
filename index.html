@@ -4665,12 +4665,14 @@ window.updateAskAIContext = function(skill, examId) {
                 const score = window.getExamResult ? window.getExamResult(skill, id) : null;
                 const retries = window.getRetryCount ? window.getRetryCount(skill, id) : 0;
                 const lastReviewDays = window.getLastReviewDays ? window.getLastReviewDays(skill, id) : null;
+                const time = window.getExamTime ? window.getExamTime(skill, id) : null;
                 allExams.push({
                     id: id,
                     skill: skill,
                     score: score,
                     retries: retries,
                     lastReviewDays: lastReviewDays,
+                    time: time,
                     isNew: (score === null)
                 });
             });
@@ -4691,11 +4693,16 @@ window.updateAskAIContext = function(skill, examId) {
 
         const totalExams = 10;
 
+           // ✅ منطق أولوية جديد لـ «أدوات التحكم»:
+        // 1) الأقدم مراجعة → أولوية أعلى (وزن قوي جداً)
+        // 2) الأقل إعادات → أولوية أعلى (وزن متوسط)
+        // 3) الأطول وقتاً → أولوية أعلى (وزن ضعيف)
+        // القيمة الأصغر = أولوية أعلى
         function calculatePriority(exam) {
-            const scoreWeight = (exam.score !== null) ? exam.score : 0;
-            const retryWeight = exam.retries;
-            const reviewWeight = (exam.lastReviewDays !== null) ? exam.lastReviewDays : 0;
-            return (scoreWeight * 10000) + (retryWeight * 100) + reviewWeight;
+            const daysScore  = exam.lastReviewDays === null ? -100000 : -(exam.lastReviewDays * 1000);
+            const retryScore = exam.retries * 10;
+            const timeScore  = (exam.time !== null && exam.time > 0) ? -Math.floor(exam.time / 10000) : 0;
+            return daysScore + retryScore + timeScore;
         }
 
         const sortedExams = remainingExams.slice().sort((a, b) => {
@@ -4718,13 +4725,36 @@ window.updateAskAIContext = function(skill, examId) {
         const selectedExams = [];
         let remainingToSelect = totalExams;
 
-        sectionKeys.forEach(skill => {
+              sectionKeys.forEach(skill => {
             const weight = weights[skill];
             if (weight === 0) return;
             const count = weight / 10;
             if (count === 0) return;
+
             const examsForSkill = sortedExams.filter(e => e.skill === skill);
-            const taken = examsForSkill.slice(0, count);
+
+            // ✅ عامل التنويع: 1 امتحان متنوع لكل 5 امتحانات (20%)
+            // إذا كان العدد < 5، لا نضيف أي امتحان متنوع.
+            const diverseCount = Math.floor(count / 5);
+            const mainCount = count - diverseCount;
+
+            // 1) الامتحانات ذات الأولوية الأعلى
+            const topExams = examsForSkill.slice(0, mainCount);
+
+            // 2) الامتحانات المتنوعة: من بقية القائمة (بعد mainCount) بخلط عشوائي
+            let diverseExams = [];
+            if (diverseCount > 0 && examsForSkill.length > mainCount) {
+                const pool = examsForSkill.slice(mainCount);
+                const shuffled = [...pool];
+                for (let i = shuffled.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                }
+                diverseExams = shuffled.slice(0, diverseCount);
+            }
+
+            const taken = [...topExams, ...diverseExams];
+
             if (taken.length > 0) {
                 examGroups[skill] = taken;
                 selectedExams.push(...taken);
