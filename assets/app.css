@@ -15,37 +15,6 @@ body {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ========================================
    Hero Section (New Clean & Premium)
    ======================================== */
@@ -567,7 +536,7 @@ body {
     }
 }
 
-/* ========================================
+    /* ========================================
    إخفاء العناصر القديمة التي طلبت حذفها
    ======================================== */
 #reviewsWidget, .reviews-widget {
@@ -583,6 +552,46 @@ body {
     display: none !important;
 }
 
+/* ===== تنسيق أزرار التصحيح وإعادة التعيين في Lesen 1 و Lesen 3 للشاشات الصغيرة (نسخة مستقلة) ===== */
+@media (max-width: 770px) {
+    #teil1 .teil1-controls,
+    #teil3 .teil3-controls {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+        flex-wrap: nowrap !important;
+        margin-top: 12px !important;
+    }
+
+    #teil1 .teil1-controls .check-btn,
+    #teil3 .teil3-controls .check-btn,
+    #teil1 .teil1-controls .reset-btn,
+    #teil3 .teil3-controls .reset-btn {
+        padding: 6px 14px !important;
+        font-size: 13px !important;
+        min-height: 34px !important;
+        height: auto !important;
+        border-radius: 20px !important;
+        white-space: nowrap !important;
+        flex: 0 1 auto !important;
+        min-width: unset !important;
+        width: auto !important;
+    }
+
+    #teil1 .teil1-controls .check-btn,
+    #teil3 .teil3-controls .check-btn {
+        background: #2c3e66 !important;
+        color: white !important;
+    }
+    #teil1 .teil1-controls .reset-btn,
+    #teil3 .teil3-controls .reset-btn {
+        background: #6c757d !important;
+        color: white !important;
+    }
+}
+
 .top-bar {
     display: flex;
     justify-content: space-between;
@@ -593,6 +602,7 @@ body {
     position: static;
     z-index: 100;
     transition: all 0.3s ease;
+    overflow: visible !important;
 }
 .left-side {
     display: flex;
@@ -676,23 +686,22 @@ body {
     animation: badgePulse 2.5s ease-in-out infinite;
 }
 .notification-dropdown {
-    position: fixed;
-    top: 60px;
-    right: 20px;
-    width: 340px;
-    max-width: 90vw;
-    max-height: 400px;
-    background: #0f172a;
-    border-radius: 16px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    z-index: 999999;
-    display: none;
-    overflow: hidden;
-    flex-direction: column;
-    border: 1px solid rgba(56, 189, 248, 0.2);
+    position: fixed !important;
+    top: 60px !important;
+    right: 20px !important;
+    z-index: 9999999 !important;
+    background: #0f172a !important;
+    border: 1px solid rgba(56, 189, 248, 0.2) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3) !important;
+    width: 340px !important;
+    max-width: 90vw !important;
+    max-height: 400px !important;
+    overflow: hidden !important;
+    flex-direction: column !important;
     box-sizing: border-box !important;
-    flex-shrink: 0 !important;
     min-width: 280px !important;
+    display: none; /* تم إزالة !important */
 }
 
 .notification-dropdown.active {
@@ -1039,6 +1048,8 @@ body:has(#exam.active) .profile-icon {
 
 body:has(#list.active) .top-bar,
 body:has(#exam.active) .top-bar {
+    position: relative;
+    z-index: 100;
     background: rgba(22, 25, 34, 0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -1794,19 +1805,7 @@ body:has(#exam.active) .top-bar {
     font-weight: 600 !important;
 }
 
-.premium-badge {
-    display: inline-flex !important;
-    align-items: center !important;
-    background: rgba(0, 0, 0, 0.65);
-    color: #f5e6a0;
-    font-size: 8px !important;
-    font-weight: 600;
-    padding: 2px 6px !important;
-    border-radius: 20px;
-    margin-right: 5px;
-    line-height: 1;
-    white-space: nowrap;
-}
+/* .premium-badge تم إلغاؤه لأننا نستخدم القفل والتصميم الثابت بدلاً منه */
 
 .lock-icon-mini {
     font-size: 8px;
@@ -1843,6 +1842,7 @@ body:has(#exam.active) .top-bar {
     color: #1e293b;
 }
 
+
 /* ========================================
    Result Box
    ======================================== */
@@ -1878,6 +1878,44 @@ body:has(#exam.active) .top-bar {
     }
 }
 
+/* ============================================================
+   تلوين خانات Sprach 1/2 وأزرار التلميح (فوق 768px فقط)
+   ============================================================ */
+
+@media (min-width: 769px) {
+    /* حالة صحيحة - أخضر */
+    #sprach1 .sprach1-gap-btn.correct,
+    #sprach1 .sprach1-gap-btn[data-correct="true"],
+    #sprach2 .sprach2-gap-btn.correct,
+    #sprach2 .sprach2-gap-btn[data-correct="true"] {
+        background: #d4edda !important;
+        border: 2px solid #28a745 !important;
+        color: #155724 !important;
+    }
+
+    /* حالة خاطئة أو فارغة - برتقالي */
+    #sprach1 .sprach1-gap-btn.wrong,
+    #sprach1 .sprach1-gap-btn[data-wrong="true"],
+    #sprach2 .sprach2-gap-btn.wrong,
+    #sprach2 .sprach2-gap-btn[data-wrong="true"] {
+        background: #fef0e0 !important;
+        border: 2px solid #e67e22 !important;
+        color: #856404 !important;
+    }
+
+    /* تلميح الإجابة الصحيحة (✓ mich) - أخضر */
+    #sprach1 .custom-correct-hint,
+    #sprach2 .custom-correct-hint {
+        display: inline !important;
+        margin-left: 4px !important;
+        color: #2b8c4a !important;
+        font-weight: bold !important;
+        font-size: inherit !important;
+        vertical-align: baseline !important;
+        white-space: nowrap !important;
+        pointer-events: none !important;
+    }
+}
 /* ========================================
    ترتيب الأزرار وهيكلة شريط (Left Side) حسب الصفحة
    ======================================== */
@@ -1901,23 +1939,38 @@ body:has(#exam.active) .profile-icon { display: flex !important; }
 body:has(#list.active) #settingsBtn { display: inline-flex !important; }
 body:has(#exam.active) #settingsBtn { display: inline-flex !important; }
 
+body:has(#list.active) #myInfoBtn { display: inline-flex !important; }
+body:has(#exam.active) #myInfoBtn { display: inline-flex !important; }
+
 body:has(#list.active) #studyPlannerBtn { display: inline-flex !important; }
 body:has(#exam.active) #studyPlannerBtn { display: inline-flex !important; }
-/* ترتيب البداية: (أقصى اليسار) -> 1-Profile -> 2-Settings -> 3-Planner -> 4-Subscribe -> 5-Signup */
+
+/* ترتيب الأزرار النهائي (Flexbox order) */
+body:has(#list.active) .left-side,
+body:has(#exam.active) .left-side {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+}
+
 body:has(#list.active) .left-side .profile-icon { order: 1 !important; }
 body:has(#exam.active) .left-side .profile-icon { order: 1 !important; }
 
 body:has(#list.active) .left-side #settingsBtn { order: 2 !important; }
 body:has(#exam.active) .left-side #settingsBtn { order: 2 !important; }
 
-body:has(#list.active) .left-side #studyPlannerBtn { order: 3 !important; }
-body:has(#exam.active) .left-side #studyPlannerBtn { order: 3 !important; }
+body:has(#list.active) .left-side #myInfoBtn { order: 3 !important; }
+body:has(#exam.active) .left-side #myInfoBtn { order: 3 !important; }
 
-body:has(#list.active) .left-side #navSubscribeBtn { order: 4 !important; }
-body:has(#exam.active) .left-side #navSubscribeBtn { order: 4 !important; }
+body:has(#list.active) .left-side #studyPlannerBtn { order: 4 !important; }
+body:has(#exam.active) .left-side #studyPlannerBtn { order: 4 !important; }
 
-body:has(#list.active) .left-side #navSignupBtn { order: 5 !important; }
-body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
+body:has(#list.active) .left-side #navSubscribeBtn { order: 5 !important; }
+body:has(#exam.active) .left-side #navSubscribeBtn { order: 5 !important; }
+
+body:has(#list.active) .left-side #navSignupBtn { order: 6 !important; }
+body:has(#exam.active) .left-side #navSignupBtn { order: 6 !important; }
 @media (max-width: 768px) {
     body, html {
         overflow-x: hidden;
@@ -1956,12 +2009,19 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         font-size: 9px !important;
     }
     
-     .profile-icon {
+  @media (max-width: 768px) {
+    .profile-icon {
         width: 32px !important;
         height: 32px !important;
         font-size: 14px !important;
         border-radius: 10px !important;
     }
+    .logo-icon {
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 10px !important;
+    }
+}
     
     .settings-icon-btn,
     .study-planner-icon-btn,
@@ -2132,12 +2192,13 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         font-size: 18px !important;
     }
     
-    /* ===== بطاقات الأسئلة ===== */
+
+     /* ===== بطاقات الأسئلة ===== */
     .question-card {
         padding: 14px 12px !important;
         margin-bottom: 14px !important;
         border-radius: 14px !important;
-        background: #ffffff !important;
+        background: #ffffff;
         border: 1px solid #eef2f6 !important;
         box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
         transition: all 0.15s ease !important;
@@ -2162,7 +2223,7 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         word-break: break-word !important;
     }
     
-    /* خيارات الإجابة */
+     /* خيارات الإجابة */
     .option-label {
         display: flex !important;
         align-items: center !important;
@@ -2173,7 +2234,7 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         line-height: 1.4 !important;
         margin-bottom: 6px !important;
         border-radius: 12px !important;
-        background: #f8fafc !important;
+        background: #f8fafc;
         border: 1px solid #eef2f6 !important;
         cursor: pointer !important;
         transition: all 0.15s ease !important;
@@ -2298,6 +2359,7 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
     }
 
     /* ===== تحسينات Lesen Teil 1 و Teil 3 (القوائم المنسدلة) ===== */
+        /* ===== تحسينات Lesen Teil 1 و Teil 3 (القوائم المنسدلة) ===== */
     
     /* قوائم Select المحسّنة */
     #teil1 select,
@@ -2333,7 +2395,7 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15) !important;
     }
     
-    /* ===== تحسينات Lesen Teil 3 (Anzeigen + بطاقات) ===== */
+    /* ===== تحسينات Lesen Teil 3 (Anzeigen + بطاقات) تحت 770px ===== */
     #teil3 .question-card {
         padding: 14px 12px !important;
         margin-bottom: 12px !important;
@@ -2357,6 +2419,24 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         border-radius: 8px !important;
         margin-bottom: 10px !important;
         border-right: 3px solid #38bdf8 !important;
+    }
+    
+    /* تحسين مظهر select تحت 770px فقط (حجم مناسب، بدون تغيير الشكل الأساسي) */
+    #teil3 select {
+        font-size: 0.7rem !important;
+        padding: 8px 10px !important;
+        min-height: 38px !important;
+        background-size: 10px !important;
+        padding-left: 28px !important;
+        background-position: left 10px center !important;
+    }
+    /* جعل خيارات select تأخذ مساحة كافية وتظهر بشكل مقروء */
+    #teil3 select option {
+        padding: 6px 8px !important;
+        font-size: 0.7rem !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+        min-height: 32px !important;
     }
     
     /* زر القائمة المنسدلة (Teil 3) */
@@ -2396,7 +2476,7 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         transform: scale(0.98) !important;
     }
 
-    /* ===== تحسينات Sprachbausteine Teil 1 و Teil 2 للهواتف ===== */
+    /* ===== تحسينات Sprachbausteine Teil 1 و Teil 2 للهواتف (تحت 770px) ===== */
     
     /* الحاويات الرئيسية - تسمح بعرض النص بالكامل */
     #sprach1,
@@ -2407,14 +2487,15 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         padding: 0 6px !important;
         overflow: visible !important;
     }
-    
-    /* جميع النصوص الطويلة داخل الأقسام (تستثني الخيارات والأزرار) */
-    #sprach1 div:not(.option-label):not(.check-btn):not(.nav-exam-btn),
-    #sprach1 p,
-    #sprach1 span:not(.option-label span),
-    #sprach2 div:not(.option-label):not(.check-btn):not(.nav-exam-btn),
-    #sprach2 p,
-    #sprach2 span:not(.option-label span) {
+
+
+    /* جميع النصوص الطويلة داخل الأقسام (تستثني الخيارات والأزرار والـ hints وعمود Wörter والتلوين الذكي) */
+    #sprach1 div:not(.option-label):not(.check-btn):not(.nav-exam-btn):not(#helpLayerContainer):not(#helpLayerContainer *),
+    #sprach1 p:not(#helpLayerContainer p),
+    #sprach1 span:not(.option-label span):not(.custom-correct-hint):not(#helpLayerContainer span):not(.memory-highlight),
+    #sprach2 div:not(.option-label):not(.check-btn):not(.nav-exam-btn):not(.sprach2-words-column):not(.sprach2-text-column):not(#helpLayerContainer):not(#helpLayerContainer *),
+    #sprach2 p:not(#helpLayerContainer p),
+    #sprach2 span:not(.option-label span):not(.custom-correct-hint):not(#helpLayerContainer span):not(.memory-highlight) {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
@@ -2428,11 +2509,29 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         line-height: 1.7 !important;
     }
     
-    /* العناصر التي تحوي الفراغات (__(1)__) */
-    #sprach1 [style*="background"],
-    #sprach1 [style*="background-color"],
-    #sprach2 [style*="background"],
-    #sprach2 [style*="background-color"] {
+    /* ✅ التلوين الذكي (.memory-highlight) يعود inline داخل النص */
+    #sprach1 span.memory-highlight,
+    #sprach2 span.memory-highlight {
+        display: inline !important;
+        width: auto !important;
+        max-width: none !important;
+        height: auto !important;
+        padding: 1px 3px !important;
+        margin: 0 !important;
+        border-radius: 3px !important;
+        font-weight: bold !important;
+        line-height: inherit !important;
+        vertical-align: baseline !important;
+        white-space: normal !important;
+        box-sizing: content-box !important;
+        float: none !important;
+        clear: none !important;
+    }
+        /* العناصر التي تحوي الفراغات (__(1)__) - تستثني محتوى المساعدة والأزرار */
+    #sprach1 [style*="background"]:not(#helpLayerContainer [style*="background"]):not(.check-btn):not(.reset-btn),
+    #sprach1 [style*="background-color"]:not(#helpLayerContainer [style*="background-color"]):not(.check-btn):not(.reset-btn),
+    #sprach2 [style*="background"]:not(#helpLayerContainer [style*="background"]):not(.check-btn):not(.reset-btn),
+    #sprach2 [style*="background-color"]:not(#helpLayerContainer [style*="background-color"]):not(.check-btn):not(.reset-btn) {
         display: inline-block !important;
         min-width: 35px !important;
         padding: 2px 6px !important;
@@ -2444,6 +2543,36 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         border-radius: 6px !important;
         font-size: 0.7rem !important;
     }
+    
+    /* الـ hint يبقى inline دائمًا داخل النص (لا يكسر السطر) */
+    #sprach1 .custom-correct-hint,
+    #sprach2 .custom-correct-hint {
+        display: inline !important;
+        width: auto !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        height: auto !important;
+        padding: 0 !important;
+        margin: 0 0 0 4px !important;
+        font-size: inherit !important;
+        line-height: inherit !important;
+        white-space: nowrap !important;
+        vertical-align: baseline !important;
+        color: #2b8c4a !important;
+        font-weight: bold !important;
+        background: none !important;
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        box-sizing: content-box !important;
+        float: none !important;
+        clear: none !important;
+        position: static !important;
+        overflow: visible !important;
+        pointer-events: none !important;
+    }
+    
+ 
     
     /* خيارات الإجابة - تبقى كما هي مع تحسينات بسيطة */
     #sprach1 .option-label,
@@ -2468,35 +2597,169 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         transform: scale(0.99) !important;
     }
     
-    /* أزرار الفجوات */
-    .sprach1-gap-btn,
-    .sprach2-gap-btn {
+    /* ===== أزرار الفجوات (Gap Buttons) – الشكل الجديد تحت 770px ===== */
+    #sprach1 .sprach1-gap-btn,
+    #sprach2 .sprach2-gap-btn {
+        background: #dbeafe !important;
+        border: 1px solid #93c5fd !important;
+        color: #1e3a8a !important;
+        border-radius: 8px !important;
+        min-width: 48px !important;
+        height: 32px !important;
+        padding: 2px 8px !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+        transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+        white-space: nowrap !important;
+    }
+    
+    /* حالة صحيح */
+    #sprach1 .sprach1-gap-btn.correct,
+    #sprach1 .sprach1-gap-btn[data-correct="true"],
+    #sprach2 .sprach2-gap-btn.correct,
+    #sprach2 .sprach2-gap-btn[data-correct="true"] {
+        background: #d4edda !important;
+        border: 2px solid #28a745 !important;
+        color: #155724 !important;
+    }
+    
+    /* حالة خاطئ أو فارغ */
+    #sprach1 .sprach1-gap-btn.wrong,
+    #sprach1 .sprach1-gap-btn[data-wrong="true"],
+    #sprach2 .sprach2-gap-btn.wrong,
+    #sprach2 .sprach2-gap-btn[data-wrong="true"] {
+        background: #fef0e0 !important;
+        border: 2px solid #e67e22 !important;
+        color: #856404 !important;
+    }
+    
+   
+    /* تلميحات الإجابة الصحيحة - تبقى inline ولا تكسر السطر */
+    .custom-correct-hint {
+        display: inline !important;
+        margin-left: 4px !important;
+        color: #2b8c4a !important;
+        font-weight: bold !important;
+        font-size: inherit !important;
+        vertical-align: baseline !important;
+        white-space: nowrap !important;
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+        line-height: inherit !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        height: auto !important;
+        width: auto !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        float: none !important;
+        clear: none !important;
+        pointer-events: none !important;
+        /* تأكيد إضافي لمنع أي تحول إلى block */
+        display: inline !important;
+    }
+    
+    /* التأكد من أن حاوية النص لا تكسر السطر بسبب الـ hint */
+    #sprach1 .sprach1-gap-btn,
+    #sprach2 .sprach2-gap-btn {
+        white-space: nowrap !important;
+    }
+    
+    /* ===== أزرار Prüfen و ↺ تحت 770px ===== */
+    #sprach1 .button-container,
+    #sprach2 .button-container {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 8px !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: auto !important;
+        margin-top: 20px !important;
+    }
+    
+    #sprach1 .button-container .check-btn,
+    #sprach2 .button-container .check-btn,
+    #sprach1 .button-container .reset-btn,
+    #sprach2 .button-container .reset-btn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: auto !important;
+        padding: 6px 14px !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        background: #4a5568 !important;
+        color: #ffffff !important;
+        border: none !important;
+        border-radius: 6px !important;
+        cursor: pointer !important;
+        min-height: 32px !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+        transition: background 0.2s !important;
+        font-family: inherit !important;
+        line-height: 1 !important;
+        letter-spacing: 0.2px !important;
+    }
+    
+    #sprach1 .button-container .reset-btn,
+    #sprach2 .button-container .reset-btn {
+        background: #6c757d !important;
+        min-width: 32px !important;
         padding: 6px 10px !important;
-        font-size: 0.7rem !important;
-        min-height: 36px !important;
-        border-radius: 10px !important;
-        background: #f8fafc !important;
-        border: 1px solid #e2e8f0 !important;
+        font-size: 16px !important;
+    }
+    
+    #sprach1 .button-container .check-btn:hover,
+    #sprach2 .button-container .check-btn:hover {
+        background: #2d3748 !important;
+    }
+    
+    #sprach1 .button-container .reset-btn:hover,
+    #sprach2 .button-container .reset-btn:hover {
+        background: #5a6268 !important;
+    }
+    
+    /* Sprach 2: تحسينات إضافية تحت 770px */
+   
+     /* ===== Sprach 2: إخفاء عمود Wörter على الهاتف (Picker يحل محله) ===== */
+    #sprach2 .sprach2-words-column {
+        display: none !important;
+    }
+    
+    /* عمود النص يأخذ العرض الكامل بعد إخفاء Wörter */
+    #sprach2 .sprach2-text-column {
+        flex: 1 1 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    /* Sprach 2: تحسينات بطاقات الكلمات (للأجهزة التي لا تستخدم Picker) */
+    #sprach2 .sprach2-word-card {
+        padding: 8px 10px !important;
+        font-size: 0.75rem !important;
+        border-radius: 8px !important;
+        background: #ffffff !important;
+        border: 1px solid #dce5ec !important;
+        text-align: center !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        min-width: 60px !important;
+        min-height: 34px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
         color: #1e293b !important;
         font-weight: 500 !important;
-        transition: all 0.2s ease !important;
+        white-space: normal !important;
+        word-break: keep-all !important;
     }
-    
-    .sprach1-gap-btn:active,
-    .sprach2-gap-btn:active {
-        transform: scale(0.96) !important;
-    }
-    
-    /* Sprach Teil 2 - قائمة الكلمات */
-    #sprach2 .sprach2-word-card {
-        padding: 6px 8px !important;
-        font-size: 0.65rem !important;
-        border-radius: 10px !important;
-        background: #f8fafc !important;
-        border: 1px solid #eef2f6 !important;
-        margin: 4px 0 !important;
-    }
-
     /* ===== تحسينات إضافية للتوحيد ===== */
     
     /* أزرار العودة */
@@ -2525,7 +2788,7 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         justify-content: center !important;
     }
     
-    /* نافذة النتيجة */
+       /* نافذة النتيجة */
     .result-box {
         bottom: 16px !important;
         padding: 8px 16px !important;
@@ -2535,6 +2798,37 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
     }
     
+    /* ===== خانة النتيجة في Sprach 1 و Sprach 2 - كبسولة صغيرة ===== */
+    #sprach1Result,
+    #sprach2Result {
+        position: fixed !important;
+        bottom: 20px !important;
+        left: 50% !important;
+        top: auto !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        width: auto !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        padding: 6px 16px !important;
+        margin: 0 !important;
+        font-size: 12px !important;
+        font-weight: 600 !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        line-height: 1.2 !important;
+        border: none !important;
+        border-radius: 30px !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+        z-index: 1000 !important;
+        animation: none !important;
+    }
+    
+    /* إخفاء result-box الفارغ في Sprach 1 و Sprach 2 */
+    #sprach1Result:empty,
+    #sprach2Result:empty {
+        display: none !important;
+    }
     /* حاوية الامتحان */
     .exam-box {
         padding: 12px !important;
@@ -3549,52 +3843,71 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         }
     }
     
-    /* ===== تحسين Teil 3 للهواتف الصغيرة (عرض ≤ 550px) ===== */
-    @media (max-width: 550px) {
-        /* إخفاء العمود الأيمن (Situationen) */
-        #teil3 > div[style*="display: flex"] > div:last-child {
-            display: none !important;
-        }
-        
-        /* العمود الأيسر يأخذ العرض بالكامل */
-        #teil3 > div[style*="display: flex"] > div:first-child {
-            width: 100% !important;
-            max-width: 100% !important;
-            flex: none !important;
-        }
-        
-        /* الحاوية الأم تسمح بالتمرير الأفقي */
-        #teil3 > div[style*="display: flex"] {
-            overflow-x: auto !important;
-            overflow-y: visible !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            display: block !important;
-            scroll-behavior: smooth !important;
-            -webkit-overflow-scrolling: touch !important;
-        }
-        
-        /* الشبكة تصبح أعرض من الشاشة للسماح بالتمرير */
-        #teil3 [style*="grid-template-columns: 1fr 1fr"] {
-            display: grid !important;
-            width: fit-content !important;
-            min-width: 650px !important;
-            grid-template-columns: repeat(2, 300px) !important;
-            column-gap: 18px !important;
-            padding-right: 120px !important;
-            /* نضمن عدم قص المحتوى */
-            overflow: visible !important;
-        }
-        
-        /* ضبط البطاقات الفردية لتأخذ العرض الكامل داخل الخلية */
-        #teil3 [style*="grid-template-columns: 1fr 1fr"] > * {
-            width: 100% !important;
-            min-width: 0 !important;
-            max-width: 100% !important;
-            box-sizing: border-box !important;
-        }
+@media (max-width: 550px) {
+    /* إخفاء العمود الأيمن (Situationen) */
+    #teil3 > div[style*="display: flex"] > div:last-child {
+        display: none !important;
     }
-    
+
+    /* الحاوية الأم */
+    #teil3 > div[style*="display: flex"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: block !important;
+        overflow: visible !important;
+    }
+
+    /* العمود الأيسر: عرض كامل + تمرير أفقي */
+    #teil3 > div[style*="display: flex"] > div:first-child {
+        width: 100% !important;
+        max-width: 100vw !important;
+        min-width: 0 !important;
+        flex: none !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding-bottom: 12px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* شريط التمرير الأفقي */
+    #teil3 > div[style*="display: flex"] > div:first-child::-webkit-scrollbar {
+        height: 6px;
+    }
+    #teil3 > div[style*="display: flex"] > div:first-child::-webkit-scrollbar-track {
+        background: rgba(56, 189, 248, 0.10);
+        border-radius: 3px;
+    }
+    #teil3 > div[style*="display: flex"] > div:first-child::-webkit-scrollbar-thumb {
+        background: #38bdf8;
+        border-radius: 3px;
+    }
+
+    /* الشبكة: بطاقات بعرض ثابت + مساحة إضافية 30px في النهاية */
+    #teil3 [style*="grid-template-columns: 1fr 1fr"] {
+        display: grid !important;
+        grid-template-columns: repeat(2, 270px) !important;
+        column-gap: 12px !important;
+        row-gap: 12px !important;
+        width: max-content !important;
+        min-width: max-content !important;
+        max-width: none !important;
+        padding: 0 30px 0 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+    }
+
+    /* البطاقات: عرض ثابت 270px */
+    #teil3 [style*="grid-template-columns: 1fr 1fr"] > * {
+        width: 270px !important;
+        min-width: 270px !important;
+        max-width: 270px !important;
+        box-sizing: border-box !important;
+    }
+}
+
+
+
     /* تحسين Teil 1 */
     #teil1 .question-card {
         padding: 12px !important;
@@ -3873,9 +4186,9 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
     font-weight: 500 !important;
 }
 
-/* ========================================
+/* ============================================
    تنسيق أزرار الأجزاء (Teile) - التصميم الجديد
-   ======================================== */
+   ============================================ */
 
 .teil-item {
     display: inline-flex !important;
@@ -3915,6 +4228,46 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
     border-color: #095BBB !important;
     color: #FFFFFF !important;
     transform: none !important;
+}
+
+/* ===== تنسيق أزرار التصحيح وإعادة التعيين في Lesen 1 و Lesen 3 للشاشات الصغيرة ===== */
+@media (max-width: 770px) {
+    #teil1 .teil1-controls,
+    #teil3 .teil3-controls {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+        flex-wrap: nowrap !important;
+        margin-top: 12px !important;
+    }
+
+    #teil1 .teil1-controls .check-btn,
+    #teil3 .teil3-controls .check-btn,
+    #teil1 .teil1-controls .reset-btn,
+    #teil3 .teil3-controls .reset-btn {
+        padding: 6px 14px !important;
+        font-size: 13px !important;
+        min-height: 34px !important;
+        height: auto !important;
+        border-radius: 20px !important;
+        white-space: nowrap !important;
+        flex: 0 1 auto !important;
+        min-width: unset !important;
+        width: auto !important;
+    }
+
+    #teil1 .teil1-controls .check-btn,
+    #teil3 .teil3-controls .check-btn {
+        background: #2c3e66 !important;
+        color: white !important;
+    }
+    #teil1 .teil1-controls .reset-btn,
+    #teil3 .teil3-controls .reset-btn {
+        background: #6c757d !important;
+        color: white !important;
+    }
 }
 
 
@@ -5742,10 +6095,6 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         font-size: 18px;
     }
 }
-/* ============================================
-   أزرار تبديل شكل القائمة
-   ============================================ */
-
 .view-mode-toggle-btn-1 {
     position: absolute;
     right: 40px;
@@ -5777,7 +6126,38 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
 .view-mode-toggle-btn-1 .material-symbols-outlined {
     font-size: 20px;
     line-height: 1;
+}
+.view-mode-toggle-btn-1 {
+    position: absolute;
+    right: 40px;
+    top: 26%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #6b7a8f;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.2s ease;
+    z-index: 10;
+    padding: 0;
+    font-family: inherit;
+    font-size: 20px;
+}
+
+.view-mode-toggle-btn-1:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: #2c3e66;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.view-mode-toggle-btn-1 .material-symbols-outlined {
+    font-size: 20px;
+    line-height: 1;
 }
 
 .view-mode-toggle-btn-2 {
@@ -5811,23 +6191,120 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
 .view-mode-toggle-btn-2 .material-symbols-outlined {
     font-size: 20px;
     line-height: 1;
-    transition: all 0.2s ease;
 }
 
 @media (max-width: 768px) {
-    .view-mode-toggle-btn-1,
-    .view-mode-toggle-btn-2 {
+    .view-mode-toggle-btn-1 {
+        right: 32px;
         width: 26px;
         height: 26px;
         font-size: 18px;
     }
-    .view-mode-toggle-btn-1 {
-        right: 32px;
+    .view-mode-toggle-btn-1 .material-symbols-outlined {
+        font-size: 18px;
     }
     .view-mode-toggle-btn-2 {
         right: 3px;
+        width: 26px;
+        height: 26px;
+        font-size: 18px;
     }
-    .view-mode-toggle-btn-1 .material-symbols-outlined,
+    .view-mode-toggle-btn-2 .material-symbols-outlined {
+        font-size: 18px;
+    }
+}
+
+.view-mode-toggle-btn-3 {
+    position: absolute;
+    right: 72px;
+    top: 26%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #6b7a8f;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+    padding: 0;
+    font-family: inherit;
+    font-size: 20px;
+}
+
+.view-mode-toggle-btn-3:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: #2c3e66;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.view-mode-toggle-btn-3 .material-symbols-outlined {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.view-mode-toggle-btn-2 {
+    position: absolute;
+    right: 5px;
+    top: 26%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #6b7a8f;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+    padding: 0;
+    font-family: inherit;
+    font-size: 20px;
+}
+
+.view-mode-toggle-btn-2:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: #2c3e66;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.view-mode-toggle-btn-2 .material-symbols-outlined {
+    font-size: 20px;
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .view-mode-toggle-btn-1 {
+        right: 32px;
+        width: 26px;
+        height: 26px;
+        font-size: 18px;
+    }
+    .view-mode-toggle-btn-1 .material-symbols-outlined {
+        font-size: 18px;
+    }
+    .view-mode-toggle-btn-3 {
+        right: 58px;
+        width: 26px;
+        height: 26px;
+        font-size: 18px;
+    }
+    .view-mode-toggle-btn-3 .material-symbols-outlined {
+        font-size: 18px;
+    }
+    .view-mode-toggle-btn-2 {
+        right: 3px;
+        width: 26px;
+        height: 26px;
+        font-size: 18px;
+    }
     .view-mode-toggle-btn-2 .material-symbols-outlined {
         font-size: 18px;
     }
@@ -5986,6 +6463,8 @@ body:has(#exam.active) .left-side #navSignupBtn { order: 5 !important; }
         font-size: 12px;
     }
 }
+
+
 /* ============================================
    Custom Badge - مع أيقونة layers (نسخة جديدة)
    ============================================ */
@@ -6909,7 +7388,6 @@ body.dark-mode .planner-section-title {
     opacity: 1;
     box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
 }
-
 @keyframes gradientMove {
     0% { background-position: 0% 0%; }
     50% { background-position: 100% 100%; }
@@ -7563,6 +8041,28 @@ body:has(#list.active) #backHomeBtn {
         box-sizing: border-box !important;
         padding: 0 6px !important;
     }
+
+    /* 📝 Text title - محاذاة إلى اليسار على الهاتف فقط */
+    #sprach1 > div > div:first-child > h3,
+    #sprach2 > div > div:first-child > h3 {
+        text-align: left !important;
+        direction: ltr !important;
+    }
+
+    /* ===== إخفاء بطاقة 📋 Wörter على الهاتف فقط (Picker يحل محلها) ===== */
+    /* نستخدم selector آمن يعتمد على الكلاس أو على نمط inline المميز لعمود Wörter */
+    #sprach2 .sprach2-words-column,
+    #sprach2 > div > div[style*="flex: 0.8"] {
+        display: none !important;
+    }
+
+    /* عمود النص في Sprach 2 يأخذ العرض الكامل بعد إخفاء Wörter */
+    #sprach2 > div > div:first-child {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        flex: 1 1 100% !important;
+    }
     #sprach1 > div > div,
     #sprach2 > div > div {
         width: 100% !important;
@@ -7582,8 +8082,8 @@ body:has(#list.active) #backHomeBtn {
     #sprach2 > div > div:last-child {
         order: 2 !important;
     }
-    #sprach1 div:not(.option-label):not(.check-btn):not(.nav-exam-btn):not(.sprach1-gap-btn):not(.sprach2-gap-btn):not(.sprach1-option-group):not(.sprach2-word-card):not(.sprach1-gap-btn),
-    #sprach2 div:not(.option-label):not(.check-btn):not(.nav-exam-btn):not(.sprach1-gap-btn):not(.sprach2-gap-btn):not(.sprach1-option-group):not(.sprach2-word-card):not(.sprach2-gap-btn) {
+    #sprach1 div:not(.option-label):not(.check-btn):not(.nav-exam-btn):not(.sprach1-gap-btn):not(.sprach2-gap-btn):not(.sprach1-option-group):not(.sprach2-word-card),
+    #sprach2 div:not(.option-label):not(.check-btn):not(.nav-exam-btn):not(.sprach1-gap-btn):not(.sprach2-gap-btn):not(.sprach1-option-group):not(.sprach2-word-card) {
         max-width: 100% !important;
         overflow-wrap: break-word !important;
         word-wrap: break-word !important;
@@ -7591,16 +8091,62 @@ body:has(#list.active) #backHomeBtn {
         white-space: normal !important;
         box-sizing: border-box !important;
     }
-    #sprach1 .option-label,
+    /* تحسين Sprach 1 فقط: جعل الخيارات تظهر أفقياً مع التفاف مع الحفاظ على شكلها الأصلي */
+    #sprach1 .sprach1-option-group > div:last-child {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        padding: 4px 0 !important;
+    }
+    #sprach1 .option-label {
+        width: auto !important;
+        min-width: unset !important;
+        flex: 0 0 auto !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+        padding: 6px 10px !important;
+        background: #f8f9fa !important;
+        border: 1px solid #ccc !important;
+        border-radius: 5px !important;
+        font-size: 0.75rem !important;
+        cursor: pointer !important;
+        white-space: nowrap !important;
+        margin-bottom: 4px !important;
+        color: #334155 !important;
+        box-sizing: border-box !important;
+    }
+    #sprach1 .option-label input[type="radio"] {
+        margin: 0 !important;
+        width: 14px !important;
+        height: 14px !important;
+        flex-shrink: 0 !important;
+    }
+    #sprach1 .option-label span {
+        font-size: 0.75rem !important;
+    }
+    /* Sprach 2: الحفاظ على التصميم الأصلي للخيارات */
     #sprach2 .option-label {
-        width: 100% !important;
+        width: auto !important;
         box-sizing: border-box !important;
         padding: 8px 10px !important;
         margin-bottom: 6px !important;
         font-size: 0.8rem !important;
         word-break: break-word !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+        flex: 0 0 auto !important;
+        min-width: 60px !important;
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px !important;
     }
 }
+
+
 /* ========================================
    New Hero Section Content & Cards
    ======================================== */
@@ -7650,7 +8196,458 @@ body:has(#list.active) #backHomeBtn {
     }
 }
 
-/* ===== نافذة تعديل المعلومات ===== */
+/* ========================================
+   تنسيق Help: اتجاه النصوص حسب المحتوى
+   ======================================== */
+
+/* حاوية المساعدة */
+#help-container, .help-container, .help-content {
+    direction: rtl;
+    text-align: right;
+}
+
+/* النص الألماني - LTR */
+.help-german-text, .help-german, .german-text {
+    direction: ltr !important;
+    text-align: left !important;
+    unicode-bidi: embed;
+}
+
+/* النص العربي - RTL */
+.help-arabic-text, .help-arabic, .arabic-text {
+    direction: rtl !important;
+    text-align: right !important;
+    unicode-bidi: embed;
+}
+
+/* عناوين الأقسام (مثل "الترجمة"، "لماذا يلتقيان؟") */
+.help-section-title, .help-label {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* تنسيق بطاقات المساعدة بشكل عام */
+.help-card .help-paragraph,
+.help-card .help-title {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.help-card .help-paragraph .german-text,
+.help-card .help-title .german-text {
+    display: block;
+    direction: ltr;
+    text-align: left;
+}
+
+.help-card .help-paragraph .arabic-text,
+.help-card .help-title .arabic-text {
+    display: block;
+    direction: rtl;
+    text-align: right;
+}
+
+/* 🔗 الرابط الذهني - عادةً يحتوي على كلمات ألمانية وأسهم، نتركه LTR */
+.help-golden-link {
+    direction: ltr !important;
+    text-align: left !important;
+    unicode-bidi: embed;
+}
+
+/* 💡 لماذا يلتقيان؟ - عربي RTL */
+.help-why-meet {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* 🧠 مفتاح الحفظ - قد يحتوي على كلمات ألمانية، نتركه LTR مع إمكانية خلط */
+.help-memory-key {
+    direction: ltr !important;
+    text-align: left !important;
+    unicode-bidi: embed;
+}
+
+/* تطبيق على جميع العناصر داخل البطاقات */
+.help-card * {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* ============================================================
+   ZERTIVA MATCHING MODE – LESEN 1 & LESEN 3 (الإصدار المُصحَّح)
+   ============================================================ */
+
+/* ---- جذور Matching ---- */
+.zertiva-matching-root {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: clamp(9px, 1vw, 14px);
+  background: #ffffff;
+  border: 1px solid rgba(100, 120, 140, 0.16);
+  border-radius: 16px;
+  box-shadow: 0 7px 25px rgba(20, 35, 50, 0.06);
+  color: #17212b;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  height: min(760px, calc(100vh - 70px));
+  min-height: 520px;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+/* ---- الهيدر ---- */
+.zertiva-matching-header {
+  flex: 0 0 38px;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.zertiva-matching-main-title {
+  font-size: clamp(16px, 1.35vw, 21px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.zertiva-matching-progress {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(90, 120, 145, 0.16);
+  background: #f5f7fa;
+  color: #536170;
+  font-size: 11px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.zertiva-matching-progress-bar {
+  width: 58px;
+  height: 5px;
+  background: #e5ebf1;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.zertiva-matching-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: #67afea;
+  border-radius: inherit;
+  transition: width 0.22s ease;
+}
+
+/* ---- منطقة النصوص (الفقرات) ---- */
+.zertiva-matching-text-area {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: none;
+  touch-action: pan-x;
+  display: flex;
+}
+
+.zertiva-matching-text-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: clamp(7px, 0.8vw, 11px);
+  min-width: 100%;
+  height: 100%;
+  align-items: stretch;
+}
+
+/* ---- بطاقات النصوص (تطبق على Lesen1 و Lesen3) ---- */
+.zertiva-matching-text-card {
+  flex: 0 0 calc(20% - 10px);
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: 1px solid rgba(100, 120, 140, 0.18);
+  background: #ffffff;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.zertiva-matching-text-card:hover {
+  box-shadow: 0 5px 16px rgba(30, 50, 70, 0.06);
+}
+.zertiva-matching-text-card.zertiva-selected,
+.zertiva-matching-text-card.zertiva-linked {
+  border-color: #70b4eb;
+  background: #f7fbff;
+  box-shadow: 0 0 0 2px rgba(112, 180, 235, 0.10);
+}
+
+.zertiva-matching-text-head {
+  flex: 0 0 35px;
+  min-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 5px 8px;
+  box-sizing: border-box;
+  background: #f7f9fb;
+  border-bottom: 1px solid rgba(100, 120, 140, 0.14);
+  user-select: none;
+}
+
+.zertiva-matching-text-label {
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.zertiva-matching-text-badge {
+  min-width: 21px;
+  height: 21px;
+  padding: 0 5px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #67afea;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 850;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: 0.18s ease;
+}
+.zertiva-linked .zertiva-matching-text-badge {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.zertiva-matching-text-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: clamp(9px, 0.9vw, 13px);
+  box-sizing: border-box;
+  font-size: clamp(11px, 0.82vw, 13.5px);
+  line-height: 1.62;
+  font-weight: 500;
+  color: #273440;
+  word-break: normal;
+  overflow-wrap: break-word;
+  white-space: normal;
+  scrollbar-width: thin;
+}
+.zertiva-matching-text-body::-webkit-scrollbar { width: 5px; }
+.zertiva-matching-text-body::-webkit-scrollbar-thumb {
+  background: rgba(90, 115, 140, 0.27);
+  border-radius: 99px;
+}
+
+/* ---- منطقة العناوين ---- */
+.zertiva-matching-answer-area {
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: 55%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border-radius: 13px;
+  border: 1px solid rgba(100, 120, 140, 0.16);
+  background: #f6f8fa;
+  padding: 8px;
+  overflow: hidden;
+}
+
+.zertiva-matching-answer-header {
+  flex: 0 0 30px;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 2px;
+}
+
+.zertiva-matching-answer-title {
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.zertiva-matching-title-area {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 2px 0;
+  scrollbar-width: thin;
+}
+.zertiva-matching-title-area::-webkit-scrollbar { width: 5px; height: 5px; }
+.zertiva-matching-title-area::-webkit-scrollbar-thumb {
+  background: rgba(90, 115, 140, 0.22);
+  border-radius: 99px;
+}
+
+/* ============================================================
+   نظام العناوين الجديد – فوق 639px فقط
+   جميع الخانات متساوية الحجم، بدون إخفاء للنص
+   ============================================================ */
+
+@media (min-width: 641px) {
+  .zertiva-matching-title-grid {
+    align-items: stretch !important;
+    align-content: start !important;
+    grid-auto-rows: minmax(64px, auto) !important;
+  }
+
+  .zertiva-matching-title-card {
+    width: 100% !important;
+    min-height: 64px !important;
+    height: 64px !important;
+    max-height: 64px !important;
+    box-sizing: border-box !important;
+    padding: 7px 10px !important;
+    display: grid !important;
+    grid-template-columns: 24px minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: 7px !important;
+    overflow: hidden !important;
+  }
+
+  .zertiva-matching-title-content {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    overflow: visible !important;
+  }
+
+  .zertiva-matching-title-text {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+    font-size: clamp(9px, 0.72vw, 11px) !important;
+    line-height: 1.28 !important;
+  }
+
+  .zertiva-matching-title-match {
+    margin-top: 2px !important;
+    font-size: 7.5px !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  .zertiva-matching-title-letter {
+    width: 24px !important;
+    height: 24px !important;
+    flex-shrink: 0 !important;
+    font-size: 10px !important;
+  }
+}
+
+/* تحسين للشاشات الكبيرة جداً (≥ 1050px) */
+@media (min-width: 1050px) {
+  .zertiva-matching-title-grid {
+    grid-auto-rows: minmax(68px, auto) !important;
+  }
+  .zertiva-matching-title-card {
+    min-height: 68px !important;
+    height: 68px !important;
+    max-height: 68px !important;
+  }
+  .zertiva-matching-title-text {
+    font-size: 10.5px !important;
+    line-height: 1.3 !important;
+  }
+}
+
+/* تأكيد التطبيق فقط بين 641px و 1049px */
+@media (min-width: 641px) and (max-width: 1049px) {
+  .zertiva-matching-title-grid {
+    grid-auto-rows: minmax(64px, auto) !important;
+  }
+  .zertiva-matching-title-card {
+    min-height: 64px !important;
+    height: 64px !important;
+    max-height: 64px !important;
+  }
+}
+
+/* ---- التعديلات الخاصة بالهواتف الصغيرة (650px) ---- */
+@media (max-width: 650px) {
+  .zertiva-matching-root {
+    margin: 8px 0;
+    padding: 8px;
+    border-radius: 13px;
+    height: calc(100vh - 20px);
+    min-height: 480px;
+  }
+  .zertiva-matching-header {
+    flex-basis: 32px;
+    min-height: 32px;
+  }
+  .zertiva-matching-main-title {
+    font-size: 14px;
+  }
+  .zertiva-matching-progress {
+    font-size: 9px;
+    padding: 4px 7px;
+  }
+  .zertiva-matching-progress-bar {
+    width: 38px;
+    height: 4px;
+  }
+  .zertiva-matching-text-body {
+    font-size: 12px;
+    line-height: 1.58;
+    padding: 10px;
+  }
+  .zertiva-matching-answer-header {
+    flex-basis: 27px;
+    min-height: 27px;
+  }
+  .zertiva-matching-answer-title {
+    font-size: 10px;
+  }
+}
+
+/* ---- إخفاء الأزرار الأصلية عند تفعيل Matching (سيتم التحكم بها عبر JS) ---- */
+.zertiva-matching-active .original-exam-controls {
+  display: none !important;
+}
+/* ============================================
+   نافذة تعديل المعلومات
+   ============================================ */
+
 .edit-info-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -7730,6 +8727,1285 @@ body:has(#exam.active) #navSignupBtn {
 .item .exam-title[style*="color: #4b5563"]:hover {
     color: #4b5563 !important;
 }
+/* ============================================
+   أزرار Matching داخل exam-box (ثابتة)
+   ============================================ */
+
+.exam-box .teil1-controls,
+.exam-box .teil3-controls {
+    margin-top: 10px !important;
+    padding: 8px 0 !important;
+    border-top: 1px solid rgba(100, 120, 140, 0.1) !important;
+}
+
+.exam-box .teil1-controls .check-btn,
+.exam-box .teil3-controls .check-btn {
+    background: #2c3e66 !important;
+    color: white !important;
+    padding: 10px 24px !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.exam-box .teil1-controls .check-btn:hover,
+.exam-box .teil3-controls .check-btn:hover {
+    background: #1a2a4a !important;
+}
+
+.exam-box .teil1-controls .reset-btn,
+.exam-box .teil3-controls .reset-btn {
+    background: #6c757d !important;
+    color: white !important;
+    padding: 8px 12px !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.exam-box .teil1-controls .reset-btn:hover,
+.exam-box .teil3-controls .reset-btn:hover {
+    background: #5a6268 !important;
+}
+
+/* ============================================
+   ألوان التصحيح داخل Matching Mode (Lesen 1 & 3)
+   ============================================ */
+
+/* تلوين خانات select في Matching عند التصحيح */
+.zertiva-matching-root .correct-answer-card select,
+.zertiva-matching-root .correct-answer-card select option {
+    background-color: #d4edda !important;
+    border-color: #28a745 !important;
+    color: #155724 !important;
+}
+
+.zertiva-matching-root .wrong-answer-card select,
+.zertiva-matching-root .wrong-answer-card select option {
+    background-color: #fef0e0 !important;
+    border-color: #e67e22 !important;
+    color: #155724 !important;
+}
+
+/* تلوين بطاقات النصوص في Matching عند التصحيح */
+.zertiva-matching-root .correct-answer-card {
+    background-color: #d4edda !important;
+    border-color: #28a745 !important;
+}
+
+.zertiva-matching-root .wrong-answer-card {
+    background-color: #fef0e0 !important;
+    border-color: #e67e22 !important;
+}
+
+/* تلوين خيارات الـ select ضمن البطاقات المصححة */
+.zertiva-matching-root .question-card select {
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+/* إضافة border-radius للـ select في Matching */
+.zertiva-matching-root .question-card select {
+    border-radius: 8px !important;
+}
+
+/* تلوين بطاقات العناوين في Matching عند التصحيح (إذا كانت مرتبطة) */
+.zertiva-matching-root .zertiva-linked.correct-answer-card {
+    background-color: #d4edda !important;
+    border-color: #28a745 !important;
+}
+
+.zertiva-matching-root .zertiva-linked.wrong-answer-card {
+    background-color: #fef0e0 !important;
+    border-color: #e67e22 !important;
+}
+
+/* تلوين رسائل الإجابة الصحيحة */
+.zertiva-matching-root .correct-answer-message {
+    color: #28a745 !important;
+    font-weight: bold !important;
+    margin-top: 6px !important;
+    font-size: 12px !important;
+}
+
+/* تلوين مؤشرات التصحيح في خانة النتيجة */
+.zertiva-matching-root .result-box {
+    background: #ff6b6b;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 40px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    width: auto;
+    min-width: 180px;
+}
+/* ============================================================
+   ZERTIVA MATCHING MODE – LESEN 1 & 3 (مطابق للـ Prototype)
+   ============================================================ */
+
+/* ---- الجذر ---- */
+.zertiva-matching-root {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: clamp(9px, 1vw, 14px);
+  background: #ffffff;
+  border: 1px solid rgba(100, 120, 140, 0.16);
+  border-radius: 16px;
+  box-shadow: 0 7px 25px rgba(20, 35, 50, 0.06);
+  color: #17212b;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  height: min(760px, calc(100vh - 70px));
+  min-height: 520px;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+/* ---- الهيدر ---- */
+.zertiva-matching-header {
+  flex: 0 0 38px;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.zertiva-matching-main-title {
+  font-size: clamp(16px, 1.35vw, 21px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.zertiva-matching-progress {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(90, 120, 145, 0.16);
+  background: #f5f7fa;
+  color: #536170;
+  font-size: 11px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.zertiva-matching-progress-bar {
+  width: 58px;
+  height: 5px;
+  background: #e5ebf1;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.zertiva-matching-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: #67afea;
+  border-radius: inherit;
+  transition: width 0.22s ease;
+}
+
+/* ---- منطقة النصوص ---- */
+.zertiva-matching-text-area {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: none;
+  touch-action: pan-x;
+  display: flex;
+}
+
+/* يتم التحكم في text-grid عبر JS (flex للـ L1، grid للـ L3) */
+.zertiva-matching-text-grid {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+/* ---- بطاقات النصوص (مشتركة) ---- */
+.zertiva-matching-text-card {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: 1px solid rgba(100, 120, 140, 0.18);
+  background: #ffffff;
+  overflow: hidden;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.zertiva-matching-text-card:hover {
+  box-shadow: 0 5px 16px rgba(30, 50, 70, 0.06);
+}
+
+.zertiva-matching-text-card.zertiva-selected,
+.zertiva-matching-text-card.zertiva-linked {
+  border-color: #70b4eb;
+  background: #f7fbff;
+  box-shadow: 0 0 0 2px rgba(112, 180, 235, 0.10);
+}
+
+.zertiva-matching-text-head {
+  flex: 0 0 35px;
+  min-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 5px 8px;
+  box-sizing: border-box;
+  background: #f7f9fb;
+  border-bottom: 1px solid rgba(100, 120, 140, 0.14);
+  user-select: none;
+}
+
+.zertiva-matching-text-label {
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.zertiva-matching-text-badge {
+  min-width: 21px;
+  height: 21px;
+  padding: 0 5px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #67afea;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 850;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: 0.18s ease;
+}
+
+.zertiva-linked .zertiva-matching-text-badge {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.zertiva-matching-text-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: clamp(9px, 0.9vw, 13px);
+  box-sizing: border-box;
+  font-size: clamp(11px, 0.82vw, 13.5px);
+  line-height: 1.62;
+  font-weight: 500;
+  color: #273440;
+  word-break: normal;
+  overflow-wrap: break-word;
+  white-space: normal;
+  scrollbar-width: thin;
+}
+
+.zertiva-matching-text-body::-webkit-scrollbar {
+  width: 5px;
+}
+.zertiva-matching-text-body::-webkit-scrollbar-thumb {
+  background: rgba(90, 115, 140, 0.27);
+  border-radius: 99px;
+}
+
+/* ---- منطقة العناوين ---- */
+.zertiva-matching-answer-area {
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: 55%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border-radius: 13px;
+  border: 1px solid rgba(100, 120, 140, 0.16);
+  background: #f6f8fa;
+  padding: 8px;
+  overflow: hidden;
+}
+
+.zertiva-matching-answer-header {
+  flex: 0 0 30px;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 2px;
+}
+
+.zertiva-matching-answer-title {
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.zertiva-matching-title-area {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 2px 0;
+  scrollbar-width: thin;
+}
+
+.zertiva-matching-title-area::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.zertiva-matching-title-area::-webkit-scrollbar-thumb {
+  background: rgba(90, 115, 140, 0.22);
+  border-radius: 99px;
+}
+
+
+
+/* ---- شبكة العناوين (مطابقة للـ Prototype) ---- */
+.zertiva-matching-title-grid {
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 8px 12px;
+  box-sizing: border-box;
+  align-content: start;
+}
+
+/* > 1040px */
+@media (min-width: 1041px) {
+  .zertiva-matching-title-grid {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  }
+}
+
+/* 641–1040px */
+@media (max-width: 1040px) and (min-width: 641px) {
+  .zertiva-matching-title-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+}
+
+/* 561–640px: عمودين */
+@media (max-width: 640px) and (min-width: 561px) {
+  .zertiva-matching-title-grid {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+  .zertiva-matching-title-area {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+/* < 560px: عمودين بحجم ثابت وتمرير أفقي */
+@media (max-width: 560px) {
+  .zertiva-matching-title-area {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: none;
+    touch-action: pan-x;
+  }
+  .zertiva-matching-title-grid {
+    display: grid;
+    grid-template-columns: repeat(2, var(--zertiva-fixed-title-width, 270px));
+    grid-template-rows: repeat(5, var(--zertiva-fixed-title-height, 40px));
+    grid-auto-flow: row;
+    grid-auto-rows: unset;
+    gap: 8px 12px;
+    width: max-content;
+    min-width: max-content;
+    max-width: none;
+    align-content: start;
+    align-items: stretch;
+    justify-content: start;
+  }
+  .zertiva-matching-title-card {
+    width: var(--zertiva-fixed-title-width, 270px);
+    min-width: var(--zertiva-fixed-title-width, 270px);
+    max-width: var(--zertiva-fixed-title-width, 270px);
+    height: var(--zertiva-fixed-title-height, 40px);
+    min-height: var(--zertiva-fixed-title-height, 40px);
+    max-height: var(--zertiva-fixed-title-height, 40px);
+    flex-shrink: 0;
+  }
+  .zertiva-matching-title-area::-webkit-scrollbar {
+    width: 0;
+    height: 5px;
+  }
+}
+
+/* > 850px: العناوين متساوية الارتفاع */
+@media (min-width: 851px) {
+  .zertiva-matching-title-grid {
+    align-items: stretch;
+    align-content: stretch;
+    grid-auto-rows: 1fr;
+  }
+  .zertiva-matching-title-card {
+    width: 100%;
+    height: 100%;
+    min-height: 40px;
+    box-sizing: border-box;
+  }
+}
+
+/* ---- بطاقات العناوين (مطابقة للـ Prototype) ---- */
+.zertiva-matching-title-card {
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  border-radius: 9px;
+  border: 1px solid rgba(100, 120, 140, 0.17);
+  background: #ffffff;
+  cursor: pointer;
+  user-select: none;
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.zertiva-matching-title-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(30, 50, 70, 0.05);
+}
+
+.zertiva-matching-title-card.zertiva-selected,
+.zertiva-matching-title-card.zertiva-linked {
+  border-color: #70b4eb;
+  background: #f2f9ff;
+  box-shadow: 0 0 0 2px rgba(112, 180, 235, 0.08);
+}
+
+.zertiva-matching-title-letter {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  background: #edf2f6;
+  color: #526170;
+  font-size: 11px;
+  font-weight: 850;
+  flex-shrink: 0;
+}
+
+.zertiva-matching-title-card.zertiva-selected .zertiva-matching-title-letter,
+.zertiva-matching-title-card.zertiva-linked .zertiva-matching-title-letter {
+  background: #67afea;
+  color: #ffffff;
+}
+
+.zertiva-matching-title-content {
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.zertiva-matching-title-text {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  font-size: clamp(9px, 0.8vw, 12px);
+  line-height: 1.3;
+  font-weight: 650;
+  color: #273440;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  overflow: hidden;
+  text-overflow: clip;
+  text-align: left;
+}
+
+.zertiva-matching-title-match {
+  margin-top: 2px;
+  min-height: 0;
+  max-width: 100%;
+  font-size: 8px;
+  color: #6c7885;
+  font-weight: 750;
+  line-height: 1.1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* ---- أزرار التصحيح ---- */
+.zertiva-actions-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 0 0;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+}
+
+.zertiva-actions-buttons button {
+  border: 0;
+  border-radius: 9px;
+  padding: 8px 15px;
+  background: #18232e;
+  color: #ffffff;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+}
+
+.zertiva-actions-buttons button:hover {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}
+
+.zertiva-actions-buttons button:last-child {
+  padding-left: 12px;
+  padding-right: 12px;
+  background: #6c757d;
+}
+
+/* ---- تحت 1000px: الفقرات تصبح بعرض ثابت وتمرير أفقي ---- */
+@media (max-width: 1000px) {
+  .zertiva-matching-text-area {
+    overflow-x: auto;
+    overflow-y: hidden;
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: none;
+  }
+  /* يتم ضبط العرض الثابت للبطاقات عبر JS باستخدام --zertiva-fixed-text-width */
+  .zertiva-matching-text-grid {
+    width: max-content;
+    min-width: max-content;
+    max-width: none;
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+  .zertiva-matching-text-card {
+    flex: 0 0 var(--zertiva-fixed-text-width, 200px);
+    width: var(--zertiva-fixed-text-width, 200px);
+    min-width: var(--zertiva-fixed-text-width, 200px);
+    max-width: var(--zertiva-fixed-text-width, 200px);
+    height: 100%;
+    flex-shrink: 0;
+  }
+  .zertiva-matching-text-area::-webkit-scrollbar {
+    width: 0;
+    height: 5px;
+  }
+}
+
+/* ---- تحسينات للهواتف الصغيرة ---- */
+@media (max-width: 650px) {
+  .zertiva-matching-root {
+    margin: 8px 0;
+    padding: 8px;
+    border-radius: 13px;
+    height: calc(100vh - 20px);
+    min-height: 480px;
+  }
+  .zertiva-matching-header {
+    flex-basis: 32px;
+    min-height: 32px;
+  }
+  .zertiva-matching-main-title {
+    font-size: 14px;
+  }
+  .zertiva-matching-progress {
+    font-size: 9px;
+    padding: 4px 7px;
+  }
+  .zertiva-matching-progress-bar {
+    width: 38px;
+    height: 4px;
+  }
+  .zertiva-matching-text-body {
+    font-size: 12px;
+    line-height: 1.58;
+    padding: 10px;
+  }
+  .zertiva-matching-answer-header {
+    flex-basis: 27px;
+    min-height: 27px;
+  }
+  .zertiva-matching-answer-title {
+    font-size: 10px;
+  }
+}
+
+/* =========================================================
+   إصلاح فقرات Lesen 3 – 6+6 مع ارتفاع مناسب
+   ========================================================= */
+
+#zertiva-matching-root-lesen3 {
+  height: min(760px, calc(100vh - 70px)) !important;
+  min-height: 520px !important;
+  max-height: 100vh !important;
+}
+
+#zertiva-matching-root-lesen3 .zertiva-matching-text-area {
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  height: auto !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  touch-action: pan-x !important;
+  overscroll-behavior-x: contain !important;
+  overscroll-behavior-y: none !important;
+  display: flex !important;
+  box-sizing: border-box !important;
+}
+
+#zertiva-matching-root-lesen3 .zertiva-matching-answer-area {
+  flex: 0 1 auto !important;
+  max-height: 35% !important;
+  min-height: 100px !important;
+  height: auto !important;
+}
+
+#zertiva-matching-root-lesen3 .zertiva-matching-text-grid {
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  grid-template-rows: repeat(2, 1fr) !important;
+  gap: clamp(7px, 0.8vw, 11px) !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  align-items: stretch !important;
+  align-content: stretch !important;
+  box-sizing: border-box !important;
+}
+
+#zertiva-matching-root-lesen3 .zertiva-matching-text-card {
+  height: 100% !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(100,120,140,.18) !important;
+  background: #ffffff !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+}
+
+#zertiva-matching-root-lesen3 .zertiva-matching-text-body {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: clamp(9px, 0.9vw, 13px) !important;
+  box-sizing: border-box !important;
+  font-size: clamp(11px, 0.82vw, 13.5px) !important;
+  line-height: 1.62 !important;
+  font-weight: 500 !important;
+  color: #273440 !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  scrollbar-width: thin !important;
+}
+
+#zertiva-matching-root-lesen3 .zertiva-matching-text-body::-webkit-scrollbar {
+  width: 5px !important;
+}
+#zertiva-matching-root-lesen3 .zertiva-matching-text-body::-webkit-scrollbar-thumb {
+  background: rgba(90,115,140,.27) !important;
+  border-radius: 99px !important;
+}
+
+@media (max-width: 1000px) {
+  #zertiva-matching-root-lesen3 .zertiva-matching-text-area {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    touch-action: pan-x !important;
+  }
+  #zertiva-matching-root-lesen3 .zertiva-matching-text-grid {
+    width: max-content !important;
+    min-width: max-content !important;
+    max-width: none !important;
+    grid-template-columns: repeat(6, 200px) !important;
+    grid-template-rows: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    height: 100% !important;
+  }
+  #zertiva-matching-root-lesen3 .zertiva-matching-text-card {
+    width: 200px !important;
+    min-width: 200px !important;
+    max-width: 200px !important;
+    height: 100% !important;
+    flex-shrink: 0 !important;
+  }
+  #zertiva-matching-root-lesen3 .zertiva-matching-text-area::-webkit-scrollbar {
+    width: 0 !important;
+    height: 5px !important;
+  }
+}
+
+@media (max-width: 849px) {
+  #zertiva-matching-root-lesen3 .zertiva-matching-text-grid {
+    grid-template-columns: repeat(6, 230px) !important;
+  }
+  #zertiva-matching-root-lesen3 .zertiva-matching-text-card {
+    width: 230px !important;
+    min-width: 230px !important;
+    max-width: 230px !important;
+  }
+  #zertiva-matching-root-lesen3 .zertiva-matching-text-body {
+    font-size: 12px !important;
+    line-height: 1.55 !important;
+    padding: 10px 11px !important;
+  }
+}
+
+@media (max-width: 649px) {
+  #zertiva-matching-root-lesen3 .zertiva-matching-text-grid {
+    grid-template-columns: repeat(6, 220px) !important;
+  }
+  #zertiva-matching-root-lesen3 .zertiva-matching-text-card {
+    width: 220px !important;
+    min-width: 220px !important;
+    max-width: 220px !important;
+  }
+  #zertiva-matching-root-lesen3 .zertiva-matching-text-body {
+    font-size: 11.5px !important;
+    line-height: 1.55 !important;
+    padding: 9px 10px !important;
+  }
+}
+/* ============================================
+   أزرار Prüfen و Nochmal versuchen في Lesen 1 و 3
+   ============================================ */
+/* صف الأزرار */
+#teil1 .teil-controls-row,
+#teil3 .teil-controls-row {
+    display: flex;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin-top: 20px !important;
+}
+
+/* زر التصحيح - مستطيل صغير */
+#teil1 .teil-controls-row .check-btn,
+#teil3 .teil-controls-row .check-btn {
+    display: inline-flex;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 8px 20px !important;
+    min-height: 36px !important;
+    height: auto !important;
+    background-color: #2c3e66 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    white-space: nowrap !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+#teil1 .teil-controls-row .check-btn:hover,
+#teil3 .teil-controls-row .check-btn:hover {
+    background-color: #1a2a4a !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15) !important;
+}
+
+#teil1 .teil-controls-row .check-btn:active,
+#teil3 .teil-controls-row .check-btn:active {
+    transform: scale(0.97) !important;
+}
+
+/* زر إعادة المحاولة - مربع صغير */
+#teil1 .teil-controls-row .lesen-reset-btn,
+#teil3 .teil-controls-row .lesen-reset-btn {
+    display: inline-flex;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 8px 12px !important;
+    min-height: 36px !important;
+    height: auto !important;
+    min-width: 36px !important;
+    width: auto !important;
+    background-color: #6c757d !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    line-height: 1 !important;
+}
+
+#teil1 .teil-controls-row .lesen-reset-btn:hover,
+#teil3 .teil-controls-row .lesen-reset-btn:hover {
+    background-color: #5a6268 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15) !important;
+}
+
+#teil1 .teil-controls-row .lesen-reset-btn:active,
+#teil3 .teil-controls-row .lesen-reset-btn:active {
+    transform: scale(0.93) !important;
+}
+
+/* للهواتف */
+@media (max-width: 770px) {
+    #teil1 .teil-controls-row,
+    #teil3 .teil-controls-row {
+        gap: 8px !important;
+        margin-top: 16px !important;
+    }
+    #teil1 .teil-controls-row .check-btn,
+    #teil3 .teil-controls-row .check-btn {
+        padding: 6px 14px !important;
+        font-size: 13px !important;
+        min-height: 32px !important;
+    }
+    #teil1 .teil-controls-row .lesen-reset-btn,
+    #teil3 .teil-controls-row .lesen-reset-btn {
+        padding: 6px 10px !important;
+        min-height: 32px !important;
+        min-width: 32px !important;
+        font-size: 16px !important;
+    }
+}
+/* ============================================
+   إطار خفيف دائم لبطاقات Lesen 1 و 3
+   ============================================ */
+
+#teil1 .question-card,
+#teil3 .question-card {
+    border: 1px solid rgba(100, 116, 139, 0.16) !important;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04) !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#teil1 .question-card:hover,
+#teil3 .question-card:hover {
+    border-color: rgba(59, 130, 246, 0.28) !important;
+    box-shadow: 0 2px 7px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* ============================================
+   تجاوز الإطار الغليظ الناتج عن التصحيح
+   (هذا هو الحل الفعال الذي جربته في Console)
+   ============================================ */
+
+#teil1 .question-card.correct-answer-card,
+#teil1 .question-card.wrong-answer-card,
+#teil3 .question-card.correct-answer-card,
+#teil3 .question-card.wrong-answer-card {
+    border: 1px solid rgba(100, 116, 139, 0.16) !important;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04) !important;
+}
+
+#teil1 .question-card.correct-answer-card:hover,
+#teil1 .question-card.wrong-answer-card:hover,
+#teil3 .question-card.correct-answer-card:hover,
+#teil3 .question-card.wrong-answer-card:hover {
+    border-color: rgba(59, 130, 246, 0.28) !important;
+    box-shadow: 0 2px 7px rgba(15, 23, 42, 0.06) !important;
+}
+/* ===== Why Zertiva Button - يعتمد على كلاس study-planner-icon-btn فقط ===== */
+/* لا حاجة لستايلات خاصة بالمعرف، كل شيء موروث من الكلاس */
+/* تأكيد أن الصورة لها نفس ستايلات خطة اليوم */
+#whyZertivaBtn .planner-icon-img {
+    width: 20px !important;
+    height: 20px !important;
+    display: block !important;
+    object-fit: contain !important;
+    pointer-events: none !important;
+    border-radius: 4px !important;
+    filter: brightness(0) invert(1) !important;
+    opacity: 0.85 !important;
+}
+
+/* التكيف مع الهواتف (نفس خطة اليوم) */
+@media (max-width: 768px) {
+    #whyZertivaBtn .planner-icon-img {
+        width: 16px !important;
+        height: 16px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #whyZertivaBtn .planner-icon-img {
+        width: 14px !important;
+        height: 14px !important;
+    }
+}
+
+/* ===== Why Zertiva Popup ===== */
+.why-zertiva-popup {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    z-index: 9999999;
+    background: #0f172a;
+    border: 1px solid rgba(56, 189, 248, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    width: 380px;
+    max-width: 90vw;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 18px 20px 20px 20px;
+    box-sizing: border-box;
+    display: none;
+    direction: rtl;
+    text-align: right;
+    animation: whyPopupFadeIn 0.25s ease;
+}
+
+.why-zertiva-popup.active {
+    display: block;
+}
+
+@keyframes whyPopupFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.why-zertiva-popup::-webkit-scrollbar {
+    width: 4px;
+}
+
+.why-zertiva-popup::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.why-zertiva-popup::-webkit-scrollbar-thumb {
+    background: #38bdf8;
+    border-radius: 4px;
+}
+
+.why-popup-title {
+    color: #38bdf8;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+    text-align: right;
+    font-family: inherit;
+    letter-spacing: 0.3px;
+}
+
+.why-popup-text {
+    color: #cbd5e1;
+    font-size: 13px;
+    line-height: 1.8;
+    margin: 0;
+    font-family: inherit;
+}
+
+.why-popup-text .highlight {
+    color: #38bdf8;
+    font-weight: 600;
+}
+
+.why-popup-text .highlight-gold {
+    color: #fbbf24;
+    font-weight: 600;
+}
+
+.why-popup-text .highlight-green {
+    color: #34d399;
+    font-weight: 600;
+}
+
+.why-popup-text .highlight-rose {
+    color: #f87171;
+    font-weight: 600;
+}
+
+.why-popup-text p {
+    margin: 0 0 8px 0;
+}
+
+.why-popup-text p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .why-zertiva-btn {
+        height: 32px;
+        padding: 0 10px;
+        border-radius: 10px;
+        transform: scale(0.85);
+    }
+    
+    .why-icon-img {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .why-zertiva-popup {
+        width: 340px;
+        max-width: 92vw;
+        right: 10px;
+        top: 54px;
+        padding: 14px 16px 16px 16px;
+        max-height: 350px;
+    }
+    
+    .why-popup-title {
+        font-size: 14px;
+    }
+    
+    .why-popup-text {
+        font-size: 12px;
+        line-height: 1.7;
+    }
+}
+
+@media (max-width: 480px) {
+    .why-zertiva-btn {
+        height: 24px;
+        padding: 0 6px;
+        border-radius: 8px;
+    }
+    
+    .why-icon-img {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .why-zertiva-popup {
+        width: 300px;
+        max-width: 94vw;
+        right: 6px;
+        top: 50px;
+        padding: 12px 14px 14px 14px;
+        max-height: 320px;
+    }
+    
+    .why-popup-title {
+        font-size: 13px;
+    }
+    
+    .why-popup-text {
+        font-size: 11px;
+        line-height: 1.6;
+    }
+}/* ===== My Info Popup ===== */
+.myinfo-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    z-index: 999999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.myinfo-popup-overlay.active {
+    display: flex;
+}
+.myinfo-popup {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 28px 32px 24px;
+    max-width: 340px;
+    width: 90%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e8ecf0;
+    text-align: center;
+    direction: rtl;
+    animation: myinfoPopupIn 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+@keyframes myinfoPopupIn {
+    from { opacity: 0; transform: scale(0.92) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.myinfo-popup-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 6px 0;
+}
+.myinfo-popup-sub {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0 0 22px 0;
+    line-height: 1.5;
+}
+.myinfo-popup-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+.myinfo-popup-btn {
+    padding: 10px 28px;
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+.myinfo-popup-btn.yes {
+    background: #2c3e66;
+    color: white;
+}
+.myinfo-popup-btn.yes:hover {
+    background: #1a2a4a;
+    transform: translateY(-1px);
+}
+.myinfo-popup-btn.no {
+    background: transparent;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+}
+.myinfo-popup-btn.no:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+@media (max-width: 480px) {
+    .myinfo-popup {
+        padding: 22px 20px 20px;
+        max-width: 300px;
+    }
+    .myinfo-popup-title {
+        font-size: 15px;
+    }
+    .myinfo-popup-sub {
+        font-size: 13px;
+        margin-bottom: 18px;
+    }
+    .myinfo-popup-btn {
+        padding: 8px 20px;
+        font-size: 13px;
+    }
+}
+/* إخفاء الأزرار التي تعتمد على JavaScript افتراضياً لمنع الظهور المؤقت */
+#settingsBtn,
+#myInfoBtn,
+#studyPlannerBtn {
+    display: none;
+}
+/* ============================================
+   Hoeren2 Health Cross - تحسينات إضافية
+   ============================================ */
+
+/* لتقليل الهوامش في وضع الشبكة */
+#hoeren2.health-mode-active .question-card {
+    padding: 4px 4px !important;
+    margin-bottom: 0 !important;
+}
+
+#hoeren2.health-mode-active .option-label {
+    padding: 2px 6px !important;
+    font-size: 0.55rem !important;
+    gap: 2px !important;
+}
+
+#hoeren2.health-mode-active .option-label input[type="radio"] {
+    width: 12px !important;
+    height: 12px !important;
+}
+
+/* عند تفعيل الوضع، نضيف كلاس health-mode-active للحاوية */
+#hoeren2.health-mode-active {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+}
+
+/* لتوافق الهواتف الصغيرة جداً */
+@media (max-width: 480px) {
+    #hoeren2.health-mode-active .question-card span:not(.option-label) {
+        font-size: 0.65rem !important;
+    }
+}
+       /* إخفاء result-box الفارغ (بـ data-empty) */
+    #sprach1Result[data-empty="true"],
+    #sprach2Result[data-empty="true"] {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+    
+    /* إخفاء احتياطي إذا كان فارغًا */
+    #sprach1Result:empty,
+    #sprach2Result:empty {
+        display: none !important;
+    }
 /* ============================================
    studySession.css - النسخة النهائية (متكاملة)
    ============================================ */
