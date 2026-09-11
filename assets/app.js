@@ -36487,7 +36487,7 @@ var MyApp = (() => {
         { id: 29, title: "FITWATCH Smartwatch", enabled: true, hasFile: true },
         { id: 30, title: "Securvia Reisegep\xE4ck- versicherung", enabled: true, hasFile: true },
         { id: 31, title: "DIGIBIKE - Das smarte Hightech-Fahrrad", enabled: true, hasFile: true },
-        { id: 32, title: "SPORTHEINPARKPLATZ F\xDCR KINDER", enabled: true, hasFile: true },
+        { id: 32, title: "SPORTHEINPARK PLATZ F\xDCR KINDER", enabled: true, hasFile: true },
         { id: 33, title: "Online-Training f\xFCr guten Schlaf", enabled: true, hasFile: true },
         { id: 34, title: "Hollandblumen-Onlineshop", enabled: true, hasFile: true },
         { id: 35, title: "In Offenbach zu Hause", enabled: true, hasFile: true },
