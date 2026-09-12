@@ -4663,10 +4663,21 @@ window.updateAskAIContext = function(skill, examId) {
         window.currentSkill = activeSkill;
         console.log(`  📌 تم تعيين currentSkill = ${window.currentSkill} (Custom)`);
 
+          // ✅ قائمة استثناء ثابتة (حسب ID): امتحانات الاحتياط لا تدخل "أدوات التحكم"
+        const excludedFromCustomPlan = {
+            hoeren1: [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63],
+            hoeren2: [58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72],
+            hoeren3: [51, 52, 53, 54, 55, 56, 57]
+        };
+
         const allExams = [];
         const skillKeys = Object.keys(window.examsDatabase);
         skillKeys.forEach(skill => {
-            const examIds = window.examsDatabase[skill].map(e => e.id).filter(id => id !== undefined);
+            let examIds = window.examsDatabase[skill].map(e => e.id).filter(id => id !== undefined);
+            const excluded = excludedFromCustomPlan[skill];
+            if (excluded && excluded.length > 0) {
+                examIds = examIds.filter(id => excluded.indexOf(id) === -1);
+            }
             examIds.forEach(id => {
                 const score = window.getExamResult ? window.getExamResult(skill, id) : null;
                 const retries = window.getRetryCount ? window.getRetryCount(skill, id) : 0;
@@ -4804,10 +4815,20 @@ window.updateAskAIContext = function(skill, examId) {
             return `منذ ${days} يوم`;
         }
 
+           // ✅ قائمة استثناء ثابتة (حسب ID): امتحانات الاحتياط لا تُعرض في نتيجة "أدوات التحكم"
+        const excludedFromCustomPlanRender = {
+            hoeren1: [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63],
+            hoeren2: [58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72],
+            hoeren3: [51, 52, 53, 54, 55, 56, 57]
+        };
+
         let groupsHTML = '';
         const sortedSkills = sectionKeys.filter(s => weights[s] > 0);
         sortedSkills.forEach(skill => {
-            const exams = examGroups[skill] || [];
+            const excluded = excludedFromCustomPlanRender[skill];
+            const exams = (examGroups[skill] || []).filter(e => {
+                return !excluded || excluded.indexOf(e.id) === -1;
+            });
             if (exams.length === 0) return;
             const skillLabel = CUSTOM_SECTIONS.find(s => s.id === skill)?.label || skill;
             groupsHTML += `
