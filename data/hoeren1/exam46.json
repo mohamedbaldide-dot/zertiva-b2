@@ -4,11 +4,12 @@
   "questions": [
     { "text": "Die Deutsche Lufthansa hat ihre Führungsposition verloren.", "correct": false },
     { "text": "Ein Bonner Sportverein zeigt der Öffentlichkeit sein Angebot.", "correct": true },
-    { "text": "Die Situation im Pflegesektor ist es noch nicht verbessert.", "correct": false },
+    { "text": "Die Situation im Pflegesektor ist es noch nicht verbessert.", "correct": true },
     { "text": "Durch moderne Wärmedämmung könnten die Heizkosten deutlich reduziert werden.", "correct": false },
     { "text": "Das Nationale Olympische Komitee hat die Dopingsperre für Tom Sanders aufgehoben.", "correct": false }
   ],
   "memoryHighlights": [
-    { "color": 3, "parts": ["Ein Bonner Sportverein zeigt der Öffentlichkeit sein Angebot."] }
+    { "color": 3, "parts": ["Ein Bonner Sportverein zeigt der Öffentlichkeit sein Angebot."] },
+    { "color": 4, "parts": ["Die Situation im Pflegesektor ist es noch nicht verbessert."] }
   ]
 }
