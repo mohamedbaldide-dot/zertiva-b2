@@ -9126,43 +9126,72 @@ body:has(#exam.active) #navSignupBtn {
   }
 }
 
-/* < 560px: عمودين بحجم ثابت وتمرير أفقي */
+/* < 560px: عمودان يملآن العرض + تمرير عمودي فقط بدون أي تمرير أفقي */
 @media (max-width: 560px) {
   .zertiva-matching-title-area {
     width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
+    max-width: 100%;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
     scrollbar-width: thin;
-    overscroll-behavior-x: contain;
-    overscroll-behavior-y: none;
-    touch-action: pan-x;
+    overscroll-behavior-x: none !important;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y !important;
   }
+
   .zertiva-matching-title-grid {
     display: grid;
-    grid-template-columns: repeat(2, var(--zertiva-fixed-title-width, 270px));
-    grid-template-rows: repeat(5, var(--zertiva-fixed-title-height, 40px));
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-rows: minmax(40px, auto) !important;
+    grid-template-rows: none !important;
     grid-auto-flow: row;
-    grid-auto-rows: unset;
-    gap: 8px 12px;
-    width: max-content;
-    min-width: max-content;
-    max-width: none;
-    align-content: start;
-    align-items: stretch;
-    justify-content: start;
+    gap: 8px 10px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    align-content: start !important;
+    align-items: stretch !important;
+    justify-content: stretch !important;
   }
+
   .zertiva-matching-title-card {
-    width: var(--zertiva-fixed-title-width, 270px);
-    min-width: var(--zertiva-fixed-title-width, 270px);
-    max-width: var(--zertiva-fixed-title-width, 270px);
-    height: var(--zertiva-fixed-title-height, 40px);
-    min-height: var(--zertiva-fixed-title-height, 40px);
-    max-height: var(--zertiva-fixed-title-height, 40px);
-    flex-shrink: 0;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 40px !important;
+    max-height: none !important;
+    flex-shrink: 1 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    grid-template-columns: 24px minmax(0, 1fr) !important;
   }
+
+  .zertiva-matching-title-content {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .zertiva-matching-title-text {
+    width: 100% !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+  }
+
   .zertiva-matching-title-area::-webkit-scrollbar {
-    width: 0;
-    height: 5px;
+    width: 5px !important;
+    height: 0 !important;
+  }
+
+  .zertiva-matching-title-area::-webkit-scrollbar-thumb {
+    background: rgba(90, 115, 140, 0.27) !important;
+    border-radius: 99px !important;
   }
 }
 
