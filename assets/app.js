@@ -33334,8 +33334,15 @@ var MyApp = (() => {
                   };
                 });
               }
+              const _allRawQuestions = rawQuestions.slice();
+              if (this.currentSkill === "hoeren1" || this.currentSkill === "hoeren2" || this.currentSkill === "hoeren3") {
+                const _filteredCorrect = rawQuestions.filter((q) => q.correct === true);
+                if (_filteredCorrect.length > 0) {
+                  rawQuestions = _filteredCorrect;
+                }
+              }
               this.questions = rawQuestions;
-              this.allQuestions = rawQuestions.slice();
+              this.allQuestions = _allRawQuestions;
               if (this.questions.length === 0) {
                 this.showNotAvailable("\u0644\u0627 \u062A\u0648\u062C\u062F \u0623\u0633\u0626\u0644\u0629 \u0635\u0627\u0644\u062D\u0629 \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u0627\u0645\u062A\u062D\u0627\u0646");
                 return;
