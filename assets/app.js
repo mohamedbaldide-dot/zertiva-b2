@@ -35982,7 +35982,7 @@ var MyApp = (() => {
     const container2 = document.getElementById("examsList");
     if (!container2) return;
     const skill = currentSkill2 || "lesen1";
-    if (!["hoeren1", "lesen1", "lesen2", "lesen3", "sprach1", "sprach2"].includes(skill)) return;
+    if (!["hoeren1", "hoeren3", "lesen1", "lesen2", "lesen3", "sprach1", "sprach2"].includes(skill)) return;
     const items = container2.querySelectorAll(".item:not(.teil-header):not(.memory-progress-bar-container)");
     if (!items.length) return;
     items.forEach((el) => {
@@ -38394,7 +38394,16 @@ var MyApp = (() => {
           { id: 18, title: "Delikatessen", enabled: true, hasFile: true },
           { id: 19, title: "F\xFCr ein Konzert (Bus gratis)", enabled: true, hasFile: true },
           { id: 20, title: "F\xFCr ein Konzert (in der ganzen Stadt)", enabled: true, hasFile: true },
-          { id: 21, title: "In Raum C23", enabled: true, hasFile: true },
+          {
+            id: 21,
+            title: "In Raum C23",
+            enabled: true,
+            hasFile: true,
+            versions: [
+              { id: 21, file: "exam21.json", title: "In Raum C23" },
+              { id: 58, file: "exam21b.json", title: "In Raum C23 (\u0627\u0644\u0645\u0639\u062F\u0644)" }
+            ]
+          },
           { id: 22, title: "Trainingsausfahrten", enabled: true, hasFile: true },
           { id: 23, title: "Das Gesch\xE4ft", enabled: true, hasFile: true },
           { id: 24, title: "Nach einer Gro\xDFdemonstration", enabled: true, hasFile: true },
