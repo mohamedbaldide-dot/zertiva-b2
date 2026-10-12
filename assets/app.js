@@ -843,6 +843,7 @@ var MyApp = (() => {
       "hoeren3_exam55": [2, 5],
       "hoeren3_exam56": [2],
       "hoeren3_exam57": [1, 3, 4],
+      "hoeren3_exam58": [2, 5],
       // Lesen Teil 1 (47 امتحان)
       "lesen1_exam1": [1, 2, 3, 4, 5],
       "lesen1_exam2": [1, 2, 3, 4, 5],
