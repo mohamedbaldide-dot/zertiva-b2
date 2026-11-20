@@ -9366,5 +9366,33 @@ if (expiryText) {
 
 
 </script>
+    <script>
+(() => {
+    const startBtn = document.getElementById('startBtn');
+    if (!startBtn) return;
+
+    const enableStartButton = async () => {
+        // انتظار انتهاء تحميل الخطوط المستخدمة في الصفحة
+        try {
+            if (document.fonts && document.fonts.ready) {
+                await document.fonts.ready;
+            }
+        } catch (error) {
+            console.warn('تعذر التأكد من تحميل الخطوط:', error);
+        }
+
+        startBtn.disabled = false;
+        startBtn.removeAttribute('aria-busy');
+    };
+
+    // إذا اكتمل التحميل بالفعل
+    if (document.readyState === 'complete') {
+        enableStartButton();
+    } else {
+        // انتظر اكتمال تحميل الصفحة ومواردها
+        window.addEventListener('load', enableStartButton, { once: true });
+    }
+})();
+</script>
 </body>
 </html>
